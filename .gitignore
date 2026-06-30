@@ -24,3 +24,10 @@ ts/.svelte-kit
 docs/_build/
 docs/autoapi/
 .complexipy_cache
+
+# ReadyMCAT iOS: large/reproducible build artifacts
+/build
+ios/Frameworks/*.xcframework
+**/xcuserdata/
+*.xcuserstate
+ios/ReadyMCAT.xcodeproj/project.xcworkspace/

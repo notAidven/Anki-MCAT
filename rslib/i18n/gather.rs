@@ -59,7 +59,14 @@ fn add_folder(map: &mut TranslationsByLang, folder: &Path, lang: &str) {
 /// If ignore_templates is true, the templates/ folder will be ignored, on the
 /// assumption the templates were extracted from the source tree.
 fn add_translation_root(map: &mut TranslationsByLang, root: &Path, ignore_templates: bool) {
-    for entry in fs::read_dir(root).unwrap() {
+    // ReadyMCAT: the translation submodules (ftl/core-repo, ftl/qt-repo) are not
+    // checked out in the iOS build, and we only ship English templates for the
+    // MVP. Tolerate a missing root instead of panicking so the build does not
+    // require initialising large translation submodules.
+    let Ok(dir) = fs::read_dir(root) else {
+        return;
+    };
+    for entry in dir {
         let entry = entry.unwrap();
         let lang = entry.file_name().to_string_lossy().to_string();
         if ignore_templates && lang == "templates" {

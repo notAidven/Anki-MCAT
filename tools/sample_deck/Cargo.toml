@@ -1,0 +1,21 @@
+[package]
+name = "sample_deck"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+rust-version.workspace = true
+description = "Generates a tiny sample .anki2 for the ReadyMCAT iOS app and smoke-tests the FFI review loop on the host"
+
+[[bin]]
+name = "sample_deck"
+path = "src/main.rs"
+
+[dependencies]
+anki.workspace = true
+anki_proto.workspace = true
+prost.workspace = true
+# See rsios: anki uses tokio's io-util; enable it explicitly for this
+# TLS-less host build so the shared tokio build includes it.
+tokio = { workspace = true, features = ["io-util"] }

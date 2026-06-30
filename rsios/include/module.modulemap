@@ -1,0 +1,4 @@
+module RsiosFFI {
+    header "rsios.h"
+    export *
+}

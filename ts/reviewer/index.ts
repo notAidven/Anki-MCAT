@@ -22,6 +22,10 @@ import { registerPackage } from "@tslib/runtime-require";
 import { allImagesLoaded, preloadAnswerImages } from "./images";
 import { preloadResources } from "./preload";
 
+// ReadyMCAT teach-on-miss: exposed globally (via index_wrapper) so the Python
+// reviewer can launch the guiding sub-question ladder with `_teachOnMissStart`.
+export { _teachOnMissStart } from "./teach_on_miss";
+
 declare const MathJax: any;
 
 type Callback = () => void | Promise<void>;

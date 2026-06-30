@@ -1,0 +1,907 @@
+{
+  "schema_version": "1.0.0",
+  "quiz_id": "readymcat-diagnostic-v1",
+  "title": "ReadyMCAT Introductory Diagnostic",
+  "description": "A short, first-launch diagnostic that samples across all 31 AAMC content categories. Its output is a per-topic proficiency PRIOR used to personalize study ordering and prerequisite placement. It is NOT a readiness score and is never shown to the student as a number. See README.md for the prior-mapping spec and the coverage-vs-fatigue rationale.",
+  "purpose": "Seed each AAMC content category's weakness estimate (so the points-at-stake order is useful from session one) and place the student in the prerequisite graph.",
+  "taxonomy": {
+    "source_of_truth": "taxonomy.json on branch readymcat-content-teach-on-miss (key: aamc_categories)",
+    "category_id_scheme": "AAMC foundational-concept content-category IDs (e.g., 1A..10A), 31 total",
+    "note": "Category IDs and names in this file are copied verbatim from taxonomy.json so they join cleanly to topic_weight and the deck-tag mappings."
+  },
+  "administration": {
+    "item_format": "single-best-answer multiple choice (4 options); discrete (non-passage) items chosen for unambiguous auto-grading",
+    "default_mode": "short",
+    "modes": {
+      "short": {
+        "items_per_category": 1,
+        "selection_rule": "administer the first item listed for each category (item suffix -01)",
+        "approx_item_count": 31,
+        "estimated_minutes": "20-30"
+      },
+      "extended": {
+        "items_per_category": "1-2",
+        "selection_rule": "administer every item in the bank",
+        "approx_item_count": 37,
+        "estimated_minutes": "28-40"
+      }
+    },
+    "coverage_vs_fatigue": "First-launch fatigue is the binding constraint, so the default is one item per category (full breadth, minimum length). A second item is authored only for the six highest-weight content categories (AAMC weight >= 3.2: 1A,1B,1C,1D,3A,3B) because the points-at-stake order (weight x weakness) is most sensitive to estimation noise where weight is high; the extra item halves the variance of the prior exactly where it most changes ordering. Even two items per category is far too few for a reliable per-category ability estimate, which is why results are consumed as a heavily-shrunk PRIOR, never as a score (see README.md)."
+  },
+  "honesty_rule": "A short quiz is a prior, not a readiness verdict. These results inform card ordering (points-at-stake) and prerequisite-graph placement ONLY. They never feed the dashboard's memory/performance/readiness scores, which obey their own give-up rule (>=200 graded reviews and >=50% coverage).",
+  "authoring_integrity": {
+    "policy": "All items are ORIGINAL, authored for ReadyMCAT and grounded in free/openly-licensed sources cited per item.",
+    "no_leakage": "No item is copied or paraphrased from any copyrighted or paid question bank (UWorld, Kaplan, Blueprint, AAMC paid/official prep). No confidential AAMC exam content is reproduced; only the public 'What's on the MCAT Exam?' content outline is used, and only for the topic list (the category IDs/names already encoded in taxonomy.json).",
+    "deck_independence": "Diagnostic items are authored independently of the study deck (Aidan/community decks). The diagnostic and the deck share no items, so studying one cannot leak answers to the other."
+  },
+  "content_license": "Original diagnostic items (c) ReadyMCAT, released under CC BY-SA 4.0. Each item cites the open source whose concept it is grounded in; facts/concepts are not copyrightable, and no source's expression is reproduced.",
+  "sources": {
+    "openstax_biology_2e": {
+      "name": "OpenStax Biology 2e",
+      "publisher": "OpenStax, Rice University",
+      "license": "CC BY 4.0",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "attribution": "Download for free at openstax.org. Licensed under CC BY 4.0.",
+      "usage": "Concept grounding for original biology/biochemistry items."
+    },
+    "openstax_chemistry_2e": {
+      "name": "OpenStax Chemistry 2e",
+      "publisher": "OpenStax, Rice University",
+      "license": "CC BY 4.0",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "attribution": "Download for free at openstax.org. Licensed under CC BY 4.0.",
+      "usage": "Concept grounding for original general-chemistry items."
+    },
+    "openstax_college_physics_2e": {
+      "name": "OpenStax College Physics 2e",
+      "publisher": "OpenStax, Rice University",
+      "license": "CC BY 4.0",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "attribution": "Download for free at openstax.org. Licensed under CC BY 4.0.",
+      "usage": "Concept grounding for original physics items."
+    },
+    "openstax_organic_chemistry": {
+      "name": "OpenStax Organic Chemistry",
+      "publisher": "OpenStax, Rice University",
+      "license": "CC BY 4.0",
+      "url": "https://openstax.org/details/books/organic-chemistry",
+      "attribution": "Download for free at openstax.org. Licensed under CC BY 4.0.",
+      "usage": "Concept grounding for original organic-chemistry items."
+    },
+    "openstax_anatomy_physiology_2e": {
+      "name": "OpenStax Anatomy and Physiology 2e",
+      "publisher": "OpenStax, Rice University",
+      "license": "CC BY 4.0",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "attribution": "Download for free at openstax.org. Licensed under CC BY 4.0.",
+      "usage": "Concept grounding for original organ-system items."
+    },
+    "openstax_microbiology": {
+      "name": "OpenStax Microbiology",
+      "publisher": "OpenStax, Rice University",
+      "license": "CC BY 4.0",
+      "url": "https://openstax.org/details/books/microbiology",
+      "attribution": "Download for free at openstax.org. Licensed under CC BY 4.0.",
+      "usage": "Concept grounding for original prokaryote/virus items."
+    },
+    "openstax_psychology_2e": {
+      "name": "OpenStax Psychology 2e",
+      "publisher": "OpenStax, Rice University",
+      "license": "CC BY 4.0",
+      "url": "https://openstax.org/details/books/psychology-2e",
+      "attribution": "Download for free at openstax.org. Licensed under CC BY 4.0.",
+      "usage": "Concept grounding for original psychology items."
+    },
+    "openstax_sociology_3e": {
+      "name": "OpenStax Introduction to Sociology 3e",
+      "publisher": "OpenStax, Rice University",
+      "license": "CC BY 4.0",
+      "url": "https://openstax.org/details/books/introduction-sociology-3e",
+      "attribution": "Download for free at openstax.org. Licensed under CC BY 4.0.",
+      "usage": "Concept grounding for original sociology items."
+    },
+    "khan_academy_mcat": {
+      "name": "Khan Academy MCAT Collection",
+      "publisher": "Khan Academy (with AAMC and the Robert Wood Johnson Foundation)",
+      "license": "CC BY-NC-SA",
+      "url": "https://www.khanacademy.org/test-prep/mcat",
+      "attribution": "All Khan Academy content is available for free at www.khanacademy.org.",
+      "usage": "Secondary concept reference and student review link only; non-commercial and ShareAlike obligations noted. No content reproduced here."
+    },
+    "aamc_content_outline": {
+      "name": "AAMC 'What's on the MCAT Exam?' content outline",
+      "publisher": "Association of American Medical Colleges",
+      "license": "Free public outline; AAMC-copyrighted. NOT openly licensed.",
+      "url": "https://students-residents.aamc.org/prepare-mcat-exam/whats-mcat-exam",
+      "attribution": "AAMC content outline, used for the public topic list only.",
+      "usage": "Canonical source for the 31 content-category IDs/names (already encoded in taxonomy.json). No AAMC questions, passages, or confidential content used."
+    }
+  },
+  "categories_covered": ["1A","1B","1C","1D","2A","2B","2C","3A","3B","4A","4B","4C","4D","4E","5A","5B","5C","5D","5E","6A","6B","6C","7A","7B","7C","8A","8B","8C","9A","9B","10A"],
+  "coverage": {
+    "total_categories_in_taxonomy": 31,
+    "categories_covered": 31,
+    "total_items": 37,
+    "items_with_two": ["1A","1B","1C","1D","3A","3B"],
+    "rule": "2 items for content categories with AAMC weight >= 3.2; 1 item otherwise."
+  },
+  "items": [
+    {
+      "id": "DQ-1A-01",
+      "category": "1A",
+      "category_name": "Structure and function of proteins and their constituent amino acids",
+      "section": "Bio/Biochem",
+      "discipline": "Biochemistry",
+      "format": "mcq_single_best",
+      "cognitive_level": "recall",
+      "difficulty": "easy",
+      "stem": "At physiological pH (~7.4), the alpha-amino group of a typical free amino acid is best described as:",
+      "options": [
+        {"key": "A", "text": "Protonated and positively charged"},
+        {"key": "B", "text": "Deprotonated and negatively charged"},
+        {"key": "C", "text": "Uncharged and nonpolar"},
+        {"key": "D", "text": "Covalently bonded to the side chain"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_chemistry_2e", "location": "Amino acids and proteins (acid-base behavior of functional groups)", "url": "https://openstax.org/details/books/chemistry-2e"},
+      "rationale": "The alpha-amino group has a pKa near 9-10, so at pH 7.4 it is mostly protonated (-NH3+), while the alpha-carboxyl (pKa ~2) is deprotonated.",
+      "tags": ["amino acids", "pKa", "zwitterion"]
+    },
+    {
+      "id": "DQ-1A-02",
+      "category": "1A",
+      "category_name": "Structure and function of proteins and their constituent amino acids",
+      "section": "Bio/Biochem",
+      "discipline": "Biochemistry",
+      "format": "mcq_single_best",
+      "cognitive_level": "application",
+      "difficulty": "hard",
+      "stem": "A mutation replaces a valine buried in the hydrophobic core of a globular protein with glutamate. The most likely structural consequence is:",
+      "options": [
+        {"key": "A", "text": "No effect, because both residues are nonpolar"},
+        {"key": "B", "text": "Increased stability from new hydrophobic contacts"},
+        {"key": "C", "text": "Destabilization or misfolding, because a charged residue is poorly accommodated in the core"},
+        {"key": "D", "text": "Automatic formation of a stabilizing disulfide bond"}
+      ],
+      "answer": "C",
+      "source": {"ref": "openstax_biology_2e", "location": "Proteins: protein structure and the effect of amino acid R-groups", "url": "https://openstax.org/details/books/biology-2e"},
+      "rationale": "Glutamate carries a charged, polar side chain; burying it in a hydrophobic interior is energetically unfavorable and tends to disrupt folding/stability.",
+      "tags": ["protein folding", "hydrophobic core", "mutation"]
+    },
+    {
+      "id": "DQ-1B-01",
+      "category": "1B",
+      "category_name": "Transmission of genetic information from the gene to the protein",
+      "section": "Bio/Biochem",
+      "discipline": "Biochemistry",
+      "format": "mcq_single_best",
+      "cognitive_level": "recall",
+      "difficulty": "easy",
+      "stem": "During translation, the mRNA codon is directly recognized by base pairing with the:",
+      "options": [
+        {"key": "A", "text": "Anticodon of a tRNA"},
+        {"key": "B", "text": "Promoter region of DNA"},
+        {"key": "C", "text": "Active site of DNA polymerase"},
+        {"key": "D", "text": "5' cap of a second mRNA"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_biology_2e", "location": "Gene expression: translation (codon-anticodon pairing)", "url": "https://openstax.org/details/books/biology-2e"},
+      "rationale": "Each tRNA anticodon base-pairs with the complementary mRNA codon to deliver the correct amino acid.",
+      "tags": ["translation", "tRNA", "codon"]
+    },
+    {
+      "id": "DQ-1B-02",
+      "category": "1B",
+      "category_name": "Transmission of genetic information from the gene to the protein",
+      "section": "Bio/Biochem",
+      "discipline": "Biochemistry",
+      "format": "mcq_single_best",
+      "cognitive_level": "application",
+      "difficulty": "medium",
+      "stem": "A single nucleotide is deleted near the start of a protein-coding sequence. The most likely effect on the encoded protein is:",
+      "options": [
+        {"key": "A", "text": "A silent change with no effect on the protein"},
+        {"key": "B", "text": "A frameshift that alters most downstream codons"},
+        {"key": "C", "text": "A single conservative amino acid substitution only"},
+        {"key": "D", "text": "Lengthening of the poly-A tail"}
+      ],
+      "answer": "B",
+      "source": {"ref": "openstax_biology_2e", "location": "Mutations: frameshift vs. point mutations", "url": "https://openstax.org/details/books/biology-2e"},
+      "rationale": "A single-base insertion or deletion shifts the reading frame, changing every codon downstream of the change.",
+      "tags": ["mutation", "frameshift", "reading frame"]
+    },
+    {
+      "id": "DQ-1C-01",
+      "category": "1C",
+      "category_name": "Transmission of heritable information from generation to generation and the processes that increase genetic diversity",
+      "section": "Bio/Biochem",
+      "discipline": "Biology",
+      "format": "mcq_single_best",
+      "cognitive_level": "application",
+      "difficulty": "hard",
+      "stem": "Two genes on the same chromosome are 50 map units (centimorgans) apart. In a testcross, their inheritance pattern will be:",
+      "options": [
+        {"key": "A", "text": "Effectively indistinguishable from independent assortment"},
+        {"key": "B", "text": "Completely linked, producing only parental types"},
+        {"key": "C", "text": "A fixed 3:1 phenotypic ratio"},
+        {"key": "D", "text": "Determined solely by nondisjunction"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_biology_2e", "location": "Linkage and recombination (map distance and recombination frequency)", "url": "https://openstax.org/details/books/biology-2e"},
+      "rationale": "A recombination frequency of 50% is the maximum observed and is indistinguishable from genes assorting independently.",
+      "tags": ["genetic linkage", "recombination", "map units"]
+    },
+    {
+      "id": "DQ-1C-02",
+      "category": "1C",
+      "category_name": "Transmission of heritable information from generation to generation and the processes that increase genetic diversity",
+      "section": "Bio/Biochem",
+      "discipline": "Biology",
+      "format": "mcq_single_best",
+      "cognitive_level": "application",
+      "difficulty": "medium",
+      "stem": "Crossing over between homologous chromosomes, a major source of genetic diversity, occurs during:",
+      "options": [
+        {"key": "A", "text": "Prophase I of meiosis"},
+        {"key": "B", "text": "Anaphase of mitosis"},
+        {"key": "C", "text": "S phase of interphase"},
+        {"key": "D", "text": "Cytokinesis"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_biology_2e", "location": "Meiosis: synapsis and crossing over in prophase I", "url": "https://openstax.org/details/books/biology-2e"},
+      "rationale": "Homologous chromosomes synapse and exchange segments during prophase I, increasing recombinant diversity.",
+      "tags": ["meiosis", "crossing over", "prophase I"]
+    },
+    {
+      "id": "DQ-1D-01",
+      "category": "1D",
+      "category_name": "Principles of bioenergetics and fuel molecule metabolism",
+      "section": "Bio/Biochem",
+      "discipline": "Biochemistry",
+      "format": "mcq_single_best",
+      "cognitive_level": "recall",
+      "difficulty": "easy",
+      "stem": "In eukaryotic cells, the electron transport chain that produces most ATP is located in the:",
+      "options": [
+        {"key": "A", "text": "Inner mitochondrial membrane"},
+        {"key": "B", "text": "Cytosol"},
+        {"key": "C", "text": "Nucleolus"},
+        {"key": "D", "text": "Smooth endoplasmic reticulum"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_biology_2e", "location": "Cellular respiration: oxidative phosphorylation", "url": "https://openstax.org/details/books/biology-2e"},
+      "rationale": "Oxidative phosphorylation and the ETC occur at the inner mitochondrial membrane; glycolysis occurs in the cytosol.",
+      "tags": ["cellular respiration", "ETC", "mitochondria"]
+    },
+    {
+      "id": "DQ-1D-02",
+      "category": "1D",
+      "category_name": "Principles of bioenergetics and fuel molecule metabolism",
+      "section": "Bio/Biochem",
+      "discipline": "Biochemistry",
+      "format": "mcq_single_best",
+      "cognitive_level": "application",
+      "difficulty": "medium",
+      "stem": "A metabolic reaction has a standard free-energy change of dG = -30 kJ/mol. This reaction is:",
+      "options": [
+        {"key": "A", "text": "Exergonic and thermodynamically spontaneous"},
+        {"key": "B", "text": "Endergonic and nonspontaneous"},
+        {"key": "C", "text": "At equilibrium with no net direction"},
+        {"key": "D", "text": "Impossible unless coupled to ATP hydrolysis"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_biology_2e", "location": "Metabolism and bioenergetics: free energy and spontaneity", "url": "https://openstax.org/details/books/biology-2e"},
+      "rationale": "A negative dG means the reaction is exergonic and spontaneous; enzymes change the rate, not the sign of dG.",
+      "tags": ["bioenergetics", "free energy", "spontaneity"]
+    },
+    {
+      "id": "DQ-2A-01",
+      "category": "2A",
+      "category_name": "Assemblies of molecules, cells, and groups of cells within single cellular and multicellular organisms",
+      "section": "Bio/Biochem",
+      "discipline": "Biology",
+      "format": "mcq_single_best",
+      "cognitive_level": "application",
+      "difficulty": "medium",
+      "stem": "The plasma membrane is described as a 'fluid mosaic' primarily because:",
+      "options": [
+        {"key": "A", "text": "Lipids and many proteins diffuse laterally within a phospholipid bilayer"},
+        {"key": "B", "text": "It is a rigid crystalline lattice of proteins"},
+        {"key": "C", "text": "It is composed almost entirely of cholesterol"},
+        {"key": "D", "text": "Ions cross the hydrophobic core freely without channels"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_biology_2e", "location": "Structure and function of plasma membranes (fluid mosaic model)", "url": "https://openstax.org/details/books/biology-2e"},
+      "rationale": "The model captures lateral mobility of lipids and proteins ('fluid') within a heterogeneous bilayer ('mosaic').",
+      "tags": ["membrane", "fluid mosaic", "bilayer"]
+    },
+    {
+      "id": "DQ-2B-01",
+      "category": "2B",
+      "category_name": "The structure, growth, physiology, and genetics of prokaryotes and viruses",
+      "section": "Bio/Biochem",
+      "discipline": "Biology",
+      "format": "mcq_single_best",
+      "cognitive_level": "recall",
+      "difficulty": "medium",
+      "stem": "Which feature is characteristic of typical bacterial (prokaryotic) cells but absent from animal (eukaryotic) cells?",
+      "options": [
+        {"key": "A", "text": "A cell wall containing peptidoglycan"},
+        {"key": "B", "text": "Ribosomes"},
+        {"key": "C", "text": "A plasma membrane"},
+        {"key": "D", "text": "A membrane-bound nucleus"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_microbiology", "location": "Prokaryotic cell structure (peptidoglycan cell wall)", "url": "https://openstax.org/details/books/microbiology"},
+      "rationale": "Peptidoglycan walls are a bacterial hallmark; animal cells lack cell walls, and prokaryotes (not eukaryotes) lack a membrane-bound nucleus.",
+      "tags": ["prokaryotes", "peptidoglycan", "cell wall"]
+    },
+    {
+      "id": "DQ-2C-01",
+      "category": "2C",
+      "category_name": "Processes of cell division, differentiation, and specialization",
+      "section": "Bio/Biochem",
+      "discipline": "Biology",
+      "format": "mcq_single_best",
+      "cognitive_level": "application",
+      "difficulty": "medium",
+      "stem": "Cell-cycle checkpoints that halt a cell with damaged DNA before it divides act primarily at the:",
+      "options": [
+        {"key": "A", "text": "G1/S and G2/M transitions"},
+        {"key": "B", "text": "Middle of anaphase"},
+        {"key": "C", "text": "Cytokinesis cleavage furrow"},
+        {"key": "D", "text": "Nucleolus during interphase"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_biology_2e", "location": "Cell cycle: regulation and checkpoints", "url": "https://openstax.org/details/books/biology-2e"},
+      "rationale": "The G1/S and G2/M checkpoints gate progression on DNA integrity and replication completeness.",
+      "tags": ["cell cycle", "checkpoints", "DNA damage"]
+    },
+    {
+      "id": "DQ-3A-01",
+      "category": "3A",
+      "category_name": "Structure and functions of the nervous and endocrine systems and ways these systems coordinate the organ systems",
+      "section": "Bio/Biochem",
+      "discipline": "Biology",
+      "format": "mcq_single_best",
+      "cognitive_level": "recall",
+      "difficulty": "medium",
+      "stem": "The resting membrane potential of a typical neuron is maintained mainly by:",
+      "options": [
+        {"key": "A", "text": "The Na+/K+ ATPase together with K+ leak channels"},
+        {"key": "B", "text": "Voltage-gated calcium channels at the axon terminal"},
+        {"key": "C", "text": "Acetylcholinesterase in the synaptic cleft"},
+        {"key": "D", "text": "The myelin sheath alone"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_anatomy_physiology_2e", "location": "Nervous tissue: the membrane potential", "url": "https://openstax.org/details/books/anatomy-and-physiology-2e"},
+      "rationale": "The Na+/K+ pump maintains ion gradients and K+ leak channels make the membrane most permeable to K+, setting ~-70 mV.",
+      "tags": ["neuron", "resting potential", "Na/K ATPase"]
+    },
+    {
+      "id": "DQ-3A-02",
+      "category": "3A",
+      "category_name": "Structure and functions of the nervous and endocrine systems and ways these systems coordinate the organ systems",
+      "section": "Bio/Biochem",
+      "discipline": "Biology",
+      "format": "mcq_single_best",
+      "cognitive_level": "application",
+      "difficulty": "medium",
+      "stem": "Compared with neuronal signaling, endocrine (hormonal) signaling is generally:",
+      "options": [
+        {"key": "A", "text": "Slower in onset but longer in duration"},
+        {"key": "B", "text": "Faster in onset and shorter in duration"},
+        {"key": "C", "text": "Independent of receptor binding"},
+        {"key": "D", "text": "Confined to electrical synapses"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_anatomy_physiology_2e", "location": "Endocrine system vs. nervous system signaling", "url": "https://openstax.org/details/books/anatomy-and-physiology-2e"},
+      "rationale": "Hormones travel through the bloodstream to target receptors, giving slower but more sustained effects than rapid synaptic transmission.",
+      "tags": ["endocrine", "hormones", "signaling"]
+    },
+    {
+      "id": "DQ-3B-01",
+      "category": "3B",
+      "category_name": "Structure and integrative functions of the main organ systems",
+      "section": "Bio/Biochem",
+      "discipline": "Biology",
+      "format": "mcq_single_best",
+      "cognitive_level": "recall",
+      "difficulty": "easy",
+      "stem": "Oxygenated blood returning from the lungs enters which heart chamber first?",
+      "options": [
+        {"key": "A", "text": "Left atrium"},
+        {"key": "B", "text": "Right atrium"},
+        {"key": "C", "text": "Right ventricle"},
+        {"key": "D", "text": "Left ventricle"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_anatomy_physiology_2e", "location": "Cardiovascular system: the heart and pulmonary circuit", "url": "https://openstax.org/details/books/anatomy-and-physiology-2e"},
+      "rationale": "Pulmonary veins carry oxygenated blood from the lungs to the left atrium, then to the left ventricle for systemic delivery.",
+      "tags": ["heart", "pulmonary circulation", "left atrium"]
+    },
+    {
+      "id": "DQ-3B-02",
+      "category": "3B",
+      "category_name": "Structure and integrative functions of the main organ systems",
+      "section": "Bio/Biochem",
+      "discipline": "Biology",
+      "format": "mcq_single_best",
+      "cognitive_level": "application",
+      "difficulty": "medium",
+      "stem": "In a healthy nephron, essentially all filtered glucose is normally reabsorbed in the:",
+      "options": [
+        {"key": "A", "text": "Proximal convoluted tubule"},
+        {"key": "B", "text": "Descending limb of the loop of Henle"},
+        {"key": "C", "text": "Distal convoluted tubule"},
+        {"key": "D", "text": "Collecting duct"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_anatomy_physiology_2e", "location": "Urinary system: tubular reabsorption", "url": "https://openstax.org/details/books/anatomy-and-physiology-2e"},
+      "rationale": "Secondary active transport (SGLT) in the proximal convoluted tubule reabsorbs filtered glucose nearly completely under normal loads.",
+      "tags": ["nephron", "glucose reabsorption", "PCT"]
+    },
+    {
+      "id": "DQ-4A-01",
+      "category": "4A",
+      "category_name": "Translational motion, forces, work, energy, and equilibrium in living systems",
+      "section": "Chem/Phys",
+      "discipline": "Physics",
+      "format": "mcq_single_best",
+      "cognitive_level": "application",
+      "difficulty": "medium",
+      "stem": "A 2 kg object is raised vertically at constant velocity through a height of 3 m (take g = 10 m/s^2). The work done against gravity is:",
+      "options": [
+        {"key": "A", "text": "60 J"},
+        {"key": "B", "text": "6 J"},
+        {"key": "C", "text": "0 J"},
+        {"key": "D", "text": "600 J"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_college_physics_2e", "location": "Work, energy, and energy resources (gravitational PE)", "url": "https://openstax.org/details/books/college-physics-2e"},
+      "rationale": "Work against gravity equals mgh = 2 x 10 x 3 = 60 J; at constant velocity net work is zero, but work against gravity is 60 J.",
+      "tags": ["work", "gravity", "energy"]
+    },
+    {
+      "id": "DQ-4B-01",
+      "category": "4B",
+      "category_name": "Importance of fluids for the circulation of blood, gas movement, and gas exchange",
+      "section": "Chem/Phys",
+      "discipline": "Physics",
+      "format": "mcq_single_best",
+      "cognitive_level": "application",
+      "difficulty": "medium",
+      "stem": "An incompressible fluid flows steadily from a wide pipe into a narrower section. By the continuity equation, the fluid's speed in the narrow section:",
+      "options": [
+        {"key": "A", "text": "Increases"},
+        {"key": "B", "text": "Decreases"},
+        {"key": "C", "text": "Stays the same"},
+        {"key": "D", "text": "Falls to zero"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_college_physics_2e", "location": "Fluid dynamics: the equation of continuity", "url": "https://openstax.org/details/books/college-physics-2e"},
+      "rationale": "Continuity (A1v1 = A2v2) requires that, for constant flow rate, a smaller cross-sectional area produces a higher velocity.",
+      "tags": ["fluids", "continuity", "flow rate"]
+    },
+    {
+      "id": "DQ-4C-01",
+      "category": "4C",
+      "category_name": "Electrochemistry and electrical circuits and their elements",
+      "section": "Chem/Phys",
+      "discipline": "Physics",
+      "format": "mcq_single_best",
+      "cognitive_level": "recall",
+      "difficulty": "easy",
+      "stem": "Two identical resistors, each of resistance R, connected in series have an equivalent resistance of:",
+      "options": [
+        {"key": "A", "text": "2R"},
+        {"key": "B", "text": "R/2"},
+        {"key": "C", "text": "R"},
+        {"key": "D", "text": "0"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_college_physics_2e", "location": "Circuits: resistors in series and parallel", "url": "https://openstax.org/details/books/college-physics-2e"},
+      "rationale": "Series resistances add directly: R_eq = R + R = 2R.",
+      "tags": ["circuits", "resistors", "series"]
+    },
+    {
+      "id": "DQ-4D-01",
+      "category": "4D",
+      "category_name": "How light and sound interact with matter",
+      "section": "Chem/Phys",
+      "discipline": "Physics",
+      "format": "mcq_single_best",
+      "cognitive_level": "application",
+      "difficulty": "medium",
+      "stem": "A sound source moves toward a stationary observer. Relative to the emitted frequency, the observer perceives a frequency that is:",
+      "options": [
+        {"key": "A", "text": "Higher"},
+        {"key": "B", "text": "Lower"},
+        {"key": "C", "text": "Unchanged"},
+        {"key": "D", "text": "Zero"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_college_physics_2e", "location": "Sound: the Doppler effect", "url": "https://openstax.org/details/books/college-physics-2e"},
+      "rationale": "For an approaching source, wavefronts are compressed, raising the observed frequency (Doppler shift).",
+      "tags": ["sound", "Doppler effect", "frequency"]
+    },
+    {
+      "id": "DQ-4E-01",
+      "category": "4E",
+      "category_name": "Atoms, nuclear decay, electronic structure, and atomic chemical behavior",
+      "section": "Chem/Phys",
+      "discipline": "General Chemistry",
+      "format": "mcq_single_best",
+      "cognitive_level": "application",
+      "difficulty": "medium",
+      "stem": "In beta-minus (beta-) decay, a neutron converts to a proton. How do the atomic number (Z) and mass number (A) of the nucleus change?",
+      "options": [
+        {"key": "A", "text": "Z increases by 1; A is unchanged"},
+        {"key": "B", "text": "Z decreases by 2; A decreases by 4"},
+        {"key": "C", "text": "Z is unchanged; A decreases by 1"},
+        {"key": "D", "text": "Z decreases by 1; A is unchanged"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_chemistry_2e", "location": "Nuclear chemistry: types of radioactive decay", "url": "https://openstax.org/details/books/chemistry-2e"},
+      "rationale": "Beta-minus decay (n -> p + e-) raises the proton count by one while total nucleon number stays the same.",
+      "tags": ["nuclear decay", "beta decay", "atomic number"]
+    },
+    {
+      "id": "DQ-5A-01",
+      "category": "5A",
+      "category_name": "Unique nature of water and its solutions",
+      "section": "Chem/Phys",
+      "discipline": "General Chemistry",
+      "format": "mcq_single_best",
+      "cognitive_level": "application",
+      "difficulty": "easy",
+      "stem": "An aqueous solution has a hydrogen-ion concentration [H+] = 1 x 10^-4 M. Its pH is:",
+      "options": [
+        {"key": "A", "text": "4"},
+        {"key": "B", "text": "10"},
+        {"key": "C", "text": "7"},
+        {"key": "D", "text": "-4"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_chemistry_2e", "location": "Acid-base equilibria: pH and pOH", "url": "https://openstax.org/details/books/chemistry-2e"},
+      "rationale": "pH = -log10[H+] = -log10(1 x 10^-4) = 4.",
+      "tags": ["acid-base", "pH", "logarithms"]
+    },
+    {
+      "id": "DQ-5B-01",
+      "category": "5B",
+      "category_name": "Nature of molecules and intermolecular interactions",
+      "section": "Chem/Phys",
+      "discipline": "General Chemistry",
+      "format": "mcq_single_best",
+      "cognitive_level": "recall",
+      "difficulty": "easy",
+      "stem": "The unusually high boiling point of water compared with similar-mass molecules is primarily due to:",
+      "options": [
+        {"key": "A", "text": "Hydrogen bonding between water molecules"},
+        {"key": "B", "text": "London dispersion forces only"},
+        {"key": "C", "text": "Ion-dipole forces"},
+        {"key": "D", "text": "The strength of the O-H covalent bonds within a molecule"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_chemistry_2e", "location": "Liquids and solids: intermolecular forces", "url": "https://openstax.org/details/books/chemistry-2e"},
+      "rationale": "Extensive intermolecular hydrogen bonding raises the energy needed to vaporize water; intramolecular covalent bonds are not broken during boiling.",
+      "tags": ["intermolecular forces", "hydrogen bonding", "boiling point"]
+    },
+    {
+      "id": "DQ-5C-01",
+      "category": "5C",
+      "category_name": "Separation and purification methods",
+      "section": "Chem/Phys",
+      "discipline": "Organic Chemistry",
+      "format": "mcq_single_best",
+      "cognitive_level": "application",
+      "difficulty": "hard",
+      "stem": "In normal-phase column chromatography (polar stationary phase, relatively nonpolar mobile phase), a strongly polar compound will tend to:",
+      "options": [
+        {"key": "A", "text": "Be retained longest and elute last"},
+        {"key": "B", "text": "Elute first because it moves fastest"},
+        {"key": "C", "text": "Not interact with the stationary phase at all"},
+        {"key": "D", "text": "Sublime before eluting"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_organic_chemistry", "location": "Structure determination and lab techniques: chromatography", "url": "https://openstax.org/details/books/organic-chemistry"},
+      "rationale": "On a polar stationary phase, polar analytes adsorb more strongly and travel more slowly, eluting last.",
+      "tags": ["chromatography", "polarity", "separation"]
+    },
+    {
+      "id": "DQ-5D-01",
+      "category": "5D",
+      "category_name": "Structure, function, and reactivity of biologically relevant molecules",
+      "section": "Chem/Phys",
+      "discipline": "Organic Chemistry",
+      "format": "mcq_single_best",
+      "cognitive_level": "application",
+      "difficulty": "medium",
+      "stem": "Two molecules that are non-superimposable mirror images of each other are best classified as:",
+      "options": [
+        {"key": "A", "text": "Enantiomers"},
+        {"key": "B", "text": "Constitutional (structural) isomers"},
+        {"key": "C", "text": "Conformational isomers"},
+        {"key": "D", "text": "Resonance structures"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_organic_chemistry", "location": "Stereochemistry: enantiomers and chirality", "url": "https://openstax.org/details/books/organic-chemistry"},
+      "rationale": "Enantiomers are stereoisomers that are non-superimposable mirror images; diastereomers are not mirror images.",
+      "tags": ["stereochemistry", "enantiomers", "chirality"]
+    },
+    {
+      "id": "DQ-5E-01",
+      "category": "5E",
+      "category_name": "Principles of chemical thermodynamics and kinetics",
+      "section": "Chem/Phys",
+      "discipline": "General Chemistry",
+      "format": "mcq_single_best",
+      "cognitive_level": "application",
+      "difficulty": "medium",
+      "stem": "Adding a catalyst to a reaction at constant temperature will:",
+      "options": [
+        {"key": "A", "text": "Lower the activation energy and speed both the forward and reverse reactions"},
+        {"key": "B", "text": "Shift the equilibrium toward the products"},
+        {"key": "C", "text": "Make the reaction's dG more negative"},
+        {"key": "D", "text": "Increase the value of the equilibrium constant"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_chemistry_2e", "location": "Kinetics: catalysis and activation energy", "url": "https://openstax.org/details/books/chemistry-2e"},
+      "rationale": "A catalyst lowers Ea and accelerates forward and reverse rates equally; it does not change dG, K, or the equilibrium position.",
+      "tags": ["kinetics", "catalysis", "activation energy"]
+    },
+    {
+      "id": "DQ-6A-01",
+      "category": "6A",
+      "category_name": "Sensing the environment",
+      "section": "Psych/Soc",
+      "discipline": "Psychology",
+      "format": "mcq_single_best",
+      "cognitive_level": "recall",
+      "difficulty": "easy",
+      "stem": "In the human eye, transduction of light into neural signals occurs in the:",
+      "options": [
+        {"key": "A", "text": "Photoreceptors (rods and cones) of the retina"},
+        {"key": "B", "text": "Cornea"},
+        {"key": "C", "text": "Lens"},
+        {"key": "D", "text": "Optic chiasm"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_psychology_2e", "location": "Sensation and perception: vision", "url": "https://openstax.org/details/books/psychology-2e"},
+      "rationale": "Rods and cones convert light into neural signals (transduction); the cornea and lens focus light but do not transduce it.",
+      "tags": ["sensation", "vision", "transduction"]
+    },
+    {
+      "id": "DQ-6B-01",
+      "category": "6B",
+      "category_name": "Making sense of the environment",
+      "section": "Psych/Soc",
+      "discipline": "Psychology",
+      "format": "mcq_single_best",
+      "cognitive_level": "application",
+      "difficulty": "medium",
+      "stem": "A person holds a 7-digit number in mind just long enough to dial it, then forgets it. This best illustrates:",
+      "options": [
+        {"key": "A", "text": "Short-term (working) memory"},
+        {"key": "B", "text": "Long-term potentiation"},
+        {"key": "C", "text": "Procedural memory"},
+        {"key": "D", "text": "Sensory adaptation"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_psychology_2e", "location": "Memory: stages of memory (short-term/working memory)", "url": "https://openstax.org/details/books/psychology-2e"},
+      "rationale": "Brief, limited-capacity retention for immediate use is the defining feature of short-term/working memory.",
+      "tags": ["memory", "working memory", "cognition"]
+    },
+    {
+      "id": "DQ-6C-01",
+      "category": "6C",
+      "category_name": "Responding to the world",
+      "section": "Psych/Soc",
+      "discipline": "Psychology",
+      "format": "mcq_single_best",
+      "cognitive_level": "application",
+      "difficulty": "hard",
+      "stem": "The James-Lange theory of emotion proposes that the subjective experience of an emotion:",
+      "options": [
+        {"key": "A", "text": "Arises from perceiving one's own physiological (bodily) response to a stimulus"},
+        {"key": "B", "text": "Occurs simultaneously with, but independently of, physiological arousal"},
+        {"key": "C", "text": "Requires arousal plus a cognitive label for that arousal"},
+        {"key": "D", "text": "Occurs entirely before any bodily change"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_psychology_2e", "location": "Emotion: theories of emotion (James-Lange, Cannon-Bard, Schachter-Singer)", "url": "https://openstax.org/details/books/psychology-2e"},
+      "rationale": "James-Lange holds that bodily responses come first and the emotion is our perception of them; option B is Cannon-Bard and option C is Schachter-Singer.",
+      "tags": ["emotion", "James-Lange", "theories of emotion"]
+    },
+    {
+      "id": "DQ-7A-01",
+      "category": "7A",
+      "category_name": "Individual influences on behavior",
+      "section": "Psych/Soc",
+      "discipline": "Psychology",
+      "format": "mcq_single_best",
+      "cognitive_level": "application",
+      "difficulty": "medium",
+      "stem": "In Pavlov's classical conditioning, a previously neutral stimulus that elicits a response only after being paired with food is the:",
+      "options": [
+        {"key": "A", "text": "Conditioned stimulus"},
+        {"key": "B", "text": "Unconditioned stimulus"},
+        {"key": "C", "text": "Unconditioned response"},
+        {"key": "D", "text": "Positive reinforcer"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_psychology_2e", "location": "Learning: classical conditioning", "url": "https://openstax.org/details/books/psychology-2e"},
+      "rationale": "After repeated pairing with the unconditioned stimulus (food), the neutral stimulus becomes the conditioned stimulus that triggers a conditioned response.",
+      "tags": ["learning", "classical conditioning", "conditioned stimulus"]
+    },
+    {
+      "id": "DQ-7B-01",
+      "category": "7B",
+      "category_name": "Social processes that influence human behavior",
+      "section": "Psych/Soc",
+      "discipline": "Psychology",
+      "format": "mcq_single_best",
+      "cognitive_level": "application",
+      "difficulty": "medium",
+      "stem": "Individuals exerting less effort on a task when working in a group than when working alone illustrates:",
+      "options": [
+        {"key": "A", "text": "Social loafing"},
+        {"key": "B", "text": "Social facilitation"},
+        {"key": "C", "text": "Groupthink"},
+        {"key": "D", "text": "Deindividuation"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_psychology_2e", "location": "Social psychology: group behavior (social loafing)", "url": "https://openstax.org/details/books/psychology-2e"},
+      "rationale": "Social loafing is the reduction of individual effort when responsibility is diffused across a group.",
+      "tags": ["social psychology", "social loafing", "groups"]
+    },
+    {
+      "id": "DQ-7C-01",
+      "category": "7C",
+      "category_name": "Attitude and behavior change",
+      "section": "Psych/Soc",
+      "discipline": "Psychology",
+      "format": "mcq_single_best",
+      "cognitive_level": "application",
+      "difficulty": "medium",
+      "stem": "According to the elaboration likelihood model, persuasion through the 'central route' depends primarily on:",
+      "options": [
+        {"key": "A", "text": "Careful evaluation of the quality of the arguments"},
+        {"key": "B", "text": "Superficial cues such as the speaker's attractiveness"},
+        {"key": "C", "text": "Sheer repetition of the message"},
+        {"key": "D", "text": "The audience's mood alone"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_psychology_2e", "location": "Attitudes and persuasion: elaboration likelihood model", "url": "https://openstax.org/details/books/psychology-2e"},
+      "rationale": "The central route involves effortful, thoughtful processing of argument content; peripheral cues define the peripheral route.",
+      "tags": ["attitudes", "persuasion", "ELM"]
+    },
+    {
+      "id": "DQ-8A-01",
+      "category": "8A",
+      "category_name": "Self-identity",
+      "section": "Psych/Soc",
+      "discipline": "Psychology",
+      "format": "mcq_single_best",
+      "cognitive_level": "application",
+      "difficulty": "medium",
+      "stem": "A student's belief in their own capability to succeed at a specific upcoming task is best described as:",
+      "options": [
+        {"key": "A", "text": "Self-efficacy"},
+        {"key": "B", "text": "Self-esteem"},
+        {"key": "C", "text": "Locus of control"},
+        {"key": "D", "text": "Self-serving bias"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_psychology_2e", "location": "Personality / motivation: Bandura's self-efficacy", "url": "https://openstax.org/details/books/psychology-2e"},
+      "rationale": "Self-efficacy is task-specific confidence in one's ability to succeed; self-esteem is a broader self-evaluation.",
+      "tags": ["self-identity", "self-efficacy", "Bandura"]
+    },
+    {
+      "id": "DQ-8B-01",
+      "category": "8B",
+      "category_name": "Social thinking",
+      "section": "Psych/Soc",
+      "discipline": "Psychology",
+      "format": "mcq_single_best",
+      "cognitive_level": "application",
+      "difficulty": "medium",
+      "stem": "Attributing another driver's error to their bad character while attributing your own identical error to traffic conditions best illustrates:",
+      "options": [
+        {"key": "A", "text": "The fundamental attribution error (with actor-observer asymmetry)"},
+        {"key": "B", "text": "The just-world hypothesis"},
+        {"key": "C", "text": "Cognitive dissonance"},
+        {"key": "D", "text": "The halo effect"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_psychology_2e", "location": "Social cognition: attribution and attributional biases", "url": "https://openstax.org/details/books/psychology-2e"},
+      "rationale": "Overweighting dispositional causes for others' behavior while favoring situational causes for one's own reflects the fundamental attribution error / actor-observer bias.",
+      "tags": ["attribution", "fundamental attribution error", "social cognition"]
+    },
+    {
+      "id": "DQ-8C-01",
+      "category": "8C",
+      "category_name": "Social interactions",
+      "section": "Psych/Soc",
+      "discipline": "Sociology",
+      "format": "mcq_single_best",
+      "cognitive_level": "application",
+      "difficulty": "medium",
+      "stem": "Adjusting one's behavior to control the impression others form, as in Goffman's dramaturgical view, is termed:",
+      "options": [
+        {"key": "A", "text": "Impression management (self-presentation)"},
+        {"key": "B", "text": "Social stratification"},
+        {"key": "C", "text": "Cultural assimilation"},
+        {"key": "D", "text": "Role strain"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_sociology_3e", "location": "Socialization and interaction: dramaturgy and self-presentation", "url": "https://openstax.org/details/books/introduction-sociology-3e"},
+      "rationale": "Impression management / self-presentation is the dramaturgical idea that people manage how others perceive them.",
+      "tags": ["social interaction", "impression management", "Goffman"]
+    },
+    {
+      "id": "DQ-9A-01",
+      "category": "9A",
+      "category_name": "Understanding social structure",
+      "section": "Psych/Soc",
+      "discipline": "Sociology",
+      "format": "mcq_single_best",
+      "cognitive_level": "application",
+      "difficulty": "medium",
+      "stem": "A sociologist who studies how social institutions interlock to maintain societal stability is working within which theoretical perspective?",
+      "options": [
+        {"key": "A", "text": "Structural functionalism"},
+        {"key": "B", "text": "Conflict theory"},
+        {"key": "C", "text": "Symbolic interactionism"},
+        {"key": "D", "text": "Rational choice / exchange theory"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_sociology_3e", "location": "An introduction to sociology: theoretical perspectives", "url": "https://openstax.org/details/books/introduction-sociology-3e"},
+      "rationale": "Structural functionalism analyzes how institutions contribute to social stability and equilibrium; conflict theory emphasizes power and inequality.",
+      "tags": ["social structure", "functionalism", "sociological theory"]
+    },
+    {
+      "id": "DQ-9B-01",
+      "category": "9B",
+      "category_name": "Demographic characteristics and processes",
+      "section": "Psych/Soc",
+      "discipline": "Sociology",
+      "format": "mcq_single_best",
+      "cognitive_level": "application",
+      "difficulty": "medium",
+      "stem": "The demographic transition model predicts that as a society industrializes:",
+      "options": [
+        {"key": "A", "text": "Death rates fall first, followed later by falling birth rates"},
+        {"key": "B", "text": "Birth and death rates both rise indefinitely"},
+        {"key": "C", "text": "Birth rates fall well before death rates"},
+        {"key": "D", "text": "Both rates remain constant over time"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_sociology_3e", "location": "Population, urbanization, and the environment: demographic transition", "url": "https://openstax.org/details/books/introduction-sociology-3e"},
+      "rationale": "In the classic model, improvements first reduce mortality; fertility declines later, producing a period of rapid population growth in between.",
+      "tags": ["demography", "demographic transition", "population"]
+    },
+    {
+      "id": "DQ-10A-01",
+      "category": "10A",
+      "category_name": "Social inequality",
+      "section": "Psych/Soc",
+      "discipline": "Sociology",
+      "format": "mcq_single_best",
+      "cognitive_level": "application",
+      "difficulty": "medium",
+      "stem": "Systematically worse health outcomes among lower-socioeconomic-status groups, driven by unequal access to care and resources, are best described as:",
+      "options": [
+        {"key": "A", "text": "Health disparities arising from social determinants of health"},
+        {"key": "B", "text": "Random measurement error"},
+        {"key": "C", "text": "Biological determinism"},
+        {"key": "D", "text": "The Flynn effect"}
+      ],
+      "answer": "A",
+      "source": {"ref": "openstax_sociology_3e", "location": "Health and medicine: social epidemiology and health disparities", "url": "https://openstax.org/details/books/introduction-sociology-3e"},
+      "rationale": "Socioeconomically patterned differences in health outcomes are health disparities produced by social determinants, not by chance or biology alone.",
+      "tags": ["social inequality", "health disparities", "social determinants"]
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+# ReadyMCAT — Points-at-Stake Engine Change
+
+## What it does
+
+A new review-card ordering for the Anki scheduler:
+
+> points_at_stake = topic_weight × student_weakness
+
+- **topic_weight** — the card's topic share of the real MCAT, from AAMC's
+  published content distribution (`taxonomy.json`).
+- **student_weakness** — `1 − mean(FSRS recall probability)` aggregated across
+  every card in that topic.
+
+Due cards are ordered so the highest-yield, weakest topics come first. The same
+computation also produces the per-topic mastery/weakness aggregation, an honest
+(ranged) overall memory score, and an outline-coverage map that the desktop
+dashboard consumes (obeying the give-up rule: no score until ≥200 graded reviews
+**and** ≥50% topic coverage).
+
+## Why this belongs in Rust (not Python or the GUI)
+
+1. **One engine, two apps.** The Rust core (`rslib`) is shared by the desktop
+   app (via `pylib`/`rsbridge`) and the iOS companion (via the planned `rsios`
+   C-ABI). Implementing the order in Rust ships it to _both_ from a single
+   source of truth. A Python-only version could never reach iOS.
+2. **It runs during queue building over the whole collection.** Ordering is part
+   of `rslib/src/scheduler/queue/builder`. Anki gathers and orders due cards in
+   Rust/SQL for speed on tens of thousands of cards; doing this in Python would
+   mean round-tripping the full due set across the FFI on every queue build.
+3. **The engine had no concept of a "topic", exam value, or cross-card
+   aggregation.** Existing orders (e.g. _retrievability ascending_) are pure
+   SQL `ORDER BY` clauses that reason about one card at a time. Points-at-stake
+   needs (a) tag → AAMC-category mapping and (b) weakness aggregated across all
+   cards in a topic — neither of which SQL can express. The natural home for
+   that new capability is the core, next to FSRS memory state.
+4. **It feeds the rest of the product.** Teach-on-miss relies on spaced
+   re-retrieval: a corrected concept's topic weakness rises, so the queue
+   resurfaces it. Memory/coverage for the dashboard fall out of the same pass.
+
+## How it's implemented
+
+- Gathering still happens in SQL (a stable `Day` base order). The
+  topic-aware re-ranking is applied in Rust after gathering, because it needs
+  the per-topic aggregation. Aggregation is one pass over the collection joining
+  `cards`→`notes` for tags and reusing the existing `extract_fsrs_retrievability`
+  SQL function; ranking is a second, bounded pass over due review cards.
+- Exposed via a **new protobuf service** so Python (and later Swift) can request
+  the ranked queue + aggregation without going through the deck config.
+
+### Proto message (new file `proto/anki/points_at_stake.proto`)
+
+```
+service PointsAtStakeService {
+  rpc PointsAtStakeQueue(PointsAtStakeRequest) returns (PointsAtStakeResponse);
+}
+PointsAtStakeRequest { string taxonomy_path; int64 deck_id; uint32 limit; }
+PointsAtStakeResponse {
+  repeated RankedCard ranked_cards;   // card_id, category, topic_weight,
+                                      // student_weakness, points_at_stake
+  repeated TopicMastery topics;       // per-AAMC-category mastery + weakness
+  MemoryReport memory;                // mean + 95% range, graded_reviews/cards
+  CoverageReport coverage;            // categories + weighted coverage
+  bool meets_data_threshold;          // give-up rule
+}
+```
+
+## Files touched
+
+### New, fork-specific (additive — trivial to keep across upstream merges)
+
+| File                                   | Purpose                                     |
+| -------------------------------------- | ------------------------------------------- |
+| `proto/anki/points_at_stake.proto`     | New service + messages                      |
+| `rslib/src/points_at_stake/mod.rs`     | Taxonomy parse, aggregation, ranking, tests |
+| `rslib/src/points_at_stake/service.rs` | `PointsAtStakeService` backend impl         |
+| `pylib/tests/test_points_at_stake.py`  | Python integration test                     |
+| `ts/routes/readymcat-dashboard/*`      | Svelte dashboard page                       |
+| `qt/aqt/readymcat.py`                  | Dashboard window                            |
+| `taxonomy.json`                        | Stub of the shared deck-tag → AAMC mapping  |
+
+### Upstream files modified (with future-merge-difficulty estimate)
+
+| File                                       | Change                                                     | Merge difficulty                                                                                         |
+| ------------------------------------------ | ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `proto/anki/deck_config.proto`             | +1 enum value `REVIEW_CARD_ORDER_POINTS_AT_STAKE = 13`     | **Very low** — additive enum value                                                                       |
+| `rslib/proto/src/lib.rs`                   | +1 `protobuf!(points_at_stake, …)` line                    | **Very low**                                                                                             |
+| `rslib/proto/python.rs`                    | +1 import in generated-header list                         | **Very low**                                                                                             |
+| `rslib/src/lib.rs`                         | +1 `pub mod points_at_stake;`                              | **Very low**                                                                                             |
+| `rslib/src/storage/card/mod.rs`            | +1 match arm in `review_order_sql`                         | **Low** — isolated arm                                                                                   |
+| `rslib/src/scheduler/fsrs/simulator.rs`    | add variant to the "not implemented" arm                   | **Low** — only conflicts if upstream edits that match                                                    |
+| `rslib/src/scheduler/queue/builder/mod.rs` | guarded re-rank call + one helper method in `build_queues` | **Medium** — `build_queues` is a hot path; a small, guarded insertion but the most likely conflict point |
+| `ts/routes/deck-options/choices.ts`        | +1 dropdown entry                                          | **Low**                                                                                                  |
+| `qt/aqt/webview.py`                        | +1 `AnkiWebViewKind`, +1 API-access list entry             | **Low**                                                                                                  |
+| `qt/aqt/mediasrv.py`                       | +1 entry in `is_sveltekit_page`                            | **Very low**                                                                                             |
+| `qt/aqt/main.py`                           | Tools-menu action + handler                                | **Low**                                                                                                  |
+
+**Overall:** low. Almost everything is additive new files; the only change inside
+a core hot function is the small guarded re-rank insertion in `build_queues`.
+
+## Tests, build & dashboard
+
+- Rust unit tests (`rslib/src/points_at_stake/mod.rs`): glob/prefix matching,
+  per-topic weakness aggregation, ranking correctness on a fixture, and the
+  empty/untagged-topic edge case. Run with `just test-rust`.
+- Python integration test (`pylib/tests/test_points_at_stake.py`): calls the new
+  backend message and asserts the order + aggregation. Run with `just test-py`.
+- Full gate: `just check`.
+- Dashboard: **Tools → ReadyMCAT Dashboard** (desktop). It reads `taxonomy.json`
+  next to the collection, or an explicit path. Undo and collection integrity are
+  unaffected: the change only reorders the in-memory due queue and never mutates
+  cards.
+
+## Integration notes for other workstreams
+
+- **Taxonomy (deck workstream):** the real `taxonomy.json` must match the schema
+  in this repo's stub (`version`, `aamc_categories: {id: {name, weight}}`,
+  `mappings: [{deck_tag_or_subdeck, category}]`). `deck_tag_or_subdeck` supports
+  exact tags, `::` hierarchy prefixes, and `*`/`?` globs; the first matching
+  mapping wins. Place the file next to `collection.anki2`.
+- **iOS workstream:** call `PointsAtStakeService.PointsAtStakeQueue` over the
+  shared protobuf API for the ranked queue; set a deck's review order to
+  `REVIEW_CARD_ORDER_POINTS_AT_STAKE` to have the live study queue use it.

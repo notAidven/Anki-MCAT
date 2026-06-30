@@ -890,6 +890,10 @@ fn review_order_sql(order: ReviewCardOrder, timing: SchedTimingToday, fsrs: bool
         ReviewCardOrder::RelativeOverdueness => {
             vec![ReviewOrderSubclause::RelativeOverdueness { fsrs, timing }]
         }
+        // ReadyMCAT: gather in a stable due-date order; the points-at-stake
+        // re-ranking is applied in Rust by the queue builder afterwards, as it
+        // requires topic awareness and cross-card aggregation that SQL can't do.
+        ReviewCardOrder::PointsAtStake => vec![ReviewOrderSubclause::Day],
         ReviewCardOrder::Random => vec![],
         ReviewCardOrder::Added => vec![ReviewOrderSubclause::Added],
         ReviewCardOrder::ReverseAdded => vec![ReviewOrderSubclause::ReverseAdded],

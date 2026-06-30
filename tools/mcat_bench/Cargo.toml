@@ -1,0 +1,19 @@
+[package]
+name = "mcat_bench"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+rust-version.workspace = true
+description = "ReadyMCAT performance benchmark: points-at-stake queue building, grading/next-card, and the dashboard's per-topic mastery query on a synthetic 50k-card deck"
+
+[[bin]]
+name = "mcat_bench"
+path = "src/main.rs"
+
+[dependencies]
+anki.workspace = true
+# anki uses tokio's io-util; enable it explicitly for this standalone host build
+# so the shared tokio build includes it (mirrors tools/sample_deck).
+tokio = { workspace = true, features = ["io-util"] }

@@ -34,6 +34,10 @@ wheels:
 check:
     {{ ninja }} pylib qt check
 
+# ReadyMCAT: benchmark the points-at-stake queue on a synthetic 50k-card deck
+bench *args:
+    {{ if os() == "windows" { "$env:CARGO_TARGET_DIR='out/rust'; cargo run --release -p mcat_bench --" } else { "CARGO_TARGET_DIR=out/rust cargo run --release -p mcat_bench --" } }} {{ args }}
+
 # Run all tests (Rust, Python, TypeScript). Pass --coverage to enforce coverage, and --html to include HTML reports.
 [arg("coverage", long="coverage", value="--coverage")]
 [arg("html", long="html", value="--html")]

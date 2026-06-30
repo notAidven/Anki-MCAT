@@ -37,6 +37,7 @@ impl crate::services::PointsAtStakeService for Collection {
                 topic_weight: r.topic_weight,
                 student_weakness: r.student_weakness,
                 points_at_stake: r.points_at_stake,
+                struggling: r.struggling,
             })
             .collect();
 

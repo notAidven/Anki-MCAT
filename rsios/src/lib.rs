@@ -1,4 +1,4 @@
-// Copyright: ReadyMCAT contributors
+// Copyright: Ankitects Pty Ltd and contributors
 // License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 
 //! `rsios` is a thin C-ABI wrapper around Anki's Rust `Backend`, so the shared
@@ -60,7 +60,8 @@ fn vec_into_raw(bytes: Vec<u8>, out_ptr: *mut *mut u8, out_len: *mut usize) {
 /// caller must release with [`rsios_free_buffer`].
 ///
 /// # Safety
-/// `init_ptr` must be valid for `init_len` bytes (or null when `init_len == 0`).
+/// `init_ptr` must be valid for `init_len` bytes (or null when `init_len ==
+/// 0`).
 #[no_mangle]
 pub unsafe extern "C" fn rsios_open_backend(
     init_ptr: *const u8,
@@ -175,8 +176,6 @@ pub extern "C" fn rsios_buildhash() -> *const std::os::raw::c_char {
     // We build a NUL-terminated static once.
     use std::sync::OnceLock;
     static HASH: OnceLock<std::ffi::CString> = OnceLock::new();
-    HASH.get_or_init(|| {
-        std::ffi::CString::new(anki::version::buildhash()).unwrap_or_default()
-    })
-    .as_ptr()
+    HASH.get_or_init(|| std::ffi::CString::new(anki::version::buildhash()).unwrap_or_default())
+        .as_ptr()
 }

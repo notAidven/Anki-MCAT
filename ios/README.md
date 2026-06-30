@@ -45,12 +45,12 @@ The app uses these backend service/method indices (taken verbatim from the
 generated `out/pylib/anki/_backend_generated.py`, the authoritative index
 source, and verified by the host smoke test — see below):
 
-| Call                  | service | method | message |
-|-----------------------|:------:|:------:|---------|
-| `OpenCollection`      |   3    |   0    | `collection.OpenCollectionRequest` |
-| `GetQueuedCards`      |   13   |   3    | `scheduler.GetQueuedCardsRequest` → `QueuedCards` |
-| `RenderExistingCard`  |   27   |   6    | `card_rendering.RenderExistingCardRequest` → `RenderCardResponse` |
-| `AnswerCard`          |   13   |   4    | `scheduler.CardAnswer` |
+| Call                 | service | method | message                                                           |
+| -------------------- | :-----: | :----: | ----------------------------------------------------------------- |
+| `OpenCollection`     |    3    |   0    | `collection.OpenCollectionRequest`                                |
+| `GetQueuedCards`     |   13    |   3    | `scheduler.GetQueuedCardsRequest` → `QueuedCards`                 |
+| `RenderExistingCard` |   27    |   6    | `card_rendering.RenderExistingCardRequest` → `RenderCardResponse` |
+| `AnswerCard`         |   13    |   4    | `scheduler.CardAnswer`                                            |
 
 `GetQueuedCards` returns the next card plus its `SchedulingStates`; the app
 echoes the relevant state blob back in `CardAnswer.new_state` when grading, so
@@ -127,6 +127,7 @@ exceeds 5.)
 ## What works vs. what's stubbed
 
 **Works (Wednesday bar):**
+
 - Cross-compiled `rslib` + `rsios` for the iOS Simulator, packaged as an
   `.xcframework`.
 - Real review loop on the shared engine: open collection, get next card, render
@@ -136,6 +137,7 @@ exceeds 5.)
   Simulator.
 
 **Out of scope / stubbed for Wednesday (per the PRD):**
+
 - Two-way sync (Friday). `rsios` is built with no TLS backend; the `rustls` /
   `native-tls` cargo features are wired but off.
 - Teach-on-miss reviewer (desktop-first).
@@ -150,11 +152,11 @@ exceeds 5.)
 The iOS work is almost entirely **additive** (new `/rsios`, `/ios`,
 `/tools/sample_deck`). Edits to existing upstream files are minimal:
 
-| File | Change | Merge risk |
-|------|--------|-----------|
-| `Cargo.toml` | add `rsios` + `tools/sample_deck` to workspace members | trivial |
+| File                   | Change                                                                                        | Merge risk              |
+| ---------------------- | --------------------------------------------------------------------------------------------- | ----------------------- |
+| `Cargo.toml`           | add `rsios` + `tools/sample_deck` to workspace members                                        | trivial                 |
 | `rslib/i18n/gather.rs` | tolerate a missing translation submodule dir instead of panicking (English-only mobile build) | low — 4 lines, isolated |
-| `.gitignore` | ignore iOS build artifacts | trivial |
+| `.gitignore`           | ignore iOS build artifacts                                                                    | trivial                 |
 
 `rslib/i18n/gather.rs` is the only behavioural edit, and it only relaxes a
 build-time `unwrap()` so the engine compiles without the optional `ftl/*-repo`

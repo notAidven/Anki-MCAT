@@ -1,4 +1,4 @@
-// Copyright: ReadyMCAT contributors
+// Copyright: Ankitects Pty Ltd and contributors
 // License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 
 //! Generates a tiny sample `.anki2` collection for the ReadyMCAT iOS app, then
@@ -8,6 +8,7 @@
 //!
 //! Usage: `sample_deck <out.anki2>` (defaults to `sample.anki2`).
 
+use std::path::Path;
 use std::path::PathBuf;
 use std::time::SystemTime;
 use std::time::UNIX_EPOCH;
@@ -64,8 +65,11 @@ const SAMPLE_CARDS: &[(&str, &str)] = &[
 ];
 
 fn main() {
-    let out_path =
-        PathBuf::from(std::env::args().nth(1).unwrap_or_else(|| "sample.anki2".to_string()));
+    let out_path = PathBuf::from(
+        std::env::args()
+            .nth(1)
+            .unwrap_or_else(|| "sample.anki2".to_string()),
+    );
     if out_path.exists() {
         std::fs::remove_file(&out_path).ok();
     }
@@ -117,16 +121,26 @@ fn main() {
         media_folder_path: path_str(&smoke_media_folder),
         media_db_path: path_str(&smoke_media_db),
     };
-    run(&backend, SVC_COLLECTION, M_OPEN_COLLECTION, &open.encode_to_vec())
-        .expect("open_collection");
+    run(
+        &backend,
+        SVC_COLLECTION,
+        M_OPEN_COLLECTION,
+        &open.encode_to_vec(),
+    )
+    .expect("open_collection");
     println!("[phase 2] opened collection via FFI dispatch");
 
     let req = GetQueuedCardsRequest {
         fetch_limit: 10,
         intraday_learning_only: false,
     };
-    let bytes = run(&backend, SVC_SCHEDULER, M_GET_QUEUED_CARDS, &req.encode_to_vec())
-        .expect("get_queued_cards");
+    let bytes = run(
+        &backend,
+        SVC_SCHEDULER,
+        M_GET_QUEUED_CARDS,
+        &req.encode_to_vec(),
+    )
+    .expect("get_queued_cards");
     let queued = QueuedCards::decode(bytes.as_slice()).expect("decode QueuedCards");
     println!(
         "[phase 2] queued: {} new / {} learning / {} review",
@@ -153,7 +167,10 @@ fn main() {
     let answer = assemble(&render.answer_nodes);
     println!("[phase 2] question: {}", truncate(&question, 90));
     println!("[phase 2] answer:   {}", truncate(&answer, 90));
-    assert!(!question.is_empty(), "rendered question should be non-empty");
+    assert!(
+        !question.is_empty(),
+        "rendered question should be non-empty"
+    );
     assert!(!answer.is_empty(), "rendered answer should be non-empty");
 
     let answer_msg = CardAnswer {
@@ -164,12 +181,22 @@ fn main() {
         answered_at_millis: now_millis(),
         milliseconds_taken: 2500,
     };
-    run(&backend, SVC_SCHEDULER, M_ANSWER_CARD, &answer_msg.encode_to_vec())
-        .expect("answer_card");
+    run(
+        &backend,
+        SVC_SCHEDULER,
+        M_ANSWER_CARD,
+        &answer_msg.encode_to_vec(),
+    )
+    .expect("answer_card");
     println!("[phase 2] answered first card 'Good'");
 
-    let bytes = run(&backend, SVC_SCHEDULER, M_GET_QUEUED_CARDS, &req.encode_to_vec())
-        .expect("get_queued_cards 2");
+    let bytes = run(
+        &backend,
+        SVC_SCHEDULER,
+        M_GET_QUEUED_CARDS,
+        &req.encode_to_vec(),
+    )
+    .expect("get_queued_cards 2");
     let queued2 = QueuedCards::decode(bytes.as_slice()).expect("decode QueuedCards 2");
     println!(
         "[phase 2] after grading: {} new remaining",
@@ -210,11 +237,11 @@ fn assemble(nodes: &[RenderedTemplateNode]) -> String {
     out
 }
 
-fn path_str(p: &PathBuf) -> String {
+fn path_str(p: &Path) -> String {
     p.to_string_lossy().to_string()
 }
 
-fn with_suffix(path: &PathBuf, suffix: &str) -> PathBuf {
+fn with_suffix(path: &Path, suffix: &str) -> PathBuf {
     let mut s = path.to_string_lossy().to_string();
     // strip the .anki2 extension, then append the suffix
     if let Some(stripped) = s.strip_suffix(".anki2") {

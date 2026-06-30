@@ -3891,6 +3891,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "mcat_bench"
+version = "0.0.0"
+dependencies = [
+ "anki",
+ "tokio",
+]
+
+[[package]]
 name = "md5"
 version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"

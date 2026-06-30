@@ -20,6 +20,7 @@ members = [
   "rslib/process",
   "rslib/proto",
   "rslib/sync",
+  "tools/mcat_bench",
   "tools/minilints",
   "tools/sample_deck",
 ]

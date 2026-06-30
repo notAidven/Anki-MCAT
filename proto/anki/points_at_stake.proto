@@ -58,7 +58,12 @@ message RankedCard {
   string category = 2;
   double topic_weight = 3;
   double student_weakness = 4;
+  // topic_weight * student_weakness, already including the struggling boost.
   double points_at_stake = 5;
+  // True when the card carries the ReadyMCAT::struggling tag (a teach-on-miss
+  // correction that was missed again). Such cards get a priority boost so the
+  // corrected concept resurfaces; points_at_stake already reflects it.
+  bool struggling = 6;
 }
 
 message TopicMastery {

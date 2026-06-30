@@ -56,7 +56,8 @@ service PointsAtStakeService {
 PointsAtStakeRequest { string taxonomy_path; int64 deck_id; uint32 limit; }
 PointsAtStakeResponse {
   repeated RankedCard ranked_cards;   // card_id, category, topic_weight,
-                                      // student_weakness, points_at_stake
+                                      // student_weakness, points_at_stake,
+                                      // struggling
   repeated TopicMastery topics;       // per-AAMC-category mastery + weakness
   MemoryReport memory;                // mean + 95% range, graded_reviews/cards
   CoverageReport coverage;            // categories + weighted coverage
@@ -68,15 +69,15 @@ PointsAtStakeResponse {
 
 ### New, fork-specific (additive — trivial to keep across upstream merges)
 
-| File                                   | Purpose                                     |
-| -------------------------------------- | ------------------------------------------- |
-| `proto/anki/points_at_stake.proto`     | New service + messages                      |
-| `rslib/src/points_at_stake/mod.rs`     | Taxonomy parse, aggregation, ranking, tests |
-| `rslib/src/points_at_stake/service.rs` | `PointsAtStakeService` backend impl         |
-| `pylib/tests/test_points_at_stake.py`  | Python integration test                     |
-| `ts/routes/readymcat-dashboard/*`      | Svelte dashboard page                       |
-| `qt/aqt/readymcat.py`                  | Dashboard window                            |
-| `taxonomy.json`                        | Stub of the shared deck-tag → AAMC mapping  |
+| File                                   | Purpose                                                          |
+| -------------------------------------- | ---------------------------------------------------------------- |
+| `proto/anki/points_at_stake.proto`     | New service + messages                                           |
+| `rslib/src/points_at_stake/mod.rs`     | Taxonomy parse, aggregation, ranking, tests                      |
+| `rslib/src/points_at_stake/service.rs` | `PointsAtStakeService` backend impl                              |
+| `pylib/tests/test_points_at_stake.py`  | Python integration test                                          |
+| `ts/routes/readymcat-dashboard/*`      | Svelte dashboard page                                            |
+| `qt/aqt/readymcat.py`                  | Dashboard window                                                 |
+| `taxonomy.json`                        | Real shared deck-tag → AAMC mapping (31 categories, 87 mappings) |
 
 ### Upstream files modified (with future-merge-difficulty estimate)
 
@@ -99,9 +100,11 @@ a core hot function is the small guarded re-rank insertion in `build_queues`.
 
 ## Tests, build & dashboard
 
-- Rust unit tests (`rslib/src/points_at_stake/mod.rs`): glob/prefix matching,
-  per-topic weakness aggregation, ranking correctness on a fixture, and the
-  empty/untagged-topic edge case. Run with `just test-rust`.
+- Rust unit tests (`rslib/src/points_at_stake/mod.rs`): `::`-path-prefix
+  matching, tag-over-subdeck / longest-prefix category resolution, per-topic
+  weakness aggregation, ranking correctness on a fixture, the struggling-tag
+  priority boost, and the empty/untagged-topic edge case. Run with
+  `just test-rust`.
 - Python integration test (`pylib/tests/test_points_at_stake.py`): calls the new
   backend message and asserts the order + aggregation. Run with `just test-py`.
 - Full gate: `just check`.
@@ -110,13 +113,45 @@ a core hot function is the small guarded re-rank insertion in `build_queues`.
   unaffected: the change only reorders the in-memory due queue and never mutates
   cards.
 
+## Seam reconciliations (integration branch)
+
+When the engine, content, and iOS branches were merged onto
+`readymcat-integration`, two seams were reconciled:
+
+1. **Taxonomy resolver ↔ the real `taxonomy.json`.** The engine branch shipped a
+   stub `taxonomy.json` and a first-match-wins resolver with `*`/`?` globs. The
+   content branch shipped the real `taxonomy.json` plus the reference resolver
+   `readymcat/tools/build_taxonomy.py::resolve_category`. The merge keeps the
+   **real** `taxonomy.json` and rewrites `Taxonomy::category_for` in
+   `rslib/src/points_at_stake/mod.rs` to match the reference exactly:
+   `#`-prefixed mappings are tags (matched against the card's tags), the rest are
+   subdecks (matched against the deck name); **tags win over subdecks**, and the
+   **longest `::`-path-prefix wins** (no globbing; case-sensitive). The Rust
+   `is_path_prefix`/`longer` helpers are line-for-line equivalents of the Python
+   `is_path_prefix` and the strict-`>` longest-prefix tie-break.
+
+2. **`ReadyMCAT::struggling` ↔ points-at-stake.** The teach-on-miss reviewer
+   tags a note `ReadyMCAT::struggling` when a corrected concept is missed again.
+   `rank_due_cards` now detects that tag and multiplies the card's points at
+   stake by `STRUGGLING_PRIORITY_BOOST` (2.0), so the corrected concept
+   resurfaces ahead of its peers in both the live study queue (the
+   `PointsAtStake` review order) and the dashboard's ranked list. The boost is a
+   **ranking-only** concern: the honest memory/weakness aggregation is left
+   untouched so the dashboard's scores stay honest. The proto `RankedCard` gains
+   a `struggling` flag so clients can show why a card was prioritised.
+
 ## Integration notes for other workstreams
 
-- **Taxonomy (deck workstream):** the real `taxonomy.json` must match the schema
-  in this repo's stub (`version`, `aamc_categories: {id: {name, weight}}`,
-  `mappings: [{deck_tag_or_subdeck, category}]`). `deck_tag_or_subdeck` supports
-  exact tags, `::` hierarchy prefixes, and `*`/`?` globs; the first matching
-  mapping wins. Place the file next to `collection.anki2`.
+- **Taxonomy (deck workstream):** the real `taxonomy.json` matches the schema
+  (`version`, `aamc_categories: {id: {name, weight}}`,
+  `mappings: [{deck_tag_or_subdeck, category}]`). **Resolution rule** (see
+  _Seam reconciliations_ below): a `deck_tag_or_subdeck` starting with `#` is a
+  **tag** mapping (matched against the card's tags); any other value is a
+  **subdeck** mapping (matched against the card's deck name). Tag mappings win
+  over subdeck mappings, and within each kind the longest (most specific)
+  `::`-path-prefix wins. Matching is case-sensitive and path-boundary aware (so
+  `Biochem` matches `Biochem::Enzymes` but not `Biochemistry`). Place the file
+  next to `collection.anki2`.
 - **iOS workstream:** call `PointsAtStakeService.PointsAtStakeQueue` over the
   shared protobuf API for the ranked queue; set a deck's review order to
   `REVIEW_CARD_ORDER_POINTS_AT_STAKE` to have the live study queue use it.

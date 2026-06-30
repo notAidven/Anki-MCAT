@@ -22,6 +22,7 @@
 //! variant) and the `PointsAtStakeService` protobuf API consumed by the desktop
 //! dashboard and, later, iOS.
 
+pub mod bench;
 pub mod service;
 
 use std::collections::BTreeMap;
@@ -38,6 +39,19 @@ pub const GIVE_UP_MIN_REVIEWS: u32 = 200;
 /// Minimum fraction of AAMC categories that must be covered before the
 /// dashboard may show a score.
 pub const GIVE_UP_MIN_COVERAGE: f64 = 0.5;
+
+/// Tag the desktop reviewer adds to a note whose teach-on-miss correction was
+/// missed again (see `qt/aqt/reviewer.py`). The points-at-stake queue raises
+/// such a card's priority so the corrected concept resurfaces soon and again
+/// later — the spaced re-retrieval teach-on-miss relies on. See
+/// `readymcat/README.md` (§ "Teach-on-miss ↔ points-at-stake handshake").
+pub const STRUGGLING_TAG: &str = "ReadyMCAT::struggling";
+/// Multiplier applied to the points at stake of a `STRUGGLING_TAG` card. Kept
+/// deliberately simple: a struggling card outranks its non-struggling peers in
+/// the same topic (and topics up to this factor more valuable). The honest
+/// memory/weakness aggregation is left untouched, so the dashboard's scores
+/// stay honest; only the live queue/ranking priority is boosted.
+pub const STRUGGLING_PRIORITY_BOOST: f64 = 2.0;
 
 /// A single AAMC content category, e.g. "1A".
 #[derive(Debug, Clone, Deserialize)]
@@ -82,18 +96,30 @@ impl Taxonomy {
         Self::from_json_str(&contents)
     }
 
-    /// The first category whose mapping matches any of the card's tags or its
-    /// subdeck. `None` when the card maps to no topic.
+    /// Resolve a card to an AAMC category. This mirrors the reference resolver
+    /// in `readymcat/tools/build_taxonomy.py::resolve_category`:
+    ///
+    /// * A mapping whose `deck_tag_or_subdeck` starts with `#` is a **tag**
+    ///   mapping, matched against the card's tags; any other mapping is a
+    ///   **subdeck** mapping, matched against the card's deck name.
+    /// * Tag mappings win over subdeck mappings.
+    /// * Within each kind the longest (most specific) `::`-path-prefix wins.
+    ///
+    /// `None` when the card maps to no topic.
     pub fn category_for(&self, tags: &[&str], deck_name: &str) -> Option<&str> {
+        let mut best_tag: Option<&TaxonomyMapping> = None;
+        let mut best_deck: Option<&TaxonomyMapping> = None;
         for mapping in &self.mappings {
-            let pattern = &mapping.deck_tag_or_subdeck;
-            let matches = tags.iter().any(|tag| pattern_matches(pattern, tag))
-                || pattern_matches(pattern, deck_name);
-            if matches {
-                return Some(&mapping.category);
+            let prefix = mapping.deck_tag_or_subdeck.as_str();
+            if prefix.starts_with('#') {
+                if tags.iter().any(|tag| is_path_prefix(prefix, tag)) && longer(prefix, best_tag) {
+                    best_tag = Some(mapping);
+                }
+            } else if is_path_prefix(prefix, deck_name) && longer(prefix, best_deck) {
+                best_deck = Some(mapping);
             }
         }
-        None
+        best_tag.or(best_deck).map(|m| m.category.as_str())
     }
 
     fn total_weight(&self) -> f64 {
@@ -101,47 +127,25 @@ impl Taxonomy {
     }
 }
 
-/// True if `pattern` (a glob with `*`/`?`, or a plain tag/subdeck prefix)
-/// matches `value`. Matching is case-insensitive. A plain pattern matches the
-/// value exactly or as a `::` hierarchy prefix (so `Biochem` matches
-/// `Biochem::Enzymes`).
-fn pattern_matches(pattern: &str, value: &str) -> bool {
-    let pattern = pattern.to_lowercase();
-    let value = value.to_lowercase();
-    if pattern.contains('*') || pattern.contains('?') {
-        glob_match(&pattern, &value)
-    } else {
-        value == pattern || value.starts_with(&format!("{pattern}::"))
-    }
+/// True if `prefix` matches `value` on `::` path boundaries: either `value`
+/// equals `prefix`, or `value` begins with `prefix` followed by `::` (so
+/// `Biochem` matches `Biochem::Enzymes` but not `Biochemistry`). Case-sensitive
+/// and allocation-free; mirrors `build_taxonomy.py::is_path_prefix`.
+fn is_path_prefix(prefix: &str, value: &str) -> bool {
+    value == prefix
+        || value
+            .strip_prefix(prefix)
+            .is_some_and(|rest| rest.starts_with("::"))
 }
 
-/// Classic linear-time wildcard matcher supporting `*` and `?`.
-fn glob_match(pattern: &str, text: &str) -> bool {
-    let p: Vec<char> = pattern.chars().collect();
-    let t: Vec<char> = text.chars().collect();
-    let (mut pi, mut ti) = (0usize, 0usize);
-    let mut star: Option<usize> = None;
-    let mut mark = 0usize;
-    while ti < t.len() {
-        if pi < p.len() && (p[pi] == '?' || p[pi] == t[ti]) {
-            pi += 1;
-            ti += 1;
-        } else if pi < p.len() && p[pi] == '*' {
-            star = Some(pi);
-            mark = ti;
-            pi += 1;
-        } else if let Some(s) = star {
-            pi = s + 1;
-            mark += 1;
-            ti = mark;
-        } else {
-            return false;
-        }
+/// Whether `prefix` should replace the current `best` mapping: true when there
+/// is no best yet, or `prefix` is strictly longer (more specific). Strict `>`
+/// keeps the first match on ties, mirroring `resolve_category`.
+fn longer(prefix: &str, best: Option<&TaxonomyMapping>) -> bool {
+    match best {
+        Some(b) => prefix.chars().count() > b.deck_tag_or_subdeck.chars().count(),
+        None => true,
     }
-    while pi < p.len() && p[pi] == '*' {
-        pi += 1;
-    }
-    pi == p.len()
 }
 
 /// Per-topic accumulator.
@@ -341,7 +345,12 @@ pub struct RankedCard {
     pub category: Option<String>,
     pub topic_weight: f64,
     pub student_weakness: f64,
+    /// `topic_weight * student_weakness`, multiplied by
+    /// [`STRUGGLING_PRIORITY_BOOST`] when `struggling` is set.
     pub points_at_stake: f64,
+    /// The card carries [`STRUGGLING_TAG`] (a teach-on-miss correction that was
+    /// missed again), so its priority was boosted.
+    pub struggling: bool,
     pub due: i32,
 }
 
@@ -440,12 +449,24 @@ impl Collection {
             let deck_name = deck_names.get(&did).map(String::as_str).unwrap_or("");
             let category = tax.category_for(&tag_refs, deck_name);
             let (weight, weakness) = agg.weight_and_weakness(category);
+            // Seam: a corrected-but-still-struggling concept (tagged by the
+            // teach-on-miss reviewer) gets a priority boost so it resurfaces.
+            let struggling = tag_refs
+                .iter()
+                .any(|tag| is_path_prefix(STRUGGLING_TAG, tag));
+            let base = weight * weakness;
+            let points_at_stake = if struggling {
+                base * STRUGGLING_PRIORITY_BOOST
+            } else {
+                base
+            };
             ranked.push(RankedCard {
                 card_id,
                 category: category.map(str::to_string),
                 topic_weight: weight,
                 student_weakness: weakness,
-                points_at_stake: weight * weakness,
+                points_at_stake,
+                struggling,
                 due,
             });
         }
@@ -506,39 +527,51 @@ mod test {
     use crate::card::CardType;
     use crate::collection::Collection;
 
-    const TAXONOMY: &str = r#"{
+    // Mirrors the real taxonomy.json shape: a `#`-prefixed key is a TAG mapping
+    // (matched against a card's tags); any other key is a SUBDECK mapping
+    // (matched against the card's deck name). Tags win over subdecks; within a
+    // kind the longest `::`-path-prefix wins.
+    // NB: `r##"…"##` (not `r#"…"#`) because the tag mappings contain the byte
+    // sequence `"#` (e.g. `"#Physiology`), which would otherwise close a `r#`
+    // raw string early.
+    const TAXONOMY: &str = r##"{
         "version": 1,
         "aamc_categories": {
             "1A": {"name": "Biomolecules", "weight": 5.0},
             "1B": {"name": "Cellular", "weight": 10.0},
+            "2B": {"name": "Microbes", "weight": 2.0},
             "3A": {"name": "Behavior", "weight": 1.0}
         },
         "mappings": [
-            {"deck_tag_or_subdeck": "Biochem", "category": "1A"},
-            {"deck_tag_or_subdeck": "Cell*", "category": "1B"},
-            {"deck_tag_or_subdeck": "Psych::Behavior", "category": "3A"}
+            {"deck_tag_or_subdeck": "#Physiology::Cells", "category": "1B"},
+            {"deck_tag_or_subdeck": "#Physiology::Cells::Viruses", "category": "2B"},
+            {"deck_tag_or_subdeck": "MCAT::Biochemistry", "category": "1A"},
+            {"deck_tag_or_subdeck": "MCAT::Psychology::Behavior", "category": "3A"}
         ]
-    }"#;
+    }"##;
 
     fn taxonomy() -> Taxonomy {
         Taxonomy::from_json_str(TAXONOMY).unwrap()
     }
 
-    /// Add a review card with the given tag, FSRS stability and days since the
-    /// last review (which determines its recall probability). Returns its id.
-    fn add_review_card(
+    /// Add a review card in `deck_name` (created if needed) carrying `tags`,
+    /// with the given FSRS stability and days since the last review (which
+    /// set its recall probability). Returns its id.
+    fn add_card(
         col: &mut Collection,
-        tag: &str,
+        deck_name: &str,
+        tags: &[&str],
         stability: f32,
         days_since_review: i64,
     ) -> CardId {
+        let deck_id = col.get_or_create_normal_deck(deck_name).unwrap().id;
         let nt = col.get_notetype_by_name("Basic").unwrap().unwrap();
         let mut note = nt.new_note();
         note.set_field(0, "q").unwrap();
-        if !tag.is_empty() {
-            note.tags = vec![tag.to_string()];
+        if !tags.is_empty() {
+            note.tags = tags.iter().map(|t| t.to_string()).collect();
         }
-        col.add_note(&mut note, DeckId(1)).unwrap();
+        col.add_note(&mut note, deck_id).unwrap();
         let mut card = col
             .storage
             .get_card_by_ordinal(note.id, 0)
@@ -559,27 +592,39 @@ mod test {
     }
 
     #[test]
-    fn pattern_matching_glob_and_prefix() {
-        // exact + hierarchy prefix
-        assert!(pattern_matches("Biochem", "Biochem"));
-        assert!(pattern_matches("Biochem", "Biochem::Enzymes"));
-        assert!(!pattern_matches("Biochem", "Biochemistry"));
-        // glob
-        assert!(pattern_matches("Cell*", "CellBio"));
-        assert!(pattern_matches("Cell*", "Cellular::Respiration"));
-        assert!(!pattern_matches("Cell*", "Biochem"));
-        // case-insensitive
-        assert!(pattern_matches("biochem", "Biochem::X"));
+    fn path_prefix_matching() {
+        // exact + `::` hierarchy prefix
+        assert!(is_path_prefix("Biochem", "Biochem"));
+        assert!(is_path_prefix("Biochem", "Biochem::Enzymes"));
+        // path boundary only: not a bare substring/sibling
+        assert!(!is_path_prefix("Biochem", "Biochemistry"));
+        assert!(!is_path_prefix("Physiology::Cells", "Physiology::CellsX"));
+        // a longer prefix is not matched by a shorter value
+        assert!(!is_path_prefix("Biochem::Enzymes", "Biochem"));
     }
 
     #[test]
-    fn category_resolution_and_untagged() {
+    fn resolution_tag_over_subdeck_longest_prefix() {
         let tax = taxonomy();
-        assert_eq!(tax.category_for(&["Biochem::Enzymes"], ""), Some("1A"));
-        assert_eq!(tax.category_for(&["Cellular"], ""), Some("1B"));
-        assert_eq!(tax.category_for(&["Psych::Behavior::Op"], ""), Some("3A"));
-        // untagged / no matching mapping
-        assert_eq!(tax.category_for(&["Anatomy"], ""), None);
+        // subdeck resolves when there is no tag match
+        assert_eq!(
+            tax.category_for(&[], "MCAT::Biochemistry::Enzymes"),
+            Some("1A")
+        );
+        // a tag match wins over a subdeck match
+        assert_eq!(
+            tax.category_for(&["#Physiology::Cells"], "MCAT::Biochemistry::Enzymes"),
+            Some("1B")
+        );
+        // longest (most specific) tag prefix wins
+        assert_eq!(
+            tax.category_for(&["#Physiology::Cells::Viruses::HIV"], "MCAT::Biochemistry"),
+            Some("2B")
+        );
+        // path-prefix, not substring: a sibling tag does not match
+        assert_eq!(tax.category_for(&["#Physiology::CellsX"], "Other"), None);
+        // untagged & unknown deck -> no topic
+        assert_eq!(tax.category_for(&["unrelated"], "Other::Deck"), None);
         assert_eq!(tax.category_for(&[], ""), None);
     }
 
@@ -587,11 +632,11 @@ mod test {
     fn per_topic_weakness_aggregation() {
         let mut col = Collection::new();
         let tax = taxonomy();
-        // 1A (Biochem): well-remembered -> low weakness
-        add_review_card(&mut col, "Biochem", 1000.0, 1);
-        add_review_card(&mut col, "Biochem", 1000.0, 1);
-        // 1B (Cellular): poorly remembered -> high weakness
-        add_review_card(&mut col, "Cellular", 0.5, 60);
+        // 1A (Biochemistry subdeck): well-remembered -> low weakness
+        add_card(&mut col, "MCAT::Biochemistry::Enzymes", &[], 1000.0, 1);
+        add_card(&mut col, "MCAT::Biochemistry", &[], 1000.0, 1);
+        // 1B (Cells tag): poorly remembered -> high weakness
+        add_card(&mut col, "Default", &["#Physiology::Cells"], 0.5, 60);
 
         let agg = col.compute_topic_aggregation(&tax).unwrap();
         let bio = agg.topics.get("1A").unwrap();
@@ -613,9 +658,9 @@ mod test {
         assert_eq!(behavior.total_cards, 0);
         assert_eq!(behavior.weakness(), 1.0);
 
-        // coverage: 2 of 3 outline categories have cards
+        // coverage: 2 of 4 outline categories have cards
         let coverage = agg.coverage_report();
-        assert_eq!(coverage.categories_total, 3);
+        assert_eq!(coverage.categories_total, 4);
         assert_eq!(coverage.categories_covered, 2);
 
         // memory score is a real interval over graded cards
@@ -629,11 +674,11 @@ mod test {
         let mut col = Collection::new();
         let tax = taxonomy();
         // 1A weight 5, strongly remembered -> small but non-zero points
-        let strong = add_review_card(&mut col, "Biochem", 1000.0, 1);
+        let strong = add_card(&mut col, "MCAT::Biochemistry", &[], 1000.0, 1);
         // 1B weight 10, badly forgotten -> highest points
-        let weak = add_review_card(&mut col, "Cellular", 0.4, 90);
-        // untagged -> zero points, ranks last
-        let untagged = add_review_card(&mut col, "", 0.4, 90);
+        let weak = add_card(&mut col, "Default", &["#Physiology::Cells"], 0.4, 90);
+        // untagged, unknown deck -> zero points, ranks last
+        let untagged = add_card(&mut col, "Default", &[], 0.4, 90);
 
         let agg = col.compute_topic_aggregation(&tax).unwrap();
         let ranked = col.rank_due_cards(&tax, &agg, None).unwrap();
@@ -646,6 +691,39 @@ mod test {
         // untagged card carries no topic and no points
         assert_eq!(ranked[2].category, None);
         assert_eq!(ranked[2].points_at_stake, 0.0);
+        assert!(!ranked.iter().any(|r| r.struggling));
+    }
+
+    #[test]
+    fn struggling_tag_boosts_priority() {
+        let mut col = Collection::new();
+        let tax = taxonomy();
+        // Two cards in the SAME topic (1B) => identical base points. The one
+        // flagged ReadyMCAT::struggling must rank first with ~2x the points.
+        let normal = add_card(&mut col, "Default", &["#Physiology::Cells"], 0.6, 30);
+        let struggling = add_card(
+            &mut col,
+            "Default",
+            &["#Physiology::Cells", STRUGGLING_TAG],
+            0.6,
+            30,
+        );
+
+        let agg = col.compute_topic_aggregation(&tax).unwrap();
+        let ranked = col.rank_due_cards(&tax, &agg, None).unwrap();
+        let find = |id: CardId| ranked.iter().find(|r| r.card_id == id).unwrap();
+        let s = find(struggling);
+        let n = find(normal);
+
+        assert!(s.struggling);
+        assert!(!n.struggling);
+        // same topic => identical weight & weakness; only the priority differs
+        assert_eq!(s.topic_weight, n.topic_weight);
+        assert_eq!(s.student_weakness, n.student_weakness);
+        assert!((s.points_at_stake - n.points_at_stake * STRUGGLING_PRIORITY_BOOST).abs() < 1e-9);
+        assert!(s.points_at_stake > n.points_at_stake);
+        // the struggling card resurfaces first
+        assert_eq!(ranked.first().unwrap().card_id, struggling);
     }
 
     #[test]

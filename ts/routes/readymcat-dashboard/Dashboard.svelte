@@ -49,10 +49,10 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
             <h2>Taxonomy not configured</h2>
             <p>
                 The dashboard needs a <code>taxonomy.json</code>
-                mapping the deck's tags to the AAMC outline. Place it next to your
-                collection, or open this page with a
+                mapping the deck's tags to the AAMC outline. Place it next to your collection,
+                or open this page with a
                 <code>?taxonomy=&lt;path&gt;</code>
-                 parameter.
+                parameter.
             </p>
             {#if error}
                 <p class="detail">{error}</p>

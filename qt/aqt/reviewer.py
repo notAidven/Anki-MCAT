@@ -30,7 +30,7 @@ from anki.scheduler.v3 import Scheduler as V3Scheduler
 from anki.tags import MARKED_TAG
 from anki.types import assert_exhaustive
 from anki.utils import is_mac
-from aqt import AnkiQt, gui_hooks
+from aqt import AnkiQt, gui_hooks, readymcat
 from aqt.browser.card_info import PreviousReviewerCardInfo, ReviewerCardInfo
 from aqt.deckoptions import confirm_deck_then_display_options
 from aqt.operations.card import set_card_flag
@@ -156,7 +156,11 @@ class Reviewer:
         self._recordedAudio: str | None = None
         self._combining: bool = True
         self.typeCorrect: str | None = None  # web init happens before this is set
-        self.state: Literal["question", "answer", "transition"] | None = None
+        self.state: Literal["question", "answer", "transition", "teaching"] | None = (
+            None
+        )
+        # ReadyMCAT teach-on-miss session state (None when not teaching).
+        self._tom: dict[str, Any] | None = None
         self._refresh_needed: RefreshNeeded | None = None
         self._v3: V3CardInfo | None = None
         self._state_mutation_key = str(random.randint(0, 2**64 - 1))
@@ -248,6 +252,7 @@ class Reviewer:
         self.previous_card = self.card
         self.card = None
         self._v3 = None
+        self._tom = None
         self._get_next_v3_card()
 
         self._previous_card_info.set_card(self.previous_card)
@@ -537,6 +542,14 @@ class Reviewer:
             return
         if self.state != "answer":
             return
+        # ReadyMCAT: intercept a miss (Again) on a curated concept and run the
+        # teach-on-miss ladder before the card is rescheduled.
+        if ease == 1 and self._tom is None and self._maybe_start_teach_on_miss():
+            return
+        self._do_answer_card(ease)
+
+    def _do_answer_card(self, ease: Literal[1, 2, 3, 4]) -> None:
+        "Reschedule the current card and show the next one."
         proceed, ease = gui_hooks.reviewer_will_answer_card(
             (True, ease), self, self.card
         )
@@ -569,6 +582,133 @@ class Reviewer:
         self._answeredIds.append(self.card.id)
         if not self.check_timebox():
             self.nextCard()
+
+    # ReadyMCAT teach-on-miss
+    ############################################################
+
+    def _maybe_start_teach_on_miss(self) -> bool:
+        """If the just-missed card is a curated concept, run the guiding ladder
+        instead of immediately rescheduling. Returns True if a ladder started."""
+        if self.card is None:
+            return False
+        data = readymcat.load_subquestions(self.mw.col.path)
+        concept = readymcat.match_concept(self.card.note().tags, data)
+        if concept is None:
+            return False
+
+        question = self._mungeQA(self.card.question())
+        answer = self._mungeQA(self.card.answer())
+        resource = dict(concept.resource)
+        # Prefer the card's own embedded resource link when present (PRD), else
+        # fall back to the concept's curated link.
+        card_link = readymcat.extract_resource_link(answer)
+        if card_link:
+            resource = {
+                "label": resource.get("label") or "Open the card's linked resource",
+                "url": card_link,
+            }
+
+        self._tom = {
+            "concept": concept,
+            "resource_url": resource.get("url", ""),
+            "marks": [],
+            "result": None,
+        }
+        self.state = "teaching"
+        payload = {
+            "title": concept.title,
+            "category": concept.category,
+            "ladder": concept.ladder,
+            "mainQuestion": question,
+            "mainAnswer": answer,
+            "resource": resource,
+        }
+        self.web.eval(f"_teachOnMissStart({json.dumps(payload)});")
+        # Replace the ease buttons with a hint while the ladder is running.
+        self.bottom.web.eval(
+            "showAnswer(%s);"
+            % json.dumps(
+                "<center><b>ReadyMCAT teach-on-miss</b> &mdash; "
+                "work through the guiding questions above.</center>"
+            )
+        )
+        readymcat.log_event(
+            self.mw.col.path,
+            {
+                "event": "ladder_started",
+                "card_id": self.card.id,
+                "note_id": self.card.note().id,
+                "concept": concept.id,
+                "category": concept.category,
+            },
+        )
+        return True
+
+    def _handle_teach_on_miss(self, cmd: str) -> None:
+        if self._tom is None:
+            return
+        concept: readymcat.Concept = self._tom["concept"]
+        if cmd.startswith("mark:"):
+            parts = cmd.split(":")
+            got = len(parts) > 1 and parts[1] == "got"
+            self._tom["marks"].append(got)
+            readymcat.log_event(
+                self.mw.col.path,
+                {
+                    "event": "subquestion_marked",
+                    "concept": concept.id,
+                    "rung": int(parts[2]) if len(parts) > 2 else -1,
+                    "got_it": got,
+                },
+            )
+        elif cmd in ("result:correct", "result:wrong"):
+            correct = cmd == "result:correct"
+            self._tom["result"] = "correct" if correct else "wrong"
+            # Flag the concept so the points-at-stake queue can resurface it.
+            self._flag_concept(struggling=not correct)
+            readymcat.log_event(
+                self.mw.col.path,
+                {
+                    "event": "main_reattempt",
+                    "card_id": self.card.id if self.card else None,
+                    "concept": concept.id,
+                    "category": concept.category,
+                    "correct_after_ladder": correct,
+                    "subquestions_missed": self._tom["marks"].count(False),
+                },
+            )
+        elif cmd == "resource":
+            url = self._tom.get("resource_url")
+            if url:
+                QDesktopServices.openUrl(QUrl(url))
+        elif cmd == "continue":
+            self._finish_teach_on_miss()
+
+    def _flag_concept(self, struggling: bool) -> None:
+        """Tag the note so the points-at-stake queue can weight it. Best-effort."""
+        if self.card is None:
+            return
+        tag = "ReadyMCAT::struggling" if struggling else "ReadyMCAT::corrected"
+        try:
+            note = self.card.note()
+            note.add_tag(tag)
+            self.mw.col.update_note(note, skip_undo_entry=True)
+        except Exception as exc:  # pragma: no cover - defensive
+            print("ReadyMCAT: could not flag concept", exc)
+
+    def _finish_teach_on_miss(self) -> None:
+        """End the ladder gracefully and reschedule the card as Again so it
+        re-enters relearning (spaced re-retrieval), then show the next card.
+
+        Whether or not the student recalled the card right after the scaffold,
+        the card always grades Again: immediate post-scaffold success is not
+        treated as mastery (PRD). Aggressiveness for the struggling case comes
+        from the ReadyMCAT::struggling tag feeding the points-at-stake queue."""
+        if self._tom is None:
+            return
+        self._tom = None
+        self.state = "answer"
+        self._do_answer_card(1)
 
     # Handlers
     ############################################################
@@ -691,6 +831,8 @@ class Reviewer:
             self.web.update()
         elif url == "statesMutated":
             self._states_mutated = True
+        elif url.startswith("tom:"):
+            self._handle_teach_on_miss(url[len("tom:") :])
         else:
             print("unrecognized anki link:", url)
 

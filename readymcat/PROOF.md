@@ -125,13 +125,13 @@ p95, dashboard < 1 s p95).
 
 ### Artifacts summary
 
-| Proof | Command | Output |
-| --- | --- | --- |
-| Commit | `git rev-parse HEAD` | hash |
-| Clean build | `just check` | green log |
-| Installer | `./tools/build-installer` | `out/installer/dist/*.dmg` |
-| Desktop review + teach‑on‑miss | `just run` | screen recording |
-| Dashboard | `just run` → Tools → ReadyMCAT Dashboard | screenshot |
-| iOS review | `ios/scripts/run-sim.sh` | screen recording (manual) |
-| Tests | `just check` | green log |
-| Benchmark | `just bench` | p50/p95/worst table |
+| Proof                          | Command                                  | Output                     |
+| ------------------------------ | ---------------------------------------- | -------------------------- |
+| Commit                         | `git rev-parse HEAD`                     | hash                       |
+| Clean build                    | `just check`                             | green log                  |
+| Installer                      | `./tools/build-installer`                | `out/installer/dist/*.dmg` |
+| Desktop review + teach‑on‑miss | `just run`                               | screen recording           |
+| Dashboard                      | `just run` → Tools → ReadyMCAT Dashboard | screenshot                 |
+| iOS review                     | `ios/scripts/run-sim.sh`                 | screen recording (manual)  |
+| Tests                          | `just check`                             | green log                  |
+| Benchmark                      | `just bench`                             | p50/p95/worst table        |

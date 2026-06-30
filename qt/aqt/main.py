@@ -1314,6 +1314,13 @@ title="{}" {}>{}</button>""".format(
     def onPrefs(self) -> None:
         aqt.dialogs.open("Preferences", self)
 
+    def on_readymcat_dashboard(self) -> None:
+        if not self.col:
+            return
+        from aqt.readymcat import show_readymcat_dashboard
+
+        show_readymcat_dashboard(self)
+
     def on_check_for_updates(self) -> None:
         from packaging.version import Version
 
@@ -1447,6 +1454,12 @@ title="{}" {}>{}</button>""".format(
         qconnect(m.actionNoteTypes.triggered, self.onNoteTypes)
         qconnect(m.action_check_for_updates.triggered, self.on_check_for_updates)
         qconnect(m.actionPreferences.triggered, self.onPrefs)
+
+        # ReadyMCAT: honest-memory dashboard
+        m.menuTools.addSeparator()
+        self._readymcat_action = QAction("ReadyMCAT Dashboard", self)
+        m.menuTools.addAction(self._readymcat_action)
+        qconnect(self._readymcat_action.triggered, self.on_readymcat_dashboard)
 
         # View
         qconnect(

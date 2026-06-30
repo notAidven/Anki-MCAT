@@ -1,0 +1,99 @@
+// Copyright: Ankitects Pty Ltd and contributors
+// License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
+
+// ReadyMCAT engine extension.
+//
+// The points-at-stake queue ranks due review cards by
+//   points_at_stake = topic_weight * student_weakness
+// where topic_weight is the AAMC content-distribution weight for the card's
+// topic and student_weakness is 1 - (mean FSRS recall probability over every
+// card in that topic). The same call also returns the per-topic memory/weakness
+// aggregation, an honest (ranged) overall memory score, and outline coverage,
+// which the desktop dashboard consumes (obeying its give-up rule).
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+
+package anki.points_at_stake;
+
+service PointsAtStakeService {
+  // Compute the points-at-stake ranked review queue plus the per-topic
+  // mastery/weakness aggregation, overall memory range and coverage map.
+  rpc PointsAtStakeQueue(PointsAtStakeRequest) returns (PointsAtStakeResponse);
+}
+
+// Backend-only counterpart (required so service indices stay paired). Empty:
+// every method is delegated to the Collection implementation.
+service BackendPointsAtStakeService {}
+
+message PointsAtStakeRequest {
+  // Path to taxonomy.json. When empty, the file is looked up next to the
+  // collection (collection folder, then media folder).
+  string taxonomy_path = 1;
+  // Restrict ranking to due cards in this deck and its children. 0 = whole
+  // collection.
+  int64 deck_id = 2;
+  // Maximum number of ranked cards to return. 0 = no limit.
+  uint32 limit = 3;
+}
+
+message PointsAtStakeResponse {
+  // Due review cards, highest points-at-stake first.
+  repeated RankedCard ranked_cards = 1;
+  // Per-AAMC-category mastery/weakness aggregation (sorted by category id).
+  repeated TopicMastery topics = 2;
+  // Honest overall memory score, always a range.
+  MemoryReport memory = 3;
+  // How much of the AAMC outline the deck covers.
+  CoverageReport coverage = 4;
+  // True when there is enough evidence to show a score
+  // (>= 200 graded reviews AND >= 50% topic coverage).
+  bool meets_data_threshold = 5;
+}
+
+message RankedCard {
+  int64 card_id = 1;
+  // AAMC category id, e.g. "1A". Empty when the card maps to no topic.
+  string category = 2;
+  double topic_weight = 3;
+  double student_weakness = 4;
+  double points_at_stake = 5;
+}
+
+message TopicMastery {
+  // AAMC category id, e.g. "1A".
+  string category = 1;
+  string name = 2;
+  double topic_weight = 3;
+  // Cards mapped to this topic that have an FSRS memory state.
+  uint32 graded_cards = 4;
+  // All cards mapped to this topic.
+  uint32 total_cards = 5;
+  // Mean FSRS recall probability across graded cards (0..1). This is mastery.
+  double mean_retrievability = 6;
+  // 1 - mean_retrievability (0..1). This is weakness.
+  double student_weakness = 7;
+}
+
+message MemoryReport {
+  // Mean recall probability across all graded cards (0..1).
+  double mean = 1;
+  // 95% interval for the mean (0..1). The dashboard shows this range, never the
+  // bare mean.
+  double range_low = 2;
+  double range_high = 3;
+  // Number of graded reviews in the review log (drives the give-up rule).
+  uint32 graded_reviews = 4;
+  // Number of cards with an FSRS memory state contributing to the score.
+  uint32 graded_cards = 5;
+}
+
+message CoverageReport {
+  uint32 categories_total = 1;
+  uint32 categories_covered = 2;
+  // Fraction of AAMC categories covered by card count (0..1).
+  double fraction = 3;
+  // Fraction of exam weight covered (0..1).
+  double weighted_fraction = 4;
+}

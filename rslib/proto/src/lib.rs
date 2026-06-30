@@ -31,6 +31,7 @@ protobuf!(links, "links");
 protobuf!(media, "media");
 protobuf!(notes, "notes");
 protobuf!(notetypes, "notetypes");
+protobuf!(points_at_stake, "points_at_stake");
 protobuf!(scheduler, "scheduler");
 protobuf!(search, "search");
 protobuf!(stats, "stats");

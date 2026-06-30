@@ -103,6 +103,11 @@ export function reviewOrderChoices(
                 value: DeckConfig_Config_ReviewCardOrder.RELATIVE_OVERDUENESS,
             },
             {
+                // ReadyMCAT: topic_weight x student_weakness ordering.
+                label: "Points at stake (ReadyMCAT)",
+                value: DeckConfig_Config_ReviewCardOrder.POINTS_AT_STAKE,
+            },
+            {
                 label: tr.deckConfigSortOrderRandom(),
                 value: DeckConfig_Config_ReviewCardOrder.RANDOM,
             },

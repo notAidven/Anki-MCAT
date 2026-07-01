@@ -84,14 +84,14 @@ PointsAtStakeResponse {
 
 ### New, fork-specific (additive — trivial to keep across upstream merges)
 
-| File                                   | Purpose                                                          |
-| -------------------------------------- | ---------------------------------------------------------------- |
-| `proto/anki/points_at_stake.proto`     | New service + messages                                           |
-| `rslib/src/points_at_stake/mod.rs`     | Taxonomy parse, aggregation, ranking, tests                      |
-| `rslib/src/points_at_stake/service.rs` | `PointsAtStakeService` backend impl                              |
-| `pylib/tests/test_points_at_stake.py`  | Python integration test                                          |
-| `ts/routes/readymcat-dashboard/*`      | Svelte dashboard page                                            |
-| `qt/aqt/readymcat.py`                  | Dashboard window                                                 |
+| File                                   | Purpose                                                           |
+| -------------------------------------- | ----------------------------------------------------------------- |
+| `proto/anki/points_at_stake.proto`     | New service + messages                                            |
+| `rslib/src/points_at_stake/mod.rs`     | Taxonomy parse, aggregation, ranking, tests                       |
+| `rslib/src/points_at_stake/service.rs` | `PointsAtStakeService` backend impl                               |
+| `pylib/tests/test_points_at_stake.py`  | Python integration test                                           |
+| `ts/routes/readymcat-dashboard/*`      | Svelte dashboard page                                             |
+| `qt/aqt/readymcat.py`                  | Dashboard window                                                  |
 | `taxonomy.json`                        | Real shared deck-tag → AAMC mapping (31 categories, 118 mappings) |
 
 ### Upstream files modified (with future-merge-difficulty estimate)

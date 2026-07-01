@@ -2129,5 +2129,192 @@
         ]
       }
     ]
+  },
+  {
+    "id": "psg-cars-12",
+    "section": "CARS",
+    "passage": "One of the most consequential shifts in twentieth-century philosophy of language was the move away from the view that words get their meaning by standing for objects in the world. On the referentialist picture, to know the meaning of a term like 'gold' is to know which substance the term picks out; to know the meaning of 'Julius Caesar' is to know which historical individual the name refers to. The attractions of this view are obvious: it grounds meaning in something outside language itself, connecting our words to the world they describe and offering a clear criterion for distinguishing correct from incorrect usage.\n\nYet referentialism encounters serious difficulties when applied to expressions whose meaning does not seem to consist in any reference at all. Words like 'and,' 'perhaps,' 'nevertheless,' and 'of' do not pick out objects, properties, or relations in any obvious sense. Equally problematic are terms whose reference appears to shift depending on context: 'here' refers to wherever the speaker happens to be, 'now' to whenever the utterance is made, and 'I' to whoever is speaking. The meaning of these expressions cannot be their reference, since their reference changes while their meaning remains constant across every ordinary use of the word.\n\nAn alternative tradition proposed that meaning is constituted by use. On this view, to know the meaning of a word is not to know what it refers to but to know how to use it -- in what contexts it is appropriately deployed, what inferences it licenses, how it interacts with the meanings of other expressions. This account handles the problematic cases naturally: logical connectives like 'and' are explained by the inferential rules governing their use (the conjunction of P and Q implies both P and Q separately); indexical expressions like 'here' are explained by specifying the rule that they refer to the context of utterance. Knowing the meaning of 'here' means knowing that it picks out the speaker's location, not knowing any particular location.\n\nCritics of the use theory worry that it leaves too little stable content in meaning. If meaning is just use, and use can vary between individual speakers or across historical periods, then there seems to be no fact of the matter about whether two speakers mean the same thing by a word, or whether we mean the same thing by 'democracy' as people in ancient Athens did. Some philosophers have sought to address this by distinguishing between the linguistic meaning of an expression (shared by competent speakers of a language) and speaker meaning (what a particular individual intends to convey in a specific utterance). Semantic theory can then concern itself with the former -- a stable, shared content -- while acknowledging the latter's irreducibly contextual character and the inevitable gap between what a speaker means and what a sentence means.",
+    "passage_source": {
+      "name": "original",
+      "url": "",
+      "license": "original"
+    },
+    "questions": [
+      {
+        "id": "psg-cars-12-q1",
+        "aamc_category": "CARS",
+        "skill": "comprehension",
+        "stem": "The referentialist view holds that the meaning of a word consists in:",
+        "options": [
+          "which object, substance, or individual in the world the word picks out",
+          "the set of rules governing how the word may be appropriately used",
+          "the inferential relations between the word and other expressions",
+          "the historical origins of the word in earlier stages of a language"
+        ],
+        "correct_index": 0,
+        "explanation": "A is stated: referentialism holds that to know the meaning of a term like gold is to know which substance it picks out. B and C describe the use theory. D describes etymology, which is not a theory of meaning discussed here.",
+        "difficulty": "easy",
+        "subquestions": [
+          {
+            "stem": "What does referentialism say about the meaning of a proper name like Julius Caesar?",
+            "options": [
+              "Its meaning consists in the historical individual it refers to",
+              "Its meaning consists in the rules for using the name in sentences"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says: to know the meaning of Julius Caesar is to know which historical individual the name refers to."
+          },
+          {
+            "stem": "What does the passage say is attractive about referentialism?",
+            "options": [
+              "It grounds meaning in something outside language, connecting words to the world",
+              "It handles logical connectives and indexical expressions naturally"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says: it grounds meaning in something outside language itself, connecting our words to the world they describe."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-12-q2",
+        "aamc_category": "CARS",
+        "skill": "reasoning-within",
+        "stem": "The passage uses the word 'here' as an example to show that:",
+        "options": [
+          "the reference of some expressions changes with context while their meaning stays constant, challenging referentialism",
+          "spatial words are impossible to explain within any theory of meaning",
+          "use theory has difficulty with expressions that refer to locations",
+          "meaning and reference are identical for all linguistic expressions"
+        ],
+        "correct_index": 0,
+        "explanation": "A is the argument: the word 'here' refers to wherever the speaker is, so its reference shifts, yet its meaning (the rule for use) is stable -- which challenges referentialism by showing meaning does not equal reference. B overstates. C is the opposite; the passage says use theory handles indexicals naturally. D is directly contradicted.",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "What changes about the word 'here' across different uses?",
+            "options": [
+              "Its reference -- it refers to wherever the speaker happens to be",
+              "Its meaning -- it means something different each time it is used"
+            ],
+            "correct_index": 0,
+            "explanation": "The word 'here' refers to wherever the speaker is -- its reference shifts -- but its meaning (the rule) is stable."
+          },
+          {
+            "stem": "Why is this a problem for referentialism?",
+            "options": [
+              "Referentialism says meaning equals reference, but 'here' has stable meaning while its reference varies",
+              "Referentialism cannot handle words of more than four letters"
+            ],
+            "correct_index": 0,
+            "explanation": "If meaning equals reference, and reference varies, meaning should vary. But meaning is constant -- so meaning does not equal reference, contradicting referentialism."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-12-q3",
+        "aamc_category": "CARS",
+        "skill": "reasoning-within",
+        "stem": "According to the passage, the use theory explains the meaning of logical connectives like 'and' by:",
+        "options": [
+          "specifying the inferential rules governing the connective's use",
+          "identifying a relation in the world that the connective picks out",
+          "analyzing how native speakers feel when they hear the word",
+          "tracing the historical etymology of the connective across languages"
+        ],
+        "correct_index": 0,
+        "explanation": "A is stated: logical connectives like 'and' are explained by the inferential rules governing their use -- the conjunction of P and Q implies both P and Q separately. B is the referentialist move, which fails for connectives. C introduces psychology not mentioned. D introduces etymology not mentioned.",
+        "difficulty": "easy",
+        "subquestions": [
+          {
+            "stem": "What does knowing the meaning of 'and' consist in, on the use theory?",
+            "options": [
+              "Knowing the inferential rules: that P and Q implies both P and Q",
+              "Knowing which conjunction in the world the word picks out"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says use theory explains the connective via the inferential rules governing its use."
+          },
+          {
+            "stem": "Why does referentialism struggle with words like 'and'?",
+            "options": [
+              "Because such connectives do not pick out any object, property, or relation in an obvious sense",
+              "Because connectives are too simple to have a meaning"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says logical connectives do not pick out objects, properties, or relations in any obvious sense."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-12-q4",
+        "aamc_category": "CARS",
+        "skill": "reasoning-within",
+        "stem": "The critique of the use theory raises the concern that if meaning is just use, then:",
+        "options": [
+          "there may be no fact of the matter about whether different speakers or different eras mean the same thing by a word",
+          "logical connectives cannot be given stable meanings across different contexts",
+          "proper names would have different meanings for every speaker",
+          "referentialism becomes unavoidable as the only stable theory of meaning"
+        ],
+        "correct_index": 0,
+        "explanation": "A is stated: if use varies between speakers or across history, there seems to be no fact of the matter about whether two speakers mean the same thing by a word, or whether we mean the same thing by 'democracy' as people in ancient Athens did. B applies the concern specifically to connectives but the critique is general. C is a specific version of A but the example used is 'democracy.' D is not the conclusion drawn.",
+        "difficulty": "hard",
+        "subquestions": [
+          {
+            "stem": "What example does the passage use to illustrate the instability worry?",
+            "options": [
+              "Whether 'democracy' means the same to us as it did to people in ancient Athens",
+              "Whether the word 'gold' refers to the same element across different scientific theories"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage asks whether we mean the same thing by 'democracy' as people in ancient Athens did."
+          },
+          {
+            "stem": "How do some philosophers propose to address this instability?",
+            "options": [
+              "By distinguishing linguistic meaning (shared across competent speakers) from speaker meaning (what an individual intends in a specific utterance)",
+              "By returning to referentialism for all content words"
+            ],
+            "correct_index": 0,
+            "explanation": "The proposed solution is distinguishing between linguistic meaning shared by competent speakers and speaker meaning."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-12-q5",
+        "aamc_category": "CARS",
+        "skill": "reasoning-beyond",
+        "stem": "A philosopher argues that the word 'marriage' has changed its meaning over the past century because the social practices surrounding it have changed significantly. Which theory would this claim most directly support?",
+        "options": [
+          "The use theory, because it holds that meaning is constituted by use, and changed use implies changed meaning",
+          "Referentialism, because the word refers to a fixed social institution that has remained the same",
+          "Both theories equally, because both predict that social change alters word meaning",
+          "Neither theory, because neither addresses the meaning of social institution terms"
+        ],
+        "correct_index": 0,
+        "explanation": "A is correct: use theory holds that meaning is constituted by use -- in what contexts it is appropriately deployed. If social practices around marriage change, the word's use changes, and therefore its meaning changes. B represents the referentialist prediction, which ties meaning to what the word picks out. C and D are both incorrect.",
+        "difficulty": "hard",
+        "subquestions": [
+          {
+            "stem": "What does use theory predict about a word whose social use has changed?",
+            "options": [
+              "Its meaning has changed, because meaning is constituted by use",
+              "Its meaning is fixed by what it refers to and cannot change with social practice"
+            ],
+            "correct_index": 0,
+            "explanation": "Use theory holds meaning equals use; therefore changed use equals changed meaning."
+          },
+          {
+            "stem": "What does referentialism say fixes the meaning of a word like 'marriage'?",
+            "options": [
+              "Which institution or practice in the world the word picks out",
+              "The inferential rules governing how the word interacts with other legal concepts"
+            ],
+            "correct_index": 0,
+            "explanation": "Referentialism grounds meaning in reference to what the word picks out in the world."
+          }
+        ]
+      }
+    ]
   }
 ]

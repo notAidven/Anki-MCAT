@@ -87,6 +87,17 @@ MainWindowState = Literal[
 ]
 
 
+# ReadyMCAT: the SvelteKit route a returning/provisioned profile lands on when
+# the app opens (see ``AnkiQt._route_readymcat_launch`` /
+# ``AnkiQt._open_readymcat_landing``). This is the SINGLE switch for the startup
+# landing surface: set it to ``"readymcat-dashboard"`` for the honest-memory
+# dashboard (default) or ``"readymcat-home"`` for the study/launcher home hub —
+# both are registered SvelteKit pages (see ``aqt.mediasrv.is_sveltekit_page``).
+# A brand-new profile always sees the introductory diagnostic first regardless
+# of this value; it then lands here on subsequent (returning) launches.
+READYMCAT_LANDING_ROUTE = "readymcat-dashboard"
+
+
 T = TypeVar("T")
 
 
@@ -670,14 +681,14 @@ class AnkiQt(QMainWindow):
             from aqt.readymcat_provision import maybe_provision_readymcat
 
             self.progress.single_shot(50, lambda: maybe_provision_readymcat(self))
-            # ReadyMCAT: route this launch to exactly one of the introductory
-            # diagnostic (genuinely new profile, seeds study *ordering* and
-            # prerequisite *placement* only — never a score) or the home /
-            # study-launcher hub (every other launch), deferred so the deck
-            # browser paints first. Defensive + silent if unavailable.
-            from aqt.readymcat_home import route_readymcat_launch
-
-            self.progress.single_shot(250, lambda: route_readymcat_launch(self))
+            # ReadyMCAT: route this launch to exactly one entry surface,
+            # deferred so the deck browser paints first. A genuinely new profile
+            # (no diagnostic prior yet) sees the introductory diagnostic first —
+            # it seeds study *ordering* and prerequisite *placement* only, never
+            # a score; every returning/provisioned profile lands directly on the
+            # ReadyMCAT landing route (see ``READYMCAT_LANDING_ROUTE``) instead
+            # of the deck browser. Defensive + silent if unavailable.
+            self.progress.single_shot(250, self._route_readymcat_launch)
             # ReadyMCAT dev/e2e: when READYMCAT_SEED_DEMO is set, populate the
             # profile with SYNTHETIC demo data so the honest-memory dashboard can
             # be screenshotted fully populated. No-op (and silent) otherwise.
@@ -1362,6 +1373,56 @@ title="{}" {}>{}</button>""".format(
         from aqt.readymcat_demo import load_readymcat_demo_data
 
         load_readymcat_demo_data(self)
+
+    def _route_readymcat_launch(self) -> None:
+        """ReadyMCAT startup routing: open exactly one entry surface on launch.
+
+        A genuinely new profile (no diagnostic prior yet, and a question bank
+        actually available) sees the introductory diagnostic first, exactly as
+        before — it seeds study *ordering* and prerequisite *placement* only,
+        never a score. Every returning/provisioned profile instead lands
+        directly on ``READYMCAT_LANDING_ROUTE`` (the honest-memory dashboard),
+        rather than on the deck browser. Once the diagnostic has been taken the
+        profile is "returning", so later launches land on the dashboard too.
+
+        The deck browser stays the base window and remains reachable from the
+        toolbar and the Tools menu, so the four ReadyMCAT decks are always
+        accessible. Reuses the tested, Qt-free diagnostic decision in
+        ``aqt.readymcat.maybe_show_diagnostic_on_launch`` (which loads the pure
+        ``home_launcher`` helpers by path) so the two entry surfaces never
+        double-open. Defensive + silent so a failure here never blocks
+        start-up.
+        """
+        if self.col is None:
+            return
+        try:
+            from aqt.readymcat import maybe_show_diagnostic_on_launch
+
+            if maybe_show_diagnostic_on_launch(self):
+                return
+            self._open_readymcat_landing()
+        except Exception as exc:  # pragma: no cover - defensive
+            print("ReadyMCAT: launch routing failed", exc)
+
+    def _open_readymcat_landing(self) -> None:
+        """Open the configured ReadyMCAT landing surface.
+
+        The single place that maps ``READYMCAT_LANDING_ROUTE`` to its window, so
+        switching the startup landing surface between the honest-memory
+        dashboard and the study/launcher home hub is a one-line change to that
+        constant. Any value other than ``"readymcat-home"`` lands on the
+        dashboard.
+        """
+        if self.col is None:
+            return
+        if READYMCAT_LANDING_ROUTE == "readymcat-home":
+            from aqt.readymcat_home import show_readymcat_home
+
+            show_readymcat_home(self)
+        else:
+            from aqt.readymcat import show_readymcat_dashboard
+
+            show_readymcat_dashboard(self)
 
     def on_check_for_updates(self) -> None:
         from packaging.version import Version

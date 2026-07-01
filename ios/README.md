@@ -141,9 +141,13 @@ exceeds 5.)
 - Two-way sync (Friday). `rsios` is built with no TLS backend; the `rustls` /
   `native-tls` cargo features are wired but off.
 - Teach-on-miss reviewer (desktop-first).
-- Points-at-stake ordering on iOS — it ships from `rslib` automatically once that
-  engine change lands (separate workstream); the app already orders by whatever
-  `get_queued_cards` returns.
+- Points-at-stake ordering on iOS — the engine change has **landed on `main`**
+  (`ReviewCardOrder::PointsAtStake` in `rslib`), so it is compiled into the phone
+  binary, but it is **not yet activated here**: the app orders by whatever
+  `get_queued_cards` returns (default order), because the bundled `sample.anki2`
+  does not select that review order and no `taxonomy.json` is bundled beside it.
+  Turning it on is a content/config step (bundle a taxonomy + a collection whose
+  deck config selects order 13), not another engine change.
 - Device builds / code signing (Simulator-only for Wednesday).
 - Media rendering beyond text/HTML (sample deck has no media).
 

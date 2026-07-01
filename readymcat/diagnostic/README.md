@@ -1,9 +1,17 @@
 # ReadyMCAT Introductory Diagnostic — Content & Prior-Mapping Spec
 
 This folder holds the **content and design spec** for ReadyMCAT's first-launch
-diagnostic quiz. It is research + content + spec only: it does **not** build the
-quiz UI, the scoring code, or the prior-seeding engine change (those are the
-follow-on feature build — see [For the follow-on feature build](#for-the-follow-on-feature-build)).
+diagnostic quiz (the question bank, schema, sources, and prior-mapping method).
+
+> **Status update:** the quiz UI, the scoring code, and the prior-seeding engine change
+> described here as "follow-on" are now **built and shipping on `main`**: the Rust scorer
+> and prior lives in `rslib/src/diagnostic/` (exposed via `proto/anki/diagnostic.proto`
+> → `DiagnosticService`), the Svelte quiz UI is `ts/routes/readymcat-diagnostic/`, and it
+> auto-opens on first launch (wired in `qt/aqt/main.py`, retake via **Tools → ReadyMCAT
+> Diagnostic**). The prior is blended into the points-at-stake order as a decaying weakness
+> seed, with a guardrail test proving it never writes the dashboard's memory/performance/readiness
+> scores. This folder remains the content + design spec of record; the "follow-on feature build"
+> section below is retained as historical design notes.
 
 | File                     | What it is                                                                                                             |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------------------- |

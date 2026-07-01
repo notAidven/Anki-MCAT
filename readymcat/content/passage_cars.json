@@ -36,11 +36,11 @@
                     {
                         "stem": "What key distinction does the table example introduce?",
                         "options": [
-                            "Between appearance and reality",
                             "Between science and art",
+                            "Between appearance and reality",
                             "Between hearing and touch"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The author explicitly names 'the distinction between appearance and reality.'"
                     }
                 ]
@@ -52,12 +52,12 @@
                 "stem": "According to the passage, we are 'compelled to deny that the table has any one particular colour' because:",
                 "options": [
                     "colour is an illusion that exists only inside the observer's mind",
-                    "only the report of a normal spectator under ordinary conditions should count",
                     "the colours seen under different conditions each have an equal claim to reality, so none can be privileged",
+                    "only the report of a normal spectator under ordinary conditions should count",
                     "observers disagree about the table's shape rather than about its colour"
                 ],
-                "correct_index": 2,
-                "explanation": "The author states that the colours appearing under other conditions 'have just as good a right to be considered real,' so that 'to avoid favouritism' no single colour can be assigned (C). (A) is never claimed; the author says colour depends on table, observer, and light, not that it is mere illusion. (B) inverts the point — the normal-spectator report is a convenient convention, not the reason the table lacks one real colour. (D) misattributes the disagreement to shape.",
+                "correct_index": 1,
+                "explanation": "The author states that the colours appearing under other conditions 'have just as good a right to be considered real,' so that 'to avoid favouritism' no single colour can be assigned (B). (A) is never claimed; the author says colour depends on table, observer, and light, not that it is mere illusion. (C) inverts the point — the normal-spectator report is a convenient convention, not the reason the table lacks one real colour. (D) misattributes the disagreement to shape.",
                 "difficulty": "medium",
                 "subquestions": [
                     {
@@ -72,10 +72,10 @@
                     {
                         "stem": "If no single condition's colour is privileged, what follows about 'the' colour of the table?",
                         "options": [
-                            "It cannot be assigned any one particular colour",
-                            "Its true colour is the average of all its appearances"
+                            "Its true colour is the average of all its appearances",
+                            "It cannot be assigned any one particular colour"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "Refusing to favour any appearance forces the denial of a single real colour."
                     }
                 ]
@@ -88,21 +88,21 @@
                 "options": [
                     "prove that scientific instruments finally reveal the real table",
                     "show that the table's roughness is more real than its smoothness",
-                    "suggest that only trained scientists can perceive reality",
-                    "extend the appearance/reality problem from colour to texture, undermining reliance on the naked eye"
+                    "extend the appearance/reality problem from colour to texture, undermining reliance on the naked eye",
+                    "suggest that only trained scientists can perceive reality"
                 ],
-                "correct_index": 3,
-                "explanation": "The microscope discussion moves the problem from colour to texture, showing the naked eye is no more authoritative than the instrument (D). (B) is the tempting trap the author explicitly rejects: 'a still more powerful instrument would reveal something different again,' so roughness is not 'more real.' (A) is rejected for the same reason. (C) about scientists is unsupported.",
+                "correct_index": 2,
+                "explanation": "The microscope discussion moves the problem from colour to texture, showing the naked eye is no more authoritative than the instrument (C). (B) is the tempting trap the author explicitly rejects: 'a still more powerful instrument would reveal something different again,' so roughness is not 'more real.' (A) is rejected for the same reason. (D) about scientists is unsupported.",
                 "difficulty": "medium",
                 "subquestions": [
                     {
                         "stem": "Before the microscope, which property was under discussion? After it?",
                         "options": [
-                            "Colour first; then texture",
                             "Only shape throughout",
-                            "Only the sound of the table"
+                            "Only the sound of the table",
+                            "Colour first; then texture"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 2,
                         "explanation": "The microscope paragraph shifts the same worry onto texture."
                     },
                     {
@@ -123,21 +123,21 @@
                 "stem": "The author's attitude toward the reliability of the senses is best described as:",
                 "options": [
                     "unqualified trust in their deliverances",
-                    "initial confidence giving way to reasoned doubt",
                     "contemptuous dismissal of everything they report",
-                    "complete indifference to the question"
+                    "complete indifference to the question",
+                    "initial confidence giving way to reasoned doubt"
                 ],
-                "correct_index": 1,
-                "explanation": "Confidence in the senses 'had seemed so secure' but 'begins to desert us' — a movement from confidence to doubt (B). (A) and (C) are opposite extremes the measured prose avoids; the author neither fully trusts nor sneeringly dismisses the senses. (D) ignores the author's evident, careful engagement with the question.",
+                "correct_index": 3,
+                "explanation": "Confidence in the senses 'had seemed so secure' but 'begins to desert us' — a movement from confidence to doubt (D). (A) and (B) are opposite extremes the measured prose avoids; the author neither fully trusts nor sneeringly dismisses the senses. (C) ignores the author's evident, careful engagement with the question.",
                 "difficulty": "medium",
                 "subquestions": [
                     {
                         "stem": "At the outset, how secure did confidence in the senses seem?",
                         "options": [
-                            "Very secure",
-                            "Already destroyed"
+                            "Already destroyed",
+                            "Very secure"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage says that confidence 'had seemed so secure.'"
                     },
                     {
@@ -169,10 +169,10 @@
                     {
                         "stem": "When ordinary people speak of 'the colour of the table,' what does the passage say they mean?",
                         "options": [
-                            "The colour a normal spectator would report under ordinary conditions",
-                            "Their private immediate sensation, which is identical for everyone"
+                            "Their private immediate sensation, which is identical for everyone",
+                            "The colour a normal spectator would report under ordinary conditions"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The author defines the everyday phrase in terms of a normal spectator's report."
                     },
                     {
@@ -193,21 +193,21 @@
                 "stem": "Which finding, if true, would most WEAKEN the author's claim that the real table 'must be an inference from what is immediately known'?",
                 "options": [
                     "A more powerful microscope reveals yet another surface texture",
-                    "People from different cultures use different words for the table's colour",
                     "Observers can, under controlled conditions, directly perceive the table's intrinsic properties without any inference",
+                    "People from different cultures use different words for the table's colour",
                     "The table looks brighter in the places where the light reflects off it"
                 ],
-                "correct_index": 2,
-                "explanation": "The claim is that the real table is reached only by inference from immediate experience; a demonstration that its intrinsic properties can be perceived directly would remove the need for inference and thus weaken it (C). (A) and (D) are simply further appearances that support the author. (B) concerns vocabulary, not whether perception is inferential.",
+                "correct_index": 1,
+                "explanation": "The claim is that the real table is reached only by inference from immediate experience; a demonstration that its intrinsic properties can be perceived directly would remove the need for inference and thus weaken it (B). (A) and (D) are simply further appearances that support the author. (C) concerns vocabulary, not whether perception is inferential.",
                 "difficulty": "hard",
                 "subquestions": [
                     {
                         "stem": "State the claim to be weakened.",
                         "options": [
-                            "The real table is known only by inference, never immediately",
-                            "The table is a shade of brown"
+                            "The table is a shade of brown",
+                            "The real table is known only by inference, never immediately"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "Identify the target claim before testing what would undercut it."
                     },
                     {
@@ -239,22 +239,22 @@
                 "skill": "comprehension",
                 "stem": "According to the passage, the strongest form of cultural relativism claims that:",
                 "options": [
-                    "no perspective exists from which different moral codes can be objectively compared",
                     "all moral codes are equally good and should be respected without criticism",
                     "cultural diversity proves that moral reformers are always mistaken",
+                    "no perspective exists from which different moral codes can be objectively compared",
                     "anthropological fieldwork has confirmed that moral universalism is false"
                 ],
-                "correct_index": 0,
-                "explanation": "(A) is correct: the passage defines strong relativism as the view that 'no standpoint outside all cultures exists from which those codes can be objectively ranked.' (B) conflates relativism with a tolerationist prescription the passage does not assert. (C) is a consequence the passage attributes to relativism as a criticism (the reformer problem), not a definition of relativism. (D) misrepresents the argument: the passage says relativists 'draw strength' from anthropological diversity but does not claim fieldwork conclusively confirms relativism.",
+                "correct_index": 2,
+                "explanation": "(C) is correct: the passage defines strong relativism as the view that 'no standpoint outside all cultures exists from which those codes can be objectively ranked.' (A) conflates relativism with a tolerationist prescription the passage does not assert. (B) is a consequence the passage attributes to relativism as a criticism (the reformer problem), not a definition of relativism. (D) misrepresents the argument: the passage says relativists 'draw strength' from anthropological diversity but does not claim fieldwork conclusively confirms relativism.",
                 "difficulty": "easy",
                 "subquestions": [
                     {
                         "stem": "What does the passage say the strongest relativist claim is about?",
                         "options": [
-                            "The absence of any neutral vantage point to rank moral codes",
-                            "The equal practical value of every moral code"
+                            "The equal practical value of every moral code",
+                            "The absence of any neutral vantage point to rank moral codes"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage's definition focuses on the impossibility of an objective ranking standpoint."
                     },
                     {
@@ -274,32 +274,32 @@
                 "skill": "reasoning-within",
                 "stem": "The author introduces the abolitionist and suffragette examples primarily to:",
                 "options": [
-                    "illustrate a consequence of relativism that the author implies undermines the theory",
                     "show that moral reformers are typically proven correct by history",
                     "demonstrate that strong moral convictions can survive cultural disapproval",
-                    "argue that relativism is incompatible with historical progress"
+                    "argue that relativism is incompatible with historical progress",
+                    "illustrate a consequence of relativism that the author implies undermines the theory"
                 ],
-                "correct_index": 0,
-                "explanation": "(A) is correct: the examples are deployed to generate the 'reductio ad absurdum' — if relativism is true, reformers who challenge their own society's norms are by definition wrong, which the author calls a devastating consequence. (B) and (D) introduce historical-progress claims the passage does not make. (C) is plausible but too psychological; the passage uses the examples as a logical critique of relativism, not a comment on reformers' personal resolve.",
+                "correct_index": 3,
+                "explanation": "(D) is correct: the examples are deployed to generate the 'reductio ad absurdum' — if relativism is true, reformers who challenge their own society's norms are by definition wrong, which the author calls a devastating consequence. (A) and (C) introduce historical-progress claims the passage does not make. (B) is plausible but too psychological; the passage uses the examples as a logical critique of relativism, not a comment on reformers' personal resolve.",
                 "difficulty": "medium",
                 "subquestions": [
                     {
                         "stem": "What happens to internal reformers if strong relativism is true?",
                         "options": [
-                            "They are, by definition, morally wrong because their society's dominant norm says so",
-                            "They are justified because they appeal to universal human rights"
+                            "They are justified because they appeal to universal human rights",
+                            "They are, by definition, morally wrong because their society's dominant norm says so"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage explicitly states that on relativism the reformer 'cannot be morally correct because the dominant convention of her society says otherwise.'"
                     },
                     {
                         "stem": "What label does the author give to this consequence of relativism?",
                         "options": [
-                            "A reductio ad absurdum",
                             "A pragmatic paradox",
-                            "An empirical anomaly"
+                            "An empirical anomaly",
+                            "A reductio ad absurdum"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 2,
                         "explanation": "The author calls it 'a reductio ad absurdum: a moral theory that silences the reformer.'"
                     }
                 ]
@@ -331,10 +331,10 @@
                     {
                         "stem": "What conclusion does the universalist draw from this analogy?",
                         "options": [
-                            "Moral disagreement is compatible with there being genuine moral facts",
-                            "Cultures that disagree about morality are equally correct"
+                            "Cultures that disagree about morality are equally correct",
+                            "Moral disagreement is compatible with there being genuine moral facts"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The logic is: disagreement does not equal no fact; therefore moral disagreement does not prove moral relativism."
                     }
                 ]
@@ -345,13 +345,13 @@
                 "skill": "comprehension",
                 "stem": "The 'nuanced middle position' described in the final paragraph holds that:",
                 "options": [
-                    "variation in first-order norms may coexist with a transcultural metaethical criterion",
                     "both relativism and universalism are ultimately incoherent and should be abandoned",
+                    "variation in first-order norms may coexist with a transcultural metaethical criterion",
                     "metaethical frameworks must be derived from anthropological observation",
                     "cultural diversity in moral norms provides strong evidence against all metaethical theories"
                 ],
-                "correct_index": 0,
-                "explanation": "(A) is correct: the middle position separates first-order questions (what is right) from metaethical questions (what makes judgments true), allowing cultural variation at the first level while preserving a universal standard at the second. (B) is not stated. (C) reverses the relationship. (D) contradicts the passage, which interprets diversity as evidence of fallibility.",
+                "correct_index": 1,
+                "explanation": "(B) is correct: the middle position separates first-order questions (what is right) from metaethical questions (what makes judgments true), allowing cultural variation at the first level while preserving a universal standard at the second. (A) is not stated. (C) reverses the relationship. (D) contradicts the passage, which interprets diversity as evidence of fallibility.",
                 "difficulty": "hard",
                 "subquestions": [
                     {
@@ -366,10 +366,10 @@
                     {
                         "stem": "How does this middle position interpret widespread moral disagreement?",
                         "options": [
-                            "As evidence of human fallibility and limited information, not the absence of moral standards",
-                            "As proof that moral relativism is correct at both levels"
+                            "As proof that moral relativism is correct at both levels",
+                            "As evidence of human fallibility and limited information, not the absence of moral standards"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage states: 'diversity of moral codes is evidence of human fallibility and limited information, not of the absence of any moral standard.'"
                     }
                 ]
@@ -381,12 +381,12 @@
                 "stem": "A moral relativist would be MOST likely to find which of the following arguments persuasive?",
                 "options": [
                     "The fact that widespread cross-cultural prohibitions on murder exist suggests those prohibitions track a genuine moral truth",
-                    "A society that endorses human sacrifice is simply expressing different values, not making an error",
                     "Reformers who oppose slavery in slave-holding societies demonstrate that universal moral standards can be recognized",
+                    "A society that endorses human sacrifice is simply expressing different values, not making an error",
                     "Moral disagreement across cultures arises from factual disagreements rather than genuine differences in values"
                 ],
-                "correct_index": 1,
-                "explanation": "(B) is correct: relativists hold that a culture's norms are valid within that culture, so a society endorsing human sacrifice is just expressing different values — not wrong. (A) supports universalism by treating cross-cultural convergence as evidence of moral truth. (C) supports universalism by validating the reformer who appeals to universal standards. (D) is a universalist move: if disagreements are merely factual, underlying moral agreement could be reached.",
+                "correct_index": 2,
+                "explanation": "(C) is correct: relativists hold that a culture's norms are valid within that culture, so a society endorsing human sacrifice is just expressing different values — not wrong. (A) supports universalism by treating cross-cultural convergence as evidence of moral truth. (B) supports universalism by validating the reformer who appeals to universal standards. (D) is a universalist move: if disagreements are merely factual, underlying moral agreement could be reached.",
                 "difficulty": "hard",
                 "subquestions": [
                     {
@@ -401,10 +401,10 @@
                     {
                         "stem": "Why does option (A) support universalism rather than relativism?",
                         "options": [
-                            "Because it treats cross-cultural convergence as evidence of an objective moral truth",
-                            "Because it treats cultural diversity as evidence of moral relativism"
+                            "Because it treats cultural diversity as evidence of moral relativism",
+                            "Because it treats cross-cultural convergence as evidence of an objective moral truth"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "Finding cross-cultural prohibitions and inferring they reflect a moral truth is exactly the universalist move."
                     }
                 ]
@@ -416,12 +416,12 @@
                 "stem": "Which finding, if true, would most weaken the relativist's use of anthropological diversity as evidence for relativism?",
                 "options": [
                     "Anthropologists routinely misinterpret foreign practices because of their own cultural biases",
-                    "Despite surface variation, all known societies share a core prohibition on inflicting suffering for no reason",
                     "The academic discipline of anthropology originated in colonial contexts that shaped its methods",
-                    "Some moral philosophers argue that anthropological data is irrelevant to metaethics"
+                    "Some moral philosophers argue that anthropological data is irrelevant to metaethics",
+                    "Despite surface variation, all known societies share a core prohibition on inflicting suffering for no reason"
                 ],
-                "correct_index": 1,
-                "explanation": "(B) most directly weakens the relativist inference: if a core norm appears universally, the diversity the relativist relies on is superficial, supporting universalism. (A) would cast doubt on data reliability but not directly undermine relativism. (C) raises sociological concerns, not logical ones. (D) supports ignoring the evidence but does not show it fails to support relativism.",
+                "correct_index": 3,
+                "explanation": "(D) most directly weakens the relativist inference: if a core norm appears universally, the diversity the relativist relies on is superficial, supporting universalism. (A) would cast doubt on data reliability but not directly undermine relativism. (B) raises sociological concerns, not logical ones. (C) supports ignoring the evidence but does not show it fails to support relativism.",
                 "difficulty": "hard",
                 "subquestions": [
                     {
@@ -436,10 +436,10 @@
                     {
                         "stem": "How would universal cross-cultural agreement on a core norm undermine this inference?",
                         "options": [
-                            "It would show that some norms may transcend culture, suggesting objective moral standards",
-                            "It would show that cultures are more similar than anthropologists claim"
+                            "It would show that cultures are more similar than anthropologists claim",
+                            "It would show that some norms may transcend culture, suggesting objective moral standards"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "A universal norm is exactly what the universalist predicts — it undermines the claim that all norms are merely culturally local."
                     }
                 ]
@@ -483,10 +483,10 @@
                     {
                         "stem": "What do anti-intentionalists say does determine meaning?",
                         "options": [
-                            "The conventions of the language and genre in which the text is embedded",
-                            "The consensus among professional literary critics"
+                            "The consensus among professional literary critics",
+                            "The conventions of the language and genre in which the text is embedded"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage states meaning is 'fixed not by biography but by the conventions of the language and genre.'"
                     }
                 ]
@@ -497,13 +497,13 @@
                 "skill": "reasoning-within",
                 "stem": "The example of a writer who composes a satire while sincerely believing the rhetoric being parodied is used to argue that:",
                 "options": [
-                    "satiric meaning can exist in a text independently of the author's conscious intention",
                     "irony is impossible to achieve without the author's deliberate design",
+                    "satiric meaning can exist in a text independently of the author's conscious intention",
                     "readers inevitably misread texts when authors are internally inconsistent",
                     "anti-intentionalism is incompatible with appreciating satiric literature"
                 ],
-                "correct_index": 0,
-                "explanation": "(A) is correct: the example shows that 'the satiric meaning is there in the text whether the author intended it or not,' supporting anti-intentionalism. (B) contradicts the example. (C) is not implied. (D) is the opposite of the passage's argument.",
+                "correct_index": 1,
+                "explanation": "(B) is correct: the example shows that 'the satiric meaning is there in the text whether the author intended it or not,' supporting anti-intentionalism. (A) contradicts the example. (C) is not implied. (D) is the opposite of the passage's argument.",
                 "difficulty": "medium",
                 "subquestions": [
                     {
@@ -518,10 +518,10 @@
                     {
                         "stem": "What conclusion does the passage draw about satiric meaning?",
                         "options": [
-                            "The satiric meaning exists in the text regardless of whether the author intended it",
-                            "Satire requires that the author consciously design the ironic effect"
+                            "Satire requires that the author consciously design the ironic effect",
+                            "The satiric meaning exists in the text regardless of whether the author intended it"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage explicitly states: 'the satiric meaning is there in the text whether the author intended it or not.'"
                     }
                 ]
@@ -532,13 +532,13 @@
                 "skill": "reasoning-within",
                 "stem": "Intentionalists compare reading a text without regard for authorial intent to:",
                 "options": [
-                    "decoding an accidental inkblot rather than a deliberate message",
                     "translating a text from one language into another",
                     "analyzing a natural landscape for symbolic meaning",
+                    "decoding an accidental inkblot rather than a deliberate message",
                     "judging a sculpture by the tools used to create it"
                 ],
-                "correct_index": 0,
-                "explanation": "(A) is directly stated: ignoring intent is 'to decode it the way one might decode an accidental inkblot rather than a deliberate message.' (B), (C), and (D) are analogies not found in the passage.",
+                "correct_index": 2,
+                "explanation": "(C) is directly stated: ignoring intent is 'to decode it the way one might decode an accidental inkblot rather than a deliberate message.' (A), (B), and (D) are analogies not found in the passage.",
                 "difficulty": "easy",
                 "subquestions": [
                     {
@@ -553,10 +553,10 @@
                     {
                         "stem": "Why is this comparison significant for intentionalists?",
                         "options": [
-                            "Because texts are human creations constituted by communicative intent, not accidents",
-                            "Because inkblots have richer symbolic meaning than texts"
+                            "Because inkblots have richer symbolic meaning than texts",
+                            "Because texts are human creations constituted by communicative intent, not accidents"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The contrast between a deliberate message and an accident illustrates why intent matters to interpretation."
                     }
                 ]
@@ -567,13 +567,13 @@
                 "skill": "comprehension",
                 "stem": "The concept of the 'implied author' is presented as a middle position because it:",
                 "options": [
-                    "avoids both private biography and unconstrained textual play by focusing on the communicative project the text itself invites",
                     "combines information from the author's private letters with the reader's emotional reactions",
                     "treats the text as a historical document that must be decoded with period-specific tools",
-                    "replaces the author's intention with the consensus interpretation of professional scholars"
+                    "replaces the author's intention with the consensus interpretation of professional scholars",
+                    "avoids both private biography and unconstrained textual play by focusing on the communicative project the text itself invites"
                 ],
-                "correct_index": 0,
-                "explanation": "(A) is correct: the implied author is 'the best hypothesis about what an ideally communicative author of this text would have intended' — a construct that 'disciplines interpretation without requiring access to historical documents.' (B) introduces biography and emotional reaction, both of which the implied-author view is meant to avoid. (C) conflates historical-critical method with the implied-author framework. (D) is not stated.",
+                "correct_index": 3,
+                "explanation": "(D) is correct: the implied author is 'the best hypothesis about what an ideally communicative author of this text would have intended' — a construct that 'disciplines interpretation without requiring access to historical documents.' (A) introduces biography and emotional reaction, both of which the implied-author view is meant to avoid. (B) conflates historical-critical method with the implied-author framework. (C) is not stated.",
                 "difficulty": "medium",
                 "subquestions": [
                     {
@@ -588,10 +588,10 @@
                     {
                         "stem": "What does the implied author represent in this framework?",
                         "options": [
-                            "The best hypothesis about what an ideally communicative author of this text would have intended",
-                            "The historical author's actual recorded statements about the work"
+                            "The historical author's actual recorded statements about the work",
+                            "The best hypothesis about what an ideally communicative author of this text would have intended"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage defines the implied author as 'the best hypothesis about what an ideally communicative author of this text would have intended.'"
                     }
                 ]
@@ -623,11 +623,11 @@
                     {
                         "stem": "Which position treats the author's psychological states as the key interpretive criterion?",
                         "options": [
-                            "Intentionalism",
                             "Anti-intentionalism",
-                            "The implied-author view"
+                            "The implied-author view",
+                            "Intentionalism"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 2,
                         "explanation": "Intentionalists hold that utterances 'mean what speakers mean by them' — the author's states are decisive."
                     }
                 ]
@@ -650,22 +650,22 @@
                 "skill": "comprehension",
                 "stem": "The author's main claim about history is that it is:",
                 "options": [
-                    "a selective, interpretive reconstruction shaped by the historian's own context",
                     "essentially fictional because it cannot be verified against the actual past",
+                    "a selective, interpretive reconstruction shaped by the historian's own context",
                     "only valid when it focuses on elites and state bureaucracies who left written records",
                     "a neutral transcription of events that speaks for itself without interpretation"
                 ],
-                "correct_index": 0,
-                "explanation": "(A) is the explicit thesis: history is 'a selective reconstruction of the past' shaped by 'questions, categories, and assumptions' that are 'shaped by their own time and place.' (B) overstates — the passage says this does not reduce history to fiction. (C) is the opposite. (D) is what the passage explicitly rejects.",
+                "correct_index": 1,
+                "explanation": "(B) is the explicit thesis: history is 'a selective reconstruction of the past' shaped by 'questions, categories, and assumptions' that are 'shaped by their own time and place.' (A) overstates — the passage says this does not reduce history to fiction. (C) is the opposite. (D) is what the passage explicitly rejects.",
                 "difficulty": "easy",
                 "subquestions": [
                     {
                         "stem": "Does the passage claim that history is pure fiction?",
                         "options": [
-                            "No — acknowledging interpretive nature does not reduce history to fiction",
-                            "Yes — it argues historical accounts are no more reliable than novels"
+                            "Yes — it argues historical accounts are no more reliable than novels",
+                            "No — acknowledging interpretive nature does not reduce history to fiction"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage explicitly states: 'does not reduce historical writing to fiction.'"
                     },
                     {
@@ -685,22 +685,22 @@
                 "skill": "reasoning-within",
                 "stem": "According to the passage, defenders of historiographical pluralism argue that:",
                 "options": [
-                    "acknowledging constructed narratives is compatible with evidence-based standards of evaluation",
                     "any historical interpretation is as good as any other if sincerely believed",
                     "the archival record is always sufficient to verify a historical claim",
+                    "acknowledging constructed narratives is compatible with evidence-based standards of evaluation",
                     "historical truth is accessible only to scholars within dominant institutional frameworks"
                 ],
-                "correct_index": 0,
-                "explanation": "(A) is directly stated: defenders argue that recognizing narratives are constructed is 'compatible with rigorous standards of evidence, logical consistency, and fidelity to the archival record.' (B) describes the 'anything-goes relativism' defenders are responding to. (C) is the opposite of the archive critique. (D) contradicts sympathy with recovering marginalized voices.",
+                "correct_index": 2,
+                "explanation": "(C) is directly stated: defenders argue that recognizing narratives are constructed is 'compatible with rigorous standards of evidence, logical consistency, and fidelity to the archival record.' (A) describes the 'anything-goes relativism' defenders are responding to. (B) is the opposite of the archive critique. (D) contradicts sympathy with recovering marginalized voices.",
                 "difficulty": "medium",
                 "subquestions": [
                     {
                         "stem": "What standards do defenders say can still distinguish better from worse historical accounts?",
                         "options": [
-                            "Evidence, logical consistency, and fidelity to the archival record",
-                            "Ideological alignment with progressive historical interpretations"
+                            "Ideological alignment with progressive historical interpretations",
+                            "Evidence, logical consistency, and fidelity to the archival record"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage lists: 'rigorous standards of evidence, logical consistency, and fidelity to the archival record.'"
                     },
                     {
@@ -720,22 +720,22 @@
                 "skill": "comprehension",
                 "stem": "The passage identifies a significant limitation of historical archives, which is that they:",
                 "options": [
-                    "over-represent literate elites and institutions while filtering out the experiences of the powerless",
                     "are too large and comprehensive for any single historian to master",
                     "deliberately destroy records that would undermine the narratives of dominant groups",
-                    "are accessible only to scholars with advanced training in archival methods"
+                    "are accessible only to scholars with advanced training in archival methods",
+                    "over-represent literate elites and institutions while filtering out the experiences of the powerless"
                 ],
-                "correct_index": 0,
-                "explanation": "(A) is stated directly: archives tend to represent 'literate elites, state bureaucracies, and dominant institutions, while the experiences of the illiterate, the dispossessed, and the colonized are filtered through the records of those who... administered them from a position of power.' (B) is not discussed. (C) overstates — the passage says archives reflect who had resources, not deliberate destruction. (D) is not mentioned.",
+                "correct_index": 3,
+                "explanation": "(D) is stated directly: archives tend to represent 'literate elites, state bureaucracies, and dominant institutions, while the experiences of the illiterate, the dispossessed, and the colonized are filtered through the records of those who... administered them from a position of power.' (A) is not discussed. (B) overstates — the passage says archives reflect who had resources, not deliberate destruction. (C) is not mentioned.",
                 "difficulty": "easy",
                 "subquestions": [
                     {
                         "stem": "Whose voices are most abundantly represented in historical archives?",
                         "options": [
-                            "Literate elites, state bureaucracies, and dominant institutions",
-                            "Ordinary laborers and the dispossessed"
+                            "Ordinary laborers and the dispossessed",
+                            "Literate elites, state bureaucracies, and dominant institutions"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage states archives tend to represent 'literate elites, state bureaucracies, and dominant institutions.'"
                     },
                     {
@@ -767,10 +767,10 @@
                     {
                         "stem": "What does 'reading against the grain' mean in the passage's framework?",
                         "options": [
-                            "Using documents for a purpose different from the one they were originally intended to serve",
-                            "Rejecting archival documents in favor of oral traditions"
+                            "Rejecting archival documents in favor of oral traditions",
+                            "Using documents for a purpose different from the one they were originally intended to serve"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage defines it as 'reading documents against the grain of their intended purpose.'"
                     },
                     {
@@ -790,22 +790,22 @@
                 "skill": "reasoning-within",
                 "stem": "Different historical accounts of the same period — military, social, economic — are best described by the passage as:",
                 "options": [
-                    "each illuminating a different dimension of a complex past while leaving others in shadow",
                     "competing accounts only one of which can be correct",
+                    "each illuminating a different dimension of a complex past while leaving others in shadow",
                     "equally arbitrary, since all historical choices are subjective",
                     "valid only when they corroborate each other across all dimensions"
                 ],
-                "correct_index": 0,
-                "explanation": "(A) is the passage's view: 'None of these accounts is simply wrong; each illuminates a dimension of a complex past while necessarily leaving other dimensions in shadow.' (B) adopts the either/or framing the passage rejects. (C) is the 'anything-goes relativism' the passage critiques. (D) is not stated.",
+                "correct_index": 1,
+                "explanation": "(B) is the passage's view: 'None of these accounts is simply wrong; each illuminates a dimension of a complex past while necessarily leaving other dimensions in shadow.' (A) adopts the either/or framing the passage rejects. (C) is the 'anything-goes relativism' the passage critiques. (D) is not stated.",
                 "difficulty": "medium",
                 "subquestions": [
                     {
                         "stem": "Does the passage say any of the three historical approaches is simply wrong?",
                         "options": [
-                            "No — each is said to illuminate a dimension of the past",
-                            "Yes — only social history is validated as most accurate"
+                            "Yes — only social history is validated as most accurate",
+                            "No — each is said to illuminate a dimension of the past"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage explicitly states: 'None of these accounts is simply wrong.'"
                     },
                     {
@@ -837,22 +837,22 @@
                 "skill": "comprehension",
                 "stem": "According to the passage, the key difference between beauty and sublimity is that:",
                 "options": [
-                    "beauty involves harmonious pleasure, while sublimity involves being overwhelmed in a way that is both distressing and exhilarating",
                     "beauty is experienced outdoors in nature, while sublimity is experienced in art galleries",
                     "beauty requires technical training to appreciate, while sublimity is universally accessible",
+                    "beauty involves harmonious pleasure, while sublimity involves being overwhelmed in a way that is both distressing and exhilarating",
                     "beauty is a modern concept, while sublimity dates to ancient Greece"
                 ],
-                "correct_index": 0,
-                "explanation": "(A) matches the passage: beauty is 'harmony, proportion, and pleasure,' while sublimity involves 'excess' and is 'double-edged: it produces both awe and a kind of distress.' (B) is not stated and contradicts the passage (a cathedral is not outdoors). (C) is not mentioned. (D) is historically inaccurate per the passage.",
+                "correct_index": 2,
+                "explanation": "(C) matches the passage: beauty is 'harmony, proportion, and pleasure,' while sublimity involves 'excess' and is 'double-edged: it produces both awe and a kind of distress.' (A) is not stated and contradicts the passage (a cathedral is not outdoors). (B) is not mentioned. (D) is historically inaccurate per the passage.",
                 "difficulty": "easy",
                 "subquestions": [
                     {
                         "stem": "What does beauty primarily produce, according to the passage?",
                         "options": [
-                            "Immediate gratification through harmony and proportion",
-                            "Awe mixed with a sense of inadequacy"
+                            "Awe mixed with a sense of inadequacy",
+                            "Immediate gratification through harmony and proportion"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "Beauty is described as 'harmony, proportion, and pleasure: the beautiful object is one whose parts cohere in a way that the observer finds immediately gratifying.'"
                     },
                     {
@@ -872,22 +872,22 @@
                 "skill": "comprehension",
                 "stem": "The philosophical tradition described in the third paragraph locates the sublime primarily in:",
                 "options": [
-                    "the mind's discovery of its own capacity to conceive what the senses cannot fully perceive",
                     "the external object's attributes of vastness and danger",
                     "the cultural conventions that teach observers to respond with awe",
-                    "the physiological arousal produced by threatening stimuli"
+                    "the physiological arousal produced by threatening stimuli",
+                    "the mind's discovery of its own capacity to conceive what the senses cannot fully perceive"
                 ],
-                "correct_index": 0,
-                "explanation": "(A) is stated directly: 'what is truly sublime is not the mountain itself but the mind's discovery of its own capacity to conceive of what it cannot perceive.' (B) describes the earlier, object-centered account. (C) introduces cultural conventions not discussed. (D) introduces physiology not mentioned.",
+                "correct_index": 3,
+                "explanation": "(D) is stated directly: 'what is truly sublime is not the mountain itself but the mind's discovery of its own capacity to conceive of what it cannot perceive.' (A) describes the earlier, object-centered account. (B) introduces cultural conventions not discussed. (C) introduces physiology not mentioned.",
                 "difficulty": "easy",
                 "subquestions": [
                     {
                         "stem": "Where does the sublime ultimately reside, according to the third-paragraph tradition?",
                         "options": [
-                            "In the observer's mind and its cognitive capacities",
-                            "In the external object's physical properties"
+                            "In the external object's physical properties",
+                            "In the observer's mind and its cognitive capacities"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage says 'what is truly sublime is not the mountain itself but the mind's discovery of its own capacity to conceive.'"
                     },
                     {
@@ -919,10 +919,10 @@
                     {
                         "stem": "Does the passage say the two accounts are necessarily incompatible?",
                         "options": [
-                            "No — it says they 'are not necessarily incompatible'",
-                            "Yes — it treats them as rival theories"
+                            "Yes — it treats them as rival theories",
+                            "No — it says they 'are not necessarily incompatible'"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage explicitly states 'These two accounts are not necessarily incompatible.'"
                     },
                     {
@@ -942,22 +942,22 @@
                 "skill": "reasoning-within",
                 "stem": "The passage implies the sublime cannot be reduced to beauty primarily because:",
                 "options": [
-                    "the sublime disrupts the comfortable relationship between observer and world, while beauty affirms it",
                     "the sublime is always triggered by natural objects, while beauty arises from art",
+                    "the sublime disrupts the comfortable relationship between observer and world, while beauty affirms it",
                     "the sublime is more intense than beauty and therefore distinct only in degree",
                     "beauty is appreciated collectively, while the sublime is an irreducibly private experience"
                 ],
-                "correct_index": 0,
-                "explanation": "(A) is stated explicitly: 'the sublime cannot be reduced to beauty: the sublime disrupts the comfortable relationship between the observer and the world, while beauty affirms and soothes it.' (B) contradicts the passage (cathedrals are man-made; data centers are technological). (C) is incorrect — the difference is in 'character,' not merely intensity. (D) is not mentioned.",
+                "correct_index": 1,
+                "explanation": "(B) is stated explicitly: 'the sublime cannot be reduced to beauty: the sublime disrupts the comfortable relationship between the observer and the world, while beauty affirms and soothes it.' (A) contradicts the passage (cathedrals are man-made; data centers are technological). (C) is incorrect — the difference is in 'character,' not merely intensity. (D) is not mentioned.",
                 "difficulty": "medium",
                 "subquestions": [
                     {
                         "stem": "What does the sublime do to the observer's relationship with the world?",
                         "options": [
-                            "Disrupts it",
-                            "Affirms and soothes it"
+                            "Affirms and soothes it",
+                            "Disrupts it"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage says 'the sublime disrupts the comfortable relationship between the observer and the world.'"
                     },
                     {
@@ -977,22 +977,22 @@
                 "skill": "reasoning-beyond",
                 "stem": "A reader visits a massive data center and feels both awed by its scale and vaguely threatened by the incomprehensibility of the information it contains. According to the passage's discussion of the technological sublime, this experience:",
                 "options": [
-                    "fits the traditional description of the sublime as mingled awe and inadequacy, illustrating why critics extend the concept to technological artifacts",
                     "proves that the technological sublime is identical to the natural sublime",
                     "demonstrates that beauty and sublimity are the same in technological contexts",
+                    "fits the traditional description of the sublime as mingled awe and inadequacy, illustrating why critics extend the concept to technological artifacts",
                     "cannot be a genuine aesthetic experience because it involves artificial, not natural, objects"
                 ],
-                "correct_index": 0,
-                "explanation": "(A) is correct: the passage describes the traditional sublime as 'mingled awe and inadequacy' and notes contemporary critics debate whether technological objects 'genuinely provoke the traditional experience of mingled awe and inadequacy.' The reader's response fits. (B) is not stated. (C) contradicts the core distinction. (D) is exactly the view the passage disputes by raising the technological sublime as a live topic.",
+                "correct_index": 2,
+                "explanation": "(C) is correct: the passage describes the traditional sublime as 'mingled awe and inadequacy' and notes contemporary critics debate whether technological objects 'genuinely provoke the traditional experience of mingled awe and inadequacy.' The reader's response fits. (A) is not stated. (B) contradicts the core distinction. (D) is exactly the view the passage disputes by raising the technological sublime as a live topic.",
                 "difficulty": "hard",
                 "subquestions": [
                     {
                         "stem": "How does the passage describe the traditional experience of the sublime?",
                         "options": [
-                            "As mingled awe and inadequacy",
-                            "As pure pleasure with no element of distress"
+                            "As pure pleasure with no element of distress",
+                            "As mingled awe and inadequacy"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage uses 'mingled awe and inadequacy' and earlier 'both awe and a kind of distress.'"
                     },
                     {
@@ -1024,22 +1024,22 @@
                 "skill": "comprehension",
                 "stem": "According to the passage, bridging social capital is considered especially important for democratic stability because it:",
                 "options": [
-                    "prevents insularity that can harden into tribal antagonism by linking members of different groups",
                     "provides the dense mutual support needed for communities to survive economic shocks",
                     "ensures that all members of a community share the same norms and values",
-                    "creates formal legal institutions that enforce contracts and property rights"
+                    "creates formal legal institutions that enforce contracts and property rights",
+                    "prevents insularity that can harden into tribal antagonism by linking members of different groups"
                 ],
-                "correct_index": 0,
-                "explanation": "(A) is directly stated: bridging capital 'prevents the insularity and exclusivity that can calcify into tribal antagonism.' (B) describes bonding capital, not bridging. (C) is the opposite of bridging capital — shared norms within a group is bonding. (D) describes formal institutions, which the third paragraph distinguishes from social capital.",
+                "correct_index": 3,
+                "explanation": "(D) is directly stated: bridging capital 'prevents the insularity and exclusivity that can calcify into tribal antagonism.' (A) describes bonding capital, not bridging. (B) is the opposite of bridging capital — shared norms within a group is bonding. (C) describes formal institutions, which the third paragraph distinguishes from social capital.",
                 "difficulty": "easy",
                 "subquestions": [
                     {
                         "stem": "What does bridging social capital link?",
                         "options": [
-                            "Members of different social groups",
-                            "Members of the same homogeneous group"
+                            "Members of the same homogeneous group",
+                            "Members of different social groups"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "Bridging capital 'link[s] members of different social groups, enabling information and resources to flow across community boundaries.'"
                     },
                     {
@@ -1071,10 +1071,10 @@
                     {
                         "stem": "What specific problem does the 'analytically vacuous' critique identify?",
                         "options": [
-                            "The concept is too broad, encompassing too many different things at once",
-                            "The concept was borrowed from economics and does not apply to sociology"
+                            "The concept was borrowed from economics and does not apply to sociology",
+                            "The concept is too broad, encompassing too many different things at once"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The critique is that including 'trust, networks, and norms all at once' makes the concept a label that 'explains everything and therefore explains nothing.'"
                     },
                     {
@@ -1094,22 +1094,22 @@
                 "skill": "reasoning-within",
                 "stem": "The 'dark side of social capital' critique most directly challenges which assumption underlying the concept's positive reception?",
                 "options": [
-                    "That social capital reliably promotes beneficial outcomes for society as a whole",
                     "That bridging capital is more valuable than bonding capital",
+                    "That social capital reliably promotes beneficial outcomes for society as a whole",
                     "That formal institutions are inferior to voluntary associations in generating cooperation",
                     "That social capital varies significantly across communities"
                 ],
-                "correct_index": 0,
-                "explanation": "(A) is correct: the dark-side critique argues that dense ties can produce exclusion and harm outsiders, undermining the assumption that social capital is universally beneficial. (B) is not directly challenged by this critique. (C) is the second critique, not the dark-side critique. (D) is a sociological observation the passage does not dispute.",
+                "correct_index": 1,
+                "explanation": "(B) is correct: the dark-side critique argues that dense ties can produce exclusion and harm outsiders, undermining the assumption that social capital is universally beneficial. (A) is not directly challenged by this critique. (C) is the second critique, not the dark-side critique. (D) is a sociological observation the passage does not dispute.",
                 "difficulty": "hard",
                 "subquestions": [
                     {
                         "stem": "What examples does the passage give of groups with high social capital that caused harm?",
                         "options": [
-                            "Criminal networks, nativist movements, and exclusionary professional guilds",
-                            "Religious congregations and extended families"
+                            "Religious congregations and extended families",
+                            "Criminal networks, nativist movements, and exclusionary professional guilds"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage names 'tightly bonded criminal networks, nativist movements, and exclusionary professional guilds.'"
                     },
                     {
@@ -1129,22 +1129,22 @@
                 "skill": "reasoning-beyond",
                 "stem": "A city with low voluntary associational activity but strong courts, reliable police, and efficient public services achieves low corruption and high civic cooperation. This scenario most directly supports which critique of social capital theory?",
                 "options": [
-                    "That formal institutional design may produce cooperative outcomes independently of social capital",
                     "That bridging capital cannot exist without strong bonding capital as a foundation",
                     "That social capital is analytically vacuous because it defines terms too broadly",
+                    "That formal institutional design may produce cooperative outcomes independently of social capital",
                     "That the dark side of social capital makes it net-negative for democratic societies"
                 ],
-                "correct_index": 0,
-                "explanation": "(A) is correct: the second critique argues that 'a society with strong courts, reliable public services, and enforceable property rights may achieve cooperation through formal mechanisms, regardless of the density of its associational life.' (B) is not a claim in the passage. (C) concerns conceptual breadth, not empirical outcomes. (D) concerns dark-side harms, not institutional mechanisms.",
+                "correct_index": 2,
+                "explanation": "(C) is correct: the second critique argues that 'a society with strong courts, reliable public services, and enforceable property rights may achieve cooperation through formal mechanisms, regardless of the density of its associational life.' (A) is not a claim in the passage. (B) concerns conceptual breadth, not empirical outcomes. (D) concerns dark-side harms, not institutional mechanisms.",
                 "difficulty": "hard",
                 "subquestions": [
                     {
                         "stem": "What does the second critique argue can substitute for social capital?",
                         "options": [
-                            "Strong formal institutions such as courts and reliable public services",
-                            "Increased investment in voluntary civic associations"
+                            "Increased investment in voluntary civic associations",
+                            "Strong formal institutions such as courts and reliable public services"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The critique says 'a society with strong courts, reliable public services... may achieve cooperation through formal mechanisms.'"
                     },
                     {
@@ -1164,22 +1164,22 @@
                 "skill": "comprehension",
                 "stem": "The passage implies that the more nuanced research agenda described in the final paragraph arose primarily because:",
                 "options": [
-                    "the critiques identified in paragraphs three and four revealed significant limitations in earlier approaches",
                     "scholars discovered that social capital is irrelevant to economic development",
                     "government agencies began funding research into civic associations for policy purposes",
-                    "the distinction between bonding and bridging capital was proven empirically false"
+                    "the distinction between bonding and bridging capital was proven empirically false",
+                    "the critiques identified in paragraphs three and four revealed significant limitations in earlier approaches"
                 ],
-                "correct_index": 0,
-                "explanation": "(A) is implied: 'These debates have produced a more nuanced research agenda' — 'these debates' refers to the critiques. (B) contradicts the passage. (C) is not mentioned. (D) contradicts the passage, which continues to use the bonding/bridging distinction.",
+                "correct_index": 3,
+                "explanation": "(D) is implied: 'These debates have produced a more nuanced research agenda' — 'these debates' refers to the critiques. (A) contradicts the passage. (B) is not mentioned. (C) contradicts the passage, which continues to use the bonding/bridging distinction.",
                 "difficulty": "medium",
                 "subquestions": [
                     {
                         "stem": "What does 'these debates' refer to in the final paragraph?",
                         "options": [
-                            "The critiques about analytical vacuity, formal institutions, and the dark side of social capital",
-                            "The debates between sociologists and economists about whether trust is measurable"
+                            "The debates between sociologists and economists about whether trust is measurable",
+                            "The critiques about analytical vacuity, formal institutions, and the dark side of social capital"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage transitions with 'These debates have produced a more nuanced research agenda,' referring back to paragraphs three and four."
                     },
                     {
@@ -1223,10 +1223,10 @@
                     {
                         "stem": "What does the passage contrast with the deliberative model's account of legitimacy?",
                         "options": [
-                            "The mere aggregation of pre-formed preferences through voting",
-                            "The enforcement of constitutional rights by courts"
+                            "The enforcement of constitutional rights by courts",
+                            "The mere aggregation of pre-formed preferences through voting"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage says legitimacy 'does not derive from the mere aggregation of pre-formed preferences through voting.'"
                     },
                     {
@@ -1246,22 +1246,22 @@
                 "skill": "reasoning-within",
                 "stem": "Unequal access to deliberative participation is a problem according to the passage because it:",
                 "options": [
-                    "may reproduce rather than remedy existing power inequalities",
                     "violates the procedural requirement that all votes count equally",
+                    "may reproduce rather than remedy existing power inequalities",
                     "ensures that majorities always impose their views on minorities",
                     "reduces the number of citizens who engage in civic associations"
                 ],
-                "correct_index": 0,
-                "explanation": "(A) is stated: if participation is unequal, 'the deliberation is skewed in ways that may reproduce rather than remedy existing inequalities of power.' (B) conflates deliberation with voting. (C) is not the claim made. (D) relates to social capital themes not discussed here.",
+                "correct_index": 1,
+                "explanation": "(B) is stated: if participation is unequal, 'the deliberation is skewed in ways that may reproduce rather than remedy existing inequalities of power.' (A) conflates deliberation with voting. (C) is not the claim made. (D) relates to social capital themes not discussed here.",
                 "difficulty": "medium",
                 "subquestions": [
                     {
                         "stem": "What conditions does the deliberative model require for legitimate deliberation?",
                         "options": [
-                            "Rough equality so that all participants can engage effectively",
-                            "Professional moderation by trained facilitators"
+                            "Professional moderation by trained facilitators",
+                            "Rough equality so that all participants can engage effectively"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage says deliberation 'requires conditions of rough equality: if some participants lack the resources... the deliberation is skewed.'"
                     },
                     {
@@ -1281,22 +1281,22 @@
                 "skill": "reasoning-within",
                 "stem": "Critics who argue that requiring 'public reason' privileges certain substantive views are primarily concerned that:",
                 "options": [
-                    "neutral procedural norms may actually disguise particular moral and religious commitments",
                     "public deliberation inevitably becomes dominated by professional politicians",
                     "citizens are unwilling to revise their views after hearing counter-arguments",
+                    "neutral procedural norms may actually disguise particular moral and religious commitments",
                     "majority decisions always fail to respect the rights of religious minorities"
                 ],
-                "correct_index": 0,
-                "explanation": "(A) is the critique: 'appeals to public reason may function to privilege particular substantive views disguised as neutral procedural ones.' (B) introduces politicians not mentioned. (C) concerns willingness to revise, discussed as a demand in paragraph two. (D) introduces majority/minority rights, not the public-reason critique.",
+                "correct_index": 2,
+                "explanation": "(C) is the critique: 'appeals to public reason may function to privilege particular substantive views disguised as neutral procedural ones.' (A) introduces politicians not mentioned. (B) concerns willingness to revise, discussed as a demand in paragraph two. (D) introduces majority/minority rights, not the public-reason critique.",
                 "difficulty": "hard",
                 "subquestions": [
                     {
                         "stem": "What does the second critique say about the assumption that publicly acceptable reasons exist?",
                         "options": [
-                            "The assumption is empirically dubious in deeply pluralistic societies",
-                            "Such reasons always exist but are difficult to articulate simply"
+                            "Such reasons always exist but are difficult to articulate simply",
+                            "The assumption is empirically dubious in deeply pluralistic societies"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage says the assumption is 'empirically dubious in societies characterized by deep moral pluralism.'"
                     },
                     {
@@ -1316,22 +1316,22 @@
                 "skill": "reasoning-beyond",
                 "stem": "A grassroots campaign uses personal storytelling by formerly incarcerated people to shift public opinion on criminal justice reform, deliberately avoiding statistical arguments. A defender of the deliberative ideal would most likely say this campaign:",
                 "options": [
-                    "is consistent with an expanded deliberative model that includes narrative and testimony alongside discursive argument",
                     "undermines democratic legitimacy because it relies on emotion rather than reasoned argument",
                     "is the most powerful form of deliberation because stories are more persuasive than statistics",
-                    "is only legitimate if the storytellers also provide policy proposals based on empirical evidence"
+                    "is only legitimate if the storytellers also provide policy proposals based on empirical evidence",
+                    "is consistent with an expanded deliberative model that includes narrative and testimony alongside discursive argument"
                 ],
-                "correct_index": 0,
-                "explanation": "(A) is correct: defenders call for 'a more expansive and less rationalist conception of deliberation — one that includes narrative, testimony, and emotional appeal alongside discursive argument.' Personal storytelling exemplifies this. (B) represents the narrow rationalist view critics are challenging. (C) is not the passage's claim. (D) introduces a requirement the passage's defenders do not make.",
+                "correct_index": 3,
+                "explanation": "(D) is correct: defenders call for 'a more expansive and less rationalist conception of deliberation — one that includes narrative, testimony, and emotional appeal alongside discursive argument.' Personal storytelling exemplifies this. (A) represents the narrow rationalist view critics are challenging. (B) is not the passage's claim. (C) introduces a requirement the passage's defenders do not make.",
                 "difficulty": "hard",
                 "subquestions": [
                     {
                         "stem": "What do defenders of deliberative democracy argue in the final paragraph?",
                         "options": [
-                            "Deliberation should be expanded to include narrative, testimony, and emotional appeal, not just discursive argument",
-                            "Deliberation should be restricted to formal academic debate to ensure rigor"
+                            "Deliberation should be restricted to formal academic debate to ensure rigor",
+                            "Deliberation should be expanded to include narrative, testimony, and emotional appeal, not just discursive argument"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "Defenders call for 'a more expansive and less rationalist conception of deliberation — one that includes narrative, testimony, and emotional appeal.'"
                     },
                     {
@@ -1363,10 +1363,10 @@
                     {
                         "stem": "What kind of communication does the deliberative model require?",
                         "options": [
-                            "Reasons that others can evaluate on their merits",
-                            "Passionate rhetoric that moves fellow citizens to action"
+                            "Passionate rhetoric that moves fellow citizens to action",
+                            "Reasons that others can evaluate on their merits"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The model requires 'a willingness to offer reasons that others can evaluate on their merits, not just expressions of passion or assertions of power.'"
                     },
                     {
@@ -1398,22 +1398,22 @@
                 "skill": "comprehension",
                 "stem": "The concept of 'collective effervescence' is introduced in the passage to explain:",
                 "options": [
-                    "the felt sense of unity generated by shared emotional experience during ceremony",
                     "the spontaneous dance and music that accompanies harvest festivals",
+                    "the felt sense of unity generated by shared emotional experience during ceremony",
                     "the cognitive knowledge encoded in repeated symbolic performances",
                     "the contestation that occurs when different status groups experience the same ritual differently"
                 ],
-                "correct_index": 0,
-                "explanation": "(A) is correct: collective effervescence 'temporarily dissolves the boundaries between self and group, creating a felt sense of unity.' (B) is a concrete detail not mentioned. (C) describes the cognitive dimension in paragraph four. (D) describes the later critique of functionalism in paragraph three.",
+                "correct_index": 1,
+                "explanation": "(B) is correct: collective effervescence 'temporarily dissolves the boundaries between self and group, creating a felt sense of unity.' (A) is a concrete detail not mentioned. (C) describes the cognitive dimension in paragraph four. (D) describes the later critique of functionalism in paragraph three.",
                 "difficulty": "easy",
                 "subquestions": [
                     {
                         "stem": "Which paragraph introduces the concept of collective effervescence?",
                         "options": [
-                            "The second paragraph, in the context of integrative/functionalist accounts",
-                            "The fourth paragraph, in the context of ritual's cognitive dimensions"
+                            "The fourth paragraph, in the context of ritual's cognitive dimensions",
+                            "The second paragraph, in the context of integrative/functionalist accounts"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The term appears in paragraph two, where early theorists' integrative account is discussed."
                     },
                     {
@@ -1433,22 +1433,22 @@
                 "skill": "reasoning-within",
                 "stem": "The 'later anthropologists' described in paragraph three challenge the functionalist account primarily by arguing that:",
                 "options": [
-                    "ritual can reinforce hierarchies of power rather than solidarity across all participants",
                     "collective effervescence is a myth that cannot be observed in ethnographic fieldwork",
                     "modern societies have successfully replaced ritual with rational legal institutions",
+                    "ritual can reinforce hierarchies of power rather than solidarity across all participants",
                     "all rituals serve purely cognitive rather than social functions"
                 ],
-                "correct_index": 0,
-                "explanation": "(A) is the critique: the ritual 'may serve to reinforce not solidarity across the board but specific hierarchies of power.' (B) attacks a concept the passage presents without disputing; the later challenge concerns power, not existence of effervescence. (C) is not their argument. (D) describes the third approach in paragraph four, not the second challenge.",
+                "correct_index": 2,
+                "explanation": "(C) is the critique: the ritual 'may serve to reinforce not solidarity across the board but specific hierarchies of power.' (A) attacks a concept the passage presents without disputing; the later challenge concerns power, not existence of effervescence. (B) is not their argument. (D) describes the third approach in paragraph four, not the second challenge.",
                 "difficulty": "medium",
                 "subquestions": [
                     {
                         "stem": "What do later anthropologists attend to that functionalists neglected?",
                         "options": [
-                            "Internal diversity and contestation within real rituals",
-                            "The statistical frequency with which rituals are performed"
+                            "The statistical frequency with which rituals are performed",
+                            "Internal diversity and contestation within real rituals"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage says later anthropologists complicated functionalism 'by attending to the internal diversity and contestation that characterize real rituals.'"
                     },
                     {
@@ -1468,22 +1468,22 @@
                 "skill": "reasoning-within",
                 "stem": "According to the passage, why is knowledge embedded in ritual more durable than propositional knowledge?",
                 "options": [
-                    "Because it is experienced in embodied, sensory, and repeated forms rather than merely asserted",
                     "Because ritual knowledge is written down in sacred texts that survive for centuries",
                     "Because ritual is supervised by religious authorities who enforce correct transmission",
-                    "Because the emotional arousal of ritual permanently alters memory circuits"
+                    "Because the emotional arousal of ritual permanently alters memory circuits",
+                    "Because it is experienced in embodied, sensory, and repeated forms rather than merely asserted"
                 ],
-                "correct_index": 0,
-                "explanation": "(A) is the passage's argument: ritual encodes knowledge 'in a form — embodied action, sensory symbol, repeated performance — that is particularly durable... resistant to revision precisely because it is experienced rather than merely asserted.' (B) introduces textual preservation not mentioned. (C) introduces religious authority not mentioned. (D) introduces neuroscience not mentioned.",
+                "correct_index": 3,
+                "explanation": "(D) is the passage's argument: ritual encodes knowledge 'in a form — embodied action, sensory symbol, repeated performance — that is particularly durable... resistant to revision precisely because it is experienced rather than merely asserted.' (A) introduces textual preservation not mentioned. (B) introduces religious authority not mentioned. (C) introduces neuroscience not mentioned.",
                 "difficulty": "medium",
                 "subquestions": [
                     {
                         "stem": "What forms does ritual use to encode knowledge?",
                         "options": [
-                            "Embodied action, sensory symbol, and repeated performance",
-                            "Written scripture, oral recitation, and legal codification"
+                            "Written scripture, oral recitation, and legal codification",
+                            "Embodied action, sensory symbol, and repeated performance"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage lists: 'embodied action, sensory symbol, repeated performance.'"
                     },
                     {
@@ -1509,16 +1509,16 @@
                     "None of the accounts, because state funerals are modern inventions outside the passage's scope"
                 ],
                 "correct_index": 0,
-                "explanation": "(A) is correct: rival factions feeling 'temporarily united' despite differences is precisely what the integrative account explains through collective effervescence — 'temporarily dissolves the boundaries between self and group.' (B) is also plausible since state funerals may legitimize power, but the specific phenomenon described (unity across divisions) is effervescence's territory. (C) is not applicable. (D) is false; the passage explicitly mentions 'a coronation' as an example.",
+                "explanation": "(A) is correct: rival factions feeling 'temporarily united' despite their differences is precisely what the integrative account explains through collective effervescence, which 'temporarily dissolves the boundaries between self and group.' (B) is unsupported by the scenario: the described phenomenon is unity across factions, not the reinforcement of any elite's legitimacy that the power-hierarchy account would require. (C) does not fit, since the scenario turns on felt unity rather than the transmission of propositional knowledge. (D) is false; the passage treats ceremonies like 'a coronation' as within its scope.",
                 "difficulty": "medium",
                 "subquestions": [
                     {
                         "stem": "What does the integrative account predict about shared ritual participation?",
                         "options": [
-                            "It temporarily dissolves boundaries between self and group, creating felt unity",
-                            "It reinforces the distinctions between different status groups"
+                            "It reinforces the distinctions between different status groups",
+                            "It temporarily dissolves boundaries between self and group, creating felt unity"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The integrative account holds that collective effervescence 'temporarily dissolves the boundaries between self and group, creating a felt sense of unity.'"
                     },
                     {
@@ -1538,22 +1538,22 @@
                 "skill": "comprehension",
                 "stem": "The passage's final paragraph implies that the three accounts of ritual are:",
                 "options": [
-                    "not mutually exclusive — understanding any ritual requires attending to all three dimensions",
                     "in irreconcilable conflict, making a unified theory of ritual impossible",
+                    "not mutually exclusive — understanding any ritual requires attending to all three dimensions",
                     "hierarchically ordered, with the cognitive account superseding the integrative and power accounts",
                     "each fully adequate on its own but applicable only to specific cultural contexts"
                 ],
-                "correct_index": 0,
-                "explanation": "(A) is the passage's explicit conclusion: 'Each of these accounts captures something genuine. Ritual is simultaneously a mechanism of solidarity, an arena of power and contestation, and a form of embodied knowledge. Understanding any particular ceremony requires attending to all three dimensions.' (B) contradicts this. (C) is not stated. (D) is not stated — the passage implies all three are needed for any ceremony.",
+                "correct_index": 1,
+                "explanation": "(B) is the passage's explicit conclusion: 'Each of these accounts captures something genuine. Ritual is simultaneously a mechanism of solidarity, an arena of power and contestation, and a form of embodied knowledge. Understanding any particular ceremony requires attending to all three dimensions.' (A) contradicts this. (C) is not stated. (D) is not stated — the passage implies all three are needed for any ceremony.",
                 "difficulty": "easy",
                 "subquestions": [
                     {
                         "stem": "Does the final paragraph say any single account is fully adequate on its own?",
                         "options": [
-                            "No — it says understanding requires all three dimensions",
-                            "Yes — the cognitive account is presented as most complete"
+                            "Yes — the cognitive account is presented as most complete",
+                            "No — it says understanding requires all three dimensions"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage says 'understanding any particular ceremony requires attending to all three dimensions.'"
                     },
                     {
@@ -1585,22 +1585,22 @@
                 "skill": "comprehension",
                 "stem": "According to the passage, loss aversion refers to the finding that people:",
                 "options": [
-                    "feel losses more intensely than equivalent gains",
                     "systematically overestimate the probability of losing money in investments",
                     "prefer to avoid making any decisions when the outcome is uncertain",
+                    "feel losses more intensely than equivalent gains",
                     "lose interest in a goal once they have made significant progress toward it"
                 ],
-                "correct_index": 0,
-                "explanation": "(A) is the direct definition: 'people respond more strongly to losses than to equivalent gains. The discomfort of losing one hundred dollars is experienced as more intense than the pleasure of gaining the same amount.' (B) confuses loss aversion with availability heuristic. (C) describes decision avoidance, not loss aversion. (D) is a goal-related phenomenon not in the passage.",
+                "correct_index": 2,
+                "explanation": "(C) is the direct definition: 'people respond more strongly to losses than to equivalent gains. The discomfort of losing one hundred dollars is experienced as more intense than the pleasure of gaining the same amount.' (A) confuses loss aversion with availability heuristic. (B) describes decision avoidance, not loss aversion. (D) is a goal-related phenomenon not in the passage.",
                 "difficulty": "easy",
                 "subquestions": [
                     {
                         "stem": "What specific comparison illustrates loss aversion?",
                         "options": [
-                            "Losing one hundred dollars feels worse than gaining one hundred dollars feels good",
-                            "People lose more money in stock markets than they gain over a lifetime"
+                            "People lose more money in stock markets than they gain over a lifetime",
+                            "Losing one hundred dollars feels worse than gaining one hundred dollars feels good"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage uses: 'The discomfort of losing one hundred dollars is experienced as more intense than the pleasure of gaining the same amount.'"
                     },
                     {
@@ -1620,22 +1620,22 @@
                 "skill": "comprehension",
                 "stem": "The availability heuristic, as described in the passage, causes people to:",
                 "options": [
-                    "overestimate the frequency of dramatic, memorable events and underestimate mundane but commoner risks",
                     "assess probability by how closely an instance resembles a typical category member",
                     "accept whatever option is presented as the default rather than deliberating actively",
-                    "overweight recent information while discounting older historical data"
+                    "overweight recent information while discounting older historical data",
+                    "overestimate the frequency of dramatic, memorable events and underestimate mundane but commoner risks"
                 ],
-                "correct_index": 0,
-                "explanation": "(A) is stated directly: airplane crashes are overestimated 'because they are memorable,' while car accidents 'are underestimated.' (B) describes the representativeness heuristic. (C) describes the default-acceptance tendency. (D) is a recency bias not discussed.",
+                "correct_index": 3,
+                "explanation": "(D) is stated directly: airplane crashes are overestimated 'because they are memorable,' while car accidents 'are underestimated.' (A) describes the representativeness heuristic. (B) describes the default-acceptance tendency. (C) is a recency bias not discussed.",
                 "difficulty": "easy",
                 "subquestions": [
                     {
                         "stem": "What does the availability heuristic use as a proxy for probability?",
                         "options": [
-                            "How easily examples of an event come to mind",
-                            "How closely an event resembles a prototype"
+                            "How closely an event resembles a prototype",
+                            "How easily examples of an event come to mind"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage says people 'estimate the probability of an event by how easily examples come to mind.'"
                     },
                     {
@@ -1667,10 +1667,10 @@
                     {
                         "stem": "What term does the passage use to describe critics' concern about policymakers directing behavior?",
                         "options": [
-                            "Paternalistic",
-                            "Authoritarian"
+                            "Authoritarian",
+                            "Paternalistic"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage says critics 'worry that it is paternalistic.'"
                     },
                     {
@@ -1690,22 +1690,22 @@
                 "skill": "reasoning-within",
                 "stem": "The final paragraph is primarily intended to:",
                 "options": [
-                    "clarify the limited conclusion behavioral economics supports, distinguishing it from broader claims about market failure",
                     "argue that behavioral economics has decisively refuted classical economic theory",
+                    "clarify the limited conclusion behavioral economics supports, distinguishing it from broader claims about market failure",
                     "summarize the policy recommendations most behavioral economists endorse",
                     "suggest that behavioral findings have not yet accumulated enough evidence to be reliable"
                 ],
-                "correct_index": 0,
-                "explanation": "(A) is correct: the passage explicitly states behavioral economics 'does not establish that markets always fail or that regulation is always beneficial. It establishes only that the idealized rational actor is an incomplete description.' (B) contradicts this. (C) is not addressed. (D) contradicts the opening characterization of findings as 'robust.'",
+                "correct_index": 1,
+                "explanation": "(B) is correct: the passage explicitly states behavioral economics 'does not establish that markets always fail or that regulation is always beneficial. It establishes only that the idealized rational actor is an incomplete description.' (A) contradicts this. (C) is not addressed. (D) contradicts the opening characterization of findings as 'robust.'",
                 "difficulty": "medium",
                 "subquestions": [
                     {
                         "stem": "What does the passage say behavioral economics does NOT establish?",
                         "options": [
-                            "That markets always fail or that regulation is always beneficial",
-                            "That people sometimes deviate from rational decision-making"
+                            "That people sometimes deviate from rational decision-making",
+                            "That markets always fail or that regulation is always beneficial"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage states: 'The behavioral economics literature does not establish that markets always fail or that regulation is always beneficial.'"
                     },
                     {
@@ -1725,22 +1725,22 @@
                 "skill": "reasoning-beyond",
                 "stem": "A health campaign tells people that 'nine out of ten people in your neighborhood have received their flu vaccine' rather than describing the vaccine's medical benefits. This strategy most directly exploits which behavioral finding?",
                 "options": [
-                    "The tendency to accept defaults, since vaccination appears to be the expected norm",
                     "Loss aversion, by implying that unvaccinated people are losing something the majority has gained",
                     "The availability heuristic, by making vaccine uptake easy to imagine through social examples",
+                    "The tendency to accept defaults, since vaccination appears to be the expected norm",
                     "The representativeness heuristic, by making the unvaccinated person feel unlike a typical neighbor"
                 ],
-                "correct_index": 0,
-                "explanation": "(D) is the closest alternative, but (A) is the best answer: social-norm messaging makes vaccination seem like the expected default behavior, exploiting the tendency to conform to perceived norms and defaults. (B) involves loss aversion which concerns personal financial/outcome sensitivity. (C) involves ease of recall, not social comparison. (D) is closer but the core mechanism is norm-based conformity, not representativeness per se.",
+                "correct_index": 2,
+                "explanation": "(C) is best: the passage describes nudging as designing choice environments around 'the default option [that] is the one that most people would choose,' and telling people that nine of ten neighbors are vaccinated presents vaccination as exactly that expected, majority choice. (A) fails because nothing in the message is framed as a loss relative to a reference point. (B) misapplies the availability heuristic, which concerns judging frequency by how easily examples come to mind, not conforming to what most people do. (D) misapplies the representativeness heuristic, which concerns judging probability by resemblance to a prototype, not social conformity.",
                 "difficulty": "hard",
                 "subquestions": [
                     {
                         "stem": "What does the '9 out of 10 neighbors' framing do to the target audience's perception?",
                         "options": [
-                            "It makes vaccination appear to be the default norm in their social environment",
-                            "It makes the medical risks of flu more vivid and memorable"
+                            "It makes the medical risks of flu more vivid and memorable",
+                            "It makes vaccination appear to be the default norm in their social environment"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "Telling people the majority is vaccinated presents vaccination as the expected, default behavior — a social norm."
                     },
                     {
@@ -1772,22 +1772,22 @@
                 "skill": "comprehension",
                 "stem": "According to the passage, the 'hard problem' of consciousness differs from 'easy problems' in that:",
                 "options": [
-                    "easy problems are amenable to functional explanations, while the hard problem seems to resist explanation in those terms",
                     "easy problems involve subjective experience, while the hard problem involves only brain function",
                     "the hard problem has been solved by neuroscience, while easy problems remain outstanding",
-                    "easy problems are philosophical, while the hard problem is purely empirical"
+                    "easy problems are philosophical, while the hard problem is purely empirical",
+                    "easy problems are amenable to functional explanations, while the hard problem seems to resist explanation in those terms"
                 ],
-                "correct_index": 0,
-                "explanation": "(A) is stated: easy problems 'are, in principle, amenable to explanation in functional and computational terms,' while the hard problem 'seems to resist this treatment.' (B) reverses the definitions. (C) is the opposite. (D) reverses their characters.",
+                "correct_index": 3,
+                "explanation": "(D) is stated: easy problems 'are, in principle, amenable to explanation in functional and computational terms,' while the hard problem 'seems to resist this treatment.' (A) reverses the definitions. (B) is the opposite. (C) reverses their characters.",
                 "difficulty": "medium",
                 "subquestions": [
                     {
                         "stem": "What kinds of tasks are 'easy problems' about?",
                         "options": [
-                            "How the brain integrates information, controls attention, and generates verbal reports",
-                            "Why any physical process is accompanied by subjective experience"
+                            "Why any physical process is accompanied by subjective experience",
+                            "How the brain integrates information, controls attention, and generates verbal reports"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage lists: 'how the brain integrates information, controls attention, or generates verbal reports about mental states.'"
                     },
                     {
@@ -1819,10 +1819,10 @@
                     {
                         "stem": "What happened to vitalism when biochemistry matured?",
                         "options": [
-                            "It dissolved — the need for a special non-physical life-force disappeared",
-                            "It was refined rather than rejected and is still used in some biological theories"
+                            "It was refined rather than rejected and is still used in some biological theories",
+                            "It dissolved — the need for a special non-physical life-force disappeared"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage says 'vitalism... dissolved when biochemistry revealed the mechanisms of metabolism.'"
                     },
                     {
@@ -1842,22 +1842,22 @@
                 "skill": "reasoning-within",
                 "stem": "The passage identifies a specific difficulty that faces substance dualism. This difficulty is:",
                 "options": [
-                    "explaining how non-physical minds causally interact with physical brains",
                     "accounting for why different people have similar conscious experiences",
+                    "explaining how non-physical minds causally interact with physical brains",
                     "showing why subjective experience exists at all if minds are non-physical",
                     "reconciling dualism with the findings of evolutionary biology"
                 ],
-                "correct_index": 0,
-                "explanation": "(A) is stated: dualism 'faces the difficulty of explaining how non-physical minds causally interact with physical brains.' (B) is not mentioned as a specific difficulty. (C) is the hard problem itself, not a unique dualist difficulty. (D) is not mentioned.",
+                "correct_index": 1,
+                "explanation": "(B) is stated: dualism 'faces the difficulty of explaining how non-physical minds causally interact with physical brains.' (A) is not mentioned as a specific difficulty. (C) is the hard problem itself, not a unique dualist difficulty. (D) is not mentioned.",
                 "difficulty": "medium",
                 "subquestions": [
                     {
                         "stem": "What does substance dualism claim about the relationship between minds and physical processes?",
                         "options": [
-                            "They belong to categorically different orders of being",
-                            "Mental states are identical with or constituted by brain states"
+                            "Mental states are identical with or constituted by brain states",
+                            "They belong to categorically different orders of being"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage says dualists 'maintain that minds and physical processes belong to categorically different orders of being.'"
                     },
                     {
@@ -1877,22 +1877,22 @@
                 "skill": "reasoning-beyond",
                 "stem": "Suppose a neuroscientist fully maps every neural connection and firing pattern during a subject's experience of seeing red. A philosopher who believes the hard problem is genuine would most likely say this mapping:",
                 "options": [
-                    "still leaves unexplained what it is like for the subject to experience redness as a subjective quality",
                     "fully explains consciousness, proving that physicalism is correct",
                     "provides evidence that qualia do not actually exist",
+                    "still leaves unexplained what it is like for the subject to experience redness as a subjective quality",
                     "shows that the easy problems of consciousness are inseparable from the hard problem"
                 ],
-                "correct_index": 0,
-                "explanation": "(A) is correct: the hard-problem philosopher answers no to whether complete physical description exhausts understanding of subjective experience. Even a complete neural map 'leaves unexplained why processing should feel like anything at all.' (B) is the physicalist's hoped-for conclusion. (C) is the eliminativist position. (D) is not a claim in the passage.",
+                "correct_index": 2,
+                "explanation": "(C) is correct: the hard-problem philosopher answers no to whether complete physical description exhausts understanding of subjective experience. Even a complete neural map 'leaves unexplained why processing should feel like anything at all.' (A) is the physicalist's hoped-for conclusion. (B) is the eliminativist position. (D) is not a claim in the passage.",
                 "difficulty": "hard",
                 "subquestions": [
                     {
                         "stem": "What question does the hard problem ask?",
                         "options": [
-                            "Why any physical process should be accompanied by subjective experience at all",
-                            "How the brain integrates sensory information about color"
+                            "How the brain integrates sensory information about color",
+                            "Why any physical process should be accompanied by subjective experience at all"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The hard problem is: 'why any physical process should be accompanied by subjective experience at all.'"
                     },
                     {
@@ -1912,22 +1912,22 @@
                 "skill": "reasoning-within",
                 "stem": "The author's tone toward the hard problem of consciousness is best characterized as:",
                 "options": [
-                    "intellectually serious and genuinely uncertain about its resolution",
                     "dismissive, suggesting the hard problem will soon be solved by neuroscience",
                     "confident that dualism is the correct solution",
-                    "polemical, arguing that physicalism is obviously mistaken"
+                    "polemical, arguing that physicalism is obviously mistaken",
+                    "intellectually serious and genuinely uncertain about its resolution"
                 ],
-                "correct_index": 0,
-                "explanation": "(A) is supported throughout: the passage presents multiple positions without endorsing one, describes the problem as 'one of the deepest unresolved questions,' and says 'whether it admits of a naturalistic solution remains' open. (B) is the strong physicalist prediction — presented as one view, not the author's. (C) is false — the passage notes dualism's difficulties. (D) is false — the passage treats physicalism seriously.",
+                "correct_index": 3,
+                "explanation": "(D) is supported throughout: the passage presents multiple positions without endorsing one, describes the problem as 'one of the deepest unresolved questions,' and says 'whether it admits of a naturalistic solution remains' open. (A) is the strong physicalist prediction — presented as one view, not the author's. (B) is false — the passage notes dualism's difficulties. (C) is false — the passage treats physicalism seriously.",
                 "difficulty": "medium",
                 "subquestions": [
                     {
                         "stem": "Does the passage endorse any one of the positions (physicalism, qualia physicalism, dualism)?",
                         "options": [
-                            "No — it presents each with merits and difficulties without endorsing one",
-                            "Yes — it endorses the dualist position as most philosophically rigorous"
+                            "Yes — it endorses the dualist position as most philosophically rigorous",
+                            "No — it presents each with merits and difficulties without endorsing one"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage presents each view with both its appeal and its challenges, ending with 'remains one of the deepest unresolved questions.'"
                     },
                     {
@@ -1971,10 +1971,10 @@
                     {
                         "stem": "Does the passage say the sacred is defined by intrinsic properties of the object?",
                         "options": [
-                            "No -- it is defined by the object's relationship to the collective",
-                            "Yes -- certain objects are naturally sacred by their physical properties"
+                            "Yes -- certain objects are naturally sacred by their physical properties",
+                            "No -- it is defined by the object's relationship to the collective"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage explicitly states: What makes something sacred is not its intrinsic properties but its relationship to the collective."
                     },
                     {
@@ -1994,22 +1994,22 @@
                 "skill": "reasoning-within",
                 "stem": "The passage uses national flags and war memorials as examples to argue that:",
                 "options": [
-                    "the sacred can attach to entirely secular objects in societies without explicit religious commitments",
                     "modern nation-states have replaced religious institutions as the primary sources of moral authority",
+                    "the sacred can attach to entirely secular objects in societies without explicit religious commitments",
                     "patriotism is a more powerful social force than religious devotion",
                     "secular societies are indistinguishable from religious ones in their emotional lives"
                 ],
-                "correct_index": 0,
-                "explanation": "A is the stated argument: these secular objects command special reverence and their desecration provokes communal outrage, confirming that the sacred may attach to entirely secular objects. B introduces an institutional-power comparison not in the passage. C is not made. D overstates.",
+                "correct_index": 1,
+                "explanation": "B is the stated argument: these secular objects command special reverence and their desecration provokes communal outrage, confirming that the sacred may attach to entirely secular objects. A introduces an institutional-power comparison not in the passage. C is not made. D overstates.",
                 "difficulty": "medium",
                 "subquestions": [
                     {
                         "stem": "What features do national flags share with sacred religious objects?",
                         "options": [
-                            "They command special reverence and their desecration provokes communal outrage",
-                            "They were created by religious institutions with theological intentions"
+                            "They were created by religious institutions with theological intentions",
+                            "They command special reverence and their desecration provokes communal outrage"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage says they command a special reverence and their desecration provokes communal outrage."
                     },
                     {
@@ -2029,22 +2029,22 @@
                 "skill": "reasoning-within",
                 "stem": "Critics of the sacred/profane framework object that extending it to secular contexts:",
                 "options": [
-                    "dilutes the concept to the point where it loses explanatory precision",
                     "proves that secular societies are becoming more religious over time",
                     "shows that the distinction is too rigid and should be replaced by a continuum",
+                    "dilutes the concept to the point where it loses explanatory precision",
                     "undermines the case for the universality of religious experience"
                 ],
-                "correct_index": 0,
-                "explanation": "A is stated: extending the concept to secular contexts dilutes it beyond usefulness; if anything cherished counts as sacred, the concept loses explanatory precision. B is the opposite implication. C introduces a continuum not mentioned. D is not a concern raised.",
+                "correct_index": 2,
+                "explanation": "C is stated: extending the concept to secular contexts dilutes it beyond usefulness; if anything cherished counts as sacred, the concept loses explanatory precision. A is the opposite implication. B introduces a continuum not mentioned. D is not a concern raised.",
                 "difficulty": "medium",
                 "subquestions": [
                     {
                         "stem": "What logical problem do critics identify with extending the concept?",
                         "options": [
-                            "If anything cherished counts as sacred, the concept becomes so broad it explains nothing specifically",
-                            "If the sacred applies to secular objects, religious believers feel trivialized"
+                            "If the sacred applies to secular objects, religious believers feel trivialized",
+                            "If anything cherished counts as sacred, the concept becomes so broad it explains nothing specifically"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "Critics say: if anything sufficiently cherished counts as sacred, the concept loses its explanatory precision."
                     },
                     {
@@ -2064,22 +2064,22 @@
                 "skill": "reasoning-beyond",
                 "stem": "In a secular nation, protesters burn the national flag, and many citizens respond with intense moral outrage disproportionate to the practical consequences. This scenario best illustrates:",
                 "options": [
-                    "Sacred objects can exist in secular societies, and their desecration provokes collective moral indignation beyond practical objection",
                     "Secular societies are more emotionally volatile than religious societies",
                     "Political dissent is always interpreted as a violation of the sacred",
-                    "National symbols function as religious objects only in explicitly theistic nations"
+                    "National symbols function as religious objects only in explicitly theistic nations",
+                    "Sacred objects can exist in secular societies, and their desecration provokes collective moral indignation beyond practical objection"
                 ],
-                "correct_index": 0,
-                "explanation": "A is directly supported: the passage says secular objects like flags can be sacred, and violations provoke not merely practical objection but moral indignation. Outrage disproportionate to practical consequences is precisely this. B is a cross-national comparison not in the passage. C generalizes beyond the passage. D contradicts the passage's argument.",
+                "correct_index": 3,
+                "explanation": "D is directly supported: the passage says secular objects like flags can be sacred, and violations provoke not merely practical objection but moral indignation. Outrage disproportionate to practical consequences is precisely this. A is a cross-national comparison not in the passage. B generalizes beyond the passage. C contradicts the passage's argument.",
                 "difficulty": "medium",
                 "subquestions": [
                     {
                         "stem": "What does the passage say flag desecration typically provokes?",
                         "options": [
-                            "Communal outrage -- the same response that sacred violation provokes in religious contexts",
-                            "Philosophical debate about the limits of free expression"
+                            "Philosophical debate about the limits of free expression",
+                            "Communal outrage -- the same response that sacred violation provokes in religious contexts"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage says national flags' desecration provokes communal outrage."
                     },
                     {
@@ -2096,7 +2096,7 @@
             {
                 "id": "psg-cars-11-q5",
                 "aamc_category": "CARS",
-                "skill": "comprehension",
+                "skill": "reasoning-within",
                 "stem": "The author's overall assessment of the sacred/profane framework in the final paragraph is best described as:",
                 "options": [
                     "qualified endorsement -- the framework has limitations but retains explanatory value that purely rational accounts lack",
@@ -2111,10 +2111,10 @@
                     {
                         "stem": "What phrase signals the author's acknowledgment of the framework's limitations?",
                         "options": [
-                            "These tensions notwithstanding",
-                            "The sacred/profane distinction continues to illuminate"
+                            "The sacred/profane distinction continues to illuminate",
+                            "These tensions notwithstanding"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "These tensions notwithstanding concedes the critiques while still affirming value."
                     },
                     {
@@ -2146,22 +2146,22 @@
                 "skill": "comprehension",
                 "stem": "The referentialist view holds that the meaning of a word consists in:",
                 "options": [
-                    "which object, substance, or individual in the world the word picks out",
                     "the set of rules governing how the word may be appropriately used",
+                    "which object, substance, or individual in the world the word picks out",
                     "the inferential relations between the word and other expressions",
                     "the historical origins of the word in earlier stages of a language"
                 ],
-                "correct_index": 0,
-                "explanation": "A is stated: referentialism holds that to know the meaning of a term like gold is to know which substance it picks out. B and C describe the use theory. D describes etymology, which is not a theory of meaning discussed here.",
+                "correct_index": 1,
+                "explanation": "B is stated: referentialism holds that to know the meaning of a term like gold is to know which substance it picks out. A and C describe the use theory. D describes etymology, which is not a theory of meaning discussed here.",
                 "difficulty": "easy",
                 "subquestions": [
                     {
                         "stem": "What does referentialism say about the meaning of a proper name like Julius Caesar?",
                         "options": [
-                            "Its meaning consists in the historical individual it refers to",
-                            "Its meaning consists in the rules for using the name in sentences"
+                            "Its meaning consists in the rules for using the name in sentences",
+                            "Its meaning consists in the historical individual it refers to"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage says: to know the meaning of Julius Caesar is to know which historical individual the name refers to."
                     },
                     {
@@ -2181,22 +2181,22 @@
                 "skill": "reasoning-within",
                 "stem": "The passage uses the word 'here' as an example to show that:",
                 "options": [
-                    "the reference of some expressions changes with context while their meaning stays constant, challenging referentialism",
                     "spatial words are impossible to explain within any theory of meaning",
                     "use theory has difficulty with expressions that refer to locations",
+                    "the reference of some expressions changes with context while their meaning stays constant, challenging referentialism",
                     "meaning and reference are identical for all linguistic expressions"
                 ],
-                "correct_index": 0,
-                "explanation": "A is the argument: the word 'here' refers to wherever the speaker is, so its reference shifts, yet its meaning (the rule for use) is stable -- which challenges referentialism by showing meaning does not equal reference. B overstates. C is the opposite; the passage says use theory handles indexicals naturally. D is directly contradicted.",
+                "correct_index": 2,
+                "explanation": "C is the argument: the word 'here' refers to wherever the speaker is, so its reference shifts, yet its meaning (the rule for use) is stable -- which challenges referentialism by showing meaning does not equal reference. A overstates. B is the opposite; the passage says use theory handles indexicals naturally. D is directly contradicted.",
                 "difficulty": "medium",
                 "subquestions": [
                     {
                         "stem": "What changes about the word 'here' across different uses?",
                         "options": [
-                            "Its reference -- it refers to wherever the speaker happens to be",
-                            "Its meaning -- it means something different each time it is used"
+                            "Its meaning -- it means something different each time it is used",
+                            "Its reference -- it refers to wherever the speaker happens to be"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The word 'here' refers to wherever the speaker is -- its reference shifts -- but its meaning (the rule) is stable."
                     },
                     {
@@ -2216,22 +2216,22 @@
                 "skill": "reasoning-within",
                 "stem": "According to the passage, the use theory explains the meaning of logical connectives like 'and' by:",
                 "options": [
-                    "specifying the inferential rules governing the connective's use",
                     "identifying a relation in the world that the connective picks out",
                     "analyzing how native speakers feel when they hear the word",
-                    "tracing the historical etymology of the connective across languages"
+                    "tracing the historical etymology of the connective across languages",
+                    "specifying the inferential rules governing the connective's use"
                 ],
-                "correct_index": 0,
-                "explanation": "A is stated: logical connectives like 'and' are explained by the inferential rules governing their use -- the conjunction of P and Q implies both P and Q separately. B is the referentialist move, which fails for connectives. C introduces psychology not mentioned. D introduces etymology not mentioned.",
+                "correct_index": 3,
+                "explanation": "D is stated: logical connectives like 'and' are explained by the inferential rules governing their use -- the conjunction of P and Q implies both P and Q separately. A is the referentialist move, which fails for connectives. B introduces psychology not mentioned. C introduces etymology not mentioned.",
                 "difficulty": "easy",
                 "subquestions": [
                     {
                         "stem": "What does knowing the meaning of 'and' consist in, on the use theory?",
                         "options": [
-                            "Knowing the inferential rules: that P and Q implies both P and Q",
-                            "Knowing which conjunction in the world the word picks out"
+                            "Knowing which conjunction in the world the word picks out",
+                            "Knowing the inferential rules: that P and Q implies both P and Q"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage says use theory explains the connective via the inferential rules governing its use."
                     },
                     {
@@ -2263,10 +2263,10 @@
                     {
                         "stem": "What example does the passage use to illustrate the instability worry?",
                         "options": [
-                            "Whether 'democracy' means the same to us as it did to people in ancient Athens",
-                            "Whether the word 'gold' refers to the same element across different scientific theories"
+                            "Whether the word 'gold' refers to the same element across different scientific theories",
+                            "Whether 'democracy' means the same to us as it did to people in ancient Athens"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage asks whether we mean the same thing by 'democracy' as people in ancient Athens did."
                     },
                     {
@@ -2286,22 +2286,22 @@
                 "skill": "reasoning-beyond",
                 "stem": "A philosopher argues that the word 'marriage' has changed its meaning over the past century because the social practices surrounding it have changed significantly. Which theory would this claim most directly support?",
                 "options": [
-                    "The use theory, because it holds that meaning is constituted by use, and changed use implies changed meaning",
                     "Referentialism, because the word refers to a fixed social institution that has remained the same",
+                    "The use theory, because it holds that meaning is constituted by use, and changed use implies changed meaning",
                     "Both theories equally, because both predict that social change alters word meaning",
                     "Neither theory, because neither addresses the meaning of social institution terms"
                 ],
-                "correct_index": 0,
-                "explanation": "A is correct: use theory holds that meaning is constituted by use -- in what contexts it is appropriately deployed. If social practices around marriage change, the word's use changes, and therefore its meaning changes. B represents the referentialist prediction, which ties meaning to what the word picks out. C and D are both incorrect.",
+                "correct_index": 1,
+                "explanation": "B is correct: use theory holds that meaning is constituted by use -- in what contexts it is appropriately deployed. If social practices around marriage change, the word's use changes, and therefore its meaning changes. A represents the referentialist prediction, which ties meaning to what the word picks out. C and D are both incorrect.",
                 "difficulty": "hard",
                 "subquestions": [
                     {
                         "stem": "What does use theory predict about a word whose social use has changed?",
                         "options": [
-                            "Its meaning has changed, because meaning is constituted by use",
-                            "Its meaning is fixed by what it refers to and cannot change with social practice"
+                            "Its meaning is fixed by what it refers to and cannot change with social practice",
+                            "Its meaning has changed, because meaning is constituted by use"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "Use theory holds meaning equals use; therefore changed use equals changed meaning."
                     },
                     {
@@ -2333,22 +2333,22 @@
                 "skill": "comprehension",
                 "stem": "The cultural imperialism thesis, as described in the passage, focuses primarily on:",
                 "options": [
-                    "the structural economic disadvantage created by global media corporations that marginalizes local cultural production",
                     "legal prohibitions that governments impose on domestic cultural industries",
                     "the psychological harm suffered by individuals who consume foreign cultural products",
+                    "the structural economic disadvantage created by global media corporations that marginalizes local cultural production",
                     "the deliberate political strategy of powerful nations to suppress indigenous cultures"
                 ],
-                "correct_index": 0,
-                "explanation": "A is stated: the thesis concerns structural disadvantage created when production costs and distribution networks favor global products over local ones, not by legal prohibition but by market logic. B is explicitly rejected. C introduces psychological harm not discussed. D implies deliberate political strategy, whereas the passage focuses on market logic.",
+                "correct_index": 2,
+                "explanation": "C is stated: the thesis concerns structural disadvantage created when production costs and distribution networks favor global products over local ones, not by legal prohibition but by market logic. A is explicitly rejected. B introduces psychological harm not discussed. D implies deliberate political strategy, whereas the passage focuses on market logic.",
                 "difficulty": "easy",
                 "subquestions": [
                     {
                         "stem": "What mechanism does the thesis identify as marginalizing local culture?",
                         "options": [
-                            "Market logic, when production costs and distribution networks favor global products",
-                            "Legal prohibition of local cultural content by powerful governments"
+                            "Legal prohibition of local cultural content by powerful governments",
+                            "Market logic, when production costs and distribution networks favor global products"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage says communities find expressions marginalized not by legal prohibition but by market logic."
                     },
                     {
@@ -2368,22 +2368,22 @@
                 "skill": "reasoning-within",
                 "stem": "The hip-hop example (Algerian and Japanese variants) is used to argue that:",
                 "options": [
-                    "audiences actively interpret and adapt imported cultural forms, producing genuinely new expressions",
                     "American music is now globally dominant over all local musical traditions",
                     "cultural hybridization always produces inferior versions of the original genre",
-                    "economic power determines which cultural hybrids succeed in global markets"
+                    "economic power determines which cultural hybrids succeed in global markets",
+                    "audiences actively interpret and adapt imported cultural forms, producing genuinely new expressions"
                 ],
-                "correct_index": 0,
-                "explanation": "A is the argument: local variants bear the unmistakable imprint of their cultural contexts, demonstrating that reception is not passive consumption. B is the cultural imperialism view the examples challenge. C is not implied. D is the fourth paragraph's concern, not the hip-hop example's point.",
+                "correct_index": 3,
+                "explanation": "D is the argument: local variants bear the unmistakable imprint of their cultural contexts, demonstrating that reception is not passive consumption. A is the cultural imperialism view the examples challenge. B is not implied. C is the fourth paragraph's concern, not the hip-hop example's point.",
                 "difficulty": "medium",
                 "subquestions": [
                     {
                         "stem": "What does the passage say about how audiences engage with global cultural content?",
                         "options": [
-                            "They actively interpret, adapt, subvert, and hybridize imported forms",
-                            "They passively absorb global content without modification"
+                            "They passively absorb global content without modification",
+                            "They actively interpret, adapt, subvert, and hybridize imported forms"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage says audiences do not passively absorb global content but actively interpret it, adapting, subverting, and hybridizing."
                     },
                     {
@@ -2415,10 +2415,10 @@
                     {
                         "stem": "What does the fourth paragraph say about creative agency at the local level?",
                         "options": [
-                            "It does not by itself dismantle structural power asymmetries",
-                            "It is sufficient to overcome the dominance of global media corporations"
+                            "It is sufficient to overcome the dominance of global media corporations",
+                            "It does not by itself dismantle structural power asymmetries"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage says: The creative agency of local audiences does not by itself dismantle the structural power asymmetries."
                     },
                     {
@@ -2438,22 +2438,22 @@
                 "skill": "reasoning-beyond",
                 "stem": "The passage suggests the debate resists resolution partly because participants conflate two levels of analysis. Which research approach would best address this?",
                 "options": [
-                    "Studying both how audiences actively engage with global content and which corporations control distribution infrastructure, holding both levels in view simultaneously",
                     "Focusing exclusively on empirical data about which cultural products consumers purchase",
+                    "Studying both how audiences actively engage with global content and which corporations control distribution infrastructure, holding both levels in view simultaneously",
                     "Conducting philosophical analysis of what cultural imperialism means before examining empirical cases",
                     "Measuring the economic output of domestic versus foreign cultural industries in each country"
                 ],
-                "correct_index": 0,
-                "explanation": "A is the approach the passage prescribes: Progress requires holding both levels in view simultaneously -- empirical (how people engage) and structural (who controls conditions). B addresses only the empirical level. C is conceptual analysis that ignores both levels. D addresses structural economics but not the empirical engagement level.",
+                "correct_index": 1,
+                "explanation": "B is the approach the passage prescribes: Progress requires holding both levels in view simultaneously -- empirical (how people engage) and structural (who controls conditions). A addresses only the empirical level. C is conceptual analysis that ignores both levels. D addresses structural economics but not the empirical engagement level.",
                 "difficulty": "hard",
                 "subquestions": [
                     {
                         "stem": "What are the two levels the passage says participants often conflate?",
                         "options": [
-                            "The empirical level of how people engage with global content, and the structural level of who controls the conditions of engagement",
-                            "The economic level of production costs and the political level of government censorship"
+                            "The economic level of production costs and the political level of government censorship",
+                            "The empirical level of how people engage with global content, and the structural level of who controls the conditions of engagement"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage identifies the empirical level of how people actually engage with global cultural content, and the structural level of which actors control the conditions under which engagement occurs."
                     },
                     {
@@ -2473,22 +2473,22 @@
                 "skill": "reasoning-within",
                 "stem": "The discussion of South Korean music, Indian cinema, and African rhythms primarily serves to:",
                 "options": [
-                    "challenge the claim that cultural influence flows in only one direction",
                     "demonstrate that American cultural dominance is a myth",
                     "show that poorer nations' cultures are more creative than wealthy nations'",
+                    "challenge the claim that cultural influence flows in only one direction",
                     "prove that cultural imperialism does not harm domestic cultural industries"
                 ],
-                "correct_index": 0,
-                "explanation": "A is the explicit argument: these examples illustrate that cultural influence runs in multiple directions, challenging unidirectional cultural imperialism. B goes too far -- the passage acknowledges American products dominate certain markets. C introduces a value judgment not made. D is not the conclusion drawn, since paragraph four still acknowledges structural harm.",
+                "correct_index": 2,
+                "explanation": "C is the explicit argument: these examples illustrate that cultural influence runs in multiple directions, challenging unidirectional cultural imperialism. A goes too far -- the passage acknowledges American products dominate certain markets. B introduces a value judgment not made. D is not the conclusion drawn, since paragraph four still acknowledges structural harm.",
                 "difficulty": "easy",
                 "subquestions": [
                     {
                         "stem": "What claim does the second challenge address?",
                         "options": [
-                            "The claim that cultural influence flows only from wealthy nations to poorer ones",
-                            "The claim that hybrid cultural forms are artistically inferior"
+                            "The claim that hybrid cultural forms are artistically inferior",
+                            "The claim that cultural influence flows only from wealthy nations to poorer ones"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The second challenge concerns the directionality of cultural flows -- whether influence is unidirectional or multi-directional."
                     },
                     {
@@ -2520,22 +2520,22 @@
                 "skill": "comprehension",
                 "stem": "The veil of ignorance is described in the passage as a device designed to:",
                 "options": [
-                    "neutralize the effects of morally arbitrary advantages when choosing principles of justice",
                     "prevent citizens from learning about inequalities in their society",
                     "demonstrate that all existing social inequalities are unjust",
-                    "establish that persons cannot make rational choices without full information"
+                    "establish that persons cannot make rational choices without full information",
+                    "neutralize the effects of morally arbitrary advantages when choosing principles of justice"
                 ],
-                "correct_index": 0,
-                "explanation": "A is stated: The veil of ignorance is designed to neutralize the effects of morally arbitrary advantages. B confuses the thought experiment with a real device. C is not stated. D inverts the point -- the veil enables rational choice by preventing bias.",
+                "correct_index": 3,
+                "explanation": "D is stated: The veil of ignorance is designed to neutralize the effects of morally arbitrary advantages. A confuses the thought experiment with a real device. B is not stated. C inverts the point -- the veil enables rational choice by preventing bias.",
                 "difficulty": "easy",
                 "subquestions": [
                     {
                         "stem": "What information are contractors behind the veil denied?",
                         "options": [
-                            "Their natural talents, social class, and particular conception of the good",
-                            "The rules of basic logic and economics"
+                            "The rules of basic logic and economics",
+                            "Their natural talents, social class, and particular conception of the good"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "Behind the veil, contractors do not know their natural talents, social class, or the particular conception of the good that they happen to hold."
                     },
                     {
@@ -2567,10 +2567,10 @@
                     {
                         "stem": "What does the libertarian alternative say determines just distributions?",
                         "options": [
-                            "The history of how holdings were acquired and transferred, not the pattern of distribution",
-                            "The marginal utility of each person's economic contribution"
+                            "The marginal utility of each person's economic contribution",
+                            "The history of how holdings were acquired and transferred, not the pattern of distribution"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage states: just distributions are determined by the history of how holdings were acquired and transferred, not by any end-state principle."
                     },
                     {
@@ -2590,22 +2590,22 @@
                 "skill": "reasoning-within",
                 "stem": "The communitarian objection claims the veil of ignorance is flawed because it:",
                 "options": [
-                    "presupposes a thin, abstracted conception of persons that ignores how actual identities are constituted by community and tradition",
                     "requires too much information about society's worst-off members",
+                    "presupposes a thin, abstracted conception of persons that ignores how actual identities are constituted by community and tradition",
                     "produces redistributive principles incompatible with democratic majority rule",
                     "is derived from a theory of consent that ignores actual historical agreements"
                 ],
-                "correct_index": 0,
-                "explanation": "A is stated: communitarians say the veil presupposes a conception of persons as atomistic, self-sufficient choosers whose identities are separable from their social contexts, when in fact persons are constituted by their particular communities, traditions, and relationships. B is not the communitarian critique. C introduces majority rule not mentioned. D conflates different types of contract theory.",
+                "correct_index": 1,
+                "explanation": "B is stated: communitarians say the veil presupposes a conception of persons as atomistic, self-sufficient choosers whose identities are separable from their social contexts, when in fact persons are constituted by their particular communities, traditions, and relationships. A is not the communitarian critique. C introduces majority rule not mentioned. D conflates different types of contract theory.",
                 "difficulty": "medium",
                 "subquestions": [
                     {
                         "stem": "What alternative starting point do communitarians propose?",
                         "options": [
-                            "Historically situated communities that persons actually inhabit",
-                            "Hypothetical individuals with no community ties"
+                            "Hypothetical individuals with no community ties",
+                            "Historically situated communities that persons actually inhabit"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage says communitarians prefer beginning with the historically situated communities that persons actually inhabit."
                     },
                     {
@@ -2625,22 +2625,22 @@
                 "skill": "comprehension",
                 "stem": "The passage's final paragraph suggests that the social contract tradition remains influential because it:",
                 "options": [
-                    "addresses two commitments that are difficult to honor simultaneously: justifiability to each individual and insensitivity to morally arbitrary advantages",
                     "has definitively answered both libertarian and communitarian objections",
                     "is the only political theory compatible with democratic institutions",
+                    "addresses two commitments that are difficult to honor simultaneously: justifiability to each individual and insensitivity to morally arbitrary advantages",
                     "appeals to actual historical consent rather than hypothetical agreement"
                 ],
-                "correct_index": 0,
-                "explanation": "A is stated: the tradition takes seriously two commitments difficult to honor simultaneously -- that political authority must be justifiable to each individual, and that just arrangements must be insensitive to morally arbitrary differences. B is contradicted ('despite these challenges'). C is not stated. D reverses the theory -- the passage specifies hypothetical consent.",
+                "correct_index": 2,
+                "explanation": "C is stated: the tradition takes seriously two commitments difficult to honor simultaneously -- that political authority must be justifiable to each individual, and that just arrangements must be insensitive to morally arbitrary differences. A is contradicted ('despite these challenges'). B is not stated. D reverses the theory -- the passage specifies hypothetical consent.",
                 "difficulty": "medium",
                 "subquestions": [
                     {
                         "stem": "What is the first commitment social contract theory takes seriously?",
                         "options": [
-                            "That political authority must be justifiable to each individual governed",
-                            "That the state must maximize total social welfare"
+                            "That the state must maximize total social welfare",
+                            "That political authority must be justifiable to each individual governed"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage says the first commitment is: political authority must be justifiable to each individual governed."
                     },
                     {
@@ -2660,22 +2660,22 @@
                 "skill": "reasoning-beyond",
                 "stem": "A philosopher argues that people's strong emotional attachment to their national culture and religious traditions shows that justice cannot be determined by asking what people would choose behind a veil of ignorance. This argument most closely resembles:",
                 "options": [
-                    "The communitarian critique, because it holds that real persons' identities are constituted by their communities and traditions",
                     "The libertarian critique, because it focuses on individuals' entitlements rather than redistributive patterns",
                     "Both critiques equally, since both deny the validity of hypothetical choice procedures",
-                    "Neither critique, since the passage's critiques concern procedural rather than substantive justice"
+                    "Neither critique, since the passage's critiques concern procedural rather than substantive justice",
+                    "The communitarian critique, because it holds that real persons' identities are constituted by their communities and traditions"
                 ],
-                "correct_index": 0,
-                "explanation": "A is correct: the philosopher's argument -- that cultural and religious attachments reveal that persons are constituted by their communities -- is precisely the communitarian objection. B is wrong -- libertarians focus on entitlements from legitimate acquisition, not cultural attachment. C is too strong -- libertarians accept hypothetical choice in principle. D is false -- both critiques do concern the veil procedure.",
+                "correct_index": 3,
+                "explanation": "D is correct: the philosopher's argument -- that cultural and religious attachments reveal that persons are constituted by their communities -- is precisely the communitarian objection. A is wrong -- libertarians focus on entitlements from legitimate acquisition, not cultural attachment. B is too strong -- libertarians accept hypothetical choice in principle. C is false -- both critiques do concern the veil procedure.",
                 "difficulty": "hard",
                 "subquestions": [
                     {
                         "stem": "What does the communitarian critique say about persons' cultural and traditional attachments?",
                         "options": [
-                            "They constitute persons' identities and cannot be set aside in a thought experiment",
-                            "They are morally arbitrary and should be ignored in choosing principles of justice"
+                            "They are morally arbitrary and should be ignored in choosing principles of justice",
+                            "They constitute persons' identities and cannot be set aside in a thought experiment"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "Communitarians say actual persons are constituted by their particular communities, traditions, and relationships -- these cannot be stripped away behind a veil."
                     },
                     {
@@ -2719,10 +2719,10 @@
                     {
                         "stem": "Must an unreliable narrator deliberately lie?",
                         "options": [
-                            "No -- unreliability can arise from limited perception or self-understanding without deliberate deception",
-                            "Yes -- a narrator who does not intend to deceive cannot be unreliable"
+                            "Yes -- a narrator who does not intend to deceive cannot be unreliable",
+                            "No -- unreliability can arise from limited perception or self-understanding without deliberate deception"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage says unreliability can occur not necessarily because the narrator lies deliberately, but because their perception is limited."
                     },
                     {
@@ -2742,22 +2742,22 @@
                 "skill": "reasoning-within",
                 "stem": "The narrator who insists on their generosity while every action suggests self-interest primarily illustrates:",
                 "options": [
-                    "how self-deception generates irony by creating a gap between what the narrator claims and what the text implies",
                     "how omniscient narrators are more reliable than first-person narrators",
+                    "how self-deception generates irony by creating a gap between what the narrator claims and what the text implies",
                     "how cognitive limitation can make a narrator inaccurate without self-deception",
                     "how readers should always trust explicit statements over implied ones in fiction"
                 ],
-                "correct_index": 0,
-                "explanation": "A is the explicit purpose: the example generates irony at the narrator's own expense -- the gap between what they report and what the text implies becomes the site of critical engagement. B introduces omniscient narrators not discussed here. C describes cognitive limitation, which is a separate category. D is the opposite of the lesson.",
+                "correct_index": 1,
+                "explanation": "B is the explicit purpose: the example generates irony at the narrator's own expense -- the gap between what they report and what the text implies becomes the site of critical engagement. A introduces omniscient narrators not discussed here. C describes cognitive limitation, which is a separate category. D is the opposite of the lesson.",
                 "difficulty": "medium",
                 "subquestions": [
                     {
                         "stem": "What does the narrator in the example sincerely believe?",
                         "options": [
-                            "Their own account of their generosity",
-                            "That they are deliberately deceiving the reader"
+                            "That they are deliberately deceiving the reader",
+                            "Their own account of their generosity"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "Self-deception involves sincere belief; such narrators sincerely believe their own account while systematically misrepresenting it."
                     },
                     {
@@ -2777,22 +2777,22 @@
                 "skill": "comprehension",
                 "stem": "A child narrator who reports adult conflicts without understanding their significance is an example of unreliability from:",
                 "options": [
-                    "cognitive limitation -- innocence rather than self-interest",
                     "self-deception -- the narrator believes their account but is systematically mistaken about their own motives",
                     "structural unreliability -- multiple competing narrators whose accounts cannot all be true",
+                    "cognitive limitation -- innocence rather than self-interest",
                     "deliberate lying -- the child conceals what they know to protect the adults"
                 ],
-                "correct_index": 0,
-                "explanation": "A is stated: the child narrator produces unreliability through innocence rather than self-interest. B is self-deception, which concerns motives -- children's unreliability comes from limited understanding. C is the structural category. D introduces deliberate deception explicitly excluded for this type.",
+                "correct_index": 2,
+                "explanation": "C is stated: the child narrator produces unreliability through innocence rather than self-interest. A is self-deception, which concerns motives -- children's unreliability comes from limited understanding. B is the structural category. D introduces deliberate deception explicitly excluded for this type.",
                 "difficulty": "easy",
                 "subquestions": [
                     {
                         "stem": "What must the reader supply when encountering a cognitively limited narrator?",
                         "options": [
-                            "Interpretive frameworks that the narrator cannot provide",
-                            "Biographical information about the real author"
+                            "Biographical information about the real author",
+                            "Interpretive frameworks that the narrator cannot provide"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage says the reader must supply interpretive frameworks that the narrator cannot."
                     },
                     {
@@ -2812,22 +2812,22 @@
                 "skill": "reasoning-within",
                 "stem": "Structural unreliability challenges what assumption about narrative access to events?",
                 "options": [
-                    "That narrative access to events is transparent and unmediated, even in fiction",
                     "That authors can fully control how readers interpret their texts",
                     "That unreliable narrators can only appear in novels, not shorter forms",
-                    "That first-person narration is inherently more trustworthy than third-person narration"
+                    "That first-person narration is inherently more trustworthy than third-person narration",
+                    "That narrative access to events is transparent and unmediated, even in fiction"
                 ],
-                "correct_index": 0,
-                "explanation": "A is stated: both forms of structural unreliability challenge the assumption that narrative access to events is, even in fiction, transparent and unmediated. B is about authorial control, not the assumption mentioned. C and D are not claims in the passage.",
+                "correct_index": 3,
+                "explanation": "D is stated: both forms of structural unreliability challenge the assumption that narrative access to events is, even in fiction, transparent and unmediated. A is about authorial control, not the assumption mentioned. B and C are not claims in the passage.",
                 "difficulty": "medium",
                 "subquestions": [
                     {
                         "stem": "What two forms does structural unreliability take?",
                         "options": [
-                            "Multiple competing narrators whose accounts cannot all be true, and a narrator who explicitly announces their own limitations",
-                            "First-person and third-person narrators who contradict each other"
+                            "First-person and third-person narrators who contradict each other",
+                            "Multiple competing narrators whose accounts cannot all be true, and a narrator who explicitly announces their own limitations"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage says: some narratives are built on multiple competing narrators whose accounts cannot all be true, or on a narrator who explicitly announces their own limitations."
                     },
                     {
@@ -2859,10 +2859,10 @@
                     {
                         "stem": "To what non-fictional domains does the final paragraph explicitly extend the concept?",
                         "options": [
-                            "Journalism, autobiography, and legal testimony",
-                            "Scientific reports and academic peer review"
+                            "Scientific reports and academic peer review",
+                            "Journalism, autobiography, and legal testimony"
                         ],
-                        "correct_index": 0,
+                        "correct_index": 1,
                         "explanation": "The passage says: as relevant to journalism, autobiography, and legal testimony as it is to fiction."
                     },
                     {

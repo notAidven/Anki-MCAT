@@ -9,9 +9,19 @@ A new review-card ordering for the Anki scheduler:
 - **topic_weight** — the card's topic share of the real MCAT, from AAMC's
   published content distribution (`taxonomy.json`).
 - **student_weakness** — `1 − mean(FSRS recall probability)` aggregated across
-  every card in that topic.
+  every card in that topic. Before enough reviews accumulate, this is blended
+  with the **first-launch diagnostic prior** (a precision-weighted `decayed_weakness`
+  that fades as real reviews exceed a pseudocount) so ordering is useful from
+  session one. The blend affects **ordering only** — the honest memory aggregation
+  and the dashboard scores use the pure FSRS value, never the prior.
 
-Due cards are ordered so the highest-yield, weakest topics come first. The same
+Due cards are ordered so the highest-yield, weakest topics come first. Note the
+value is computed **per topic**, so every due card in the same topic shares one
+score and ties break by most-overdue-then-card-id; a card tagged
+`ReadyMCAT::struggling` gets a 2× ranking boost. If **no `taxonomy.json` is found**
+next to the collection (or in the media folder), the order **silently falls back
+to the gathered due-date order** rather than erroring — so selecting the order on a
+collection with no taxonomy is a no-op, not a failure. The same
 computation also produces the per-topic mastery/weakness aggregation, an honest
 (ranged) overall memory score, and an outline-coverage map that the desktop
 dashboard consumes (obeying the give-up rule: no score until ≥200 graded reviews
@@ -20,9 +30,14 @@ dashboard consumes (obeying the give-up rule: no score until ≥200 graded revie
 ## Why this belongs in Rust (not Python or the GUI)
 
 1. **One engine, two apps.** The Rust core (`rslib`) is shared by the desktop
-   app (via `pylib`/`rsbridge`) and the iOS companion (via the planned `rsios`
-   C-ABI). Implementing the order in Rust ships it to _both_ from a single
-   source of truth. A Python-only version could never reach iOS.
+   app (via `pylib`/`rsbridge`) and the iOS companion (via the `rsios`
+   C-ABI, which is **built and shipping** — `RsiosFFI.xcframework`). Implementing
+   the order in Rust ships it to _both_ from a single source of truth; a
+   Python-only version could never reach iOS. (Note: the engine change is compiled
+   into the iOS binary, but the phone does not yet **activate** the order — its
+   bundled collection reviews in default order until it selects
+   `ReviewCardOrder::PointsAtStake` and ships a `taxonomy.json`; that is a
+   content/config step, not an engine change.)
 2. **It runs during queue building over the whole collection.** Ordering is part
    of `rslib/src/scheduler/queue/builder`. Anki gathers and orders due cards in
    Rust/SQL for speed on tens of thousands of cards; doing this in Python would
@@ -77,7 +92,7 @@ PointsAtStakeResponse {
 | `pylib/tests/test_points_at_stake.py`  | Python integration test                                          |
 | `ts/routes/readymcat-dashboard/*`      | Svelte dashboard page                                            |
 | `qt/aqt/readymcat.py`                  | Dashboard window                                                 |
-| `taxonomy.json`                        | Real shared deck-tag → AAMC mapping (31 categories, 87 mappings) |
+| `taxonomy.json`                        | Real shared deck-tag → AAMC mapping (31 categories, 118 mappings) |
 
 ### Upstream files modified (with future-merge-difficulty estimate)
 

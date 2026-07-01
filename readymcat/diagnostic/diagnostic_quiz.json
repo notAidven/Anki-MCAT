@@ -169,12 +169,12 @@
             "difficulty": "easy",
             "stem": "At physiological pH (~7.4), the alpha-amino group of a typical free amino acid is best described as:",
             "options": [
-                { "key": "A", "text": "Protonated and positively charged" },
-                { "key": "B", "text": "Deprotonated and negatively charged" },
+                { "key": "A", "text": "Deprotonated and negatively charged" },
+                { "key": "B", "text": "Protonated and positively charged" },
                 { "key": "C", "text": "Uncharged and nonpolar" },
                 { "key": "D", "text": "Covalently bonded to the side chain" }
             ],
-            "answer": "A",
+            "answer": "B",
             "source": {
                 "ref": "openstax_chemistry_2e",
                 "location": "Amino acids and proteins (acid-base behavior of functional groups)",
@@ -222,12 +222,12 @@
             "difficulty": "easy",
             "stem": "During translation, the mRNA codon is directly recognized by base pairing with the:",
             "options": [
-                { "key": "A", "text": "Anticodon of a tRNA" },
-                { "key": "B", "text": "Promoter region of DNA" },
-                { "key": "C", "text": "Active site of DNA polymerase" },
-                { "key": "D", "text": "5' cap of a second mRNA" }
+                { "key": "A", "text": "Promoter region of DNA" },
+                { "key": "B", "text": "Active site of DNA polymerase" },
+                { "key": "C", "text": "5' cap of a second mRNA" },
+                { "key": "D", "text": "Anticodon of a tRNA" }
             ],
-            "answer": "A",
+            "answer": "D",
             "source": {
                 "ref": "openstax_biology_2e",
                 "location": "Gene expression: translation (codon-anticodon pairing)",
@@ -247,12 +247,12 @@
             "difficulty": "medium",
             "stem": "A single nucleotide is deleted near the start of a protein-coding sequence. The most likely effect on the encoded protein is:",
             "options": [
-                { "key": "A", "text": "A silent change with no effect on the protein" },
-                { "key": "B", "text": "A frameshift that alters most downstream codons" },
+                { "key": "A", "text": "A frameshift that alters most downstream codons" },
+                { "key": "B", "text": "A silent change with no effect on the protein" },
                 { "key": "C", "text": "A single conservative amino acid substitution only" },
                 { "key": "D", "text": "Lengthening of the poly-A tail" }
             ],
-            "answer": "B",
+            "answer": "A",
             "source": {
                 "ref": "openstax_biology_2e",
                 "location": "Mutations: frameshift vs. point mutations",
@@ -272,12 +272,12 @@
             "difficulty": "hard",
             "stem": "Two genes on the same chromosome are 50 map units (centimorgans) apart. In a testcross, their inheritance pattern will be:",
             "options": [
-                { "key": "A", "text": "Effectively indistinguishable from independent assortment" },
-                { "key": "B", "text": "Completely linked, producing only parental types" },
+                { "key": "A", "text": "Completely linked, producing only parental types" },
+                { "key": "B", "text": "Effectively indistinguishable from independent assortment" },
                 { "key": "C", "text": "A fixed 3:1 phenotypic ratio" },
                 { "key": "D", "text": "Determined solely by nondisjunction" }
             ],
-            "answer": "A",
+            "answer": "B",
             "source": {
                 "ref": "openstax_biology_2e",
                 "location": "Linkage and recombination (map distance and recombination frequency)",
@@ -297,12 +297,12 @@
             "difficulty": "medium",
             "stem": "Crossing over between homologous chromosomes, a major source of genetic diversity, occurs during:",
             "options": [
-                { "key": "A", "text": "Prophase I of meiosis" },
-                { "key": "B", "text": "Anaphase of mitosis" },
-                { "key": "C", "text": "S phase of interphase" },
+                { "key": "A", "text": "Anaphase of mitosis" },
+                { "key": "B", "text": "S phase of interphase" },
+                { "key": "C", "text": "Prophase I of meiosis" },
                 { "key": "D", "text": "Cytokinesis" }
             ],
-            "answer": "A",
+            "answer": "C",
             "source": {
                 "ref": "openstax_biology_2e",
                 "location": "Meiosis: synapsis and crossing over in prophase I",
@@ -322,12 +322,12 @@
             "difficulty": "easy",
             "stem": "In eukaryotic cells, the electron transport chain that produces most ATP is located in the:",
             "options": [
-                { "key": "A", "text": "Inner mitochondrial membrane" },
-                { "key": "B", "text": "Cytosol" },
-                { "key": "C", "text": "Nucleolus" },
-                { "key": "D", "text": "Smooth endoplasmic reticulum" }
+                { "key": "A", "text": "Cytosol" },
+                { "key": "B", "text": "Nucleolus" },
+                { "key": "C", "text": "Smooth endoplasmic reticulum" },
+                { "key": "D", "text": "Inner mitochondrial membrane" }
             ],
-            "answer": "A",
+            "answer": "D",
             "source": {
                 "ref": "openstax_biology_2e",
                 "location": "Cellular respiration: oxidative phosphorylation",
@@ -372,12 +372,12 @@
             "difficulty": "medium",
             "stem": "The plasma membrane is described as a 'fluid mosaic' primarily because:",
             "options": [
-                { "key": "A", "text": "Lipids and many proteins diffuse laterally within a phospholipid bilayer" },
-                { "key": "B", "text": "It is a rigid crystalline lattice of proteins" },
+                { "key": "A", "text": "It is a rigid crystalline lattice of proteins" },
+                { "key": "B", "text": "Lipids and many proteins diffuse laterally within a phospholipid bilayer" },
                 { "key": "C", "text": "It is composed almost entirely of cholesterol" },
                 { "key": "D", "text": "Ions cross the hydrophobic core freely without channels" }
             ],
-            "answer": "A",
+            "answer": "B",
             "source": {
                 "ref": "openstax_biology_2e",
                 "location": "Structure and function of plasma membranes (fluid mosaic model)",
@@ -397,12 +397,12 @@
             "difficulty": "medium",
             "stem": "Which feature is characteristic of typical bacterial (prokaryotic) cells but absent from animal (eukaryotic) cells?",
             "options": [
-                { "key": "A", "text": "A cell wall containing peptidoglycan" },
-                { "key": "B", "text": "Ribosomes" },
-                { "key": "C", "text": "A plasma membrane" },
+                { "key": "A", "text": "Ribosomes" },
+                { "key": "B", "text": "A plasma membrane" },
+                { "key": "C", "text": "A cell wall containing peptidoglycan" },
                 { "key": "D", "text": "A membrane-bound nucleus" }
             ],
-            "answer": "A",
+            "answer": "C",
             "source": {
                 "ref": "openstax_microbiology",
                 "location": "Prokaryotic cell structure (peptidoglycan cell wall)",
@@ -422,12 +422,12 @@
             "difficulty": "medium",
             "stem": "Cell-cycle checkpoints that halt a cell with damaged DNA before it divides act primarily at the:",
             "options": [
-                { "key": "A", "text": "G1/S and G2/M transitions" },
-                { "key": "B", "text": "Middle of anaphase" },
-                { "key": "C", "text": "Cytokinesis cleavage furrow" },
-                { "key": "D", "text": "Nucleolus during interphase" }
+                { "key": "A", "text": "Middle of anaphase" },
+                { "key": "B", "text": "Cytokinesis cleavage furrow" },
+                { "key": "C", "text": "Nucleolus during interphase" },
+                { "key": "D", "text": "G1/S and G2/M transitions" }
             ],
-            "answer": "A",
+            "answer": "D",
             "source": {
                 "ref": "openstax_biology_2e",
                 "location": "Cell cycle: regulation and checkpoints",
@@ -472,12 +472,12 @@
             "difficulty": "medium",
             "stem": "Compared with neuronal signaling, endocrine (hormonal) signaling is generally:",
             "options": [
-                { "key": "A", "text": "Slower in onset but longer in duration" },
-                { "key": "B", "text": "Faster in onset and shorter in duration" },
+                { "key": "A", "text": "Faster in onset and shorter in duration" },
+                { "key": "B", "text": "Slower in onset but longer in duration" },
                 { "key": "C", "text": "Independent of receptor binding" },
                 { "key": "D", "text": "Confined to electrical synapses" }
             ],
-            "answer": "A",
+            "answer": "B",
             "source": {
                 "ref": "openstax_anatomy_physiology_2e",
                 "location": "Endocrine system vs. nervous system signaling",
@@ -497,12 +497,12 @@
             "difficulty": "easy",
             "stem": "Oxygenated blood returning from the lungs enters which heart chamber first?",
             "options": [
-                { "key": "A", "text": "Left atrium" },
-                { "key": "B", "text": "Right atrium" },
-                { "key": "C", "text": "Right ventricle" },
+                { "key": "A", "text": "Right atrium" },
+                { "key": "B", "text": "Right ventricle" },
+                { "key": "C", "text": "Left atrium" },
                 { "key": "D", "text": "Left ventricle" }
             ],
-            "answer": "A",
+            "answer": "C",
             "source": {
                 "ref": "openstax_anatomy_physiology_2e",
                 "location": "Cardiovascular system: the heart and pulmonary circuit",
@@ -522,12 +522,12 @@
             "difficulty": "medium",
             "stem": "In a healthy nephron, essentially all filtered glucose is normally reabsorbed in the:",
             "options": [
-                { "key": "A", "text": "Proximal convoluted tubule" },
-                { "key": "B", "text": "Descending limb of the loop of Henle" },
-                { "key": "C", "text": "Distal convoluted tubule" },
-                { "key": "D", "text": "Collecting duct" }
+                { "key": "A", "text": "Descending limb of the loop of Henle" },
+                { "key": "B", "text": "Distal convoluted tubule" },
+                { "key": "C", "text": "Collecting duct" },
+                { "key": "D", "text": "Proximal convoluted tubule" }
             ],
-            "answer": "A",
+            "answer": "D",
             "source": {
                 "ref": "openstax_anatomy_physiology_2e",
                 "location": "Urinary system: tubular reabsorption",
@@ -572,12 +572,12 @@
             "difficulty": "medium",
             "stem": "An incompressible fluid flows steadily from a wide pipe into a narrower section. By the continuity equation, the fluid's speed in the narrow section:",
             "options": [
-                { "key": "A", "text": "Increases" },
-                { "key": "B", "text": "Decreases" },
+                { "key": "A", "text": "Decreases" },
+                { "key": "B", "text": "Increases" },
                 { "key": "C", "text": "Stays the same" },
                 { "key": "D", "text": "Falls to zero" }
             ],
-            "answer": "A",
+            "answer": "B",
             "source": {
                 "ref": "openstax_college_physics_2e",
                 "location": "Fluid dynamics: the equation of continuity",
@@ -597,12 +597,12 @@
             "difficulty": "easy",
             "stem": "Two identical resistors, each of resistance R, connected in series have an equivalent resistance of:",
             "options": [
-                { "key": "A", "text": "2R" },
-                { "key": "B", "text": "R/2" },
-                { "key": "C", "text": "R" },
+                { "key": "A", "text": "R/2" },
+                { "key": "B", "text": "R" },
+                { "key": "C", "text": "2R" },
                 { "key": "D", "text": "0" }
             ],
-            "answer": "A",
+            "answer": "C",
             "source": {
                 "ref": "openstax_college_physics_2e",
                 "location": "Circuits: resistors in series and parallel",
@@ -622,12 +622,12 @@
             "difficulty": "medium",
             "stem": "A sound source moves toward a stationary observer. Relative to the emitted frequency, the observer perceives a frequency that is:",
             "options": [
-                { "key": "A", "text": "Higher" },
-                { "key": "B", "text": "Lower" },
-                { "key": "C", "text": "Unchanged" },
-                { "key": "D", "text": "Zero" }
+                { "key": "A", "text": "Lower" },
+                { "key": "B", "text": "Unchanged" },
+                { "key": "C", "text": "Zero" },
+                { "key": "D", "text": "Higher" }
             ],
-            "answer": "A",
+            "answer": "D",
             "source": {
                 "ref": "openstax_college_physics_2e",
                 "location": "Sound: the Doppler effect",
@@ -672,12 +672,12 @@
             "difficulty": "easy",
             "stem": "An aqueous solution has a hydrogen-ion concentration [H+] = 1 x 10^-4 M. Its pH is:",
             "options": [
-                { "key": "A", "text": "4" },
-                { "key": "B", "text": "10" },
+                { "key": "A", "text": "10" },
+                { "key": "B", "text": "4" },
                 { "key": "C", "text": "7" },
                 { "key": "D", "text": "-4" }
             ],
-            "answer": "A",
+            "answer": "B",
             "source": {
                 "ref": "openstax_chemistry_2e",
                 "location": "Acid-base equilibria: pH and pOH",
@@ -697,12 +697,12 @@
             "difficulty": "easy",
             "stem": "The unusually high boiling point of water compared with similar-mass molecules is primarily due to:",
             "options": [
-                { "key": "A", "text": "Hydrogen bonding between water molecules" },
-                { "key": "B", "text": "London dispersion forces only" },
-                { "key": "C", "text": "Ion-dipole forces" },
+                { "key": "A", "text": "London dispersion forces only" },
+                { "key": "B", "text": "Ion-dipole forces" },
+                { "key": "C", "text": "Hydrogen bonding between water molecules" },
                 { "key": "D", "text": "The strength of the O-H covalent bonds within a molecule" }
             ],
-            "answer": "A",
+            "answer": "C",
             "source": {
                 "ref": "openstax_chemistry_2e",
                 "location": "Liquids and solids: intermolecular forces",
@@ -722,12 +722,12 @@
             "difficulty": "hard",
             "stem": "In normal-phase column chromatography (polar stationary phase, relatively nonpolar mobile phase), a strongly polar compound will tend to:",
             "options": [
-                { "key": "A", "text": "Be retained longest and elute last" },
-                { "key": "B", "text": "Elute first because it moves fastest" },
-                { "key": "C", "text": "Not interact with the stationary phase at all" },
-                { "key": "D", "text": "Sublime before eluting" }
+                { "key": "A", "text": "Elute first because it moves fastest" },
+                { "key": "B", "text": "Not interact with the stationary phase at all" },
+                { "key": "C", "text": "Sublime before eluting" },
+                { "key": "D", "text": "Be retained longest and elute last" }
             ],
-            "answer": "A",
+            "answer": "D",
             "source": {
                 "ref": "openstax_organic_chemistry",
                 "location": "Structure determination and lab techniques: chromatography",
@@ -772,12 +772,12 @@
             "difficulty": "medium",
             "stem": "Adding a catalyst to a reaction at constant temperature will:",
             "options": [
-                { "key": "A", "text": "Lower the activation energy and speed both the forward and reverse reactions" },
-                { "key": "B", "text": "Shift the equilibrium toward the products" },
+                { "key": "A", "text": "Shift the equilibrium toward the products" },
+                { "key": "B", "text": "Lower the activation energy and speed both the forward and reverse reactions" },
                 { "key": "C", "text": "Make the reaction's dG more negative" },
                 { "key": "D", "text": "Increase the value of the equilibrium constant" }
             ],
-            "answer": "A",
+            "answer": "B",
             "source": {
                 "ref": "openstax_chemistry_2e",
                 "location": "Kinetics: catalysis and activation energy",
@@ -797,12 +797,12 @@
             "difficulty": "easy",
             "stem": "In the human eye, transduction of light into neural signals occurs in the:",
             "options": [
-                { "key": "A", "text": "Photoreceptors (rods and cones) of the retina" },
-                { "key": "B", "text": "Cornea" },
-                { "key": "C", "text": "Lens" },
+                { "key": "A", "text": "Cornea" },
+                { "key": "B", "text": "Lens" },
+                { "key": "C", "text": "Photoreceptors (rods and cones) of the retina" },
                 { "key": "D", "text": "Optic chiasm" }
             ],
-            "answer": "A",
+            "answer": "C",
             "source": {
                 "ref": "openstax_psychology_2e",
                 "location": "Sensation and perception: vision",
@@ -822,12 +822,12 @@
             "difficulty": "medium",
             "stem": "A person holds a 7-digit number in mind just long enough to dial it, then forgets it. This best illustrates:",
             "options": [
-                { "key": "A", "text": "Short-term (working) memory" },
-                { "key": "B", "text": "Long-term potentiation" },
-                { "key": "C", "text": "Procedural memory" },
-                { "key": "D", "text": "Sensory adaptation" }
+                { "key": "A", "text": "Long-term potentiation" },
+                { "key": "B", "text": "Procedural memory" },
+                { "key": "C", "text": "Sensory adaptation" },
+                { "key": "D", "text": "Short-term (working) memory" }
             ],
-            "answer": "A",
+            "answer": "D",
             "source": {
                 "ref": "openstax_psychology_2e",
                 "location": "Memory: stages of memory (short-term/working memory)",
@@ -900,12 +900,12 @@
             "difficulty": "medium",
             "stem": "Individuals exerting less effort on a task when working in a group than when working alone illustrates:",
             "options": [
-                { "key": "A", "text": "Social loafing" },
-                { "key": "B", "text": "Social facilitation" },
+                { "key": "A", "text": "Social facilitation" },
+                { "key": "B", "text": "Social loafing" },
                 { "key": "C", "text": "Groupthink" },
                 { "key": "D", "text": "Deindividuation" }
             ],
-            "answer": "A",
+            "answer": "B",
             "source": {
                 "ref": "openstax_psychology_2e",
                 "location": "Social psychology: group behavior (social loafing)",
@@ -925,12 +925,12 @@
             "difficulty": "medium",
             "stem": "According to the elaboration likelihood model, persuasion through the 'central route' depends primarily on:",
             "options": [
-                { "key": "A", "text": "Careful evaluation of the quality of the arguments" },
-                { "key": "B", "text": "Superficial cues such as the speaker's attractiveness" },
-                { "key": "C", "text": "Sheer repetition of the message" },
+                { "key": "A", "text": "Superficial cues such as the speaker's attractiveness" },
+                { "key": "B", "text": "Sheer repetition of the message" },
+                { "key": "C", "text": "Careful evaluation of the quality of the arguments" },
                 { "key": "D", "text": "The audience's mood alone" }
             ],
-            "answer": "A",
+            "answer": "C",
             "source": {
                 "ref": "openstax_psychology_2e",
                 "location": "Attitudes and persuasion: elaboration likelihood model",
@@ -950,12 +950,12 @@
             "difficulty": "medium",
             "stem": "A student's belief in their own capability to succeed at a specific upcoming task is best described as:",
             "options": [
-                { "key": "A", "text": "Self-efficacy" },
-                { "key": "B", "text": "Self-esteem" },
-                { "key": "C", "text": "Locus of control" },
-                { "key": "D", "text": "Self-serving bias" }
+                { "key": "A", "text": "Self-esteem" },
+                { "key": "B", "text": "Locus of control" },
+                { "key": "C", "text": "Self-serving bias" },
+                { "key": "D", "text": "Self-efficacy" }
             ],
-            "answer": "A",
+            "answer": "D",
             "source": {
                 "ref": "openstax_psychology_2e",
                 "location": "Personality / motivation: Bandura's self-efficacy",
@@ -1000,12 +1000,12 @@
             "difficulty": "medium",
             "stem": "Adjusting one's behavior to control the impression others form, as in Goffman's dramaturgical view, is termed:",
             "options": [
-                { "key": "A", "text": "Impression management (self-presentation)" },
-                { "key": "B", "text": "Social stratification" },
+                { "key": "A", "text": "Social stratification" },
+                { "key": "B", "text": "Impression management (self-presentation)" },
                 { "key": "C", "text": "Cultural assimilation" },
                 { "key": "D", "text": "Role strain" }
             ],
-            "answer": "A",
+            "answer": "B",
             "source": {
                 "ref": "openstax_sociology_3e",
                 "location": "Socialization and interaction: dramaturgy and self-presentation",
@@ -1025,12 +1025,12 @@
             "difficulty": "medium",
             "stem": "A sociologist who studies how social institutions interlock to maintain societal stability is working within which theoretical perspective?",
             "options": [
-                { "key": "A", "text": "Structural functionalism" },
-                { "key": "B", "text": "Conflict theory" },
-                { "key": "C", "text": "Symbolic interactionism" },
+                { "key": "A", "text": "Conflict theory" },
+                { "key": "B", "text": "Symbolic interactionism" },
+                { "key": "C", "text": "Structural functionalism" },
                 { "key": "D", "text": "Rational choice / exchange theory" }
             ],
-            "answer": "A",
+            "answer": "C",
             "source": {
                 "ref": "openstax_sociology_3e",
                 "location": "An introduction to sociology: theoretical perspectives",
@@ -1050,12 +1050,12 @@
             "difficulty": "medium",
             "stem": "The demographic transition model predicts that as a society industrializes:",
             "options": [
-                { "key": "A", "text": "Death rates fall first, followed later by falling birth rates" },
-                { "key": "B", "text": "Birth and death rates both rise indefinitely" },
-                { "key": "C", "text": "Birth rates fall well before death rates" },
-                { "key": "D", "text": "Both rates remain constant over time" }
+                { "key": "A", "text": "Birth and death rates both rise indefinitely" },
+                { "key": "B", "text": "Birth rates fall well before death rates" },
+                { "key": "C", "text": "Both rates remain constant over time" },
+                { "key": "D", "text": "Death rates fall first, followed later by falling birth rates" }
             ],
-            "answer": "A",
+            "answer": "D",
             "source": {
                 "ref": "openstax_sociology_3e",
                 "location": "Population, urbanization, and the environment: demographic transition",

@@ -143,3 +143,156 @@ def test_passage_questions_without_a_ladder_are_still_wellformed():
             for rung in ladder:
                 assert len(rung["options"]) == 4
                 assert 0 <= rung["correct_index"] <= 3
+
+
+# --- CARS: the skills-section passage bank ----------------------------------
+#
+# CARS is folded in as a fourth pre-loaded content type. It reuses the passage
+# note type but (1) lives in its own ReadyMCAT::Passages::CARS sub-deck, (2) is
+# tagged #ReadyMCAT::CARS with NO AAMC content-category tag, and (3) is
+# provisioned by stable per-note guid so it can be topped up onto a profile that
+# already has the AAMC passages, without duplicating cards.
+
+CARS_PASSAGE_COUNT = 15
+CARS_QUESTION_COUNT = 77
+
+
+def test_merge_cars_passage_banks_is_valid_and_complete():
+    cars = bank.merge_cars_passage_banks()
+    assert len(cars) == CARS_PASSAGE_COUNT
+    assert bank.passage_question_count(cars) == CARS_QUESTION_COUNT
+    # passage ids and question ids are globally unique within CARS
+    pids = [p["id"] for p in cars]
+    assert len(set(pids)) == len(pids)
+    qids = [q["id"] for p in cars for q in p["questions"]]
+    assert len(set(qids)) == len(qids)
+    for passage in cars:
+        assert passage.get("section") == "CARS"
+        assert bank.validate_passage(passage) == []
+        for question in passage["questions"]:
+            # CARS is a *skills* section: each question carries a skill and has
+            # no numbered AAMC content category (the "no aamc_category" contract)
+            assert str(question.get("skill", "")).strip()
+            assert bank._passage_question_category(passage, question) == "CARS"
+
+
+def test_cars_note_guid_is_stable_and_unique():
+    cars = bank.merge_cars_passage_banks()
+    qids = [q["id"] for p in cars for q in p["questions"]]
+    guids = [bank.cars_note_guid(qid) for qid in qids]
+    # deterministic (same id -> same guid) and collision-free across the bank
+    assert guids == [bank.cars_note_guid(qid) for qid in qids]
+    assert len(set(guids)) == len(guids)
+
+
+def test_build_cars_passage_notes_deck_and_tags():
+    col = getEmptyCol()
+    cars = bank.merge_cars_passage_banks()
+
+    stats = bank.build_cars_passage_notes(col, cars)
+    assert stats.notes_created == CARS_QUESTION_COUNT
+    assert stats.cards_created == CARS_QUESTION_COUNT  # one card per question
+    assert stats.deck_name == bank.CARS_PASSAGE_DECK_NAME
+    # CARS has no AAMC category, so none are recorded
+    assert stats.categories == []
+
+    # the CARS sub-deck is a child of the shared Passages deck
+    assert col.decks.by_name(bank.CARS_PASSAGE_DECK_NAME) is not None
+    assert bank.CARS_PASSAGE_DECK_NAME == f"{bank.PASSAGE_DECK_NAME}::CARS"
+
+    note_ids = col.find_notes(f'deck:"{bank.CARS_PASSAGE_DECK_NAME}"')
+    assert len(note_ids) == CARS_QUESTION_COUNT
+    for nid in note_ids:
+        note = col.get_note(nid)
+        fields = dict(note.items())
+        # tagged as a CARS passage, but NEVER given an AAMC content-category tag
+        assert bank.CARS_TAG in note.tags
+        assert bank.PASSAGE_TAG in note.tags
+        assert not any(t.startswith(bank.AAMC_TAG_PREFIX) for t in note.tags)
+        # same passage note type + fields as the AAMC passages
+        assert note.note_type()["name"] == bank.PASSAGE_NOTETYPE_NAME
+        assert fields["Passage"]
+        assert fields["Question"]
+        # the CARS skill is surfaced in the Subtopic slot the reviewer renders
+        assert fields["Subtopic"] in {
+            "comprehension",
+            "reasoning-within",
+            "reasoning-beyond",
+        }
+    col.close()
+
+
+def test_provision_cars_passages_is_idempotent():
+    col = getEmptyCol()
+
+    first = bank.provision_cars_passages(col)
+    assert first.already_present is False
+    assert first.notes_created == CARS_QUESTION_COUNT
+    assert col.decks.by_name(bank.CARS_PASSAGE_DECK_NAME) is not None
+
+    second = bank.provision_cars_passages(col)
+    assert second.already_present is True
+    assert (
+        len(col.find_notes(f'deck:"{bank.CARS_PASSAGE_DECK_NAME}"'))
+        == CARS_QUESTION_COUNT
+    )
+    col.close()
+
+
+def test_provision_cars_adds_missing_to_already_provisioned_passage_deck():
+    """The regression the CARS fold-in must avoid: a profile that already has the
+    AAMC ReadyMCAT::Passages deck (provisioned before CARS existed) must still
+    gain exactly the CARS cards on next launch — and never duplicate them."""
+    col = getEmptyCol()
+    # simulate the pre-CARS state: the AAMC Passages deck already exists...
+    bank.provision_passages(col)
+    assert col.decks.by_name(bank.PASSAGE_DECK_NAME) is not None
+    # ...but no CARS is present yet
+    assert bank.has_all_cars_notes(col) is False
+    assert col.decks.by_name(bank.CARS_PASSAGE_DECK_NAME) is None
+    before = col.card_count()
+
+    added = bank.provision_cars_passages(col)
+    assert added.already_present is False
+    assert added.notes_created == CARS_QUESTION_COUNT  # exactly the CARS cards
+    assert col.card_count() == before + CARS_QUESTION_COUNT
+    assert bank.has_all_cars_notes(col) is True
+    assert col.decks.by_name(bank.CARS_PASSAGE_DECK_NAME) is not None
+
+    # relaunch: nothing added, nothing duplicated
+    again = bank.provision_cars_passages(col)
+    assert again.already_present is True
+    assert col.card_count() == before + CARS_QUESTION_COUNT
+    col.close()
+
+
+def test_cars_payload_round_trips_from_a_built_note():
+    """The passage reviewer renders CARS items purely from note fields (it never
+    needs an AAMC category), and surfaces the CARS skill as the subtopic."""
+    col = getEmptyCol()
+    cars = bank.merge_cars_passage_banks()
+    passage = cars[0]
+    question = passage["questions"][0]
+    bank.build_cars_passage_notes(col, [passage])
+
+    notes = [
+        col.get_note(nid)
+        for nid in col.find_notes(f'deck:"{bank.CARS_PASSAGE_DECK_NAME}"')
+    ]
+    by_stem = {dict(n.items())["Question"]: n for n in notes}
+    note = by_stem[question["stem"]]
+
+    payload = bank.passage_payload_from_fields(dict(note.items()))
+    assert payload["passage"] == passage["passage"]
+    assert payload["passageId"] == passage["id"]
+    assert payload["question"] == question["stem"]
+    assert payload["options"] == question["options"]
+    assert payload["correctIndex"] == question["correct_index"]
+    # the CARS skill renders where an AAMC subtopic normally would
+    assert payload["subtopic"] == question["skill"]
+    # the guiding ladder still reuses the MCQ sub-question shape
+    assert len(payload["subquestions"]) == len(question.get("subquestions") or [])
+    for rung in payload["subquestions"]:
+        assert len(rung["options"]) == 4
+        assert 0 <= rung["correct_index"] <= 3
+    col.close()

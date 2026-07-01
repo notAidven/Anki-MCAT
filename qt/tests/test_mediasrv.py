@@ -213,3 +213,45 @@ class TestEditorPageCSP:
         assert "frame-src" not in directives
         assert "child-src" not in directives
         assert "img-src" not in directives
+
+
+class TestReadyMCATEndpointsRegistered:
+    """The ReadyMCAT dashboard + diagnostic POST endpoints must stay registered.
+
+    The diagnostic page fetches ``_anki/getDiagnosticQuiz`` and posts
+    ``_anki/scoreAndSeedDiagnostic``. If those camelCase names are missing from
+    the collection POST handler map, ``_extract_collection_post_request`` returns
+    NotFound and the page 404s with "Invalid path: _anki/getDiagnosticQuiz" — the
+    regression these tests guard. They must coexist with the dashboard's
+    ``pointsAtStakeQueue`` (which aggregates MCQ/FR/passage) and the reviewer's
+    scheduling endpoints, so nothing else was dropped in the merge.
+    """
+
+    def test_diagnostic_endpoints_are_registered(self) -> None:
+        from aqt.mediasrv import post_handlers
+
+        for name in ("getDiagnosticQuiz", "scoreAndSeedDiagnostic"):
+            assert name in post_handlers, f"{name} not registered (would 404)"
+            assert callable(post_handlers[name])
+
+    def test_diagnostic_backend_methods_return_data_not_404(self) -> None:
+        # Each exposed endpoint resolves to a RustBackend ``<name>_raw`` method,
+        # so a registered endpoint returns real serialized data rather than a
+        # 404. (mediasrv asserts this at import time; we assert it explicitly.)
+        from anki._backend import RustBackend
+
+        assert hasattr(RustBackend, "get_diagnostic_quiz_raw")
+        assert hasattr(RustBackend, "score_and_seed_diagnostic_raw")
+
+    def test_dashboard_and_reviewer_endpoints_coexist(self) -> None:
+        from aqt.mediasrv import post_handlers
+
+        # nothing else got dropped: the dashboard aggregation serving
+        # MCQ/FR/passage, plus the reviewer's scheduling endpoints.
+        for name in (
+            "pointsAtStakeQueue",
+            "getSchedulingStatesWithContext",
+            "setSchedulingStates",
+            "congratsInfo",
+        ):
+            assert name in post_handlers, f"{name} unexpectedly missing"

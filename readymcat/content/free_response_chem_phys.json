@@ -5426,5 +5426,1604 @@
         "explanation": "By density (and size/mass)."
       }
     ]
+  },
+  {
+    "id": "fr-cp-5D-1",
+    "section": "C/P",
+    "aamc_category": "5D",
+    "subtopic": "Functional groups",
+    "answer_type": "free_response",
+    "prompt": "Name the functional group represented by –COOH.",
+    "accepted_answers": [
+      "carboxylic acid",
+      "carboxyl",
+      "carboxyl group",
+      "carboxylic acid group"
+    ],
+    "key_terms": [
+      "carboxyl",
+      "COOH",
+      "C=O and O-H"
+    ],
+    "model_answer": "The carboxyl group (a carboxylic acid), which combines a carbonyl (C=O) and a hydroxyl (O–H) on the same carbon.",
+    "explanation": "Recognizing functional groups is the basis of predicting organic reactivity; –COOH is acidic.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Organic Chemistry, Ch. 3: Organic Compounds — Functional Groups",
+      "url": "https://openstax.org/details/books/organic-chemistry",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "The –COOH group contains a C=O plus which other group on the same carbon?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "hydroxyl",
+          "OH",
+          "O-H",
+          "hydroxyl group"
+        ],
+        "explanation": "A hydroxyl (O–H)."
+      },
+      {
+        "stem": "A carbonyl (C=O) plus a hydroxyl (O–H) on one carbon makes which group?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "carboxyl",
+          "carboxylic acid",
+          "carboxyl group"
+        ],
+        "explanation": "The carboxyl group."
+      },
+      {
+        "stem": "Is a carboxylic acid acidic or basic?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "acidic",
+          "acid",
+          "it is acidic"
+        ],
+        "explanation": "Acidic — it readily donates the O–H proton."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5D-2",
+    "section": "C/P",
+    "aamc_category": "5D",
+    "subtopic": "Chirality and stereocenters",
+    "answer_type": "free_response",
+    "prompt": "What is the name for a carbon atom bonded to four different groups?",
+    "accepted_answers": [
+      "chiral center",
+      "stereocenter",
+      "stereogenic center",
+      "chirality center",
+      "asymmetric carbon"
+    ],
+    "key_terms": [
+      "chiral",
+      "stereocenter",
+      "four different groups"
+    ],
+    "model_answer": "A chiral center (stereocenter): a carbon with four different substituents, which makes the molecule non-superimposable on its mirror image.",
+    "explanation": "Each stereocenter can be R or S; a molecule with n stereocenters can have up to 2ⁿ stereoisomers.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Organic Chemistry, Ch. 5: Stereochemistry at Tetrahedral Centers",
+      "url": "https://openstax.org/details/books/organic-chemistry",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "How many substituents surround an sp³ carbon?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "4",
+          "four"
+        ],
+        "explanation": "Four groups (tetrahedral)."
+      },
+      {
+        "stem": "For chirality, how many of those four groups must be different?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "4",
+          "all four",
+          "all of them",
+          "four"
+        ],
+        "explanation": "All four must be different."
+      },
+      {
+        "stem": "Such a carbon is called a ____.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "chiral center",
+          "stereocenter",
+          "stereogenic center"
+        ],
+        "explanation": "A chiral center / stereocenter."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5D-3",
+    "section": "C/P",
+    "aamc_category": "5D",
+    "subtopic": "Isomer relationships",
+    "answer_type": "free_response",
+    "prompt": "Two compounds have the same molecular formula but different atom-to-atom connectivity. What kind of isomers are they?",
+    "accepted_answers": [
+      "constitutional isomers",
+      "structural isomers",
+      "constitutional isomer",
+      "structural isomer"
+    ],
+    "key_terms": [
+      "constitutional",
+      "structural",
+      "different connectivity"
+    ],
+    "model_answer": "Constitutional (structural) isomers — same molecular formula, different connectivity of atoms.",
+    "explanation": "Contrast with stereoisomers, which share connectivity but differ in 3-D arrangement.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Organic Chemistry, Ch. 3: Organic Compounds — Isomers",
+      "url": "https://openstax.org/details/books/organic-chemistry",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Do the two molecules share the same molecular formula? (yes/no)",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "yes",
+          "same formula",
+          "yes they do"
+        ],
+        "explanation": "Yes — identical molecular formula."
+      },
+      {
+        "stem": "Do they differ in how the atoms are connected, or only in 3-D orientation?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "connectivity",
+          "how atoms are connected",
+          "connection",
+          "bonding order"
+        ],
+        "explanation": "They differ in connectivity."
+      },
+      {
+        "stem": "Isomers differing in connectivity are called what?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "constitutional isomers",
+          "structural isomers",
+          "constitutional"
+        ],
+        "explanation": "Constitutional (structural) isomers."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5D-4",
+    "section": "C/P",
+    "aamc_category": "5D",
+    "subtopic": "Oxidation of alcohols",
+    "answer_type": "free_response",
+    "prompt": "What functional group is the FINAL product of the vigorous oxidation of a primary alcohol?",
+    "accepted_answers": [
+      "carboxylic acid",
+      "carboxylic acid (COOH)",
+      "carboxyl",
+      "a carboxylic acid"
+    ],
+    "key_terms": [
+      "carboxylic acid",
+      "primary alcohol",
+      "via aldehyde"
+    ],
+    "model_answer": "A carboxylic acid. A primary alcohol is oxidized first to an aldehyde and then, under strong/continued oxidation, to a carboxylic acid.",
+    "explanation": "Secondary alcohols oxidize to ketones (which resist further oxidation); tertiary alcohols are not readily oxidized.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Organic Chemistry, Ch. 17: Alcohols and Phenols — Oxidation",
+      "url": "https://openstax.org/details/books/organic-chemistry",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Mild oxidation of a primary alcohol first gives which functional group?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "aldehyde",
+          "an aldehyde",
+          "aldehyde group"
+        ],
+        "explanation": "An aldehyde."
+      },
+      {
+        "stem": "Continued strong oxidation converts that aldehyde into what?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "carboxylic acid",
+          "a carboxylic acid",
+          "carboxyl"
+        ],
+        "explanation": "A carboxylic acid."
+      },
+      {
+        "stem": "What do secondary alcohols oxidize to instead?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "ketone",
+          "a ketone",
+          "ketones"
+        ],
+        "explanation": "A ketone."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5D-5",
+    "section": "C/P",
+    "aamc_category": "5D",
+    "subtopic": "Nucleophilic addition to carbonyls",
+    "answer_type": "free_response",
+    "prompt": "In a carbonyl group (C=O), which atom is attacked by a nucleophile?",
+    "accepted_answers": [
+      "carbon",
+      "the carbon",
+      "carbonyl carbon",
+      "the carbonyl carbon",
+      "C"
+    ],
+    "key_terms": [
+      "carbon",
+      "electrophilic",
+      "delta positive"
+    ],
+    "model_answer": "The carbonyl carbon. Oxygen's electronegativity makes the carbon electron-poor (δ+), so it is the electrophilic site attacked by nucleophiles.",
+    "explanation": "Nucleophilic addition to the carbonyl carbon is the central reaction of aldehydes and ketones.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Organic Chemistry, Ch. 19: Aldehydes and Ketones — Nucleophilic Addition",
+      "url": "https://openstax.org/details/books/organic-chemistry",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Which atom in C=O is more electronegative?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "oxygen",
+          "O",
+          "the oxygen"
+        ],
+        "explanation": "Oxygen."
+      },
+      {
+        "stem": "That polarity leaves the carbon with a partial positive or negative charge?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "positive",
+          "partial positive",
+          "δ+",
+          "delta positive"
+        ],
+        "explanation": "Partial positive (δ+), i.e., electrophilic."
+      },
+      {
+        "stem": "A nucleophile (electron-rich) therefore attacks which atom?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "carbon",
+          "the carbonyl carbon",
+          "carbon (δ+)"
+        ],
+        "explanation": "The electrophilic carbonyl carbon."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5D-6",
+    "section": "C/P",
+    "aamc_category": "5D",
+    "subtopic": "Carboxylic acid acidity",
+    "answer_type": "free_response",
+    "prompt": "What effect makes carboxylic acids much more acidic than alcohols (by stabilizing the conjugate base)? Name it.",
+    "accepted_answers": [
+      "resonance",
+      "resonance stabilization",
+      "delocalization",
+      "resonance of the carboxylate",
+      "charge delocalization"
+    ],
+    "key_terms": [
+      "resonance",
+      "delocalization",
+      "carboxylate"
+    ],
+    "model_answer": "Resonance stabilization of the carboxylate anion: the negative charge is delocalized over two equivalent oxygens, making the conjugate base (and therefore the acid) much more stable.",
+    "explanation": "A more stable conjugate base means a stronger acid (lower pKa); alkoxide from an alcohol has no such resonance.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Organic Chemistry, Ch. 20: Carboxylic Acids and Nitriles — Acidity",
+      "url": "https://openstax.org/details/books/organic-chemistry",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Acid strength depends on the stability of which species formed after losing H⁺?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "conjugate base",
+          "the conjugate base",
+          "carboxylate",
+          "anion"
+        ],
+        "explanation": "The conjugate base (here, the carboxylate)."
+      },
+      {
+        "stem": "Over how many oxygen atoms is the carboxylate's negative charge spread?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "2",
+          "two",
+          "both oxygens"
+        ],
+        "explanation": "Two equivalent oxygens."
+      },
+      {
+        "stem": "Spreading charge over two atoms via multiple Lewis structures is called what?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "resonance",
+          "delocalization",
+          "resonance stabilization"
+        ],
+        "explanation": "Resonance (delocalization)."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5D-7",
+    "section": "C/P",
+    "aamc_category": "5D",
+    "subtopic": "Esterification and hydrolysis",
+    "answer_type": "free_response",
+    "prompt": "A carboxylic acid reacts with an alcohol (acid-catalyzed) to release water and form which class of compound?",
+    "accepted_answers": [
+      "ester",
+      "an ester",
+      "esters"
+    ],
+    "key_terms": [
+      "ester",
+      "condensation",
+      "loses water"
+    ],
+    "model_answer": "An ester (Fischer esterification): –COOH + –OH → ester + H₂O.",
+    "explanation": "The reverse reaction, ester + water → acid + alcohol, is hydrolysis; base-promoted hydrolysis is saponification.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Organic Chemistry, Ch. 21: Carboxylic Acid Derivatives — Esters",
+      "url": "https://openstax.org/details/books/organic-chemistry",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Which two functional groups combine in a Fischer esterification?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "carboxylic acid and alcohol",
+          "COOH and OH",
+          "acid and alcohol",
+          "-COOH and -OH"
+        ],
+        "explanation": "A carboxylic acid (–COOH) and an alcohol (–OH)."
+      },
+      {
+        "stem": "What small molecule is released in this condensation?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "water",
+          "H2O",
+          "H₂O"
+        ],
+        "explanation": "Water."
+      },
+      {
+        "stem": "Name the product class.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "ester",
+          "an ester"
+        ],
+        "explanation": "An ester."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5D-8",
+    "section": "C/P",
+    "aamc_category": "5D",
+    "subtopic": "Substitution reactions (SN1/SN2)",
+    "answer_type": "free_response",
+    "prompt": "Which substitution mechanism, SN1 or SN2, is favored for a bulky tertiary alkyl halide?",
+    "accepted_answers": [
+      "SN1",
+      "S_N1",
+      "SN1 mechanism",
+      "sn1"
+    ],
+    "key_terms": [
+      "SN1",
+      "tertiary",
+      "stable carbocation"
+    ],
+    "model_answer": "SN1. Tertiary substrates are too hindered for backside attack (disfavoring SN2) and form relatively stable 3° carbocations (favoring the stepwise SN1 pathway).",
+    "explanation": "SN2 is favored for methyl/primary substrates (less steric hindrance); SN1 is favored for tertiary (stable carbocations).",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Organic Chemistry, Ch. 11: Reactions of Alkyl Halides — Nucleophilic Substitution",
+      "url": "https://openstax.org/details/books/organic-chemistry",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Can a nucleophile easily perform backside attack on a bulky tertiary carbon? (yes/no)",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "no",
+          "no it cannot",
+          "cannot",
+          "too hindered"
+        ],
+        "explanation": "No — steric bulk blocks backside attack (so SN2 is disfavored)."
+      },
+      {
+        "stem": "Is a tertiary (3°) carbocation relatively stable or unstable?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "stable",
+          "relatively stable",
+          "more stable"
+        ],
+        "explanation": "Relatively stable (hyperconjugation/induction)."
+      },
+      {
+        "stem": "A hindered substrate that forms a stable carbocation favors which mechanism?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "SN1",
+          "S_N1",
+          "sn1"
+        ],
+        "explanation": "SN1."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5D-9",
+    "section": "C/P",
+    "aamc_category": "5D",
+    "subtopic": "Electrophilic addition (Markovnikov)",
+    "answer_type": "free_response",
+    "prompt": "By Markovnikov's rule, when HBr adds across propene's double bond, the H atom adds to the carbon bearing MORE or FEWER hydrogens?",
+    "accepted_answers": [
+      "more",
+      "more hydrogens",
+      "the one with more H",
+      "more H",
+      "more hydrogen"
+    ],
+    "key_terms": [
+      "more",
+      "more stable carbocation",
+      "Markovnikov"
+    ],
+    "model_answer": "More. The proton adds to the carbon already having more hydrogens, generating the more substituted (more stable) carbocation; Br⁻ then bonds to that more substituted carbon.",
+    "explanation": "\"The rich get richer\": H goes to the carbon with more H's, placing the positive charge (and then the halide) on the more substituted carbon.",
+    "difficulty": "hard",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Organic Chemistry, Ch. 7: Alkenes — Electrophilic Addition Reactions",
+      "url": "https://openstax.org/details/books/organic-chemistry",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "What reactive intermediate forms after H⁺ adds to the alkene?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "carbocation",
+          "a carbocation",
+          "carbonium ion"
+        ],
+        "explanation": "A carbocation."
+      },
+      {
+        "stem": "Which carbocation is more stable, more substituted or less substituted?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "more substituted",
+          "more substituted one",
+          "tertiary",
+          "more"
+        ],
+        "explanation": "The more substituted carbocation is more stable."
+      },
+      {
+        "stem": "To make the more substituted carbocation, H⁺ adds to the carbon with more or fewer H's?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "more",
+          "more hydrogens",
+          "more H"
+        ],
+        "explanation": "More — leaving the cation on the more substituted carbon."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5D-10",
+    "section": "C/P",
+    "aamc_category": "5D",
+    "subtopic": "Amino acids (zwitterions)",
+    "answer_type": "free_response",
+    "prompt": "At its isoelectric point (pI), an amino acid exists mainly as a dipolar, net-neutral species. What is this species called?",
+    "accepted_answers": [
+      "zwitterion",
+      "zwitterionic form",
+      "dipolar ion",
+      "a zwitterion"
+    ],
+    "key_terms": [
+      "zwitterion",
+      "net neutral",
+      "NH3+ and COO-"
+    ],
+    "model_answer": "A zwitterion — it carries both a protonated amino group (–NH₃⁺) and a deprotonated carboxyl group (–COO⁻), giving zero net charge.",
+    "explanation": "pI is the pH at which the amino acid has no net charge and does not migrate in an electric field.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Organic Chemistry, Ch. 26: Amino Acids, Peptides, and Proteins",
+      "url": "https://openstax.org/details/books/organic-chemistry",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Amino acids contain an acidic –COOH and a basic group; name the basic group.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "amino",
+          "amine",
+          "amino group",
+          "-NH2",
+          "NH2"
+        ],
+        "explanation": "The amino group (–NH₂)."
+      },
+      {
+        "stem": "At the pI, what are the charges on –NH₃⁺ and –COO⁻ (net)?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "zero",
+          "net zero",
+          "no net charge",
+          "0"
+        ],
+        "explanation": "They cancel — net charge zero."
+      },
+      {
+        "stem": "A molecule with both a + and a − charge but net-neutral is called a ____.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "zwitterion",
+          "dipolar ion"
+        ],
+        "explanation": "A zwitterion."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5D-11",
+    "section": "C/P",
+    "aamc_category": "5D",
+    "subtopic": "Peptide bonds",
+    "answer_type": "free_response",
+    "prompt": "What type of covalent bond (functional group) links two amino acids in a protein?",
+    "accepted_answers": [
+      "amide",
+      "peptide bond",
+      "amide bond",
+      "amide (peptide) bond",
+      "peptide"
+    ],
+    "key_terms": [
+      "amide",
+      "peptide",
+      "condensation"
+    ],
+    "model_answer": "A peptide bond, which is an amide linkage formed between the –COOH of one amino acid and the –NH₂ of the next (with loss of water).",
+    "explanation": "The peptide bond is planar and partially double-bonded due to resonance, restricting rotation.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Organic Chemistry, Ch. 26: Amino Acids, Peptides, and Proteins — Peptide Bonds",
+      "url": "https://openstax.org/details/books/organic-chemistry",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Which two groups react to link two amino acids?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "-COOH and -NH2",
+          "carboxyl and amino",
+          "COOH and NH2",
+          "acid and amine"
+        ],
+        "explanation": "The carboxyl (–COOH) of one and the amino (–NH₂) of the other."
+      },
+      {
+        "stem": "What small molecule is lost when they join?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "water",
+          "H2O",
+          "H₂O"
+        ],
+        "explanation": "Water (a condensation reaction)."
+      },
+      {
+        "stem": "The resulting C(=O)–N linkage is which functional group?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "amide",
+          "peptide bond",
+          "amide bond"
+        ],
+        "explanation": "An amide (the peptide bond)."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5D-12",
+    "section": "C/P",
+    "aamc_category": "5D",
+    "subtopic": "Protein structure",
+    "answer_type": "free_response",
+    "prompt": "The α-helix and β-pleated sheet are examples of which level of protein structure?",
+    "accepted_answers": [
+      "secondary",
+      "secondary structure",
+      "2° structure",
+      "secondary (2°)"
+    ],
+    "key_terms": [
+      "secondary",
+      "backbone hydrogen bonds",
+      "alpha helix beta sheet"
+    ],
+    "model_answer": "Secondary structure — local folding of the backbone (α-helices and β-sheets) stabilized by hydrogen bonds between backbone atoms.",
+    "explanation": "Primary = sequence; secondary = local H-bonded motifs; tertiary = overall 3-D fold; quaternary = multiple subunits.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e, Ch. 3: Biological Macromolecules — Proteins",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "What is the primary structure of a protein?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "amino acid sequence",
+          "sequence",
+          "the sequence of amino acids",
+          "order of amino acids"
+        ],
+        "explanation": "The linear sequence of amino acids."
+      },
+      {
+        "stem": "α-helices and β-sheets are stabilized mainly by what kind of bonds?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "hydrogen bonds",
+          "hydrogen bonding",
+          "H-bonds",
+          "backbone hydrogen bonds"
+        ],
+        "explanation": "Hydrogen bonds between backbone atoms."
+      },
+      {
+        "stem": "These local backbone motifs constitute which structural level?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "secondary",
+          "secondary structure",
+          "2°"
+        ],
+        "explanation": "Secondary structure."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5D-13",
+    "section": "C/P",
+    "aamc_category": "5D",
+    "subtopic": "Carbohydrates",
+    "answer_type": "free_response",
+    "prompt": "What type of covalent bond links two monosaccharides together in a disaccharide?",
+    "accepted_answers": [
+      "glycosidic",
+      "glycosidic bond",
+      "glycosidic linkage",
+      "a glycosidic bond"
+    ],
+    "key_terms": [
+      "glycosidic",
+      "condensation",
+      "between -OH groups"
+    ],
+    "model_answer": "A glycosidic bond — formed by a condensation (dehydration) reaction between hydroxyl groups of two sugars.",
+    "explanation": "For example, sucrose is glucose + fructose joined by an α,β-1,2-glycosidic bond.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e, Ch. 3: Biological Macromolecules — Carbohydrates",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Monosaccharides join through which functional groups?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "hydroxyl",
+          "OH",
+          "hydroxyl groups",
+          "-OH groups"
+        ],
+        "explanation": "Through their hydroxyl (–OH) groups."
+      },
+      {
+        "stem": "What small molecule is released when they join?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "water",
+          "H2O",
+          "H₂O"
+        ],
+        "explanation": "Water (condensation/dehydration synthesis)."
+      },
+      {
+        "stem": "Name the resulting bond between the two sugars.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "glycosidic",
+          "glycosidic bond",
+          "glycosidic linkage"
+        ],
+        "explanation": "A glycosidic bond."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5D-14",
+    "section": "C/P",
+    "aamc_category": "5D",
+    "subtopic": "Lipids",
+    "answer_type": "free_response",
+    "prompt": "A fatty acid that contains NO carbon–carbon double bonds is described by which term?",
+    "accepted_answers": [
+      "saturated",
+      "saturated fatty acid",
+      "a saturated fatty acid"
+    ],
+    "key_terms": [
+      "saturated",
+      "no C=C",
+      "packs tightly"
+    ],
+    "model_answer": "Saturated — every carbon is bonded to the maximum number of hydrogens (no C=C double bonds), so the chains are straight and pack tightly (solid at room temperature).",
+    "explanation": "Unsaturated fatty acids have one or more C=C bonds that introduce kinks, lowering the melting point (liquid oils).",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e, Ch. 3: Biological Macromolecules — Lipids",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "\"Saturated\" means the carbons hold the maximum number of which atoms?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "hydrogen",
+          "hydrogens",
+          "H",
+          "hydrogen atoms"
+        ],
+        "explanation": "Hydrogen atoms (fully saturated with H)."
+      },
+      {
+        "stem": "Do saturated chains have any C=C double bonds?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "no",
+          "none",
+          "no double bonds",
+          "zero"
+        ],
+        "explanation": "No — only single C–C bonds."
+      },
+      {
+        "stem": "Straight, tightly packing chains are solid or liquid at room temperature?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "solid",
+          "solid at room temperature",
+          "a solid"
+        ],
+        "explanation": "Solid (e.g., animal fats)."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5E-1",
+    "section": "C/P",
+    "aamc_category": "5E",
+    "subtopic": "Enthalpy (endothermic/exothermic)",
+    "answer_type": "free_response",
+    "prompt": "What is the sign of ΔH for an exothermic reaction (one that releases heat)?",
+    "accepted_answers": [
+      "negative",
+      "negative (ΔH < 0)",
+      "ΔH < 0",
+      "minus"
+    ],
+    "key_terms": [
+      "negative",
+      "releases heat",
+      "ΔH < 0"
+    ],
+    "model_answer": "Negative. An exothermic reaction releases heat, so the products have lower enthalpy than the reactants (ΔH < 0).",
+    "explanation": "Endothermic reactions absorb heat and have ΔH > 0 (positive).",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 5: Thermochemistry — Enthalpy",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Does an exothermic reaction release or absorb heat?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "releases",
+          "release",
+          "gives off heat",
+          "releases heat"
+        ],
+        "explanation": "It releases heat to the surroundings."
+      },
+      {
+        "stem": "Are the products at higher or lower enthalpy than the reactants?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "lower",
+          "lower enthalpy",
+          "lower energy"
+        ],
+        "explanation": "Lower — energy left the system as heat."
+      },
+      {
+        "stem": "So the sign of ΔH is what?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "negative",
+          "ΔH < 0",
+          "minus"
+        ],
+        "explanation": "Negative."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5E-2",
+    "section": "C/P",
+    "aamc_category": "5E",
+    "subtopic": "Hess's law",
+    "answer_type": "free_response",
+    "prompt": "Hess's law states that the total enthalpy change of a reaction is independent of what?",
+    "accepted_answers": [
+      "path",
+      "the path",
+      "pathway",
+      "route",
+      "number of steps"
+    ],
+    "key_terms": [
+      "path",
+      "state function",
+      "path-independent"
+    ],
+    "model_answer": "The path (route/number of steps). Because enthalpy is a state function, ΔH depends only on the initial and final states, so reaction enthalpies can be added.",
+    "explanation": "This lets you compute an overall ΔH by summing the ΔH of steps whose enthalpies are known.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 5: Thermochemistry — Hess's Law",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "A quantity that depends only on initial and final states is called a ____ function.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "state",
+          "state function",
+          "a state function"
+        ],
+        "explanation": "A state function."
+      },
+      {
+        "stem": "Is enthalpy (H) a state function? (yes/no)",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "yes",
+          "yes it is",
+          "it is"
+        ],
+        "explanation": "Yes — enthalpy is a state function."
+      },
+      {
+        "stem": "Therefore ΔH is independent of the ____ taken.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "path",
+          "route",
+          "pathway"
+        ],
+        "explanation": "The path."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5E-3",
+    "section": "C/P",
+    "aamc_category": "5E",
+    "subtopic": "Gibbs free energy and spontaneity",
+    "answer_type": "free_response",
+    "prompt": "Write the equation for the Gibbs free energy change in terms of enthalpy, temperature, and entropy.",
+    "accepted_answers": [
+      "ΔG = ΔH - TΔS",
+      "dG = dH - TdS",
+      "G = H - TS",
+      "ΔG=ΔH−TΔS",
+      "ΔG = ΔH - T ΔS"
+    ],
+    "key_terms": [
+      "ΔH - TΔS",
+      "spontaneous when negative"
+    ],
+    "model_answer": "ΔG = ΔH − TΔS. A reaction is spontaneous when ΔG < 0.",
+    "explanation": "Both enthalpy and entropy (weighted by temperature) determine spontaneity; T can flip the sign of ΔG when ΔH and ΔS have the same sign.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 16: Thermodynamics — Gibbs Free Energy",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Which two thermodynamic quantities combine to determine spontaneity?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "enthalpy and entropy",
+          "ΔH and ΔS",
+          "H and S",
+          "enthalpy, entropy"
+        ],
+        "explanation": "Enthalpy (ΔH) and entropy (ΔS)."
+      },
+      {
+        "stem": "In ΔG = ΔH − TΔS, what does T represent?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "temperature",
+          "absolute temperature",
+          "temp in kelvin",
+          "T (Kelvin)"
+        ],
+        "explanation": "Absolute temperature (in kelvin)."
+      },
+      {
+        "stem": "A reaction is spontaneous when ΔG has which sign?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "negative",
+          "ΔG < 0",
+          "minus"
+        ],
+        "explanation": "Negative (ΔG < 0)."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5E-4",
+    "section": "C/P",
+    "aamc_category": "5E",
+    "subtopic": "Entropy",
+    "answer_type": "free_response",
+    "prompt": "What is the sign of the entropy change (ΔS) when a gas expands into a larger volume?",
+    "accepted_answers": [
+      "positive",
+      "positive (ΔS > 0)",
+      "ΔS > 0",
+      "increases",
+      "plus"
+    ],
+    "key_terms": [
+      "positive",
+      "more microstates",
+      "increased disorder"
+    ],
+    "model_answer": "Positive. Expansion increases the number of accessible microstates (greater disorder/dispersal of energy), so ΔS > 0.",
+    "explanation": "Entropy tends to increase for phase changes to gas, dissolving, and increases in the number of gas molecules.",
+    "difficulty": "easy",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 16: Thermodynamics — Entropy",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Entropy is a measure of disorder or the number of accessible ____.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "microstates",
+          "microstate",
+          "arrangements",
+          "states"
+        ],
+        "explanation": "Microstates (ways to arrange the system)."
+      },
+      {
+        "stem": "Does a gas in a larger volume have more or fewer accessible positions?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "more",
+          "more positions",
+          "greater",
+          "more microstates"
+        ],
+        "explanation": "More — a bigger volume means more accessible microstates."
+      },
+      {
+        "stem": "So the sign of ΔS for expansion is what?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "positive",
+          "ΔS > 0",
+          "plus"
+        ],
+        "explanation": "Positive."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5E-5",
+    "section": "C/P",
+    "aamc_category": "5E",
+    "subtopic": "Calorimetry (specific heat)",
+    "answer_type": "free_response",
+    "prompt": "How much heat is needed to raise 500 g of water by 10°C? Use c = 4.18 J/(g·°C). Give the value with units.",
+    "accepted_answers": [
+      "20900 J",
+      "2.09 × 10^4 J",
+      "20.9 kJ",
+      "20900"
+    ],
+    "key_terms": [
+      "unit: J",
+      "tolerance: ±2%",
+      "q = m c ΔT"
+    ],
+    "model_answer": "q = mcΔT = (500 g)(4.18 J/g·°C)(10°C) = 20,900 J ≈ 20.9 kJ.",
+    "explanation": "Specific heat is the energy to raise 1 g by 1°C; water's high value (4.18) resists temperature change.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 5: Thermochemistry — Calorimetry",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Write the equation for heat transferred using specific heat.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "q = m c ΔT",
+          "q=mcΔT",
+          "q = mcdeltaT",
+          "heat = m c ΔT"
+        ],
+        "explanation": "q = mcΔT."
+      },
+      {
+        "stem": "Multiply the specific heat by the mass: (4.18)(500) (give J/°C).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "2090 J/°C",
+          "2090",
+          "2090 J per degree"
+        ],
+        "explanation": "= 2090 J/°C."
+      },
+      {
+        "stem": "Now multiply by ΔT = 10°C (give J).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "20900 J",
+          "2.09 x 10^4 J",
+          "20.9 kJ",
+          "20900"
+        ],
+        "explanation": "= 20,900 J."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5E-6",
+    "section": "C/P",
+    "aamc_category": "5E",
+    "subtopic": "Rate laws and reaction order",
+    "answer_type": "free_response",
+    "prompt": "For the rate law rate = k[A]², what is the overall order of the reaction?",
+    "accepted_answers": [
+      "second order",
+      "2",
+      "2nd order",
+      "order 2",
+      "second"
+    ],
+    "key_terms": [
+      "second order",
+      "sum of exponents",
+      "order 2"
+    ],
+    "model_answer": "Second order overall. The overall order is the sum of the exponents in the rate law (here just 2).",
+    "explanation": "Reaction order is determined experimentally, not from the balanced equation's coefficients.",
+    "difficulty": "easy",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 12: Kinetics — Rate Laws",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "How do you get the OVERALL order from a rate law?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "sum the exponents",
+          "add the exponents",
+          "sum of the exponents",
+          "add exponents"
+        ],
+        "explanation": "Add up the exponents on the concentration terms."
+      },
+      {
+        "stem": "What is the exponent on [A] in rate = k[A]²?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "2",
+          "two"
+        ],
+        "explanation": "The exponent is 2."
+      },
+      {
+        "stem": "So the overall order is what?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "second order",
+          "2",
+          "2nd order"
+        ],
+        "explanation": "Second order."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5E-7",
+    "section": "C/P",
+    "aamc_category": "5E",
+    "subtopic": "Activation energy and catalysis",
+    "answer_type": "free_response",
+    "prompt": "How does a catalyst increase the rate of a reaction (what does it do to the activation energy)?",
+    "accepted_answers": [
+      "lowers the activation energy",
+      "lowers it",
+      "decreases the activation energy",
+      "decreases it",
+      "lowers Ea",
+      "reduces activation energy"
+    ],
+    "key_terms": [
+      "lowers",
+      "activation energy",
+      "alternative pathway"
+    ],
+    "model_answer": "It lowers the activation energy by providing an alternative reaction pathway, so more molecules have enough energy to react.",
+    "explanation": "A catalyst is not consumed and does not change ΔG or the equilibrium position — only the rate (both forward and reverse).",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 12: Kinetics — Catalysis",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "The minimum energy barrier a reaction must overcome is called the ____.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "activation energy",
+          "Ea",
+          "activation energy (Ea)"
+        ],
+        "explanation": "The activation energy (Ea)."
+      },
+      {
+        "stem": "A catalyst provides an alternative reaction ____.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "pathway",
+          "path",
+          "mechanism",
+          "route"
+        ],
+        "explanation": "An alternative pathway/mechanism."
+      },
+      {
+        "stem": "This alternative pathway has a higher or lower activation energy?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "lower",
+          "lower activation energy",
+          "lower Ea"
+        ],
+        "explanation": "Lower — which speeds the reaction."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5E-8",
+    "section": "C/P",
+    "aamc_category": "5E",
+    "subtopic": "Reaction mechanisms (rate-determining step)",
+    "answer_type": "free_response",
+    "prompt": "In a multi-step reaction mechanism, what is the slowest step called?",
+    "accepted_answers": [
+      "rate-determining step",
+      "rate limiting step",
+      "rate-determining",
+      "RDS",
+      "rate-limiting step"
+    ],
+    "key_terms": [
+      "rate-determining",
+      "slowest step",
+      "bottleneck"
+    ],
+    "model_answer": "The rate-determining (rate-limiting) step — the slowest elementary step, which sets the overall reaction rate.",
+    "explanation": "The rate law of the overall reaction reflects the rate-determining step (and any preceding fast equilibria).",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 12: Kinetics — Reaction Mechanisms",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "A reaction mechanism is a sequence of ____ steps.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "elementary",
+          "elementary steps",
+          "individual",
+          "simple"
+        ],
+        "explanation": "Elementary steps."
+      },
+      {
+        "stem": "Which step — fastest or slowest — controls the overall rate?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "slowest",
+          "the slowest",
+          "slowest step"
+        ],
+        "explanation": "The slowest step controls the rate."
+      },
+      {
+        "stem": "This slowest step is named the ____.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "rate-determining step",
+          "rate limiting step",
+          "RDS"
+        ],
+        "explanation": "Rate-determining (rate-limiting) step."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5E-9",
+    "section": "C/P",
+    "aamc_category": "5E",
+    "subtopic": "Equilibrium constant expression",
+    "answer_type": "free_response",
+    "prompt": "Write the equilibrium constant (Kc) expression for the reaction N₂ + 3H₂ ⇌ 2NH₃.",
+    "accepted_answers": [
+      "[NH3]^2/([N2][H2]^3)",
+      "[NH3]^2 / ([N2][H2]^3)",
+      "[NH3]²/([N2][H2]³)",
+      "Kc = [NH3]^2/([N2][H2]^3)"
+    ],
+    "key_terms": [
+      "products over reactants",
+      "[NH3]^2",
+      "[H2]^3"
+    ],
+    "model_answer": "Kc = [NH₃]² / ([N₂][H₂]³): products over reactants, each raised to its stoichiometric coefficient.",
+    "explanation": "Pure solids and liquids are omitted from K expressions; only gases and aqueous species appear.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 13: Fundamental Equilibrium Concepts",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "In a K expression, which go in the numerator — products or reactants?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "products",
+          "the products",
+          "products in numerator"
+        ],
+        "explanation": "Products in the numerator, reactants in the denominator."
+      },
+      {
+        "stem": "Each concentration is raised to a power equal to what?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "its coefficient",
+          "stoichiometric coefficient",
+          "the coefficient",
+          "its stoichiometric coefficient"
+        ],
+        "explanation": "Its stoichiometric coefficient from the balanced equation."
+      },
+      {
+        "stem": "Write Kc for N₂ + 3H₂ ⇌ 2NH₃.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "[NH3]^2/([N2][H2]^3)",
+          "[NH3]²/([N2][H2]³)"
+        ],
+        "explanation": "Kc = [NH₃]² / ([N₂][H₂]³)."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5E-10",
+    "section": "C/P",
+    "aamc_category": "5E",
+    "subtopic": "Le Chatelier's principle",
+    "answer_type": "free_response",
+    "prompt": "By Le Chatelier's principle, adding more reactant to a system at equilibrium shifts the equilibrium toward which side?",
+    "accepted_answers": [
+      "products",
+      "toward products",
+      "to the right",
+      "the products",
+      "right",
+      "product side"
+    ],
+    "key_terms": [
+      "products",
+      "to the right",
+      "relieve the stress"
+    ],
+    "model_answer": "Toward the products (to the right). The system shifts to consume the added reactant and relieve the stress.",
+    "explanation": "Le Chatelier: a system at equilibrium responds to a stress (concentration, pressure, temperature) so as to partially offset it.",
+    "difficulty": "easy",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 13: Equilibrium — Le Chatelier's Principle",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Le Chatelier: a stressed equilibrium shifts to partially ____ the change.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "oppose",
+          "offset",
+          "counteract",
+          "relieve",
+          "reduce"
+        ],
+        "explanation": "It shifts to oppose/offset the stress."
+      },
+      {
+        "stem": "Adding reactant is a stress the system relieves by consuming what?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "reactant",
+          "the added reactant",
+          "reactants"
+        ],
+        "explanation": "The added reactant."
+      },
+      {
+        "stem": "Consuming reactant means shifting toward which side?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "products",
+          "to the right",
+          "product side"
+        ],
+        "explanation": "Toward the products (right)."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5E-11",
+    "section": "C/P",
+    "aamc_category": "5E",
+    "subtopic": "Enzyme kinetics (Michaelis-Menten)",
+    "answer_type": "free_response",
+    "prompt": "In Michaelis-Menten kinetics, when the substrate concentration equals Km, the reaction velocity is what fraction of Vmax?",
+    "accepted_answers": [
+      "half",
+      "one half",
+      "Vmax/2",
+      "1/2",
+      "0.5 Vmax",
+      "half of Vmax"
+    ],
+    "key_terms": [
+      "half",
+      "Vmax/2",
+      "definition of Km"
+    ],
+    "model_answer": "Half of Vmax. By definition, Km is the substrate concentration at which the reaction proceeds at ½ Vmax.",
+    "explanation": "A low Km indicates high substrate affinity; Vmax is approached as the enzyme becomes saturated.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Biology 2e, Ch. 6: Metabolism — Enzymes",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "What does Km represent — a concentration or a velocity?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "concentration",
+          "a concentration",
+          "substrate concentration"
+        ],
+        "explanation": "Km is a substrate concentration (units of molarity)."
+      },
+      {
+        "stem": "Km is defined as the [S] that gives what fraction of the maximum velocity?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "half",
+          "one half",
+          "1/2",
+          "50%"
+        ],
+        "explanation": "Half of Vmax."
+      },
+      {
+        "stem": "So at [S] = Km, velocity = ____.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "Vmax/2",
+          "half Vmax",
+          "1/2 Vmax",
+          "0.5 Vmax"
+        ],
+        "explanation": "½ Vmax."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5E-12",
+    "section": "C/P",
+    "aamc_category": "5E",
+    "subtopic": "Bioenergetics (energy coupling)",
+    "answer_type": "free_response",
+    "prompt": "What molecule serves as the cell's primary energy currency, coupling energy-releasing to energy-requiring reactions?",
+    "accepted_answers": [
+      "ATP",
+      "adenosine triphosphate",
+      "A.T.P."
+    ],
+    "key_terms": [
+      "ATP",
+      "adenosine triphosphate",
+      "energy currency"
+    ],
+    "model_answer": "ATP (adenosine triphosphate). Hydrolysis of its phosphoanhydride bonds releases energy that drives endergonic cellular processes.",
+    "explanation": "Energy coupling uses the exergonic hydrolysis of ATP to ADP + Pi to power otherwise unfavorable (endergonic) reactions.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e, Ch. 6: Metabolism — ATP",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "What three-letter abbreviation names the cell's main energy currency?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "ATP",
+          "A.T.P."
+        ],
+        "explanation": "ATP."
+      },
+      {
+        "stem": "ATP releases energy when which bond type is hydrolyzed?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "phosphoanhydride",
+          "phosphate bond",
+          "phosphoanhydride bond",
+          "high-energy phosphate"
+        ],
+        "explanation": "A phosphoanhydride (high-energy phosphate) bond."
+      },
+      {
+        "stem": "Using an exergonic reaction to drive an endergonic one is called energy ____.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "coupling",
+          "energy coupling",
+          "coupling reactions"
+        ],
+        "explanation": "Energy coupling."
+      }
+    ]
   }
 ]

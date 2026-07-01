@@ -15,8 +15,10 @@ export const load = (async ({ url }) => {
             deckId: 0n,
             limit: 50,
         });
-        return { data, error: null as string | null };
+        // When the aggregation was computed, so the dashboard can show an
+        // honest "last updated" timestamp.
+        return { data, error: null as string | null, generatedAt: Date.now() };
     } catch (err) {
-        return { data: null, error: String(err) };
+        return { data: null, error: String(err), generatedAt: Date.now() };
     }
 }) satisfies PageLoad;

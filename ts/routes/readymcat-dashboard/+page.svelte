@@ -9,4 +9,4 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
     export let data: PageData;
 </script>
 
-<Dashboard data={data.data} error={data.error} />
+<Dashboard data={data.data} error={data.error} generatedAt={data.generatedAt} />

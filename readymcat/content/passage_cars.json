@@ -445,5 +445,193 @@
         ]
       }
     ]
+  },
+  {
+    "id": "psg-cars-3",
+    "section": "CARS",
+    "passage": "Few debates in literary theory have proved more durable than the question of authorial intent: does the meaning of a text reside primarily in what its author meant to communicate, or does meaning emerge through the activity of reading itself? At one extreme, the intentionalist holds that misreading is always possible — that interpretations diverging from the author's design are simply mistaken, however ingenious or culturally resonant they may be. At the other extreme, the anti-intentionalist insists that once a text is released into the world, the author's psychological states become strictly irrelevant: what the words mean is fixed not by biography but by the conventions of the language and genre in which they are embedded.\n\nThe anti-intentionalist position gained influential expression in mid-twentieth-century criticism, when theorists argued that treating the author's intention as the criterion of correct interpretation commits a category error. Evidence about what a poet hoped to achieve, they maintained, cannot settle what a poem achieves, because a poem is a verbal artifact that may realize meanings its creator did not foresee — meanings that become available only through the community of readers over time. The celebrated example of an ironic text serves as illustration: a writer may compose a scathing satire of nationalistic rhetoric while sincerely believing the rhetoric they are parodying; the satiric meaning is there in the text whether the author intended it or not.\n\nIntentionalists counter that language is an intentional practice: utterances mean what speakers mean by them, and written language does not somehow escape this fundamental feature of linguistic communication. To read a text in complete disregard of what its author was trying to do, they argue, is to treat it as a natural object rather than a human creation — to decode it the way one might decode an accidental inkblot rather than a deliberate message. Moreover, intentionalists point out that appeals to 'the language and genre' still presuppose communicative conventions that are themselves constituted by the intentions of the linguistic community.\n\nA mediating view distinguishes between actual authorial intention (the historical individual's specific psychological states) and what might be called the implied author: the authorial persona that a competent reader constructs from the textual evidence alone. On this account, interpretation aims neither at private biography nor at free-floating textual play but at the coherent communicative project that the text itself invites. The implied author is, in effect, the best hypothesis about what an ideally communicative author of this text would have intended — a construct that disciplines interpretation without requiring access to historical documents.\n\nWhat unites all parties to this dispute is the recognition that texts are not transparent windows onto authors' minds or onto a language-independent reality. They are artifacts whose significance is never simply given but must always be construed — a fact that makes hermeneutics, the theory of interpretation, as much a practical as a philosophical discipline.",
+    "passage_source": {
+      "name": "original",
+      "url": "",
+      "license": "original"
+    },
+    "questions": [
+      {
+        "id": "psg-cars-3-q1",
+        "aamc_category": "CARS",
+        "skill": "comprehension",
+        "stem": "The passage indicates that anti-intentionalists believe the meaning of a text is determined by:",
+        "options": [
+          "the conventions of language and genre in which the text is written",
+          "the biographical circumstances of the author's life",
+          "the reader's subjective emotional response to the text",
+          "the historical period in which the text was composed"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is directly stated: anti-intentionalists hold that 'what the words mean is fixed not by biography but by the conventions of the language and genre.' (B) is the opposite — anti-intentionalists reject biography as a criterion. (C) is not stated. (D) is not mentioned as the anti-intentionalist criterion.",
+        "difficulty": "easy",
+        "subquestions": [
+          {
+            "stem": "What do anti-intentionalists say becomes irrelevant once a text is released?",
+            "options": [
+              "The author's psychological states and intentions",
+              "The linguistic conventions of the genre"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage explicitly states: 'the author's psychological states become strictly irrelevant.'"
+          },
+          {
+            "stem": "What do anti-intentionalists say does determine meaning?",
+            "options": [
+              "The conventions of the language and genre in which the text is embedded",
+              "The consensus among professional literary critics"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage states meaning is 'fixed not by biography but by the conventions of the language and genre.'"
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-3-q2",
+        "aamc_category": "CARS",
+        "skill": "reasoning-within",
+        "stem": "The example of a writer who composes a satire while sincerely believing the rhetoric being parodied is used to argue that:",
+        "options": [
+          "satiric meaning can exist in a text independently of the author's conscious intention",
+          "irony is impossible to achieve without the author's deliberate design",
+          "readers inevitably misread texts when authors are internally inconsistent",
+          "anti-intentionalism is incompatible with appreciating satiric literature"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is correct: the example shows that 'the satiric meaning is there in the text whether the author intended it or not,' supporting anti-intentionalism. (B) contradicts the example. (C) is not implied. (D) is the opposite of the passage's argument.",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "What does the writer sincerely believe while composing the satire?",
+            "options": [
+              "The nationalistic rhetoric being parodied",
+              "That the satire is a straightforward endorsement of nationalism"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says the writer 'sincerely believing the rhetoric they are parodying.'"
+          },
+          {
+            "stem": "What conclusion does the passage draw about satiric meaning?",
+            "options": [
+              "The satiric meaning exists in the text regardless of whether the author intended it",
+              "Satire requires that the author consciously design the ironic effect"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage explicitly states: 'the satiric meaning is there in the text whether the author intended it or not.'"
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-3-q3",
+        "aamc_category": "CARS",
+        "skill": "reasoning-within",
+        "stem": "Intentionalists compare reading a text without regard for authorial intent to:",
+        "options": [
+          "decoding an accidental inkblot rather than a deliberate message",
+          "translating a text from one language into another",
+          "analyzing a natural landscape for symbolic meaning",
+          "judging a sculpture by the tools used to create it"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is directly stated: ignoring intent is 'to decode it the way one might decode an accidental inkblot rather than a deliberate message.' (B), (C), and (D) are analogies not found in the passage.",
+        "difficulty": "easy",
+        "subquestions": [
+          {
+            "stem": "What kind of object do intentionalists say a text without intent would resemble?",
+            "options": [
+              "A natural object like an accidental inkblot",
+              "A social institution like a legal contract"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says ignoring intent treats the text 'as a natural object... an accidental inkblot.'"
+          },
+          {
+            "stem": "Why is this comparison significant for intentionalists?",
+            "options": [
+              "Because texts are human creations constituted by communicative intent, not accidents",
+              "Because inkblots have richer symbolic meaning than texts"
+            ],
+            "correct_index": 0,
+            "explanation": "The contrast between a deliberate message and an accident illustrates why intent matters to interpretation."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-3-q4",
+        "aamc_category": "CARS",
+        "skill": "comprehension",
+        "stem": "The concept of the 'implied author' is presented as a middle position because it:",
+        "options": [
+          "avoids both private biography and unconstrained textual play by focusing on the communicative project the text itself invites",
+          "combines information from the author's private letters with the reader's emotional reactions",
+          "treats the text as a historical document that must be decoded with period-specific tools",
+          "replaces the author's intention with the consensus interpretation of professional scholars"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is correct: the implied author is 'the best hypothesis about what an ideally communicative author of this text would have intended' — a construct that 'disciplines interpretation without requiring access to historical documents.' (B) introduces biography and emotional reaction, both of which the implied-author view is meant to avoid. (C) conflates historical-critical method with the implied-author framework. (D) is not stated.",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "What two extremes does the implied-author view try to avoid?",
+            "options": [
+              "Private biography and free-floating textual play",
+              "Emotional response and scholarly consensus"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says interpretation aims 'neither at private biography nor at free-floating textual play.'"
+          },
+          {
+            "stem": "What does the implied author represent in this framework?",
+            "options": [
+              "The best hypothesis about what an ideally communicative author of this text would have intended",
+              "The historical author's actual recorded statements about the work"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage defines the implied author as 'the best hypothesis about what an ideally communicative author of this text would have intended.'"
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-3-q5",
+        "aamc_category": "CARS",
+        "skill": "reasoning-beyond",
+        "stem": "A literary scholar argues that a nineteenth-century novel should be read in light of letters the author wrote describing her intentions for the work. With which position in the passage would this scholar most align?",
+        "options": [
+          "Intentionalism, because it treats the author's psychological states as the criterion of correct interpretation",
+          "Anti-intentionalism, because it focuses on what the text achieves rather than what the author designed",
+          "The implied-author view, because it reconstructs authorial intent from textual evidence alone",
+          "No position in the passage, because the passage rejects using any biographical evidence"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is correct: consulting the author's letters to determine her intentions is precisely the intentionalist move. (B) is the opposite; anti-intentionalism declares biography 'strictly irrelevant.' (C) is close but wrong: the implied-author view explicitly requires no 'access to historical documents' like letters. (D) is false; intentionalism does rely on biographical evidence.",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "What kind of evidence does the scholar in the question rely on?",
+            "options": [
+              "The author's letters describing her intentions",
+              "The historical reception of the novel by contemporary readers"
+            ],
+            "correct_index": 0,
+            "explanation": "The scholar uses private letters — direct biographical evidence of authorial intention."
+          },
+          {
+            "stem": "Which position treats the author's psychological states as the key interpretive criterion?",
+            "options": [
+              "Intentionalism",
+              "Anti-intentionalism",
+              "The implied-author view"
+            ],
+            "correct_index": 0,
+            "explanation": "Intentionalists hold that utterances 'mean what speakers mean by them' — the author's states are decisive."
+          }
+        ]
+      }
+    ]
   }
 ]

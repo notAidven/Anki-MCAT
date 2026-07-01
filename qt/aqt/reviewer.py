@@ -157,12 +157,25 @@ class Reviewer:
         self._combining: bool = True
         self.typeCorrect: str | None = None  # web init happens before this is set
         self.state: (
-            Literal["question", "answer", "transition", "teaching", "mcq"] | None
+            Literal[
+                "question",
+                "answer",
+                "transition",
+                "teaching",
+                "mcq",
+                "fr",
+                "passage",
+            ]
+            | None
         ) = None
         # ReadyMCAT teach-on-miss session state (None when not teaching).
         self._tom: dict[str, Any] | None = None
         # ReadyMCAT MCQ reviewer session state (None when the card is not an MCQ).
         self._mcq: dict[str, Any] | None = None
+        # ReadyMCAT free-response reviewer session state (None when not active).
+        self._fr: dict[str, Any] | None = None
+        # ReadyMCAT passage reviewer session state (None when not active).
+        self._passage: dict[str, Any] | None = None
         self._refresh_needed: RefreshNeeded | None = None
         self._v3: V3CardInfo | None = None
         self._state_mutation_key = str(random.randint(0, 2**64 - 1))
@@ -256,6 +269,8 @@ class Reviewer:
         self._v3 = None
         self._tom = None
         self._mcq = None
+        self._fr = None
+        self._passage = None
         self._get_next_v3_card()
 
         self._previous_card_info.set_card(self.previous_card)
@@ -408,14 +423,18 @@ class Reviewer:
         )
         self._update_flag_icon()
         self._update_mark_icon()
-        # ReadyMCAT: render an MCQ card as an interactive multiple-choice item
-        # (select -> submit -> grade) instead of the plain show-answer flow.
-        if not self._maybe_start_mcq():
+        # ReadyMCAT: render curated cards as interactive items (select / type ->
+        # submit -> grade) instead of the plain show-answer flow.
+        if not (
+            self._maybe_start_mcq()
+            or self._maybe_start_fr()
+            or self._maybe_start_passage()
+        ):
             self._showAnswerButton()
         self.mw.web.setFocus()
         # user hook
         gui_hooks.reviewer_did_show_question(c)
-        if self._mcq is None:
+        if self._mcq is None and self._fr is None and self._passage is None:
             self._auto_advance_to_answer_if_enabled()
 
     def _auto_advance_to_answer_if_enabled(self) -> None:
@@ -844,6 +863,160 @@ class Reviewer:
         self.state = "answer"
         self._do_answer_card(ease)
 
+    # ReadyMCAT free-response + passage reviewers
+    ############################################################
+    #
+    # These mirror the MCQ reviewer (select/type -> submit -> grade, with the
+    # same per-question teach-on-miss ladder and grading map): a first-try hit
+    # grades Good, anything that needed the ladder grades Again. Free-response
+    # answers are auto-graded in ts/reviewer/fr.ts (mirroring the tested Python
+    # grader); passage questions use the MCQ interaction with the passage shown
+    # alongside. The two share one handler since only the rendering differs.
+
+    def _maybe_start_fr(self) -> bool:
+        """If the current card is a ReadyMCAT free-response item, render it as an
+        interactive type-in card and drive grading from the typed answer."""
+        if self.card is None:
+            return False
+        note = self.card.note()
+        if not readymcat.is_fr_note(note):
+            return False
+        payload = readymcat.build_fr_payload(note)
+        if payload is None:
+            return False
+        self._fr = {"outcome": None, "sub_marks": []}
+        self.state = "fr"
+        self.web.eval(f"_frStart({json.dumps(payload)});")
+        self.bottom.web.eval(
+            "showAnswer(%s);"
+            % json.dumps(
+                "<center><b>ReadyMCAT</b> &mdash; type your answer above, "
+                "then submit.</center>"
+            )
+        )
+        readymcat.log_event(
+            self.mw.col.path,
+            {
+                "event": "fr_shown",
+                "card_id": self.card.id,
+                "note_id": note.id,
+                "category": readymcat.mcq_category_from_tags(note.tags),
+            },
+        )
+        return True
+
+    def _maybe_start_passage(self) -> bool:
+        """If the current card is a ReadyMCAT passage question, render the passage
+        alongside the multiple-choice question and drive grading."""
+        if self.card is None:
+            return False
+        note = self.card.note()
+        if not readymcat.is_passage_note(note):
+            return False
+        payload = readymcat.build_passage_payload(note)
+        if payload is None:
+            return False
+        self._passage = {"outcome": None, "sub_marks": []}
+        self.state = "passage"
+        self.web.eval(f"_passageStart({json.dumps(payload)});")
+        self.bottom.web.eval(
+            "showAnswer(%s);"
+            % json.dumps(
+                "<center><b>ReadyMCAT</b> &mdash; read the passage, choose an "
+                "option above, then submit.</center>"
+            )
+        )
+        readymcat.log_event(
+            self.mw.col.path,
+            {
+                "event": "passage_shown",
+                "card_id": self.card.id,
+                "note_id": note.id,
+                "category": readymcat.mcq_category_from_tags(note.tags),
+            },
+        )
+        return True
+
+    def _handle_fr(self, cmd: str) -> None:
+        self._handle_qcard(self._fr, "fr", cmd)
+
+    def _handle_passage(self, cmd: str) -> None:
+        self._handle_qcard(self._passage, "passage", cmd)
+
+    def _handle_qcard(
+        self, session: dict[str, Any] | None, kind: str, cmd: str
+    ) -> None:
+        """Shared free-response / passage command handling (the flow is
+        identical to the MCQ reviewer; only ``ts`` rendering differs)."""
+        if session is None:
+            return
+        col_path = self.mw.col.path
+        card_id = self.card.id if self.card else None
+        if cmd.startswith("first:"):
+            parts = cmd.split(":")
+            correct = len(parts) > 1 and parts[1] == "correct"
+            session["outcome"] = "correct_first" if correct else "wrong"
+            chosen = int(parts[2]) if len(parts) > 2 and parts[2].isdigit() else -1
+            readymcat.log_event(
+                col_path,
+                {
+                    "event": f"{kind}_first_attempt",
+                    "card_id": card_id,
+                    "correct": correct,
+                    "chosen": chosen,
+                },
+            )
+        elif cmd.startswith("sub:"):
+            parts = cmd.split(":")
+            got = len(parts) > 2 and parts[2] == "got"
+            session["sub_marks"].append(got)
+            rung = int(parts[1]) if len(parts) > 1 and parts[1].isdigit() else -1
+            readymcat.log_event(
+                col_path,
+                {
+                    "event": f"{kind}_subquestion",
+                    "card_id": card_id,
+                    "rung": rung,
+                    "got_it": got,
+                },
+            )
+        elif cmd.startswith("reattempt:"):
+            correct = cmd == "reattempt:correct"
+            outcome = "correct_after" if correct else "wrong"
+            session["outcome"] = outcome
+            # Missed again after the ladder -> flag struggling so the
+            # points-at-stake queue resurfaces it; corrected otherwise.
+            self._flag_concept(struggling=readymcat.outcome_is_struggling(outcome))
+            readymcat.log_event(
+                col_path,
+                {
+                    "event": f"{kind}_reattempt",
+                    "card_id": card_id,
+                    "correct_after_ladder": correct,
+                    "subquestions_missed": session["sub_marks"].count(False),
+                },
+            )
+        elif cmd == "resource":
+            # Source lives in the note's Source field for every content type.
+            self._mcq_open_resource()
+        elif cmd == "continue":
+            self._finish_qcard(kind)
+
+    def _finish_qcard(self, kind: str) -> None:
+        """Grade a free-response / passage card into FSRS and advance, using the
+        same map as the MCQ reviewer (first-try hit -> Good, else Again)."""
+        session = self._fr if kind == "fr" else self._passage
+        if session is None:
+            return
+        outcome = session.get("outcome") or "wrong"
+        ease = cast(Literal[1, 2, 3, 4], readymcat.ease_for_mcq_outcome(outcome))
+        if kind == "fr":
+            self._fr = None
+        else:
+            self._passage = None
+        self.state = "answer"
+        self._do_answer_card(ease)
+
     # Handlers
     ############################################################
 
@@ -969,6 +1142,10 @@ class Reviewer:
             self._handle_teach_on_miss(url[len("tom:") :])
         elif url.startswith("mcq:"):
             self._handle_mcq(url[len("mcq:") :])
+        elif url.startswith("fr:"):
+            self._handle_fr(url[len("fr:") :])
+        elif url.startswith("psg:"):
+            self._handle_passage(url[len("psg:") :])
         else:
             print("unrecognized anki link:", url)
 

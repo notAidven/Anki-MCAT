@@ -494,3 +494,117 @@ def resource_from_source(source: str) -> dict[str, str]:
     if url:
         return {"label": "Review the source for this question", "url": url}
     return {}
+
+
+# --- free-response reviewer support -----------------------------------------
+#
+# The pre-loaded free-response deck is rendered by the desktop reviewer as an
+# interactive type-in card. The reviewer reads a card's fields into a payload and
+# drives the flow in ``ts/reviewer/fr.ts``; the auto-grading + payload logic
+# lives in the (tested) builder module and is re-used here (single source).
+
+_FR_NOTETYPE_NAME_FALLBACK = "ReadyMCAT FreeResponse"
+_PASSAGE_NOTETYPE_NAME_FALLBACK = "ReadyMCAT Passage"
+
+
+def _load_json_list(raw: str | None) -> list[Any]:
+    try:
+        data = json.loads(raw or "[]")
+    except (ValueError, TypeError):
+        return []
+    return data if isinstance(data, list) else []
+
+
+def fr_notetype_name() -> str:
+    module = _bank()
+    return getattr(module, "FR_NOTETYPE_NAME", _FR_NOTETYPE_NAME_FALLBACK)
+
+
+def is_fr_note(note: Note) -> bool:
+    """True if a note uses the ReadyMCAT free-response note type."""
+    try:
+        return note.note_type()["name"] == fr_notetype_name()
+    except Exception:  # pragma: no cover - defensive
+        return False
+
+
+def build_fr_payload(note: Note) -> dict[str, Any] | None:
+    """Turn a free-response note into the payload handed to ``_frStart``."""
+    try:
+        fields = dict(note.items())
+    except Exception:  # pragma: no cover - defensive
+        return None
+    module = _bank()
+    if module is not None:
+        try:
+            return module.fr_payload_from_fields(fields)
+        except Exception as exc:  # pragma: no cover - defensive
+            print("ReadyMCAT: FR payload build failed", exc)
+    # Inline fallback mirroring build_question_bank.fr_payload_from_fields.
+    return {
+        "prompt": fields.get("Prompt", ""),
+        "acceptedAnswers": [
+            str(a) for a in _load_json_list(fields.get("AcceptedAnswers"))
+        ],
+        "keyTerms": [str(k) for k in _load_json_list(fields.get("KeyTerms"))],
+        "modelAnswer": fields.get("ModelAnswer", ""),
+        "explanation": fields.get("Explanation", ""),
+        "subtopic": fields.get("Subtopic", ""),
+        "source": fields.get("Source", ""),
+        "subquestions": [
+            s for s in _load_json_list(fields.get("Subquestions")) if isinstance(s, dict)
+        ],
+    }
+
+
+# --- passage reviewer support -----------------------------------------------
+#
+# The pre-loaded passage deck is rendered as a shared passage plus one
+# multiple-choice card per question, driven by ``ts/reviewer/passage.ts``.
+
+
+def passage_notetype_name() -> str:
+    module = _bank()
+    return getattr(module, "PASSAGE_NOTETYPE_NAME", _PASSAGE_NOTETYPE_NAME_FALLBACK)
+
+
+def is_passage_note(note: Note) -> bool:
+    """True if a note uses the ReadyMCAT passage note type."""
+    try:
+        return note.note_type()["name"] == passage_notetype_name()
+    except Exception:  # pragma: no cover - defensive
+        return False
+
+
+def build_passage_payload(note: Note) -> dict[str, Any] | None:
+    """Turn a passage note into the payload handed to ``_passageStart``."""
+    try:
+        fields = dict(note.items())
+    except Exception:  # pragma: no cover - defensive
+        return None
+    module = _bank()
+    if module is not None:
+        try:
+            return module.passage_payload_from_fields(fields)
+        except Exception as exc:  # pragma: no cover - defensive
+            print("ReadyMCAT: passage payload build failed", exc)
+    # Inline fallback mirroring build_question_bank.passage_payload_from_fields.
+    try:
+        correct_index = int(str(fields.get("CorrectIndex", "0")).strip() or "0")
+    except ValueError:
+        correct_index = 0
+    correct_index = max(0, min(3, correct_index))
+    subquestions = [
+        s for s in _load_json_list(fields.get("Subquestions")) if isinstance(s, dict)
+    ]
+    return {
+        "passage": fields.get("Passage", ""),
+        "passageId": fields.get("PassageId", ""),
+        "question": fields.get("Question", ""),
+        "options": [fields.get(f"Option{c}", "") for c in ("A", "B", "C", "D")],
+        "correctIndex": correct_index,
+        "explanation": fields.get("Explanation", ""),
+        "subtopic": fields.get("Subtopic", ""),
+        "source": fields.get("Source", ""),
+        "subquestions": subquestions,
+    }

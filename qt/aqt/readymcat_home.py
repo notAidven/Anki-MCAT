@@ -21,6 +21,7 @@ between the diagnostic and the hub.
 from __future__ import annotations
 
 import importlib.util
+import threading
 from pathlib import Path
 from types import ModuleType
 from typing import Any
@@ -154,9 +155,23 @@ def _isolating_search(key: str) -> str | None:
 
 def _start_review_now(mw: aqt.main.AnkiQt) -> None:
     """Jump straight into reviewing the currently-selected deck, matching the
-    one-tap promise of the hub's tiles (mirrors ``AnkiQt.onStudyKey``)."""
+    one-tap promise of the hub's tiles.
+
+    Goes directly to the ``review`` state rather than stepping through
+    ``overview`` first. The previous ``overview`` -> ``review`` hop issued two
+    back-to-back async page loads into the *same* ``mw.web`` in one event-loop
+    turn: the reviewer's queued ``_showQuestion`` / ``_mcqStart`` evals ran
+    after the first load's ``domDone`` (painting the card), then the second
+    (reviewer ``_initWeb``) load reloaded the page and wiped ``#qa`` with no
+    pending evals left to repaint it — so tiles landed on a blank reviewer even
+    though a card was loaded (rev.state was correct, ``#qa`` was empty). A
+    single load has no such race. ``onStudyKey`` never hits this because its
+    ``overview`` -> ``review`` steps are two separate user actions with the
+    overview already settled in between.
+
+    If nothing is due, ``Reviewer.nextCard()`` falls back to ``overview`` on
+    its own, so the honest "no cards due" screen is still reached."""
     mw.col.startTimebox()
-    mw.moveToState("overview")
     mw.moveToState("review")
 
 
@@ -214,6 +229,156 @@ def start_deck_review(mw: aqt.main.AnkiQt, key: str) -> None:
         _start_review_now(mw)
     except Exception as exc:  # pragma: no cover - defensive
         print(f"ReadyMCAT: could not start '{key}' review", exc)
+
+
+# --- dev/e2e study probe -----------------------------------------------------
+#
+# The interactive ReadyMCAT reviewer renders its card into the desktop Qt
+# webview (``mw.web``), NOT into a mediasrv-served page — so the Playwright e2e
+# harness (whose own Chromium can only load mediasrv HTTP pages) cannot observe
+# it directly. This dev-only probe bridges that gap: it drives a real study
+# launch on the main thread and reads back the reviewer's live ``#qa`` HTML, so
+# the e2e suite can assert a question actually paints (the regression this
+# module fixes was a *blank* reviewer despite a loaded card) and is answerable,
+# and that a wrong answer triggers the teach-on-miss ladder + struggling flag.
+# It is gated behind ``dev_mode`` (ANKIDEV) by the mediasrv handler and is never
+# reachable in a packaged build.
+
+_PROBE_READ_QA_JS = "(document.getElementById('qa')||{}).innerHTML || ''"
+
+# Click option ``__IDX__`` of the rendered MCQ, submit it, and hand back the
+# resulting ``#qa`` — exactly the DOM path a user takes, so the returned HTML
+# shows the real post-answer UI (explanation + Continue for a hit; the guiding
+# ladder for a miss).
+_PROBE_CLICK_JS = """
+(function(){
+  var idx = __IDX__;
+  var opts = Array.prototype.slice.call(document.querySelectorAll('.rmcq-option'));
+  if (opts.length > idx) { opts[idx].click(); }
+  var btns = Array.prototype.slice.call(document.querySelectorAll('.rmcq-btn.primary'));
+  var submit = btns.filter(function(b){ return !b.disabled; })[0];
+  if (submit) { submit.click(); }
+  return (document.getElementById('qa')||{}).innerHTML || '';
+})()
+"""
+
+
+def _probe_correct_index(mw: aqt.main.AnkiQt) -> int:
+    from aqt import readymcat
+
+    try:
+        card = mw.reviewer.card
+        payload = readymcat.build_mcq_payload(card.note()) if card else None
+        if payload:
+            return max(0, min(3, int(payload.get("correctIndex", 0))))
+    except Exception:  # pragma: no cover - defensive
+        pass
+    return 0
+
+
+def _launch_for_probe(mw: aqt.main.AnkiQt, key: str, native: bool) -> None:
+    """Mirror one of the two real launch flows the e2e must cover: the deck
+    browser's native Study Now (select the deck, then review) or the home-hub
+    tile (``start_deck_review``)."""
+    # Return any cards the reused launcher filtered deck is still holding, so a
+    # probe of one format isn't skewed by a previous probe's tile launch (the
+    # filtered deck pulls a deck's cards out while active).
+    launcher_id = mw.col.decks.id_for_name(LAUNCHER_FILTERED_DECK_NAME)
+    if launcher_id and mw.col.decks.is_filtered(launcher_id):
+        try:
+            mw.col.sched.empty_filtered_deck(launcher_id)
+        except Exception:  # pragma: no cover - defensive
+            pass
+    names = _deck_names()
+    if native and names and key in names:
+        did = mw.col.decks.id_for_name(names[key])
+        if did is not None:
+            mw.col.decks.select(did)
+        mw.col.startTimebox()
+        mw.moveToState("review")
+    else:
+        start_deck_review(mw, key)
+
+
+def study_probe(mw: aqt.main.AnkiQt, options: dict[str, Any]) -> dict[str, Any]:
+    """Start (and optionally answer) one review, returning what the reviewer
+    webview actually rendered.
+
+    ``options`` keys: ``key`` (mcq|fr|passage|cars), ``native`` (bool, native
+    Study Now vs. hub tile) and ``answer`` (None | "correct" | "wrong" |
+    "wrongFull"). Every GUI step runs on the main thread; the calling mediasrv
+    worker thread blocks until the webview has painted so the HTTP response
+    reflects the real on-screen state.
+    """
+    key = str(options.get("key", "mcq"))
+    native = bool(options.get("native", False))
+    answer = options.get("answer")
+
+    result: dict[str, Any] = {"ok": False}
+    done = threading.Event()
+
+    def finish_with_qa(html: str | None) -> None:
+        html = html or ""
+        result.update(
+            ok=True,
+            state=mw.reviewer.state,
+            card=mw.reviewer.card is not None,
+            qa=html,
+            qaLen=len(html),
+            interactive=any(
+                marker in html for marker in ("rmcq-wrap", "rmfr-wrap", "rmpsg-wrap")
+            ),
+        )
+        done.set()
+
+    def do_full_miss() -> None:
+        """Exercise the Python teach-on-miss grading path (first miss ->
+        guiding ladder -> still wrong) and report the struggling flag."""
+        reviewer = mw.reviewer
+        card = reviewer.card
+        wrong = 1 if _probe_correct_index(mw) == 0 else 0
+        try:
+            reviewer._handle_mcq(f"first:wrong:{wrong}")
+            reviewer._handle_mcq("reattempt:wrong")
+            tags = list(card.note().tags) if card else []
+        except Exception as exc:  # pragma: no cover - defensive
+            result.update(ok=False, error=repr(exc))
+            done.set()
+            return
+        result.update(
+            ok=True,
+            state=reviewer.state,
+            struggling="ReadyMCAT::struggling" in tags,
+            tags=tags,
+        )
+        done.set()
+
+    def after_render() -> None:
+        if answer == "wrongFull":
+            do_full_miss()
+        elif answer in ("correct", "wrong"):
+            idx = _probe_correct_index(mw)
+            click_idx = idx if answer == "correct" else (1 if idx == 0 else 0)
+            mw.web.evalWithCallback(
+                _PROBE_CLICK_JS.replace("__IDX__", str(click_idx)), finish_with_qa
+            )
+        else:
+            mw.web.evalWithCallback(_PROBE_READ_QA_JS, finish_with_qa)
+
+    def on_main() -> None:
+        try:
+            _launch_for_probe(mw, key, native)
+        except Exception as exc:  # pragma: no cover - defensive
+            result.update(ok=False, error=repr(exc))
+            done.set()
+            return
+        # Give the reviewer webview time to load + paint before reading it.
+        mw.progress.single_shot(1200, after_render, False)
+
+    mw.taskman.run_on_main(on_main)
+    if not done.wait(timeout=25):
+        return {"ok": False, "error": "timeout"}
+    return result
 
 
 # --- the hub window ----------------------------------------------------------

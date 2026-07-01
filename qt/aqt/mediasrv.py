@@ -724,6 +724,32 @@ def readymcat_home_status() -> bytes:
     return json.dumps(build_home_status(aqt.mw)).encode("utf-8")
 
 
+def readymcat_study_probe() -> bytes:
+    """Dev-only introspection endpoint for the Playwright e2e suite.
+
+    Drives a real study launch (native Study Now or a home-hub tile) and reads
+    back what the desktop reviewer webview actually painted, so the e2e harness
+    can assert the interactive reviewer shows a question, is answerable, and
+    triggers teach-on-miss on a miss — none of which is otherwise observable
+    over HTTP, since the reviewer renders in the Qt ``mw.web`` webview rather
+    than a mediasrv-served page. Gated behind ``dev_mode`` (ANKIDEV) so it is
+    inert in packaged builds."""
+    import json
+
+    if not dev_mode:
+        return json.dumps({"ok": False, "error": "dev only"}).encode("utf-8")
+
+    from aqt.readymcat_home import study_probe
+
+    try:
+        options = json.loads(request.data or b"{}")
+        if not isinstance(options, dict):
+            options = {}
+    except Exception:
+        options = {}
+    return json.dumps(study_probe(aqt.mw, options)).encode("utf-8")
+
+
 post_handler_list = [
     congrats_info,
     get_deck_configs_for_update,
@@ -745,6 +771,10 @@ post_handler_list = [
     # hub's ``_anki/readymcatHomeStatus`` fetch 404s (see
     # qt/tests/test_mediasrv.py::TestReadyMCATHomeEndpointRegistered).
     readymcat_home_status,
+    # ReadyMCAT dev/e2e reviewer probe (guarded by dev_mode). Lets the
+    # Playwright suite drive a real study launch and read back the reviewer
+    # webview's rendered #qa (see ts/tests/e2e/readymcat_study.test.ts).
+    readymcat_study_probe,
 ]
 
 

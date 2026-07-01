@@ -2690,5 +2690,192 @@
         ]
       }
     ]
+  },
+  {
+    "id": "psg-cars-15",
+    "section": "CARS",
+    "passage": "The concept of the unreliable narrator invites readers to question the testimony of a fictional voice that presents itself as authoritative. An unreliable narrator is one whose account of events, characters, or motives the reader has grounds to distrust -- not necessarily because the narrator lies deliberately, but because their perception is limited, their self-understanding deficient, or their emotional investment in a particular version of events distorts what they report. The detection of narrative unreliability is, accordingly, one of the more sophisticated interpretive skills literary fiction demands of its readers, requiring attention to gaps, contradictions, and moments when the narrator's self-presentation strains against the evidence the text itself provides.\n\nNarrative theorists have identified several sources of unreliability. The most philosophically interesting is self-deception: the narrator who sincerely believes their own account while systematically misrepresenting it, particularly with respect to their own motives and moral quality. Such narrators often generate irony at their own expense -- the gap between what they report and what the text implies about them becomes the site of the reader's critical engagement. A narrator who insists on their generosity in every paragraph while every described action suggests self-interest produces a portrait more damning than any external indictment could achieve.\n\nA second source is cognitive limitation: the narrator who simply lacks the knowledge or experience to interpret correctly what they observe. A child narrator reporting on adult conflicts without understanding their significance, or an outsider narrator describing an unfamiliar culture through inappropriate categories, produces unreliability through innocence rather than self-interest. In such cases, the reader must supply interpretive frameworks that the narrator cannot, and the gap between the narrator's report and the reader's inference becomes the text's most productive space.\n\nA third source, less often discussed, is structural: some narratives are built on multiple competing narrators whose accounts cannot all be true, or on a narrator who explicitly announces their own limitations and invites the reader to read against them. In the former case, unreliability is dispersed across the text; in the latter, it is ironized through self-consciousness. Both strategies challenge the assumption that narrative access to events is, even in fiction, transparent and unmediated.\n\nThe broader significance of narrative unreliability extends beyond literary technique. It models a stance of critical reading that has application outside the text: the recognition that all reported experience is shaped by the particular perspective, interests, and cognitive limitations of the reporter -- a recognition that is as relevant to journalism, autobiography, and legal testimony as it is to fiction. Learning to read unreliable narrators teaches a transferable epistemic skill: suspending credulity and attending to the conditions under which any account is produced.",
+    "passage_source": {
+      "name": "original",
+      "url": "",
+      "license": "original"
+    },
+    "questions": [
+      {
+        "id": "psg-cars-15-q1",
+        "aamc_category": "CARS",
+        "skill": "comprehension",
+        "stem": "According to the passage, narrative unreliability arises when:",
+        "options": [
+          "a narrator's perception, self-understanding, or emotional investment distorts what they report",
+          "an author deliberately withholds important information to create suspense",
+          "a character lies to other characters within the story for personal advantage",
+          "the fictional world contains events that violate the laws of physics"
+        ],
+        "correct_index": 0,
+        "explanation": "A is stated: unreliability occurs when perception is limited, self-understanding deficient, or emotional investment distorts what the narrator reports. B describes authorial withholding, distinct from narrator unreliability. C describes a character lying to other characters, not to the reader. D describes impossible fictional worlds, unrelated to the concept.",
+        "difficulty": "easy",
+        "subquestions": [
+          {
+            "stem": "Must an unreliable narrator deliberately lie?",
+            "options": [
+              "No -- unreliability can arise from limited perception or self-understanding without deliberate deception",
+              "Yes -- a narrator who does not intend to deceive cannot be unreliable"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says unreliability can occur not necessarily because the narrator lies deliberately, but because their perception is limited."
+          },
+          {
+            "stem": "What interpretive skill does detecting narrative unreliability require?",
+            "options": [
+              "Attention to gaps, contradictions, and moments when the narrator's self-presentation strains against the text's evidence",
+              "Primarily memorizing the plot accurately so inconsistencies can be tracked"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage calls it one of the more sophisticated interpretive skills, requiring attention to gaps, contradictions, and moments when self-presentation strains against the evidence."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-15-q2",
+        "aamc_category": "CARS",
+        "skill": "reasoning-within",
+        "stem": "The narrator who insists on their generosity while every action suggests self-interest primarily illustrates:",
+        "options": [
+          "how self-deception generates irony by creating a gap between what the narrator claims and what the text implies",
+          "how omniscient narrators are more reliable than first-person narrators",
+          "how cognitive limitation can make a narrator inaccurate without self-deception",
+          "how readers should always trust explicit statements over implied ones in fiction"
+        ],
+        "correct_index": 0,
+        "explanation": "A is the explicit purpose: the example generates irony at the narrator's own expense -- the gap between what they report and what the text implies becomes the site of critical engagement. B introduces omniscient narrators not discussed here. C describes cognitive limitation, which is a separate category. D is the opposite of the lesson.",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "What does the narrator in the example sincerely believe?",
+            "options": [
+              "Their own account of their generosity",
+              "That they are deliberately deceiving the reader"
+            ],
+            "correct_index": 0,
+            "explanation": "Self-deception involves sincere belief; such narrators sincerely believe their own account while systematically misrepresenting it."
+          },
+          {
+            "stem": "What produces the ironic effect in this type of narrator?",
+            "options": [
+              "The gap between the narrator's self-presentation and what the described actions imply",
+              "The narrator's use of dramatic language that contradicts the story's calm tone"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says the gap between what they report and what the text implies becomes the site of the reader's critical engagement."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-15-q3",
+        "aamc_category": "CARS",
+        "skill": "comprehension",
+        "stem": "A child narrator who reports adult conflicts without understanding their significance is an example of unreliability from:",
+        "options": [
+          "cognitive limitation -- innocence rather than self-interest",
+          "self-deception -- the narrator believes their account but is systematically mistaken about their own motives",
+          "structural unreliability -- multiple competing narrators whose accounts cannot all be true",
+          "deliberate lying -- the child conceals what they know to protect the adults"
+        ],
+        "correct_index": 0,
+        "explanation": "A is stated: the child narrator produces unreliability through innocence rather than self-interest. B is self-deception, which concerns motives -- children's unreliability comes from limited understanding. C is the structural category. D introduces deliberate deception explicitly excluded for this type.",
+        "difficulty": "easy",
+        "subquestions": [
+          {
+            "stem": "What must the reader supply when encountering a cognitively limited narrator?",
+            "options": [
+              "Interpretive frameworks that the narrator cannot provide",
+              "Biographical information about the real author"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says the reader must supply interpretive frameworks that the narrator cannot."
+          },
+          {
+            "stem": "Where does the text's most productive space lie in this case?",
+            "options": [
+              "In the gap between the narrator's report and the reader's inference",
+              "In the narrator's explicit statements about the story's meaning"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says the gap between the narrator's report and the reader's inference becomes the text's most productive space."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-15-q4",
+        "aamc_category": "CARS",
+        "skill": "reasoning-within",
+        "stem": "Structural unreliability challenges what assumption about narrative access to events?",
+        "options": [
+          "That narrative access to events is transparent and unmediated, even in fiction",
+          "That authors can fully control how readers interpret their texts",
+          "That unreliable narrators can only appear in novels, not shorter forms",
+          "That first-person narration is inherently more trustworthy than third-person narration"
+        ],
+        "correct_index": 0,
+        "explanation": "A is stated: both forms of structural unreliability challenge the assumption that narrative access to events is, even in fiction, transparent and unmediated. B is about authorial control, not the assumption mentioned. C and D are not claims in the passage.",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "What two forms does structural unreliability take?",
+            "options": [
+              "Multiple competing narrators whose accounts cannot all be true, and a narrator who explicitly announces their own limitations",
+              "First-person and third-person narrators who contradict each other"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says: some narratives are built on multiple competing narrators whose accounts cannot all be true, or on a narrator who explicitly announces their own limitations."
+          },
+          {
+            "stem": "What assumption do both forms of structural unreliability challenge?",
+            "options": [
+              "That narrative access to events is transparent and unmediated, even in fiction",
+              "That authors can control exactly how readers interpret their texts"
+            ],
+            "correct_index": 0,
+            "explanation": "Both challenge the assumption that narrative access to events is, even in fiction, transparent and unmediated."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-15-q5",
+        "aamc_category": "CARS",
+        "skill": "reasoning-beyond",
+        "stem": "A journalist's eyewitness account of a traumatic event contains significant distortions, apparently because of the reporter's emotional investment in the story. The passage would suggest this is best understood as:",
+        "options": [
+          "the same unreliability dynamic described in fiction -- emotional investment distorting what a reporter perceives and reports",
+          "deliberate fabrication by a journalist motivated by career advancement",
+          "cognitive limitation caused by the journalist's unfamiliarity with the event's context",
+          "structural unreliability arising from competing eyewitness accounts"
+        ],
+        "correct_index": 0,
+        "explanation": "A is correct: the final paragraph explicitly extends narrative unreliability to journalism, autobiography, and legal testimony, and the specific mechanism -- emotional investment in a particular version of events distorts what they report -- matches the journalist's case. B is deliberate deception, which the passage distinguishes from emotional investment. C is cognitive limitation, not emotional investment. D is structural, requiring multiple competing accounts.",
+        "difficulty": "hard",
+        "subquestions": [
+          {
+            "stem": "To what non-fictional domains does the final paragraph explicitly extend the concept?",
+            "options": [
+              "Journalism, autobiography, and legal testimony",
+              "Scientific reports and academic peer review"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says: as relevant to journalism, autobiography, and legal testimony as it is to fiction."
+          },
+          {
+            "stem": "What does the passage say shapes all reported experience?",
+            "options": [
+              "The particular perspective, interests, and cognitive limitations of the reporter",
+              "The editorial decisions of the publishing institution"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says all reported experience is shaped by the particular perspective, interests, and cognitive limitations of the reporter."
+          }
+        ]
+      }
+    ]
   }
 ]

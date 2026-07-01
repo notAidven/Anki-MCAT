@@ -1942,5 +1942,192 @@
         ]
       }
     ]
+  },
+  {
+    "id": "psg-cars-11",
+    "section": "CARS",
+    "passage": "Among the foundational distinctions in the sociology of religion is the division of the world into two mutually exclusive domains: the sacred and the profane. The sacred encompasses all things set apart and forbidden, surrounded by special prohibitions and observed with reverence; the profane designates everything else the ordinary, the utilitarian, the everyday. This distinction is not primarily about supernatural belief. A society without gods can still organize its collective life around sacred objects and practices; conversely, explicitly theistic language can be deployed in contexts so routine that nothing sacred attaches to it at all. The sacred is a structural feature of collective life, not a property of any particular theological tradition.\n\nWhat makes something sacred is not its intrinsic properties but its relationship to the collective. The sacred object or practice has been designated by the community as set apart, invested with a significance that transcends individual preference and commands a distinctive emotional response. Violations of the sacred provoke not merely practical objection but moral indignation and often the collective sanction of the group. The sacred functions, in this analysis, as a boundary marker: it demarcates what the collective treats as inviolable from what can be freely negotiated, exchanged, or modified. The power of the sacred is thus inseparable from the collective from which it derives and to which it refers.\n\nThis framework has been applied far beyond explicitly religious contexts. National flags, war memorials, and constitutional documents can function as sacred objects in secular societies: they command a special reverence, their desecration provokes communal outrage, and they focus the collective sense of identity and shared purpose. Academic ceremonies, such as the conferral of degrees and the inauguration of presidents, likewise exhibit a ritualized formality that marks them off from ordinary transactions. The secular and the sacred are not opposites; rather, the sacred is a structural feature of collective life that may attach to entirely secular objects and occasions.\n\nCritics of this framework have worried that extending the concept of the sacred to secular contexts dilutes it beyond usefulness. If anything sufficiently cherished by a community counts as sacred, the concept loses its explanatory precision. Moreover, the framework has been criticized for underplaying internal dissent: in any actual society, which objects are sacred and which are merely important is itself politically contested, and the boundary between the sacred and the profane is drawn by those with the social power to draw it. Sacred designations can thus serve ideological functions, naturalizing existing arrangements by placing them beyond ordinary critical scrutiny.\n\nThese tensions notwithstanding, the sacred/profane distinction continues to illuminate the emotional architecture of collective life in ways that strictly rational accounts of social organization cannot easily replicate. Communities that lack shared sacred commitments often struggle to motivate the sacrifices that sustaining collective institutions requires.",
+    "passage_source": {
+      "name": "original",
+      "url": "",
+      "license": "original"
+    },
+    "questions": [
+      {
+        "id": "psg-cars-11-q1",
+        "aamc_category": "CARS",
+        "skill": "comprehension",
+        "stem": "According to the passage, the sacred/profane distinction is primarily determined by:",
+        "options": [
+          "the community's collective designation of certain things as set apart and invested with special significance",
+          "the theological content of the beliefs surrounding an object or practice",
+          "the age and historical importance of the traditions in which an object appears",
+          "the individual practitioner's personal devotion and emotional investment"
+        ],
+        "correct_index": 0,
+        "explanation": "A is stated: What makes something sacred is not its intrinsic properties but its relationship to the collective. B is explicitly rejected since this distinction is not primarily about supernatural belief. C is not a criterion mentioned. D is also rejected since the framework is collective, not individual.",
+        "difficulty": "easy",
+        "subquestions": [
+          {
+            "stem": "Does the passage say the sacred is defined by intrinsic properties of the object?",
+            "options": [
+              "No -- it is defined by the object's relationship to the collective",
+              "Yes -- certain objects are naturally sacred by their physical properties"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage explicitly states: What makes something sacred is not its intrinsic properties but its relationship to the collective."
+          },
+          {
+            "stem": "What emotional response does violation of the sacred provoke?",
+            "options": [
+              "Moral indignation and collective sanction",
+              "Intellectual curiosity and scholarly debate"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says violations provoke not merely practical objection but moral indignation and the collective sanction of the group."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-11-q2",
+        "aamc_category": "CARS",
+        "skill": "reasoning-within",
+        "stem": "The passage uses national flags and war memorials as examples to argue that:",
+        "options": [
+          "the sacred can attach to entirely secular objects in societies without explicit religious commitments",
+          "modern nation-states have replaced religious institutions as the primary sources of moral authority",
+          "patriotism is a more powerful social force than religious devotion",
+          "secular societies are indistinguishable from religious ones in their emotional lives"
+        ],
+        "correct_index": 0,
+        "explanation": "A is the stated argument: these secular objects command special reverence and their desecration provokes communal outrage, confirming that the sacred may attach to entirely secular objects. B introduces an institutional-power comparison not in the passage. C is not made. D overstates.",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "What features do national flags share with sacred religious objects?",
+            "options": [
+              "They command special reverence and their desecration provokes communal outrage",
+              "They were created by religious institutions with theological intentions"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says they command a special reverence and their desecration provokes communal outrage."
+          },
+          {
+            "stem": "What relationship between the secular and sacred does the passage propose?",
+            "options": [
+              "They are not opposites -- the sacred is a structural feature that may attach to secular objects",
+              "They are strict opposites -- secular objects can never become sacred"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage states: The secular and the sacred are not opposites; rather, the sacred is a structural feature of collective life that may attach to entirely secular objects."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-11-q3",
+        "aamc_category": "CARS",
+        "skill": "reasoning-within",
+        "stem": "Critics of the sacred/profane framework object that extending it to secular contexts:",
+        "options": [
+          "dilutes the concept to the point where it loses explanatory precision",
+          "proves that secular societies are becoming more religious over time",
+          "shows that the distinction is too rigid and should be replaced by a continuum",
+          "undermines the case for the universality of religious experience"
+        ],
+        "correct_index": 0,
+        "explanation": "A is stated: extending the concept to secular contexts dilutes it beyond usefulness; if anything cherished counts as sacred, the concept loses explanatory precision. B is the opposite implication. C introduces a continuum not mentioned. D is not a concern raised.",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "What logical problem do critics identify with extending the concept?",
+            "options": [
+              "If anything cherished counts as sacred, the concept becomes so broad it explains nothing specifically",
+              "If the sacred applies to secular objects, religious believers feel trivialized"
+            ],
+            "correct_index": 0,
+            "explanation": "Critics say: if anything sufficiently cherished counts as sacred, the concept loses its explanatory precision."
+          },
+          {
+            "stem": "What political critique do they raise about the sacred/profane boundary?",
+            "options": [
+              "The boundary is drawn by those with the social power to draw it, making it politically contested",
+              "The boundary is fixed by religious law and cannot be changed"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says the boundary is drawn by those with the social power to draw it."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-11-q4",
+        "aamc_category": "CARS",
+        "skill": "reasoning-beyond",
+        "stem": "In a secular nation, protesters burn the national flag, and many citizens respond with intense moral outrage disproportionate to the practical consequences. This scenario best illustrates:",
+        "options": [
+          "Sacred objects can exist in secular societies, and their desecration provokes collective moral indignation beyond practical objection",
+          "Secular societies are more emotionally volatile than religious societies",
+          "Political dissent is always interpreted as a violation of the sacred",
+          "National symbols function as religious objects only in explicitly theistic nations"
+        ],
+        "correct_index": 0,
+        "explanation": "A is directly supported: the passage says secular objects like flags can be sacred, and violations provoke not merely practical objection but moral indignation. Outrage disproportionate to practical consequences is precisely this. B is a cross-national comparison not in the passage. C generalizes beyond the passage. D contradicts the passage's argument.",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "What does the passage say flag desecration typically provokes?",
+            "options": [
+              "Communal outrage -- the same response that sacred violation provokes in religious contexts",
+              "Philosophical debate about the limits of free expression"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says national flags' desecration provokes communal outrage."
+          },
+          {
+            "stem": "What distinguishes the sacred response from a purely practical objection?",
+            "options": [
+              "The sacred response involves moral indignation and collective sanction beyond the practical harm caused",
+              "The sacred response is purely emotional with no social consequences"
+            ],
+            "correct_index": 0,
+            "explanation": "Violations provoke not merely practical objection but moral indignation and the collective sanction of the group."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-11-q5",
+        "aamc_category": "CARS",
+        "skill": "comprehension",
+        "stem": "The author's overall assessment of the sacred/profane framework in the final paragraph is best described as:",
+        "options": [
+          "qualified endorsement -- the framework has limitations but retains explanatory value that purely rational accounts lack",
+          "outright rejection -- the critiques conclusively undermine its usefulness",
+          "enthusiastic endorsement -- the framework is superior to all competitors",
+          "complete neutrality -- the author refuses to take any position"
+        ],
+        "correct_index": 0,
+        "explanation": "A is correct: the passage says these tensions notwithstanding, the sacred/profane distinction continues to illuminate the emotional architecture of collective life in ways that strictly rational accounts cannot easily replicate. This acknowledges limitations while affirming value. B contradicts the final paragraph. C is too strong. D is false.",
+        "difficulty": "easy",
+        "subquestions": [
+          {
+            "stem": "What phrase signals the author's acknowledgment of the framework's limitations?",
+            "options": [
+              "These tensions notwithstanding",
+              "The sacred/profane distinction continues to illuminate"
+            ],
+            "correct_index": 0,
+            "explanation": "These tensions notwithstanding concedes the critiques while still affirming value."
+          },
+          {
+            "stem": "What does the author say the framework illuminates that purely rational accounts cannot?",
+            "options": [
+              "The emotional architecture of collective life",
+              "The historical origins of religious institutions"
+            ],
+            "correct_index": 0,
+            "explanation": "The framework illuminates the emotional architecture of collective life in ways that strictly rational accounts cannot easily replicate."
+          }
+        ]
+      }
+    ]
   }
 ]

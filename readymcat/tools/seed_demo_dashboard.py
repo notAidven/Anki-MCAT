@@ -45,7 +45,7 @@ Run inside the built dev environment (after ``ninja pylib`` / ``just build``)::
 Or seed the collection of a named profile base::
 
     out/pyenv/bin/python readymcat/tools/seed_demo_dashboard.py \
-        --anki-base "$HOME/.local/share/Anki2" --profile User\ 1
+        --anki-base "$HOME/.local/share/Anki2" --profile "User 1"
 
 The desktop app exposes the same routine through
 *Tools → Load ReadyMCAT demo data (SYNTHETIC)* (see ``qt/aqt/readymcat_demo.py``).

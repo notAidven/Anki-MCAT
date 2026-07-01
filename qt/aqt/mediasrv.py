@@ -767,6 +767,10 @@ exposed_backend_list = [
     # DeckConfigService
     "get_ignored_before_count",
     "get_retention_workload",
+    # ReadyMCAT PointsAtStakeService — the honest-memory dashboard
+    # (ts/routes/readymcat-dashboard) fetches its per-topic aggregation, ranged
+    # memory score and coverage map through this read-only method.
+    "points_at_stake_queue",
 ]
 
 

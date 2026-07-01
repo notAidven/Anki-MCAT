@@ -670,15 +670,14 @@ class AnkiQt(QMainWindow):
             from aqt.readymcat_provision import maybe_provision_readymcat
 
             self.progress.single_shot(50, lambda: maybe_provision_readymcat(self))
-            # ReadyMCAT LEARN MODE: on first launch (until taken once) offer the
-            # introductory diagnostic, deferred so the deck browser paints
-            # first. It seeds study *ordering* and prerequisite *placement*
-            # only — it never writes a score. Defensive + silent if unavailable.
-            from aqt.readymcat import maybe_show_diagnostic_on_launch
+            # ReadyMCAT: route this launch to exactly one of the introductory
+            # diagnostic (genuinely new profile, seeds study *ordering* and
+            # prerequisite *placement* only — never a score) or the home /
+            # study-launcher hub (every other launch), deferred so the deck
+            # browser paints first. Defensive + silent if unavailable.
+            from aqt.readymcat_home import route_readymcat_launch
 
-            self.progress.single_shot(
-                250, lambda: maybe_show_diagnostic_on_launch(self)
-            )
+            self.progress.single_shot(250, lambda: route_readymcat_launch(self))
             # ReadyMCAT dev/e2e: when READYMCAT_SEED_DEMO is set, populate the
             # profile with SYNTHETIC demo data so the honest-memory dashboard can
             # be screenshotted fully populated. No-op (and silent) otherwise.
@@ -1336,6 +1335,13 @@ title="{}" {}>{}</button>""".format(
     def onPrefs(self) -> None:
         aqt.dialogs.open("Preferences", self)
 
+    def on_readymcat_home(self) -> None:
+        if not self.col:
+            return
+        from aqt.readymcat_home import show_readymcat_home
+
+        show_readymcat_home(self)
+
     def on_readymcat_dashboard(self) -> None:
         if not self.col:
             return
@@ -1491,8 +1497,14 @@ title="{}" {}>{}</button>""".format(
         qconnect(m.action_check_for_updates.triggered, self.on_check_for_updates)
         qconnect(m.actionPreferences.triggered, self.onPrefs)
 
-        # ReadyMCAT: honest-memory dashboard
+        # ReadyMCAT: home / study-launcher hub (the app's entry screen; also
+        # reachable here in case a student closes it and wants it back).
         m.menuTools.addSeparator()
+        self._readymcat_home_action = QAction("ReadyMCAT Home", self)
+        m.menuTools.addAction(self._readymcat_home_action)
+        qconnect(self._readymcat_home_action.triggered, self.on_readymcat_home)
+
+        # ReadyMCAT: honest-memory dashboard
         self._readymcat_action = QAction("ReadyMCAT Dashboard", self)
         m.menuTools.addAction(self._readymcat_action)
         qconnect(self._readymcat_action.triggered, self.on_readymcat_dashboard)

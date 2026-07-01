@@ -255,3 +255,32 @@ class TestReadyMCATEndpointsRegistered:
             "congratsInfo",
         ):
             assert name in post_handlers, f"{name} unexpectedly missing"
+
+
+class TestReadyMCATHomeEndpointRegistered:
+    """The ReadyMCAT home hub's page route and status endpoint must stay
+    registered, or the hub 404s on load ("Invalid path: readymcat-home") or
+    its tiles silently show stale/zeroed counts ("_anki/readymcatHomeStatus").
+    """
+
+    def test_home_page_route_is_registered(self) -> None:
+        from aqt.mediasrv import is_sveltekit_page
+
+        assert is_sveltekit_page("readymcat-home")
+
+    def test_home_status_endpoint_is_registered(self) -> None:
+        from aqt.mediasrv import post_handlers
+
+        assert "readymcatHomeStatus" in post_handlers
+        assert callable(post_handlers["readymcatHomeStatus"])
+
+    def test_home_status_coexists_with_dashboard_and_diagnostic(self) -> None:
+        from aqt.mediasrv import post_handlers
+
+        for name in (
+            "readymcatHomeStatus",
+            "pointsAtStakeQueue",
+            "getDiagnosticQuiz",
+            "scoreAndSeedDiagnostic",
+        ):
+            assert name in post_handlers, f"{name} unexpectedly missing"

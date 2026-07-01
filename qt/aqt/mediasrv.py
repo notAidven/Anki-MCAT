@@ -424,6 +424,7 @@ def is_sveltekit_page(path: str) -> bool:
         "image-occlusion",
         "readymcat-dashboard",
         "readymcat-diagnostic",
+        "readymcat-home",
     ]
 
 
@@ -706,6 +707,23 @@ def save_custom_colours() -> bytes:
     return b""
 
 
+def readymcat_home_status() -> bytes:
+    """Serve the ReadyMCAT home hub's per-deck due/total counts, overall
+    progress and diagnostic status as plain JSON.
+
+    A Python-level handler (not a Rust/proto service like
+    ``pointsAtStakeQueue``) since it's a thin, read-only aggregation over
+    existing collection APIs (``col.decks.deck_tree()``, the review log,
+    ``get_diagnostic_prior()``) — see ``readymcat/tools/home_launcher.py``
+    for the actual (unit-tested) number-crunching.
+    """
+    import json
+
+    from aqt.readymcat_home import build_home_status
+
+    return json.dumps(build_home_status(aqt.mw)).encode("utf-8")
+
+
 post_handler_list = [
     congrats_info,
     get_deck_configs_for_update,
@@ -722,6 +740,11 @@ post_handler_list = [
     deck_options_require_close,
     deck_options_ready,
     save_custom_colours,
+    # ReadyMCAT home hub (ts/routes/readymcat-home): per-deck launch counts +
+    # overall progress + diagnostic status. Must stay registered here or the
+    # hub's ``_anki/readymcatHomeStatus`` fetch 404s (see
+    # qt/tests/test_mediasrv.py::TestReadyMCATHomeEndpointRegistered).
+    readymcat_home_status,
 ]
 
 

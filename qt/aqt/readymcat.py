@@ -202,25 +202,87 @@ def diagnostic_prior_present(mw: aqt.main.AnkiQt) -> bool:
         return False
 
 
-def maybe_show_diagnostic_on_launch(mw: aqt.main.AnkiQt) -> None:
-    """Open the diagnostic once, on first launch, when it hasn't been taken and
-    a question bank is available. Silent + defensive so it never blocks start-up."""
+def quiz_bank_available(mw: aqt.main.AnkiQt) -> bool:
+    """True when a diagnostic question bank can actually be located/served."""
     if mw.col is None:
-        return
-    # Escape hatch for dev/e2e/headless runs that don't want the intake popup.
-    if os.environ.get("READYMCAT_NO_DIAGNOSTIC"):
-        return
+        return False
     try:
-        if diagnostic_prior_present(mw):
-            return
         quiz_path = _bundled_quiz_path(mw)
         quiz = mw.col._backend.get_diagnostic_quiz(quiz_path=quiz_path, mode="short")
-        if not quiz.present:
-            return
+        return bool(quiz.present)
+    except Exception as exc:  # pragma: no cover - defensive
+        print("ReadyMCAT: diagnostic availability check failed", exc)
+        return False
+
+
+def _load_home_launcher() -> ModuleType | None:
+    """Load (and cache) the pure home-hub helper module by path (the
+    ``should_open_diagnostic_on_launch`` routing decision lives there so it
+    is unit tested without a Qt/collection dependency). Mirrors ``_bank()``
+    below."""
+    global _home_launcher_cache, _home_launcher_loaded
+    if _home_launcher_loaded:
+        return _home_launcher_cache
+    _home_launcher_loaded = True
+    candidates = [
+        Path(__file__).resolve().parents[2]
+        / "readymcat"
+        / "tools"
+        / "home_launcher.py",
+        Path.cwd() / "readymcat" / "tools" / "home_launcher.py",
+    ]
+    for path in candidates:
+        try:
+            if not path.is_file():
+                continue
+            spec = importlib.util.spec_from_file_location(
+                "readymcat_home_launcher_from_readymcat", path
+            )
+            assert spec and spec.loader
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+            _home_launcher_cache = module
+            return module
+        except Exception as exc:  # pragma: no cover - defensive
+            print("ReadyMCAT: could not load home-hub helpers", exc)
+            continue
+    return None
+
+
+_home_launcher_cache: ModuleType | None = None
+_home_launcher_loaded = False
+
+
+def maybe_show_diagnostic_on_launch(mw: aqt.main.AnkiQt) -> bool:
+    """Open the diagnostic once, on first launch, when it hasn't been taken and
+    a question bank is available. Silent + defensive so it never blocks
+    start-up. Returns True iff the diagnostic was actually opened, so the
+    caller (``aqt.main``) knows whether to route to the home hub instead —
+    see ``aqt.readymcat_home.route_readymcat_launch``, the single place that
+    decides between the two so they never both auto-open."""
+    if mw.col is None:
+        return False
+    # Escape hatch for dev/e2e/headless runs that don't want the intake popup.
+    skip = bool(os.environ.get("READYMCAT_NO_DIAGNOSTIC"))
+    try:
+        already_taken = diagnostic_prior_present(mw)
+        available = quiz_bank_available(mw)
+        home_launcher = _load_home_launcher()
+        if home_launcher is not None:
+            should_open = home_launcher.should_open_diagnostic_on_launch(
+                diagnostic_already_taken=already_taken,
+                quiz_available=available,
+                skip_diagnostic=skip,
+            )
+        else:  # pragma: no cover - defensive fallback if helpers are missing
+            should_open = (not skip) and (not already_taken) and available
     except Exception as exc:  # pragma: no cover - defensive
         print("ReadyMCAT: diagnostic auto-open check failed", exc)
-        return
+        return False
+    if not should_open:
+        return False
     show_readymcat_diagnostic(mw)
+    return True
 
 
 # --- Teach-on-miss support --------------------------------------------------

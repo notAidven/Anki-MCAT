@@ -820,5 +820,192 @@
         ]
       }
     ]
+  },
+  {
+    "id": "psg-cars-5",
+    "section": "CARS",
+    "passage": "Beauty and sublimity are often treated as synonyms in everyday speech, but the aesthetic tradition has long maintained a crucial distinction between them. Beauty, on the classical account, is associated with harmony, proportion, and pleasure: the beautiful object is one whose parts cohere in a way that the observer finds immediately gratifying. Sublimity, by contrast, involves an experience of excess — of forms or magnitudes that exceed the observer's capacity to take them in all at once. The encounter with the sublime is therefore double-edged: it produces both awe and a kind of distress, a sense of being overwhelmed that coexists with exhilaration.\n\nEighteenth-century theorists were among the first to treat the sublime as a distinct aesthetic category. One influential account located the cause of sublimity in attributes such as vast extent, darkness, and the suggestion of danger or power. A stormy ocean, a jagged mountain range, the interior of a vast cathedral — these provoke a response that differs qualitatively from our response to a well-proportioned garden or a graceful melody. The difference lies not in mere intensity but in the character of the response: the sublime suspends our habitual sense of comfort and security.\n\nA subsequent philosophical tradition shifted the locus of the sublime from the external object to the observer's mental activity. On this view, what is truly sublime is not the mountain itself but the mind's discovery of its own capacity to conceive of what it cannot perceive — to think totality even when the senses are overwhelmed by the magnitude before them. The initial feeling of inadequacy thus gives way to a recognition of the mind's superiority: the faculty that can frame the idea of infinity is, in this sense, greater than any finite spectacle.\n\nThese two accounts — one locating sublimity in the object's properties, the other in the observer's cognitive response — are not necessarily incompatible. Objects with certain properties may reliably trigger the cognitive response that constitutes the full experience of the sublime. What both accounts agree on, however, is that the sublime cannot be reduced to beauty: the sublime disrupts the comfortable relationship between the observer and the world, while beauty affirms and soothes it.\n\nContemporary critics have extended the concept of the sublime to non-natural contexts. The technological sublime finds its occasion in artifacts of overwhelming scale or power: a vast suspension bridge, a particle accelerator, a data center housing more information than any mind could process. Whether such objects genuinely provoke the traditional experience of mingled awe and inadequacy, or whether they produce only spectacle and wonder, remains a live debate in aesthetic theory.",
+    "passage_source": {
+      "name": "original",
+      "url": "",
+      "license": "original"
+    },
+    "questions": [
+      {
+        "id": "psg-cars-5-q1",
+        "aamc_category": "CARS",
+        "skill": "comprehension",
+        "stem": "According to the passage, the key difference between beauty and sublimity is that:",
+        "options": [
+          "beauty involves harmonious pleasure, while sublimity involves being overwhelmed in a way that is both distressing and exhilarating",
+          "beauty is experienced outdoors in nature, while sublimity is experienced in art galleries",
+          "beauty requires technical training to appreciate, while sublimity is universally accessible",
+          "beauty is a modern concept, while sublimity dates to ancient Greece"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) matches the passage: beauty is 'harmony, proportion, and pleasure,' while sublimity involves 'excess' and is 'double-edged: it produces both awe and a kind of distress.' (B) is not stated and contradicts the passage (a cathedral is not outdoors). (C) is not mentioned. (D) is historically inaccurate per the passage.",
+        "difficulty": "easy",
+        "subquestions": [
+          {
+            "stem": "What does beauty primarily produce, according to the passage?",
+            "options": [
+              "Immediate gratification through harmony and proportion",
+              "Awe mixed with a sense of inadequacy"
+            ],
+            "correct_index": 0,
+            "explanation": "Beauty is described as 'harmony, proportion, and pleasure: the beautiful object is one whose parts cohere in a way that the observer finds immediately gratifying.'"
+          },
+          {
+            "stem": "What makes the sublime experience 'double-edged'?",
+            "options": [
+              "It produces both awe and distress simultaneously",
+              "It can be found in both natural and artificial objects"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says it 'produces both awe and a kind of distress, a sense of being overwhelmed that coexists with exhilaration.'"
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-5-q2",
+        "aamc_category": "CARS",
+        "skill": "comprehension",
+        "stem": "The philosophical tradition described in the third paragraph locates the sublime primarily in:",
+        "options": [
+          "the mind's discovery of its own capacity to conceive what the senses cannot fully perceive",
+          "the external object's attributes of vastness and danger",
+          "the cultural conventions that teach observers to respond with awe",
+          "the physiological arousal produced by threatening stimuli"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is stated directly: 'what is truly sublime is not the mountain itself but the mind's discovery of its own capacity to conceive of what it cannot perceive.' (B) describes the earlier, object-centered account. (C) introduces cultural conventions not discussed. (D) introduces physiology not mentioned.",
+        "difficulty": "easy",
+        "subquestions": [
+          {
+            "stem": "Where does the sublime ultimately reside, according to the third-paragraph tradition?",
+            "options": [
+              "In the observer's mind and its cognitive capacities",
+              "In the external object's physical properties"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says 'what is truly sublime is not the mountain itself but the mind's discovery of its own capacity to conceive.'"
+          },
+          {
+            "stem": "What cognitive achievement does the mind accomplish in the sublime experience?",
+            "options": [
+              "Framing the idea of infinity even when overwhelmed by a finite spectacle",
+              "Memorizing the dimensions of a vast natural landscape"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says 'the faculty that can frame the idea of infinity is, in this sense, greater than any finite spectacle.'"
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-5-q3",
+        "aamc_category": "CARS",
+        "skill": "reasoning-within",
+        "stem": "The author suggests that the object-centered and observer-centered accounts of the sublime are:",
+        "options": [
+          "potentially compatible, since certain object properties may reliably trigger the cognitive response",
+          "mutually exclusive theories, only one of which can be correct",
+          "identical in all important respects despite apparent surface differences",
+          "both clearly false, since the sublime is purely a cultural convention"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is stated: 'These two accounts... are not necessarily incompatible. Objects with certain properties may reliably trigger the cognitive response.' (B) contradicts this. (C) is wrong — the passage notes a real difference in where they locate the sublime. (D) introduces cultural convention the passage does not propose.",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "Does the passage say the two accounts are necessarily incompatible?",
+            "options": [
+              "No — it says they 'are not necessarily incompatible'",
+              "Yes — it treats them as rival theories"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage explicitly states 'These two accounts are not necessarily incompatible.'"
+          },
+          {
+            "stem": "How might the two accounts be reconciled?",
+            "options": [
+              "Objects with sublime properties may reliably trigger the cognitive response that constitutes the experience",
+              "Observers must be trained to find objects sublime regardless of their properties"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says 'Objects with certain properties may reliably trigger the cognitive response that constitutes the full experience of the sublime.'"
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-5-q4",
+        "aamc_category": "CARS",
+        "skill": "reasoning-within",
+        "stem": "The passage implies the sublime cannot be reduced to beauty primarily because:",
+        "options": [
+          "the sublime disrupts the comfortable relationship between observer and world, while beauty affirms it",
+          "the sublime is always triggered by natural objects, while beauty arises from art",
+          "the sublime is more intense than beauty and therefore distinct only in degree",
+          "beauty is appreciated collectively, while the sublime is an irreducibly private experience"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is stated explicitly: 'the sublime cannot be reduced to beauty: the sublime disrupts the comfortable relationship between the observer and the world, while beauty affirms and soothes it.' (B) contradicts the passage (cathedrals are man-made; data centers are technological). (C) is incorrect — the difference is in 'character,' not merely intensity. (D) is not mentioned.",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "What does the sublime do to the observer's relationship with the world?",
+            "options": [
+              "Disrupts it",
+              "Affirms and soothes it"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says 'the sublime disrupts the comfortable relationship between the observer and the world.'"
+          },
+          {
+            "stem": "What does beauty do to that same relationship?",
+            "options": [
+              "Affirms and soothes it",
+              "Disrupts and overwhelms it"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage contrasts: beauty 'affirms and soothes' the comfortable relationship."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-5-q5",
+        "aamc_category": "CARS",
+        "skill": "reasoning-beyond",
+        "stem": "A reader visits a massive data center and feels both awed by its scale and vaguely threatened by the incomprehensibility of the information it contains. According to the passage's discussion of the technological sublime, this experience:",
+        "options": [
+          "fits the traditional description of the sublime as mingled awe and inadequacy, illustrating why critics extend the concept to technological artifacts",
+          "proves that the technological sublime is identical to the natural sublime",
+          "demonstrates that beauty and sublimity are the same in technological contexts",
+          "cannot be a genuine aesthetic experience because it involves artificial, not natural, objects"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is correct: the passage describes the traditional sublime as 'mingled awe and inadequacy' and notes contemporary critics debate whether technological objects 'genuinely provoke the traditional experience of mingled awe and inadequacy.' The reader's response fits. (B) is not stated. (C) contradicts the core distinction. (D) is exactly the view the passage disputes by raising the technological sublime as a live topic.",
+        "difficulty": "hard",
+        "subquestions": [
+          {
+            "stem": "How does the passage describe the traditional experience of the sublime?",
+            "options": [
+              "As mingled awe and inadequacy",
+              "As pure pleasure with no element of distress"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage uses 'mingled awe and inadequacy' and earlier 'both awe and a kind of distress.'"
+          },
+          {
+            "stem": "What open question does the passage raise about technological objects and the sublime?",
+            "options": [
+              "Whether they genuinely provoke the traditional experience or merely produce spectacle and wonder",
+              "Whether they are aesthetically inferior to natural landscapes"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says 'Whether such objects genuinely provoke the traditional experience of mingled awe and inadequacy, or whether they produce only spectacle and wonder, remains a live debate.'"
+          }
+        ]
+      }
+    ]
   }
 ]

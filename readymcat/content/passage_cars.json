@@ -1568,5 +1568,192 @@
         ]
       }
     ]
+  },
+  {
+    "id": "psg-cars-9",
+    "section": "CARS",
+    "passage": "Classical economic theory rests on a conception of the agent as fundamentally rational: possessed of stable, consistent preferences, capable of processing available information, and motivated to maximize personal utility. This model has extraordinary analytical power. It generates precise, testable predictions and underlies the welfare theorems that have guided economic policy for generations. Yet beginning in the latter decades of the twentieth century, a body of research in behavioral economics accumulated evidence that humans deviate from this ideal in systematic, predictable, and consequential ways.\n\nAmong the most robust findings is loss aversion: people respond more strongly to losses than to equivalent gains. The discomfort of losing one hundred dollars is experienced as more intense than the pleasure of gaining the same amount. This asymmetry has significant implications. It helps explain why people hold losing financial assets far longer than rational profit-maximization would recommend — they prefer the pain of waiting to the certain loss of selling. It also explains why contract and policy framings that emphasize avoiding losses are more motivationally effective than those that emphasize equivalent gains.\n\nA second set of findings concerns heuristic judgment under uncertainty. When people lack the time or information to calculate expected values precisely, they rely on cognitive shortcuts that usually suffice but sometimes produce systematic errors. The availability heuristic leads people to estimate the probability of an event by how easily examples come to mind: dramatic events, such as airplane crashes, are overestimated in frequency because they are memorable, while mundane but statistically commoner risks, such as car accidents, are underestimated. The representativeness heuristic leads people to assess probability by how closely an instance resembles a prototypical category member, often ignoring base-rate information entirely.\n\nThese findings have generated debate about the appropriate policy response. Some argue that behavioral insights justify 'nudging': designing choice environments so that the default option is the one that most people would choose on reflection. Automatic enrollment in retirement savings plans, for instance, exploits the tendency to accept defaults, boosting participation without eliminating freedom of choice. Critics of nudging worry that it is paternalistic, that it manipulates rather than informs, and that it presupposes policymakers know better than individuals what those individuals' reflective preferences actually are.\n\nThe behavioral economics literature does not establish that markets always fail or that regulation is always beneficial. It establishes only that the idealized rational actor is an incomplete description of real human psychology, and that understanding how people actually decide is essential to designing institutions that work well in the world as it is.",
+    "passage_source": {
+      "name": "original",
+      "url": "",
+      "license": "original"
+    },
+    "questions": [
+      {
+        "id": "psg-cars-9-q1",
+        "aamc_category": "CARS",
+        "skill": "comprehension",
+        "stem": "According to the passage, loss aversion refers to the finding that people:",
+        "options": [
+          "feel losses more intensely than equivalent gains",
+          "systematically overestimate the probability of losing money in investments",
+          "prefer to avoid making any decisions when the outcome is uncertain",
+          "lose interest in a goal once they have made significant progress toward it"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is the direct definition: 'people respond more strongly to losses than to equivalent gains. The discomfort of losing one hundred dollars is experienced as more intense than the pleasure of gaining the same amount.' (B) confuses loss aversion with availability heuristic. (C) describes decision avoidance, not loss aversion. (D) is a goal-related phenomenon not in the passage.",
+        "difficulty": "easy",
+        "subquestions": [
+          {
+            "stem": "What specific comparison illustrates loss aversion?",
+            "options": [
+              "Losing one hundred dollars feels worse than gaining one hundred dollars feels good",
+              "People lose more money in stock markets than they gain over a lifetime"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage uses: 'The discomfort of losing one hundred dollars is experienced as more intense than the pleasure of gaining the same amount.'"
+          },
+          {
+            "stem": "What investment behavior does loss aversion help explain?",
+            "options": [
+              "Holding losing assets longer than rational profit-maximization recommends",
+              "Buying more stocks when the market is rising than when it is falling"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says loss aversion 'explains why people hold losing financial assets far longer than rational profit-maximization would recommend.'"
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-9-q2",
+        "aamc_category": "CARS",
+        "skill": "comprehension",
+        "stem": "The availability heuristic, as described in the passage, causes people to:",
+        "options": [
+          "overestimate the frequency of dramatic, memorable events and underestimate mundane but commoner risks",
+          "assess probability by how closely an instance resembles a typical category member",
+          "accept whatever option is presented as the default rather than deliberating actively",
+          "overweight recent information while discounting older historical data"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is stated directly: airplane crashes are overestimated 'because they are memorable,' while car accidents 'are underestimated.' (B) describes the representativeness heuristic. (C) describes the default-acceptance tendency. (D) is a recency bias not discussed.",
+        "difficulty": "easy",
+        "subquestions": [
+          {
+            "stem": "What does the availability heuristic use as a proxy for probability?",
+            "options": [
+              "How easily examples of an event come to mind",
+              "How closely an event resembles a prototype"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says people 'estimate the probability of an event by how easily examples come to mind.'"
+          },
+          {
+            "stem": "Which type of risk does the availability heuristic cause people to underestimate?",
+            "options": [
+              "Mundane but statistically commoner risks, like car accidents",
+              "Rare but dramatic events, like airplane crashes"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says 'mundane but statistically commoner risks, such as car accidents, are underestimated.'"
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-9-q3",
+        "aamc_category": "CARS",
+        "skill": "reasoning-within",
+        "stem": "Critics of nudging worry primarily that it:",
+        "options": [
+          "manipulates rather than informs and presupposes policymakers know better than individuals what those individuals' reflective preferences are",
+          "is ineffective because people always override default options when they are aware of them",
+          "violates constitutional rights to freedom of economic choice",
+          "undermines behavioral economics findings by assuming people are fully rational"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is stated: critics 'worry that it is paternalistic, that it manipulates rather than informs, and that it presupposes policymakers know better than individuals what those individuals' reflective preferences actually are.' (B) is not their critique. (C) introduces constitutional language not in the passage. (D) is the opposite.",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "What term does the passage use to describe critics' concern about policymakers directing behavior?",
+            "options": [
+              "Paternalistic",
+              "Authoritarian"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says critics 'worry that it is paternalistic.'"
+          },
+          {
+            "stem": "What assumption about policymakers do critics find objectionable?",
+            "options": [
+              "That policymakers know better than individuals what those individuals' reflective preferences actually are",
+              "That policymakers are immune to the same cognitive biases as citizens"
+            ],
+            "correct_index": 0,
+            "explanation": "Critics object to the assumption that nudging 'presupposes policymakers know better than individuals what those individuals' reflective preferences actually are.'"
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-9-q4",
+        "aamc_category": "CARS",
+        "skill": "reasoning-within",
+        "stem": "The final paragraph is primarily intended to:",
+        "options": [
+          "clarify the limited conclusion behavioral economics supports, distinguishing it from broader claims about market failure",
+          "argue that behavioral economics has decisively refuted classical economic theory",
+          "summarize the policy recommendations most behavioral economists endorse",
+          "suggest that behavioral findings have not yet accumulated enough evidence to be reliable"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is correct: the passage explicitly states behavioral economics 'does not establish that markets always fail or that regulation is always beneficial. It establishes only that the idealized rational actor is an incomplete description.' (B) contradicts this. (C) is not addressed. (D) contradicts the opening characterization of findings as 'robust.'",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "What does the passage say behavioral economics does NOT establish?",
+            "options": [
+              "That markets always fail or that regulation is always beneficial",
+              "That people sometimes deviate from rational decision-making"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage states: 'The behavioral economics literature does not establish that markets always fail or that regulation is always beneficial.'"
+          },
+          {
+            "stem": "What limited conclusion does behavioral economics actually support?",
+            "options": [
+              "That the idealized rational actor is an incomplete description of real human psychology",
+              "That all economic models should be replaced with psychological ones"
+            ],
+            "correct_index": 0,
+            "explanation": "It 'establishes only that the idealized rational actor is an incomplete description of real human psychology.'"
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-9-q5",
+        "aamc_category": "CARS",
+        "skill": "reasoning-beyond",
+        "stem": "A health campaign tells people that 'nine out of ten people in your neighborhood have received their flu vaccine' rather than describing the vaccine's medical benefits. This strategy most directly exploits which behavioral finding?",
+        "options": [
+          "The tendency to accept defaults, since vaccination appears to be the expected norm",
+          "Loss aversion, by implying that unvaccinated people are losing something the majority has gained",
+          "The availability heuristic, by making vaccine uptake easy to imagine through social examples",
+          "The representativeness heuristic, by making the unvaccinated person feel unlike a typical neighbor"
+        ],
+        "correct_index": 0,
+        "explanation": "(D) is the closest alternative, but (A) is the best answer: social-norm messaging makes vaccination seem like the expected default behavior, exploiting the tendency to conform to perceived norms and defaults. (B) involves loss aversion which concerns personal financial/outcome sensitivity. (C) involves ease of recall, not social comparison. (D) is closer but the core mechanism is norm-based conformity, not representativeness per se.",
+        "difficulty": "hard",
+        "subquestions": [
+          {
+            "stem": "What does the '9 out of 10 neighbors' framing do to the target audience's perception?",
+            "options": [
+              "It makes vaccination appear to be the default norm in their social environment",
+              "It makes the medical risks of flu more vivid and memorable"
+            ],
+            "correct_index": 0,
+            "explanation": "Telling people the majority is vaccinated presents vaccination as the expected, default behavior — a social norm."
+          },
+          {
+            "stem": "Which behavioral finding involves acceptance of default options?",
+            "options": [
+              "The tendency to accept defaults, described in the context of automatic retirement enrollment",
+              "Loss aversion, described in the context of holding losing financial assets"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage describes nudging as 'exploiting the tendency to accept defaults, boosting participation' — as illustrated by automatic retirement enrollment."
+          }
+        ]
+      }
+    ]
   }
 ]

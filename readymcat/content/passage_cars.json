@@ -633,5 +633,192 @@
         ]
       }
     ]
+  },
+  {
+    "id": "psg-cars-4",
+    "section": "CARS",
+    "passage": "History is not the past itself but a selective reconstruction of the past, assembled from fragmentary evidence by scholars whose questions, categories, and assumptions are inevitably shaped by their own time and place. This observation, often associated with the philosophy of history that emerged in the nineteenth and twentieth centuries, does not reduce historical writing to fiction. Yet it does demand that historians acknowledge their craft as an interpretive one rather than a neutral transcription of what happened.\n\nThe most influential historians have always made choices: choices about which events to emphasize, which actors to foreground, and which causal chains to trace. A military historian who concentrates on battles and generals produces a different account of the same period than a social historian who foregrounds the lives of ordinary laborers, or an economic historian who treats fluctuations in grain prices as the deeper explanatory variable. None of these accounts is simply wrong; each illuminates a dimension of a complex past while necessarily leaving other dimensions in shadow.\n\nCritics of this pluralism worry that it licenses an anything-goes relativism in which no historical account is better than any other. Defenders respond that recognizing the constructed character of historical narratives is compatible with rigorous standards of evidence, logical consistency, and fidelity to the archival record. An interpretation can be shown to be false if it contradicts well-authenticated documents, or shown to be weak if it ignores a large body of relevant evidence. The standards are not arbitrary, even if the questions that animate historical inquiry are themselves products of particular intellectual climates.\n\nA further complication arises from the role of the historical archive itself. Archives are not neutral repositories of the past; they are collections shaped by decisions about what to preserve, who had the resources to produce written records, and which categories of information administrative systems deemed worth tracking. Consequently, the voices most abundantly represented in archives tend to be those of literate elites, state bureaucracies, and dominant institutions, while the experiences of the illiterate, the dispossessed, and the colonized are filtered through the records of those who observed or administered them from a position of power.\n\nContemporary historians have developed a range of techniques to recover marginalized perspectives: reading documents 'against the grain' of their intended purpose, triangulating between different types of sources, and drawing on oral traditions and material culture as complementary evidence. These methods have expanded the scope of historical knowledge considerably, even as they have deepened awareness that the gap between the past and the historian's account of it can never be fully closed.",
+    "passage_source": {
+      "name": "original",
+      "url": "",
+      "license": "original"
+    },
+    "questions": [
+      {
+        "id": "psg-cars-4-q1",
+        "aamc_category": "CARS",
+        "skill": "comprehension",
+        "stem": "The author's main claim about history is that it is:",
+        "options": [
+          "a selective, interpretive reconstruction shaped by the historian's own context",
+          "essentially fictional because it cannot be verified against the actual past",
+          "only valid when it focuses on elites and state bureaucracies who left written records",
+          "a neutral transcription of events that speaks for itself without interpretation"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is the explicit thesis: history is 'a selective reconstruction of the past' shaped by 'questions, categories, and assumptions' that are 'shaped by their own time and place.' (B) overstates — the passage says this does not reduce history to fiction. (C) is the opposite. (D) is what the passage explicitly rejects.",
+        "difficulty": "easy",
+        "subquestions": [
+          {
+            "stem": "Does the passage claim that history is pure fiction?",
+            "options": [
+              "No — acknowledging interpretive nature does not reduce history to fiction",
+              "Yes — it argues historical accounts are no more reliable than novels"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage explicitly states: 'does not reduce historical writing to fiction.'"
+          },
+          {
+            "stem": "What phrase captures the author's view of the historian's craft?",
+            "options": [
+              "An interpretive craft rather than a neutral transcription",
+              "A scientific discipline that yields objective truths"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says historians must acknowledge their craft 'as an interpretive one rather than a neutral transcription.'"
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-4-q2",
+        "aamc_category": "CARS",
+        "skill": "reasoning-within",
+        "stem": "According to the passage, defenders of historiographical pluralism argue that:",
+        "options": [
+          "acknowledging constructed narratives is compatible with evidence-based standards of evaluation",
+          "any historical interpretation is as good as any other if sincerely believed",
+          "the archival record is always sufficient to verify a historical claim",
+          "historical truth is accessible only to scholars within dominant institutional frameworks"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is directly stated: defenders argue that recognizing narratives are constructed is 'compatible with rigorous standards of evidence, logical consistency, and fidelity to the archival record.' (B) describes the 'anything-goes relativism' defenders are responding to. (C) is the opposite of the archive critique. (D) contradicts sympathy with recovering marginalized voices.",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "What standards do defenders say can still distinguish better from worse historical accounts?",
+            "options": [
+              "Evidence, logical consistency, and fidelity to the archival record",
+              "Ideological alignment with progressive historical interpretations"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage lists: 'rigorous standards of evidence, logical consistency, and fidelity to the archival record.'"
+          },
+          {
+            "stem": "Can an interpretation be shown to be false, according to defenders?",
+            "options": [
+              "Yes — if it contradicts well-authenticated documents",
+              "No — all interpretations are equally valid"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says 'an interpretation can be shown to be false if it contradicts well-authenticated documents.'"
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-4-q3",
+        "aamc_category": "CARS",
+        "skill": "comprehension",
+        "stem": "The passage identifies a significant limitation of historical archives, which is that they:",
+        "options": [
+          "over-represent literate elites and institutions while filtering out the experiences of the powerless",
+          "are too large and comprehensive for any single historian to master",
+          "deliberately destroy records that would undermine the narratives of dominant groups",
+          "are accessible only to scholars with advanced training in archival methods"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is stated directly: archives tend to represent 'literate elites, state bureaucracies, and dominant institutions, while the experiences of the illiterate, the dispossessed, and the colonized are filtered through the records of those who... administered them from a position of power.' (B) is not discussed. (C) overstates — the passage says archives reflect who had resources, not deliberate destruction. (D) is not mentioned.",
+        "difficulty": "easy",
+        "subquestions": [
+          {
+            "stem": "Whose voices are most abundantly represented in historical archives?",
+            "options": [
+              "Literate elites, state bureaucracies, and dominant institutions",
+              "Ordinary laborers and the dispossessed"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage states archives tend to represent 'literate elites, state bureaucracies, and dominant institutions.'"
+          },
+          {
+            "stem": "Through whose records do the experiences of the dispossessed appear?",
+            "options": [
+              "Those who observed or administered them from a position of power",
+              "Their own self-authored accounts preserved by archivists"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says experiences 'are filtered through the records of those who observed or administered them from a position of power.'"
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-4-q4",
+        "aamc_category": "CARS",
+        "skill": "reasoning-beyond",
+        "stem": "A historian studying the lives of enslaved people in the antebellum American South relies on plantation owners' diaries and runaway-slave advertisements. This approach best exemplifies the technique the passage calls:",
+        "options": [
+          "reading documents against the grain of their intended purpose",
+          "neutral transcription of what happened",
+          "triangulating between different historians' published interpretations",
+          "restricting evidence to material culture because written records are unreliable"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is correct: plantation owners' diaries were produced for purposes other than documenting enslaved perspectives, but the historian uses them to recover those perspectives — exactly 'reading documents against the grain of their intended purpose.' (B) is what the passage rejects. (C) confuses triangulating source types with comparing secondary literature. (D) is not the strategy described — the historian uses written records.",
+        "difficulty": "hard",
+        "subquestions": [
+          {
+            "stem": "What does 'reading against the grain' mean in the passage's framework?",
+            "options": [
+              "Using documents for a purpose different from the one they were originally intended to serve",
+              "Rejecting archival documents in favor of oral traditions"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage defines it as 'reading documents against the grain of their intended purpose.'"
+          },
+          {
+            "stem": "Why does using plantation diaries to study enslaved lives fit this technique?",
+            "options": [
+              "Because plantation diaries were written by slaveholders for their own purposes, yet the historian extracts information about enslaved people from them",
+              "Because the diaries were secretly written by enslaved people"
+            ],
+            "correct_index": 0,
+            "explanation": "The diary was not intended to document enslaved lives sympathetically; using it to recover those lives is reading against the grain."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-4-q5",
+        "aamc_category": "CARS",
+        "skill": "reasoning-within",
+        "stem": "Different historical accounts of the same period — military, social, economic — are best described by the passage as:",
+        "options": [
+          "each illuminating a different dimension of a complex past while leaving others in shadow",
+          "competing accounts only one of which can be correct",
+          "equally arbitrary, since all historical choices are subjective",
+          "valid only when they corroborate each other across all dimensions"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is the passage's view: 'None of these accounts is simply wrong; each illuminates a dimension of a complex past while necessarily leaving other dimensions in shadow.' (B) adopts the either/or framing the passage rejects. (C) is the 'anything-goes relativism' the passage critiques. (D) is not stated.",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "Does the passage say any of the three historical approaches is simply wrong?",
+            "options": [
+              "No — each is said to illuminate a dimension of the past",
+              "Yes — only social history is validated as most accurate"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage explicitly states: 'None of these accounts is simply wrong.'"
+          },
+          {
+            "stem": "What does each approach necessarily do to other dimensions of the past?",
+            "options": [
+              "Leave them in shadow",
+              "Contradict or disprove them"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says each illuminates one dimension 'while necessarily leaving other dimensions in shadow.'"
+          }
+        ]
+      }
+    ]
   }
 ]

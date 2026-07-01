@@ -3393,5 +3393,1698 @@
         "explanation": "UCP1 (thermogenin)."
       }
     ]
+  },
+  {
+    "id": "fr-bb-2A-01",
+    "section": "B/B",
+    "aamc_category": "2A",
+    "subtopic": "Plasma membrane: fluid mosaic",
+    "answer_type": "free_response",
+    "prompt": "What model describes the plasma membrane as a fluid phospholipid bilayer studded with laterally mobile proteins?",
+    "accepted_answers": [
+      "fluid mosaic model",
+      "fluid mosaic",
+      "the fluid mosaic model"
+    ],
+    "key_terms": [
+      "fluid mosaic"
+    ],
+    "model_answer": "The fluid mosaic model",
+    "explanation": "'Fluid' captures the lateral mobility of lipids and proteins; 'mosaic' captures the diverse proteins embedded in the bilayer.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 5 Structure and Function of Plasma Membranes",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "What molecule inserted among the phospholipids helps buffer membrane fluidity in animal cells?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "cholesterol"
+        ],
+        "explanation": "Cholesterol moderates fluidity."
+      },
+      {
+        "stem": "Does the hydrophilic head or the hydrophobic tail of a membrane phospholipid face the watery environment?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "head",
+          "the head",
+          "hydrophilic head",
+          "phosphate head"
+        ],
+        "explanation": "The hydrophilic head faces the aqueous side."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2A-02",
+    "section": "B/B",
+    "aamc_category": "2A",
+    "subtopic": "Plasma membrane: composition",
+    "answer_type": "free_response",
+    "prompt": "What class of amphipathic lipid forms the fundamental bilayer of cell membranes?",
+    "accepted_answers": [
+      "phospholipid",
+      "phospholipids",
+      "phospholipid bilayer"
+    ],
+    "key_terms": [
+      "phospholipid"
+    ],
+    "model_answer": "Phospholipids",
+    "explanation": "Phospholipids have a hydrophilic phosphate head and two hydrophobic fatty-acid tails, so they spontaneously form a bilayer in water.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 5 Plasma Membranes (phospholipids)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "A molecule with both hydrophilic and hydrophobic regions is described as ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "amphipathic",
+          "amphiphilic",
+          "amphipathic (amphiphilic)"
+        ],
+        "explanation": "Amphipathic."
+      },
+      {
+        "stem": "In the bilayer, do the hydrophobic tails point inward (toward each other) or outward?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "inward",
+          "toward each other",
+          "inward toward each other"
+        ],
+        "explanation": "Inward, away from water."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2A-03",
+    "section": "B/B",
+    "aamc_category": "2A",
+    "subtopic": "Membrane transport: osmosis",
+    "answer_type": "free_response",
+    "prompt": "What is the term for the net diffusion of WATER across a semipermeable membrane from low to high solute concentration?",
+    "accepted_answers": [
+      "osmosis"
+    ],
+    "key_terms": [
+      "osmosis"
+    ],
+    "model_answer": "Osmosis",
+    "explanation": "Water moves toward the region of higher solute (lower water) concentration; osmosis is passive and needs no ATP.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 5 Passive Transport (osmosis)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Water moves toward the side with HIGHER or LOWER solute concentration?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "higher",
+          "higher solute",
+          "higher solute concentration"
+        ],
+        "explanation": "Toward higher solute concentration."
+      },
+      {
+        "stem": "Is osmosis an active (ATP-requiring) or a passive process?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "passive",
+          "passive process"
+        ],
+        "explanation": "Passive."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2A-04",
+    "section": "B/B",
+    "aamc_category": "2A",
+    "subtopic": "Membrane transport: tonicity",
+    "answer_type": "free_response",
+    "prompt": "An animal cell placed in a HYPOTONIC solution will do what to its volume (via water movement)?",
+    "accepted_answers": [
+      "swell",
+      "swell and possibly lyse",
+      "swells",
+      "gain water and swell",
+      "swell (may burst)",
+      "lyse"
+    ],
+    "key_terms": [
+      "swell"
+    ],
+    "model_answer": "It swells (water enters; it may lyse/burst)",
+    "explanation": "Hypotonic means lower external solute, so water enters and the cell swells; in a hypertonic solution the cell shrinks (crenates).",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 5 Passive Transport (tonicity)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "An animal cell in a HYPERTONIC solution will do what?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "shrink",
+          "shrivel",
+          "crenate",
+          "shrinks",
+          "lose water and shrink"
+        ],
+        "explanation": "It shrinks (loses water)."
+      },
+      {
+        "stem": "In which solution (isotonic, hypotonic, hypertonic) does an animal cell keep a constant volume?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "isotonic",
+          "isotonic solution"
+        ],
+        "explanation": "Isotonic."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2A-05",
+    "section": "B/B",
+    "aamc_category": "2A",
+    "subtopic": "Membrane transport: sodium-potassium pump",
+    "answer_type": "free_response",
+    "prompt": "The Na+/K+-ATPase pumps how many sodium ions OUT and how many potassium ions IN per ATP hydrolyzed?",
+    "accepted_answers": [
+      "3 na out, 2 k in",
+      "3 sodium out 2 potassium in",
+      "3 out 2 in",
+      "3:2",
+      "three sodium out, two potassium in",
+      "3 na+ out and 2 k+ in"
+    ],
+    "key_terms": [
+      "3",
+      "2"
+    ],
+    "model_answer": "3 Na+ out and 2 K+ in",
+    "explanation": "This is primary active transport (it uses ATP directly), moving both ions against their gradients and helping set the resting membrane potential.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 5 Active Transport (Na+/K+ pump)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Transport that uses ATP directly to move ions against their gradient is called ___ active transport.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "primary",
+          "primary active transport"
+        ],
+        "explanation": "Primary active transport."
+      },
+      {
+        "stem": "Moving 3 positive charges out but only 2 in, the pump is electrogenic - does it make the inside more positive or more negative?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "more negative",
+          "negative",
+          "more negative inside"
+        ],
+        "explanation": "More negative inside."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2A-06",
+    "section": "B/B",
+    "aamc_category": "2A",
+    "subtopic": "Organelles: mitochondria",
+    "answer_type": "free_response",
+    "prompt": "Which organelle is the primary site of aerobic respiration (the citric acid cycle and oxidative phosphorylation)?",
+    "accepted_answers": [
+      "mitochondria",
+      "mitochondrion",
+      "the mitochondria"
+    ],
+    "key_terms": [
+      "mitochond"
+    ],
+    "model_answer": "The mitochondrion",
+    "explanation": "Mitochondria host the citric acid cycle (matrix) and the ETC/ATP synthase (inner membrane); they carry their own DNA (endosymbiotic origin).",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 4 Cell Structure (mitochondria)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Mitochondria and chloroplasts likely arose from engulfed bacteria, per the ___ theory.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "endosymbiotic",
+          "endosymbiotic theory",
+          "endosymbiosis"
+        ],
+        "explanation": "The endosymbiotic theory."
+      },
+      {
+        "stem": "The folds of the inner mitochondrial membrane that increase surface area are the ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "cristae",
+          "crista"
+        ],
+        "explanation": "Cristae."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2A-07",
+    "section": "B/B",
+    "aamc_category": "2A",
+    "subtopic": "Organelles: endoplasmic reticulum",
+    "answer_type": "free_response",
+    "prompt": "What is the primary function of the ROUGH endoplasmic reticulum?",
+    "accepted_answers": [
+      "protein synthesis",
+      "synthesis of proteins",
+      "making proteins",
+      "protein synthesis and processing",
+      "synthesize proteins"
+    ],
+    "key_terms": [
+      "protein"
+    ],
+    "model_answer": "Protein synthesis (and processing) - it is studded with ribosomes",
+    "explanation": "Ribosomes on the rough ER synthesize secretory and membrane proteins; the smooth ER makes lipids and detoxifies.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 4 Cell Structure (endomembrane system)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Why is the rough ER 'rough' - what is attached to its cytosolic surface?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "ribosomes",
+          "ribosome"
+        ],
+        "explanation": "Ribosomes."
+      },
+      {
+        "stem": "What does the SMOOTH ER primarily synthesize?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "lipids",
+          "lipids and steroids",
+          "lipid",
+          "fats and steroids"
+        ],
+        "explanation": "Lipids/steroids (and it detoxifies)."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2A-08",
+    "section": "B/B",
+    "aamc_category": "2A",
+    "subtopic": "Organelles: Golgi apparatus",
+    "answer_type": "free_response",
+    "prompt": "Which organelle modifies, sorts, and packages proteins and lipids into vesicles for secretion or delivery?",
+    "accepted_answers": [
+      "golgi apparatus",
+      "golgi",
+      "golgi complex",
+      "golgi body"
+    ],
+    "key_terms": [
+      "golgi"
+    ],
+    "model_answer": "The Golgi apparatus",
+    "explanation": "The Golgi receives ER products on its cis face, modifies them (e.g., glycosylation), and ships them out from the trans face.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 4 Cell Structure (Golgi)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Which face of the Golgi RECEIVES vesicles from the ER - cis or trans?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "cis",
+          "cis face"
+        ],
+        "explanation": "The cis face."
+      },
+      {
+        "stem": "Adding sugar chains to proteins in the Golgi is called ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "glycosylation"
+        ],
+        "explanation": "Glycosylation."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2A-09",
+    "section": "B/B",
+    "aamc_category": "2A",
+    "subtopic": "Organelles: lysosome",
+    "answer_type": "free_response",
+    "prompt": "Which membrane-bound organelle contains hydrolytic (digestive) enzymes active at ACIDIC pH for breaking down macromolecules?",
+    "accepted_answers": [
+      "lysosome",
+      "lysosomes"
+    ],
+    "key_terms": [
+      "lysosome"
+    ],
+    "model_answer": "The lysosome",
+    "explanation": "Lysosomes digest worn organelles (autophagy) and engulfed material; their enzymes work best at low pH (~4.5-5).",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 4 Cell Structure (lysosomes)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "The digestion of a cell's own damaged organelles by lysosomes is called ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "autophagy"
+        ],
+        "explanation": "Autophagy."
+      },
+      {
+        "stem": "Do lysosomal enzymes function best at acidic or basic pH?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "acidic",
+          "acidic ph",
+          "low ph",
+          "acid"
+        ],
+        "explanation": "Acidic pH."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2A-10",
+    "section": "B/B",
+    "aamc_category": "2A",
+    "subtopic": "Organelles: ribosome",
+    "answer_type": "free_response",
+    "prompt": "At which cellular structure are amino acids joined into proteins during translation?",
+    "accepted_answers": [
+      "ribosome",
+      "ribosomes",
+      "the ribosome"
+    ],
+    "key_terms": [
+      "ribosome"
+    ],
+    "model_answer": "The ribosome",
+    "explanation": "Ribosomes (rRNA + protein) read mRNA and catalyze peptide-bond formation; they are free in the cytosol or bound to the rough ER.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 4 Cell Structure (ribosomes)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Ribosomes are built from proteins and which type of RNA?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "rrna",
+          "ribosomal rna"
+        ],
+        "explanation": "Ribosomal RNA (rRNA)."
+      },
+      {
+        "stem": "The ribosomal activity that forms peptide bonds is catalyzed by rRNA, making the ribosome a ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "ribozyme",
+          "peptidyl transferase"
+        ],
+        "explanation": "A ribozyme (its peptidyl-transferase center is rRNA)."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2A-11",
+    "section": "B/B",
+    "aamc_category": "2A",
+    "subtopic": "Cell junctions: tight junctions",
+    "answer_type": "free_response",
+    "prompt": "Which type of cell junction forms a watertight SEAL between adjacent epithelial cells, preventing leakage between them?",
+    "accepted_answers": [
+      "tight junction",
+      "tight junctions",
+      "occluding junction"
+    ],
+    "key_terms": [
+      "tight junction"
+    ],
+    "model_answer": "Tight junctions",
+    "explanation": "Tight junctions seal the space between cells; desmosomes act like rivets for strength; gap junctions allow direct cytoplasmic communication.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 4 Cell Structure (cell junctions)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Which junction forms channels that let ions/small molecules pass directly between cells?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "gap junction",
+          "gap junctions"
+        ],
+        "explanation": "Gap junctions."
+      },
+      {
+        "stem": "Which junction acts like a spot-weld/rivet anchoring cells for mechanical strength?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "desmosome",
+          "desmosomes"
+        ],
+        "explanation": "Desmosomes."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2A-12",
+    "section": "B/B",
+    "aamc_category": "2A",
+    "subtopic": "Cytoskeleton",
+    "answer_type": "free_response",
+    "prompt": "Name the three types of protein fibers that make up the cytoskeleton.",
+    "accepted_answers": [
+      "microfilaments, intermediate filaments, microtubules",
+      "microtubules, microfilaments, intermediate filaments",
+      "actin filaments, intermediate filaments, microtubules"
+    ],
+    "key_terms": [
+      "microtubules",
+      "intermediate filaments",
+      "microfilaments"
+    ],
+    "model_answer": "Microfilaments (actin), intermediate filaments, and microtubules",
+    "explanation": "Microtubules (tubulin) form spindles and cilia/flagella; microfilaments (actin) drive contraction and movement; intermediate filaments give tensile strength.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 4 Cell Structure (cytoskeleton)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Which cytoskeletal fiber, made of tubulin, forms the mitotic spindle and cilia/flagella?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "microtubules",
+          "microtubule"
+        ],
+        "explanation": "Microtubules."
+      },
+      {
+        "stem": "Which fiber, made of actin, is most involved in muscle contraction and cell movement?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "microfilaments",
+          "actin filaments",
+          "microfilament",
+          "actin"
+        ],
+        "explanation": "Microfilaments (actin)."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2A-13",
+    "section": "B/B",
+    "aamc_category": "2A",
+    "subtopic": "Membrane transport: secondary active transport",
+    "answer_type": "free_response",
+    "prompt": "Transport that uses energy stored in an ION'S electrochemical gradient (rather than ATP directly) to move another solute against its gradient is called what?",
+    "accepted_answers": [
+      "secondary active transport",
+      "cotransport",
+      "coupled transport",
+      "secondary active transport (cotransport)"
+    ],
+    "key_terms": [
+      "secondary active transport"
+    ],
+    "model_answer": "Secondary active transport (cotransport)",
+    "explanation": "It taps a gradient (often Na+, established by the Na+/K+ pump). Symport moves both solutes the same way; antiport moves them oppositely.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 5 Active Transport (secondary/cotransport)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Cotransport of two solutes in the SAME direction is called ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "symport",
+          "symporter"
+        ],
+        "explanation": "Symport."
+      },
+      {
+        "stem": "Cotransport of two solutes in OPPOSITE directions is called ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "antiport",
+          "antiporter"
+        ],
+        "explanation": "Antiport."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2B-01",
+    "section": "B/B",
+    "aamc_category": "2B",
+    "subtopic": "Prokaryotic cell wall",
+    "answer_type": "free_response",
+    "prompt": "What polymer makes up the bacterial cell wall?",
+    "accepted_answers": [
+      "peptidoglycan",
+      "murein"
+    ],
+    "key_terms": [
+      "peptidoglycan"
+    ],
+    "model_answer": "Peptidoglycan (murein)",
+    "explanation": "Peptidoglycan - sugar chains cross-linked by short peptides - gives bacterial walls their strength; penicillin blocks its cross-linking.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Microbiology — Ch. 3 The Cell (prokaryotic cell wall)",
+      "url": "https://openstax.org/details/books/microbiology",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Which antibiotic class inhibits peptidoglycan cross-linking, weakening the wall?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "penicillin",
+          "penicillins",
+          "beta-lactams",
+          "beta lactams"
+        ],
+        "explanation": "Penicillins (beta-lactams)."
+      },
+      {
+        "stem": "Do human (animal) cells have a peptidoglycan cell wall?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "no",
+          "no they do not"
+        ],
+        "explanation": "No - animal cells lack cell walls."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2B-02",
+    "section": "B/B",
+    "aamc_category": "2B",
+    "subtopic": "Gram staining",
+    "answer_type": "free_response",
+    "prompt": "In Gram staining, GRAM-POSITIVE bacteria appear what color, because of their thick peptidoglycan layer?",
+    "accepted_answers": [
+      "purple",
+      "violet",
+      "purple/violet",
+      "crystal violet",
+      "blue-purple"
+    ],
+    "key_terms": [
+      "purple"
+    ],
+    "model_answer": "Purple (violet)",
+    "explanation": "Thick peptidoglycan retains the crystal-violet/iodine complex (purple); gram-negative cells have thin peptidoglycan plus an outer membrane and stain pink/red with safranin.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Microbiology — Ch. 2 Staining (Gram stain)",
+      "url": "https://openstax.org/details/books/microbiology",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "What color do GRAM-NEGATIVE bacteria appear after the counterstain?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "pink",
+          "red",
+          "pink/red",
+          "pink or red"
+        ],
+        "explanation": "Pink/red."
+      },
+      {
+        "stem": "Gram-negative bacteria have an extra ___ membrane outside the peptidoglycan.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "outer membrane",
+          "outer"
+        ],
+        "explanation": "An outer membrane."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2B-03",
+    "section": "B/B",
+    "aamc_category": "2B",
+    "subtopic": "Prokaryotic reproduction",
+    "answer_type": "free_response",
+    "prompt": "By what asexual process do bacteria reproduce, duplicating their DNA and splitting into two identical cells?",
+    "accepted_answers": [
+      "binary fission"
+    ],
+    "key_terms": [
+      "binary fission"
+    ],
+    "model_answer": "Binary fission",
+    "explanation": "Binary fission is asexual and produces clones; genetic variation instead comes from mutation and horizontal gene transfer.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Microbiology — Ch. 9 Microbial Growth (binary fission)",
+      "url": "https://openstax.org/details/books/microbiology",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Is binary fission sexual or asexual reproduction?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "asexual",
+          "asexual reproduction"
+        ],
+        "explanation": "Asexual."
+      },
+      {
+        "stem": "Bacterial DNA is typically arranged as a single circular ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "chromosome",
+          "circular chromosome"
+        ],
+        "explanation": "Chromosome."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2B-04",
+    "section": "B/B",
+    "aamc_category": "2B",
+    "subtopic": "Horizontal gene transfer: conjugation",
+    "answer_type": "free_response",
+    "prompt": "What is the term for transfer of DNA (often a plasmid) between bacteria through direct contact via a pilus?",
+    "accepted_answers": [
+      "conjugation",
+      "bacterial conjugation"
+    ],
+    "key_terms": [
+      "conjugation"
+    ],
+    "model_answer": "Conjugation",
+    "explanation": "Conjugation transfers DNA (e.g., an F plasmid) through a sex pilus - a form of horizontal gene transfer that can spread antibiotic resistance.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Microbiology — Ch. 11 Microbial Genetics (HGT)",
+      "url": "https://openstax.org/details/books/microbiology",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "The appendage connecting two bacteria for conjugation is the sex ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "pilus",
+          "pilus (sex pilus)",
+          "f pilus"
+        ],
+        "explanation": "The pilus."
+      },
+      {
+        "stem": "Conjugation, transformation, and transduction are all forms of ___ gene transfer.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "horizontal",
+          "horizontal gene transfer",
+          "lateral"
+        ],
+        "explanation": "Horizontal gene transfer."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2B-05",
+    "section": "B/B",
+    "aamc_category": "2B",
+    "subtopic": "Horizontal gene transfer: transformation",
+    "answer_type": "free_response",
+    "prompt": "What is the term for a bacterium taking up FREE (naked) DNA directly from its environment?",
+    "accepted_answers": [
+      "transformation"
+    ],
+    "key_terms": [
+      "transformation"
+    ],
+    "model_answer": "Transformation",
+    "explanation": "In transformation, a competent bacterium takes up environmental DNA; Griffith's experiment first demonstrated it in pneumococci.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Microbiology — Ch. 11 Microbial Genetics (transformation)",
+      "url": "https://openstax.org/details/books/microbiology",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "A bacterium able to take up external DNA is described as ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "competent",
+          "competent cell"
+        ],
+        "explanation": "Competent."
+      },
+      {
+        "stem": "Whose classic experiment with S and R pneumococci demonstrated transformation?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "griffith",
+          "frederick griffith",
+          "griffith's experiment"
+        ],
+        "explanation": "Griffith."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2B-06",
+    "section": "B/B",
+    "aamc_category": "2B",
+    "subtopic": "Horizontal gene transfer: transduction",
+    "answer_type": "free_response",
+    "prompt": "What is the term for transfer of bacterial DNA from one cell to another by a bacteriophage (virus)?",
+    "accepted_answers": [
+      "transduction"
+    ],
+    "key_terms": [
+      "transduction"
+    ],
+    "model_answer": "Transduction",
+    "explanation": "During transduction, a phage accidentally packages host DNA and injects it into a new bacterium.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Microbiology — Ch. 11 Microbial Genetics (transduction)",
+      "url": "https://openstax.org/details/books/microbiology",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "What kind of virus mediates transduction?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "bacteriophage",
+          "phage",
+          "bacteriophage (phage)"
+        ],
+        "explanation": "A bacteriophage."
+      },
+      {
+        "stem": "Is transduction a form of horizontal or vertical gene transfer?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "horizontal",
+          "horizontal gene transfer"
+        ],
+        "explanation": "Horizontal."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2B-07",
+    "section": "B/B",
+    "aamc_category": "2B",
+    "subtopic": "Plasmids",
+    "answer_type": "free_response",
+    "prompt": "What is the name for the small, circular, extrachromosomal DNA molecule that replicates independently in bacteria?",
+    "accepted_answers": [
+      "plasmid",
+      "plasmids"
+    ],
+    "key_terms": [
+      "plasmid"
+    ],
+    "model_answer": "A plasmid",
+    "explanation": "Plasmids often carry antibiotic-resistance or virulence genes and are widely used as cloning vectors in biotechnology.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Microbiology — Ch. 11 Microbial Genetics (plasmids)",
+      "url": "https://openstax.org/details/books/microbiology",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Plasmids frequently carry genes conferring resistance to ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "antibiotics",
+          "antibiotic",
+          "antibiotic resistance"
+        ],
+        "explanation": "Antibiotics."
+      },
+      {
+        "stem": "In genetic engineering, a plasmid used to carry foreign DNA into a cell is called a ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "vector",
+          "cloning vector"
+        ],
+        "explanation": "A vector."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2B-08",
+    "section": "B/B",
+    "aamc_category": "2B",
+    "subtopic": "Virus structure",
+    "answer_type": "free_response",
+    "prompt": "What is the protein coat that encloses a virus's genetic material called?",
+    "accepted_answers": [
+      "capsid"
+    ],
+    "key_terms": [
+      "capsid"
+    ],
+    "model_answer": "The capsid",
+    "explanation": "The capsid (made of protein subunits called capsomeres) protects the viral genome; some viruses also have a host-derived lipid envelope.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Microbiology — Ch. 6 Acellular Pathogens (virus structure)",
+      "url": "https://openstax.org/details/books/microbiology",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Some viruses have an outer lipid membrane taken from the host, called the viral ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "envelope",
+          "viral envelope"
+        ],
+        "explanation": "The envelope."
+      },
+      {
+        "stem": "A virus's genome can be made of DNA or ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "rna"
+        ],
+        "explanation": "RNA."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2B-09",
+    "section": "B/B",
+    "aamc_category": "2B",
+    "subtopic": "Bacteriophages",
+    "answer_type": "free_response",
+    "prompt": "What is the name for a virus that specifically infects BACTERIA?",
+    "accepted_answers": [
+      "bacteriophage",
+      "phage",
+      "bacteriophage (phage)"
+    ],
+    "key_terms": [
+      "phage"
+    ],
+    "model_answer": "A bacteriophage (phage)",
+    "explanation": "Phages inject their genome into bacteria and hijack the host machinery to replicate; they follow lytic or lysogenic cycles.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Microbiology — Ch. 6 Acellular Pathogens (bacteriophages)",
+      "url": "https://openstax.org/details/books/microbiology",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Does a phage typically inject its genome into the host, or enter whole like many animal viruses?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "injects its genome",
+          "injects",
+          "injects genome",
+          "injects the genome"
+        ],
+        "explanation": "It injects its genome."
+      },
+      {
+        "stem": "Phages are being explored as an alternative to antibiotics in what kind of 'therapy'?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "phage therapy",
+          "bacteriophage therapy"
+        ],
+        "explanation": "Phage therapy."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2B-10",
+    "section": "B/B",
+    "aamc_category": "2B",
+    "subtopic": "Viral life cycles",
+    "answer_type": "free_response",
+    "prompt": "In which viral replication cycle does the phage genome INTEGRATE into the host chromosome and replicate passively without immediately killing the cell?",
+    "accepted_answers": [
+      "lysogenic",
+      "lysogenic cycle",
+      "the lysogenic cycle"
+    ],
+    "key_terms": [
+      "lysogenic"
+    ],
+    "model_answer": "The lysogenic cycle",
+    "explanation": "In lysogeny the integrated genome (a prophage) is copied along with the host; a trigger can switch it to the lytic cycle, which makes virions and lyses the cell.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Microbiology — Ch. 6 Viral life cycles",
+      "url": "https://openstax.org/details/books/microbiology",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "In the lysogenic cycle, the integrated viral genome is called a ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "prophage",
+          "provirus",
+          "prophage (provirus)"
+        ],
+        "explanation": "A prophage."
+      },
+      {
+        "stem": "Which cycle makes many new virus particles and bursts (lyses) the host cell?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "lytic",
+          "lytic cycle",
+          "the lytic cycle"
+        ],
+        "explanation": "The lytic cycle."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2B-11",
+    "section": "B/B",
+    "aamc_category": "2B",
+    "subtopic": "Retroviruses",
+    "answer_type": "free_response",
+    "prompt": "Retroviruses like HIV carry which enzyme to convert their RNA genome into DNA inside the host cell?",
+    "accepted_answers": [
+      "reverse transcriptase"
+    ],
+    "key_terms": [
+      "reverse transcriptase"
+    ],
+    "model_answer": "Reverse transcriptase",
+    "explanation": "Reverse transcriptase makes DNA from the RNA genome; that DNA then integrates into the host genome via integrase.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Microbiology — Ch. 6 Acellular Pathogens (retroviruses)",
+      "url": "https://openstax.org/details/books/microbiology",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Is HIV's genome made of DNA or RNA?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "rna"
+        ],
+        "explanation": "RNA."
+      },
+      {
+        "stem": "Which enzyme inserts the reverse-transcribed viral DNA into the host chromosome?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "integrase"
+        ],
+        "explanation": "Integrase."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2B-12",
+    "section": "B/B",
+    "aamc_category": "2B",
+    "subtopic": "Nature of viruses",
+    "answer_type": "free_response",
+    "prompt": "Because viruses cannot reproduce on their own and must replicate inside a host cell, what kind of parasite are they (two words)?",
+    "accepted_answers": [
+      "obligate intracellular parasites",
+      "obligate intracellular parasite",
+      "obligate intracellular"
+    ],
+    "key_terms": [
+      "obligate intracellular"
+    ],
+    "model_answer": "Obligate intracellular parasites",
+    "explanation": "Viruses lack ribosomes and metabolic machinery, so they depend entirely on host cells to make their proteins and replicate.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Microbiology — Ch. 6 Acellular Pathogens",
+      "url": "https://openstax.org/details/books/microbiology",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Do viruses possess their own ribosomes for making proteins?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "no",
+          "no they do not"
+        ],
+        "explanation": "No - they use host ribosomes."
+      },
+      {
+        "stem": "Are viruses generally considered living cells?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "no",
+          "no they are not",
+          "not cells"
+        ],
+        "explanation": "No - they are acellular and not considered alive by most definitions."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2B-13",
+    "section": "B/B",
+    "aamc_category": "2B",
+    "subtopic": "Bacterial growth and survival",
+    "answer_type": "free_response",
+    "prompt": "Under favorable conditions, during which phase of the bacterial growth curve do cells divide at their MAXIMUM, constant rate?",
+    "accepted_answers": [
+      "log phase",
+      "exponential phase",
+      "logarithmic phase",
+      "log (exponential) phase"
+    ],
+    "key_terms": [
+      "log"
+    ],
+    "model_answer": "The log (exponential) phase",
+    "explanation": "The phases are lag (adjustment), log/exponential (max growth), stationary (nutrients limiting; deaths ~ divisions), and death/decline.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Microbiology — Ch. 9 Microbial Growth (growth curve)",
+      "url": "https://openstax.org/details/books/microbiology",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "During which phase do new cells and dying cells roughly balance (a plateau)?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "stationary phase",
+          "stationary"
+        ],
+        "explanation": "Stationary phase."
+      },
+      {
+        "stem": "Some bacteria form what dormant, resistant structure to survive harsh conditions?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "endospore",
+          "spore",
+          "endospores"
+        ],
+        "explanation": "An endospore."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2C-01",
+    "section": "B/B",
+    "aamc_category": "2C",
+    "subtopic": "Cell cycle: S phase",
+    "answer_type": "free_response",
+    "prompt": "During which phase of the cell cycle is DNA replicated?",
+    "accepted_answers": [
+      "s phase",
+      "synthesis phase",
+      "s phase (synthesis)",
+      "s"
+    ],
+    "key_terms": [
+      "s phase"
+    ],
+    "model_answer": "S phase (synthesis)",
+    "explanation": "The cycle runs G1 (growth), S (DNA synthesis), G2 (growth/prep), then M (mitosis). G1 + S + G2 together make up interphase.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 10 Cell Reproduction (cell cycle)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "G1, S, and G2 together make up which broad part of the cell cycle?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "interphase"
+        ],
+        "explanation": "Interphase."
+      },
+      {
+        "stem": "After S phase, each chromosome consists of two identical ___ joined at a centromere.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "sister chromatids",
+          "chromatids",
+          "sister chromatid"
+        ],
+        "explanation": "Sister chromatids."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2C-02",
+    "section": "B/B",
+    "aamc_category": "2C",
+    "subtopic": "Mitosis: phases",
+    "answer_type": "free_response",
+    "prompt": "List the four phases of mitosis in order.",
+    "accepted_answers": [
+      "prophase, metaphase, anaphase, telophase",
+      "prophase metaphase anaphase telophase",
+      "prophase-metaphase-anaphase-telophase"
+    ],
+    "key_terms": [
+      "prophase",
+      "metaphase",
+      "anaphase",
+      "telophase"
+    ],
+    "model_answer": "Prophase, metaphase, anaphase, telophase",
+    "explanation": "Mnemonic 'PMAT': prophase (chromosomes condense), metaphase (align), anaphase (chromatids separate), telophase (nuclei re-form).",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 10 Cell Reproduction (mitosis)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "A common mnemonic for the ORDER of the mitosis phases is ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "pmat",
+          "p-m-a-t"
+        ],
+        "explanation": "PMAT."
+      },
+      {
+        "stem": "Division of the cytoplasm, which typically follows mitosis, is called ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "cytokinesis"
+        ],
+        "explanation": "Cytokinesis."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2C-03",
+    "section": "B/B",
+    "aamc_category": "2C",
+    "subtopic": "Mitosis: metaphase",
+    "answer_type": "free_response",
+    "prompt": "During which phase of mitosis do chromosomes line up single-file along the cell's equator (the metaphase plate)?",
+    "accepted_answers": [
+      "metaphase"
+    ],
+    "key_terms": [
+      "metaphase"
+    ],
+    "model_answer": "Metaphase",
+    "explanation": "At metaphase, spindle microtubules align chromosomes at the metaphase plate; the spindle-assembly checkpoint verifies proper attachment before anaphase.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 10 Cell Reproduction (mitosis)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Spindle fibers attach to a chromosome at a protein structure on its centromere called the ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "kinetochore",
+          "kinetochores"
+        ],
+        "explanation": "The kinetochore."
+      },
+      {
+        "stem": "The checkpoint that confirms all chromosomes are properly attached before anaphase is the ___ checkpoint.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "spindle",
+          "spindle assembly",
+          "m",
+          "spindle assembly checkpoint"
+        ],
+        "explanation": "The spindle (M) checkpoint."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2C-04",
+    "section": "B/B",
+    "aamc_category": "2C",
+    "subtopic": "Mitosis: anaphase",
+    "answer_type": "free_response",
+    "prompt": "During which phase of mitosis do SISTER CHROMATIDS separate and move to opposite poles of the cell?",
+    "accepted_answers": [
+      "anaphase"
+    ],
+    "key_terms": [
+      "anaphase"
+    ],
+    "model_answer": "Anaphase",
+    "explanation": "In anaphase, cohesin is cleaved and sister chromatids are pulled apart, each becoming an independent chromosome.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 10 Cell Reproduction (mitosis)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "The protein complex holding sister chromatids together (cleaved at anaphase onset) is ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "cohesin"
+        ],
+        "explanation": "Cohesin."
+      },
+      {
+        "stem": "Failure of chromatids to separate here leads to ___ (an abnormal chromosome number).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "nondisjunction",
+          "aneuploidy",
+          "nondisjunction (aneuploidy)"
+        ],
+        "explanation": "Nondisjunction."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2C-05",
+    "section": "B/B",
+    "aamc_category": "2C",
+    "subtopic": "Cytokinesis",
+    "answer_type": "free_response",
+    "prompt": "What is the name for the division of the CYTOPLASM that typically follows mitosis, producing two separate daughter cells?",
+    "accepted_answers": [
+      "cytokinesis"
+    ],
+    "key_terms": [
+      "cytokinesis"
+    ],
+    "model_answer": "Cytokinesis",
+    "explanation": "In animal cells a contractile ring pinches a cleavage furrow; plant cells instead build a cell plate.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 10 Cell Reproduction (cytokinesis)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "In ANIMAL cells, cytokinesis occurs via a pinching ___ furrow.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "cleavage furrow",
+          "cleavage"
+        ],
+        "explanation": "Cleavage furrow."
+      },
+      {
+        "stem": "In PLANT cells, cytokinesis forms a ___ that becomes the new cell wall.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "cell plate"
+        ],
+        "explanation": "A cell plate."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2C-06",
+    "section": "B/B",
+    "aamc_category": "2C",
+    "subtopic": "Cell-cycle regulation",
+    "answer_type": "free_response",
+    "prompt": "The cell cycle is driven by cyclin-dependent kinases plus regulatory proteins whose levels rise and fall - what are those regulatory proteins called?",
+    "accepted_answers": [
+      "cyclins",
+      "cyclin"
+    ],
+    "key_terms": [
+      "cyclin"
+    ],
+    "model_answer": "Cyclins",
+    "explanation": "Cyclins bind and activate CDKs; the cyclin-CDK complexes phosphorylate targets to push the cell through checkpoints.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 10 Cell Reproduction (regulation)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Cyclins activate which family of enzymes (their partners)?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "cyclin-dependent kinases",
+          "cdks",
+          "cdk",
+          "cyclin dependent kinases"
+        ],
+        "explanation": "Cyclin-dependent kinases (CDKs)."
+      },
+      {
+        "stem": "CDKs regulate their targets by adding what chemical group to them?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "phosphate",
+          "phosphate group",
+          "phosphorylation"
+        ],
+        "explanation": "A phosphate (phosphorylation)."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2C-07",
+    "section": "B/B",
+    "aamc_category": "2C",
+    "subtopic": "Tumor suppressors: p53",
+    "answer_type": "free_response",
+    "prompt": "Which tumor-suppressor protein, called the 'guardian of the genome', halts the cell cycle at the G1/S checkpoint when DNA is damaged?",
+    "accepted_answers": [
+      "p53",
+      "tp53",
+      "protein p53"
+    ],
+    "key_terms": [
+      "p53"
+    ],
+    "model_answer": "p53",
+    "explanation": "p53 arrests the cycle to allow repair, or triggers apoptosis if damage is severe; loss of p53 function is common in cancers.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 10 Cancer and the Cell Cycle",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "A gene whose normal role is to RESTRAIN cell division (and whose loss can cause cancer) is a ___ gene.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "tumor suppressor",
+          "tumor suppressor gene",
+          "tumour suppressor"
+        ],
+        "explanation": "A tumor-suppressor gene."
+      },
+      {
+        "stem": "If DNA damage is too severe to repair, p53 can trigger programmed cell death, called ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "apoptosis"
+        ],
+        "explanation": "Apoptosis."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2C-08",
+    "section": "B/B",
+    "aamc_category": "2C",
+    "subtopic": "Apoptosis",
+    "answer_type": "free_response",
+    "prompt": "What is the term for programmed, controlled cell death (as opposed to injury-induced necrosis)?",
+    "accepted_answers": [
+      "apoptosis"
+    ],
+    "key_terms": [
+      "apoptosis"
+    ],
+    "model_answer": "Apoptosis",
+    "explanation": "Apoptosis is orderly, ATP-dependent cell suicide executed by caspases; necrosis is uncontrolled death from injury and causes inflammation.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 9-10 Cell communication / cell cycle",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Which family of proteases executes apoptosis?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "caspases",
+          "caspase"
+        ],
+        "explanation": "Caspases."
+      },
+      {
+        "stem": "Uncontrolled, injury-induced cell death that causes inflammation is called ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "necrosis"
+        ],
+        "explanation": "Necrosis."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2C-09",
+    "section": "B/B",
+    "aamc_category": "2C",
+    "subtopic": "Stem cells: potency",
+    "answer_type": "free_response",
+    "prompt": "What term describes a stem cell that can give rise to ALL cell types of the body PLUS extraembryonic tissue (like the zygote)?",
+    "accepted_answers": [
+      "totipotent",
+      "totipotency"
+    ],
+    "key_terms": [
+      "totipotent"
+    ],
+    "model_answer": "Totipotent",
+    "explanation": "Totipotent (zygote) -> any cell including placenta; pluripotent (embryonic stem cells) -> any body cell but not placenta; multipotent -> limited lineages.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 43 (development) / stem cells",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "A stem cell that can form any cell of the body but NOT extraembryonic tissue is called ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "pluripotent",
+          "pluripotency"
+        ],
+        "explanation": "Pluripotent."
+      },
+      {
+        "stem": "A stem cell limited to a few related cell types (e.g., blood cells) is called ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "multipotent",
+          "multipotency"
+        ],
+        "explanation": "Multipotent."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2C-10",
+    "section": "B/B",
+    "aamc_category": "2C",
+    "subtopic": "Differentiation",
+    "answer_type": "free_response",
+    "prompt": "What is the process by which an unspecialized cell becomes specialized in structure and function (mostly via differential gene expression)?",
+    "accepted_answers": [
+      "differentiation",
+      "cell differentiation",
+      "cellular differentiation"
+    ],
+    "key_terms": [
+      "differentiation"
+    ],
+    "model_answer": "(Cellular) differentiation",
+    "explanation": "Different cell types share the same genome but express different genes; differentiation is driven by regulated gene expression, not by losing genes.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 16 Gene Regulation (differentiation)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Do differentiated cells in your body generally have the SAME or DIFFERENT genomes?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "same",
+          "the same",
+          "same dna",
+          "same genome"
+        ],
+        "explanation": "The same genome."
+      },
+      {
+        "stem": "Differentiation results mainly from differences in ___ among cells.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "gene expression",
+          "gene",
+          "genes",
+          "expression"
+        ],
+        "explanation": "Gene expression."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-2C-11",
+    "section": "B/B",
+    "aamc_category": "2C",
+    "subtopic": "Cancer",
+    "answer_type": "free_response",
+    "prompt": "Cancer arises fundamentally from a loss of control over what cellular process?",
+    "accepted_answers": [
+      "cell division",
+      "the cell cycle",
+      "cell division/proliferation",
+      "cell growth and division",
+      "cell cycle regulation",
+      "proliferation"
+    ],
+    "key_terms": [
+      "cell division"
+    ],
+    "model_answer": "Cell division (loss of cell-cycle control -> uncontrolled proliferation)",
+    "explanation": "Mutations in proto-oncogenes (gain of function) and tumor-suppressor genes (loss of function) release the brakes on cell division.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 10 Cancer and the Cell Cycle",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "A mutated, OVERACTIVE gene that promotes cancerous growth is called an ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "oncogene"
+        ],
+        "explanation": "An oncogene."
+      },
+      {
+        "stem": "The normal, un-mutated version of such a growth-promoting gene is called a ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "proto-oncogene",
+          "protooncogene",
+          "proto oncogene"
+        ],
+        "explanation": "A proto-oncogene."
+      }
+    ]
   }
 ]

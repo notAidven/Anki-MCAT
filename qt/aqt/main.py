@@ -672,6 +672,12 @@ class AnkiQt(QMainWindow):
             self.progress.single_shot(
                 250, lambda: maybe_show_diagnostic_on_launch(self)
             )
+            # ReadyMCAT dev/e2e: when READYMCAT_SEED_DEMO is set, populate the
+            # profile with SYNTHETIC demo data so the honest-memory dashboard can
+            # be screenshotted fully populated. No-op (and silent) otherwise.
+            from aqt.readymcat_demo import maybe_seed_demo_on_launch
+
+            maybe_seed_demo_on_launch(self)
         except Exception:
             # dump error to stderr so it gets picked up by errors.py
             traceback.print_exc()
@@ -1337,6 +1343,13 @@ title="{}" {}>{}</button>""".format(
 
         show_readymcat_diagnostic(self)
 
+    def on_readymcat_load_demo(self) -> None:
+        if not self.col:
+            return
+        from aqt.readymcat_demo import load_readymcat_demo_data
+
+        load_readymcat_demo_data(self)
+
     def on_check_for_updates(self) -> None:
         from packaging.version import Version
 
@@ -1484,6 +1497,17 @@ title="{}" {}>{}</button>""".format(
         qconnect(
             self._readymcat_diagnostic_action.triggered,
             self.on_readymcat_diagnostic,
+        )
+
+        # ReadyMCAT: load SYNTHETIC demo data so the dashboard can be previewed
+        # fully populated. Clearly labelled as fake (a UI preview, not readiness).
+        self._readymcat_demo_action = QAction(
+            "Load ReadyMCAT demo data (SYNTHETIC)", self
+        )
+        m.menuTools.addAction(self._readymcat_demo_action)
+        qconnect(
+            self._readymcat_demo_action.triggered,
+            self.on_readymcat_load_demo,
         )
 
         # View

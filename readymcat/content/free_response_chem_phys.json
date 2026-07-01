@@ -1401,5 +1401,1425 @@
         "explanation": "C ∝ P, so halving P halves C."
       }
     ]
+  },
+  {
+    "id": "fr-cp-4C-1",
+    "section": "C/P",
+    "aamc_category": "4C",
+    "subtopic": "Coulomb's law",
+    "answer_type": "free_response",
+    "prompt": "Two point charges of +1.0 μC each are separated by 1.0 m in vacuum (k = 9.0 × 10⁹ N·m²/C²). What is the magnitude of the electrostatic force between them? Give the value with units.",
+    "accepted_answers": [
+      "9.0 × 10^-3 N",
+      "0.009 N",
+      "9.0e-3 N",
+      "9 mN",
+      "9.0 × 10^-3"
+    ],
+    "key_terms": [
+      "unit: N",
+      "tolerance: ±5%",
+      "F = k q1 q2 / r^2"
+    ],
+    "model_answer": "F = k q₁q₂/r² = (9.0×10⁹)(1.0×10⁻⁶)(1.0×10⁻⁶)/(1.0)² = 9.0×10⁻³ N.",
+    "explanation": "Coulomb's law gives the force between point charges; it falls off as 1/r². Like charges repel, unlike attract.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 18: Electric Charge and Electric Field",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Write Coulomb's law for the force between two point charges.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "F = k q1 q2 / r^2",
+          "F = kq1q2/r^2",
+          "F=kq₁q₂/r²",
+          "kq1q2/r^2"
+        ],
+        "explanation": "F = k q₁q₂ / r²."
+      },
+      {
+        "stem": "What is 1.0 μC in coulombs?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "1.0 x 10^-6 C",
+          "1e-6 C",
+          "0.000001 C",
+          "1.0 × 10^-6 C"
+        ],
+        "explanation": "1 μC = 1×10⁻⁶ C."
+      },
+      {
+        "stem": "Compute (9.0×10⁹)(1.0×10⁻⁶)(1.0×10⁻⁶)/(1.0)² (give N).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "9.0 x 10^-3 N",
+          "0.009 N",
+          "9 mN",
+          "9.0e-3 N"
+        ],
+        "explanation": "(9.0×10⁹)(1×10⁻¹²) = 9.0×10⁻³ N."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4C-2",
+    "section": "C/P",
+    "aamc_category": "4C",
+    "subtopic": "Electric field",
+    "answer_type": "free_response",
+    "prompt": "A charge of 2.0 × 10⁻³ C experiences an electric force of 6.0 N. What is the magnitude of the electric field at its location? Give the value with units.",
+    "accepted_answers": [
+      "3.0 × 10^3 N/C",
+      "3000 N/C",
+      "3.0e3 N/C",
+      "3000 V/m",
+      "3.0 × 10^3"
+    ],
+    "key_terms": [
+      "unit: N/C",
+      "tolerance: ±1%",
+      "E = F/q"
+    ],
+    "model_answer": "E = F/q = (6.0 N)/(2.0×10⁻³ C) = 3.0×10³ N/C.",
+    "explanation": "Electric field is force per unit charge; N/C is equivalent to V/m.",
+    "difficulty": "easy",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 18: Electric Charge and Electric Field",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Write the definition of electric field in terms of force and charge.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "E = F/q",
+          "E=F/q",
+          "field = force/charge",
+          "E = F / q"
+        ],
+        "explanation": "E = F/q."
+      },
+      {
+        "stem": "Compute 6.0 N ÷ (2.0×10⁻³ C) (give N/C).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "3000 N/C",
+          "3.0 x 10^3 N/C",
+          "3000"
+        ],
+        "explanation": "= 3.0×10³ N/C."
+      },
+      {
+        "stem": "The unit N/C is equivalent to which other unit of electric field?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "V/m",
+          "volts per meter",
+          "volt/meter",
+          "V per m"
+        ],
+        "explanation": "N/C = V/m."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4C-3",
+    "section": "C/P",
+    "aamc_category": "4C",
+    "subtopic": "Ohm's law",
+    "answer_type": "free_response",
+    "prompt": "A 12 V battery drives a current of 3.0 A through a resistor. What is the resistance? Give the value with units.",
+    "accepted_answers": [
+      "4.0 Ω",
+      "4 Ω",
+      "4.0 ohm",
+      "4 ohms",
+      "4"
+    ],
+    "key_terms": [
+      "unit: Ω",
+      "tolerance: ±0.1 Ω",
+      "V = I R"
+    ],
+    "model_answer": "Ohm's law: R = V/I = (12 V)/(3.0 A) = 4.0 Ω.",
+    "explanation": "Ohm's law relates voltage, current, and resistance linearly for an ohmic resistor.",
+    "difficulty": "easy",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 20: Electric Current, Resistance, and Ohm's Law",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "State Ohm's law relating V, I, and R.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "V = I R",
+          "V=IR",
+          "voltage = current x resistance",
+          "V = IR"
+        ],
+        "explanation": "V = I R."
+      },
+      {
+        "stem": "Rearrange to solve for resistance R.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "R = V/I",
+          "R=V/I",
+          "V/I"
+        ],
+        "explanation": "R = V/I."
+      },
+      {
+        "stem": "Compute 12 V ÷ 3.0 A (give Ω).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "4.0 Ω",
+          "4 ohm",
+          "4"
+        ],
+        "explanation": "= 4.0 Ω."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4C-4",
+    "section": "C/P",
+    "aamc_category": "4C",
+    "subtopic": "Resistors in series",
+    "answer_type": "free_response",
+    "prompt": "Three resistors of 2.0 Ω, 3.0 Ω, and 5.0 Ω are connected in series. What is their equivalent resistance? Give the value with units.",
+    "accepted_answers": [
+      "10 Ω",
+      "10 ohm",
+      "10 ohms",
+      "10"
+    ],
+    "key_terms": [
+      "unit: Ω",
+      "tolerance: ±0.1 Ω",
+      "series adds directly"
+    ],
+    "model_answer": "In series, resistances add: R_eq = 2.0 + 3.0 + 5.0 = 10 Ω.",
+    "explanation": "Series resistors share the same current; their voltage drops add, so the resistances add directly.",
+    "difficulty": "easy",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 21: Circuits and DC Instruments",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "How do resistances combine when connected in series?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "add",
+          "they add",
+          "sum",
+          "add directly"
+        ],
+        "explanation": "Series resistances add: R_eq = R₁ + R₂ + R₃."
+      },
+      {
+        "stem": "Compute 2.0 + 3.0 + 5.0 (give Ω).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "10 Ω",
+          "10 ohm",
+          "10"
+        ],
+        "explanation": "= 10 Ω."
+      },
+      {
+        "stem": "Is the current the same through each series resistor? (yes/no)",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "yes",
+          "same",
+          "yes it is"
+        ],
+        "explanation": "Series elements carry identical current."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4C-5",
+    "section": "C/P",
+    "aamc_category": "4C",
+    "subtopic": "Resistors in parallel",
+    "answer_type": "free_response",
+    "prompt": "Two 4.0 Ω resistors are connected in parallel. What is their equivalent resistance? Give the value with units.",
+    "accepted_answers": [
+      "2.0 Ω",
+      "2 Ω",
+      "2 ohm",
+      "2 ohms",
+      "2"
+    ],
+    "key_terms": [
+      "unit: Ω",
+      "tolerance: ±0.1 Ω",
+      "1/Req = 1/R1 + 1/R2"
+    ],
+    "model_answer": "1/R_eq = 1/4.0 + 1/4.0 = 1/2.0, so R_eq = 2.0 Ω.",
+    "explanation": "The parallel equivalent is always smaller than the smallest branch; two equal resistors in parallel give half their value.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 21: Circuits and DC Instruments",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Write the rule for combining two resistors in parallel.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "1/Req = 1/R1 + 1/R2",
+          "1/R = 1/R1 + 1/R2",
+          "reciprocals add",
+          "1/R_eq=1/R₁+1/R₂"
+        ],
+        "explanation": "The reciprocals add: 1/R_eq = 1/R₁ + 1/R₂."
+      },
+      {
+        "stem": "For two EQUAL resistors R in parallel, the equivalent is what fraction of R?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "half",
+          "R/2",
+          "one half",
+          "1/2"
+        ],
+        "explanation": "Two equal resistors in parallel give R/2."
+      },
+      {
+        "stem": "Compute the equivalent of two 4.0 Ω resistors in parallel (give Ω).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "2.0 Ω",
+          "2 ohm",
+          "2"
+        ],
+        "explanation": "R_eq = 4.0/2 = 2.0 Ω."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4C-6",
+    "section": "C/P",
+    "aamc_category": "4C",
+    "subtopic": "Electrical power",
+    "answer_type": "free_response",
+    "prompt": "A device operates at 120 V and draws 2.0 A. What is its power consumption? Give the value with units.",
+    "accepted_answers": [
+      "240 W",
+      "P = 240 W",
+      "240"
+    ],
+    "key_terms": [
+      "unit: W",
+      "tolerance: ±1 W",
+      "P = I V"
+    ],
+    "model_answer": "P = I V = (2.0 A)(120 V) = 240 W.",
+    "explanation": "Electrical power equals current times voltage; equivalently P = I²R = V²/R.",
+    "difficulty": "easy",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 20: Electric Current, Resistance, and Ohm's Law",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Write the equation for electrical power in terms of current and voltage.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "P = I V",
+          "P=IV",
+          "power = current x voltage",
+          "P = IV"
+        ],
+        "explanation": "P = I V."
+      },
+      {
+        "stem": "Compute (2.0 A)(120 V) (give W).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "240 W",
+          "240"
+        ],
+        "explanation": "= 240 W."
+      },
+      {
+        "stem": "Give one alternative formula for electrical power using resistance.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "P = I^2 R",
+          "P = V^2/R",
+          "I^2 R",
+          "V^2/R",
+          "P=I²R"
+        ],
+        "explanation": "P = I²R or P = V²/R (from Ohm's law)."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4C-7",
+    "section": "C/P",
+    "aamc_category": "4C",
+    "subtopic": "Capacitance",
+    "answer_type": "free_response",
+    "prompt": "A 2.0 μF capacitor is charged to 10 V. How much charge is stored? Give the value with units.",
+    "accepted_answers": [
+      "2.0 × 10^-5 C",
+      "20 μC",
+      "20 uC",
+      "2e-5 C",
+      "2.0 × 10^-5 C"
+    ],
+    "key_terms": [
+      "unit: C",
+      "tolerance: ±5%",
+      "Q = C V"
+    ],
+    "model_answer": "Q = C V = (2.0×10⁻⁶ F)(10 V) = 2.0×10⁻⁵ C = 20 μC.",
+    "explanation": "Capacitance is the charge stored per volt (Q = CV); a farad is one coulomb per volt.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 19: Electric Potential and Electric Field",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Write the relationship between charge, capacitance, and voltage.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "Q = C V",
+          "Q=CV",
+          "charge = capacitance x voltage",
+          "Q = CV"
+        ],
+        "explanation": "Q = C V."
+      },
+      {
+        "stem": "What is 2.0 μF in farads?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "2.0 x 10^-6 F",
+          "2e-6 F",
+          "0.000002 F",
+          "2.0 × 10^-6 F"
+        ],
+        "explanation": "2 μF = 2×10⁻⁶ F."
+      },
+      {
+        "stem": "Compute (2.0×10⁻⁶)(10) (give C).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "2.0 x 10^-5 C",
+          "20 μC",
+          "2e-5 C"
+        ],
+        "explanation": "= 2.0×10⁻⁵ C (20 μC)."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4C-8",
+    "section": "C/P",
+    "aamc_category": "4C",
+    "subtopic": "Magnetic force on a moving charge",
+    "answer_type": "free_response",
+    "prompt": "A charge of 2.0 C moves at 3.0 m/s perpendicular to a 4.0 T magnetic field. What is the magnitude of the magnetic force on it? Give the value with units.",
+    "accepted_answers": [
+      "24 N",
+      "F = 24 N",
+      "24"
+    ],
+    "key_terms": [
+      "unit: N",
+      "tolerance: ±0.5 N",
+      "F = q v B"
+    ],
+    "model_answer": "For velocity perpendicular to B, F = q v B = (2.0)(3.0)(4.0) = 24 N.",
+    "explanation": "The magnetic force is F = qvB sinθ; it is maximal when v ⊥ B (sinθ = 1) and zero when v ∥ B.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 22: Magnetism",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Write the magnetic-force magnitude for a charge moving perpendicular to B.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "F = q v B",
+          "F=qvB",
+          "force = qvB",
+          "qvB"
+        ],
+        "explanation": "F = q v B (with v ⊥ B)."
+      },
+      {
+        "stem": "Compute (2.0)(3.0)(4.0) (give N).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "24 N",
+          "24"
+        ],
+        "explanation": "= 24 N."
+      },
+      {
+        "stem": "If the charge moved PARALLEL to B instead, what would the force be?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "0",
+          "zero",
+          "0 N",
+          "no force"
+        ],
+        "explanation": "F = qvB sinθ = 0 when v ∥ B (θ = 0)."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4C-9",
+    "section": "C/P",
+    "aamc_category": "4C",
+    "subtopic": "Galvanic cell potential",
+    "answer_type": "free_response",
+    "prompt": "For a galvanic cell with a Cu²⁺/Cu cathode (E° = +0.34 V) and a Zn²⁺/Zn anode (E° = −0.76 V), what is the standard cell potential? Give the value with units.",
+    "accepted_answers": [
+      "+1.10 V",
+      "1.10 V",
+      "1.1 V",
+      "+1.1 V",
+      "1.10"
+    ],
+    "key_terms": [
+      "unit: V",
+      "tolerance: ±0.02 V",
+      "E_cell = E_cathode - E_anode"
+    ],
+    "model_answer": "E°_cell = E°_cathode − E°_anode = (+0.34) − (−0.76) = +1.10 V.",
+    "explanation": "A positive E°_cell means the reaction is spontaneous as written (ΔG° = −nFE°_cell < 0).",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 17: Electrochemistry — Standard Cell Potentials",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Write the formula for standard cell potential from electrode potentials.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "E_cell = E_cathode - E_anode",
+          "E°cell = E°cathode − E°anode",
+          "cathode minus anode",
+          "E=E_cat-E_an"
+        ],
+        "explanation": "E°_cell = E°_cathode − E°_anode."
+      },
+      {
+        "stem": "Substitute (+0.34) − (−0.76).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "0.34 + 0.76",
+          "+1.10",
+          "1.10",
+          "0.34-(-0.76)"
+        ],
+        "explanation": "Subtracting a negative adds: 0.34 + 0.76 = 1.10 V."
+      },
+      {
+        "stem": "Is a cell with E°_cell = +1.10 V spontaneous? (yes/no)",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "yes",
+          "spontaneous",
+          "yes it is"
+        ],
+        "explanation": "Positive E°_cell ↔ negative ΔG° ↔ spontaneous."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4C-10",
+    "section": "C/P",
+    "aamc_category": "4C",
+    "subtopic": "Electrolysis (Faraday's laws)",
+    "answer_type": "free_response",
+    "prompt": "How many coulombs of charge are required to deposit 1.0 mol of silver from Ag⁺ (Ag⁺ + e⁻ → Ag)? Use F = 96,485 C/mol. Give the value with units.",
+    "accepted_answers": [
+      "96485 C",
+      "96500 C",
+      "9.65 × 10^4 C",
+      "96,485 C",
+      "1 F"
+    ],
+    "key_terms": [
+      "unit: C",
+      "tolerance: ±500 C",
+      "Q = n F"
+    ],
+    "model_answer": "Depositing 1 mol Ag needs 1 mol of electrons: Q = nF = (1)(96,485) ≈ 9.65×10⁴ C.",
+    "explanation": "Faraday's law links moles of electrons to charge; one mole of electrons carries one faraday (96,485 C).",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 17: Electrochemistry — Electrolysis",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "How many moles of electrons are needed per mole of Ag⁺ reduced?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "1",
+          "1 mol",
+          "one"
+        ],
+        "explanation": "Ag⁺ + e⁻ → Ag uses 1 mol e⁻ per mol Ag."
+      },
+      {
+        "stem": "What is the Faraday constant (charge per mole of electrons)?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "96485 C/mol",
+          "96500 C/mol",
+          "9.65 x 10^4 C/mol",
+          "96485"
+        ],
+        "explanation": "F ≈ 96,485 C/mol."
+      },
+      {
+        "stem": "Compute Q = (1 mol)(96,485 C/mol) (give C).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "96485 C",
+          "96500 C",
+          "9.65 x 10^4 C"
+        ],
+        "explanation": "= 9.65×10⁴ C."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4C-11",
+    "section": "C/P",
+    "aamc_category": "4C",
+    "subtopic": "Electric potential energy",
+    "answer_type": "free_response",
+    "prompt": "How much work is required to move a +2.0 C charge through a potential difference of +5.0 V? Give the value with units.",
+    "accepted_answers": [
+      "10 J",
+      "W = 10 J",
+      "10"
+    ],
+    "key_terms": [
+      "unit: J",
+      "tolerance: ±0.5 J",
+      "W = q ΔV"
+    ],
+    "model_answer": "W = qΔV = (2.0 C)(5.0 V) = 10 J.",
+    "explanation": "The change in electric potential energy equals charge times potential difference (ΔU = qΔV).",
+    "difficulty": "easy",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 19: Electric Potential and Electric Field",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Write the relationship between work/energy, charge, and potential difference.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "W = q ΔV",
+          "W=qΔV",
+          "ΔU = qΔV",
+          "energy = charge x voltage"
+        ],
+        "explanation": "W = qΔV (= ΔU)."
+      },
+      {
+        "stem": "Compute (2.0 C)(5.0 V) (give J).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "10 J",
+          "10"
+        ],
+        "explanation": "= 10 J."
+      },
+      {
+        "stem": "One volt equals one joule per what unit of charge?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "coulomb",
+          "C",
+          "per coulomb",
+          "joule per coulomb"
+        ],
+        "explanation": "1 V = 1 J/C."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4C-12",
+    "section": "C/P",
+    "aamc_category": "4C",
+    "subtopic": "Resistivity of a wire",
+    "answer_type": "free_response",
+    "prompt": "A copper wire has resistivity 1.7 × 10⁻⁸ Ω·m, length 2.0 m, and cross-sectional area 1.0 × 10⁻⁶ m². What is its resistance? Give the value with units.",
+    "accepted_answers": [
+      "0.034 Ω",
+      "3.4 × 10^-2 Ω",
+      "0.034 ohm",
+      "0.034"
+    ],
+    "key_terms": [
+      "unit: Ω",
+      "tolerance: ±5%",
+      "R = ρ L / A"
+    ],
+    "model_answer": "R = ρL/A = (1.7×10⁻⁸)(2.0)/(1.0×10⁻⁶) = 3.4×10⁻² Ω = 0.034 Ω.",
+    "explanation": "Resistance rises with length and falls with cross-sectional area; resistivity is the material property.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 20: Electric Current, Resistance, and Ohm's Law",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Write the equation for the resistance of a uniform wire.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "R = ρ L / A",
+          "R = rho L / A",
+          "R=ρL/A",
+          "ρL/A"
+        ],
+        "explanation": "R = ρL/A."
+      },
+      {
+        "stem": "Compute (1.7×10⁻⁸)(2.0)/(1.0×10⁻⁶) (give Ω).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "0.034 Ω",
+          "3.4 x 10^-2 Ω",
+          "0.034"
+        ],
+        "explanation": "= 3.4×10⁻² Ω."
+      },
+      {
+        "stem": "Doubling the wire's cross-sectional area would do what to its resistance?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "halve",
+          "halves",
+          "cut in half",
+          "halve it"
+        ],
+        "explanation": "R ∝ 1/A, so doubling A halves R."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4D-1",
+    "section": "C/P",
+    "aamc_category": "4D",
+    "subtopic": "Wave speed, frequency, wavelength",
+    "answer_type": "free_response",
+    "prompt": "A sound wave has a frequency of 500 Hz and a wavelength of 0.68 m. What is its speed? Give the value with units.",
+    "accepted_answers": [
+      "340 m/s",
+      "v = 340 m/s",
+      "340"
+    ],
+    "key_terms": [
+      "unit: m/s",
+      "tolerance: ±2 m/s",
+      "v = f λ"
+    ],
+    "model_answer": "v = fλ = (500 Hz)(0.68 m) = 340 m/s.",
+    "explanation": "The wave equation v = fλ ties speed, frequency, and wavelength; 340 m/s is roughly the speed of sound in air.",
+    "difficulty": "easy",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 16: Oscillatory Motion and Waves",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Write the wave equation relating speed, frequency, and wavelength.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "v = f λ",
+          "v=fλ",
+          "speed = frequency x wavelength",
+          "v = f·λ"
+        ],
+        "explanation": "v = fλ."
+      },
+      {
+        "stem": "Compute (500 Hz)(0.68 m) (give m/s).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "340 m/s",
+          "340"
+        ],
+        "explanation": "= 340 m/s."
+      },
+      {
+        "stem": "If frequency doubles at constant wave speed, what happens to wavelength?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "halves",
+          "halved",
+          "cut in half",
+          "decreases by half"
+        ],
+        "explanation": "v is fixed, so λ = v/f halves when f doubles."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4D-2",
+    "section": "C/P",
+    "aamc_category": "4D",
+    "subtopic": "Sound intensity and decibels",
+    "answer_type": "free_response",
+    "prompt": "A sound has intensity 1.0 × 10⁻⁶ W/m². Using I₀ = 1.0 × 10⁻¹² W/m², what is its sound intensity level? Give the value in decibels.",
+    "accepted_answers": [
+      "60 dB",
+      "β = 60 dB",
+      "60"
+    ],
+    "key_terms": [
+      "unit: dB",
+      "tolerance: ±1 dB",
+      "β = 10 log(I/I0)"
+    ],
+    "model_answer": "β = 10 log(I/I₀) = 10 log(10⁻⁶/10⁻¹²) = 10 log(10⁶) = 10(6) = 60 dB.",
+    "explanation": "The decibel scale is logarithmic: each factor-of-10 increase in intensity adds 10 dB.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 17: Physics of Hearing",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Write the formula for sound intensity level in decibels.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "β = 10 log(I/I0)",
+          "10 log(I/I0)",
+          "β=10log(I/I₀)",
+          "beta = 10 log(I/I0)"
+        ],
+        "explanation": "β = 10 log₁₀(I/I₀)."
+      },
+      {
+        "stem": "Compute the ratio I/I₀ = 10⁻⁶ / 10⁻¹².",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "10^6",
+          "1000000",
+          "1e6",
+          "10⁶"
+        ],
+        "explanation": "10⁻⁶/10⁻¹² = 10⁶."
+      },
+      {
+        "stem": "Evaluate 10 log(10⁶) (give dB).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "60 dB",
+          "60"
+        ],
+        "explanation": "log(10⁶) = 6, so β = 60 dB."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4D-3",
+    "section": "C/P",
+    "aamc_category": "4D",
+    "subtopic": "Doppler effect",
+    "answer_type": "free_response",
+    "prompt": "A sound source moves toward a stationary observer. Is the frequency the observer hears higher or lower than the emitted frequency? Answer in one word.",
+    "accepted_answers": [
+      "higher",
+      "increases",
+      "greater",
+      "raised"
+    ],
+    "key_terms": [
+      "higher",
+      "increases",
+      "shorter wavelength"
+    ],
+    "model_answer": "Higher. Motion toward the observer compresses the wavefronts, shortening the wavelength and raising the observed frequency.",
+    "explanation": "The Doppler effect shifts perceived frequency up for approach and down for recession; it underlies the changing pitch of a passing siren.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 17: Physics of Hearing — Doppler Effect",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "When the source approaches, what happens to the spacing (wavelength) of the wavefronts ahead of it?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "compressed",
+          "shorter",
+          "decreases",
+          "bunched up"
+        ],
+        "explanation": "The wavefronts pile up, shortening the wavelength."
+      },
+      {
+        "stem": "At fixed wave speed, a shorter wavelength corresponds to a higher or lower frequency?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "higher",
+          "higher frequency",
+          "greater"
+        ],
+        "explanation": "f = v/λ, so shorter λ means higher f."
+      },
+      {
+        "stem": "Therefore the observed pitch is ____ than emitted. (one word)",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "higher",
+          "greater",
+          "raised"
+        ],
+        "explanation": "Approach → higher pitch."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4D-4",
+    "section": "C/P",
+    "aamc_category": "4D",
+    "subtopic": "Standing waves and harmonics",
+    "answer_type": "free_response",
+    "prompt": "A string fixed at both ends is 1.0 m long, and waves travel on it at 200 m/s. What is the fundamental frequency? Give the value with units.",
+    "accepted_answers": [
+      "100 Hz",
+      "f_1 = 100 Hz",
+      "100"
+    ],
+    "key_terms": [
+      "unit: Hz",
+      "tolerance: ±1 Hz",
+      "f1 = v/(2L)"
+    ],
+    "model_answer": "For a string fixed at both ends the fundamental wavelength is λ₁ = 2L = 2.0 m, so f₁ = v/λ₁ = 200/2.0 = 100 Hz.",
+    "explanation": "The fundamental fits half a wavelength between the fixed ends; higher harmonics are integer multiples of f₁.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 16: Oscillatory Motion and Waves — Standing Waves",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "For a string fixed at both ends, the fundamental wavelength equals how many times the length L?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "2L",
+          "twice",
+          "2 L",
+          "two times L"
+        ],
+        "explanation": "λ₁ = 2L (half a wavelength spans the string)."
+      },
+      {
+        "stem": "Compute λ₁ = 2L for L = 1.0 m (give m).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "2.0 m",
+          "2 m",
+          "2.0"
+        ],
+        "explanation": "λ₁ = 2(1.0) = 2.0 m."
+      },
+      {
+        "stem": "Compute f₁ = v/λ₁ = 200/2.0 (give Hz).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "100 Hz",
+          "100"
+        ],
+        "explanation": "= 100 Hz."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4D-5",
+    "section": "C/P",
+    "aamc_category": "4D",
+    "subtopic": "Electromagnetic spectrum",
+    "answer_type": "free_response",
+    "prompt": "Which has more energy per photon: an X-ray or a radio wave? Answer with the type of radiation.",
+    "accepted_answers": [
+      "X-ray",
+      "X-rays",
+      "x-ray",
+      "xray",
+      "xrays"
+    ],
+    "key_terms": [
+      "X-ray",
+      "higher frequency",
+      "E = h f"
+    ],
+    "model_answer": "X-ray. Photon energy E = hf increases with frequency, and X-rays have a far higher frequency than radio waves.",
+    "explanation": "Across the EM spectrum, higher frequency (shorter wavelength) means higher photon energy: radio < IR < visible < UV < X-ray < gamma.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 24: Electromagnetic Waves",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Write the equation for the energy of a single photon.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "E = h f",
+          "E=hf",
+          "energy = h times frequency",
+          "E = hf"
+        ],
+        "explanation": "E = hf, where h is Planck's constant."
+      },
+      {
+        "stem": "Which has the higher frequency, X-rays or radio waves?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "X-rays",
+          "x-ray",
+          "xrays"
+        ],
+        "explanation": "X-rays have a much higher frequency than radio waves."
+      },
+      {
+        "stem": "Higher frequency therefore means higher or lower photon energy?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "higher",
+          "higher energy",
+          "greater"
+        ],
+        "explanation": "E ∝ f, so higher frequency → higher energy → X-rays win."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4D-6",
+    "section": "C/P",
+    "aamc_category": "4D",
+    "subtopic": "Refraction (Snell's law)",
+    "answer_type": "free_response",
+    "prompt": "Light passes from air (n = 1.0) into glass (n = 1.5) with an angle of incidence of 30°. What is the angle of refraction? Give the value in degrees.",
+    "accepted_answers": [
+      "19.5°",
+      "19.5 degrees",
+      "19.5",
+      "20°",
+      "19°"
+    ],
+    "key_terms": [
+      "unit: °",
+      "tolerance: ±1°",
+      "n1 sinθ1 = n2 sinθ2"
+    ],
+    "model_answer": "Snell's law: n₁ sinθ₁ = n₂ sinθ₂ → sinθ₂ = (1.0)(sin 30°)/1.5 = 0.5/1.5 = 0.333, so θ₂ = arcsin(0.333) ≈ 19.5°.",
+    "explanation": "Light bends toward the normal when entering a denser (higher-n) medium, so the refracted angle is smaller than the incident angle.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 25: Geometric Optics — The Law of Refraction",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "State Snell's law of refraction.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "n1 sinθ1 = n2 sinθ2",
+          "n₁sinθ₁=n₂sinθ₂",
+          "n1 sin(theta1) = n2 sin(theta2)"
+        ],
+        "explanation": "n₁ sinθ₁ = n₂ sinθ₂."
+      },
+      {
+        "stem": "Solve for sinθ₂ with n₁ = 1.0, θ₁ = 30°, n₂ = 1.5.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "0.333",
+          "0.33",
+          "1/3",
+          "0.5/1.5"
+        ],
+        "explanation": "sinθ₂ = (1.0)(0.5)/1.5 = 0.333."
+      },
+      {
+        "stem": "Take arcsin(0.333) (give degrees).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "19.5°",
+          "19.5 degrees",
+          "19.5",
+          "20°"
+        ],
+        "explanation": "θ₂ ≈ 19.5°."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4D-7",
+    "section": "C/P",
+    "aamc_category": "4D",
+    "subtopic": "Total internal reflection",
+    "answer_type": "free_response",
+    "prompt": "For light traveling from glass (n = 1.5) toward air (n = 1.0), what is the critical angle for total internal reflection? Give the value in degrees.",
+    "accepted_answers": [
+      "41.8°",
+      "42°",
+      "41.8 degrees",
+      "41.8",
+      "42 degrees"
+    ],
+    "key_terms": [
+      "unit: °",
+      "tolerance: ±1°",
+      "sinθc = n2/n1"
+    ],
+    "model_answer": "At the critical angle the refracted ray grazes at 90°: sinθ_c = n₂/n₁ = 1.0/1.5 = 0.667, so θ_c = arcsin(0.667) ≈ 41.8°.",
+    "explanation": "Total internal reflection occurs only going from a denser to a less dense medium, above the critical angle — the basis of fiber optics.",
+    "difficulty": "hard",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 25: Geometric Optics — Total Internal Reflection",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "At the critical angle, what is the angle of refraction?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "90°",
+          "90 degrees",
+          "90"
+        ],
+        "explanation": "The refracted ray travels along the surface at 90°."
+      },
+      {
+        "stem": "Write the equation for the critical angle (from medium 1 to medium 2).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "sinθc = n2/n1",
+          "sin(theta_c) = n2/n1",
+          "θc = arcsin(n2/n1)",
+          "sinθc=n₂/n₁"
+        ],
+        "explanation": "sinθ_c = n₂/n₁."
+      },
+      {
+        "stem": "Compute arcsin(1.0/1.5) (give degrees).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "41.8°",
+          "42°",
+          "41.8"
+        ],
+        "explanation": "arcsin(0.667) ≈ 41.8°."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4D-8",
+    "section": "C/P",
+    "aamc_category": "4D",
+    "subtopic": "Thin lens equation",
+    "answer_type": "free_response",
+    "prompt": "An object is placed 15 cm from a converging lens of focal length 10 cm. Where is the image formed? Give the image distance with units.",
+    "accepted_answers": [
+      "30 cm",
+      "d_i = 30 cm",
+      "0.30 m",
+      "30"
+    ],
+    "key_terms": [
+      "unit: cm",
+      "tolerance: ±0.5 cm",
+      "1/f = 1/do + 1/di"
+    ],
+    "model_answer": "1/f = 1/dₒ + 1/dᵢ → 1/dᵢ = 1/10 − 1/15 = 3/30 − 2/30 = 1/30, so dᵢ = 30 cm (real image).",
+    "explanation": "A positive image distance means a real image forms on the opposite side of the lens.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 25: Geometric Optics — Thin Lenses",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Write the thin lens equation.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "1/f = 1/do + 1/di",
+          "1/f = 1/d_o + 1/d_i",
+          "1/f=1/do+1/di"
+        ],
+        "explanation": "1/f = 1/dₒ + 1/dᵢ."
+      },
+      {
+        "stem": "Solve for 1/dᵢ with f = 10 cm and dₒ = 15 cm.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "1/30",
+          "1/10 - 1/15",
+          "0.0333",
+          "1/30 cm^-1"
+        ],
+        "explanation": "1/dᵢ = 1/10 − 1/15 = 1/30."
+      },
+      {
+        "stem": "Invert 1/dᵢ = 1/30 to find dᵢ (give cm).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "30 cm",
+          "30"
+        ],
+        "explanation": "dᵢ = 30 cm."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4D-9",
+    "section": "C/P",
+    "aamc_category": "4D",
+    "subtopic": "Magnification",
+    "answer_type": "free_response",
+    "prompt": "For the lens above (image distance 30 cm, object distance 15 cm), what is the magnification (include sign)? Give the numeric value.",
+    "accepted_answers": [
+      "-2",
+      "-2.0",
+      "−2",
+      "−2.0",
+      "-2x"
+    ],
+    "key_terms": [
+      "dimensionless",
+      "exact",
+      "m = -di/do"
+    ],
+    "model_answer": "m = −dᵢ/dₒ = −30/15 = −2. The negative sign indicates an inverted image, twice the object's size.",
+    "explanation": "Magnification magnitude is the size ratio; a negative sign denotes an inverted (real) image.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 25: Geometric Optics — Image Formation",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Write the magnification formula in terms of image and object distances.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "m = -di/do",
+          "m = -d_i/d_o",
+          "m=-di/do",
+          "-di/do"
+        ],
+        "explanation": "m = −dᵢ/dₒ."
+      },
+      {
+        "stem": "Compute −30/15.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "-2",
+          "-2.0",
+          "−2"
+        ],
+        "explanation": "= −2."
+      },
+      {
+        "stem": "What does the negative sign tell you about the image orientation?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "inverted",
+          "upside down",
+          "it is inverted",
+          "flipped"
+        ],
+        "explanation": "A negative magnification means the image is inverted."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4D-10",
+    "section": "C/P",
+    "aamc_category": "4D",
+    "subtopic": "Infrared spectroscopy",
+    "answer_type": "free_response",
+    "prompt": "In an IR spectrum, a strong absorption near 1700 cm⁻¹ is the signature of which bond? Give the bond.",
+    "accepted_answers": [
+      "C=O",
+      "carbonyl",
+      "carbonyl (C=O)",
+      "C=O (carbonyl)",
+      "c=o"
+    ],
+    "key_terms": [
+      "C=O",
+      "carbonyl",
+      "~1700 cm^-1"
+    ],
+    "model_answer": "C=O (the carbonyl group). The strong stretch near 1700 cm⁻¹ identifies aldehydes, ketones, carboxylic acids, esters, and amides.",
+    "explanation": "IR absorptions arise from bond-stretching vibrations; the carbonyl gives one of the strongest, most diagnostic IR peaks.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Organic Chemistry, Ch. 12: Structure Determination — Infrared Spectroscopy",
+      "url": "https://openstax.org/details/books/organic-chemistry",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "IR absorptions are caused by what kind of molecular motion?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "bond vibrations",
+          "vibrations",
+          "stretching",
+          "bond stretching/bending"
+        ],
+        "explanation": "IR light excites bond vibrations (stretching and bending)."
+      },
+      {
+        "stem": "A strong, sharp peak near 1700 cm⁻¹ is characteristic of which functional feature?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "carbonyl",
+          "C=O",
+          "carbonyl group"
+        ],
+        "explanation": "The ~1700 cm⁻¹ band is the carbonyl (C=O) stretch."
+      },
+      {
+        "stem": "Name one functional group that contains a C=O and shows this peak.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "ketone",
+          "aldehyde",
+          "carboxylic acid",
+          "ester",
+          "amide"
+        ],
+        "explanation": "Any carbonyl compound (ketone, aldehyde, carboxylic acid, ester, amide)."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4D-11",
+    "section": "C/P",
+    "aamc_category": "4D",
+    "subtopic": "UV-Vis absorption and conjugation",
+    "answer_type": "free_response",
+    "prompt": "As the extent of conjugation in a molecule increases, does its wavelength of maximum UV-Vis absorption shift to longer or shorter wavelengths? Answer in one word.",
+    "accepted_answers": [
+      "longer",
+      "increases",
+      "red",
+      "red-shift",
+      "redshift"
+    ],
+    "key_terms": [
+      "longer",
+      "red shift",
+      "smaller HOMO-LUMO gap"
+    ],
+    "model_answer": "Longer. More conjugation lowers the HOMO–LUMO energy gap, so a lower-energy (longer-wavelength) photon is absorbed — a red shift.",
+    "explanation": "Extended conjugation delocalizes π electrons and narrows the electronic gap, which is why highly conjugated molecules (e.g., β-carotene) are colored.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Organic Chemistry, Ch. 14: Conjugated Compounds — UV Spectroscopy",
+      "url": "https://openstax.org/details/books/organic-chemistry",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Absorbing a UV-Vis photon promotes an electron across which energy gap?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "HOMO-LUMO",
+          "HOMO to LUMO",
+          "HOMO–LUMO gap",
+          "the pi to pi* gap"
+        ],
+        "explanation": "The electron jumps from the HOMO to the LUMO."
+      },
+      {
+        "stem": "More conjugation makes the HOMO–LUMO gap larger or smaller?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "smaller",
+          "decreases",
+          "narrower"
+        ],
+        "explanation": "Extended conjugation lowers (narrows) the gap."
+      },
+      {
+        "stem": "A smaller energy gap means absorption at longer or shorter wavelength?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "longer",
+          "longer wavelength",
+          "increases"
+        ],
+        "explanation": "Lower energy → longer wavelength (E = hc/λ)."
+      }
+    ]
   }
 ]

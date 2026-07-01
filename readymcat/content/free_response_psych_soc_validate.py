@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright: ReadyMCAT contributors
+# Copyright: Ankitects Pty Ltd and contributors
 # License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 """Self-contained validator for the ReadyMCAT P/S FREE-RESPONSE item bank.
 

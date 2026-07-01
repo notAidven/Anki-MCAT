@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright: ReadyMCAT contributors
+# Copyright: Ankitects Pty Ltd and contributors
 # License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 """Standalone standard-library validator for the ReadyMCAT Chemical & Physical
 Foundations (C/P) FREE-RESPONSE question bank.

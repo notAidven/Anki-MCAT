@@ -36,6 +36,7 @@ with the MCQ reviewer via ``qt/aqt/readymcat.py``.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import re
@@ -104,9 +105,12 @@ _REQUIRED_ITEM_KEYS = frozenset(
 # * **Passage** — a shared passage with one card per question (MCQ interaction),
 #   the passage's questions grouped together in the deck.
 #
-# Both live in sub-decks of the pre-loaded ``ReadyMCAT`` deck and are tagged the
-# same ``#ReadyMCAT::AAMC::<cat>`` way as the MCQs (CARS items, if ever added,
-# tag :data:`CARS_CATEGORY`).
+# The AAMC content types live in sub-decks of the pre-loaded ``ReadyMCAT`` deck
+# and are tagged the same ``#ReadyMCAT::AAMC::<cat>`` way as the MCQs. CARS is a
+# fourth, special content type: it is the MCAT's *skills* section, has no AAMC
+# content category, and so is built into its own ``ReadyMCAT::Passages::CARS``
+# sub-deck and tagged :data:`CARS_TAG` (no AAMC tag) so it is cleanly ignored by
+# the points-at-stake queue / coverage map / dashboard — see the CARS section.
 
 #: Note type for pre-loaded free-response items (one type-in card per note).
 FR_NOTETYPE_NAME = "ReadyMCAT FreeResponse"
@@ -170,6 +174,27 @@ PASSAGE_SOURCE_BANKS = (
 )
 #: AAMC category used for CARS passage items (which have no numbered category).
 CARS_CATEGORY = "CARS"
+
+# --- CARS: the skills-section passage bank ----------------------------------
+#
+# CARS (Critical Analysis and Reasoning Skills) is folded in as a fourth
+# pre-loaded content type. Its questions carry a ``skill`` (comprehension /
+# reasoning-within / reasoning-beyond) instead of a numbered AAMC content
+# category, so it is deliberately kept OUT of :func:`merge_passage_source_banks`
+# and :func:`all_content_categories`. It reuses the ``ReadyMCAT Passage`` note
+# type but lands in its own sub-deck with its own marker tag.
+
+#: The CARS passage bank(s), in a stable order.
+CARS_PASSAGE_SOURCE_BANKS = ("passage_cars.json",)
+#: Sub-deck the CARS passages are imported into (a child of the Passages deck).
+CARS_PASSAGE_DECK_NAME = f"{PASSAGE_DECK_NAME}::CARS"
+#: Marker tag on every CARS passage note. Deliberately NOT a
+#: ``#ReadyMCAT::AAMC::<cat>`` tag: CARS has no content category, and because no
+#: ``taxonomy.json`` mapping resolves ``#ReadyMCAT::CARS``, the points-at-stake
+#: queue, coverage map and honest dashboard cleanly IGNORE CARS cards.
+CARS_TAG = "#ReadyMCAT::CARS"
+#: Collection-config marker recording when the CARS deck was last provisioned.
+CARS_PROVISION_CONFIG_KEY = "readymcat_cars_provisioned_at"
 
 
 def aamc_tag_for(category: str) -> str:
@@ -727,21 +752,24 @@ def validate_passage(passage: dict[str, Any]) -> list[str]:
     return problems
 
 
-def merge_passage_source_banks(
+def _merge_passage_banks(
+    banks: tuple[str, ...],
     content_dir: Path | None = None,
+    *,
+    kind: str = "passage",
 ) -> list[dict[str, Any]]:
-    """Read + concatenate the three passage section banks, validating each
-    passage (and its questions) and checking that both passage ids and question
-    ids are globally unique."""
+    """Read + concatenate a set of passage banks, validating each passage (and
+    its questions) and checking that both passage ids and question ids are
+    globally unique. Shared by the AAMC passage banks and the CARS bank."""
     content_dir = content_dir or _default_content_dir()
     passages: list[dict[str, Any]] = []
     seen_pids: set[str] = set()
     seen_qids: set[str] = set()
     problems: list[str] = []
-    for name in PASSAGE_SOURCE_BANKS:
+    for name in banks:
         path = content_dir / name
         if not path.is_file():
-            raise FileNotFoundError(f"missing passage bank: {path}")
+            raise FileNotFoundError(f"missing {kind} bank: {path}")
         data = json.loads(path.read_text(encoding="utf-8"))
         if not isinstance(data, list):
             raise ValueError(f"{name}: expected a JSON array of passages")
@@ -760,9 +788,30 @@ def merge_passage_source_banks(
             passages.append(passage)
     if problems:
         raise ValueError(
-            "passage bank validation failed:\n  " + "\n  ".join(problems[:50])
+            f"{kind} bank validation failed:\n  " + "\n  ".join(problems[:50])
         )
     return passages
+
+
+def merge_passage_source_banks(
+    content_dir: Path | None = None,
+) -> list[dict[str, Any]]:
+    """Read + concatenate the three AAMC passage section banks (bio/biochem,
+    chem/phys, psych/soc), validating each passage and checking that ids are
+    globally unique. CARS is a separate bank — see
+    :func:`merge_cars_passage_banks`."""
+    return _merge_passage_banks(PASSAGE_SOURCE_BANKS, content_dir)
+
+
+def merge_cars_passage_banks(
+    content_dir: Path | None = None,
+) -> list[dict[str, Any]]:
+    """Read + validate the CARS passage bank. CARS questions carry a ``skill``
+    and no numbered AAMC category; :func:`validate_passage` does not require a
+    category, so it validates CARS unchanged."""
+    return _merge_passage_banks(
+        CARS_PASSAGE_SOURCE_BANKS, content_dir, kind="CARS passage"
+    )
 
 
 def passage_question_count(passages: list[dict[str, Any]]) -> int:
@@ -996,6 +1045,91 @@ def build_passage_notes(
     return stats
 
 
+# --- CARS: note building (stable-guid, add-missing) -------------------------
+
+
+def _existing_guids(col: Collection) -> set[str]:
+    """Every note guid currently in the collection (for stable-key add-missing)."""
+    try:
+        return set(col.db.list("select guid from notes"))
+    except Exception:  # pragma: no cover - defensive
+        return set()
+
+
+def cars_note_guid(question_id: str) -> str:
+    """A deterministic, stable Anki note guid for a CARS passage question.
+
+    Deriving the guid from the globally-unique question id lets provisioning add
+    only the CARS notes that are missing, so a profile provisioned *before* CARS
+    existed gains exactly the new CARS cards on next launch and relaunches never
+    duplicate them."""
+    digest = hashlib.sha256(
+        f"readymcat-cars:{question_id}".encode("utf-8")
+    ).hexdigest()
+    return f"rmcat-cars-{digest[:16]}"
+
+
+def _cars_passage_fields_for_question(
+    passage: dict[str, Any], question: dict[str, Any]
+) -> list[str]:
+    """Fields for a CARS passage question. Identical to the AAMC mapping, except
+    the Subtopic slot carries the CARS ``skill`` (comprehension /
+    reasoning-within / reasoning-beyond) when there is no subtopic — CARS has no
+    AAMC subtopic, and this is what the reviewer surfaces so a CARS card renders
+    its skill instead."""
+    fields = _passage_fields_for_question(passage, question)
+    subtopic_idx = PASSAGE_FIELDS.index("Subtopic")
+    skill = str(question.get("skill", "")).strip()
+    if skill and not fields[subtopic_idx]:
+        fields[subtopic_idx] = skill
+    return fields
+
+
+def build_cars_passage_notes(
+    col: Collection,
+    passages: list[dict[str, Any]],
+    *,
+    log: Callable[[str], None] = print,
+) -> BuildStats:
+    """Build the CARS passages into the ``ReadyMCAT::Passages::CARS`` sub-deck.
+
+    Reuses the shared :data:`PASSAGE_NOTETYPE_NAME` note type but tags each note
+    with the coarse passage marker + :data:`CARS_TAG` (and NO AAMC category tag),
+    and gives each note a deterministic guid (:func:`cars_note_guid`). Only notes
+    whose stable guid is not already present are added, so this is safe to call
+    on a fresh OR an already-provisioned profile without creating duplicates."""
+    stats = BuildStats(
+        deck_name=CARS_PASSAGE_DECK_NAME, notetype_name=PASSAGE_NOTETYPE_NAME
+    )
+    notetype = ensure_passage_notetype(col)
+    deck_id = col.decks.id(CARS_PASSAGE_DECK_NAME)
+    existing = _existing_guids(col)
+
+    for passage in passages:
+        for question in passage.get("questions") or []:
+            guid = cars_note_guid(str(question.get("id", "")))
+            if guid in existing:
+                continue
+            note = col.new_note(notetype)
+            note.guid = guid
+            note.fields = _cars_passage_fields_for_question(passage, question)
+            note.add_tag(PASSAGE_TAG)
+            note.add_tag(CARS_TAG)
+            col.add_note(note, deck_id)
+            existing.add(guid)
+            stats.notes_created += 1
+            stats.cards_created += len(note.cards())
+            stats.subquestions += len(question.get("subquestions") or [])
+
+    # CARS has no AAMC category by design, so `categories` stays empty.
+    if stats.notes_created:
+        log(
+            f"ReadyMCAT: built {stats.notes_created} CARS passage notes "
+            f"({stats.cards_created} cards) into deck '{CARS_PASSAGE_DECK_NAME}'."
+        )
+    return stats
+
+
 # --- provisioning: free-response + passage + everything --------------------
 
 
@@ -1071,21 +1205,88 @@ def provision_passages(
     return stats
 
 
+def cars_notes_missing(
+    col: Collection, passages: list[dict[str, Any]] | None = None
+) -> int:
+    """How many bundled CARS notes are not yet in the collection (0 = complete).
+
+    This is the precise, per-note guard behind CARS top-up: it does not care
+    whether the CARS deck exists, only whether every CARS note (by stable guid)
+    is present. Defensive — returns 0 on any error so start-up is never blocked."""
+    try:
+        passages = passages if passages is not None else merge_cars_passage_banks()
+        existing = _existing_guids(col)
+        missing = 0
+        for passage in passages:
+            for question in passage.get("questions") or []:
+                if cars_note_guid(str(question.get("id", ""))) not in existing:
+                    missing += 1
+        return missing
+    except Exception:  # pragma: no cover - defensive
+        return 0
+
+
+def has_all_cars_notes(col: Collection) -> bool:
+    """True once every bundled CARS note is present (the top-up guard)."""
+    return cars_notes_missing(col) == 0
+
+
+def provision_cars_passages(
+    col: Collection,
+    *,
+    passages: list[dict[str, Any]] | None = None,
+    log: Callable[[str], None] = print,
+) -> BuildStats:
+    """Idempotently ensure the pre-loaded CARS passage deck exists in ``col``.
+
+    Unlike the AAMC content decks (guarded by mere deck/notes existence), CARS is
+    added by stable per-note guid: only missing CARS notes are created. So a
+    profile provisioned *before* CARS existed gains exactly the CARS cards on the
+    next launch, and relaunching never duplicates them. ``already_present`` is
+    reported when there was nothing to add."""
+    passages = passages if passages is not None else merge_cars_passage_banks()
+    stats = build_cars_passage_notes(col, passages, log=log)
+    if stats.notes_created == 0:
+        stats.already_present = True
+        try:
+            stats.notes_created = len(
+                col.find_notes(f'deck:"{CARS_PASSAGE_DECK_NAME}"')
+            )
+        except Exception:  # pragma: no cover - defensive
+            pass
+        log(
+            f"ReadyMCAT: CARS passage deck already complete "
+            f"({stats.notes_created} notes); skipping."
+        )
+        return stats
+    try:
+        import time
+
+        col.set_config(CARS_PROVISION_CONFIG_KEY, int(time.time()))
+    except Exception:  # pragma: no cover - defensive
+        pass
+    return stats
+
+
 def provision_all(
     col: Collection,
     *,
     log: Callable[[str], None] = print,
 ) -> dict[str, BuildStats]:
-    """Idempotently pre-load ALL content types (MCQ + free-response + passage).
+    """Idempotently pre-load ALL content types (MCQ + free-response + passage +
+    CARS).
 
     Each content type is independently guarded, so a brand-new user gets the
     full mixed deck with zero import and re-running never duplicates anything.
     MCQ is provisioned first so its deck-existence guard is checked before the
-    sub-decks create the shared ``ReadyMCAT`` parent."""
+    sub-decks create the shared ``ReadyMCAT`` parent. CARS is provisioned by
+    stable per-note guid (add-missing), so it is also topped up on a profile that
+    was provisioned before CARS existed — without duplicating existing cards."""
     return {
         "mcq": provision_collection(col, log=log),
         "free_response": provision_free_response(col, log=log),
         "passage": provision_passages(col, log=log),
+        "cars": provision_cars_passages(col, log=log),
     }
 
 
@@ -1392,10 +1593,16 @@ def main(argv: list[str] | None = None) -> int:
         )
         fr_items = merge_fr_source_banks()
         passages = merge_passage_source_banks()
+        cars = merge_cars_passage_banks()
         print(
             f"Free-response bank: {len(fr_items)} items. "
             f"Passage bank: {len(passages)} passages / "
             f"{passage_question_count(passages)} questions."
+        )
+        print(
+            f"CARS passage bank: {len(cars)} passages / "
+            f"{passage_question_count(cars)} questions "
+            f"(skills section; no AAMC category, ignored by points-at-stake)."
         )
 
     if args.sync_taxonomy:

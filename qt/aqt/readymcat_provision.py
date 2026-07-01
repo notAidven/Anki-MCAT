@@ -4,12 +4,16 @@
 """First-launch provisioning for the pre-loaded ReadyMCAT decks.
 
 A brand-new ReadyMCAT user should get the full MCAT deck — multiple-choice,
-free-response *and* passage cards — with **zero import**. This module is the
-desktop hook that makes that happen: on collection load it checks whether each
-content type is already present and, if not, builds it directly from the bundled
-banks (see ``readymcat/tools/build_question_bank.py``) and drops the sidecar
-files the topic-aware features expect (``taxonomy.json``, ``subquestions.json``,
-``diagnostic_quiz.json``) next to the collection.
+free-response, passage *and* CARS cards — with **zero import**. This module is
+the desktop hook that makes that happen: on collection load it checks whether
+each content type is already present and, if not, builds it directly from the
+bundled banks (see ``readymcat/tools/build_question_bank.py``) and drops the
+sidecar files the topic-aware features expect (``taxonomy.json``,
+``subquestions.json``, ``diagnostic_quiz.json``) next to the collection.
+
+CARS is topped up by stable per-note guid, so a profile that was provisioned
+before CARS existed gains exactly the CARS cards on the next launch — without
+duplicating any existing card.
 
 It is a thin GUI wrapper around the pure ``anki`` builder, mirroring how
 ``qt/aqt/readymcat_demo.py`` wraps the demo seeder. Everything here is silent and
@@ -138,12 +142,19 @@ def _ensure_taxonomy_mappings_present(mw: "aqt.main.AnkiQt", col_dir: Path) -> N
 
 
 def _all_content_present(core: ModuleType, col: "object") -> bool:
-    """True once every pre-loaded content type (MCQ + FR + passage) exists."""
+    """True once every pre-loaded content type (MCQ + FR + passage + CARS) is
+    fully present.
+
+    CARS is checked per-note (``has_all_cars_notes``), not by deck existence, so a
+    profile provisioned *before* CARS existed reports ``False`` here and is topped
+    up on next launch — while a profile that already has every CARS note skips
+    provisioning entirely (no duplicate work, no dialog flash)."""
     try:
         return (
             core.has_mcq_deck(col)
             and core.has_fr_notes(col)
             and core.has_passage_notes(col)
+            and core.has_all_cars_notes(col)
         )
     except Exception:  # pragma: no cover - defensive
         return False
@@ -196,7 +207,8 @@ def maybe_provision_readymcat(mw: "aqt.main.AnkiQt") -> None:
         for stat in stats.values():
             categories.update(getattr(stat, "categories", []) or [])
         tooltip(
-            f"ReadyMCAT: loaded {created} items (MCQ + free-response + passage) "
-            f"across {len(categories)} AAMC categories — no import needed.",
+            f"ReadyMCAT: loaded {created} items "
+            f"(MCQ + free-response + passage + CARS) across "
+            f"{len(categories)} AAMC categories — no import needed.",
             period=5000,
         )

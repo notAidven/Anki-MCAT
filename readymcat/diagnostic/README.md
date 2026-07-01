@@ -14,7 +14,7 @@ follow-on feature build — see [For the follow-on feature build](#for-the-follo
 ## What this is (and what it is NOT)
 
 The diagnostic is taken **once, on first launch**. Per the
-[PRD](../../../ReadyMCAT-PRD.md) ("LEARN MODE: ONE TOOL, NOT THREE"):
+[PRD](../../../ReadyMCAT-PRD.md) ("ALL-IN-ONE QUESTION BANK: EVERY FORMAT, ONE ENGINE"):
 
 > The output is **not a score shown to the student**; it is a **per-topic
 > proficiency prior** the engine uses to personalize everything after it. It

@@ -769,8 +769,16 @@ exposed_backend_list = [
     "get_retention_workload",
     # ReadyMCAT PointsAtStakeService — the honest-memory dashboard
     # (ts/routes/readymcat-dashboard) fetches its per-topic aggregation, ranged
-    # memory score and coverage map through this read-only method.
+    # memory score and coverage map through this read-only method. It aggregates
+    # every pre-loaded content type (MCQ + free-response + passage).
     "points_at_stake_queue",
+    # ReadyMCAT DiagnosticService — the first-launch introductory diagnostic
+    # (ts/routes/readymcat-diagnostic) serves its question bank and posts the
+    # answers back to be scored + seeded into the points-at-stake prior. Both
+    # methods must stay registered alongside points_at_stake_queue: without them
+    # the diagnostic page 404s on "_anki/getDiagnosticQuiz".
+    "get_diagnostic_quiz",
+    "score_and_seed_diagnostic",
 ]
 
 

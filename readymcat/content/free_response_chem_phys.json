@@ -4219,5 +4219,1212 @@
         "explanation": "= 1.0 mol."
       }
     ]
+  },
+  {
+    "id": "fr-cp-5B-1",
+    "section": "C/P",
+    "aamc_category": "5B",
+    "subtopic": "Ionic vs covalent bonding",
+    "answer_type": "free_response",
+    "prompt": "What type of chemical bond typically forms between a metal and a nonmetal (large electronegativity difference)? Name it.",
+    "accepted_answers": [
+      "ionic",
+      "ionic bond",
+      "ionic bonding",
+      "an ionic bond"
+    ],
+    "key_terms": [
+      "ionic",
+      "electron transfer",
+      "metal + nonmetal"
+    ],
+    "model_answer": "An ionic bond — the metal transfers electron(s) to the nonmetal, forming cations and anions held by electrostatic attraction.",
+    "explanation": "Large electronegativity differences favor electron transfer (ionic); small differences favor sharing (covalent).",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 7: Chemical Bonding and Molecular Geometry",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "In a metal + nonmetal pairing, does the metal gain or lose electrons?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "loses",
+          "lose",
+          "gives up",
+          "donates"
+        ],
+        "explanation": "Metals lose electrons to become cations."
+      },
+      {
+        "stem": "What are the two oppositely charged species produced called?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "ions",
+          "cation and anion",
+          "cations and anions",
+          "an ion pair"
+        ],
+        "explanation": "A cation (metal) and an anion (nonmetal)."
+      },
+      {
+        "stem": "Electrostatic attraction between these ions is which bond type?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "ionic",
+          "ionic bond"
+        ],
+        "explanation": "Ionic bonding."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5B-2",
+    "section": "C/P",
+    "aamc_category": "5B",
+    "subtopic": "Lewis structures (valence electron count)",
+    "answer_type": "free_response",
+    "prompt": "How many total valence electrons must a Lewis structure of CO₂ account for? Give the number.",
+    "accepted_answers": [
+      "16",
+      "16 electrons",
+      "sixteen"
+    ],
+    "key_terms": [
+      "dimensionless",
+      "exact",
+      "C=4, each O=6"
+    ],
+    "model_answer": "Carbon contributes 4 and each oxygen 6: 4 + 2(6) = 16 valence electrons.",
+    "explanation": "Counting total valence electrons is the first step in drawing a correct Lewis structure.",
+    "difficulty": "easy",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 7: Chemical Bonding — Lewis Symbols and Structures",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "How many valence electrons does a carbon atom have?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "4",
+          "four"
+        ],
+        "explanation": "Carbon is in group 14: 4 valence electrons."
+      },
+      {
+        "stem": "How many valence electrons does each oxygen atom have?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "6",
+          "six"
+        ],
+        "explanation": "Oxygen is in group 16: 6 valence electrons."
+      },
+      {
+        "stem": "Total up 4 + 2(6).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "16",
+          "sixteen"
+        ],
+        "explanation": "4 + 12 = 16."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5B-3",
+    "section": "C/P",
+    "aamc_category": "5B",
+    "subtopic": "VSEPR molecular geometry",
+    "answer_type": "free_response",
+    "prompt": "What is the molecular geometry of methane, CH₄ (four bonding pairs, no lone pairs on carbon)? Name the shape.",
+    "accepted_answers": [
+      "tetrahedral",
+      "tetrahedron"
+    ],
+    "key_terms": [
+      "tetrahedral",
+      "4 domains",
+      "109.5"
+    ],
+    "model_answer": "Four bonding domains and no lone pairs give a tetrahedral geometry with bond angles of 109.5°.",
+    "explanation": "VSEPR: electron domains arrange to minimize repulsion; four equivalent domains point to the corners of a tetrahedron.",
+    "difficulty": "easy",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 7: Chemical Bonding — Molecular Structure (VSEPR)",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "How many electron domains surround the carbon in CH₄?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "4",
+          "four"
+        ],
+        "explanation": "Four bonding pairs = 4 domains."
+      },
+      {
+        "stem": "With 4 domains and no lone pairs, what is the shape?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "tetrahedral",
+          "tetrahedron"
+        ],
+        "explanation": "Tetrahedral."
+      },
+      {
+        "stem": "What is the ideal bond angle in a tetrahedral molecule?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "109.5°",
+          "109.5 degrees",
+          "109.5",
+          "109"
+        ],
+        "explanation": "109.5°."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5B-4",
+    "section": "C/P",
+    "aamc_category": "5B",
+    "subtopic": "VSEPR with lone pairs",
+    "answer_type": "free_response",
+    "prompt": "What is the molecular geometry of water, H₂O (two bonding pairs and two lone pairs on oxygen)? Name the shape.",
+    "accepted_answers": [
+      "bent",
+      "angular",
+      "bent (angular)",
+      "V-shaped"
+    ],
+    "key_terms": [
+      "bent",
+      "angular",
+      "2 lone pairs"
+    ],
+    "model_answer": "The oxygen has four electron domains (tetrahedral electron geometry), but with two lone pairs the atoms form a bent (angular) shape (~104.5°).",
+    "explanation": "Molecular geometry describes only atom positions; lone pairs occupy space and bend the H–O–H angle.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 7: Chemical Bonding — Molecular Structure (VSEPR)",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Count the electron domains around oxygen in water (bonds + lone pairs).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "4",
+          "four",
+          "2 bonds + 2 lone pairs"
+        ],
+        "explanation": "2 bonding + 2 lone pairs = 4 domains."
+      },
+      {
+        "stem": "What is the electron-domain geometry for 4 domains?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "tetrahedral",
+          "tetrahedron"
+        ],
+        "explanation": "Tetrahedral electron geometry."
+      },
+      {
+        "stem": "Ignoring the two lone pairs, what shape do the three atoms make?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "bent",
+          "angular",
+          "V-shaped"
+        ],
+        "explanation": "Bent (angular)."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5B-5",
+    "section": "C/P",
+    "aamc_category": "5B",
+    "subtopic": "Hybridization",
+    "answer_type": "free_response",
+    "prompt": "What is the hybridization of a carbon atom bonded to four other atoms with only single bonds (e.g., in CH₄)? Give the hybridization.",
+    "accepted_answers": [
+      "sp3",
+      "sp³",
+      "sp^3"
+    ],
+    "key_terms": [
+      "sp3",
+      "4 domains",
+      "one s + three p"
+    ],
+    "model_answer": "Four regions of electron density require four equivalent hybrid orbitals: sp³.",
+    "explanation": "The number of hybrid orbitals equals the number of electron domains: 2→sp, 3→sp², 4→sp³.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 8: Advanced Theories of Covalent Bonding — Hybridization",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "How many regions of electron density surround this carbon?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "4",
+          "four"
+        ],
+        "explanation": "Four single bonds = 4 regions."
+      },
+      {
+        "stem": "How many atomic orbitals must mix to make 4 hybrids (one s and how many p)?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "three p",
+          "3 p",
+          "one s and three p",
+          "1 s + 3 p"
+        ],
+        "explanation": "One s + three p orbitals."
+      },
+      {
+        "stem": "Name the resulting hybridization.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "sp3",
+          "sp³",
+          "sp^3"
+        ],
+        "explanation": "sp³."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5B-6",
+    "section": "C/P",
+    "aamc_category": "5B",
+    "subtopic": "Molecular polarity",
+    "answer_type": "free_response",
+    "prompt": "Is carbon dioxide (CO₂) a polar or nonpolar molecule? Answer polar or nonpolar.",
+    "accepted_answers": [
+      "nonpolar",
+      "non-polar",
+      "nonpolar molecule",
+      "non polar"
+    ],
+    "key_terms": [
+      "nonpolar",
+      "linear",
+      "dipoles cancel"
+    ],
+    "model_answer": "Nonpolar. CO₂ is linear and symmetric, so its two equal C=O bond dipoles point in opposite directions and cancel.",
+    "explanation": "A molecule can have polar bonds yet be nonpolar overall if its geometry makes the bond dipoles cancel.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 7: Chemical Bonding — Molecular Polarity",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Are the individual C=O bonds polar? (yes/no)",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "yes",
+          "polar",
+          "yes they are"
+        ],
+        "explanation": "Yes — O is more electronegative than C, so each C=O is polar."
+      },
+      {
+        "stem": "What is the shape of the CO₂ molecule?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "linear",
+          "straight",
+          "linear molecule"
+        ],
+        "explanation": "Linear (O=C=O, 180°)."
+      },
+      {
+        "stem": "In a symmetric linear molecule, do the opposing bond dipoles add or cancel?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "cancel",
+          "cancel out",
+          "they cancel"
+        ],
+        "explanation": "They cancel, giving a nonpolar molecule."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5B-7",
+    "section": "C/P",
+    "aamc_category": "5B",
+    "subtopic": "Sigma and pi bonds",
+    "answer_type": "free_response",
+    "prompt": "A carbon–carbon double bond (C=C) consists of how many sigma and how many pi bonds?",
+    "accepted_answers": [
+      "one sigma and one pi",
+      "1 sigma and 1 pi",
+      "1 sigma, 1 pi",
+      "one sigma one pi",
+      "1σ and 1π"
+    ],
+    "key_terms": [
+      "sigma",
+      "pi",
+      "1 sigma 1 pi"
+    ],
+    "model_answer": "A double bond is one sigma (σ) bond plus one pi (π) bond.",
+    "explanation": "The first bond between two atoms is always a sigma bond; each additional bond in a multiple bond is a pi bond (so a triple bond = 1σ + 2π).",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 8: Advanced Theories of Covalent Bonding — Sigma and Pi Bonds",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "What kind of bond is the single (first) bond between two atoms?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "sigma",
+          "σ",
+          "sigma bond"
+        ],
+        "explanation": "The first bond is always a sigma (σ) bond."
+      },
+      {
+        "stem": "Any additional bonds in a multiple bond are what type?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "pi",
+          "π",
+          "pi bonds"
+        ],
+        "explanation": "Additional bonds are pi (π) bonds."
+      },
+      {
+        "stem": "So a C=C double bond contains how many of each?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "one sigma and one pi",
+          "1 sigma and 1 pi",
+          "1 sigma, 1 pi"
+        ],
+        "explanation": "1 sigma + 1 pi."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5B-8",
+    "section": "C/P",
+    "aamc_category": "5B",
+    "subtopic": "Intermolecular forces (ranking)",
+    "answer_type": "free_response",
+    "prompt": "Of London dispersion forces, dipole–dipole forces, and hydrogen bonding, which is the strongest? Name it.",
+    "accepted_answers": [
+      "hydrogen bonding",
+      "hydrogen bonds",
+      "hydrogen bond",
+      "H-bonding"
+    ],
+    "key_terms": [
+      "hydrogen bonding",
+      "strongest of the three"
+    ],
+    "model_answer": "Hydrogen bonding is the strongest of these three intermolecular forces.",
+    "explanation": "Typical ordering (weakest to strongest): London dispersion < dipole–dipole < hydrogen bonding (a specially strong dipole–dipole interaction).",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 10: Liquids and Solids — Intermolecular Forces",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Which of the three is the weakest, present in all molecules?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "London dispersion",
+          "dispersion",
+          "London forces",
+          "London"
+        ],
+        "explanation": "London dispersion forces (present in all molecules)."
+      },
+      {
+        "stem": "Hydrogen bonding is a specially strong form of which interaction?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "dipole-dipole",
+          "dipole–dipole",
+          "dipole dipole"
+        ],
+        "explanation": "It is a strong dipole–dipole interaction."
+      },
+      {
+        "stem": "So which of the three is strongest?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "hydrogen bonding",
+          "hydrogen bonds"
+        ],
+        "explanation": "Hydrogen bonding."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5B-9",
+    "section": "C/P",
+    "aamc_category": "5B",
+    "subtopic": "Intermolecular forces and boiling point",
+    "answer_type": "free_response",
+    "prompt": "Between methane (CH₄) and water (H₂O), which has the higher boiling point? Give the substance.",
+    "accepted_answers": [
+      "water",
+      "H2O",
+      "H₂O"
+    ],
+    "key_terms": [
+      "water",
+      "hydrogen bonding",
+      "stronger IMF"
+    ],
+    "model_answer": "Water. It forms hydrogen bonds, a much stronger intermolecular force than the London dispersion forces in nonpolar methane, so more energy is needed to vaporize it.",
+    "explanation": "Boiling point tracks intermolecular force strength: stronger IMFs → higher boiling point.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 10: Liquids and Solids — Intermolecular Forces",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "What is the only intermolecular force available to nonpolar CH₄?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "London dispersion",
+          "dispersion",
+          "London forces",
+          "van der Waals"
+        ],
+        "explanation": "Only London dispersion forces."
+      },
+      {
+        "stem": "What stronger intermolecular force does water have?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "hydrogen bonding",
+          "hydrogen bonds",
+          "H-bonding"
+        ],
+        "explanation": "Hydrogen bonding."
+      },
+      {
+        "stem": "Stronger intermolecular forces give a higher or lower boiling point?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "higher",
+          "higher boiling point",
+          "greater"
+        ],
+        "explanation": "Higher — so water boils at a much higher temperature."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5B-10",
+    "section": "C/P",
+    "aamc_category": "5B",
+    "subtopic": "Formal charge",
+    "answer_type": "free_response",
+    "prompt": "What is the formal charge on the nitrogen atom in the ammonium ion, NH₄⁺? Give the value with sign.",
+    "accepted_answers": [
+      "+1",
+      "1+",
+      "+1 charge",
+      "plus one"
+    ],
+    "key_terms": [
+      "dimensionless",
+      "exact",
+      "FC = V - N - B/2"
+    ],
+    "model_answer": "FC = (valence e⁻) − (nonbonding e⁻) − ½(bonding e⁻) = 5 − 0 − ½(8) = 5 − 4 = +1.",
+    "explanation": "Formal charge helps choose the best Lewis structure; summed formal charges equal the ion's overall charge.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 7: Chemical Bonding — Formal Charges",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Write the formula for formal charge.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "V - N - B/2",
+          "valence - nonbonding - bonding/2",
+          "FC = V - N - B/2",
+          "V-N-(B/2)"
+        ],
+        "explanation": "FC = (valence) − (nonbonding e⁻) − ½(bonding e⁻)."
+      },
+      {
+        "stem": "For N in NH₄⁺: valence = 5, nonbonding = 0, bonding electrons = 8. Plug in.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "5 - 0 - 4",
+          "5-0-8/2",
+          "5 - 4",
+          "5-4"
+        ],
+        "explanation": "5 − 0 − (8/2) = 5 − 4."
+      },
+      {
+        "stem": "Evaluate 5 − 4.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "+1",
+          "1",
+          "1+"
+        ],
+        "explanation": "= +1."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5B-11",
+    "section": "C/P",
+    "aamc_category": "5B",
+    "subtopic": "Resonance",
+    "answer_type": "free_response",
+    "prompt": "What term describes the situation where a molecule's true bonding is a blend (average) of two or more valid Lewis structures? Give the term.",
+    "accepted_answers": [
+      "resonance",
+      "resonance structures",
+      "resonance hybrid",
+      "resonance stabilization"
+    ],
+    "key_terms": [
+      "resonance",
+      "delocalization",
+      "hybrid"
+    ],
+    "model_answer": "Resonance. The actual molecule is a resonance hybrid — an average of the contributing Lewis structures, with delocalized electrons.",
+    "explanation": "Resonance delocalizes electrons and stabilizes molecules/ions (e.g., benzene, carbonate, the carboxylate anion).",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 7: Chemical Bonding — Resonance",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "If one Lewis structure can't fully describe the bonding, what do you draw instead?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "multiple structures",
+          "several Lewis structures",
+          "more than one",
+          "resonance structures"
+        ],
+        "explanation": "Draw two or more valid Lewis (resonance) structures."
+      },
+      {
+        "stem": "The real molecule is an average of these, called a resonance ____.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "hybrid",
+          "resonance hybrid"
+        ],
+        "explanation": "A resonance hybrid."
+      },
+      {
+        "stem": "What is the single term for this phenomenon?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "resonance",
+          "resonance structures"
+        ],
+        "explanation": "Resonance."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5C-1",
+    "section": "C/P",
+    "aamc_category": "5C",
+    "subtopic": "Liquid-liquid extraction",
+    "answer_type": "free_response",
+    "prompt": "Liquid–liquid extraction separates compounds based on differences in which property between two immiscible solvents? Name it.",
+    "accepted_answers": [
+      "solubility",
+      "solubility differences",
+      "differential solubility",
+      "relative solubility"
+    ],
+    "key_terms": [
+      "solubility",
+      "partition",
+      "two immiscible solvents"
+    ],
+    "model_answer": "Solubility. A solute partitions between two immiscible solvents according to its relative solubility (the partition/distribution coefficient).",
+    "explanation": "\"Like dissolves like\": a compound concentrates in the solvent it is more soluble in, allowing separation.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "LibreTexts Chemistry — Liquid-Liquid Extraction",
+      "url": "https://chem.libretexts.org",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "An extraction uses two solvents that do NOT mix, described as what?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "immiscible",
+          "immiscible solvents",
+          "do not mix",
+          "not miscible"
+        ],
+        "explanation": "Two immiscible solvents (e.g., water and diethyl ether)."
+      },
+      {
+        "stem": "A solute distributes between the two layers according to its relative what?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "solubility",
+          "solubility in each"
+        ],
+        "explanation": "Its relative solubility."
+      },
+      {
+        "stem": "The ratio of concentrations in the two solvents is called the ____ coefficient.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "partition",
+          "distribution",
+          "partition coefficient",
+          "distribution coefficient"
+        ],
+        "explanation": "The partition (distribution) coefficient."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5C-2",
+    "section": "C/P",
+    "aamc_category": "5C",
+    "subtopic": "Acid-base extraction",
+    "answer_type": "free_response",
+    "prompt": "In an acid–base extraction, adding aqueous NaOH deprotonates a carboxylic acid (RCOOH) to give what water-soluble species? Name it.",
+    "accepted_answers": [
+      "carboxylate",
+      "carboxylate ion",
+      "RCOO-",
+      "conjugate base",
+      "RCOO⁻"
+    ],
+    "key_terms": [
+      "carboxylate",
+      "RCOO-",
+      "ionic and water-soluble"
+    ],
+    "model_answer": "The carboxylate ion (RCOO⁻). Deprotonation makes the molecule ionic, so it moves from the organic layer into the aqueous layer.",
+    "explanation": "Acid–base extraction exploits how (de)protonation switches a compound between neutral (organic-soluble) and ionic (water-soluble) forms.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "LibreTexts Chemistry — Acid-Base Extraction",
+      "url": "https://chem.libretexts.org",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Is neutral RCOOH more soluble in the organic layer or the water layer?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "organic",
+          "organic layer",
+          "the organic layer"
+        ],
+        "explanation": "Neutral organic acids favor the organic layer."
+      },
+      {
+        "stem": "What does NaOH remove from RCOOH?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "a proton",
+          "H+",
+          "proton",
+          "an H+"
+        ],
+        "explanation": "NaOH removes a proton (H⁺)."
+      },
+      {
+        "stem": "Name the resulting anion.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "carboxylate",
+          "RCOO-",
+          "carboxylate ion"
+        ],
+        "explanation": "The carboxylate ion, RCOO⁻, which dissolves in water."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5C-3",
+    "section": "C/P",
+    "aamc_category": "5C",
+    "subtopic": "Distillation",
+    "answer_type": "free_response",
+    "prompt": "Distillation separates a mixture of liquids based on differences in which physical property? Name it.",
+    "accepted_answers": [
+      "boiling point",
+      "boiling points",
+      "volatility",
+      "boiling point/volatility"
+    ],
+    "key_terms": [
+      "boiling point",
+      "volatility"
+    ],
+    "model_answer": "Boiling point (volatility). The component with the lower boiling point vaporizes preferentially, then is condensed and collected.",
+    "explanation": "Fractional distillation is used when boiling points are close; simple distillation suffices when they differ widely.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "LibreTexts Chemistry — Distillation",
+      "url": "https://chem.libretexts.org",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Which component vaporizes first when the mixture is heated?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "lower boiling point",
+          "the more volatile",
+          "lower-boiling",
+          "most volatile"
+        ],
+        "explanation": "The component with the lower boiling point (more volatile)."
+      },
+      {
+        "stem": "After vaporizing, the vapor is cooled and turned back to liquid in which step?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "condensation",
+          "condensing",
+          "condense",
+          "condenser"
+        ],
+        "explanation": "Condensation (in the condenser)."
+      },
+      {
+        "stem": "So distillation separates by difference in what property?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "boiling point",
+          "volatility",
+          "boiling points"
+        ],
+        "explanation": "Boiling point."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5C-4",
+    "section": "C/P",
+    "aamc_category": "5C",
+    "subtopic": "Thin-layer chromatography (Rf)",
+    "answer_type": "free_response",
+    "prompt": "On a TLC plate, a spot travels 3.0 cm while the solvent front travels 6.0 cm. What is the spot's retention factor (Rf)? Give the value.",
+    "accepted_answers": [
+      "0.50",
+      "0.5",
+      "Rf = 0.5",
+      "Rf = 0.50"
+    ],
+    "key_terms": [
+      "dimensionless",
+      "tolerance: ±0.02",
+      "Rf = spot/solvent front"
+    ],
+    "model_answer": "Rf = (distance traveled by spot)/(distance traveled by solvent front) = 3.0/6.0 = 0.50.",
+    "explanation": "Rf is unitless and constant for a compound under fixed conditions; more polar compounds have lower Rf on normal-phase silica.",
+    "difficulty": "easy",
+    "cognitive_level": "application",
+    "source": {
+      "name": "LibreTexts Chemistry — Thin-Layer Chromatography",
+      "url": "https://chem.libretexts.org",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Write the definition of the retention factor Rf.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "Rf = spot distance / solvent front distance",
+          "distance spot / distance solvent",
+          "Rf = d_spot/d_solvent"
+        ],
+        "explanation": "Rf = distance traveled by the spot ÷ distance traveled by the solvent front."
+      },
+      {
+        "stem": "Compute 3.0 cm ÷ 6.0 cm.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "0.50",
+          "0.5"
+        ],
+        "explanation": "= 0.50."
+      },
+      {
+        "stem": "Does Rf have units? (yes/no)",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "no",
+          "no it is unitless",
+          "unitless",
+          "dimensionless"
+        ],
+        "explanation": "No — it is a ratio of two distances, so it is dimensionless."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5C-5",
+    "section": "C/P",
+    "aamc_category": "5C",
+    "subtopic": "Chromatography principles",
+    "answer_type": "free_response",
+    "prompt": "Chromatography separates compounds by their differing affinities for two phases. Name the two phases.",
+    "accepted_answers": [
+      "stationary and mobile",
+      "stationary phase and mobile phase",
+      "mobile and stationary",
+      "stationary, mobile"
+    ],
+    "key_terms": [
+      "stationary",
+      "mobile",
+      "two phases"
+    ],
+    "model_answer": "The stationary phase (fixed) and the mobile phase (moving). Compounds that interact more with the stationary phase move more slowly.",
+    "explanation": "All chromatography (TLC, column, GC, HPLC) works by partitioning analytes between a stationary and a mobile phase.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "LibreTexts Chemistry — Chromatography",
+      "url": "https://chem.libretexts.org",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "One phase stays fixed in place. What is it called?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "stationary phase",
+          "stationary",
+          "the stationary phase"
+        ],
+        "explanation": "The stationary phase."
+      },
+      {
+        "stem": "The other phase moves and carries the compounds along. What is it called?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "mobile phase",
+          "mobile",
+          "the mobile phase"
+        ],
+        "explanation": "The mobile phase."
+      },
+      {
+        "stem": "A compound that sticks more to the stationary phase moves faster or slower?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "slower",
+          "more slowly",
+          "slow"
+        ],
+        "explanation": "Slower — stronger stationary-phase affinity means slower migration."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5C-6",
+    "section": "C/P",
+    "aamc_category": "5C",
+    "subtopic": "Recrystallization",
+    "answer_type": "free_response",
+    "prompt": "In recrystallization, after dissolving an impure solid in a minimum of hot solvent, what step causes the purified compound to crystallize out? Name it.",
+    "accepted_answers": [
+      "cooling",
+      "cooling the solution",
+      "slow cooling",
+      "lowering the temperature",
+      "cool it"
+    ],
+    "key_terms": [
+      "cooling",
+      "slow cooling",
+      "solubility decreases"
+    ],
+    "model_answer": "Cooling the solution. As temperature drops, the compound's solubility falls and it crystallizes, while smaller amounts of impurities remain dissolved.",
+    "explanation": "Recrystallization relies on solubility being much higher when hot than cold; slow cooling grows purer crystals.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "LibreTexts Chemistry — Recrystallization",
+      "url": "https://chem.libretexts.org",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "You first dissolve the solid in how much hot solvent?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "minimum",
+          "the minimum amount",
+          "as little as possible",
+          "minimal"
+        ],
+        "explanation": "The minimum amount of hot solvent that dissolves it."
+      },
+      {
+        "stem": "As the solution cools, the compound's solubility does what?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "decreases",
+          "drops",
+          "goes down",
+          "decrease"
+        ],
+        "explanation": "Solubility decreases with temperature."
+      },
+      {
+        "stem": "So on cooling, the pure compound does what?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "crystallizes",
+          "crystallizes out",
+          "forms crystals",
+          "precipitates"
+        ],
+        "explanation": "It crystallizes out (impurities stay in solution)."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5C-7",
+    "section": "C/P",
+    "aamc_category": "5C",
+    "subtopic": "Gel electrophoresis",
+    "answer_type": "free_response",
+    "prompt": "Gel electrophoresis separates DNA fragments primarily on the basis of which property? Name it.",
+    "accepted_answers": [
+      "size",
+      "molecular size",
+      "length",
+      "by size",
+      "fragment size"
+    ],
+    "key_terms": [
+      "size",
+      "smaller travel farther",
+      "charge to migrate"
+    ],
+    "model_answer": "Size (length). Driven through the gel by an electric field, smaller fragments move faster and travel farther than larger ones.",
+    "explanation": "DNA's uniform negative charge (from its phosphate backbone) means separation depends on how the gel sieves fragments by size.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e, Ch. 17: Biotechnology and Genomics — Gel Electrophoresis",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Which way does negatively charged DNA migrate in the electric field?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "toward the positive electrode",
+          "to the anode",
+          "positive electrode",
+          "toward +"
+        ],
+        "explanation": "Toward the positive electrode (anode)."
+      },
+      {
+        "stem": "Do smaller or larger fragments move faster through the gel?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "smaller",
+          "smaller ones",
+          "small"
+        ],
+        "explanation": "Smaller fragments move faster."
+      },
+      {
+        "stem": "So separation is chiefly by what property?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "size",
+          "length",
+          "molecular size"
+        ],
+        "explanation": "By size."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5C-8",
+    "section": "C/P",
+    "aamc_category": "5C",
+    "subtopic": "Size-exclusion chromatography",
+    "answer_type": "free_response",
+    "prompt": "In size-exclusion (gel-filtration) chromatography, do larger or smaller molecules elute (come out) first? Answer larger or smaller.",
+    "accepted_answers": [
+      "larger",
+      "large",
+      "larger molecules",
+      "big",
+      "bigger"
+    ],
+    "key_terms": [
+      "larger",
+      "excluded from pores",
+      "shorter path"
+    ],
+    "model_answer": "Larger molecules elute first. They are too big to enter the pores of the beads, so they take a shorter path around them; small molecules enter the pores and are retained longer.",
+    "explanation": "This is the counter-intuitive method: bigger comes out sooner because it is 'excluded' from the porous matrix.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "LibreTexts Chemistry — Size-Exclusion Chromatography",
+      "url": "https://chem.libretexts.org",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Can large molecules fit inside the pores of the gel beads? (yes/no)",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "no",
+          "no they cannot",
+          "cannot",
+          "they cannot"
+        ],
+        "explanation": "No — large molecules are excluded from the pores."
+      },
+      {
+        "stem": "Molecules excluded from the pores travel a shorter or longer path?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "shorter",
+          "shorter path",
+          "short"
+        ],
+        "explanation": "A shorter path (around the beads)."
+      },
+      {
+        "stem": "So which size elutes first?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "larger",
+          "large",
+          "bigger"
+        ],
+        "explanation": "Larger molecules elute first."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5C-9",
+    "section": "C/P",
+    "aamc_category": "5C",
+    "subtopic": "Centrifugation",
+    "answer_type": "free_response",
+    "prompt": "Centrifugation separates particles in a mixture primarily based on differences in which property? Name it.",
+    "accepted_answers": [
+      "density",
+      "density and size",
+      "mass",
+      "size and density",
+      "density/mass"
+    ],
+    "key_terms": [
+      "density",
+      "sedimentation",
+      "denser sink faster"
+    ],
+    "model_answer": "Density (together with size/mass). In the strong centrifugal field, denser and larger particles sediment (move outward) faster and pellet first.",
+    "explanation": "Differential centrifugation isolates cell components by spinning at increasing speeds; denser organelles pellet at lower speeds.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "LibreTexts Chemistry — Centrifugation",
+      "url": "https://chem.libretexts.org",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Spinning a sample creates a strong effective field that pushes particles which way?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "outward",
+          "away from center",
+          "to the bottom",
+          "outwards"
+        ],
+        "explanation": "Outward (toward the bottom of the tube)."
+      },
+      {
+        "stem": "Do denser particles sediment faster or slower?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "faster",
+          "more quickly",
+          "fast"
+        ],
+        "explanation": "Denser particles sediment faster."
+      },
+      {
+        "stem": "So centrifugation separates chiefly by what property?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "density",
+          "density and size",
+          "mass"
+        ],
+        "explanation": "By density (and size/mass)."
+      }
+    ]
   }
 ]

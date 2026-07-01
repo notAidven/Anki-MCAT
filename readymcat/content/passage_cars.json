@@ -1007,5 +1007,192 @@
         ]
       }
     ]
+  },
+  {
+    "id": "psg-cars-6",
+    "section": "CARS",
+    "passage": "Social capital — broadly understood as the networks of relationships, norms of reciprocity, and trust that enable collective action — has become one of the most debated concepts in contemporary sociology. Proponents argue that it explains why some communities flourish economically and politically while others, equally well endowed in financial and physical resources, remain mired in dysfunction. Where citizens trust one another and are embedded in overlapping civic associations, cooperative ventures are easier to organize, contracts are more reliably honored, and public goods are more effectively maintained.\n\nThe concept distinguishes between two broad types. Bonding social capital refers to the dense ties within homogeneous groups — extended families, ethnic neighborhoods, religious congregations — that provide strong mutual support and a sense of belonging. Bridging social capital refers to the weaker but more diverse ties that link members of different social groups, enabling information and resources to flow across community boundaries. Theorists have argued that bridging capital is especially important for economic mobility and democratic stability, because it prevents the insularity and exclusivity that can calcify into tribal antagonism.\n\nCritics have raised several concerns. First, they argue that the concept is so capacious as to be analytically vacuous: if social capital includes trust, networks, and norms all at once, it risks becoming a label that explains everything and therefore explains nothing. Second, the emphasis on voluntary civic associations may obscure the role of institutional design and state capacity in producing the outcomes attributed to social capital. A society with strong courts, reliable public services, and enforceable property rights may achieve cooperation through formal mechanisms, regardless of the density of its associational life.\n\nA third critique focuses on the dark side of social capital. The same dense ties that produce cohesion within a group can generate exclusion and hostility toward outsiders. Historically, tightly bonded criminal networks, nativist movements, and exclusionary professional guilds have all exhibited strong social capital while causing harm to those outside the charmed circle. If social capital is a neutral resource that amplifies whatever goals a group pursues, then celebrating it uncritically is a mistake. A community of mutual trust can be a community of mutual hostility toward all who fall outside its boundaries, and the literature on ethnic cleansing, organized crime, and racially restrictive covenants demonstrates this possibility in grim historical detail.\n\nThese debates have produced a more nuanced research agenda. Scholars now investigate not just the presence or absence of social capital but its distribution across social groups, its articulation with formal institutions, and the conditions under which it promotes rather than undermines democratic participation and social equity.",
+    "passage_source": {
+      "name": "original",
+      "url": "",
+      "license": "original"
+    },
+    "questions": [
+      {
+        "id": "psg-cars-6-q1",
+        "aamc_category": "CARS",
+        "skill": "comprehension",
+        "stem": "According to the passage, bridging social capital is considered especially important for democratic stability because it:",
+        "options": [
+          "prevents insularity that can harden into tribal antagonism by linking members of different groups",
+          "provides the dense mutual support needed for communities to survive economic shocks",
+          "ensures that all members of a community share the same norms and values",
+          "creates formal legal institutions that enforce contracts and property rights"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is directly stated: bridging capital 'prevents the insularity and exclusivity that can calcify into tribal antagonism.' (B) describes bonding capital, not bridging. (C) is the opposite of bridging capital — shared norms within a group is bonding. (D) describes formal institutions, which the third paragraph distinguishes from social capital.",
+        "difficulty": "easy",
+        "subquestions": [
+          {
+            "stem": "What does bridging social capital link?",
+            "options": [
+              "Members of different social groups",
+              "Members of the same homogeneous group"
+            ],
+            "correct_index": 0,
+            "explanation": "Bridging capital 'link[s] members of different social groups, enabling information and resources to flow across community boundaries.'"
+          },
+          {
+            "stem": "What risk does bridging capital help prevent?",
+            "options": [
+              "Insularity and exclusivity that can calcify into tribal antagonism",
+              "Over-reliance on formal legal institutions"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says bridging capital 'prevents the insularity and exclusivity that can calcify into tribal antagonism.'"
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-6-q2",
+        "aamc_category": "CARS",
+        "skill": "reasoning-within",
+        "stem": "The critique that social capital is 'analytically vacuous' is based on the claim that:",
+        "options": [
+          "a concept encompassing trust, networks, and norms simultaneously explains too much and therefore too little",
+          "social capital cannot be measured in quantitative sociological studies",
+          "trust and networks have been shown empirically to have no effect on community outcomes",
+          "the concept was developed by researchers with ideological rather than scientific motivations"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is the exact critique: 'if social capital includes trust, networks, and norms all at once, it risks becoming a label that explains everything and therefore explains nothing.' (B) is a methodological concern not raised. (C) contradicts the passage. (D) introduces ideological motives not mentioned.",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "What specific problem does the 'analytically vacuous' critique identify?",
+            "options": [
+              "The concept is too broad, encompassing too many different things at once",
+              "The concept was borrowed from economics and does not apply to sociology"
+            ],
+            "correct_index": 0,
+            "explanation": "The critique is that including 'trust, networks, and norms all at once' makes the concept a label that 'explains everything and therefore explains nothing.'"
+          },
+          {
+            "stem": "What is the logical structure of the 'explains everything, explains nothing' criticism?",
+            "options": [
+              "A concept with no exclusions cannot be tested or falsified because any outcome confirms it",
+              "A concept that is too specific cannot explain diverse social phenomena"
+            ],
+            "correct_index": 0,
+            "explanation": "If a label can explain every outcome, it makes no predictions that could be proven wrong — rendering it untestable."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-6-q3",
+        "aamc_category": "CARS",
+        "skill": "reasoning-within",
+        "stem": "The 'dark side of social capital' critique most directly challenges which assumption underlying the concept's positive reception?",
+        "options": [
+          "That social capital reliably promotes beneficial outcomes for society as a whole",
+          "That bridging capital is more valuable than bonding capital",
+          "That formal institutions are inferior to voluntary associations in generating cooperation",
+          "That social capital varies significantly across communities"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is correct: the dark-side critique argues that dense ties can produce exclusion and harm outsiders, undermining the assumption that social capital is universally beneficial. (B) is not directly challenged by this critique. (C) is the second critique, not the dark-side critique. (D) is a sociological observation the passage does not dispute.",
+        "difficulty": "hard",
+        "subquestions": [
+          {
+            "stem": "What examples does the passage give of groups with high social capital that caused harm?",
+            "options": [
+              "Criminal networks, nativist movements, and exclusionary professional guilds",
+              "Religious congregations and extended families"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage names 'tightly bonded criminal networks, nativist movements, and exclusionary professional guilds.'"
+          },
+          {
+            "stem": "What does the dark-side critique imply about uncritical celebration of social capital?",
+            "options": [
+              "It is a mistake, because social capital amplifies whatever goals a group pursues",
+              "It is justified, because the benefits always outweigh the harms"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage states: 'If social capital is a neutral resource that amplifies whatever goals a group pursues, then celebrating it uncritically is a mistake.'"
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-6-q4",
+        "aamc_category": "CARS",
+        "skill": "reasoning-beyond",
+        "stem": "A city with low voluntary associational activity but strong courts, reliable police, and efficient public services achieves low corruption and high civic cooperation. This scenario most directly supports which critique of social capital theory?",
+        "options": [
+          "That formal institutional design may produce cooperative outcomes independently of social capital",
+          "That bridging capital cannot exist without strong bonding capital as a foundation",
+          "That social capital is analytically vacuous because it defines terms too broadly",
+          "That the dark side of social capital makes it net-negative for democratic societies"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is correct: the second critique argues that 'a society with strong courts, reliable public services, and enforceable property rights may achieve cooperation through formal mechanisms, regardless of the density of its associational life.' (B) is not a claim in the passage. (C) concerns conceptual breadth, not empirical outcomes. (D) concerns dark-side harms, not institutional mechanisms.",
+        "difficulty": "hard",
+        "subquestions": [
+          {
+            "stem": "What does the second critique argue can substitute for social capital?",
+            "options": [
+              "Strong formal institutions such as courts and reliable public services",
+              "Increased investment in voluntary civic associations"
+            ],
+            "correct_index": 0,
+            "explanation": "The critique says 'a society with strong courts, reliable public services... may achieve cooperation through formal mechanisms.'"
+          },
+          {
+            "stem": "Does the scenario support or challenge the positive view of social capital?",
+            "options": [
+              "Challenges it, by showing that good outcomes can occur without high social capital",
+              "Supports it, by showing that formal institutions build social capital"
+            ],
+            "correct_index": 0,
+            "explanation": "The city achieves cooperation without dense voluntary associations, suggesting social capital is not necessary."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-6-q5",
+        "aamc_category": "CARS",
+        "skill": "comprehension",
+        "stem": "The passage implies that the more nuanced research agenda described in the final paragraph arose primarily because:",
+        "options": [
+          "the critiques identified in paragraphs three and four revealed significant limitations in earlier approaches",
+          "scholars discovered that social capital is irrelevant to economic development",
+          "government agencies began funding research into civic associations for policy purposes",
+          "the distinction between bonding and bridging capital was proven empirically false"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is implied: 'These debates have produced a more nuanced research agenda' — 'these debates' refers to the critiques. (B) contradicts the passage. (C) is not mentioned. (D) contradicts the passage, which continues to use the bonding/bridging distinction.",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "What does 'these debates' refer to in the final paragraph?",
+            "options": [
+              "The critiques about analytical vacuity, formal institutions, and the dark side of social capital",
+              "The debates between sociologists and economists about whether trust is measurable"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage transitions with 'These debates have produced a more nuanced research agenda,' referring back to paragraphs three and four."
+          },
+          {
+            "stem": "What new questions does the nuanced agenda investigate?",
+            "options": [
+              "Distribution of social capital, relation to formal institutions, and conditions under which it promotes democracy",
+              "Historical origins of social capital in pre-modern European societies"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage lists: 'distribution across social groups, articulation with formal institutions, and conditions under which it promotes... democratic participation.'"
+          }
+        ]
+      }
+    ]
   }
 ]

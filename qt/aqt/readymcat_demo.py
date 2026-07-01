@@ -38,7 +38,10 @@ def _load_core() -> ModuleType:
     if _core is not None:
         return _core
     candidates = [
-        Path(__file__).resolve().parents[2] / "readymcat" / "tools" / "seed_demo_dashboard.py",
+        Path(__file__).resolve().parents[2]
+        / "readymcat"
+        / "tools"
+        / "seed_demo_dashboard.py",
         Path.cwd() / "readymcat" / "tools" / "seed_demo_dashboard.py",
     ]
     for path in candidates:

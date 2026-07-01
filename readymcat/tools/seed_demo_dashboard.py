@@ -170,7 +170,7 @@ def _stability_for(recall: float, elapsed_days: float) -> float:
 
     Inverts the FSRS forgetting curve R = (1 + FSRS_FACTOR * t/S) ** -0.5."""
     r = _clamp(recall, 0.05, 0.985)
-    denom = r ** -2.0 - 1.0
+    denom = r**-2.0 - 1.0
     if denom <= 1e-6:
         return max(elapsed_days * 60.0, 60.0)
     return max(FSRS_FACTOR * elapsed_days / denom, 0.5)
@@ -242,14 +242,14 @@ def _representative_mapping(
 def has_demo_data(col: "Collection") -> bool:
     """True if synthetic demo notes are already present."""
     try:
-        return bool(col.find_notes(f'tag:{DEMO_TAG}'))
+        return bool(col.find_notes(f"tag:{DEMO_TAG}"))
     except Exception:
         return False
 
 
 def remove_demo_data(col: "Collection") -> int:
     """Delete every synthetic demo note (and its cards). Returns notes removed."""
-    note_ids = list(col.find_notes(f'tag:{DEMO_TAG}'))
+    note_ids = list(col.find_notes(f"tag:{DEMO_TAG}"))
     if note_ids:
         col.remove_notes(note_ids)
     try:
@@ -278,7 +278,7 @@ def seed_demo_data(
 
     if has_demo_data(col):
         if not reseed:
-            existing = len(col.find_notes(f'tag:{DEMO_TAG}'))
+            existing = len(col.find_notes(f"tag:{DEMO_TAG}"))
             stats.already_seeded = True
             stats.cards_created = existing
             log(
@@ -338,7 +338,9 @@ def seed_demo_data(
             recall = _clamp(rng.gauss(target, 0.06), 0.05, 0.985)
             elapsed_days = rng.randint(6, 40)
             stability = _stability_for(recall, elapsed_days)
-            difficulty = _clamp(1.0 + 9.0 * (1.0 - recall) + rng.uniform(-0.5, 0.5), 1.0, 10.0)
+            difficulty = _clamp(
+                1.0 + 9.0 * (1.0 - recall) + rng.uniform(-0.5, 0.5), 1.0, 10.0
+            )
 
             note = col.new_note(notetype)
             note.fields[0] = (
@@ -366,14 +368,24 @@ def seed_demo_data(
                 card.last_review_time = now - elapsed_days * 86400
                 cards_to_update.append(card)
 
-                n_reviews = int(_clamp(round(2 + stability / 12 + rng.uniform(-1, 1)), 2, 12))
+                n_reviews = int(
+                    _clamp(round(2 + stability / 12 + rng.uniform(-1, 1)), 2, 12)
+                )
                 eases = _ease_pool(recall)
                 prev_ivl = 1
                 for r in range(n_reviews):
                     ease = rng.choice(eases)
                     ivl = max(1, round(stability * (r + 1) / n_reviews))
                     pending_reviews.append(
-                        (int(cid), ease, ivl, prev_ivl, 2500, rng.randint(3000, 25000), 1)
+                        (
+                            int(cid),
+                            ease,
+                            ivl,
+                            prev_ivl,
+                            2500,
+                            rng.randint(3000, 25000),
+                            1,
+                        )
                     )
                     prev_ivl = ivl
 
@@ -397,7 +409,9 @@ def seed_demo_data(
     rng.shuffle(pending_reviews)
     revlog_rows = [
         (base + k * spacing, cid, 0, ease, ivl, last_ivl, factor, dur, rtype)
-        for k, (cid, ease, ivl, last_ivl, factor, dur, rtype) in enumerate(pending_reviews)
+        for k, (cid, ease, ivl, last_ivl, factor, dur, rtype) in enumerate(
+            pending_reviews
+        )
     ]
     if revlog_rows:
         col.db.executemany(
@@ -499,7 +513,9 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument("--collection", help="path to a collection.anki2 file")
     parser.add_argument("--anki-base", help="Anki base dir (contains profiles)")
-    parser.add_argument("--profile", default="User 1", help="profile name under --anki-base")
+    parser.add_argument(
+        "--profile", default="User 1", help="profile name under --anki-base"
+    )
     parser.add_argument("--cards-per-category", type=int, default=12)
     parser.add_argument("--seed", type=int, default=1234)
     parser.add_argument(

@@ -202,6 +202,9 @@ def maybe_show_diagnostic_on_launch(mw: aqt.main.AnkiQt) -> None:
     a question bank is available. Silent + defensive so it never blocks start-up."""
     if mw.col is None:
         return
+    # Escape hatch for dev/e2e/headless runs that don't want the intake popup.
+    if os.environ.get("READYMCAT_NO_DIAGNOSTIC"):
+        return
     try:
         if diagnostic_prior_present(mw):
             return

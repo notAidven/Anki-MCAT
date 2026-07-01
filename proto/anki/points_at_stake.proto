@@ -59,8 +59,8 @@ message RankedCard {
   double topic_weight = 3;
   // The weakness used for ranking: the precision-weighted blend of the
   // first-launch diagnostic prior and the FSRS weakness. Equals fsrs_weakness
-  // when no prior applies, so points_at_stake == topic_weight * student_weakness
-  // for non-struggling cards.
+  // when no prior applies, so points_at_stake == topic_weight *
+  // student_weakness for non-struggling cards.
   double student_weakness = 4;
   // topic_weight * student_weakness, already including the struggling boost.
   double points_at_stake = 5;

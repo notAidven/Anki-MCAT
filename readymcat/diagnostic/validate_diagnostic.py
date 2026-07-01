@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Copyright: Ankitects Pty Ltd and contributors
+# License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 """Self-contained validator for the ReadyMCAT diagnostic question bank.
 
 Checks, with no third-party dependencies:

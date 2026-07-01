@@ -2,7 +2,6 @@
 // License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 
 use anki_proto::diagnostic as pb;
-use anki_proto::generic;
 
 use crate::diagnostic::DiagnosticPrior;
 use crate::diagnostic::Difficulty;
@@ -104,9 +103,9 @@ impl crate::services::DiagnosticService for Collection {
         }
     }
 
-    fn clear_diagnostic_prior(&mut self) -> Result<generic::Empty> {
+    fn clear_diagnostic_prior(&mut self) -> Result<()> {
         self.clear_diagnostic_prior()?;
-        Ok(generic::Empty {})
+        Ok(())
     }
 }
 

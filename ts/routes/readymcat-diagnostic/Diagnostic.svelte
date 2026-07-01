@@ -85,6 +85,13 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
             await scoreAndSeedDiagnostic({
                 responses,
                 mode: quiz?.mode ?? "short",
+                // 0 / false => the backend uses the documented scorer defaults
+                // (mu0=0.5, kappa=6, c0=8; difficulty + pooling enabled).
+                mu0: 0,
+                kappa: 0,
+                decayPseudocount: 0,
+                disableDifficulty: false,
+                disablePooling: false,
             });
             phase = "done";
         } catch (err) {
@@ -112,10 +119,11 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
         <section class="panel warn">
             <h2>Diagnostic not available</h2>
             <p>
-                The introductory diagnostic needs its question bank
-                (<code>diagnostic_quiz.json</code>). It ships in
-                <code>readymcat/diagnostic/</code>; place it next to your collection or
-                open this page with a
+                The introductory diagnostic needs its question bank (
+                <code>diagnostic_quiz.json</code>
+                ). It ships in
+                <code>readymcat/diagnostic/</code>
+                ; place it next to your collection or open this page with a
                 <code>?quiz=&lt;path&gt;</code>
                 parameter.
             </p>
@@ -131,13 +139,17 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
                 to personalize what you study first and where your learning starts.
             </p>
             <p class="honesty">
-                <strong>This is not a test.</strong> There is no score, no percentile,
-                and nothing here goes to your memory or readiness numbers — a short quiz
-                is a starting <em>prior</em>, not a verdict. It just makes session one
-                smarter. Answer what you can; skip what you don't know.
+                <strong>This is not a test.</strong>
+                There is no score, no percentile, and nothing here goes to your memory
+                or readiness numbers — a short quiz is a starting
+                <em>prior</em>
+                , not a verdict. It just makes session one smarter. Answer what you can;
+                skip what you don't know.
             </p>
             <p class="detail">
-                {items.length} questions · about {items.length <= 31 ? "20–30" : "28–40"} minutes
+                {items.length} questions · about {items.length <= 31
+                    ? "20–30"
+                    : "28–40"} minutes
             </p>
             <button class="primary" on:click={begin}>Begin diagnostic</button>
         </section>
@@ -148,7 +160,10 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
                 <span class="detail">Question {idx + 1} of {items.length}</span>
             </div>
             <div class="bar">
-                <div class="fill" style:width={`${((idx + 1) / items.length) * 100}%`}></div>
+                <div
+                    class="fill"
+                    style:width={`${((idx + 1) / items.length) * 100}%`}
+                ></div>
             </div>
 
             <h2 class="stem">{current.stem}</h2>
@@ -177,7 +192,11 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
                     {#if current.sourceUrl}
                         <p class="detail">
                             Review this concept for free:
-                            <a href={current.sourceUrl} target="_blank" rel="noreferrer">
+                            <a
+                                href={current.sourceUrl}
+                                target="_blank"
+                                rel="noreferrer"
+                            >
                                 {current.sourceUrl}
                             </a>
                         </p>
@@ -188,7 +207,11 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
             <div class="controls">
                 <button class="ghost" on:click={() => record(false)}>Skip</button>
                 {#if !revealed}
-                    <button class="primary" disabled={selectedKey === null} on:click={reveal}>
+                    <button
+                        class="primary"
+                        disabled={selectedKey === null}
+                        on:click={reveal}
+                    >
                         Check answer
                     </button>
                 {:else}
@@ -212,9 +235,10 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
                 and known foundations won't be re-taught.
             </p>
             <p class="honesty">
-                By design, we're <strong>not</strong> showing you a score. A short quiz is
-                a prior, not a readiness verdict — your honest memory score appears on the
-                dashboard only once there's enough real review evidence to back it up.
+                By design, we're <strong>not</strong>
+                 showing you a score. A short quiz is a prior, not a readiness verdict — your
+                honest memory score appears on the dashboard only once there's enough real
+                review evidence to back it up.
             </p>
             <button class="primary" on:click={() => bridgeCommand("close")}>
                 Start studying

@@ -32,11 +32,11 @@
 //!   success in `[0, 1]`. A correct *hard* item is stronger evidence of
 //!   proficiency than a correct *easy* one; a missed *easy* item is stronger
 //!   evidence of a gap ([`item_score`]).
-//! * **Step 2 — beta-binomial shrinkage.** `p_hat = (k + kappa*mu0) /
-//!   (n + kappa)` with a small `kappa`, so 1–2 items only *nudge* the estimate.
-//! * **Step 3 — hierarchical pooling.** `mu0` is blended from the
-//!   category → foundational-concept → section → global means, so a student who
-//!   bombs most of a foundational concept has every category in it pulled down.
+//! * **Step 2 — beta-binomial shrinkage.** `p_hat = (k + kappa*mu0) / (n +
+//!   kappa)` with a small `kappa`, so 1–2 items only *nudge* the estimate.
+//! * **Step 3 — hierarchical pooling.** `mu0` is blended from the category →
+//!   foundational-concept → section → global means, so a student who bombs most
+//!   of a foundational concept has every category in it pulled down.
 //! * **Step 4 — seed.** `weakness_prior = 1 - p_hat`.
 //! * **Step 5 — decay.** [`decayed_weakness`] blends the prior with FSRS
 //!   weakness by precision (`w_fsrs` = reviewed cards in the category).
@@ -625,7 +625,11 @@ mod test {
     }
 
     fn by_cat(scores: &[CategoryScore], category: &str) -> CategoryScore {
-        scores.iter().find(|s| s.category == category).unwrap().clone()
+        scores
+            .iter()
+            .find(|s| s.category == category)
+            .unwrap()
+            .clone()
     }
 
     /// The README's worked FC1 example (Part 3 → "Worked example (FC1)").
@@ -672,8 +676,9 @@ mod test {
         assert!(b.weakness < 0.65);
     }
 
-    /// Step 1: a correct hard item is stronger evidence than a correct easy one;
-    /// a missed easy item is a stronger gap signal than a missed hard one.
+    /// Step 1: a correct hard item is stronger evidence than a correct easy
+    /// one; a missed easy item is a stronger gap signal than a missed hard
+    /// one.
     #[test]
     fn difficulty_aware_evidence_direction() {
         let correct_hard = item_score(true, Difficulty::Hard, true);

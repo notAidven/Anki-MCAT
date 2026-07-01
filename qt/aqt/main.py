@@ -663,6 +663,15 @@ class AnkiQt(QMainWindow):
             gui_hooks.collection_did_load(self.col)
             self.apply_collection_options()
             self.moveToState("deckBrowser")
+            # ReadyMCAT LEARN MODE: on first launch (until taken once) offer the
+            # introductory diagnostic, deferred so the deck browser paints
+            # first. It seeds study *ordering* and prerequisite *placement*
+            # only — it never writes a score. Defensive + silent if unavailable.
+            from aqt.readymcat import maybe_show_diagnostic_on_launch
+
+            self.progress.single_shot(
+                250, lambda: maybe_show_diagnostic_on_launch(self)
+            )
         except Exception:
             # dump error to stderr so it gets picked up by errors.py
             traceback.print_exc()
@@ -1321,6 +1330,13 @@ title="{}" {}>{}</button>""".format(
 
         show_readymcat_dashboard(self)
 
+    def on_readymcat_diagnostic(self) -> None:
+        if not self.col:
+            return
+        from aqt.readymcat import show_readymcat_diagnostic
+
+        show_readymcat_diagnostic(self)
+
     def on_check_for_updates(self) -> None:
         from packaging.version import Version
 
@@ -1460,6 +1476,15 @@ title="{}" {}>{}</button>""".format(
         self._readymcat_action = QAction("ReadyMCAT Dashboard", self)
         m.menuTools.addAction(self._readymcat_action)
         qconnect(self._readymcat_action.triggered, self.on_readymcat_dashboard)
+
+        # ReadyMCAT: introductory diagnostic (LEARN MODE first-launch intake).
+        # Also auto-offered once on first launch; this lets a student retake it.
+        self._readymcat_diagnostic_action = QAction("ReadyMCAT Diagnostic", self)
+        m.menuTools.addAction(self._readymcat_diagnostic_action)
+        qconnect(
+            self._readymcat_diagnostic_action.triggered,
+            self.on_readymcat_diagnostic,
+        )
 
         # View
         qconnect(

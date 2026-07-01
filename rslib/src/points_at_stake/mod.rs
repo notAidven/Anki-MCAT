@@ -357,10 +357,10 @@ pub struct RankedCard {
     pub topic_weight: f64,
     /// The weakness actually used for ranking: the precision-weighted blend of
     /// the diagnostic prior and the FSRS weakness (see
-    /// [`crate::diagnostic::decayed_weakness`]). Equal to [`Self::fsrs_weakness`]
-    /// when no diagnostic prior covers the category, so
-    /// `points_at_stake == topic_weight * student_weakness` for non-struggling
-    /// cards in every case.
+    /// [`crate::diagnostic::decayed_weakness`]). Equal to
+    /// [`Self::fsrs_weakness`] when no diagnostic prior covers the
+    /// category, so `points_at_stake == topic_weight * student_weakness`
+    /// for non-struggling cards in every case.
     pub student_weakness: f64,
     /// The honest, FSRS-only weakness (`1 - mean recall`). This is what the
     /// dashboard shows; the diagnostic prior never changes it.

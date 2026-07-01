@@ -5,11 +5,11 @@ diagnostic quiz. It is research + content + spec only: it does **not** build the
 quiz UI, the scoring code, or the prior-seeding engine change (those are the
 follow-on feature build — see [For the follow-on feature build](#for-the-follow-on-feature-build)).
 
-| File | What it is |
-| --- | --- |
-| `diagnostic_quiz.json` | The diagnostic question bank (37 original MCQ items across all 31 AAMC content categories) + a self-describing schema. |
-| `validate_diagnostic.py` | Self-contained, dependency-free validator (structure + category coverage). |
-| `README.md` | This document: research findings, sources/licensing, schema, and the prior-mapping spec. |
+| File                     | What it is                                                                                                             |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| `diagnostic_quiz.json`   | The diagnostic question bank (37 original MCQ items across all 31 AAMC content categories) + a self-describing schema. |
+| `validate_diagnostic.py` | Self-contained, dependency-free validator (structure + category coverage).                                             |
+| `README.md`              | This document: research findings, sources/licensing, schema, and the prior-mapping spec.                               |
 
 ## What this is (and what it is NOT)
 
@@ -22,7 +22,7 @@ The diagnostic is taken **once, on first launch**. Per the
 > from the very first session ... and it places the student in the prerequisite
 > graph.
 
-**The honesty rule (non-negotiable).** A short quiz is a *prior*, not a
+**The honesty rule (non-negotiable).** A short quiz is a _prior_, not a
 readiness verdict. The diagnostic's results feed only two things:
 
 1. the **points-at-stake ordering** seed (`student_weakness` per category), and
@@ -39,13 +39,13 @@ percentile, or "you are X% ready."
 
 ### How existing tools gauge skill / run diagnostics
 
-| Tool | Diagnostic format | Length | How it estimates per-area ability |
-| --- | --- | --- | --- |
-| **Blueprint** (free) | Half-length, full 4-section simulation; scaled 472-528 | ~4 hours | Score report breaks results down by science topic, question type, AAMC reasoning skill, and **"demonstrated mastery of the AAMC content categories."** Positioned as a *directional baseline*, not a predictor. |
-| **AAMC Official Prep** | Free Practice Exam One (230 Q, scored) + free Unscored Sample Test (230 Q); free Sample Question Guide (12 Q, 3/section) | Full length (~7.5 h) | Same look/feel/scaled-score as the real exam; gives section scores (118-132) and percentile. The only *free, public, openly-usable* artifact is the **"What's on the MCAT Exam?" content outline** (the topic list). |
-| **Khan Academy MCAT** | ~1,100 videos + ~3,000 review questions across all four sections | Self-paced | Practice questions per topic/unit; no single adaptive ability estimate — progress is per-exercise. |
-| **JackWestin (free CARS)** | One daily CARS passage (365 total) + free QBank (~6,700 Q) | ~1 passage/day | CARS is a **skills** section (no content categories). Used as an ongoing diagnostic of reasoning patterns via an error log, not a content prior. |
-| **Third-party QBanks** (UWorld, Kaplan, paid Blueprint) | Large MCQ banks w/ analytics | Many hours | Per-topic and per-question-type accuracy dashboards. **Paid / copyrighted — not usable as a source (see integrity).** |
+| Tool                                                    | Diagnostic format                                                                                                        | Length               | How it estimates per-area ability                                                                                                                                                                                    |
+| ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Blueprint** (free)                                    | Half-length, full 4-section simulation; scaled 472-528                                                                   | ~4 hours             | Score report breaks results down by science topic, question type, AAMC reasoning skill, and **"demonstrated mastery of the AAMC content categories."** Positioned as a _directional baseline_, not a predictor.      |
+| **AAMC Official Prep**                                  | Free Practice Exam One (230 Q, scored) + free Unscored Sample Test (230 Q); free Sample Question Guide (12 Q, 3/section) | Full length (~7.5 h) | Same look/feel/scaled-score as the real exam; gives section scores (118-132) and percentile. The only _free, public, openly-usable_ artifact is the **"What's on the MCAT Exam?" content outline** (the topic list). |
+| **Khan Academy MCAT**                                   | ~1,100 videos + ~3,000 review questions across all four sections                                                         | Self-paced           | Practice questions per topic/unit; no single adaptive ability estimate — progress is per-exercise.                                                                                                                   |
+| **JackWestin (free CARS)**                              | One daily CARS passage (365 total) + free QBank (~6,700 Q)                                                               | ~1 passage/day       | CARS is a **skills** section (no content categories). Used as an ongoing diagnostic of reasoning patterns via an error log, not a content prior.                                                                     |
+| **Third-party QBanks** (UWorld, Kaplan, paid Blueprint) | Large MCQ banks w/ analytics                                                                                             | Many hours           | Per-topic and per-question-type accuracy dashboards. **Paid / copyrighted — not usable as a source (see integrity).**                                                                                                |
 
 **Psychometrics takeaway (why "prior, not score").** The computerized-adaptive-
 testing (CAT) / IRT literature is explicit that with only a **handful of items
@@ -53,13 +53,13 @@ per domain (1-4)** you cannot get a reliable per-domain ability estimate; short
 tests must **regularize toward a Bayesian/empirical prior** and **borrow strength
 across correlated domains** (estimate each ability using information from the
 others), using estimators like EAP/MAP. This is the formal justification for
-treating our 1-2-item-per-category results as a *shrunk prior* and for the
+treating our 1-2-item-per-category results as a _shrunk prior_ and for the
 hierarchical pooling in the spec below.
 
 ### Design implication for ReadyMCAT
 
-A full 4-7 hour simulation is the wrong tool for a *first-launch intake*: it is
-high-fatigue and produces a *score* we have promised not to show. ReadyMCAT
+A full 4-7 hour simulation is the wrong tool for a _first-launch intake_: it is
+high-fatigue and produces a _score_ we have promised not to show. ReadyMCAT
 instead ships a **~20-40 minute, breadth-first** quiz whose only job is to make
 session one's ordering and the prerequisite placement non-random. The depth a
 real ability estimate needs comes later, from actual reviews.
@@ -72,12 +72,12 @@ All diagnostic items are **original**, authored for ReadyMCAT and **grounded in
 free / openly-licensed sources**. We cite the grounding source per item for
 traceability and so the student can review the concept for free.
 
-| Source | License | Use here |
-| --- | --- | --- |
-| **OpenStax** (Biology 2e, Chemistry 2e, College Physics 2e, Organic Chemistry, Anatomy & Physiology 2e, Microbiology, Psychology 2e, Introduction to Sociology 3e) | **CC BY 4.0** | **Primary** concept grounding. CC BY is the most permissive (allows commercial use + derivatives with attribution), so it is the safest base for authored questions. Attribution: "Download for free at openstax.org." |
-| **Khan Academy MCAT Collection** (created with AAMC + Robert Wood Johnson Foundation) | **CC BY-NC-SA** | **Secondary** concept reference and student review link only. *No content reproduced.* Note the NonCommercial + ShareAlike obligations and the required notice: "All Khan Academy content is available for free at www.khanacademy.org." |
-| **AAMC "What's on the MCAT Exam?" content outline** | Free public outline, **AAMC-copyrighted (not openly licensed)** | Used **only** for the canonical topic list (the 31 content-category IDs/names already encoded in `taxonomy.json`). No AAMC questions, passages, answer choices, or confidential content used. |
-| **Aidan deck** (`Aidan_.apkg`, in repo) + community decks (MileDown, MrPankow, Abdullah, Coffin via AnKing; JackSparrow) | Free community downloads; educational use (license generally unspecified). AnkiHub auto-update is an optional paid layer; the decks themselves are free. | The **study collection** the prior seeds and the basis for the deck-tag taxonomy. **Not used to author diagnostic items** (see deck-independence). |
+| Source                                                                                                                                                             | License                                                                                                                                                  | Use here                                                                                                                                                                                                                                 |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **OpenStax** (Biology 2e, Chemistry 2e, College Physics 2e, Organic Chemistry, Anatomy & Physiology 2e, Microbiology, Psychology 2e, Introduction to Sociology 3e) | **CC BY 4.0**                                                                                                                                            | **Primary** concept grounding. CC BY is the most permissive (allows commercial use + derivatives with attribution), so it is the safest base for authored questions. Attribution: "Download for free at openstax.org."                   |
+| **Khan Academy MCAT Collection** (created with AAMC + Robert Wood Johnson Foundation)                                                                              | **CC BY-NC-SA**                                                                                                                                          | **Secondary** concept reference and student review link only. _No content reproduced._ Note the NonCommercial + ShareAlike obligations and the required notice: "All Khan Academy content is available for free at www.khanacademy.org." |
+| **AAMC "What's on the MCAT Exam?" content outline**                                                                                                                | Free public outline, **AAMC-copyrighted (not openly licensed)**                                                                                          | Used **only** for the canonical topic list (the 31 content-category IDs/names already encoded in `taxonomy.json`). No AAMC questions, passages, answer choices, or confidential content used.                                            |
+| **Aidan deck** (`Aidan_.apkg`, in repo) + community decks (MileDown, MrPankow, Abdullah, Coffin via AnKing; JackSparrow)                                           | Free community downloads; educational use (license generally unspecified). AnkiHub auto-update is an optional paid layer; the decks themselves are free. | The **study collection** the prior seeds and the basis for the deck-tag taxonomy. **Not used to author diagnostic items** (see deck-independence).                                                                                       |
 
 ### Integrity: traceable source + no leakage
 
@@ -85,8 +85,8 @@ traceability and so the student can review the concept for free.
   Kaplan, paid Blueprint, or AAMC paid/Official Prep. AAMC's terms explicitly
   bar copying or creating derivative works (including AI/LLM modeling) from its
   prep products; we use only the public content outline.
-- **Facts vs. expression.** Items are grounded in the *facts/concepts* of open
-  sources (facts are not copyrightable); no source's *expression* is reproduced.
+- **Facts vs. expression.** Items are grounded in the _facts/concepts_ of open
+  sources (facts are not copyrightable); no source's _expression_ is reproduced.
 - **Deck-independence (no leakage into study).** Diagnostic items are authored
   independently of the Aidan/community study deck. The diagnostic and the deck
   share no items, so studying the deck cannot leak diagnostic answers, and the
@@ -103,18 +103,18 @@ traceability and so the student can review the concept for free.
 
 Top-level keys:
 
-| Key | Meaning |
-| --- | --- |
-| `schema_version`, `quiz_id`, `title`, `description`, `purpose` | Identity + intent. |
-| `taxonomy` | Pointer to the source of truth (`taxonomy.json` on `readymcat-content-teach-on-miss`) and the category-ID scheme. |
-| `administration` | `item_format`, `default_mode`, the `short`/`extended` modes (items-per-category, item count, est. minutes), and the documented `coverage_vs_fatigue` trade-off. |
-| `honesty_rule` | Restates that results are a prior, never a dashboard score. |
-| `authoring_integrity` | The no-leakage / deck-independence policy. |
-| `content_license` | License of the authored items (CC BY-SA 4.0). |
-| `sources` | Registry of every grounding source: `name`, `publisher`, `license`, `url`, `attribution`, `usage`. Items reference these by key. |
-| `categories_covered` | The 31 AAMC content-category IDs. |
-| `coverage` | Totals + the "2 items if weight >= 3.2, else 1" rule. |
-| `items[]` | The questions (below). |
+| Key                                                            | Meaning                                                                                                                                                         |
+| -------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `schema_version`, `quiz_id`, `title`, `description`, `purpose` | Identity + intent.                                                                                                                                              |
+| `taxonomy`                                                     | Pointer to the source of truth (`taxonomy.json` on `readymcat-content-teach-on-miss`) and the category-ID scheme.                                               |
+| `administration`                                               | `item_format`, `default_mode`, the `short`/`extended` modes (items-per-category, item count, est. minutes), and the documented `coverage_vs_fatigue` trade-off. |
+| `honesty_rule`                                                 | Restates that results are a prior, never a dashboard score.                                                                                                     |
+| `authoring_integrity`                                          | The no-leakage / deck-independence policy.                                                                                                                      |
+| `content_license`                                              | License of the authored items (CC BY-SA 4.0).                                                                                                                   |
+| `sources`                                                      | Registry of every grounding source: `name`, `publisher`, `license`, `url`, `attribution`, `usage`. Items reference these by key.                                |
+| `categories_covered`                                           | The 31 AAMC content-category IDs.                                                                                                                               |
+| `coverage`                                                     | Totals + the "2 items if weight >= 3.2, else 1" rule.                                                                                                           |
+| `items[]`                                                      | The questions (below).                                                                                                                                          |
 
 Each **item**:
 
@@ -138,14 +138,15 @@ Each **item**:
 ```
 
 Notes:
+
 - **Format choice.** Items are **discrete (non-passage) single-best-answer
   MCQs**. This is deliberate: discrete MCQs auto-grade unambiguously (ideal for a
   prior) and keep the intake short. Real MCAT items are passage-based; passage
-  sets are deferred to the *performance* model (Friday), not this content prior.
+  sets are deferred to the _performance_ model (Friday), not this content prior.
 - **Recall vs. application.** Default is application-style; ~10 items are tagged
   `cognitive_level: "recall"` where a crisp factual probe is the cleaner signal.
   `cognitive_level` lets the scorer down-weight pure recall when forming a
-  *performance*-flavored prior later, without re-authoring.
+  _performance_-flavored prior later, without re-authoring.
 - **Difficulty** is an authored label consumed by the difficulty-adjustment step
   of the prior (below). It should be **recalibrated empirically** once real
   response data exists (see follow-on notes).
@@ -156,7 +157,7 @@ Notes:
 - **Allocation rule:** 2 items for content categories with AAMC `weight >= 3.2`
   (`1A,1B,1C,1D` at 3.53 and `3A,3B` at 3.21); 1 item for the other 25.
 - **Why this allocation:** points-at-stake = `topic_weight x weakness`, so a
-  noisy weakness estimate distorts ordering *most* where weight is high. Spending
+  noisy weakness estimate distorts ordering _most_ where weight is high. Spending
   the second item on the highest-weight categories halves the prior's variance
   exactly where it most changes the queue.
 - **The trade-off, stated:** first-launch **fatigue** is the binding constraint.
@@ -165,7 +166,7 @@ Notes:
     category.
   - `extended` mode: all **37 items**, ~28-40 min — same breadth, modestly
     better resolution on high-yield categories.
-  - Even two items per category is far too few for a *reliable* per-category
+  - Even two items per category is far too few for a _reliable_ per-category
     ability estimate — which is precisely why results are consumed as a
     **heavily-shrunk prior**, never a score.
 - **CARS is intentionally excluded.** CARS is a skills section with no content
@@ -210,7 +211,7 @@ For each AAMC content category `c`: the number of items administered `n_c`
 ### Step 1 — Per-item evidence (difficulty-aware)
 
 Raw per-category accuracy `k_c / n_c` is in `{0, 0.5, 1}` — far too coarse and
-noisy to use directly. First convert each *response* to a difficulty-aware
+noisy to use directly. First convert each _response_ to a difficulty-aware
 proficiency signal. Two acceptable implementations:
 
 - **MVP (difficulty-weighted Bernoulli):** map difficulty to a target accuracy
@@ -249,7 +250,7 @@ mu0(c) = blend(global_mean, section_mean(c), foundational_concept_mean(c))
 ```
 
 then apply Step 2 with that group-informed `mu0`. Effect: a student who misses
-most of Foundational Concept 1 has *every* FC1 category pulled down, even one
+most of Foundational Concept 1 has _every_ FC1 category pulled down, even one
 with a lucky correct answer — and one strong category is not over-trusted on a
 single item. This is the "empirical prior from a battery of correlated abilities"
 result from the CAT research, applied to the AAMC content tree.
@@ -263,7 +264,7 @@ weakness_prior[c] = 1 - p_hat_c          # in [0, 1], higher = weaker
 ```
 
 This is the **initial** value for `student_weakness[c]` used by the points-at-
-stake queue *before* FSRS has data:
+stake queue _before_ FSRS has data:
 
 ```
 points_at_stake(card) = topic_weight[c] * student_weakness[c]
@@ -275,7 +276,7 @@ surfaces high-yield, weak-topic cards instead of a random/forgetting-only order.
 ### Step 5 — Decay the prior as real reviews arrive (precision-weighted blend)
 
 The prior must **self-erase** as FSRS evidence accumulates so it only ever
-affects *early* ordering:
+affects _early_ ordering:
 
 ```
 w_prior            = c0                                  # fixed pseudo-count, ~ "5-10 reviews"
@@ -314,12 +315,12 @@ band(c) = held    if p_hat_c >= 0.75
 Student answers Foundational Concept 1: `1A` 1/2, `1B` 0/2, `1C` 2/2, `1D` 0/2.
 Using a simple beta-binomial with `mu0 = 0.5`, `kappa = 6` (i.e. `alpha0=beta0=3`):
 
-| Cat | k/n | `p_hat = (k+3)/(n+6)` | `weakness = 1 - p_hat` | band |
-| --- | --- | --- | --- | --- |
-| 1A | 1/2 | 4/8 = 0.50 | 0.50 | partial |
-| 1B | 0/2 | 3/8 = 0.375 | 0.625 | gap |
-| 1C | 2/2 | 5/8 = 0.625 | 0.375 | partial |
-| 1D | 0/2 | 3/8 = 0.375 | 0.625 | gap |
+| Cat | k/n | `p_hat = (k+3)/(n+6)` | `weakness = 1 - p_hat` | band    |
+| --- | --- | --------------------- | ---------------------- | ------- |
+| 1A  | 1/2 | 4/8 = 0.50            | 0.50                   | partial |
+| 1B  | 0/2 | 3/8 = 0.375           | 0.625                  | gap     |
+| 1C  | 2/2 | 5/8 = 0.625           | 0.375                  | partial |
+| 1D  | 0/2 | 3/8 = 0.375           | 0.625                  | gap     |
 
 All FC1 share `topic_weight = 3.53`, so points-at-stake ranks `1B` and `1D`
 first within FC1 — the two the student bombed. Note that even `1B`/`1D` at 0/2

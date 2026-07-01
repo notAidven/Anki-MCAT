@@ -1194,5 +1194,192 @@
         ]
       }
     ]
+  },
+  {
+    "id": "psg-cars-7",
+    "section": "CARS",
+    "passage": "Democratic legitimacy, on one influential account, does not derive from the mere aggregation of pre-formed preferences through voting. Rather, it emerges from the quality of the public reasoning that precedes and informs collective decisions. This deliberative ideal holds that citizens who engage in open, reciprocal, and reasoned discourse — genuinely considering one another's arguments rather than simply advocating for prior commitments — are more likely to reach outcomes that are justifiable to all affected parties, regardless of who ultimately wins the vote.\n\nThe deliberative model places considerable demands on participants. It requires a willingness to offer reasons that others can evaluate on their merits, not just expressions of passion or assertions of power. It requires a disposition to revise one's views in response to compelling counter-arguments. And it requires conditions of rough equality: if some participants lack the resources, time, or rhetorical confidence to engage effectively, the deliberation is skewed in ways that may reproduce rather than remedy existing inequalities of power.\n\nCritics have challenged the deliberative ideal on several grounds. The most fundamental challenge concerns the status of passionate advocacy. Much of what moves democratic politics — the eloquence of a civil-rights speech, the moral urgency communicated by a protest march, the experiential testimony of those who have suffered injustice — does not take the form of a reasoned argument that invites calm evaluation. To require that all democratic communication conform to deliberative norms risks excluding the voices of the marginalized, whose experiences may be most authentically expressed through modes other than academic debate.\n\nA second critique concerns the domain of the reasonable. Deliberative theory assumes that despite deep disagreements, a set of publicly acceptable reasons can be identified that citizens holding different moral and religious convictions can endorse. Critics argue this assumption is empirically dubious in societies characterized by deep moral pluralism: when citizens disagree not just about policies but about the very framework within which policies should be evaluated, appeals to 'public reason' may function to privilege particular substantive views disguised as neutral procedural ones.\n\nDefenders of deliberative democracy acknowledge these tensions but argue they point to the need for a more expansive and less rationalist conception of deliberation — one that includes narrative, testimony, and emotional appeal alongside discursive argument — rather than an abandonment of the deliberative ideal itself. If the goal is collective decision-making that citizens can recognize as fair, some approximation of reasoned exchange remains indispensable, even if the form that exchange takes must be more capacious than classical deliberative theory imagined.",
+    "passage_source": {
+      "name": "original",
+      "url": "",
+      "license": "original"
+    },
+    "questions": [
+      {
+        "id": "psg-cars-7-q1",
+        "aamc_category": "CARS",
+        "skill": "comprehension",
+        "stem": "According to the deliberative ideal described in the passage, democratic legitimacy comes from:",
+        "options": [
+          "the quality of public reasoning that precedes and informs collective decisions",
+          "the numerical majority achieved through fair and transparent vote-counting",
+          "the equal distribution of political power among all social groups",
+          "the charisma and eloquence of political leaders who can unify citizens"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is stated directly: legitimacy 'emerges from the quality of the public reasoning that precedes and informs collective decisions.' (B) describes aggregative democracy, which the passage contrasts with deliberative democracy. (C) is not the deliberative model's account of legitimacy. (D) is not part of the deliberative ideal.",
+        "difficulty": "easy",
+        "subquestions": [
+          {
+            "stem": "What does the passage contrast with the deliberative model's account of legitimacy?",
+            "options": [
+              "The mere aggregation of pre-formed preferences through voting",
+              "The enforcement of constitutional rights by courts"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says legitimacy 'does not derive from the mere aggregation of pre-formed preferences through voting.'"
+          },
+          {
+            "stem": "What quality of public reasoning matters?",
+            "options": [
+              "Open, reciprocal, and genuinely reasoned discourse that considers others' arguments",
+              "The persuasiveness of professional rhetoricians hired by political parties"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage specifies: 'open, reciprocal, and reasoned discourse — genuinely considering one another's arguments.'"
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-7-q2",
+        "aamc_category": "CARS",
+        "skill": "reasoning-within",
+        "stem": "Unequal access to deliberative participation is a problem according to the passage because it:",
+        "options": [
+          "may reproduce rather than remedy existing power inequalities",
+          "violates the procedural requirement that all votes count equally",
+          "ensures that majorities always impose their views on minorities",
+          "reduces the number of citizens who engage in civic associations"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is stated: if participation is unequal, 'the deliberation is skewed in ways that may reproduce rather than remedy existing inequalities of power.' (B) conflates deliberation with voting. (C) is not the claim made. (D) relates to social capital themes not discussed here.",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "What conditions does the deliberative model require for legitimate deliberation?",
+            "options": [
+              "Rough equality so that all participants can engage effectively",
+              "Professional moderation by trained facilitators"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says deliberation 'requires conditions of rough equality: if some participants lack the resources... the deliberation is skewed.'"
+          },
+          {
+            "stem": "What happens when some participants lack resources, time, or rhetorical confidence?",
+            "options": [
+              "Deliberation may reproduce rather than remedy existing power inequalities",
+              "Citizens tend to vote with economic interests rather than considered judgments"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage warns the deliberation becomes 'skewed in ways that may reproduce rather than remedy existing inequalities of power.'"
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-7-q3",
+        "aamc_category": "CARS",
+        "skill": "reasoning-within",
+        "stem": "Critics who argue that requiring 'public reason' privileges certain substantive views are primarily concerned that:",
+        "options": [
+          "neutral procedural norms may actually disguise particular moral and religious commitments",
+          "public deliberation inevitably becomes dominated by professional politicians",
+          "citizens are unwilling to revise their views after hearing counter-arguments",
+          "majority decisions always fail to respect the rights of religious minorities"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is the critique: 'appeals to public reason may function to privilege particular substantive views disguised as neutral procedural ones.' (B) introduces politicians not mentioned. (C) concerns willingness to revise, discussed as a demand in paragraph two. (D) introduces majority/minority rights, not the public-reason critique.",
+        "difficulty": "hard",
+        "subquestions": [
+          {
+            "stem": "What does the second critique say about the assumption that publicly acceptable reasons exist?",
+            "options": [
+              "The assumption is empirically dubious in deeply pluralistic societies",
+              "Such reasons always exist but are difficult to articulate simply"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says the assumption is 'empirically dubious in societies characterized by deep moral pluralism.'"
+          },
+          {
+            "stem": "What does it mean for 'public reason' to privilege a substantive view 'disguised as neutral'?",
+            "options": [
+              "One moral or religious framework gets treated as the universally acceptable standard when it actually reflects a particular worldview",
+              "Politicians use technical language to confuse citizens about policy details"
+            ],
+            "correct_index": 0,
+            "explanation": "The critique is that 'public reason' claims neutrality but actually encodes one framework's assumptions as the default."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-7-q4",
+        "aamc_category": "CARS",
+        "skill": "reasoning-beyond",
+        "stem": "A grassroots campaign uses personal storytelling by formerly incarcerated people to shift public opinion on criminal justice reform, deliberately avoiding statistical arguments. A defender of the deliberative ideal would most likely say this campaign:",
+        "options": [
+          "is consistent with an expanded deliberative model that includes narrative and testimony alongside discursive argument",
+          "undermines democratic legitimacy because it relies on emotion rather than reasoned argument",
+          "is the most powerful form of deliberation because stories are more persuasive than statistics",
+          "is only legitimate if the storytellers also provide policy proposals based on empirical evidence"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is correct: defenders call for 'a more expansive and less rationalist conception of deliberation — one that includes narrative, testimony, and emotional appeal alongside discursive argument.' Personal storytelling exemplifies this. (B) represents the narrow rationalist view critics are challenging. (C) is not the passage's claim. (D) introduces a requirement the passage's defenders do not make.",
+        "difficulty": "hard",
+        "subquestions": [
+          {
+            "stem": "What do defenders of deliberative democracy argue in the final paragraph?",
+            "options": [
+              "Deliberation should be expanded to include narrative, testimony, and emotional appeal, not just discursive argument",
+              "Deliberation should be restricted to formal academic debate to ensure rigor"
+            ],
+            "correct_index": 0,
+            "explanation": "Defenders call for 'a more expansive and less rationalist conception of deliberation — one that includes narrative, testimony, and emotional appeal.'"
+          },
+          {
+            "stem": "Does the final paragraph say the deliberative ideal should be abandoned?",
+            "options": [
+              "No — it calls for a revised, more expansive conception, not abandonment",
+              "Yes — the critiques are said to be decisive against deliberative theory"
+            ],
+            "correct_index": 0,
+            "explanation": "The defenders argue for revision 'rather than an abandonment of the deliberative ideal itself.'"
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-7-q5",
+        "aamc_category": "CARS",
+        "skill": "comprehension",
+        "stem": "The passage's description of deliberative democracy's demands implies that a deliberative process would be corrupted when participants:",
+        "options": [
+          "assert power or passion instead of offering reasons others can evaluate on their merits",
+          "vote according to their sincere preferences after listening to all arguments",
+          "invoke constitutional principles as reasons for their positions",
+          "change their minds after hearing arguments from the opposing side"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is the inverse of the demand stated: deliberation requires offering 'reasons that others can evaluate on their merits, not just expressions of passion or assertions of power.' When participants substitute passion for reasons, deliberation is corrupted. (B) is expected endpoint behavior. (C) is a form of reason, not corruption. (D) is the desired behavior per the passage.",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "What kind of communication does the deliberative model require?",
+            "options": [
+              "Reasons that others can evaluate on their merits",
+              "Passionate rhetoric that moves fellow citizens to action"
+            ],
+            "correct_index": 0,
+            "explanation": "The model requires 'a willingness to offer reasons that others can evaluate on their merits, not just expressions of passion or assertions of power.'"
+          },
+          {
+            "stem": "What disposition must deliberators have toward opposing arguments?",
+            "options": [
+              "A willingness to revise their views in response to compelling counter-arguments",
+              "A commitment to maintaining their initial positions regardless of counterevidence"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says deliberation 'requires a disposition to revise one's views in response to compelling counter-arguments.'"
+          }
+        ]
+      }
+    ]
   }
 ]

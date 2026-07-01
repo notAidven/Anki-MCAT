@@ -1755,5 +1755,192 @@
         ]
       }
     ]
+  },
+  {
+    "id": "psg-cars-10",
+    "section": "CARS",
+    "passage": "The relationship between mind and body has occupied Western philosophy since antiquity, but the specific problem of consciousness has acquired a new urgency in an era when neuroscience can map the brain in unprecedented detail. Even if we knew the complete physical state of every neuron in a human brain at a given moment, would that knowledge exhaust our understanding of what it is like for the person whose brain it is to be having the experiences they are having? Many philosophers believe the answer is no — and they argue that this gap between complete physical description and subjective experience reveals something fundamental about the nature of mind.\n\nThis 'hard problem' — why any physical process should be accompanied by subjective experience at all — is distinguished from the 'easy problems' of consciousness, such as how the brain integrates information, controls attention, or generates verbal reports about mental states. The easy problems are not trivial; they may require decades of research to solve. But they are, in principle, amenable to explanation in functional and computational terms. The hard problem seems to resist this treatment: even a complete functional account of how a system processes information leaves unexplained why processing should feel like anything at all.\n\nPhysicalists respond in several ways. Some deny that there is a genuine explanatory gap: what seems like an inexplicable residue is, they argue, an artifact of our limited cognitive access to neural processes rather than evidence of a non-physical dimension of reality. Once neuroscience matures sufficiently, the sense that something has been left out will dissolve, just as vitalism — the doctrine that life requires a special non-physical force — dissolved when biochemistry revealed the mechanisms of metabolism. Others accept that qualia — the intrinsic qualitative character of experience — are real but argue that they are identical with, or constituted by, physical brain states in ways we do not yet fully understand.\n\nDualists, by contrast, maintain that the hard problem reflects a genuine ontological gap: minds and physical processes belong to categorically different orders of being. This position preserves the intuition that experience is irreducibly subjective but faces the difficulty of explaining how non-physical minds causally interact with physical brains — a puzzle that has shadowed substance dualism since its classical formulation. To say that minds and brains interact is plausible as ordinary description; to explain the mechanism of that interaction without smuggling physical causation back in is a philosophical challenge that has resisted resolution for centuries.\n\nThe hard problem of consciousness thus sits at the intersection of metaphysics, philosophy of mind, and neuroscience. Whether it admits of a naturalistic solution remains one of the deepest unresolved questions in intellectual life.",
+    "passage_source": {
+      "name": "original",
+      "url": "",
+      "license": "original"
+    },
+    "questions": [
+      {
+        "id": "psg-cars-10-q1",
+        "aamc_category": "CARS",
+        "skill": "comprehension",
+        "stem": "According to the passage, the 'hard problem' of consciousness differs from 'easy problems' in that:",
+        "options": [
+          "easy problems are amenable to functional explanations, while the hard problem seems to resist explanation in those terms",
+          "easy problems involve subjective experience, while the hard problem involves only brain function",
+          "the hard problem has been solved by neuroscience, while easy problems remain outstanding",
+          "easy problems are philosophical, while the hard problem is purely empirical"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is stated: easy problems 'are, in principle, amenable to explanation in functional and computational terms,' while the hard problem 'seems to resist this treatment.' (B) reverses the definitions. (C) is the opposite. (D) reverses their characters.",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "What kinds of tasks are 'easy problems' about?",
+            "options": [
+              "How the brain integrates information, controls attention, and generates verbal reports",
+              "Why any physical process is accompanied by subjective experience"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage lists: 'how the brain integrates information, controls attention, or generates verbal reports about mental states.'"
+          },
+          {
+            "stem": "Why does the hard problem resist functional explanation?",
+            "options": [
+              "A complete functional account still leaves unexplained why processing should feel like anything at all",
+              "The brain processes information too quickly for any functional account to track"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says: 'even a complete functional account of how a system processes information leaves unexplained why processing should feel like anything at all.'"
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-10-q2",
+        "aamc_category": "CARS",
+        "skill": "comprehension",
+        "stem": "Some physicalists use the analogy of vitalism to argue that:",
+        "options": [
+          "the apparent inexplicability of consciousness may dissolve as neuroscience matures, just as vitalism dissolved with advances in biochemistry",
+          "consciousness is a life-force similar to what vitalists once attributed to living matter",
+          "dualists are correct that consciousness cannot be explained by physical processes",
+          "neuroscience has already solved the hard problem, as biochemistry solved vitalism"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is the explicit analogy: 'the sense that something has been left out will dissolve, just as vitalism... dissolved when biochemistry revealed the mechanisms of metabolism.' (B) equates consciousness with the discredited vitalist force — the opposite of the physicalists' intent. (C) is the dualist position. (D) is not stated — physicalists are making a future prediction.",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "What happened to vitalism when biochemistry matured?",
+            "options": [
+              "It dissolved — the need for a special non-physical life-force disappeared",
+              "It was refined rather than rejected and is still used in some biological theories"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says 'vitalism... dissolved when biochemistry revealed the mechanisms of metabolism.'"
+          },
+          {
+            "stem": "What do physicalists predict will happen to the apparent hard problem as neuroscience advances?",
+            "options": [
+              "The sense that something has been left out will dissolve",
+              "It will become clearer that consciousness is genuinely non-physical"
+            ],
+            "correct_index": 0,
+            "explanation": "Physicalists argue 'the sense that something has been left out will dissolve, just as vitalism dissolved.'"
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-10-q3",
+        "aamc_category": "CARS",
+        "skill": "reasoning-within",
+        "stem": "The passage identifies a specific difficulty that faces substance dualism. This difficulty is:",
+        "options": [
+          "explaining how non-physical minds causally interact with physical brains",
+          "accounting for why different people have similar conscious experiences",
+          "showing why subjective experience exists at all if minds are non-physical",
+          "reconciling dualism with the findings of evolutionary biology"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is stated: dualism 'faces the difficulty of explaining how non-physical minds causally interact with physical brains.' (B) is not mentioned as a specific difficulty. (C) is the hard problem itself, not a unique dualist difficulty. (D) is not mentioned.",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "What does substance dualism claim about the relationship between minds and physical processes?",
+            "options": [
+              "They belong to categorically different orders of being",
+              "Mental states are identical with or constituted by brain states"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says dualists 'maintain that minds and physical processes belong to categorically different orders of being.'"
+          },
+          {
+            "stem": "What problem has 'shadowed substance dualism since its classical formulation'?",
+            "options": [
+              "Explaining how non-physical minds causally interact with physical brains",
+              "Defining what 'substance' means in modern physics"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says: 'explaining how non-physical minds causally interact with physical brains — a puzzle that has shadowed substance dualism since its classical formulation.'"
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-10-q4",
+        "aamc_category": "CARS",
+        "skill": "reasoning-beyond",
+        "stem": "Suppose a neuroscientist fully maps every neural connection and firing pattern during a subject's experience of seeing red. A philosopher who believes the hard problem is genuine would most likely say this mapping:",
+        "options": [
+          "still leaves unexplained what it is like for the subject to experience redness as a subjective quality",
+          "fully explains consciousness, proving that physicalism is correct",
+          "provides evidence that qualia do not actually exist",
+          "shows that the easy problems of consciousness are inseparable from the hard problem"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is correct: the hard-problem philosopher answers no to whether complete physical description exhausts understanding of subjective experience. Even a complete neural map 'leaves unexplained why processing should feel like anything at all.' (B) is the physicalist's hoped-for conclusion. (C) is the eliminativist position. (D) is not a claim in the passage.",
+        "difficulty": "hard",
+        "subquestions": [
+          {
+            "stem": "What question does the hard problem ask?",
+            "options": [
+              "Why any physical process should be accompanied by subjective experience at all",
+              "How the brain integrates sensory information about color"
+            ],
+            "correct_index": 0,
+            "explanation": "The hard problem is: 'why any physical process should be accompanied by subjective experience at all.'"
+          },
+          {
+            "stem": "Does a complete functional or physical account answer this question?",
+            "options": [
+              "No — even a complete functional account leaves unexplained why processing feels like anything",
+              "Yes — mapping neural processes fully explains subjective experience"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says: 'even a complete functional account of how a system processes information leaves unexplained why processing should feel like anything at all.'"
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-10-q5",
+        "aamc_category": "CARS",
+        "skill": "reasoning-within",
+        "stem": "The author's tone toward the hard problem of consciousness is best characterized as:",
+        "options": [
+          "intellectually serious and genuinely uncertain about its resolution",
+          "dismissive, suggesting the hard problem will soon be solved by neuroscience",
+          "confident that dualism is the correct solution",
+          "polemical, arguing that physicalism is obviously mistaken"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is supported throughout: the passage presents multiple positions without endorsing one, describes the problem as 'one of the deepest unresolved questions,' and says 'whether it admits of a naturalistic solution remains' open. (B) is the strong physicalist prediction — presented as one view, not the author's. (C) is false — the passage notes dualism's difficulties. (D) is false — the passage treats physicalism seriously.",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "Does the passage endorse any one of the positions (physicalism, qualia physicalism, dualism)?",
+            "options": [
+              "No — it presents each with merits and difficulties without endorsing one",
+              "Yes — it endorses the dualist position as most philosophically rigorous"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage presents each view with both its appeal and its challenges, ending with 'remains one of the deepest unresolved questions.'"
+          },
+          {
+            "stem": "What phrase signals the author's genuine uncertainty?",
+            "options": [
+              "'Whether it admits of a naturalistic solution remains one of the deepest unresolved questions'",
+              "'The hard problem has been solved by recent advances in computational neuroscience'"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage ends with 'Whether it admits of a naturalistic solution remains one of the deepest unresolved questions in intellectual life.'"
+          }
+        ]
+      }
+    ]
   }
 ]

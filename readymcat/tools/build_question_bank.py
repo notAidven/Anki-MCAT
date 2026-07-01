@@ -647,6 +647,46 @@ def parse_subquestions(raw: str | None) -> list[dict[str, Any]]:
     return rungs
 
 
+def parse_passage_subquestions(raw: str | None) -> list[dict[str, Any]]:
+    """Parse a passage note's ``Subquestions`` JSON into a guiding ladder.
+
+    Like :func:`parse_subquestions`, but accepts a *variable* number of options
+    per rung (>= 2 rather than exactly 4): AAMC passage ladders use four options,
+    while CARS guiding ladders use two or three. Malformed rungs (no stem, fewer
+    than two options, or an out-of-range answer) are dropped so the reviewer runs
+    a shorter — or empty — ladder rather than crashing."""
+    if not raw:
+        return []
+    try:
+        data = json.loads(raw)
+    except (ValueError, TypeError):
+        return []
+    if not isinstance(data, list):
+        return []
+    rungs: list[dict[str, Any]] = []
+    for entry in data:
+        if not isinstance(entry, dict):
+            continue
+        options = entry.get("options")
+        if not isinstance(options, list) or len(options) < 2:
+            continue
+        idx = entry.get("correct_index")
+        if not isinstance(idx, int) or not 0 <= idx < len(options):
+            continue
+        stem = str(entry.get("stem", "")).strip()
+        if not stem:
+            continue
+        rungs.append(
+            {
+                "stem": stem,
+                "options": [str(o) for o in options],
+                "correct_index": idx,
+                "explanation": str(entry.get("explanation", "")),
+            }
+        )
+    return rungs
+
+
 def mcq_payload_from_fields(fields: dict[str, str]) -> dict[str, Any]:
     """Build the reviewer payload (sent to ``_mcqStart``) from a note's fields.
 
@@ -1541,7 +1581,9 @@ def passage_payload_from_fields(fields: dict[str, str]) -> dict[str, Any]:
         "explanation": fields.get("Explanation", ""),
         "subtopic": fields.get("Subtopic", ""),
         "source": fields.get("Source", ""),
-        "subquestions": parse_subquestions(fields.get("Subquestions", "")),
+        # Passage ladders may have a variable number of options (AAMC use four,
+        # CARS use two or three), so use the lenient passage parser.
+        "subquestions": parse_passage_subquestions(fields.get("Subquestions", "")),
     }
 
 

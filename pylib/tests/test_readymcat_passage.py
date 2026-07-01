@@ -176,6 +176,39 @@ def test_merge_cars_passage_banks_is_valid_and_complete():
             assert bank._passage_question_category(passage, question) == "CARS"
 
 
+def test_parse_passage_subquestions_accepts_variable_option_counts():
+    """AAMC passage ladders use four options; CARS ladders use two or three. The
+    passage ladder parser must keep all of them, while the strict MCQ parser
+    (four options only) still rejects the short CARS rungs."""
+    cars_ladder = json.dumps(
+        [
+            {
+                "stem": "Two-option rung?",
+                "options": ["yes", "no"],
+                "correct_index": 0,
+                "explanation": "e",
+            },
+            {
+                "stem": "Three-option rung?",
+                "options": ["a", "b", "c"],
+                "correct_index": 2,
+                "explanation": "e",
+            },
+        ]
+    )
+    lenient = bank.parse_passage_subquestions(cars_ladder)
+    assert len(lenient) == 2
+    assert [len(r["options"]) for r in lenient] == [2, 3]
+    assert [r["correct_index"] for r in lenient] == [0, 2]
+    # the strict MCQ parser drops these (it requires exactly four options)
+    assert bank.parse_subquestions(cars_ladder) == []
+    # a rung whose answer index is out of range for its options is dropped
+    bad = json.dumps(
+        [{"stem": "x", "options": ["a", "b"], "correct_index": 3, "explanation": ""}]
+    )
+    assert bank.parse_passage_subquestions(bad) == []
+
+
 def test_cars_note_guid_is_stable_and_unique():
     cars = bank.merge_cars_passage_banks()
     qids = [q["id"] for p in cars for q in p["questions"]]
@@ -290,9 +323,11 @@ def test_cars_payload_round_trips_from_a_built_note():
     assert payload["correctIndex"] == question["correct_index"]
     # the CARS skill renders where an AAMC subtopic normally would
     assert payload["subtopic"] == question["skill"]
-    # the guiding ladder still reuses the MCQ sub-question shape
+    # the guiding ladder round-trips; CARS rungs use 2-3 options (not the MCQ's
+    # fixed four), so the passage payload keeps every rung rather than dropping it
     assert len(payload["subquestions"]) == len(question.get("subquestions") or [])
+    assert payload["subquestions"]  # this question ships a ladder
     for rung in payload["subquestions"]:
-        assert len(rung["options"]) == 4
-        assert 0 <= rung["correct_index"] <= 3
+        assert 2 <= len(rung["options"]) <= 4
+        assert 0 <= rung["correct_index"] < len(rung["options"])
     col.close()

@@ -1,0 +1,226 @@
+[
+  {
+    "id": "psg-cars-1",
+    "section": "CARS",
+    "passage": "Is there any knowledge in the world so certain that no reasonable person could doubt it? This question, which at first sight might not seem difficult, is really among the most difficult that can be asked. In daily life we assume as certain many things which, on closer scrutiny, are found to be so full of apparent contradictions that only a great deal of thought enables us to know what it is that we may really believe.\n\nConsider the plain table before me. To the eye it appears rectangular, brown, and shiny; to the touch it is smooth, cool, and hard; when I tap it, it gives out a wooden sound. Anyone else who sees, feels, and hears the table will agree with this description, so it might seem that no difficulty could arise. But the moment we try to be more precise, our troubles begin. Although I believe that the table is 'really' of one uniform brown, the parts that reflect the light look far brighter than the rest, and some parts look white because of reflected light. If I move, the parts that reflect the light change, so that the apparent distribution of colours upon the table shifts. It follows that if several people look at the table at the same moment, no two of them will see exactly the same distribution of colours, for no two can view it from precisely the same point, and any change in the point of view changes the way in which the light is reflected.\n\nFor most practical purposes these differences are unimportant, but to the painter they are all-important: the painter has to unlearn the habit of thinking that things seem to have the colour which common sense says they 'really' have, and to learn the habit of seeing things as they appear. Here we already meet with one of the distinctions that cause the most trouble in philosophy — the distinction between 'appearance' and 'reality,' between what things seem to be and what they are. The table, if it is 'real' at all, must have some real colour; yet the colour we see is not a property of the table in itself but something depending upon the table, the observer, and the way the light falls. When, in ordinary life, we speak of the colour of the table, we mean only the sort of colour which it will seem to have to a normal spectator, under ordinary conditions of light, from an ordinary point of view. But the other colours which appear under other conditions have just as good a right to be considered real; and so, to avoid favouritism, we are compelled to deny that the table has any one particular colour.\n\nThe same holds for the texture. With the naked eye the grain of the wood looks smooth and even; under a microscope it shows roughness, and hills and valleys, and all sorts of differences that are imperceptible to unaided sight. Which of these is the 'real' table? We are naturally tempted to say that what we see through the microscope is more real; yet a still more powerful instrument would reveal something different again, so that we can never rest content with what the eye alone reports. Thus confidence in the senses, which had seemed so secure, begins to desert us.\n\nIt becomes evident that the real table, if there is one, is not the same as what we immediately experience by sight or touch or hearing. The real table, if it exists, is not immediately known to us at all, but must be an inference from what is immediately known. Hence two very difficult questions at once arise: Is there a real table at all? And if so, what sort of object can it be?",
+    "passage_source": {
+      "name": "Bertrand Russell, 'The Problems of Philosophy' (1912), Ch. 1, adapted",
+      "url": "https://www.gutenberg.org/ebooks/5827",
+      "license": "public domain"
+    },
+    "questions": [
+      {
+        "id": "psg-cars-1-q1",
+        "aamc_category": "CARS",
+        "skill": "comprehension",
+        "stem": "The author's primary purpose in the passage is to:",
+        "options": [
+          "show that even an apparently simple object raises a distinction between appearance and reality",
+          "demonstrate that the senses cannot be trusted to reveal any truth about the world",
+          "argue that painters perceive objects more accurately than ordinary observers do",
+          "establish that the real table is uniformly brown, rectangular, and smooth"
+        ],
+        "correct_index": 0,
+        "explanation": "The passage opens with a general question about certainty but immediately grounds it in the concrete table in order to develop 'the distinction between appearance and reality' — that development is its purpose (A). (B) overstates the text: the author says confidence 'begins to desert us' and still holds that a real table may be reached by inference, not that the senses reveal no truth. (C) misuses the painter, who is said to see things 'as they appear,' not more truly than they really are. (D) contradicts the passage, which denies the table has any one real colour or texture.",
+        "difficulty": "easy",
+        "subquestions": [
+          {
+            "stem": "Does the passage stay abstract, or does it work from a specific object?",
+            "options": [
+              "It works from one concrete object (a table) toward a broader philosophical point",
+              "It only ever discusses knowledge in the abstract"
+            ],
+            "correct_index": 0,
+            "explanation": "After the opening question, the whole argument is built on the concrete table example."
+          },
+          {
+            "stem": "What key distinction does the table example introduce?",
+            "options": [
+              "Between appearance and reality",
+              "Between science and art",
+              "Between hearing and touch"
+            ],
+            "correct_index": 0,
+            "explanation": "The author explicitly names 'the distinction between appearance and reality.'"
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-1-q2",
+        "aamc_category": "CARS",
+        "skill": "comprehension",
+        "stem": "According to the passage, we are 'compelled to deny that the table has any one particular colour' because:",
+        "options": [
+          "colour is an illusion that exists only inside the observer's mind",
+          "only the report of a normal spectator under ordinary conditions should count",
+          "the colours seen under different conditions each have an equal claim to reality, so none can be privileged",
+          "observers disagree about the table's shape rather than about its colour"
+        ],
+        "correct_index": 2,
+        "explanation": "The author states that the colours appearing under other conditions 'have just as good a right to be considered real,' so that 'to avoid favouritism' no single colour can be assigned (C). (A) is never claimed; the author says colour depends on table, observer, and light, not that it is mere illusion. (B) inverts the point — the normal-spectator report is a convenient convention, not the reason the table lacks one real colour. (D) misattributes the disagreement to shape.",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "Do colours seen under different conditions have different claims to being 'real'?",
+            "options": [
+              "No — each has 'just as good a right to be considered real'",
+              "Yes — the brightest appearance is the most real"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage grants every appearance an equal right to be called real."
+          },
+          {
+            "stem": "If no single condition's colour is privileged, what follows about 'the' colour of the table?",
+            "options": [
+              "It cannot be assigned any one particular colour",
+              "Its true colour is the average of all its appearances"
+            ],
+            "correct_index": 0,
+            "explanation": "Refusing to favour any appearance forces the denial of a single real colour."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-1-q3",
+        "aamc_category": "CARS",
+        "skill": "reasoning-within",
+        "stem": "Within the argument, the reference to the microscope serves chiefly to:",
+        "options": [
+          "prove that scientific instruments finally reveal the real table",
+          "show that the table's roughness is more real than its smoothness",
+          "suggest that only trained scientists can perceive reality",
+          "extend the appearance/reality problem from colour to texture, undermining reliance on the naked eye"
+        ],
+        "correct_index": 3,
+        "explanation": "The microscope discussion moves the problem from colour to texture, showing the naked eye is no more authoritative than the instrument (D). (B) is the tempting trap the author explicitly rejects: 'a still more powerful instrument would reveal something different again,' so roughness is not 'more real.' (A) is rejected for the same reason. (C) about scientists is unsupported.",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "Before the microscope, which property was under discussion? After it?",
+            "options": [
+              "Colour first; then texture",
+              "Only shape throughout",
+              "Only the sound of the table"
+            ],
+            "correct_index": 0,
+            "explanation": "The microscope paragraph shifts the same worry onto texture."
+          },
+          {
+            "stem": "Does the author treat the microscope's image as the 'real' table?",
+            "options": [
+              "No — a still more powerful instrument would show something different again",
+              "Yes — the microscope reveals the table as it really is"
+            ],
+            "correct_index": 0,
+            "explanation": "Each stronger instrument yields yet another appearance, so none is final."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-1-q4",
+        "aamc_category": "CARS",
+        "skill": "reasoning-within",
+        "stem": "The author's attitude toward the reliability of the senses is best described as:",
+        "options": [
+          "unqualified trust in their deliverances",
+          "initial confidence giving way to reasoned doubt",
+          "contemptuous dismissal of everything they report",
+          "complete indifference to the question"
+        ],
+        "correct_index": 1,
+        "explanation": "Confidence in the senses 'had seemed so secure' but 'begins to desert us' — a movement from confidence to doubt (B). (A) and (C) are opposite extremes the measured prose avoids; the author neither fully trusts nor sneeringly dismisses the senses. (D) ignores the author's evident, careful engagement with the question.",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "At the outset, how secure did confidence in the senses seem?",
+            "options": [
+              "Very secure",
+              "Already destroyed"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says that confidence 'had seemed so secure.'"
+          },
+          {
+            "stem": "By the end of the passage, what happens to that confidence?",
+            "options": [
+              "It 'begins to desert us'",
+              "It is fully confirmed"
+            ],
+            "correct_index": 0,
+            "explanation": "The closing movement is toward doubt, not confirmation."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-1-q5",
+        "aamc_category": "CARS",
+        "skill": "reasoning-beyond",
+        "stem": "Two observers standing in different places both insist they see 'the same brown table.' The author would most likely respond that they:",
+        "options": [
+          "agree only about the colour a normal spectator would report under ordinary conditions, not about identical immediate experiences",
+          "are both simply mistaken about whether the table exists at all",
+          "cannot both be right: one perceives the real table and the other an illusion",
+          "have proven, by their agreement, that the table has one real colour after all"
+        ],
+        "correct_index": 0,
+        "explanation": "The passage says that in ordinary life 'the colour of the table' means only the colour a normal spectator would report under ordinary conditions; since 'no two can view it from precisely the same point,' they cannot share identical immediate experiences (A). (B) overstates — existence is a separate question raised only at the very end. (C) imposes a real/illusion split the author avoids. (D) contradicts the denial that the table has one real colour.",
+        "difficulty": "hard",
+        "subquestions": [
+          {
+            "stem": "When ordinary people speak of 'the colour of the table,' what does the passage say they mean?",
+            "options": [
+              "The colour a normal spectator would report under ordinary conditions",
+              "Their private immediate sensation, which is identical for everyone"
+            ],
+            "correct_index": 0,
+            "explanation": "The author defines the everyday phrase in terms of a normal spectator's report."
+          },
+          {
+            "stem": "Can two people in different positions have identical immediate colour-experiences here?",
+            "options": [
+              "No — no two can view it from precisely the same point",
+              "Yes — position makes no difference to what is seen"
+            ],
+            "correct_index": 0,
+            "explanation": "Different viewpoints necessarily change the reflected light and thus the appearance."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-1-q6",
+        "aamc_category": "CARS",
+        "skill": "reasoning-beyond",
+        "stem": "Which finding, if true, would most WEAKEN the author's claim that the real table 'must be an inference from what is immediately known'?",
+        "options": [
+          "A more powerful microscope reveals yet another surface texture",
+          "People from different cultures use different words for the table's colour",
+          "Observers can, under controlled conditions, directly perceive the table's intrinsic properties without any inference",
+          "The table looks brighter in the places where the light reflects off it"
+        ],
+        "correct_index": 2,
+        "explanation": "The claim is that the real table is reached only by inference from immediate experience; a demonstration that its intrinsic properties can be perceived directly would remove the need for inference and thus weaken it (C). (A) and (D) are simply further appearances that support the author. (B) concerns vocabulary, not whether perception is inferential.",
+        "difficulty": "hard",
+        "subquestions": [
+          {
+            "stem": "State the claim to be weakened.",
+            "options": [
+              "The real table is known only by inference, never immediately",
+              "The table is a shade of brown"
+            ],
+            "correct_index": 0,
+            "explanation": "Identify the target claim before testing what would undercut it."
+          },
+          {
+            "stem": "Which kind of finding would undercut 'known only by inference'?",
+            "options": [
+              "Evidence that the table's real properties can be perceived directly",
+              "Evidence of yet another appearance under a new instrument"
+            ],
+            "correct_index": 0,
+            "explanation": "Direct perception would bypass the inference the claim insists upon; another appearance would only reinforce it."
+          }
+        ]
+      }
+    ]
+  }
+]

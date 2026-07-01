@@ -38,6 +38,9 @@ impl crate::services::PointsAtStakeService for Collection {
                 student_weakness: r.student_weakness,
                 points_at_stake: r.points_at_stake,
                 struggling: r.struggling,
+                fsrs_weakness: r.fsrs_weakness,
+                prior_weakness: r.prior_weakness,
+                seeded_by_prior: r.seeded_by_prior,
             })
             .collect();
 

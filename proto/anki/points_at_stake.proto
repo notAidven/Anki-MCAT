@@ -57,6 +57,10 @@ message RankedCard {
   // AAMC category id, e.g. "1A". Empty when the card maps to no topic.
   string category = 2;
   double topic_weight = 3;
+  // The weakness used for ranking: the precision-weighted blend of the
+  // first-launch diagnostic prior and the FSRS weakness. Equals fsrs_weakness
+  // when no prior applies, so points_at_stake == topic_weight * student_weakness
+  // for non-struggling cards.
   double student_weakness = 4;
   // topic_weight * student_weakness, already including the struggling boost.
   double points_at_stake = 5;
@@ -64,6 +68,15 @@ message RankedCard {
   // correction that was missed again). Such cards get a priority boost so the
   // corrected concept resurfaces; points_at_stake already reflects it.
   bool struggling = 6;
+  // Honest FSRS-only weakness (1 - mean recall). Matches the dashboard's
+  // TopicMastery; the diagnostic prior NEVER changes it.
+  double fsrs_weakness = 7;
+  // The diagnostic prior's weakness seed for this category (equals
+  // fsrs_weakness when no prior applies). Exposed so ordering is explainable.
+  double prior_weakness = 8;
+  // Whether a first-launch diagnostic prior contributed to student_weakness.
+  // Ordering only — the dashboard's honest scores are unaffected either way.
+  bool seeded_by_prior = 9;
 }
 
 message TopicMastery {

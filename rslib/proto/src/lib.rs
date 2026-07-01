@@ -23,6 +23,7 @@ protobuf!(collection, "collection");
 protobuf!(config, "config");
 protobuf!(deck_config, "deck_config");
 protobuf!(decks, "decks");
+protobuf!(diagnostic, "diagnostic");
 protobuf!(generic, "generic");
 protobuf!(i18n, "i18n");
 protobuf!(image_occlusion, "image_occlusion");

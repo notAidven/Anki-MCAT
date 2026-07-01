@@ -259,6 +259,17 @@ impl Aggregation {
         }
     }
 
+    /// Number of cards in the category with an FSRS memory state. This is the
+    /// per-category evidence count behind the FSRS weakness estimate, used as
+    /// the precision weight `w_fsrs` in the diagnostic-prior decay (README
+    /// Step 5): more reviewed cards => the FSRS estimate dominates the prior.
+    pub fn graded_cards(&self, category: Option<&str>) -> u32 {
+        category
+            .and_then(|c| self.topics.get(c))
+            .map(|t| t.graded_cards)
+            .unwrap_or(0)
+    }
+
     /// `points_at_stake = topic_weight * student_weakness`.
     pub fn points(&self, category: Option<&str>) -> f64 {
         let (weight, weakness) = self.weight_and_weakness(category);
@@ -344,7 +355,22 @@ pub struct RankedCard {
     pub card_id: CardId,
     pub category: Option<String>,
     pub topic_weight: f64,
+    /// The weakness actually used for ranking: the precision-weighted blend of
+    /// the diagnostic prior and the FSRS weakness (see
+    /// [`crate::diagnostic::decayed_weakness`]). Equal to [`Self::fsrs_weakness`]
+    /// when no diagnostic prior covers the category, so
+    /// `points_at_stake == topic_weight * student_weakness` for non-struggling
+    /// cards in every case.
     pub student_weakness: f64,
+    /// The honest, FSRS-only weakness (`1 - mean recall`). This is what the
+    /// dashboard shows; the diagnostic prior never changes it.
+    pub fsrs_weakness: f64,
+    /// The diagnostic prior's weakness seed for this category (equals
+    /// [`Self::fsrs_weakness`] when no prior applies). Exposed so ordering is
+    /// explainable.
+    pub prior_weakness: f64,
+    /// Whether a diagnostic prior contributed to [`Self::student_weakness`].
+    pub seeded_by_prior: bool,
     /// `topic_weight * student_weakness`, multiplied by
     /// [`STRUGGLING_PRIORITY_BOOST`] when `struggling` is set.
     pub points_at_stake: f64,
@@ -428,6 +454,16 @@ impl Collection {
         let timing = self.timing_today()?;
         let deck_names = self.deck_name_map()?;
 
+        // ReadyMCAT LEARN MODE: seed weakness from the first-launch diagnostic
+        // prior so session-one ordering is useful before FSRS has data. The
+        // prior touches ORDERING ONLY (never the dashboard's honest aggregation)
+        // and decays as reviews accrue (README Step 5). Absent => no effect.
+        let prior = self.load_diagnostic_prior();
+        let decay_c0 = prior
+            .as_ref()
+            .map(|p| p.decay_pseudocount())
+            .unwrap_or(crate::diagnostic::DEFAULT_DECAY_PSEUDOCOUNT);
+
         let mut ranked = Vec::new();
         let mut stmt = self.storage.db.prepare_cached(
             "SELECT c.id, c.did, c.due, n.tags
@@ -448,13 +484,31 @@ impl Collection {
             let tag_refs: Vec<&str> = tags.split_whitespace().collect();
             let deck_name = deck_names.get(&did).map(String::as_str).unwrap_or("");
             let category = tax.category_for(&tag_refs, deck_name);
-            let (weight, weakness) = agg.weight_and_weakness(category);
+            let (weight, fsrs_weakness) = agg.weight_and_weakness(category);
+
+            // Blend the diagnostic prior in by precision, if it covers this
+            // category. `w_fsrs` is the category's reviewed-card count, so the
+            // prior fades as real reviews accumulate.
+            let prior_seed = prior
+                .as_ref()
+                .zip(category)
+                .and_then(|(p, c)| p.weakness_for(c));
+            let (student_weakness, prior_weakness, seeded_by_prior) = match prior_seed {
+                Some(pw) => {
+                    let w_fsrs = agg.graded_cards(category) as f64;
+                    let blended =
+                        crate::diagnostic::decayed_weakness(pw, fsrs_weakness, w_fsrs, decay_c0);
+                    (blended, pw, true)
+                }
+                None => (fsrs_weakness, fsrs_weakness, false),
+            };
+
             // Seam: a corrected-but-still-struggling concept (tagged by the
             // teach-on-miss reviewer) gets a priority boost so it resurfaces.
             let struggling = tag_refs
                 .iter()
                 .any(|tag| is_path_prefix(STRUGGLING_TAG, tag));
-            let base = weight * weakness;
+            let base = weight * student_weakness;
             let points_at_stake = if struggling {
                 base * STRUGGLING_PRIORITY_BOOST
             } else {
@@ -464,7 +518,10 @@ impl Collection {
                 card_id,
                 category: category.map(str::to_string),
                 topic_weight: weight,
-                student_weakness: weakness,
+                student_weakness,
+                fsrs_weakness,
+                prior_weakness,
+                seeded_by_prior,
                 points_at_stake,
                 struggling,
                 due,
@@ -737,5 +794,110 @@ mod test {
         assert!(!agg.meets_data_threshold());
         let ranked = col.rank_due_cards(&tax, &agg, None).unwrap();
         assert!(ranked.is_empty());
+    }
+
+    /// GUARDRAIL (honesty rule): the first-launch diagnostic prior influences
+    /// card ORDERING only. It must never move the dashboard's honest numbers
+    /// (per-topic weakness/mastery, coverage, the ranged memory score), which
+    /// are computed purely from FSRS state.
+    #[test]
+    fn diagnostic_prior_seeds_ordering_not_dashboard() {
+        use std::collections::BTreeMap;
+
+        use crate::diagnostic::CategoryPrior;
+        use crate::diagnostic::DiagnosticPrior;
+        use crate::diagnostic::DEFAULT_DECAY_PSEUDOCOUNT;
+
+        let mut col = Collection::new();
+        // Two equally-weighted topics, so the prior alone can decide the order.
+        let tax = Taxonomy::from_json_str(
+            r##"{
+                "version": 1,
+                "aamc_categories": {
+                    "1A": {"name": "Biomolecules", "weight": 5.0},
+                    "3A": {"name": "Behavior", "weight": 5.0}
+                },
+                "mappings": [
+                    {"deck_tag_or_subdeck": "MCAT::Biochemistry", "category": "1A"},
+                    {"deck_tag_or_subdeck": "MCAT::Psychology::Behavior", "category": "3A"}
+                ]
+            }"##,
+        )
+        .unwrap();
+        // 1A strongly remembered (low FSRS weakness); 3A badly forgotten (high).
+        let card_1a = add_card(&mut col, "MCAT::Biochemistry", &[], 1000.0, 1);
+        let card_3a = add_card(&mut col, "MCAT::Psychology::Behavior", &[], 0.3, 120);
+
+        // Baseline (no diagnostic prior): FSRS-only ordering + honest numbers.
+        let agg_before = col.compute_topic_aggregation(&tax).unwrap();
+        let mem_before = agg_before.memory_report();
+        let cov_before = agg_before.coverage_report();
+        let weak_1a = agg_before.weight_and_weakness(Some("1A")).1;
+        let weak_3a = agg_before.weight_and_weakness(Some("3A")).1;
+        let ranked_before = col.rank_due_cards(&tax, &agg_before, None).unwrap();
+        // The forgotten topic leads when only FSRS speaks.
+        assert_eq!(ranked_before.first().unwrap().card_id, card_3a);
+        assert!(ranked_before.iter().all(|r| !r.seeded_by_prior));
+
+        // Seed a prior that says the OPPOSITE: 1A weak, 3A strong.
+        let mut categories = BTreeMap::new();
+        categories.insert(
+            "1A".to_string(),
+            CategoryPrior {
+                n: 2,
+                k: 0,
+                p_hat: 0.1,
+                weakness: 0.9,
+                band: "gap".to_string(),
+            },
+        );
+        categories.insert(
+            "3A".to_string(),
+            CategoryPrior {
+                n: 2,
+                k: 2,
+                p_hat: 0.9,
+                weakness: 0.1,
+                band: "held".to_string(),
+            },
+        );
+        let prior = DiagnosticPrior {
+            schema_version: 1,
+            mode: "short".to_string(),
+            taken_at: 0,
+            decay_pseudocount: DEFAULT_DECAY_PSEUDOCOUNT,
+            categories,
+        };
+        col.save_diagnostic_prior(&prior).unwrap();
+
+        // GUARDRAIL: the honest aggregation is byte-for-byte unchanged.
+        let agg_after = col.compute_topic_aggregation(&tax).unwrap();
+        let mem_after = agg_after.memory_report();
+        let cov_after = agg_after.coverage_report();
+        assert_eq!(mem_before.mean, mem_after.mean);
+        assert_eq!(mem_before.range_low, mem_after.range_low);
+        assert_eq!(mem_before.range_high, mem_after.range_high);
+        assert_eq!(mem_before.graded_cards, mem_after.graded_cards);
+        assert_eq!(cov_before.categories_covered, cov_after.categories_covered);
+        assert_eq!(weak_1a, agg_after.weight_and_weakness(Some("1A")).1);
+        assert_eq!(weak_3a, agg_after.weight_and_weakness(Some("3A")).1);
+
+        // But ORDERING is now seeded by the prior: the diagnostic-weak 1A leads.
+        let ranked_after = col.rank_due_cards(&tax, &agg_after, None).unwrap();
+        assert_eq!(ranked_after.first().unwrap().card_id, card_1a);
+
+        let r1 = ranked_after
+            .iter()
+            .find(|r| r.card_id == card_1a)
+            .unwrap()
+            .clone();
+        assert!(r1.seeded_by_prior);
+        // The ranked card still reports the HONEST FSRS weakness (== dashboard)...
+        assert_eq!(r1.fsrs_weakness, weak_1a);
+        // ...while the weakness actually used for ordering was pulled up by the
+        // prior, and points_at_stake tracks that effective weakness.
+        assert!(r1.student_weakness > r1.fsrs_weakness);
+        assert!((r1.prior_weakness - 0.9).abs() < 1e-9);
+        assert!((r1.points_at_stake - r1.topic_weight * r1.student_weakness).abs() < 1e-9);
     }
 }

@@ -1787,8 +1787,7 @@
       "2.0 × 10^-5 C",
       "20 μC",
       "20 uC",
-      "2e-5 C",
-      "2.0 × 10^-5 C"
+      "2e-5 C"
     ],
     "key_terms": [
       "unit: C",
@@ -2819,6 +2818,1405 @@
           "increases"
         ],
         "explanation": "Lower energy → longer wavelength (E = hc/λ)."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4E-1",
+    "section": "C/P",
+    "aamc_category": "4E",
+    "subtopic": "Atomic structure and isotopes",
+    "answer_type": "free_response",
+    "prompt": "How many neutrons are in an atom of carbon-14 (¹⁴C)? Give the number.",
+    "accepted_answers": [
+      "8",
+      "8 neutrons",
+      "eight"
+    ],
+    "key_terms": [
+      "dimensionless",
+      "exact",
+      "neutrons = A - Z"
+    ],
+    "model_answer": "Neutrons = mass number − atomic number = 14 − 6 = 8.",
+    "explanation": "Carbon's atomic number (protons) is 6; the isotope label 14 is the mass number (protons + neutrons).",
+    "difficulty": "easy",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 2: Atoms, Molecules, and Ions",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "What is the atomic number (number of protons) of carbon?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "6",
+          "six"
+        ],
+        "explanation": "Carbon is element 6."
+      },
+      {
+        "stem": "How do you get the neutron count from mass number A and atomic number Z?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "A - Z",
+          "A minus Z",
+          "mass number - atomic number",
+          "N = A - Z"
+        ],
+        "explanation": "Neutrons = A − Z."
+      },
+      {
+        "stem": "Compute 14 − 6.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "8",
+          "eight"
+        ],
+        "explanation": "= 8 neutrons."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4E-2",
+    "section": "C/P",
+    "aamc_category": "4E",
+    "subtopic": "Electron configuration",
+    "answer_type": "free_response",
+    "prompt": "Write the ground-state electron configuration of an oxygen atom (Z = 8).",
+    "accepted_answers": [
+      "1s2 2s2 2p4",
+      "1s² 2s² 2p⁴",
+      "1s^2 2s^2 2p^4"
+    ],
+    "key_terms": [
+      "1s2 2s2 2p4",
+      "2p4",
+      "eight electrons"
+    ],
+    "model_answer": "Oxygen has 8 electrons: 1s² 2s² 2p⁴.",
+    "explanation": "Electrons fill in order of increasing energy (1s, 2s, 2p...); oxygen's 8 electrons fill through 2p⁴.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 6: Electronic Structure and Periodic Properties",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "How many electrons does a neutral oxygen atom have?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "8",
+          "eight"
+        ],
+        "explanation": "Neutral O has Z = 8 electrons."
+      },
+      {
+        "stem": "List the subshells filled in order for the first 8 electrons.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "1s 2s 2p",
+          "1s, 2s, 2p",
+          "1s then 2s then 2p"
+        ],
+        "explanation": "Fill 1s, then 2s, then 2p."
+      },
+      {
+        "stem": "Distribute 8 electrons across 1s, 2s, 2p.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "1s2 2s2 2p4",
+          "1s² 2s² 2p⁴",
+          "1s^2 2s^2 2p^4"
+        ],
+        "explanation": "2 + 2 + 4 = 8 → 1s² 2s² 2p⁴."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4E-3",
+    "section": "C/P",
+    "aamc_category": "4E",
+    "subtopic": "Quantum numbers / shells",
+    "answer_type": "free_response",
+    "prompt": "What is the maximum number of electrons that can occupy the n = 2 shell? Give the number.",
+    "accepted_answers": [
+      "8",
+      "8 electrons",
+      "eight"
+    ],
+    "key_terms": [
+      "dimensionless",
+      "exact",
+      "2n^2"
+    ],
+    "model_answer": "Maximum electrons per shell = 2n² = 2(2)² = 8.",
+    "explanation": "The n = 2 shell contains one 2s and three 2p orbitals (4 orbitals × 2 electrons = 8).",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 6: Electronic Structure and Periodic Properties",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "What formula gives the maximum electrons in a shell of principal quantum number n?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "2n^2",
+          "2n²",
+          "2 n^2",
+          "2(n^2)"
+        ],
+        "explanation": "Maximum electrons = 2n²."
+      },
+      {
+        "stem": "How many orbitals are in the n = 2 shell?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "4",
+          "four"
+        ],
+        "explanation": "One 2s + three 2p = 4 orbitals."
+      },
+      {
+        "stem": "Evaluate 2n² for n = 2.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "8",
+          "eight"
+        ],
+        "explanation": "2(4) = 8."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4E-4",
+    "section": "C/P",
+    "aamc_category": "4E",
+    "subtopic": "Bohr model / photon energy",
+    "answer_type": "free_response",
+    "prompt": "What is the energy of a photon with wavelength 500 nm? Use h = 6.63 × 10⁻³⁴ J·s and c = 3.0 × 10⁸ m/s. Give the value with units.",
+    "accepted_answers": [
+      "4.0 × 10^-19 J",
+      "3.98 × 10^-19 J",
+      "4e-19 J",
+      "3.98e-19 J"
+    ],
+    "key_terms": [
+      "unit: J",
+      "tolerance: ±5%",
+      "E = h c / λ"
+    ],
+    "model_answer": "E = hc/λ = (6.63×10⁻³⁴)(3.0×10⁸)/(500×10⁻⁹) = 3.98×10⁻¹⁹ J ≈ 4.0×10⁻¹⁹ J.",
+    "explanation": "Photon energy is inversely proportional to wavelength; visible-light photons carry a few ×10⁻¹⁹ J each.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 29: Introduction to Quantum Physics",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Write the equation for the energy of a photon from its wavelength.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "E = hc/λ",
+          "E = h c / lambda",
+          "E=hc/λ",
+          "hc/λ"
+        ],
+        "explanation": "E = hc/λ."
+      },
+      {
+        "stem": "Convert 500 nm to meters.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "5.0 x 10^-7 m",
+          "500e-9 m",
+          "5e-7 m",
+          "0.0000005 m"
+        ],
+        "explanation": "500 nm = 500×10⁻⁹ = 5.0×10⁻⁷ m."
+      },
+      {
+        "stem": "Compute (6.63×10⁻³⁴)(3.0×10⁸)/(5.0×10⁻⁷) (give J).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "4.0 x 10^-19 J",
+          "3.98 x 10^-19 J",
+          "4e-19 J"
+        ],
+        "explanation": "≈ 4.0×10⁻¹⁹ J."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4E-5",
+    "section": "C/P",
+    "aamc_category": "4E",
+    "subtopic": "Photoelectric effect",
+    "answer_type": "free_response",
+    "prompt": "In the photoelectric effect, if a photon's energy is less than the metal's work function, are any electrons ejected? Answer yes or no.",
+    "accepted_answers": [
+      "no",
+      "none",
+      "no electrons",
+      "no electrons are ejected"
+    ],
+    "key_terms": [
+      "no",
+      "below threshold",
+      "KE = hf - Φ"
+    ],
+    "model_answer": "No. An electron is ejected only if hf ≥ Φ (the work function); below that threshold no electrons are emitted, regardless of intensity.",
+    "explanation": "The photoelectric effect shows light is quantized: a single photon must carry enough energy to free an electron; more low-energy photons cannot substitute.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 29: Introduction to Quantum Physics — Photon Energies",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Write the photoelectric equation for the maximum kinetic energy of an ejected electron.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "KE = hf - Φ",
+          "KE_max = hf - Φ",
+          "KE = hf - work function",
+          "hf - Φ"
+        ],
+        "explanation": "KE_max = hf − Φ."
+      },
+      {
+        "stem": "For an electron to escape, hf must be at least as large as what quantity?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "work function",
+          "Φ",
+          "the work function",
+          "phi"
+        ],
+        "explanation": "hf must be ≥ the work function Φ."
+      },
+      {
+        "stem": "If hf < Φ, how many electrons are ejected?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "0",
+          "none",
+          "zero",
+          "no"
+        ],
+        "explanation": "None — the threshold isn't met."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4E-6",
+    "section": "C/P",
+    "aamc_category": "4E",
+    "subtopic": "Periodic trend: atomic radius",
+    "answer_type": "free_response",
+    "prompt": "Moving left to right across a period, does atomic radius increase or decrease? Answer in one word.",
+    "accepted_answers": [
+      "decreases",
+      "decrease",
+      "smaller",
+      "gets smaller"
+    ],
+    "key_terms": [
+      "decreases",
+      "increasing Zeff",
+      "same shell"
+    ],
+    "model_answer": "Decreases. Across a period the nuclear charge (Z_eff) rises while electrons enter the same shell, pulling them in tighter.",
+    "explanation": "Atomic radius decreases across a period and increases down a group (electrons occupy higher shells).",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 6: Electronic Structure and Periodic Properties — Periodic Trends",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Moving right across a period, how does the effective nuclear charge (Z_eff) change?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "increases",
+          "goes up",
+          "rises",
+          "increase"
+        ],
+        "explanation": "Z_eff increases as protons are added without adding a shell."
+      },
+      {
+        "stem": "Are the added electrons entering a new shell or the same shell across a period?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "same shell",
+          "same",
+          "the same shell"
+        ],
+        "explanation": "They fill the same principal shell."
+      },
+      {
+        "stem": "Stronger pull on the same shell makes the radius do what?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "decreases",
+          "shrink",
+          "smaller",
+          "decrease"
+        ],
+        "explanation": "The radius shrinks."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4E-7",
+    "section": "C/P",
+    "aamc_category": "4E",
+    "subtopic": "Periodic trend: ionization energy",
+    "answer_type": "free_response",
+    "prompt": "Going down a group in the periodic table, does the first ionization energy increase or decrease? Answer in one word.",
+    "accepted_answers": [
+      "decreases",
+      "decrease",
+      "lower",
+      "gets lower"
+    ],
+    "key_terms": [
+      "decreases",
+      "farther from nucleus",
+      "more shielding"
+    ],
+    "model_answer": "Decreases. Down a group the outermost electron sits in a higher shell, farther from the nucleus and more shielded, so it is easier to remove.",
+    "explanation": "Ionization energy increases across a period and decreases down a group — opposite to atomic radius.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 6: Electronic Structure — Ionization Energy",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Down a group, is the valence electron closer to or farther from the nucleus?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "farther",
+          "further",
+          "farther away",
+          "more distant"
+        ],
+        "explanation": "It occupies a higher shell, farther from the nucleus."
+      },
+      {
+        "stem": "Does shielding by inner electrons increase or decrease down a group?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "increases",
+          "more",
+          "increase",
+          "goes up"
+        ],
+        "explanation": "More inner shells mean more shielding."
+      },
+      {
+        "stem": "Farther, more-shielded electrons are easier or harder to remove?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "easier",
+          "easier to remove",
+          "less energy"
+        ],
+        "explanation": "Easier — so ionization energy decreases."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4E-8",
+    "section": "C/P",
+    "aamc_category": "4E",
+    "subtopic": "Periodic trend: electronegativity",
+    "answer_type": "free_response",
+    "prompt": "Which element has the highest electronegativity? Give the element name or symbol.",
+    "accepted_answers": [
+      "fluorine",
+      "F",
+      "Fluorine"
+    ],
+    "key_terms": [
+      "fluorine",
+      "top-right",
+      "excluding noble gases"
+    ],
+    "model_answer": "Fluorine. Electronegativity increases up and to the right; excluding the noble gases, fluorine (top-right) is the most electronegative element.",
+    "explanation": "The Pauling scale assigns fluorine the highest value (≈4.0); it most strongly attracts bonding electrons.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 7: Chemical Bonding — Electronegativity",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "In which two directions does electronegativity increase on the periodic table?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "up and to the right",
+          "up and right",
+          "right and up",
+          "toward the top-right"
+        ],
+        "explanation": "Electronegativity rises up a group and across a period to the right."
+      },
+      {
+        "stem": "Which group is excluded from the electronegativity trend?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "noble gases",
+          "group 18",
+          "noble gas",
+          "the noble gases"
+        ],
+        "explanation": "Noble gases are typically excluded (they rarely bond)."
+      },
+      {
+        "stem": "Name the top-right main-group element (excluding noble gases).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "fluorine",
+          "F"
+        ],
+        "explanation": "Fluorine."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4E-9",
+    "section": "C/P",
+    "aamc_category": "4E",
+    "subtopic": "Radioactive decay (alpha)",
+    "answer_type": "free_response",
+    "prompt": "When a nucleus undergoes alpha decay, by how much does its mass number decrease? Give the number.",
+    "accepted_answers": [
+      "4",
+      "decreases by 4",
+      "-4",
+      "by 4"
+    ],
+    "key_terms": [
+      "dimensionless",
+      "exact",
+      "alpha = He-4 nucleus"
+    ],
+    "model_answer": "An alpha particle is a helium-4 nucleus (2 protons + 2 neutrons), so the mass number decreases by 4 (and the atomic number by 2).",
+    "explanation": "Alpha decay reduces A by 4 and Z by 2; beta-minus decay leaves A unchanged but raises Z by 1.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 31: Radioactivity and Nuclear Physics",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "An alpha particle is the nucleus of which element?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "helium",
+          "helium-4",
+          "He",
+          "He-4"
+        ],
+        "explanation": "An alpha particle is a helium-4 nucleus."
+      },
+      {
+        "stem": "How many nucleons (protons + neutrons) does an alpha particle contain?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "4",
+          "four",
+          "2 protons and 2 neutrons"
+        ],
+        "explanation": "2 protons + 2 neutrons = 4 nucleons."
+      },
+      {
+        "stem": "So the parent's mass number decreases by how much?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "4",
+          "four"
+        ],
+        "explanation": "Mass number drops by 4."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4E-10",
+    "section": "C/P",
+    "aamc_category": "4E",
+    "subtopic": "Half-life",
+    "answer_type": "free_response",
+    "prompt": "An isotope has a half-life of 5 years. Starting with 80 g, how much remains after 15 years? Give the value with units.",
+    "accepted_answers": [
+      "10 g",
+      "10 grams",
+      "10"
+    ],
+    "key_terms": [
+      "unit: g",
+      "tolerance: ±0.1 g",
+      "3 half-lives"
+    ],
+    "model_answer": "15 years = 3 half-lives. Remaining = 80 × (½)³ = 80/8 = 10 g.",
+    "explanation": "Each half-life halves the amount; after n half-lives a fraction (½)ⁿ remains.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 31: Radioactivity and Nuclear Physics — Half-Life",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "How many half-lives are in 15 years if each half-life is 5 years?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "3",
+          "three"
+        ],
+        "explanation": "15/5 = 3 half-lives."
+      },
+      {
+        "stem": "What fraction of the original remains after 3 half-lives?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "1/8",
+          "one eighth",
+          "0.125",
+          "1/8th"
+        ],
+        "explanation": "(½)³ = 1/8."
+      },
+      {
+        "stem": "Compute 80 g × 1/8 (give g).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "10 g",
+          "10"
+        ],
+        "explanation": "= 10 g."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4E-11",
+    "section": "C/P",
+    "aamc_category": "4E",
+    "subtopic": "Stoichiometry: the mole",
+    "answer_type": "free_response",
+    "prompt": "How many atoms are in 2.0 mol of a substance? Use N_A = 6.022 × 10²³ mol⁻¹. Give the value.",
+    "accepted_answers": [
+      "1.2 × 10^24",
+      "1.20 × 10^24",
+      "1.2 × 10^24 atoms",
+      "1.2e24"
+    ],
+    "key_terms": [
+      "dimensionless",
+      "tolerance: ±5%",
+      "N = n × N_A"
+    ],
+    "model_answer": "N = n × N_A = (2.0 mol)(6.022×10²³) = 1.2×10²⁴ atoms.",
+    "explanation": "Avogadro's number links moles to particle counts; the count is a pure number (dimensionless).",
+    "difficulty": "easy",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 3: Composition of Substances and Solutions — The Mole",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "What is Avogadro's number (particles per mole)?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "6.022 x 10^23",
+          "6.02 x 10^23",
+          "6.022e23",
+          "6.022 × 10^23"
+        ],
+        "explanation": "N_A ≈ 6.022×10²³ mol⁻¹."
+      },
+      {
+        "stem": "Write the relationship between number of particles N, moles n, and N_A.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "N = n N_A",
+          "N = n x N_A",
+          "N=n·N_A",
+          "particles = moles x Avogadro"
+        ],
+        "explanation": "N = n × N_A."
+      },
+      {
+        "stem": "Compute (2.0)(6.022×10²³).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "1.2 x 10^24",
+          "1.20 x 10^24",
+          "1.2e24"
+        ],
+        "explanation": "= 1.2×10²⁴."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4E-12",
+    "section": "C/P",
+    "aamc_category": "4E",
+    "subtopic": "Stoichiometry: limiting reagent",
+    "answer_type": "free_response",
+    "prompt": "For N₂ + 3H₂ → 2NH₃, you start with 1.0 mol N₂ and 1.0 mol H₂. Which reactant is the limiting reagent? Give its formula.",
+    "accepted_answers": [
+      "H2",
+      "H₂",
+      "hydrogen",
+      "H2 (hydrogen)"
+    ],
+    "key_terms": [
+      "H2",
+      "hydrogen",
+      "3:1 ratio"
+    ],
+    "model_answer": "The reaction needs 3 mol H₂ per mol N₂. With only 1.0 mol H₂ (which would react with just 0.33 mol N₂), H₂ runs out first, so H₂ is limiting.",
+    "explanation": "The limiting reagent is the one that produces the least product given the stoichiometric ratio.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 4: Stoichiometry of Chemical Reactions — Limiting Reactant",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "What is the mole ratio of H₂ to N₂ in the balanced equation?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "3:1",
+          "3 to 1",
+          "3",
+          "three to one"
+        ],
+        "explanation": "3 mol H₂ per 1 mol N₂."
+      },
+      {
+        "stem": "To fully react 1.0 mol N₂, how many mol H₂ are required?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "3.0 mol",
+          "3 mol",
+          "3",
+          "3.0"
+        ],
+        "explanation": "1.0 mol N₂ × 3 = 3.0 mol H₂ needed."
+      },
+      {
+        "stem": "With only 1.0 mol H₂ available, which reactant is limiting?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "H2",
+          "hydrogen",
+          "H₂"
+        ],
+        "explanation": "H₂ (there isn't enough of it)."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5A-1",
+    "section": "C/P",
+    "aamc_category": "5A",
+    "subtopic": "pH of a strong acid",
+    "answer_type": "free_response",
+    "prompt": "What is the pH of a 0.010 M solution of HCl (a strong acid)? Give the numeric pH.",
+    "accepted_answers": [
+      "2",
+      "2.0",
+      "pH 2",
+      "pH = 2"
+    ],
+    "key_terms": [
+      "dimensionless",
+      "tolerance: ±0.05",
+      "pH = -log[H+]"
+    ],
+    "model_answer": "HCl fully dissociates, so [H⁺] = 0.010 M. pH = −log(0.010) = 2.0.",
+    "explanation": "For a strong monoprotic acid, [H⁺] equals the acid concentration; pH is its negative base-10 log.",
+    "difficulty": "easy",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 14: Acid-Base Equilibria — pH and pOH",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "A strong acid like HCl dissociates to what extent in water?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "completely",
+          "fully",
+          "100%",
+          "completely dissociates"
+        ],
+        "explanation": "Strong acids dissociate essentially 100%."
+      },
+      {
+        "stem": "What is [H⁺] in 0.010 M HCl?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "0.010 M",
+          "0.01 M",
+          "1.0 x 10^-2 M",
+          "0.010"
+        ],
+        "explanation": "[H⁺] = 0.010 M (equal to the acid concentration)."
+      },
+      {
+        "stem": "Compute pH = −log(0.010).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "2",
+          "2.0"
+        ],
+        "explanation": "−log(10⁻²) = 2."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5A-2",
+    "section": "C/P",
+    "aamc_category": "5A",
+    "subtopic": "pH and pOH relationship",
+    "answer_type": "free_response",
+    "prompt": "At 25°C, a solution has pH = 3. What is its pOH? Give the numeric value.",
+    "accepted_answers": [
+      "11",
+      "11.0",
+      "pOH 11",
+      "pOH = 11"
+    ],
+    "key_terms": [
+      "dimensionless",
+      "tolerance: ±0.05",
+      "pH + pOH = 14"
+    ],
+    "model_answer": "At 25°C, pH + pOH = 14, so pOH = 14 − 3 = 11.",
+    "explanation": "This follows from Kw = [H⁺][OH⁻] = 1.0×10⁻¹⁴ at 25°C.",
+    "difficulty": "easy",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 14: Acid-Base Equilibria — pH and pOH",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "At 25°C, what do pH and pOH sum to?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "14",
+          "fourteen",
+          "14.0"
+        ],
+        "explanation": "pH + pOH = 14 at 25°C."
+      },
+      {
+        "stem": "Rearrange to solve for pOH given pH.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "pOH = 14 - pH",
+          "14 - pH",
+          "pOH=14-pH"
+        ],
+        "explanation": "pOH = 14 − pH."
+      },
+      {
+        "stem": "Compute 14 − 3.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "11",
+          "eleven"
+        ],
+        "explanation": "= 11."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5A-3",
+    "section": "C/P",
+    "aamc_category": "5A",
+    "subtopic": "Strong vs weak acids",
+    "answer_type": "free_response",
+    "prompt": "In one phrase, what distinguishes a strong acid from a weak acid in water?",
+    "accepted_answers": [
+      "completely dissociates",
+      "fully ionizes",
+      "dissociates completely",
+      "complete dissociation",
+      "it fully dissociates"
+    ],
+    "key_terms": [
+      "completely",
+      "dissociates",
+      "ionizes"
+    ],
+    "model_answer": "A strong acid dissociates (ionizes) essentially completely in water, whereas a weak acid ionizes only partially and establishes an equilibrium.",
+    "explanation": "Strength refers to the degree of ionization, not concentration; a dilute strong acid is still 'strong.'",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 14: Acid-Base Equilibria — Strong and Weak Acids",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "What ion do acids donate/produce in water?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "H+",
+          "hydrogen ion",
+          "proton",
+          "H3O+",
+          "hydronium"
+        ],
+        "explanation": "Acids donate H⁺ (forming hydronium, H₃O⁺)."
+      },
+      {
+        "stem": "Roughly what fraction of a STRONG acid ionizes in water?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "nearly 100%",
+          "100%",
+          "all of it",
+          "essentially all"
+        ],
+        "explanation": "Strong acids ionize ~completely."
+      },
+      {
+        "stem": "A WEAK acid ionizes to what extent?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "partially",
+          "only partially",
+          "a little",
+          "incompletely"
+        ],
+        "explanation": "Weak acids ionize only partially (equilibrium)."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5A-4",
+    "section": "C/P",
+    "aamc_category": "5A",
+    "subtopic": "Conjugate acid-base pairs",
+    "answer_type": "free_response",
+    "prompt": "What is the conjugate base of water (H₂O)? Give the formula or name.",
+    "accepted_answers": [
+      "OH-",
+      "OH−",
+      "hydroxide",
+      "hydroxide ion",
+      "OH^-"
+    ],
+    "key_terms": [
+      "OH-",
+      "hydroxide",
+      "lose H+"
+    ],
+    "model_answer": "Removing one H⁺ from H₂O gives OH⁻ (hydroxide), its conjugate base.",
+    "explanation": "A conjugate base is what remains after an acid donates a proton; a conjugate acid is a base plus a proton.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 14: Acid-Base Equilibria — Brønsted-Lowry",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "To form a conjugate base, you remove which species from the acid?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "H+",
+          "a proton",
+          "hydrogen ion",
+          "one H+"
+        ],
+        "explanation": "Remove one H⁺ (proton)."
+      },
+      {
+        "stem": "Take H₂O and remove one H⁺. What is left?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "OH-",
+          "hydroxide",
+          "OH−"
+        ],
+        "explanation": "H₂O − H⁺ = OH⁻."
+      },
+      {
+        "stem": "What is the conjugate ACID of water (add H⁺)?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "H3O+",
+          "hydronium",
+          "H₃O⁺"
+        ],
+        "explanation": "H₂O + H⁺ = H₃O⁺ (hydronium)."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5A-5",
+    "section": "C/P",
+    "aamc_category": "5A",
+    "subtopic": "Buffers (Henderson-Hasselbalch)",
+    "answer_type": "free_response",
+    "prompt": "In a buffer where the weak acid and its conjugate base are at equal concentrations, the pH equals what quantity?",
+    "accepted_answers": [
+      "pKa",
+      "the pKa",
+      "equal to pKa",
+      "pKa of the acid"
+    ],
+    "key_terms": [
+      "pKa",
+      "log(1) = 0",
+      "Henderson-Hasselbalch"
+    ],
+    "model_answer": "By Henderson–Hasselbalch, pH = pKa + log([A⁻]/[HA]). When [A⁻] = [HA], the log term is 0, so pH = pKa.",
+    "explanation": "A buffer resists pH change and is most effective when pH ≈ pKa (equal acid/base forms).",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 14: Acid-Base Equilibria — Buffers",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Write the Henderson-Hasselbalch equation.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "pH = pKa + log([A-]/[HA])",
+          "pH = pKa + log(base/acid)",
+          "pH=pKa+log([A⁻]/[HA])"
+        ],
+        "explanation": "pH = pKa + log([A⁻]/[HA])."
+      },
+      {
+        "stem": "If [A⁻] = [HA], what is log([A⁻]/[HA])?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "0",
+          "zero",
+          "log(1) = 0"
+        ],
+        "explanation": "log(1) = 0."
+      },
+      {
+        "stem": "So the pH equals what?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "pKa",
+          "the pKa"
+        ],
+        "explanation": "pH = pKa."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5A-6",
+    "section": "C/P",
+    "aamc_category": "5A",
+    "subtopic": "Titration equivalence point",
+    "answer_type": "free_response",
+    "prompt": "At the equivalence point of a strong acid–strong base titration, what is the pH (at 25°C)? Give the numeric value.",
+    "accepted_answers": [
+      "7",
+      "7.0",
+      "pH 7",
+      "pH = 7"
+    ],
+    "key_terms": [
+      "dimensionless",
+      "tolerance: ±0.1",
+      "neutral salt"
+    ],
+    "model_answer": "The neutralization produces a neutral salt and water, so at the equivalence point pH = 7.",
+    "explanation": "This holds only for strong–strong titrations; weak-acid titrations have an equivalence pH above 7.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 14: Acid-Base Equilibria — Titrations",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "At the equivalence point, how do moles of acid and base compare?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "equal",
+          "they are equal",
+          "stoichiometrically equal",
+          "same"
+        ],
+        "explanation": "Moles of added base equal moles of acid."
+      },
+      {
+        "stem": "A strong acid + strong base react to form water and what kind of salt?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "neutral",
+          "neutral salt",
+          "a neutral salt"
+        ],
+        "explanation": "A neutral (non-hydrolyzing) salt."
+      },
+      {
+        "stem": "What pH does a neutral salt solution have at 25°C?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "7",
+          "7.0",
+          "neutral"
+        ],
+        "explanation": "pH = 7."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5A-7",
+    "section": "C/P",
+    "aamc_category": "5A",
+    "subtopic": "Solubility product (Ksp)",
+    "answer_type": "free_response",
+    "prompt": "AgCl has Ksp = 1.0 × 10⁻¹⁰. What is its molar solubility in pure water? Give the value with units.",
+    "accepted_answers": [
+      "1.0 × 10^-5 M",
+      "1e-5 M",
+      "1.0 × 10^-5 mol/L"
+    ],
+    "key_terms": [
+      "unit: M",
+      "tolerance: ±5%",
+      "Ksp = s^2"
+    ],
+    "model_answer": "AgCl ⇌ Ag⁺ + Cl⁻, so Ksp = [Ag⁺][Cl⁻] = s². Thus s = √Ksp = √(1.0×10⁻¹⁰) = 1.0×10⁻⁵ M.",
+    "explanation": "For a 1:1 salt, molar solubility is the square root of Ksp.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 15: Equilibria of Other Reaction Classes — Ksp",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Write the Ksp expression for AgCl dissolving into Ag⁺ and Cl⁻.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "Ksp = [Ag+][Cl-]",
+          "[Ag+][Cl-]",
+          "Ksp=[Ag⁺][Cl⁻]"
+        ],
+        "explanation": "Ksp = [Ag⁺][Cl⁻]."
+      },
+      {
+        "stem": "If solubility is s, express Ksp in terms of s for this 1:1 salt.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "s^2",
+          "s²",
+          "s*s",
+          "s squared"
+        ],
+        "explanation": "[Ag⁺] = [Cl⁻] = s, so Ksp = s²."
+      },
+      {
+        "stem": "Solve s = √(1.0×10⁻¹⁰) (give M).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "1.0 x 10^-5 M",
+          "1e-5 M",
+          "1.0 x 10^-5"
+        ],
+        "explanation": "= 1.0×10⁻⁵ M."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5A-8",
+    "section": "C/P",
+    "aamc_category": "5A",
+    "subtopic": "Properties of water (hydrogen bonding)",
+    "answer_type": "free_response",
+    "prompt": "Which intermolecular force is responsible for water's unusually high boiling point and surface tension? Name it.",
+    "accepted_answers": [
+      "hydrogen bonding",
+      "hydrogen bonds",
+      "H-bonding",
+      "hydrogen bond"
+    ],
+    "key_terms": [
+      "hydrogen bond",
+      "O-H",
+      "polar"
+    ],
+    "model_answer": "Hydrogen bonding. Each water molecule's polar O–H can hydrogen-bond to lone pairs on neighboring oxygens, giving water anomalously strong intermolecular attraction.",
+    "explanation": "Hydrogen bonds also explain ice being less dense than liquid water and water's high specific heat.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 10: Liquids and Solids — Intermolecular Forces",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Is the O–H bond in water polar or nonpolar?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "polar",
+          "polar covalent",
+          "very polar"
+        ],
+        "explanation": "O is much more electronegative than H, so O–H is polar."
+      },
+      {
+        "stem": "Hydrogen bonding requires H bonded to which highly electronegative atoms?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "N, O, or F",
+          "F, O, N",
+          "nitrogen oxygen fluorine",
+          "O N F"
+        ],
+        "explanation": "H must be bonded to N, O, or F."
+      },
+      {
+        "stem": "Name the resulting strong dipole–dipole interaction between water molecules.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "hydrogen bonding",
+          "hydrogen bonds",
+          "hydrogen bond"
+        ],
+        "explanation": "Hydrogen bonding."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5A-9",
+    "section": "C/P",
+    "aamc_category": "5A",
+    "subtopic": "Autoionization of water (Kw)",
+    "answer_type": "free_response",
+    "prompt": "What is the value of the ion-product constant of water, Kw, at 25°C? Give the value.",
+    "accepted_answers": [
+      "1.0 × 10^-14",
+      "1e-14",
+      "1.0 × 10^-14 M^2"
+    ],
+    "key_terms": [
+      "dimensionless",
+      "tolerance: ±5%",
+      "Kw = [H+][OH-]"
+    ],
+    "model_answer": "Kw = [H⁺][OH⁻] = 1.0×10⁻¹⁴ at 25°C.",
+    "explanation": "In pure water [H⁺] = [OH⁻] = 1.0×10⁻⁷ M, whose product is Kw = 1.0×10⁻¹⁴.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 14: Acid-Base Equilibria — Autoionization of Water",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Write the autoionization equilibrium of water.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "2H2O <-> H3O+ + OH-",
+          "H2O <-> H+ + OH-",
+          "2H₂O ⇌ H₃O⁺ + OH⁻",
+          "H2O -> H+ + OH-"
+        ],
+        "explanation": "2H₂O ⇌ H₃O⁺ + OH⁻."
+      },
+      {
+        "stem": "Write Kw in terms of ion concentrations.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "Kw = [H+][OH-]",
+          "[H+][OH-]",
+          "Kw=[H⁺][OH⁻]"
+        ],
+        "explanation": "Kw = [H⁺][OH⁻]."
+      },
+      {
+        "stem": "What is [H⁺] in pure water at 25°C?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "1.0 x 10^-7 M",
+          "1e-7 M",
+          "1.0 x 10^-7"
+        ],
+        "explanation": "1.0×10⁻⁷ M, so Kw = (10⁻⁷)² = 10⁻¹⁴."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5A-10",
+    "section": "C/P",
+    "aamc_category": "5A",
+    "subtopic": "Lewis acids and bases",
+    "answer_type": "free_response",
+    "prompt": "By the Lewis definition, an acid is a species that does what with an electron pair?",
+    "accepted_answers": [
+      "accepts an electron pair",
+      "electron pair acceptor",
+      "accepts electron pair",
+      "electron-pair acceptor",
+      "accepts a pair of electrons"
+    ],
+    "key_terms": [
+      "electron pair",
+      "acceptor",
+      "accepts"
+    ],
+    "model_answer": "A Lewis acid is an electron-pair acceptor (a Lewis base is an electron-pair donor).",
+    "explanation": "The Lewis model generalizes acidity beyond protons — e.g., BF₃ and metal cations are Lewis acids.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 15: Equilibria — Lewis Acids and Bases",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "What chemical entity does the Lewis model focus on (rather than H⁺)?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "electron pairs",
+          "electron pair",
+          "lone pairs",
+          "pairs of electrons"
+        ],
+        "explanation": "Lewis theory is defined in terms of electron pairs."
+      },
+      {
+        "stem": "A Lewis BASE does what with its electron pair?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "donates",
+          "donates it",
+          "gives",
+          "electron pair donor"
+        ],
+        "explanation": "A Lewis base donates an electron pair."
+      },
+      {
+        "stem": "Therefore a Lewis ACID does what with an electron pair?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "accepts",
+          "accepts it",
+          "electron pair acceptor",
+          "receives"
+        ],
+        "explanation": "A Lewis acid accepts an electron pair."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-5A-11",
+    "section": "C/P",
+    "aamc_category": "5A",
+    "subtopic": "Molarity and solution preparation",
+    "answer_type": "free_response",
+    "prompt": "How many moles of solute are in 2.0 L of a 0.50 M solution? Give the value with units.",
+    "accepted_answers": [
+      "1.0 mol",
+      "1 mol",
+      "1.0 moles",
+      "1"
+    ],
+    "key_terms": [
+      "unit: mol",
+      "tolerance: ±0.05 mol",
+      "n = M V"
+    ],
+    "model_answer": "n = M × V = (0.50 mol/L)(2.0 L) = 1.0 mol.",
+    "explanation": "Molarity is moles per liter; multiplying by volume in liters gives moles.",
+    "difficulty": "easy",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 3: Composition of Substances and Solutions — Molarity",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Define molarity in terms of moles and volume.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "mol/L",
+          "moles per liter",
+          "M = mol/L",
+          "moles/liter"
+        ],
+        "explanation": "Molarity = moles of solute per liter of solution."
+      },
+      {
+        "stem": "Rearrange M = n/V to solve for moles n.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "n = M V",
+          "n = M x V",
+          "n=MV",
+          "moles = molarity x volume"
+        ],
+        "explanation": "n = M × V."
+      },
+      {
+        "stem": "Compute (0.50 mol/L)(2.0 L) (give mol).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "1.0 mol",
+          "1 mol",
+          "1"
+        ],
+        "explanation": "= 1.0 mol."
       }
     ]
   }

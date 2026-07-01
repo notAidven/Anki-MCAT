@@ -48,8 +48,10 @@ ALLOWED_COGNITIVE = {"recall", "application"}
 
 # An accepted answer is treated as "numeric" (a quantity) when it begins with an
 # optional sign and a digit (covers integers, decimals, scientific notation such
-# as "6.02 x 10^23" or "1.0e-14", fractions like "3/2", and ratios like "4:1").
-NUMERIC_RE = re.compile(r"^\s*[+\-\u2212]?(?:\d[\d,]*\.?\d*|\.\d+)")
+# as "6.02 x 10^23", fractions like "3/2", and ratios like "4:1"). The trailing
+# negative lookahead keeps digit-led-but-non-numeric strings such as an electron
+# configuration ("1s2 2s2 2p4") from being flagged as physical quantities.
+NUMERIC_RE = re.compile(r"^\s*[+\-\u2212]?(?:\d[\d,]*\.?\d*|\.\d+)(?![A-Za-z])")
 
 
 def load_taxonomy_categories():

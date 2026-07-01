@@ -21,7 +21,7 @@ categories **4A–4E** and **5A–5E**).
   sub-questions are grounded in the same source).
 - **No copying or close paraphrase** from any copyrighted or paid question bank
   (UWorld, Kaplan, Blueprint, AAMC paid/official prep, etc.). Facts, formulas, and
-  answer keys are drawn from openly licensed textbooks; no source's *expression*
+  answer keys are drawn from openly licensed textbooks; no source's _expression_
   (its specific wording or its specific questions) is reproduced. Facts, equations,
   and natural laws are not themselves copyrightable.
 - **AAMC content outline** ("What's on the MCAT Exam?") is used **only** for the
@@ -48,20 +48,25 @@ cites the open source whose concept it is grounded in.
 
 ```json
 {
-  "id": "cp-<category>-<n>",
-  "section": "C/P",
-  "aamc_category": "<id matching taxonomy.json, e.g. 4A>",
-  "subtopic": "<subtopic label>",
-  "stem": "<question>",
-  "options": ["<A>","<B>","<C>","<D>"],
-  "correct_index": 0,
-  "explanation": "<why correct + why each distractor is wrong; shows the math>",
-  "difficulty": "easy|medium|hard",
-  "cognitive_level": "recall|application",
-  "source": {"name": "...", "url": "...", "license": "..."},
-  "subquestions": [
-    {"stem": "...", "options": ["..."], "correct_index": 0, "explanation": "..."}
-  ]
+    "id": "cp-<category>-<n>",
+    "section": "C/P",
+    "aamc_category": "<id matching taxonomy.json, e.g. 4A>",
+    "subtopic": "<subtopic label>",
+    "stem": "<question>",
+    "options": ["<A>", "<B>", "<C>", "<D>"],
+    "correct_index": 0,
+    "explanation": "<why correct + why each distractor is wrong; shows the math>",
+    "difficulty": "easy|medium|hard",
+    "cognitive_level": "recall|application",
+    "source": { "name": "...", "url": "...", "license": "..." },
+    "subquestions": [
+        {
+            "stem": "...",
+            "options": ["..."],
+            "correct_index": 0,
+            "explanation": "..."
+        }
+    ]
 }
 ```
 
@@ -75,14 +80,14 @@ teach-on-miss scaffold shown when a learner misses the main question (see the
 
 All grounding sources are free to access and openly licensed.
 
-| Source | Publisher | License | URL | Used for |
-|---|---|---|---|---|
-| OpenStax **College Physics 2e** | OpenStax, Rice University | CC BY 4.0 | https://openstax.org/details/books/college-physics-2e | Physics items (4A, 4B fluids, 4C circuits/EM, 4D waves/optics, 4E quantum/nuclear) |
-| OpenStax **Chemistry 2e** | OpenStax, Rice University | CC BY 4.0 | https://openstax.org/details/books/chemistry-2e | General-chemistry items (4B gases, 4C electrochem, 4E atomic/periodic/stoich, 5A, 5B, 5E) |
-| OpenStax **Organic Chemistry** | OpenStax, Rice University | CC BY 4.0 | https://openstax.org/details/books/organic-chemistry | Organic items (4D IR/UV-Vis spectroscopy, 5D reactivity/stereochemistry) |
-| OpenStax **Biology 2e** | OpenStax, Rice University | CC BY 4.0 | https://openstax.org/details/books/biology-2e | Biochemistry-overlap items (5C electrophoresis, 5D biomolecules, 5E enzyme kinetics / bioenergetics) |
-| **LibreTexts Chemistry** | LibreTexts (libretexts.org) | CC BY-NC-SA 4.0 (representative; individual pages vary) | https://chem.libretexts.org | Separation & purification lab techniques (5C) |
-| **LibreTexts Physics** | LibreTexts (libretexts.org) | CC BY-NC-SA 4.0 (representative; individual pages vary) | https://phys.libretexts.org | Supplementary physics grounding |
+| Source                          | Publisher                   | License                                                 | URL                                                   | Used for                                                                                             |
+| ------------------------------- | --------------------------- | ------------------------------------------------------- | ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| OpenStax **College Physics 2e** | OpenStax, Rice University   | CC BY 4.0                                               | https://openstax.org/details/books/college-physics-2e | Physics items (4A, 4B fluids, 4C circuits/EM, 4D waves/optics, 4E quantum/nuclear)                   |
+| OpenStax **Chemistry 2e**       | OpenStax, Rice University   | CC BY 4.0                                               | https://openstax.org/details/books/chemistry-2e       | General-chemistry items (4B gases, 4C electrochem, 4E atomic/periodic/stoich, 5A, 5B, 5E)            |
+| OpenStax **Organic Chemistry**  | OpenStax, Rice University   | CC BY 4.0                                               | https://openstax.org/details/books/organic-chemistry  | Organic items (4D IR/UV-Vis spectroscopy, 5D reactivity/stereochemistry)                             |
+| OpenStax **Biology 2e**         | OpenStax, Rice University   | CC BY 4.0                                               | https://openstax.org/details/books/biology-2e         | Biochemistry-overlap items (5C electrophoresis, 5D biomolecules, 5E enzyme kinetics / bioenergetics) |
+| **LibreTexts Chemistry**        | LibreTexts (libretexts.org) | CC BY-NC-SA 4.0 (representative; individual pages vary) | https://chem.libretexts.org                           | Separation & purification lab techniques (5C)                                                        |
+| **LibreTexts Physics**          | LibreTexts (libretexts.org) | CC BY-NC-SA 4.0 (representative; individual pages vary) | https://phys.libretexts.org                           | Supplementary physics grounding                                                                      |
 
 **Concept reference only (not cited as a per-item source):**
 
@@ -107,19 +112,19 @@ Item counts by AAMC content category (weights from `taxonomy.json`). Every item 
 tagged with a distinct subtopic, so the subtopic count equals the item count in
 each category.
 
-| Category | Name | Weight | Items | Sub-Qs |
-|---|---|---:|---:|---:|
-| 4A | Translational motion, forces, work, energy, and equilibrium in living systems | 2.05 | 12 | 36 |
-| 4B | Importance of fluids for the circulation of blood, gas movement, and gas exchange | 2.05 | 11 | 33 |
-| 4C | Electrochemistry and electrical circuits and their elements | 2.05 | 12 | 36 |
-| 4D | How light and sound interact with matter | 2.05 | 11 | 33 |
-| 4E | Atoms, nuclear decay, electronic structure, and atomic chemical behavior | 2.05 | 12 | 36 |
-| 5A | Unique nature of water and its solutions | 3.08 | 11 | 33 |
-| 5B | Nature of molecules and intermolecular interactions | 3.08 | 11 | 33 |
-| 5C | Separation and purification methods | 3.08 | 9 | 27 |
-| 5D | Structure, function, and reactivity of biologically relevant molecules | 3.08 | 14 | 42 |
-| 5E | Principles of chemical thermodynamics and kinetics | 3.08 | 12 | 36 |
-| **Total** | | | **115** | **345** |
+| Category  | Name                                                                              | Weight |   Items |  Sub-Qs |
+| --------- | --------------------------------------------------------------------------------- | -----: | ------: | ------: |
+| 4A        | Translational motion, forces, work, energy, and equilibrium in living systems     |   2.05 |      12 |      36 |
+| 4B        | Importance of fluids for the circulation of blood, gas movement, and gas exchange |   2.05 |      11 |      33 |
+| 4C        | Electrochemistry and electrical circuits and their elements                       |   2.05 |      12 |      36 |
+| 4D        | How light and sound interact with matter                                          |   2.05 |      11 |      33 |
+| 4E        | Atoms, nuclear decay, electronic structure, and atomic chemical behavior          |   2.05 |      12 |      36 |
+| 5A        | Unique nature of water and its solutions                                          |   3.08 |      11 |      33 |
+| 5B        | Nature of molecules and intermolecular interactions                               |   3.08 |      11 |      33 |
+| 5C        | Separation and purification methods                                               |   3.08 |       9 |      27 |
+| 5D        | Structure, function, and reactivity of biologically relevant molecules            |   3.08 |      14 |      42 |
+| 5E        | Principles of chemical thermodynamics and kinetics                                |   3.08 |      12 |      36 |
+| **Total** |                                                                                   |        | **115** | **345** |
 
 ### Subtopics covered per category
 

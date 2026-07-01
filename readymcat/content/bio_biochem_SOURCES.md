@@ -25,7 +25,7 @@ traceable and legally clean.
   (the category IDs and names already encoded in `taxonomy.json`). No AAMC questions,
   passages, or answer choices were used.
 - **Facts, concepts, and mechanisms are not copyrightable**; only a source's specific
-  *expression* is. Every stem, option set, and explanation here is independently worded.
+  _expression_ is. Every stem, option set, and explanation here is independently worded.
 - **Deck independence:** these items are authored independently of the study deck
   (Aidan / community decks). The bank and the deck share no items, so studying one cannot
   leak answers to the other.
@@ -35,18 +35,18 @@ traceable and legally clean.
 Original ReadyMCAT B/B items (c) ReadyMCAT contributors, released under
 **CC BY-SA 4.0**. Each item additionally cites the open source whose concept it is grounded
 in. Where a source carries a NonCommercial / ShareAlike obligation (LibreTexts, below),
-only *facts/concepts* were used — no protected expression was reproduced — but the source is
+only _facts/concepts_ were used — no protected expression was reproduced — but the source is
 credited in full for transparency.
 
 ## 3. Sources used (all free / openly licensed)
 
-| Source | Publisher | License | URL | Items |
-|---|---|---|---|---:|
-| OpenStax **Biology 2e** | OpenStax, Rice University | CC BY 4.0 | https://openstax.org/details/books/biology-2e | 90 |
-| OpenStax **Anatomy and Physiology 2e** | OpenStax, Rice University | CC BY 4.0 | https://openstax.org/details/books/anatomy-and-physiology-2e | 41 |
-| OpenStax **Microbiology** | OpenStax, Rice University | CC BY 4.0 | https://openstax.org/details/books/microbiology | 11 |
-| **LibreTexts** - Fundamentals of Biochemistry (Jakubowski & Flatt) | LibreTexts / UW-Stevens Point | CC BY-NC-SA 4.0 | https://bio.libretexts.org/Bookshelves/Biochemistry/Fundamentals_of_Biochemistry_(Jakubowski_and_Flatt) | 9 |
-| OpenStax **Chemistry 2e** | OpenStax, Rice University | CC BY 4.0 | https://openstax.org/details/books/chemistry-2e | 1 |
+| Source                                                             | Publisher                     | License         | URL                                                                                                     | Items |
+| ------------------------------------------------------------------ | ----------------------------- | --------------- | ------------------------------------------------------------------------------------------------------- | ----: |
+| OpenStax **Biology 2e**                                            | OpenStax, Rice University     | CC BY 4.0       | https://openstax.org/details/books/biology-2e                                                           |    90 |
+| OpenStax **Anatomy and Physiology 2e**                             | OpenStax, Rice University     | CC BY 4.0       | https://openstax.org/details/books/anatomy-and-physiology-2e                                            |    41 |
+| OpenStax **Microbiology**                                          | OpenStax, Rice University     | CC BY 4.0       | https://openstax.org/details/books/microbiology                                                         |    11 |
+| **LibreTexts** - Fundamentals of Biochemistry (Jakubowski & Flatt) | LibreTexts / UW-Stevens Point | CC BY-NC-SA 4.0 | https://bio.libretexts.org/Bookshelves/Biochemistry/Fundamentals_of_Biochemistry_(Jakubowski_and_Flatt) |     9 |
+| OpenStax **Chemistry 2e**                                          | OpenStax, Rice University     | CC BY 4.0       | https://openstax.org/details/books/chemistry-2e                                                         |     1 |
 
 Reference-only (no content reproduced; used as concept cross-checks / student review links):
 
@@ -64,18 +64,18 @@ All five source URLs were checked and returned HTTP 200 at authoring time.
 
 ### 4.1 Items per AAMC content category
 
-| Category | AAMC content category (name) | Weight* | Items | Subtopics |
-|---|---|---:|---:|---:|
-| 1A | Structure and function of proteins and their constituent amino acids | 3.53 | 17 | 17 |
-| 1B | Transmission of genetic information from the gene to the protein | 3.53 | 18 | 18 |
-| 1C | Transmission of heritable information + processes increasing genetic diversity | 3.53 | 16 | 16 |
-| 1D | Principles of bioenergetics and fuel molecule metabolism | 3.53 | 18 | 18 |
-| 2A | Assemblies of molecules, cells, and groups of cells | 1.71 | 16 | 16 |
-| 2B | Structure, growth, physiology, and genetics of prokaryotes and viruses | 1.71 | 14 | 14 |
-| 2C | Processes of cell division, differentiation, and specialization | 1.71 | 13 | 13 |
-| 3A | Structure and functions of the nervous and endocrine systems | 3.21 | 18 | 18 |
-| 3B | Structure and integrative functions of the main organ systems | 3.21 | 22 | 22 |
-| **Total** | | | **152** | **152** |
+| Category  | AAMC content category (name)                                                   | Weight* |   Items | Subtopics |
+| --------- | ------------------------------------------------------------------------------ | ------: | ------: | --------: |
+| 1A        | Structure and function of proteins and their constituent amino acids           |    3.53 |      17 |        17 |
+| 1B        | Transmission of genetic information from the gene to the protein               |    3.53 |      18 |        18 |
+| 1C        | Transmission of heritable information + processes increasing genetic diversity |    3.53 |      16 |        16 |
+| 1D        | Principles of bioenergetics and fuel molecule metabolism                       |    3.53 |      18 |        18 |
+| 2A        | Assemblies of molecules, cells, and groups of cells                            |    1.71 |      16 |        16 |
+| 2B        | Structure, growth, physiology, and genetics of prokaryotes and viruses         |    1.71 |      14 |        14 |
+| 2C        | Processes of cell division, differentiation, and specialization                |    1.71 |      13 |        13 |
+| 3A        | Structure and functions of the nervous and endocrine systems                   |    3.21 |      18 |        18 |
+| 3B        | Structure and integrative functions of the main organ systems                  |    3.21 |      22 |        22 |
+| **Total** |                                                                                |         | **152** |   **152** |
 
 \* Weights are the per-category `topic_weight` values from `taxonomy.json`. Higher-weight
 categories (1A-1D, 3A, 3B) received proportionally more items.
@@ -104,20 +104,25 @@ Each element of the `bio_biochem.json` array conforms to:
 
 ```json
 {
-  "id": "bb-<category>-<n>",
-  "section": "B/B",
-  "aamc_category": "<id matching taxonomy.json, e.g. 1A>",
-  "subtopic": "<subtopic label>",
-  "stem": "<question>",
-  "options": ["<A>", "<B>", "<C>", "<D>"],
-  "correct_index": 0,
-  "explanation": "<why correct + why each distractor is wrong>",
-  "difficulty": "easy|medium|hard",
-  "cognitive_level": "recall|application",
-  "source": {"name": "...", "url": "...", "license": "..."},
-  "subquestions": [
-    {"stem": "...", "options": ["..."], "correct_index": 0, "explanation": "..."}
-  ]
+    "id": "bb-<category>-<n>",
+    "section": "B/B",
+    "aamc_category": "<id matching taxonomy.json, e.g. 1A>",
+    "subtopic": "<subtopic label>",
+    "stem": "<question>",
+    "options": ["<A>", "<B>", "<C>", "<D>"],
+    "correct_index": 0,
+    "explanation": "<why correct + why each distractor is wrong>",
+    "difficulty": "easy|medium|hard",
+    "cognitive_level": "recall|application",
+    "source": { "name": "...", "url": "...", "license": "..." },
+    "subquestions": [
+        {
+            "stem": "...",
+            "options": ["..."],
+            "correct_index": 0,
+            "explanation": "..."
+        }
+    ]
 }
 ```
 

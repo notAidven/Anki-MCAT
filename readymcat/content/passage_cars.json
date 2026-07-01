@@ -2316,5 +2316,192 @@
         ]
       }
     ]
+  },
+  {
+    "id": "psg-cars-13",
+    "section": "CARS",
+    "passage": "The global spread of American popular culture -- film, music, fast food, digital platforms -- has prompted a long-running debate about whether this constitutes cultural imperialism: the imposition of one civilization's values and forms of life on peoples who have not chosen them. Critics of globalization in this register argue that the sheer economic asymmetry between media corporations based in wealthy nations and the domestic cultural industries of smaller, poorer societies creates a structural disadvantage. When production costs and distribution networks favor global products over local ones, communities find their own cultural expressions marginalized not by legal prohibition but by market logic. The displacement is quiet, cumulative, and often more thoroughgoing than any direct act of censorship could achieve.\n\nThe cultural imperialism thesis has been challenged on several grounds. The most telling challenge is empirical: audiences in different societies do not passively absorb global content but actively interpret it through their own cultural frameworks, adapting, subverting, and hybridizing imported forms in ways that produce genuinely new cultural expressions. The global spread of hip-hop, for instance, has generated distinctive local variants -- from Algerian rai-inflected rap to Japanese-language hip-hop -- that bear the unmistakable imprint of their cultural contexts. Reception is not passive consumption, and the audience is not an empty vessel waiting to be filled.\n\nA second challenge concerns the directionality of cultural flows. While American products dominate certain global markets, cultural influence runs in multiple directions: South Korean popular music has captured youth audiences worldwide, Indian cinema occupies an outsized position in African and diaspora markets, and African musical rhythms have profoundly shaped what is recognized as American popular music in the first place. To speak of unidirectional cultural imperialism flattens a more complex and multi-directional reality in which no single center fully controls the terms of global cultural exchange.\n\nYet critics of the critique resist premature optimism. They argue that hybrid cultural forms, however creative, may still be produced and distributed through infrastructure owned by global corporations, whose financial interests shape which hybrids achieve wide distribution and which remain marginal. The creative agency of local audiences does not by itself dismantle the structural power asymmetries that determine which voices are amplified and which are muffled in global cultural markets.\n\nThis debate resists tidy resolution because it operates at two levels that its participants often conflate: the empirical level of how people actually engage with global cultural content, and the structural level of which actors control the conditions under which such engagement occurs. Progress requires holding both levels in view simultaneously.",
+    "passage_source": {
+      "name": "original",
+      "url": "",
+      "license": "original"
+    },
+    "questions": [
+      {
+        "id": "psg-cars-13-q1",
+        "aamc_category": "CARS",
+        "skill": "comprehension",
+        "stem": "The cultural imperialism thesis, as described in the passage, focuses primarily on:",
+        "options": [
+          "the structural economic disadvantage created by global media corporations that marginalizes local cultural production",
+          "legal prohibitions that governments impose on domestic cultural industries",
+          "the psychological harm suffered by individuals who consume foreign cultural products",
+          "the deliberate political strategy of powerful nations to suppress indigenous cultures"
+        ],
+        "correct_index": 0,
+        "explanation": "A is stated: the thesis concerns structural disadvantage created when production costs and distribution networks favor global products over local ones, not by legal prohibition but by market logic. B is explicitly rejected. C introduces psychological harm not discussed. D implies deliberate political strategy, whereas the passage focuses on market logic.",
+        "difficulty": "easy",
+        "subquestions": [
+          {
+            "stem": "What mechanism does the thesis identify as marginalizing local culture?",
+            "options": [
+              "Market logic, when production costs and distribution networks favor global products",
+              "Legal prohibition of local cultural content by powerful governments"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says communities find expressions marginalized not by legal prohibition but by market logic."
+          },
+          {
+            "stem": "What economic asymmetry does the thesis focus on?",
+            "options": [
+              "Between wealthy-nation media corporations and domestic cultural industries of smaller, poorer societies",
+              "Between commercial and non-commercial cultural producers within a single country"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage identifies the asymmetry between media corporations based in wealthy nations and domestic cultural industries of smaller, poorer societies."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-13-q2",
+        "aamc_category": "CARS",
+        "skill": "reasoning-within",
+        "stem": "The hip-hop example (Algerian and Japanese variants) is used to argue that:",
+        "options": [
+          "audiences actively interpret and adapt imported cultural forms, producing genuinely new expressions",
+          "American music is now globally dominant over all local musical traditions",
+          "cultural hybridization always produces inferior versions of the original genre",
+          "economic power determines which cultural hybrids succeed in global markets"
+        ],
+        "correct_index": 0,
+        "explanation": "A is the argument: local variants bear the unmistakable imprint of their cultural contexts, demonstrating that reception is not passive consumption. B is the cultural imperialism view the examples challenge. C is not implied. D is the fourth paragraph's concern, not the hip-hop example's point.",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "What does the passage say about how audiences engage with global cultural content?",
+            "options": [
+              "They actively interpret, adapt, subvert, and hybridize imported forms",
+              "They passively absorb global content without modification"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says audiences do not passively absorb global content but actively interpret it, adapting, subverting, and hybridizing."
+          },
+          {
+            "stem": "What does 'reception is not passive consumption' mean in context?",
+            "options": [
+              "Audiences transform imported cultural forms through active interpretation rooted in their own cultural context",
+              "Audiences choose not to receive global cultural content"
+            ],
+            "correct_index": 0,
+            "explanation": "The phrase summarizes evidence of hybrid forms -- active transformation, not passive absorption."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-13-q3",
+        "aamc_category": "CARS",
+        "skill": "reasoning-within",
+        "stem": "The fourth paragraph's 'critics of the critique' respond to the hybridization argument by claiming that:",
+        "options": [
+          "global corporations still control the infrastructure determining which hybrid forms achieve wide distribution",
+          "hybrid cultural forms are artistically inferior to both pure global and pure local forms",
+          "local audiences' creative engagement has already dismantled structural power asymmetries",
+          "the direction of cultural flow is irrelevant to questions of cultural imperialism"
+        ],
+        "correct_index": 0,
+        "explanation": "A is stated: hybrid cultural forms may still be produced and distributed through infrastructure owned by global corporations, whose financial interests shape which hybrids achieve wide distribution. B is not a claim in the passage. C is the opposite of what the paragraph argues. D is not their claim.",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "What does the fourth paragraph say about creative agency at the local level?",
+            "options": [
+              "It does not by itself dismantle structural power asymmetries",
+              "It is sufficient to overcome the dominance of global media corporations"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says: The creative agency of local audiences does not by itself dismantle the structural power asymmetries."
+          },
+          {
+            "stem": "What structural factor do critics of the critique say still matters?",
+            "options": [
+              "Which actors control the infrastructure that determines which hybrids achieve wide distribution",
+              "Whether the hybrid forms use the original language of the imported genre"
+            ],
+            "correct_index": 0,
+            "explanation": "The concern is that infrastructure owned by global corporations determines which hybrids achieve wide distribution and which remain marginal."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-13-q4",
+        "aamc_category": "CARS",
+        "skill": "reasoning-beyond",
+        "stem": "The passage suggests the debate resists resolution partly because participants conflate two levels of analysis. Which research approach would best address this?",
+        "options": [
+          "Studying both how audiences actively engage with global content and which corporations control distribution infrastructure, holding both levels in view simultaneously",
+          "Focusing exclusively on empirical data about which cultural products consumers purchase",
+          "Conducting philosophical analysis of what cultural imperialism means before examining empirical cases",
+          "Measuring the economic output of domestic versus foreign cultural industries in each country"
+        ],
+        "correct_index": 0,
+        "explanation": "A is the approach the passage prescribes: Progress requires holding both levels in view simultaneously -- empirical (how people engage) and structural (who controls conditions). B addresses only the empirical level. C is conceptual analysis that ignores both levels. D addresses structural economics but not the empirical engagement level.",
+        "difficulty": "hard",
+        "subquestions": [
+          {
+            "stem": "What are the two levels the passage says participants often conflate?",
+            "options": [
+              "The empirical level of how people engage with global content, and the structural level of who controls the conditions of engagement",
+              "The economic level of production costs and the political level of government censorship"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage identifies the empirical level of how people actually engage with global cultural content, and the structural level of which actors control the conditions under which engagement occurs."
+          },
+          {
+            "stem": "What does the passage say progress in understanding requires?",
+            "options": [
+              "Holding both the empirical and structural levels in view simultaneously",
+              "Choosing one level of analysis and studying it exhaustively"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage concludes: Progress requires holding both levels in view simultaneously."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-13-q5",
+        "aamc_category": "CARS",
+        "skill": "reasoning-within",
+        "stem": "The discussion of South Korean music, Indian cinema, and African rhythms primarily serves to:",
+        "options": [
+          "challenge the claim that cultural influence flows in only one direction",
+          "demonstrate that American cultural dominance is a myth",
+          "show that poorer nations' cultures are more creative than wealthy nations'",
+          "prove that cultural imperialism does not harm domestic cultural industries"
+        ],
+        "correct_index": 0,
+        "explanation": "A is the explicit argument: these examples illustrate that cultural influence runs in multiple directions, challenging unidirectional cultural imperialism. B goes too far -- the passage acknowledges American products dominate certain markets. C introduces a value judgment not made. D is not the conclusion drawn, since paragraph four still acknowledges structural harm.",
+        "difficulty": "easy",
+        "subquestions": [
+          {
+            "stem": "What claim does the second challenge address?",
+            "options": [
+              "The claim that cultural influence flows only from wealthy nations to poorer ones",
+              "The claim that hybrid cultural forms are artistically inferior"
+            ],
+            "correct_index": 0,
+            "explanation": "The second challenge concerns the directionality of cultural flows -- whether influence is unidirectional or multi-directional."
+          },
+          {
+            "stem": "What do the examples demonstrate about cultural flow?",
+            "options": [
+              "That influence runs in multiple directions, not only from wealthy nations outward",
+              "That American culture has lost its distinctive character through foreign influences"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says these show cultural influence runs in multiple directions, challenging the unidirectional cultural imperialism thesis."
+          }
+        ]
+      }
+    ]
   }
 ]

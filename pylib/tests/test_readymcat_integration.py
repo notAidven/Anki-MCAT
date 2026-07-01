@@ -94,9 +94,7 @@ def test_provision_all_first_launch_loads_every_content_type():
         len(col.find_notes(f'"note:{bank.PASSAGE_NOTETYPE_NAME}"'))
         == PASSAGE_COUNT + CARS_COUNT
     )
-    assert (
-        len(col.find_notes(f'deck:"{bank.CARS_PASSAGE_DECK_NAME}"')) == CARS_COUNT
-    )
+    assert len(col.find_notes(f'deck:"{bank.CARS_PASSAGE_DECK_NAME}"')) == CARS_COUNT
     assert col.card_count() == COLLECTION_COUNT
     col.close()
 

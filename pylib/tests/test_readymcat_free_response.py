@@ -111,8 +111,7 @@ def test_grader_accepts_exact_and_normalized_variants():
     assert bank.grade_free_response("amide-bond", accepted, key_terms) is True
     # prose containing the key term still counts
     assert (
-        bank.grade_free_response("it is a peptide linkage", accepted, key_terms)
-        is True
+        bank.grade_free_response("it is a peptide linkage", accepted, key_terms) is True
     )
     # an unrelated answer does not
     assert bank.grade_free_response("glycosidic bond", accepted, key_terms) is False
@@ -154,7 +153,10 @@ def test_grader_rejects_empty_and_blank():
 
 
 def test_numeric_tolerance_parsing():
-    assert bank.numeric_tolerance_from_key_terms(["tolerance: ±0.5 m/s"]) == (0.5, False)
+    assert bank.numeric_tolerance_from_key_terms(["tolerance: ±0.5 m/s"]) == (
+        0.5,
+        False,
+    )
     assert bank.numeric_tolerance_from_key_terms(["tolerance: ±5%"]) == (5.0, True)
     assert bank.numeric_tolerance_from_key_terms(["unit: m/s", "v = g t"]) is None
     assert bank.numeric_tolerance_from_key_terms([]) is None

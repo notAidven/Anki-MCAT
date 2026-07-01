@@ -21,19 +21,24 @@ repo root for the schema and ``readymcat/README.md`` for the design.
 
 from __future__ import annotations
 
+import importlib.util
 import json
 import os
 import re
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any
+from types import ModuleType
+from typing import TYPE_CHECKING, Any
 from urllib.parse import quote
 
 import aqt.main
 from aqt.qt import QDialog, Qt, QVBoxLayout
 from aqt.utils import disable_help_button, restoreGeom, saveGeom
 from aqt.webview import AnkiWebView, AnkiWebViewKind
+
+if TYPE_CHECKING:
+    from anki.notes import Note
 
 # --- Honest-memory dashboard window -----------------------------------------
 
@@ -348,3 +353,144 @@ def log_event(col_path: str | None, event: dict[str, Any]) -> None:
             handle.write(json.dumps(record, ensure_ascii=False) + "\n")
     except Exception as exc:  # pragma: no cover - defensive
         print("ReadyMCAT: could not write teach-on-miss log", exc)
+
+
+# --- MCQ reviewer support ---------------------------------------------------
+#
+# The pre-loaded MCQ deck (built by ``readymcat/tools/build_question_bank.py``)
+# is rendered by the desktop reviewer as an interactive multiple-choice card. The
+# reviewer reads a card's fields into a payload and drives the flow in
+# ``ts/reviewer/mcq.ts``; the pure data/grading logic lives in the (tested)
+# builder module and is re-used here so there is a single source of truth.
+
+# Literal fallbacks used only if the builder module cannot be loaded (e.g. an
+# unusual packaged layout). They must match ``build_question_bank.py``.
+_MCQ_NOTETYPE_NAME_FALLBACK = "ReadyMCAT MCQ"
+_AAMC_TAG_PREFIX_FALLBACK = "#ReadyMCAT::AAMC"
+
+_bank_module: ModuleType | None = None
+_bank_loaded = False
+
+
+def _bank() -> ModuleType | None:
+    """Load (and cache) the pure ``build_question_bank`` helper module by path.
+
+    Mirrors ``aqt.readymcat_provision._load_core``; returns ``None`` if it cannot
+    be located, in which case callers fall back to inline logic."""
+    global _bank_module, _bank_loaded
+    if _bank_loaded:
+        return _bank_module
+    _bank_loaded = True
+    candidates = [
+        Path(__file__).resolve().parents[2]
+        / "readymcat"
+        / "tools"
+        / "build_question_bank.py",
+        Path.cwd() / "readymcat" / "tools" / "build_question_bank.py",
+    ]
+    for path in candidates:
+        try:
+            if not path.is_file():
+                continue
+            spec = importlib.util.spec_from_file_location(
+                "readymcat_build_question_bank", path
+            )
+            assert spec and spec.loader
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+            _bank_module = module
+            return module
+        except Exception as exc:  # pragma: no cover - defensive
+            print("ReadyMCAT: could not load question-bank helpers", exc)
+            continue
+    return None
+
+
+def mcq_notetype_name() -> str:
+    module = _bank()
+    return getattr(module, "MCQ_NOTETYPE_NAME", _MCQ_NOTETYPE_NAME_FALLBACK)
+
+
+def is_mcq_note(note: Note) -> bool:
+    """True if a note uses the ReadyMCAT MCQ note type."""
+    try:
+        return note.note_type()["name"] == mcq_notetype_name()
+    except Exception:  # pragma: no cover - defensive
+        return False
+
+
+def build_mcq_payload(note: Note) -> dict[str, Any] | None:
+    """Turn an MCQ note into the payload handed to ``_mcqStart`` in the reviewer.
+
+    Returns ``None`` when the note is not a well-formed MCQ."""
+    try:
+        fields = dict(note.items())
+    except Exception:  # pragma: no cover - defensive
+        return None
+    module = _bank()
+    if module is not None:
+        try:
+            return module.mcq_payload_from_fields(fields)
+        except Exception as exc:  # pragma: no cover - defensive
+            print("ReadyMCAT: MCQ payload build failed", exc)
+    # Inline fallback mirroring build_question_bank.mcq_payload_from_fields.
+    try:
+        correct_index = int(str(fields.get("CorrectIndex", "0")).strip() or "0")
+    except ValueError:
+        correct_index = 0
+    correct_index = max(0, min(3, correct_index))
+    subquestions: list[dict[str, Any]] = []
+    try:
+        raw = json.loads(fields.get("Subquestions", "") or "[]")
+        if isinstance(raw, list):
+            subquestions = [s for s in raw if isinstance(s, dict)]
+    except (ValueError, TypeError):
+        subquestions = []
+    return {
+        "question": fields.get("Question", ""),
+        "options": [fields.get(f"Option{c}", "") for c in ("A", "B", "C", "D")],
+        "correctIndex": correct_index,
+        "explanation": fields.get("Explanation", ""),
+        "subtopic": fields.get("Subtopic", ""),
+        "source": fields.get("Source", ""),
+        "subquestions": subquestions,
+    }
+
+
+def ease_for_mcq_outcome(outcome: str) -> int:
+    """FSRS ease for an MCQ outcome (Good on a first-try hit, else Again)."""
+    module = _bank()
+    if module is not None:
+        try:
+            return int(module.ease_for_mcq_outcome(outcome))
+        except Exception:  # pragma: no cover - defensive
+            pass
+    return 3 if outcome == "correct_first" else 1
+
+
+def outcome_is_struggling(outcome: str) -> bool:
+    """Whether an MCQ outcome flags the concept as struggling (missed again)."""
+    module = _bank()
+    if module is not None:
+        try:
+            return bool(module.outcome_is_struggling(outcome))
+        except Exception:  # pragma: no cover - defensive
+            pass
+    return outcome == "wrong"
+
+
+def mcq_category_from_tags(tags: list[str]) -> str:
+    """Best-effort AAMC category from a note's ``#ReadyMCAT::AAMC::<cat>`` tag."""
+    prefix = getattr(_bank(), "AAMC_TAG_PREFIX", _AAMC_TAG_PREFIX_FALLBACK) + "::"
+    for tag in tags:
+        if tag.startswith(prefix):
+            return tag[len(prefix) :]
+    return ""
+
+
+def resource_from_source(source: str) -> dict[str, str]:
+    """Extract a 'needs content review' resource link from a Source string."""
+    url = extract_resource_link(source)
+    if url:
+        return {"label": "Review the source for this question", "url": url}
+    return {}

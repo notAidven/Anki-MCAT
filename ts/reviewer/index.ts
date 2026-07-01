@@ -25,6 +25,10 @@ import { preloadResources } from "./preload";
 // ReadyMCAT teach-on-miss: exposed globally (via index_wrapper) so the Python
 // reviewer can launch the guiding sub-question ladder with `_teachOnMissStart`.
 export { _teachOnMissStart } from "./teach_on_miss";
+// ReadyMCAT MCQ reviewer: exposed globally so the Python reviewer can render a
+// pre-loaded multiple-choice card (with per-question teach-on-miss) via
+// `_mcqStart`.
+export { _mcqStart } from "./mcq";
 
 declare const MathJax: any;
 

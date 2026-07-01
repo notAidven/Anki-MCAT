@@ -663,6 +663,13 @@ class AnkiQt(QMainWindow):
             gui_hooks.collection_did_load(self.col)
             self.apply_collection_options()
             self.moveToState("deckBrowser")
+            # ReadyMCAT: on first launch, pre-load the bundled MCQ deck (zero
+            # import) and drop the topic-aware sidecar files next to the
+            # collection. Deferred so the deck browser paints first; idempotent
+            # and silent on later launches.
+            from aqt.readymcat_provision import maybe_provision_readymcat
+
+            self.progress.single_shot(50, lambda: maybe_provision_readymcat(self))
             # ReadyMCAT LEARN MODE: on first launch (until taken once) offer the
             # introductory diagnostic, deferred so the deck browser paints
             # first. It seeds study *ordering* and prerequisite *placement*

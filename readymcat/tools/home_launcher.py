@@ -27,7 +27,6 @@ import-time dependency on ``aqt`` or a packaged ``anki`` install.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 from typing import Any, Protocol
 
 # Rolling window used for "active days this week" and the 7-day accuracy
@@ -48,14 +47,23 @@ class _DeckTreeNodeLike(Protocol):
     children: list[Any]
 
 
-@dataclass
 class DeckLaunchStats:
-    """Honest, child-excluding due/total counts for one launch tile."""
+    """Honest, child-excluding due/total counts for one launch tile.
 
-    deck_id: int | None
-    present: bool
-    due: int
-    total: int
+    A plain class (not a ``@dataclass``) so it loads cleanly when this module
+    is imported by path — the same deliberate choice ``build_question_bank.py``
+    makes. ``@dataclass`` breaks under ``from __future__ import annotations``
+    when the loading module isn't registered in ``sys.modules`` (Python 3.13
+    dataclass introspection does ``sys.modules[cls.__module__].__dict__``).
+    """
+
+    def __init__(
+        self, deck_id: int | None, present: bool, due: int, total: int
+    ) -> None:
+        self.deck_id = deck_id
+        self.present = present
+        self.due = due
+        self.total = total
 
     def as_dict(self) -> dict[str, Any]:
         return {
@@ -66,9 +74,7 @@ class DeckLaunchStats:
         }
 
 
-def find_deck_node(
-    root: _DeckTreeNodeLike, deck_id: int
-) -> _DeckTreeNodeLike | None:
+def find_deck_node(root: _DeckTreeNodeLike, deck_id: int) -> _DeckTreeNodeLike | None:
     """Depth-first search for ``deck_id`` in a ``col.decks.deck_tree()`` result."""
     if root.deck_id == deck_id:
         return root
@@ -164,7 +170,9 @@ def summarize_progress(
     window_start_ms = (day_cutoff_secs - ACCURACY_WINDOW_DAYS * 86400) * 1000
 
     for revlog_id, ease in revlog_rows:
-        review_day_numbers.add(day_number_for_revlog_id(revlog_id, day_cutoff_secs, today))
+        review_day_numbers.add(
+            day_number_for_revlog_id(revlog_id, day_cutoff_secs, today)
+        )
         if revlog_id >= window_start_ms:
             last_window_total += 1
             if ease and ease > 1:
@@ -204,7 +212,11 @@ def summarize_home_status(col: Any, deck_names: dict[str, str]) -> dict[str, Any
     is invented, and a format with no deck yet honestly reports
     ``present: False`` rather than a fabricated zero.
     """
-    tree = col.decks.deck_tree()
+    # deck_due_tree() (now=int_time()), not decks.deck_tree() (now=0): only the
+    # former asks the backend to populate the per-deck card counters
+    # (total_in_deck + the *_uncapped fields) this hub reads — the structural
+    # tree leaves every one of them at zero (see rslib decks/tree.rs::add_counts).
+    tree = col.sched.deck_due_tree()
     decks: dict[str, Any] = {}
     for key, name in deck_names.items():
         did = col.decks.id_for_name(name)

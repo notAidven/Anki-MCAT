@@ -148,23 +148,33 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 
 <div class="hub">
     <header class="statusbar">
-        <div class="brand"><span class="mark"></span><span class="word">ReadyMCAT</span></div>
+        <div class="brand">
+            <span class="mark"></span>
+            <span class="word">ReadyMCAT</span>
+        </div>
         <div class="pills">
             {#if pointsError || !points}
                 <div class="pill warn">Memory: taxonomy not configured</div>
             {:else if !meetsDataThreshold}
                 <div class="pill warn">Not enough data yet</div>
             {:else}
-                <div class="pill">Memory <b>{pct(rangeLow)}–{pct(rangeHigh)}</b></div>
+                <div class="pill">
+                    Memory <b>{pct(rangeLow)}–{pct(rangeHigh)}</b>
+                </div>
             {/if}
             {#if points && !pointsError}
                 <div class="pill">
                     Coverage <b>{pct(coverageFraction)}</b>
-                    <span class="pill-sub">({categoriesCovered}/{categoriesTotal})</span>
+                    <span class="pill-sub">
+                        ({categoriesCovered}/{categoriesTotal})
+                    </span>
                 </div>
             {/if}
             {#if progress && progress.streakDays > 0}
-                <div class="pill streak">🔥 <b>{progress.streakDays}-day</b> streak</div>
+                <div class="pill streak">
+                    🔥 <b>{progress.streakDays}-day</b>
+                    streak
+                </div>
             {/if}
             {#if diagnostic}
                 <div class="pill" class:ok={diagnostic.taken}>
@@ -181,7 +191,8 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
     {:else if home && Object.values(home.decks ?? {}).every((d) => !d.present)}
         <section class="banner warn">
             No ReadyMCAT content is loaded yet. Restart Anki once to let it pre-load the
-            question bank, or check <code>Tools → ReadyMCAT Dashboard</code>.
+            question bank, or check <code>Tools → ReadyMCAT Dashboard</code>
+            .
         </section>
     {/if}
 
@@ -200,23 +211,23 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
             >
                 <div class="tile-glyph">
                     {#if tile.icon === "circle"}
-                        <svg viewBox="0 0 24 24" fill="currentColor"
-                            ><circle cx="12" cy="12" r="10" /></svg
-                        >
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg>
                     {:else if tile.icon === "square"}
-                        <svg viewBox="0 0 24 24" fill="currentColor"
-                            ><rect x="2" y="2" width="20" height="20" rx="4" /></svg
-                        >
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <rect x="2" y="2" width="20" height="20" rx="4" />
+                        </svg>
                     {:else if tile.icon === "book"}
-                        <svg viewBox="0 0 24 24" fill="currentColor"
-                            ><rect x="3" y="2" width="18" height="20" rx="3" /></svg
-                        >
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <rect x="3" y="2" width="18" height="20" rx="3" />
+                        </svg>
                     {:else}
-                        <svg viewBox="0 0 24 24" fill="currentColor"
-                            ><path
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
                                 d="M4 19V5a2 2 0 0 1 2-2h8l6 6v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"
-                            /></svg
-                        >
+                            />
+                        </svg>
                     {/if}
                 </div>
                 <div class="tile-top">
@@ -240,8 +251,9 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
                                 stroke-width="2.5"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
-                                ><path d="M5 12h14M13 6l6 6-6 6" /></svg
                             >
+                                <path d="M5 12h14M13 6l6 6-6 6" />
+                            </svg>
                         </div>
                     {/if}
                 </div>
@@ -257,8 +269,8 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
             </div>
             {#if !points || pointsError}
                 <p class="empty-note">
-                    Needs <code>taxonomy.json</code> to rank topics. See the ReadyMCAT
-                    Dashboard for details.
+                    Needs <code>taxonomy.json</code>
+                    to rank topics. See the ReadyMCAT Dashboard for details.
                 </p>
             {:else if studyNext.length === 0}
                 <p class="empty-note">
@@ -341,20 +353,22 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
                         <div class="pstat">
                             <div class="label">Studied</div>
                             <div class="value">
-                                {progress.cardsStudied.toLocaleString()}<small> cards</small
-                                >
+                                {progress.cardsStudied.toLocaleString()}
+                                <small>cards</small>
                             </div>
                         </div>
                         <div class="pstat">
                             <div class="label">Streak</div>
                             <div class="value">
-                                {progress.streakDays}<small> days</small>
+                                {progress.streakDays}
+                                <small>days</small>
                             </div>
                         </div>
                         <div class="pstat">
                             <div class="label">Active days (7d)</div>
                             <div class="value">
-                                {progress.activeDaysThisWeek}<small> / 7</small>
+                                {progress.activeDaysThisWeek}
+                                <small>/ 7</small>
                             </div>
                         </div>
                         <div class="pstat">
@@ -392,7 +406,8 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
         border: 1px solid var(--border-subtle);
         border-radius: 999px;
         padding: 8px 10px 8px 18px;
-        box-shadow: 0 8px 20px -14px color-mix(in srgb, var(--shadow-subtle) 60%, transparent);
+        box-shadow: 0 8px 20px -14px
+            color-mix(in srgb, var(--shadow-subtle) 60%, transparent);
         margin-bottom: 1.5rem;
         flex-wrap: wrap;
         row-gap: 8px;

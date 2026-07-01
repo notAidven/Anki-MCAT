@@ -21,12 +21,12 @@ between the diagnostic and the hub.
 from __future__ import annotations
 
 import importlib.util
-import os
 from pathlib import Path
 from types import ModuleType
 from typing import Any
 
 import aqt.main
+from anki.decks import DeckId
 from aqt.qt import QDialog, Qt, QVBoxLayout
 from aqt.utils import disable_help_button, restoreGeom, saveGeom
 from aqt.webview import AnkiWebView, AnkiWebViewKind
@@ -160,11 +160,15 @@ def _start_review_now(mw: aqt.main.AnkiQt) -> None:
     mw.moveToState("review")
 
 
-def _rebuild_launcher_deck(mw: aqt.main.AnkiQt, search: str) -> int | None:
+def _rebuild_launcher_deck(mw: aqt.main.AnkiQt, search: str) -> DeckId | None:
     """(Re)build the single, reused ReadyMCAT launcher filtered deck so it
     contains exactly the cards matching ``search``, and select it."""
     existing_id = mw.col.decks.id_for_name(LAUNCHER_FILTERED_DECK_NAME)
-    seed_id = existing_id if existing_id and mw.col.decks.is_filtered(existing_id) else 0
+    seed_id = (
+        existing_id
+        if existing_id and mw.col.decks.is_filtered(existing_id)
+        else DeckId(0)
+    )
     deck = mw.col.sched.get_or_create_filtered_deck(deck_id=seed_id)
     deck.name = LAUNCHER_FILTERED_DECK_NAME
     deck.config.reschedule = True
@@ -172,9 +176,9 @@ def _rebuild_launcher_deck(mw: aqt.main.AnkiQt, search: str) -> int | None:
     term = deck.config.search_terms.add()
     term.search = search
     term.limit = 9999
-    term.order = _ORDER_DUE
+    term.order = _ORDER_DUE  # type: ignore[assignment]
     result = mw.col.sched.add_or_update_filtered_deck(deck)
-    did = result.id
+    did = DeckId(result.id)
     mw.col.sched.rebuild_filtered_deck(did)
     return did
 

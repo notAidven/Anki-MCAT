@@ -30,11 +30,9 @@ export const load = (async ({ url }) => {
 
     return {
         points: pointsResult.status === "fulfilled" ? pointsResult.value : null,
-        pointsError:
-            pointsResult.status === "rejected" ? String(pointsResult.reason) : null,
+        pointsError: pointsResult.status === "rejected" ? String(pointsResult.reason) : null,
         status: statusResult.status === "fulfilled" ? statusResult.value : null,
-        statusError:
-            statusResult.status === "rejected" ? String(statusResult.reason) : null,
+        statusError: statusResult.status === "rejected" ? String(statusResult.reason) : null,
         generatedAt: Date.now(),
     };
 }) satisfies PageLoad;

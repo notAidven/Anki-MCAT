@@ -16,6 +16,54 @@ educational purposes.
 
 ---
 
+## 0. Pre-loaded MCQ deck + per-question teach-on-miss (v2)
+
+The v2 rework ships ReadyMCAT as a **pre-loaded multiple-choice deck**: a brand-new
+user gets the full MCAT MCQ bank with **zero import**.
+
+| Artifact                         | Path                                                              | Consumed by                     |
+| -------------------------------- | ----------------------------------------------------------------- | ------------------------------- |
+| Canonical MCQ bank               | [`content/question_bank.json`](content/question_bank.json)        | the collection builder          |
+| Section banks (merged)           | `content/{bio_biochem,chem_phys,psych_soc}.json`                  | `tools/build_question_bank.py`  |
+| Collection builder / provisioner | [`tools/build_question_bank.py`](tools/build_question_bank.py)    | `qt/aqt/readymcat_provision.py` |
+| MCQ reviewer + ladder UI         | `ts/reviewer/mcq.ts`, `qt/aqt/reviewer.py`, `qt/aqt/readymcat.py` | desktop app                     |
+
+**Bank.** 414 MCQs / 948 sub-questions across all 31 AAMC categories; each item is
+`{id, section, aamc_category, subtopic, stem, options[4], correct_index, explanation,
+difficulty, cognitive_level, source, subquestions[]}`. `build_question_bank.py`
+validates + merges the three section banks into `question_bank.json`.
+
+**Note type + pre-loading (zero import).** The builder creates a `ReadyMCAT MCQ` note
+type (fields: Question, OptionA–D, CorrectIndex, Explanation, Subtopic, Source,
+Subquestions[JSON]) with **one card per MCQ**, in a single `ReadyMCAT` deck, and tags
+every note `#ReadyMCAT::AAMC::<category>`. On first launch
+`qt/aqt/readymcat_provision.py` builds the deck straight into the new user's
+collection (no `.apkg` import) and drops `taxonomy.json`, `subquestions.json` and
+`diagnostic_quiz.json` next to it. `taxonomy.json` maps `#ReadyMCAT::AAMC::<cat>` →
+`<cat>`, so the pre-loaded deck feeds points-at-stake, the coverage map and the
+honest-memory dashboard unchanged (see §1 / §5).
+
+**MCQ reviewer + FSRS grading.** The reviewer renders each card as an interactive
+four-option MCQ; on submit it grades into FSRS:
+
+| Result                                                 | FSRS grade                               |
+| ------------------------------------------------------ | ---------------------------------------- |
+| Correct on the **first** attempt                       | **Good** (ease 3)                        |
+| Needed the ladder (correct only after, or still wrong) | **Again** (ease 1) — relearning / spaced |
+
+Immediate success right after the scaffold is never treated as mastery (PRD), so a
+missed card always relearns; a card missed **again** after the ladder is additionally
+tagged `ReadyMCAT::struggling` for the points-at-stake boost (§5).
+
+**Per-question teach-on-miss.** This generalizes the curated-subset ladder (§2–3) to
+**every** card: on a wrong answer the reviewer runs the guiding sub-questions stored in
+that card's own `Subquestions` field — one sub-MCQ at a time (attempt → reveal) →
+re-show the main question → correct = spaced re-retrieval, wrong again = reveal the
+earned explanation + surface the source link. The curated `subquestions.json` ladders
+still apply to non-MCQ (Aidan-deck) cards.
+
+---
+
 ## 1. `taxonomy.json` — deck → AAMC outline
 
 Maps the deck's subdecks/tags onto the **31 AAMC content categories** and assigns each a

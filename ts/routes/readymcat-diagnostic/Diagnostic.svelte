@@ -140,11 +140,11 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
             </p>
             <p class="honesty">
                 <strong>This is not a test.</strong>
-                There is no score, no percentile, and nothing here goes to your memory
-                or readiness numbers — a short quiz is a starting
+                There is no score, no percentile, and nothing here goes to your memory or
+                readiness numbers — a short quiz is a starting
                 <em>prior</em>
-                , not a verdict. It just makes session one smarter. Answer what you can;
-                skip what you don't know.
+                , not a verdict. It just makes session one smarter. Answer what you can; skip
+                what you don't know.
             </p>
             <p class="detail">
                 {items.length} questions · about {items.length <= 31
@@ -236,7 +236,7 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
             </p>
             <p class="honesty">
                 By design, we're <strong>not</strong>
-                 showing you a score. A short quiz is a prior, not a readiness verdict — your
+                showing you a score. A short quiz is a prior, not a readiness verdict — your
                 honest memory score appears on the dashboard only once there's enough real
                 review evidence to back it up.
             </p>

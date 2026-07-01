@@ -1,0 +1,1764 @@
+[
+  {
+    "id": "fr-bb-1A-01",
+    "section": "B/B",
+    "aamc_category": "1A",
+    "subtopic": "Amino acids: stereochemistry",
+    "answer_type": "free_response",
+    "prompt": "Which of the 20 standard amino acids is the only one that is achiral (its alpha-carbon is NOT a stereocenter)?",
+    "accepted_answers": [
+      "glycine",
+      "gly",
+      "g"
+    ],
+    "key_terms": [
+      "glycine"
+    ],
+    "model_answer": "Glycine",
+    "explanation": "Glycine's side chain is a single hydrogen, so its alpha-carbon bears two identical H substituents and is not a stereocenter; every other standard amino acid is chiral (L-configuration in proteins).",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "LibreTexts Biochemistry (Fundamentals of Biochemistry) — Amino Acids and Proteins",
+      "url": "https://bio.libretexts.org/Bookshelves/Biochemistry",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "How many DIFFERENT groups must a carbon have to be a chiral center (stereocenter)?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "four",
+          "4",
+          "four different groups"
+        ],
+        "explanation": "A stereocenter needs four different substituents."
+      },
+      {
+        "stem": "What is the side chain (R group) of glycine?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "hydrogen",
+          "h",
+          "a hydrogen atom",
+          "-h"
+        ],
+        "explanation": "Glycine's R group is just a hydrogen atom, so its alpha-carbon has two H's."
+      },
+      {
+        "stem": "Because its alpha-carbon has two hydrogens, how many of glycine's four substituents are identical?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "two",
+          "2",
+          "two hydrogens"
+        ],
+        "explanation": "Two identical H groups mean the carbon is not a stereocenter, so glycine is achiral."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1A-02",
+    "section": "B/B",
+    "aamc_category": "1A",
+    "subtopic": "Peptide bond",
+    "answer_type": "free_response",
+    "prompt": "What is the name of the covalent bond that joins the carboxyl group of one amino acid to the amino group of the next in a polypeptide?",
+    "accepted_answers": [
+      "peptide bond",
+      "peptide",
+      "amide bond",
+      "peptide (amide) bond",
+      "amide linkage"
+    ],
+    "key_terms": [
+      "peptide"
+    ],
+    "model_answer": "A peptide bond (an amide linkage)",
+    "explanation": "A peptide bond is an amide bond formed by a condensation (dehydration) reaction between the alpha-carboxyl of one amino acid and the alpha-amino of the next, releasing water.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 3 Biological Macromolecules (Proteins)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "What small molecule is released when a peptide bond forms?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "water",
+          "h2o",
+          "h₂o"
+        ],
+        "explanation": "Peptide-bond formation is a condensation/dehydration reaction that releases one water molecule."
+      },
+      {
+        "stem": "Is forming a peptide bond a hydrolysis or a condensation (dehydration) reaction?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "condensation",
+          "dehydration",
+          "dehydration synthesis",
+          "condensation reaction"
+        ],
+        "explanation": "Bonds form by condensation; they are broken by hydrolysis (adding water)."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1A-03",
+    "section": "B/B",
+    "aamc_category": "1A",
+    "subtopic": "Amino acids: side chains",
+    "answer_type": "free_response",
+    "prompt": "Which amino acid has a thiol (-SH) side chain that can form disulfide bonds stabilizing higher-order protein structure?",
+    "accepted_answers": [
+      "cysteine",
+      "cys",
+      "c"
+    ],
+    "key_terms": [
+      "cysteine"
+    ],
+    "model_answer": "Cysteine",
+    "explanation": "Two cysteine thiols oxidize to form a disulfide bond (cystine), covalently cross-linking regions of a protein.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "LibreTexts Biochemistry (Fundamentals of Biochemistry) — Amino Acids and Proteins",
+      "url": "https://bio.libretexts.org/Bookshelves/Biochemistry",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "When two cysteine -SH groups are oxidized and joined, what covalent linkage forms?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "disulfide bond",
+          "disulfide",
+          "disulfide bridge",
+          "s-s bond"
+        ],
+        "explanation": "The two thiols form a disulfide (-S-S-) bond."
+      },
+      {
+        "stem": "Which level(s) of protein structure can disulfide bonds stabilize?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "tertiary",
+          "tertiary and quaternary",
+          "tertiary structure",
+          "tertiary/quaternary"
+        ],
+        "explanation": "Disulfides cross-link tertiary (within a chain) and quaternary (between chains) structure."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1A-04",
+    "section": "B/B",
+    "aamc_category": "1A",
+    "subtopic": "Amino acids: proline",
+    "answer_type": "free_response",
+    "prompt": "Which amino acid's side chain bonds back to its own alpha-amino nitrogen, forming a rigid ring that disrupts alpha-helices?",
+    "accepted_answers": [
+      "proline",
+      "pro",
+      "p"
+    ],
+    "key_terms": [
+      "proline"
+    ],
+    "model_answer": "Proline",
+    "explanation": "Proline's cyclic (secondary amine) structure creates a kink and cannot fit an alpha-helix well, so it often breaks secondary structure or appears in turns.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "LibreTexts Biochemistry (Fundamentals of Biochemistry) — Amino Acids and Proteins",
+      "url": "https://bio.libretexts.org/Bookshelves/Biochemistry",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Proline is a SECONDARY amine because its side chain bonds to which backbone atom?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "nitrogen",
+          "the amino nitrogen",
+          "n",
+          "alpha-amino nitrogen"
+        ],
+        "explanation": "The ring closes onto the backbone amino nitrogen."
+      },
+      {
+        "stem": "Which regular secondary structure does proline tend to break?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "alpha helix",
+          "alpha-helix",
+          "helix",
+          "a-helix"
+        ],
+        "explanation": "Proline's rigid ring is poorly accommodated in an alpha-helix."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1A-05",
+    "section": "B/B",
+    "aamc_category": "1A",
+    "subtopic": "Amino acids: acid-base behavior",
+    "answer_type": "free_response",
+    "prompt": "If the pH of a solution is BELOW an amino acid's isoelectric point (pI), what is the SIGN of the amino acid's net charge?",
+    "accepted_answers": [
+      "positive",
+      "positively charged",
+      "+",
+      "net positive",
+      "positive charge"
+    ],
+    "key_terms": [
+      "positive"
+    ],
+    "model_answer": "Positive (net positive charge)",
+    "explanation": "Below the pI, excess protons keep ionizable groups protonated, so the molecule carries a net positive charge; above the pI it is net negative.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Chemistry 2e — Acid-base behavior of functional groups",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "At a pH exactly equal to the pI, what is the average net charge?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "zero",
+          "0",
+          "neutral",
+          "no net charge"
+        ],
+        "explanation": "At the pI the net charge is zero (the zwitterion predominates)."
+      },
+      {
+        "stem": "Low pH means a HIGH or LOW concentration of H+ (protons)?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "high",
+          "high concentration",
+          "more protons",
+          "high h+"
+        ],
+        "explanation": "Low pH = high [H+], which protonates groups and adds positive charge."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1A-06",
+    "section": "B/B",
+    "aamc_category": "1A",
+    "subtopic": "Amino acids: isoelectric point",
+    "answer_type": "free_response",
+    "prompt": "What term names the pH at which an amino acid or protein carries NO net electric charge?",
+    "accepted_answers": [
+      "isoelectric point",
+      "pi",
+      "isoelectric ph"
+    ],
+    "key_terms": [
+      "isoelectric"
+    ],
+    "model_answer": "The isoelectric point (pI)",
+    "explanation": "At the isoelectric point positive and negative charges balance, giving zero net charge, so the molecule will not migrate in an electric field.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Chemistry 2e — Acid-base behavior; titration of amino acids",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "At its pI, will a protein migrate toward the anode, the cathode, or neither in electrophoresis?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "neither",
+          "it does not migrate",
+          "no migration",
+          "will not move",
+          "does not move"
+        ],
+        "explanation": "With zero net charge it does not migrate."
+      },
+      {
+        "stem": "A dipolar ion that carries both a + and a - charge but is net-neutral is called a ___?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "zwitterion",
+          "zwitter ion",
+          "dipolar ion"
+        ],
+        "explanation": "This species is a zwitterion."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1A-07",
+    "section": "B/B",
+    "aamc_category": "1A",
+    "subtopic": "Protein structure: secondary",
+    "answer_type": "free_response",
+    "prompt": "The alpha-helix and beta-pleated sheet are examples of which LEVEL of protein structure, stabilized by hydrogen bonds along the backbone?",
+    "accepted_answers": [
+      "secondary structure",
+      "secondary",
+      "2 structure",
+      "secondary (2)"
+    ],
+    "key_terms": [
+      "secondary"
+    ],
+    "model_answer": "Secondary structure",
+    "explanation": "Secondary structure (alpha-helix, beta-sheet) arises from hydrogen bonding between backbone carbonyl O and amide N-H groups, independent of the side chains.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 3 Biological Macromolecules (Protein structure)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Secondary-structure hydrogen bonds form between atoms of the SIDE CHAINS or the BACKBONE?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "backbone",
+          "the backbone",
+          "main chain",
+          "polypeptide backbone"
+        ],
+        "explanation": "Backbone C=O and N-H groups hydrogen bond."
+      },
+      {
+        "stem": "Name the two most common secondary structures.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "alpha helix and beta sheet",
+          "alpha helix, beta pleated sheet",
+          "helix and sheet",
+          "alpha-helix and beta-sheet"
+        ],
+        "explanation": "The alpha-helix and the beta-pleated sheet."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1A-08",
+    "section": "B/B",
+    "aamc_category": "1A",
+    "subtopic": "Enzyme kinetics: Km",
+    "answer_type": "free_response",
+    "prompt": "In Michaelis-Menten kinetics, the Michaelis constant Km equals the substrate concentration at what fraction of Vmax?",
+    "accepted_answers": [
+      "half",
+      "one half",
+      "1/2",
+      "0.5",
+      "50%",
+      "half of vmax",
+      "half-maximal velocity"
+    ],
+    "key_terms": [
+      "half"
+    ],
+    "model_answer": "The substrate concentration at half of Vmax (half-maximal velocity)",
+    "explanation": "Km is the substrate concentration at which velocity is Vmax/2; a lower Km reflects higher apparent affinity of the enzyme for its substrate.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "LibreTexts Biochemistry (Fundamentals of Biochemistry) — Enzyme Kinetics (Michaelis-Menten)",
+      "url": "https://bio.libretexts.org/Bookshelves/Biochemistry",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "When [S] equals Km, the reaction velocity equals what expression in terms of Vmax?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "vmax/2",
+          "one half vmax",
+          "half vmax",
+          "0.5 vmax",
+          "vmax over 2"
+        ],
+        "explanation": "v = Vmax/2 when [S] = Km."
+      },
+      {
+        "stem": "Does a LOWER Km indicate higher or lower apparent affinity for substrate?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "higher",
+          "higher affinity",
+          "high affinity",
+          "greater affinity"
+        ],
+        "explanation": "Lower Km = higher apparent affinity."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1A-09",
+    "section": "B/B",
+    "aamc_category": "1A",
+    "subtopic": "Enzyme inhibition: competitive",
+    "answer_type": "free_response",
+    "prompt": "A competitive inhibitor binds the active site. Does it INCREASE, DECREASE, or leave unchanged the apparent Km?",
+    "accepted_answers": [
+      "increase",
+      "increases",
+      "it increases",
+      "increased",
+      "higher",
+      "raises it"
+    ],
+    "key_terms": [
+      "increase"
+    ],
+    "model_answer": "It increases the apparent Km",
+    "explanation": "A competitive inhibitor competes with substrate for the active site, so more substrate is needed to reach half-maximal velocity (apparent Km rises); Vmax is unchanged because saturating substrate outcompetes the inhibitor.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "LibreTexts Biochemistry (Fundamentals of Biochemistry) — Enzyme Inhibition",
+      "url": "https://bio.libretexts.org/Bookshelves/Biochemistry",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "What happens to Vmax with a purely competitive inhibitor at saturating substrate?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "unchanged",
+          "no change",
+          "stays the same",
+          "same",
+          "vmax is unchanged"
+        ],
+        "explanation": "Vmax is unchanged; enough substrate outcompetes the inhibitor."
+      },
+      {
+        "stem": "Can increasing substrate concentration overcome a competitive inhibitor?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "yes",
+          "yes it can",
+          "yes, it can be overcome"
+        ],
+        "explanation": "Yes - high [S] outcompetes a competitive inhibitor."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1A-10",
+    "section": "B/B",
+    "aamc_category": "1A",
+    "subtopic": "Enzyme inhibition: noncompetitive",
+    "answer_type": "free_response",
+    "prompt": "A pure noncompetitive inhibitor binds an allosteric site (not the active site). What happens to Vmax?",
+    "accepted_answers": [
+      "decreases",
+      "decrease",
+      "it decreases",
+      "lowered",
+      "reduced",
+      "decreased"
+    ],
+    "key_terms": [
+      "decrease"
+    ],
+    "model_answer": "Vmax decreases",
+    "explanation": "A noncompetitive inhibitor lowers Vmax (it inactivates a fraction of enzyme regardless of [S]) while Km is unchanged, because it binds E and ES equally well.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "LibreTexts Biochemistry (Fundamentals of Biochemistry) — Enzyme Inhibition",
+      "url": "https://bio.libretexts.org/Bookshelves/Biochemistry",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "What happens to Km with a PURE noncompetitive inhibitor?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "unchanged",
+          "no change",
+          "stays the same",
+          "same"
+        ],
+        "explanation": "Km is unchanged in pure noncompetitive inhibition."
+      },
+      {
+        "stem": "Does a noncompetitive inhibitor bind the active site or a separate (allosteric) site?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "allosteric site",
+          "different site",
+          "allosteric",
+          "a separate site",
+          "not the active site"
+        ],
+        "explanation": "It binds a separate, allosteric site."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1A-11",
+    "section": "B/B",
+    "aamc_category": "1A",
+    "subtopic": "Enzyme classification",
+    "answer_type": "free_response",
+    "prompt": "Which of the six enzyme classes catalyzes oxidation-reduction (electron-transfer) reactions - e.g., dehydrogenases and oxidases?",
+    "accepted_answers": [
+      "oxidoreductase",
+      "oxidoreductases"
+    ],
+    "key_terms": [
+      "oxidoreductase"
+    ],
+    "model_answer": "Oxidoreductases",
+    "explanation": "Oxidoreductases catalyze redox reactions. The six classes are oxidoreductases, transferases, hydrolases, lyases, isomerases, and ligases.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "LibreTexts Biochemistry (Fundamentals of Biochemistry) — Enzyme Classification (EC)",
+      "url": "https://bio.libretexts.org/Bookshelves/Biochemistry",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Which class transfers a functional group between molecules (e.g., kinases transferring phosphate)?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "transferase",
+          "transferases"
+        ],
+        "explanation": "Transferases move functional groups; kinases transfer phosphate."
+      },
+      {
+        "stem": "Which class breaks bonds using water (e.g., proteases, lipases)?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "hydrolase",
+          "hydrolases"
+        ],
+        "explanation": "Hydrolases catalyze hydrolysis."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1A-12",
+    "section": "B/B",
+    "aamc_category": "1A",
+    "subtopic": "Enzymes and thermodynamics",
+    "answer_type": "free_response",
+    "prompt": "Enzymes speed reactions by lowering the activation energy. Do they change the reaction's overall delta-G or its equilibrium position? (yes/no)",
+    "accepted_answers": [
+      "no",
+      "no they do not",
+      "no change",
+      "they do not",
+      "no; unchanged"
+    ],
+    "key_terms": [
+      "no"
+    ],
+    "model_answer": "No - enzymes do not change delta-G or the equilibrium; they only lower activation energy and increase rate.",
+    "explanation": "A catalyst accelerates the forward and reverse reactions equally, reaching the same equilibrium faster; it cannot alter the thermodynamics (delta-G, Keq).",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 6 Metabolism (Enzymes)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "What quantity do enzymes lower to speed up a reaction?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "activation energy",
+          "ea",
+          "activation energy (ea)",
+          "the activation energy"
+        ],
+        "explanation": "Enzymes lower the activation energy (Ea)."
+      },
+      {
+        "stem": "A catalyst speeds the forward reaction; what does it do to the reverse reaction rate?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "also speeds it",
+          "speeds it equally",
+          "increases it",
+          "speeds it up too",
+          "same effect"
+        ],
+        "explanation": "It speeds the reverse reaction to the same extent, so equilibrium is unchanged."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1A-13",
+    "section": "B/B",
+    "aamc_category": "1A",
+    "subtopic": "Non-enzymatic proteins: hemoglobin",
+    "answer_type": "free_response",
+    "prompt": "Which oxygen-transport protein shows a SIGMOIDAL O2-binding curve because of cooperative binding among its four subunits?",
+    "accepted_answers": [
+      "hemoglobin",
+      "hb",
+      "haemoglobin"
+    ],
+    "key_terms": [
+      "hemoglobin"
+    ],
+    "model_answer": "Hemoglobin",
+    "explanation": "Hemoglobin's four subunits bind O2 cooperatively, giving a sigmoidal curve; single-subunit myoglobin is hyperbolic.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 39 Respiratory System (Hemoglobin)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "How many O2-binding subunits does one hemoglobin molecule have?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "four",
+          "4",
+          "four subunits"
+        ],
+        "explanation": "Hemoglobin is a tetramer with four subunits."
+      },
+      {
+        "stem": "Which related single-subunit protein has a hyperbolic (non-cooperative) O2 curve?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "myoglobin",
+          "mb"
+        ],
+        "explanation": "Myoglobin has one subunit and binds O2 non-cooperatively."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1A-14",
+    "section": "B/B",
+    "aamc_category": "1A",
+    "subtopic": "Non-enzymatic proteins: collagen",
+    "answer_type": "free_response",
+    "prompt": "What fibrous structural protein, built from a triple helix and rich in glycine and proline, is the most abundant protein in the human body?",
+    "accepted_answers": [
+      "collagen"
+    ],
+    "key_terms": [
+      "collagen"
+    ],
+    "model_answer": "Collagen",
+    "explanation": "Collagen forms a triple-helical fiber giving tensile strength to skin, bone, tendon, and connective tissue; its repeating Gly-X-Y sequence allows tight packing.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Connective tissue; the extracellular matrix",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Collagen's characteristic structure is a helix made of how many polypeptide chains?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "three",
+          "3",
+          "triple helix",
+          "three chains"
+        ],
+        "explanation": "Three chains form the triple helix."
+      },
+      {
+        "stem": "Which small amino acid appears at every third position, letting the chains pack tightly?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "glycine",
+          "gly"
+        ],
+        "explanation": "Glycine's small H side chain fits the crowded helix core."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1A-15",
+    "section": "B/B",
+    "aamc_category": "1A",
+    "subtopic": "Protein folding: denaturation",
+    "answer_type": "free_response",
+    "prompt": "What term describes the loss of a protein's 3-D structure (by heat or extreme pH, say) WITHOUT breaking its peptide bonds?",
+    "accepted_answers": [
+      "denaturation",
+      "denaturing",
+      "denature",
+      "denatured"
+    ],
+    "key_terms": [
+      "denatur"
+    ],
+    "model_answer": "Denaturation",
+    "explanation": "Denaturation disrupts non-covalent interactions and higher-order structure while leaving the primary sequence (peptide bonds) intact; it often abolishes function.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 3 Biological Macromolecules (Denaturation)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Does denaturation break the peptide (amide) bonds of the PRIMARY structure?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "no",
+          "no it does not",
+          "does not"
+        ],
+        "explanation": "Primary structure (peptide bonds) is retained."
+      },
+      {
+        "stem": "Name one physical or chemical agent that can denature a protein.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "heat",
+          "high temperature",
+          "extreme ph",
+          "acid",
+          "base",
+          "urea",
+          "detergent",
+          "high salt"
+        ],
+        "explanation": "Heat, extreme pH, urea, or detergents can denature proteins."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1A-16",
+    "section": "B/B",
+    "aamc_category": "1A",
+    "subtopic": "Enzyme regulation: feedback inhibition",
+    "answer_type": "free_response",
+    "prompt": "What is the term for regulation in which the END PRODUCT of a metabolic pathway inhibits an enzyme earlier in that pathway?",
+    "accepted_answers": [
+      "feedback inhibition",
+      "negative feedback inhibition",
+      "end-product inhibition",
+      "feedback inhibition (negative feedback)"
+    ],
+    "key_terms": [
+      "feedback"
+    ],
+    "model_answer": "Feedback inhibition (negative feedback)",
+    "explanation": "The end product allosterically inhibits an early (often committed-step) enzyme, preventing overproduction and conserving resources.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 6 Metabolism (Feedback inhibition)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Feedback inhibitors usually bind the active site or an ALLOSTERIC site of the target enzyme?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "allosteric site",
+          "allosteric",
+          "different site"
+        ],
+        "explanation": "They typically act at an allosteric site."
+      },
+      {
+        "stem": "Does the end product's accumulation speed up or slow down its own production?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "slow down",
+          "slows it",
+          "decreases it",
+          "inhibits it",
+          "slows"
+        ],
+        "explanation": "Accumulated product slows its own synthesis."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1A-17",
+    "section": "B/B",
+    "aamc_category": "1A",
+    "subtopic": "Amino acids: aromatic residues",
+    "answer_type": "free_response",
+    "prompt": "Proteins absorb ultraviolet light at 280 nm mainly because of which aromatic amino acid (the strongest contributor)?",
+    "accepted_answers": [
+      "tryptophan",
+      "trp",
+      "w"
+    ],
+    "key_terms": [
+      "tryptophan"
+    ],
+    "model_answer": "Tryptophan",
+    "explanation": "Aromatic residues (Trp, Tyr, Phe) absorb near 280 nm; tryptophan contributes most, enabling protein quantitation by A280.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "LibreTexts Biochemistry (Fundamentals of Biochemistry) — Amino Acids (spectroscopic properties)",
+      "url": "https://bio.libretexts.org/Bookshelves/Biochemistry",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Name the three aromatic standard amino acids.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "phenylalanine, tyrosine, tryptophan",
+          "phe tyr trp",
+          "tryptophan tyrosine phenylalanine",
+          "trp tyr phe"
+        ],
+        "explanation": "Phenylalanine, tyrosine, and tryptophan."
+      },
+      {
+        "stem": "Absorbance at 280 nm is commonly used to measure what property of a protein sample?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "concentration",
+          "protein concentration",
+          "amount",
+          "quantity"
+        ],
+        "explanation": "A280 estimates protein concentration."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1A-18",
+    "section": "B/B",
+    "aamc_category": "1A",
+    "subtopic": "Enzyme-substrate binding",
+    "answer_type": "free_response",
+    "prompt": "What model of enzyme-substrate binding says the active site CHANGES SHAPE to wrap around the substrate on binding (rather than being a rigid, pre-formed complement)?",
+    "accepted_answers": [
+      "induced fit",
+      "induced-fit model",
+      "induced fit model"
+    ],
+    "key_terms": [
+      "induced fit"
+    ],
+    "model_answer": "The induced-fit model",
+    "explanation": "Induced fit (Koshland) holds that substrate binding triggers a conformational change that optimizes catalysis, refining the older lock-and-key idea.",
+    "difficulty": "hard",
+    "cognitive_level": "application",
+    "source": {
+      "name": "LibreTexts Biochemistry (Fundamentals of Biochemistry) — Enzyme catalysis (induced fit)",
+      "url": "https://bio.libretexts.org/Bookshelves/Biochemistry",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "What older model describes the active site as a rigid, exact complement to the substrate?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "lock and key",
+          "lock-and-key",
+          "lock and key model"
+        ],
+        "explanation": "The lock-and-key model."
+      },
+      {
+        "stem": "The region of an enzyme where substrate binds and catalysis occurs is called the ___?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "active site",
+          "the active site"
+        ],
+        "explanation": "The active site."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1B-01",
+    "section": "B/B",
+    "aamc_category": "1B",
+    "subtopic": "DNA structure: bases",
+    "answer_type": "free_response",
+    "prompt": "Name the two PURINE bases found in DNA.",
+    "accepted_answers": [
+      "adenine and guanine",
+      "adenine, guanine",
+      "guanine and adenine",
+      "a and g",
+      "adenine guanine"
+    ],
+    "key_terms": [
+      "adenine",
+      "guanine"
+    ],
+    "model_answer": "Adenine and guanine",
+    "explanation": "Purines (adenine, guanine) have a double-ring structure; pyrimidines (cytosine, thymine, uracil) have a single ring.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 14 DNA Structure and Function",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Do purines have a single-ring or a double-ring structure?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "double ring",
+          "double-ring",
+          "two rings",
+          "bicyclic",
+          "double"
+        ],
+        "explanation": "Purines are double-ringed."
+      },
+      {
+        "stem": "Using the mnemonic 'PURe As Gold', which two bases are the purines?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "adenine and guanine",
+          "a and g",
+          "adenine, guanine"
+        ],
+        "explanation": "Adenine and Guanine are the purines."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1B-02",
+    "section": "B/B",
+    "aamc_category": "1B",
+    "subtopic": "Nucleic acids: RNA vs DNA",
+    "answer_type": "free_response",
+    "prompt": "Which pyrimidine base is found in RNA but NOT in DNA?",
+    "accepted_answers": [
+      "uracil",
+      "u"
+    ],
+    "key_terms": [
+      "uracil"
+    ],
+    "model_answer": "Uracil",
+    "explanation": "RNA uses uracil in place of DNA's thymine; both pair with adenine. Cytosine is the pyrimidine common to both.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 14-15 Nucleic acids and RNA",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Which pyrimidine does DNA use that RNA replaces with uracil?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "thymine",
+          "t"
+        ],
+        "explanation": "DNA uses thymine; RNA uses uracil."
+      },
+      {
+        "stem": "Uracil base-pairs with which purine?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "adenine",
+          "a"
+        ],
+        "explanation": "U pairs with A."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1B-03",
+    "section": "B/B",
+    "aamc_category": "1B",
+    "subtopic": "DNA structure: base pairing",
+    "answer_type": "free_response",
+    "prompt": "In double-stranded DNA, how many hydrogen bonds form between a guanine-cytosine (G-C) base pair?",
+    "accepted_answers": [
+      "three",
+      "3",
+      "three hydrogen bonds"
+    ],
+    "key_terms": [
+      "three"
+    ],
+    "model_answer": "Three",
+    "explanation": "G-C pairs share three hydrogen bonds and A-T pairs share two, so GC-rich DNA is more thermally stable (higher melting temperature).",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 14 DNA Structure and Function",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "How many hydrogen bonds are in an A-T base pair?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "two",
+          "2"
+        ],
+        "explanation": "A-T pairs have two hydrogen bonds."
+      },
+      {
+        "stem": "Which pairing (G-C or A-T) makes DNA more resistant to melting (higher Tm)?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "g-c",
+          "gc",
+          "guanine-cytosine",
+          "gc pairs"
+        ],
+        "explanation": "More H-bonds means G-C is more stable."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1B-04",
+    "section": "B/B",
+    "aamc_category": "1B",
+    "subtopic": "DNA replication: semiconservative",
+    "answer_type": "free_response",
+    "prompt": "DNA replication is described by what term, because each new double helix keeps one old (parental) strand and one new strand?",
+    "accepted_answers": [
+      "semiconservative",
+      "semi-conservative",
+      "semiconservative replication"
+    ],
+    "key_terms": [
+      "semiconservative"
+    ],
+    "model_answer": "Semiconservative",
+    "explanation": "Meselson and Stahl showed replication is semiconservative: each daughter duplex has one parental and one newly synthesized strand.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 14 DNA Replication",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "In semiconservative replication, how many strands of each daughter duplex are newly made?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "one",
+          "1",
+          "one strand"
+        ],
+        "explanation": "One new strand per daughter duplex."
+      },
+      {
+        "stem": "Each parental strand serves as a ___ for synthesizing the new complementary strand.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "template",
+          "a template"
+        ],
+        "explanation": "Each old strand is a template."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1B-05",
+    "section": "B/B",
+    "aamc_category": "1B",
+    "subtopic": "DNA replication: polymerase direction",
+    "answer_type": "free_response",
+    "prompt": "In which direction does DNA polymerase synthesize a new DNA strand?",
+    "accepted_answers": [
+      "5' to 3'",
+      "5'->3'",
+      "5 to 3",
+      "five prime to three prime",
+      "5'-3'",
+      "5 to 3 prime"
+    ],
+    "key_terms": [
+      "5",
+      "3"
+    ],
+    "model_answer": "5' to 3' (it adds nucleotides to the 3' end)",
+    "explanation": "DNA polymerase can only extend a free 3'-OH end, so synthesis proceeds 5'->3'; this constraint creates the leading and lagging strands.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 14 DNA Replication (enzymes)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "DNA polymerase adds each new nucleotide to which end of the growing strand?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "3' end",
+          "3 prime",
+          "3'",
+          "the 3' end",
+          "3-oh",
+          "3'-oh"
+        ],
+        "explanation": "It adds to the free 3'-OH."
+      },
+      {
+        "stem": "Reading the template 3'->5', the new strand therefore grows in which direction?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "5' to 3'",
+          "5 to 3",
+          "5'->3'"
+        ],
+        "explanation": "The new strand grows 5'->3'."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1B-06",
+    "section": "B/B",
+    "aamc_category": "1B",
+    "subtopic": "DNA replication: primer",
+    "answer_type": "free_response",
+    "prompt": "DNA polymerase cannot start from scratch. Which enzyme synthesizes the short RNA primer it needs to begin?",
+    "accepted_answers": [
+      "primase",
+      "rna primase",
+      "dna primase"
+    ],
+    "key_terms": [
+      "primase"
+    ],
+    "model_answer": "Primase",
+    "explanation": "Primase lays down a short RNA primer that provides a free 3'-OH for DNA polymerase to extend.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 14 DNA Replication (enzymes)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Is the primer that is laid down made of DNA or RNA?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "rna",
+          "ribonucleic acid"
+        ],
+        "explanation": "The primer is RNA."
+      },
+      {
+        "stem": "What does the primer provide that DNA polymerase requires to add nucleotides?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "a free 3' hydroxyl",
+          "3'-oh",
+          "free 3' end",
+          "3' oh group",
+          "a 3'-oh"
+        ],
+        "explanation": "A free 3'-OH group."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1B-07",
+    "section": "B/B",
+    "aamc_category": "1B",
+    "subtopic": "DNA replication: lagging strand",
+    "answer_type": "free_response",
+    "prompt": "What are the short DNA segments synthesized discontinuously on the lagging strand called?",
+    "accepted_answers": [
+      "okazaki fragments",
+      "okazaki fragment",
+      "okazaki"
+    ],
+    "key_terms": [
+      "okazaki"
+    ],
+    "model_answer": "Okazaki fragments",
+    "explanation": "Because polymerase only works 5'->3', the lagging strand is built as discontinuous Okazaki fragments, later joined by DNA ligase.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 14 DNA Replication",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Are Okazaki fragments made on the leading or the lagging strand?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "lagging",
+          "lagging strand"
+        ],
+        "explanation": "On the lagging strand."
+      },
+      {
+        "stem": "Which enzyme seals the nicks between adjacent Okazaki fragments?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "dna ligase",
+          "ligase"
+        ],
+        "explanation": "DNA ligase joins them."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1B-08",
+    "section": "B/B",
+    "aamc_category": "1B",
+    "subtopic": "DNA replication: unwinding",
+    "answer_type": "free_response",
+    "prompt": "Which enzyme unwinds and separates the two strands of the DNA double helix at the replication fork?",
+    "accepted_answers": [
+      "helicase",
+      "dna helicase"
+    ],
+    "key_terms": [
+      "helicase"
+    ],
+    "model_answer": "Helicase",
+    "explanation": "Helicase breaks hydrogen bonds to unwind DNA; single-strand binding proteins keep strands apart and topoisomerase relieves supercoiling ahead of the fork.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 14 DNA Replication (enzymes)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Which proteins coat and stabilize the separated single strands to stop them re-annealing?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "single-strand binding proteins",
+          "ssb",
+          "single strand binding proteins",
+          "ssbs"
+        ],
+        "explanation": "Single-strand binding proteins (SSBs)."
+      },
+      {
+        "stem": "Which enzyme relieves the supercoiling/tension ahead of the replication fork?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "topoisomerase",
+          "dna gyrase",
+          "topoisomerase (gyrase)"
+        ],
+        "explanation": "Topoisomerase (gyrase)."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1B-09",
+    "section": "B/B",
+    "aamc_category": "1B",
+    "subtopic": "Translation: start codon",
+    "answer_type": "free_response",
+    "prompt": "What is the three-nucleotide START codon on mRNA that initiates translation?",
+    "accepted_answers": [
+      "aug",
+      "a-u-g",
+      "5'-aug-3'"
+    ],
+    "key_terms": [
+      "aug"
+    ],
+    "model_answer": "AUG",
+    "explanation": "AUG is the start codon and codes for methionine (the initiator Met in eukaryotes).",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 15 Genes to Proteins (Translation)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Which amino acid does the start codon AUG code for?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "methionine",
+          "met",
+          "m"
+        ],
+        "explanation": "AUG codes for methionine."
+      },
+      {
+        "stem": "A codon consists of how many nucleotides?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "three",
+          "3",
+          "three nucleotides"
+        ],
+        "explanation": "Three (a triplet)."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1B-10",
+    "section": "B/B",
+    "aamc_category": "1B",
+    "subtopic": "Translation: stop codons",
+    "answer_type": "free_response",
+    "prompt": "Name the three mRNA STOP (nonsense) codons that terminate translation.",
+    "accepted_answers": [
+      "uaa uag uga",
+      "uaa, uag, uga",
+      "uag uaa uga",
+      "uaa uga uag",
+      "uag, uaa, uga"
+    ],
+    "key_terms": [
+      "uaa",
+      "uag",
+      "uga"
+    ],
+    "model_answer": "UAA, UAG, and UGA",
+    "explanation": "These three codons signal release factors to end translation; they do not code for any amino acid.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 15 The Genetic Code",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Do stop codons code for an amino acid?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "no",
+          "no they do not",
+          "none"
+        ],
+        "explanation": "No - they signal termination."
+      },
+      {
+        "stem": "Proteins that recognize stop codons and end translation are called ___?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "release factors",
+          "release factor"
+        ],
+        "explanation": "Release factors."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1B-11",
+    "section": "B/B",
+    "aamc_category": "1B",
+    "subtopic": "Translation: tRNA",
+    "answer_type": "free_response",
+    "prompt": "The ANTICODON of a tRNA base-pairs with which feature of the mRNA during translation?",
+    "accepted_answers": [
+      "the codon",
+      "codon",
+      "mrna codon",
+      "the mrna codon"
+    ],
+    "key_terms": [
+      "codon"
+    ],
+    "model_answer": "The mRNA codon",
+    "explanation": "Each tRNA anticodon pairs antiparallel with a complementary mRNA codon, delivering the correct amino acid.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 15 Translation (tRNA)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Which molecule carries an amino acid to the ribosome and reads the codon?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "trna",
+          "transfer rna",
+          "trna (transfer rna)"
+        ],
+        "explanation": "Transfer RNA (tRNA)."
+      },
+      {
+        "stem": "Flexible pairing at the third codon position is described by the ___ hypothesis.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "wobble",
+          "wobble hypothesis"
+        ],
+        "explanation": "The wobble hypothesis."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1B-12",
+    "section": "B/B",
+    "aamc_category": "1B",
+    "subtopic": "RNA processing",
+    "answer_type": "free_response",
+    "prompt": "Name the protective structure added to the 5' end of eukaryotic pre-mRNA during processing.",
+    "accepted_answers": [
+      "5' cap",
+      "5 prime cap",
+      "7-methylguanosine cap",
+      "guanine cap",
+      "5'-cap",
+      "methylguanosine cap",
+      "cap"
+    ],
+    "key_terms": [
+      "cap"
+    ],
+    "model_answer": "The 5' cap (7-methylguanosine cap)",
+    "explanation": "Processing adds a 5' 7-methylguanosine cap and a 3' poly-A tail and removes introns by splicing.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 15 Eukaryotic RNA processing",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "What is added to the 3' end of eukaryotic mRNA during processing?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "poly-a tail",
+          "poly a tail",
+          "polyadenylation",
+          "poly(a) tail",
+          "poly a"
+        ],
+        "explanation": "A poly-A tail."
+      },
+      {
+        "stem": "Removal of introns and joining of exons is called ___?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "splicing",
+          "rna splicing",
+          "splicing (rna splicing)"
+        ],
+        "explanation": "Splicing."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1B-13",
+    "section": "B/B",
+    "aamc_category": "1B",
+    "subtopic": "Transcription",
+    "answer_type": "free_response",
+    "prompt": "Which enzyme synthesizes RNA from a DNA template during transcription?",
+    "accepted_answers": [
+      "rna polymerase",
+      "rna pol",
+      "rna polymerase ii",
+      "rnap"
+    ],
+    "key_terms": [
+      "rna polymerase"
+    ],
+    "model_answer": "RNA polymerase",
+    "explanation": "RNA polymerase reads the template strand 3'->5' and builds RNA 5'->3'; unlike DNA polymerase it needs no primer.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 15 Transcription",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "The DNA strand actually read by RNA polymerase is called the ___ strand.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "template strand",
+          "template",
+          "antisense strand",
+          "antisense"
+        ],
+        "explanation": "The template (antisense) strand."
+      },
+      {
+        "stem": "Does RNA polymerase require a primer to begin, as DNA polymerase does?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "no",
+          "no it does not",
+          "no primer"
+        ],
+        "explanation": "No primer needed."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1B-14",
+    "section": "B/B",
+    "aamc_category": "1B",
+    "subtopic": "The genetic code",
+    "answer_type": "free_response",
+    "prompt": "What single word describes the property of the genetic code in which most amino acids are specified by MORE THAN ONE codon?",
+    "accepted_answers": [
+      "degenerate",
+      "degeneracy",
+      "redundant",
+      "redundancy"
+    ],
+    "key_terms": [
+      "degenerate"
+    ],
+    "model_answer": "Degenerate (redundant)",
+    "explanation": "With 64 codons for 20 amino acids plus stops, most amino acids have several synonymous codons; the code is degenerate but unambiguous (each codon specifies one amino acid).",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 15 The Genetic Code",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "How many possible codons exist (given a 3-nucleotide, 4-base code)?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "64",
+          "sixty-four"
+        ],
+        "explanation": "4^3 = 64 codons."
+      },
+      {
+        "stem": "Is a single codon ever ambiguous (coding for more than one amino acid)?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "no",
+          "never",
+          "no it is not"
+        ],
+        "explanation": "Each codon specifies only one amino acid."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1B-15",
+    "section": "B/B",
+    "aamc_category": "1B",
+    "subtopic": "Biotechnology: PCR",
+    "answer_type": "free_response",
+    "prompt": "What lab technique uses repeated cycles of denaturation, annealing, and extension to EXPONENTIALLY amplify a specific DNA sequence?",
+    "accepted_answers": [
+      "pcr",
+      "polymerase chain reaction"
+    ],
+    "key_terms": [
+      "pcr"
+    ],
+    "model_answer": "PCR (polymerase chain reaction)",
+    "explanation": "PCR uses a heat-stable DNA polymerase (Taq), primers, and thermal cycling to roughly double the target DNA each cycle.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 17 Biotechnology (PCR)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "What heat-stable enzyme extends the primers at high temperature in PCR?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "taq polymerase",
+          "taq",
+          "taq dna polymerase"
+        ],
+        "explanation": "Taq polymerase (from Thermus aquaticus)."
+      },
+      {
+        "stem": "Short synthetic DNA sequences that define the region to be amplified are called ___?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "primers",
+          "primer",
+          "dna primers"
+        ],
+        "explanation": "Primers."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1B-16",
+    "section": "B/B",
+    "aamc_category": "1B",
+    "subtopic": "Biotechnology: reverse transcription",
+    "answer_type": "free_response",
+    "prompt": "Which enzyme synthesizes DNA from an RNA template (used by retroviruses and to make cDNA)?",
+    "accepted_answers": [
+      "reverse transcriptase",
+      "rt"
+    ],
+    "key_terms": [
+      "reverse transcriptase"
+    ],
+    "model_answer": "Reverse transcriptase",
+    "explanation": "Reverse transcriptase makes complementary DNA (cDNA) from RNA, reversing the usual DNA->RNA flow; it is central to retroviruses such as HIV.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 17 Biotechnology (cDNA)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "DNA made from an mRNA template by reverse transcriptase is called ___ DNA.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "complementary",
+          "cdna",
+          "complementary dna",
+          "c dna"
+        ],
+        "explanation": "cDNA (complementary DNA)."
+      },
+      {
+        "stem": "Name one virus that uses reverse transcriptase.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "hiv",
+          "retrovirus",
+          "human immunodeficiency virus"
+        ],
+        "explanation": "HIV (a retrovirus)."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1B-17",
+    "section": "B/B",
+    "aamc_category": "1B",
+    "subtopic": "Gene regulation: lac operon",
+    "answer_type": "free_response",
+    "prompt": "In E. coli, the lac operon is turned ON when which molecule (a lactose isomer) binds and inactivates the repressor?",
+    "accepted_answers": [
+      "allolactose",
+      "lactose",
+      "allolactose (lactose isomer)"
+    ],
+    "key_terms": [
+      "allolactose"
+    ],
+    "model_answer": "Allolactose",
+    "explanation": "Allolactose, an inducer derived from lactose, binds the lac repressor and releases it from the operator so transcription proceeds - an inducible operon.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 16 Gene Regulation (prokaryotic operons)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "When lactose/allolactose is ABSENT, is the lac operon ON or OFF?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "off",
+          "off (repressed)",
+          "repressed"
+        ],
+        "explanation": "Off - the repressor blocks transcription."
+      },
+      {
+        "stem": "The lac repressor binds which DNA sequence to block transcription?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "operator",
+          "the operator",
+          "operator site"
+        ],
+        "explanation": "The operator."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1B-18",
+    "section": "B/B",
+    "aamc_category": "1B",
+    "subtopic": "Mutations: frameshift",
+    "answer_type": "free_response",
+    "prompt": "Insertion or deletion of a single nucleotide in a coding region causes what type of mutation, altering ALL downstream codons?",
+    "accepted_answers": [
+      "frameshift",
+      "frameshift mutation",
+      "frame shift"
+    ],
+    "key_terms": [
+      "frameshift"
+    ],
+    "model_answer": "A frameshift mutation",
+    "explanation": "Because codons are read as non-overlapping triplets, adding or removing one or two nucleotides shifts the reading frame and usually garbles the rest of the protein.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 14 Mutations",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "A single base substitution that changes one amino acid is called a ___ mutation.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "missense",
+          "missense mutation",
+          "point mutation"
+        ],
+        "explanation": "A missense (point) mutation."
+      },
+      {
+        "stem": "A substitution that creates a premature STOP codon is called a ___ mutation.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "nonsense",
+          "nonsense mutation"
+        ],
+        "explanation": "A nonsense mutation."
+      }
+    ]
+  }
+]

@@ -474,6 +474,130 @@
         {
             "deck_tag_or_subdeck": "MCAT::Psychology",
             "category": "7A"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::10A",
+            "category": "10A"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::1A",
+            "category": "1A"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::1B",
+            "category": "1B"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::1C",
+            "category": "1C"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::1D",
+            "category": "1D"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::2A",
+            "category": "2A"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::2B",
+            "category": "2B"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::2C",
+            "category": "2C"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::3A",
+            "category": "3A"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::3B",
+            "category": "3B"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::4A",
+            "category": "4A"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::4B",
+            "category": "4B"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::4C",
+            "category": "4C"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::4D",
+            "category": "4D"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::4E",
+            "category": "4E"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::5A",
+            "category": "5A"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::5B",
+            "category": "5B"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::5C",
+            "category": "5C"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::5D",
+            "category": "5D"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::5E",
+            "category": "5E"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::6A",
+            "category": "6A"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::6B",
+            "category": "6B"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::6C",
+            "category": "6C"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::7A",
+            "category": "7A"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::7B",
+            "category": "7B"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::7C",
+            "category": "7C"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::8A",
+            "category": "8A"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::8B",
+            "category": "8B"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::8C",
+            "category": "8C"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::9A",
+            "category": "9A"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::9B",
+            "category": "9B"
         }
     ]
 }

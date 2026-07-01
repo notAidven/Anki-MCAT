@@ -1,14 +1,14 @@
 # Copyright: Ankitects Pty Ltd and contributors
 # License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 
-"""First-launch provisioning for the pre-loaded ReadyMCAT MCQ deck.
+"""First-launch provisioning for the pre-loaded ReadyMCAT decks.
 
-A brand-new ReadyMCAT user should get the full MCAT multiple-choice deck with
-**zero import**. This module is the desktop hook that makes that happen: on
-collection load it checks whether the ``ReadyMCAT`` deck already exists and, if
-not, builds it directly from the bundled ``question_bank.json`` (see
-``readymcat/tools/build_question_bank.py``) and drops the sidecar files the
-topic-aware features expect (``taxonomy.json``, ``subquestions.json``,
+A brand-new ReadyMCAT user should get the full MCAT deck — multiple-choice,
+free-response *and* passage cards — with **zero import**. This module is the
+desktop hook that makes that happen: on collection load it checks whether each
+content type is already present and, if not, builds it directly from the bundled
+banks (see ``readymcat/tools/build_question_bank.py``) and drops the sidecar
+files the topic-aware features expect (``taxonomy.json``, ``subquestions.json``,
 ``diagnostic_quiz.json``) next to the collection.
 
 It is a thin GUI wrapper around the pure ``anki`` builder, mirroring how
@@ -129,21 +129,35 @@ def _ensure_taxonomy_mappings_present(mw: "aqt.main.AnkiQt", col_dir: Path) -> N
         return
     try:
         core = _load_core()
-        items = core.load_bank_items_or_merge()
-        categories = sorted({str(it["aamc_category"]) for it in items})
+        categories = core.all_content_categories()
         added = core.ensure_taxonomy_mappings(str(taxonomy), categories)
         if added:
-            print(f"ReadyMCAT: added {added} MCQ mapping(s) to {taxonomy}.")
+            print(f"ReadyMCAT: added {added} mapping(s) to {taxonomy}.")
     except Exception as exc:  # pragma: no cover - defensive
         print("ReadyMCAT: could not top up taxonomy mappings", exc)
 
 
-def maybe_provision_readymcat(mw: "aqt.main.AnkiQt") -> None:
-    """Build the pre-loaded MCQ deck on first launch, then place sidecars.
+def _all_content_present(core: ModuleType, col: "object") -> bool:
+    """True once every pre-loaded content type (MCQ + FR + passage) exists."""
+    try:
+        return (
+            core.has_mcq_deck(col)
+            and core.has_fr_notes(col)
+            and core.has_passage_notes(col)
+        )
+    except Exception:  # pragma: no cover - defensive
+        return False
 
-    Idempotent + silent: if the ``ReadyMCAT`` deck already exists this only
-    ensures the sidecar files are present. Skipped entirely when
-    ``READYMCAT_NO_PROVISION`` is set."""
+
+def maybe_provision_readymcat(mw: "aqt.main.AnkiQt") -> None:
+    """Build the pre-loaded decks (MCQ + free-response + passage) on first
+    launch, then place sidecars.
+
+    Idempotent + silent: each content type is guarded independently, so if
+    everything already exists this only ensures the sidecar files are present,
+    and an existing collection missing a newer content type is topped up without
+    duplicating anything. Skipped entirely when ``READYMCAT_NO_PROVISION`` is
+    set."""
     if os.environ.get("READYMCAT_NO_PROVISION"):
         return
     if mw.col is None:
@@ -155,7 +169,7 @@ def maybe_provision_readymcat(mw: "aqt.main.AnkiQt") -> None:
         return
 
     try:
-        if core.has_mcq_deck(mw.col):
+        if _all_content_present(core, mw.col):
             place_sidecars(mw)
             return
     except Exception as exc:  # pragma: no cover - defensive
@@ -164,21 +178,25 @@ def maybe_provision_readymcat(mw: "aqt.main.AnkiQt") -> None:
 
     mw.progress.start(label="Preparing the ReadyMCAT question bank…", immediate=True)
     try:
-        stats = core.provision_collection(mw.col, log=print)
+        stats = core.provision_all(mw.col, log=print)
         place_sidecars(mw)
     except Exception as exc:
         mw.progress.finish()
-        print("ReadyMCAT: could not provision the MCQ deck", exc)
+        print("ReadyMCAT: could not provision the decks", exc)
         return
     mw.progress.finish()
 
-    if not stats.already_present and stats.notes_created:
-        # Refresh so the freshly-built deck appears without a manual reload.
+    created = sum(s.notes_created for s in stats.values() if not s.already_present)
+    if created:
+        # Refresh so the freshly-built decks appear without a manual reload.
         mw.reset()
         from aqt.utils import tooltip
 
+        categories: set[str] = set()
+        for stat in stats.values():
+            categories.update(getattr(stat, "categories", []) or [])
         tooltip(
-            f"ReadyMCAT: loaded {stats.notes_created} MCQs across "
-            f"{len(stats.categories)} AAMC categories — no import needed.",
+            f"ReadyMCAT: loaded {created} items (MCQ + free-response + passage) "
+            f"across {len(categories)} AAMC categories — no import needed.",
             period=5000,
         )

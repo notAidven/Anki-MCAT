@@ -1760,5 +1760,1638 @@
         "explanation": "A nonsense mutation."
       }
     ]
+  },
+  {
+    "id": "fr-bb-1C-01",
+    "section": "B/B",
+    "aamc_category": "1C",
+    "subtopic": "Meiosis: products",
+    "answer_type": "free_response",
+    "prompt": "Starting from one diploid cell, how many daughter cells does meiosis produce?",
+    "accepted_answers": [
+      "four",
+      "4",
+      "four cells"
+    ],
+    "key_terms": [
+      "four"
+    ],
+    "model_answer": "Four (haploid) cells",
+    "explanation": "Meiosis I and II yield four genetically distinct haploid gametes; mitosis, by contrast, yields two diploid cells.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 11 Meiosis and Sexual Reproduction",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Are meiotic products haploid (n) or diploid (2n)?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "haploid",
+          "haploid (n)",
+          "n"
+        ],
+        "explanation": "Haploid."
+      },
+      {
+        "stem": "How many daughter cells does mitosis produce, and of what ploidy?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "two diploid",
+          "2 diploid",
+          "two diploid cells",
+          "two (diploid)"
+        ],
+        "explanation": "Two diploid cells."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1C-02",
+    "section": "B/B",
+    "aamc_category": "1C",
+    "subtopic": "Meiosis: crossing over",
+    "answer_type": "free_response",
+    "prompt": "During which phase of meiosis does crossing over (recombination between homologous chromosomes) occur?",
+    "accepted_answers": [
+      "prophase i",
+      "prophase 1",
+      "prophase one",
+      "meiosis i prophase"
+    ],
+    "key_terms": [
+      "prophase i"
+    ],
+    "model_answer": "Prophase I",
+    "explanation": "In prophase I homologous chromosomes synapse (form tetrads) and exchange segments at chiasmata - crossing over - increasing genetic diversity.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 11 Meiosis (prophase I)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "The paired structure of two homologous chromosomes (four chromatids) in prophase I is called a ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "tetrad",
+          "bivalent",
+          "tetrad (bivalent)"
+        ],
+        "explanation": "A tetrad (bivalent)."
+      },
+      {
+        "stem": "The physical crossover points where chromatids exchange DNA are called ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "chiasmata",
+          "chiasma",
+          "chiasmata (chiasma)"
+        ],
+        "explanation": "Chiasmata."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1C-03",
+    "section": "B/B",
+    "aamc_category": "1C",
+    "subtopic": "Mendelian genetics: laws",
+    "answer_type": "free_response",
+    "prompt": "Which of Mendel's laws states that alleles of DIFFERENT genes are distributed to gametes independently of one another?",
+    "accepted_answers": [
+      "law of independent assortment",
+      "independent assortment",
+      "mendel's second law",
+      "second law"
+    ],
+    "key_terms": [
+      "independent assortment"
+    ],
+    "model_answer": "The law of independent assortment (Mendel's second law)",
+    "explanation": "Independent assortment arises because homologous pairs orient randomly at metaphase I; it holds for genes on different chromosomes (or far apart on one).",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 12 Mendel and the Gene",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Mendel's other law - that the two alleles for a trait separate during gamete formation - is the law of ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "segregation",
+          "law of segregation"
+        ],
+        "explanation": "The law of segregation."
+      },
+      {
+        "stem": "Independent assortment is physically explained by random orientation of homologs at which meiotic stage?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "metaphase i",
+          "metaphase 1",
+          "metaphase one"
+        ],
+        "explanation": "Metaphase I."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1C-04",
+    "section": "B/B",
+    "aamc_category": "1C",
+    "subtopic": "Genetics: terminology",
+    "answer_type": "free_response",
+    "prompt": "What term refers to an organism's OBSERVABLE traits, as opposed to its genetic makeup (its genotype)?",
+    "accepted_answers": [
+      "phenotype"
+    ],
+    "key_terms": [
+      "phenotype"
+    ],
+    "model_answer": "Phenotype",
+    "explanation": "Phenotype is the observable characteristics resulting from genotype plus environment; genotype is the allele composition.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 12 Mendel and the Gene (terminology)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "An organism with two identical alleles for a gene is called ___ for that gene.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "homozygous",
+          "homozygote"
+        ],
+        "explanation": "Homozygous."
+      },
+      {
+        "stem": "An organism with two different alleles for a gene is called ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "heterozygous",
+          "heterozygote"
+        ],
+        "explanation": "Heterozygous."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1C-05",
+    "section": "B/B",
+    "aamc_category": "1C",
+    "subtopic": "Genetics: test cross",
+    "answer_type": "free_response",
+    "prompt": "To determine whether an organism showing a dominant phenotype is homozygous or heterozygous, you cross it with an individual of what genotype?",
+    "accepted_answers": [
+      "homozygous recessive",
+      "homozygous recessive individual",
+      "recessive homozygote"
+    ],
+    "key_terms": [
+      "homozygous recessive"
+    ],
+    "model_answer": "Homozygous recessive",
+    "explanation": "In a test cross, any recessive offspring reveal a hidden recessive allele in the unknown parent; all-dominant offspring suggest homozygous dominant.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 12 Mendel and the Gene (test cross)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "If a test cross yields ANY offspring with the recessive phenotype, the unknown parent must be ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "heterozygous",
+          "heterozygote",
+          "a heterozygote"
+        ],
+        "explanation": "Heterozygous (it carries a recessive allele)."
+      },
+      {
+        "stem": "A cross between two heterozygotes (Aa x Aa) gives what phenotypic ratio?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "3:1",
+          "3 to 1",
+          "three to one"
+        ],
+        "explanation": "3 dominant : 1 recessive."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1C-06",
+    "section": "B/B",
+    "aamc_category": "1C",
+    "subtopic": "Genetics: nondisjunction",
+    "answer_type": "free_response",
+    "prompt": "What is the term for the failure of chromosomes or sister chromatids to separate properly during cell division, producing gametes with an abnormal chromosome number?",
+    "accepted_answers": [
+      "nondisjunction",
+      "non-disjunction",
+      "non disjunction"
+    ],
+    "key_terms": [
+      "nondisjunction"
+    ],
+    "model_answer": "Nondisjunction",
+    "explanation": "Nondisjunction yields aneuploid cells (an abnormal chromosome count), such as trisomy 21 (Down syndrome).",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 13 Chromosomes and Inheritance",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Having an abnormal number of chromosomes is called ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "aneuploidy",
+          "aneuploid"
+        ],
+        "explanation": "Aneuploidy."
+      },
+      {
+        "stem": "Trisomy 21 (an extra chromosome 21) causes which syndrome?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "down syndrome",
+          "down's syndrome",
+          "trisomy 21"
+        ],
+        "explanation": "Down syndrome."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1C-07",
+    "section": "B/B",
+    "aamc_category": "1C",
+    "subtopic": "Population genetics: Hardy-Weinberg",
+    "answer_type": "free_response",
+    "prompt": "In Hardy-Weinberg equilibrium, if the homozygous recessive genotype frequency q^2 = 0.16, what is the recessive allele frequency q?",
+    "accepted_answers": [
+      "0.4",
+      ".4",
+      "0.40"
+    ],
+    "key_terms": [
+      "0.4"
+    ],
+    "model_answer": "q = 0.4",
+    "explanation": "q = sqrt(0.16) = 0.4; then p = 1 - q = 0.6, and heterozygote frequency 2pq = 0.48.",
+    "difficulty": "hard",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 19 Population Evolution (Hardy-Weinberg)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Given q = 0.4, what is the dominant allele frequency p?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "0.6",
+          ".6",
+          "0.60"
+        ],
+        "explanation": "p = 1 - q = 0.6."
+      },
+      {
+        "stem": "What is the frequency of heterozygotes (2pq)?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "0.48",
+          ".48"
+        ],
+        "explanation": "2pq = 2(0.6)(0.4) = 0.48."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1C-08",
+    "section": "B/B",
+    "aamc_category": "1C",
+    "subtopic": "Population genetics: HW equations",
+    "answer_type": "free_response",
+    "prompt": "Write the Hardy-Weinberg GENOTYPE-frequency equation relating the two allele frequencies p and q.",
+    "accepted_answers": [
+      "p^2 + 2pq + q^2 = 1",
+      "p2+2pq+q2=1",
+      "p^2+2pq+q^2=1",
+      "p squared + 2pq + q squared = 1"
+    ],
+    "key_terms": [
+      "2pq"
+    ],
+    "model_answer": "p^2 + 2pq + q^2 = 1",
+    "explanation": "p^2 = homozygous dominant, 2pq = heterozygotes, q^2 = homozygous recessive; the allele-frequency equation is p + q = 1.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 19 Population Evolution (Hardy-Weinberg)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "What does the allele-frequency sum p + q equal?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "1",
+          "one"
+        ],
+        "explanation": "p + q = 1."
+      },
+      {
+        "stem": "Which term (p^2, 2pq, or q^2) represents the heterozygotes?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "2pq",
+          "2 pq"
+        ],
+        "explanation": "2pq represents heterozygotes."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1C-09",
+    "section": "B/B",
+    "aamc_category": "1C",
+    "subtopic": "Linkage and recombination",
+    "answer_type": "free_response",
+    "prompt": "Two genes show a recombination frequency of 50%. What does this indicate about their inheritance?",
+    "accepted_answers": [
+      "they assort independently",
+      "independent assortment",
+      "they are unlinked",
+      "unlinked",
+      "behave as if on different chromosomes"
+    ],
+    "key_terms": [
+      "independent"
+    ],
+    "model_answer": "They assort independently (behave as unlinked)",
+    "explanation": "50% is the maximum recombination frequency; genes far apart on a chromosome (or on different chromosomes) appear unlinked.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 13 Linkage and recombination",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "One map unit (centimorgan) corresponds to what percent recombination frequency?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "1%",
+          "1 percent",
+          "one percent",
+          "1"
+        ],
+        "explanation": "1 cM = 1% recombination frequency."
+      },
+      {
+        "stem": "Do closely linked genes show HIGH or LOW recombination frequency?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "low",
+          "low recombination",
+          "low frequency"
+        ],
+        "explanation": "Low - they tend to stay together."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1C-10",
+    "section": "B/B",
+    "aamc_category": "1C",
+    "subtopic": "Sex-linked inheritance",
+    "answer_type": "free_response",
+    "prompt": "X-linked recessive disorders such as hemophilia are expressed more often in males or in females?",
+    "accepted_answers": [
+      "males",
+      "male",
+      "men"
+    ],
+    "key_terms": [
+      "male"
+    ],
+    "model_answer": "Males",
+    "explanation": "Males are hemizygous (one X), so a single recessive allele is expressed; females need two copies to show the trait.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 13 Sex-linked inheritance",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Because males have only one X chromosome, for X-linked genes they are said to be ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "hemizygous",
+          "hemizygote"
+        ],
+        "explanation": "Hemizygous."
+      },
+      {
+        "stem": "A phenotypically normal female carrying one recessive X-linked allele is called a ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "carrier",
+          "heterozygous carrier"
+        ],
+        "explanation": "A carrier."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1C-11",
+    "section": "B/B",
+    "aamc_category": "1C",
+    "subtopic": "Evolution: genetic drift",
+    "answer_type": "free_response",
+    "prompt": "What term describes the loss of genetic variation when a NEW population is founded by a small number of individuals from a larger one?",
+    "accepted_answers": [
+      "founder effect",
+      "the founder effect"
+    ],
+    "key_terms": [
+      "founder effect"
+    ],
+    "model_answer": "The founder effect",
+    "explanation": "The founder effect is a form of genetic drift; a related event is the bottleneck effect, where a population is drastically and randomly reduced.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 19 Population Evolution (genetic drift)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Random change in allele frequencies by chance alone, strongest in small populations, is called ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "genetic drift",
+          "drift"
+        ],
+        "explanation": "Genetic drift."
+      },
+      {
+        "stem": "A sharp, random reduction in population size (e.g., by disaster) is the ___ effect.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "bottleneck",
+          "bottleneck effect",
+          "population bottleneck"
+        ],
+        "explanation": "The bottleneck effect."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1C-12",
+    "section": "B/B",
+    "aamc_category": "1C",
+    "subtopic": "Evolution: fitness and selection",
+    "answer_type": "free_response",
+    "prompt": "In evolutionary biology, an organism's 'fitness' is best defined as its relative ability to do what?",
+    "accepted_answers": [
+      "survive and reproduce",
+      "reproduce",
+      "pass on genes",
+      "reproductive success",
+      "leave offspring",
+      "survive and reproduce (reproductive success)"
+    ],
+    "key_terms": [
+      "reproduc"
+    ],
+    "model_answer": "To survive and reproduce (i.e., reproductive success - passing alleles to the next generation)",
+    "explanation": "Fitness measures relative reproductive success, not mere strength or survival; natural selection raises the frequency of higher-fitness alleles.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 18-19 Evolution and the Origin of Species",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Differential reproductive success based on heritable traits is the mechanism Darwin called ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "natural selection",
+          "selection"
+        ],
+        "explanation": "Natural selection."
+      },
+      {
+        "stem": "Selection that favors BOTH extremes of a trait over the intermediate is called ___ selection.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "disruptive",
+          "disruptive selection",
+          "diversifying"
+        ],
+        "explanation": "Disruptive selection."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1C-13",
+    "section": "B/B",
+    "aamc_category": "1C",
+    "subtopic": "Chromosomes: human number",
+    "answer_type": "free_response",
+    "prompt": "How many chromosomes are in a normal human SOMATIC (body) cell?",
+    "accepted_answers": [
+      "46",
+      "forty-six",
+      "46 chromosomes",
+      "23 pairs"
+    ],
+    "key_terms": [
+      "46"
+    ],
+    "model_answer": "46 (23 pairs)",
+    "explanation": "Somatic cells are diploid (2n = 46); gametes are haploid (n = 23).",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 11 Meiosis (human karyotype)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "How many chromosomes does a normal human gamete (egg or sperm) contain?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "23",
+          "twenty-three"
+        ],
+        "explanation": "23 (haploid)."
+      },
+      {
+        "stem": "How many pairs of AUTOSOMES do humans have (excluding the sex chromosomes)?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "22",
+          "twenty-two",
+          "22 pairs"
+        ],
+        "explanation": "22 autosomal pairs (plus one pair of sex chromosomes)."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1C-14",
+    "section": "B/B",
+    "aamc_category": "1C",
+    "subtopic": "Non-Mendelian inheritance",
+    "answer_type": "free_response",
+    "prompt": "When heterozygotes show a blended INTERMEDIATE phenotype (e.g., red x white flowers -> pink), what inheritance pattern is this?",
+    "accepted_answers": [
+      "incomplete dominance",
+      "incomplete-dominance"
+    ],
+    "key_terms": [
+      "incomplete dominance"
+    ],
+    "model_answer": "Incomplete dominance",
+    "explanation": "In incomplete dominance the heterozygote is intermediate; in codominance both alleles are fully and separately expressed (e.g., AB blood type).",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 12 Extensions of Mendelian genetics",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "When BOTH alleles are fully expressed in the heterozygote (e.g., type AB blood), the pattern is ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "codominance",
+          "co-dominance"
+        ],
+        "explanation": "Codominance."
+      },
+      {
+        "stem": "Human ABO blood type, with three alleles present in the population, is an example of ___ alleles.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "multiple alleles",
+          "multiple allele",
+          "multiple"
+        ],
+        "explanation": "Multiple alleles."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1C-15",
+    "section": "B/B",
+    "aamc_category": "1C",
+    "subtopic": "Evolution: speciation",
+    "answer_type": "free_response",
+    "prompt": "What is the term for the formation of new species, often when populations become reproductively isolated?",
+    "accepted_answers": [
+      "speciation"
+    ],
+    "key_terms": [
+      "speciation"
+    ],
+    "model_answer": "Speciation",
+    "explanation": "Speciation driven by a geographic barrier is allopatric; speciation without geographic separation is sympatric.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 18 The Origin of Species",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Speciation caused by a physical/geographic barrier separating populations is called ___ speciation.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "allopatric",
+          "allopatric speciation"
+        ],
+        "explanation": "Allopatric speciation."
+      },
+      {
+        "stem": "Under the biological species concept, members of a species can interbreed to produce ___ offspring.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "fertile",
+          "fertile offspring",
+          "viable and fertile"
+        ],
+        "explanation": "Fertile offspring."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1D-01",
+    "section": "B/B",
+    "aamc_category": "1D",
+    "subtopic": "Glycolysis: location",
+    "answer_type": "free_response",
+    "prompt": "In what cellular compartment does glycolysis occur?",
+    "accepted_answers": [
+      "cytoplasm",
+      "cytosol",
+      "the cytosol",
+      "the cytoplasm"
+    ],
+    "key_terms": [
+      "cyto"
+    ],
+    "model_answer": "The cytoplasm (cytosol)",
+    "explanation": "Glycolysis is cytosolic and does not itself require oxygen; it splits one glucose into two pyruvate.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 7 Cellular Respiration (Glycolysis)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Does glycolysis itself require oxygen?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "no",
+          "no it does not"
+        ],
+        "explanation": "No - glycolysis is anaerobic."
+      },
+      {
+        "stem": "How many carbons are in glucose, and in each pyruvate?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "6 and 3",
+          "six and three",
+          "glucose 6 pyruvate 3",
+          "6, 3"
+        ],
+        "explanation": "Glucose has 6 carbons; each pyruvate has 3."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1D-02",
+    "section": "B/B",
+    "aamc_category": "1D",
+    "subtopic": "Glycolysis: ATP yield",
+    "answer_type": "free_response",
+    "prompt": "What is the NET number of ATP produced per glucose by glycolysis (via substrate-level phosphorylation)?",
+    "accepted_answers": [
+      "2",
+      "two",
+      "2 atp",
+      "net 2"
+    ],
+    "key_terms": [
+      "2"
+    ],
+    "model_answer": "Net 2 ATP",
+    "explanation": "Glycolysis makes 4 ATP but consumes 2 in the investment phase, for a net of 2 ATP (plus 2 NADH) per glucose.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 7 Cellular Respiration (Glycolysis)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "How many ATP are CONSUMED in the energy-investment phase of glycolysis?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "2",
+          "two"
+        ],
+        "explanation": "2 ATP are invested."
+      },
+      {
+        "stem": "How many ATP are produced (gross) in the payoff phase?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "4",
+          "four"
+        ],
+        "explanation": "4 ATP gross."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1D-03",
+    "section": "B/B",
+    "aamc_category": "1D",
+    "subtopic": "Glycolysis: NADH yield",
+    "answer_type": "free_response",
+    "prompt": "How many NADH are produced per glucose during glycolysis?",
+    "accepted_answers": [
+      "2",
+      "two",
+      "2 nadh"
+    ],
+    "key_terms": [
+      "2"
+    ],
+    "model_answer": "2 NADH",
+    "explanation": "Two NADH form at the glyceraldehyde-3-phosphate dehydrogenase step (one per triose, two trioses per glucose).",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 7 Cellular Respiration (Glycolysis)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Glycolysis splits one 6-carbon glucose into how many 3-carbon molecules?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "two",
+          "2",
+          "two molecules"
+        ],
+        "explanation": "Two 3-carbon molecules."
+      },
+      {
+        "stem": "NADH is the reduced electron carrier; what is its OXIDIZED form?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "nad+",
+          "nad",
+          "nad plus"
+        ],
+        "explanation": "NAD+."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1D-04",
+    "section": "B/B",
+    "aamc_category": "1D",
+    "subtopic": "Glycolysis: product",
+    "answer_type": "free_response",
+    "prompt": "What three-carbon molecule is the end product of glycolysis?",
+    "accepted_answers": [
+      "pyruvate",
+      "pyruvic acid",
+      "pyruvate (pyruvic acid)"
+    ],
+    "key_terms": [
+      "pyruvate"
+    ],
+    "model_answer": "Pyruvate",
+    "explanation": "Each glucose yields two pyruvate; pyruvate's fate depends on oxygen (aerobic -> acetyl-CoA; anaerobic -> fermentation).",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 7 Cellular Respiration",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Under AEROBIC conditions, pyruvate is converted to which 2-carbon molecule for the citric acid cycle?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "acetyl-coa",
+          "acetyl coa",
+          "acetyl coenzyme a"
+        ],
+        "explanation": "Acetyl-CoA."
+      },
+      {
+        "stem": "How many pyruvate molecules come from one glucose?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "two",
+          "2"
+        ],
+        "explanation": "Two pyruvate per glucose."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1D-05",
+    "section": "B/B",
+    "aamc_category": "1D",
+    "subtopic": "Glycolysis: regulation",
+    "answer_type": "free_response",
+    "prompt": "Which enzyme catalyzes the committed, rate-limiting step of glycolysis (phosphorylating fructose-6-phosphate)?",
+    "accepted_answers": [
+      "phosphofructokinase-1",
+      "phosphofructokinase",
+      "pfk-1",
+      "pfk1",
+      "pfk"
+    ],
+    "key_terms": [
+      "phosphofructokinase"
+    ],
+    "model_answer": "Phosphofructokinase-1 (PFK-1)",
+    "explanation": "PFK-1 catalyzes the committed step and is the chief control point; it is inhibited by ATP/citrate and activated by AMP and fructose-2,6-bisphosphate.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "LibreTexts Biochemistry (Fundamentals of Biochemistry) — Glycolysis and its regulation",
+      "url": "https://bio.libretexts.org/Bookshelves/Biochemistry",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Is PFK-1 activated or inhibited by HIGH ATP levels?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "inhibited",
+          "inhibited by atp",
+          "inhibition"
+        ],
+        "explanation": "Inhibited by high ATP (energy is already plentiful)."
+      },
+      {
+        "stem": "PFK-1 transfers a phosphate from ATP onto which sugar phosphate?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "fructose-6-phosphate",
+          "fructose 6 phosphate",
+          "f6p"
+        ],
+        "explanation": "Fructose-6-phosphate (making fructose-1,6-bisphosphate)."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1D-06",
+    "section": "B/B",
+    "aamc_category": "1D",
+    "subtopic": "Fermentation",
+    "answer_type": "free_response",
+    "prompt": "In human muscle without enough oxygen, pyruvate is reduced to what molecule during fermentation?",
+    "accepted_answers": [
+      "lactate",
+      "lactic acid",
+      "lactate (lactic acid)"
+    ],
+    "key_terms": [
+      "lact"
+    ],
+    "model_answer": "Lactate (lactic acid)",
+    "explanation": "Lactate fermentation regenerates NAD+ so glycolysis can continue when the ETC is unavailable; yeast instead make ethanol and CO2.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 7 Fermentation",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "What is the main purpose of fermentation for glycolysis (which molecule is regenerated)?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "nad+",
+          "regenerate nad+",
+          "nad",
+          "regenerating nad+"
+        ],
+        "explanation": "To regenerate NAD+ for glycolysis."
+      },
+      {
+        "stem": "What two products does yeast make in alcoholic fermentation?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "ethanol and co2",
+          "ethanol and carbon dioxide",
+          "ethanol, co2",
+          "ethanol + co2"
+        ],
+        "explanation": "Ethanol and CO2."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1D-07",
+    "section": "B/B",
+    "aamc_category": "1D",
+    "subtopic": "Link reaction",
+    "answer_type": "free_response",
+    "prompt": "Which enzyme complex converts pyruvate into acetyl-CoA, bridging glycolysis and the citric acid cycle?",
+    "accepted_answers": [
+      "pyruvate dehydrogenase",
+      "pyruvate dehydrogenase complex",
+      "pdh",
+      "pdc"
+    ],
+    "key_terms": [
+      "pyruvate dehydrogenase"
+    ],
+    "model_answer": "The pyruvate dehydrogenase complex",
+    "explanation": "Pyruvate dehydrogenase oxidatively decarboxylates pyruvate (releasing CO2 and making NADH) and attaches the acetyl group to CoA in the mitochondrial matrix.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "LibreTexts Biochemistry (Fundamentals of Biochemistry) — Pyruvate dehydrogenase / link reaction",
+      "url": "https://bio.libretexts.org/Bookshelves/Biochemistry",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "What gas is released as pyruvate is converted to acetyl-CoA?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "co2",
+          "carbon dioxide"
+        ],
+        "explanation": "CO2 (a decarboxylation)."
+      },
+      {
+        "stem": "Where in the cell does the pyruvate dehydrogenase reaction occur?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "mitochondrial matrix",
+          "matrix",
+          "mitochondria"
+        ],
+        "explanation": "The mitochondrial matrix."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1D-08",
+    "section": "B/B",
+    "aamc_category": "1D",
+    "subtopic": "Citric acid cycle: location",
+    "answer_type": "free_response",
+    "prompt": "In eukaryotes, in which compartment does the citric acid (Krebs) cycle take place?",
+    "accepted_answers": [
+      "mitochondrial matrix",
+      "matrix",
+      "the matrix",
+      "mitochondrial matrix (mitochondria)"
+    ],
+    "key_terms": [
+      "matrix"
+    ],
+    "model_answer": "The mitochondrial matrix",
+    "explanation": "The citric acid cycle enzymes are in the mitochondrial matrix (except succinate dehydrogenase, which sits in the inner membrane).",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 7 Citric Acid Cycle",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Acetyl-CoA (2 C) combines with which 4-carbon molecule to begin the cycle, forming citrate?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "oxaloacetate",
+          "oaa"
+        ],
+        "explanation": "Oxaloacetate."
+      },
+      {
+        "stem": "Give one alternate name for the citric acid cycle.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "krebs cycle",
+          "tca cycle",
+          "tricarboxylic acid cycle"
+        ],
+        "explanation": "The Krebs cycle / TCA cycle."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1D-09",
+    "section": "B/B",
+    "aamc_category": "1D",
+    "subtopic": "Citric acid cycle: yield per turn",
+    "answer_type": "free_response",
+    "prompt": "Per ONE turn of the citric acid cycle (per acetyl-CoA), how many NADH are produced?",
+    "accepted_answers": [
+      "3",
+      "three",
+      "3 nadh"
+    ],
+    "key_terms": [
+      "3"
+    ],
+    "model_answer": "3 NADH",
+    "explanation": "Each turn yields 3 NADH, 1 FADH2, and 1 GTP (or ATP), and releases 2 CO2.",
+    "difficulty": "hard",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 7 Citric Acid Cycle (yields)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Per turn, how many FADH2 and how many GTP (or ATP) are produced?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "1 and 1",
+          "one and one",
+          "1 fadh2 1 gtp",
+          "1, 1"
+        ],
+        "explanation": "1 FADH2 and 1 GTP/ATP."
+      },
+      {
+        "stem": "How many CO2 are released per turn of the cycle?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "2",
+          "two"
+        ],
+        "explanation": "2 CO2 per turn."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1D-10",
+    "section": "B/B",
+    "aamc_category": "1D",
+    "subtopic": "Electron transport chain: final acceptor",
+    "answer_type": "free_response",
+    "prompt": "What molecule is the FINAL (terminal) electron acceptor of the electron transport chain in aerobic respiration?",
+    "accepted_answers": [
+      "oxygen",
+      "o2",
+      "molecular oxygen",
+      "o₂"
+    ],
+    "key_terms": [
+      "oxygen"
+    ],
+    "model_answer": "Oxygen (O2)",
+    "explanation": "O2 accepts electrons at Complex IV and combines with protons to form water; without it the chain backs up and NADH cannot be reoxidized.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 7 Oxidative Phosphorylation (ETC)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "When O2 accepts electrons and combines with H+ at the end of the chain, what is formed?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "water",
+          "h2o"
+        ],
+        "explanation": "Water."
+      },
+      {
+        "stem": "At which ETC complex is oxygen reduced?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "complex iv",
+          "complex 4",
+          "cytochrome c oxidase"
+        ],
+        "explanation": "Complex IV (cytochrome c oxidase)."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1D-11",
+    "section": "B/B",
+    "aamc_category": "1D",
+    "subtopic": "Electron transport chain: location",
+    "answer_type": "free_response",
+    "prompt": "Where in the mitochondrion is the electron transport chain located?",
+    "accepted_answers": [
+      "inner mitochondrial membrane",
+      "inner membrane",
+      "the inner mitochondrial membrane",
+      "cristae"
+    ],
+    "key_terms": [
+      "inner"
+    ],
+    "model_answer": "The inner mitochondrial membrane",
+    "explanation": "ETC complexes pump protons from the matrix into the intermembrane space, building the proton-motive force used by ATP synthase.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 7 Oxidative Phosphorylation",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Into which mitochondrial space do the ETC complexes pump protons (H+)?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "intermembrane space",
+          "the intermembrane space"
+        ],
+        "explanation": "The intermembrane space."
+      },
+      {
+        "stem": "The resulting H+ electrochemical gradient across the membrane is called the ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "proton-motive force",
+          "proton motive force",
+          "pmf",
+          "proton gradient"
+        ],
+        "explanation": "The proton-motive force."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1D-12",
+    "section": "B/B",
+    "aamc_category": "1D",
+    "subtopic": "Oxidative phosphorylation: ATP synthase",
+    "answer_type": "free_response",
+    "prompt": "Which enzyme uses the flow of protons DOWN their gradient to synthesize ATP from ADP and Pi?",
+    "accepted_answers": [
+      "atp synthase",
+      "atp synthetase",
+      "complex v",
+      "f0f1 atp synthase"
+    ],
+    "key_terms": [
+      "atp synthase"
+    ],
+    "model_answer": "ATP synthase",
+    "explanation": "Protons flowing back into the matrix through ATP synthase drive ATP synthesis - coupling the gradient to ATP production is called chemiosmosis.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 7 Oxidative Phosphorylation (chemiosmosis)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "The coupling of the proton gradient to ATP synthesis is called ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "chemiosmosis",
+          "chemiosmotic coupling"
+        ],
+        "explanation": "Chemiosmosis."
+      },
+      {
+        "stem": "Are protons moving through ATP synthase going DOWN or AGAINST their gradient?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "down",
+          "down their gradient",
+          "down the gradient"
+        ],
+        "explanation": "Down their gradient (thermodynamically favorable)."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1D-13",
+    "section": "B/B",
+    "aamc_category": "1D",
+    "subtopic": "Respiration: ATP yield",
+    "answer_type": "free_response",
+    "prompt": "Approximately how many ATP are produced per glucose by COMPLETE aerobic respiration (modern estimate)?",
+    "accepted_answers": [
+      "about 30-32",
+      "30-32",
+      "30 to 32",
+      "~32",
+      "32",
+      "30",
+      "approximately 30-32"
+    ],
+    "key_terms": [
+      "3"
+    ],
+    "model_answer": "About 30-32 ATP (older texts say ~36-38)",
+    "explanation": "Modern estimates give ~30-32 ATP per glucose because proton leak and the cost of shuttling NADH/ADP reduce the classic 36-38 figure.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 7 Cellular Respiration (ATP accounting)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Which stage of respiration produces the VAST MAJORITY of the ATP?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "oxidative phosphorylation",
+          "oxidative phosphorylation (etc)",
+          "etc",
+          "electron transport chain"
+        ],
+        "explanation": "Oxidative phosphorylation."
+      },
+      {
+        "stem": "Glycolysis and the citric acid cycle make ATP by substrate-level phosphorylation; the ETC makes it by ___ phosphorylation.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "oxidative",
+          "oxidative phosphorylation"
+        ],
+        "explanation": "Oxidative phosphorylation."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1D-14",
+    "section": "B/B",
+    "aamc_category": "1D",
+    "subtopic": "Bioenergetics: free energy",
+    "answer_type": "free_response",
+    "prompt": "A reaction with a NEGATIVE delta-G (Gibbs free-energy change) is described by what term, indicating it is spontaneous?",
+    "accepted_answers": [
+      "exergonic",
+      "exergonic (spontaneous)",
+      "spontaneous"
+    ],
+    "key_terms": [
+      "exergonic"
+    ],
+    "model_answer": "Exergonic (spontaneous)",
+    "explanation": "Negative delta-G = exergonic/spontaneous; positive delta-G = endergonic/nonspontaneous. Cells couple endergonic reactions to ATP hydrolysis.",
+    "difficulty": "easy",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 6 Metabolism (free energy)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "A reaction with a POSITIVE delta-G is called ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "endergonic",
+          "endergonic (nonspontaneous)",
+          "nonspontaneous"
+        ],
+        "explanation": "Endergonic (nonspontaneous)."
+      },
+      {
+        "stem": "Cells often drive an unfavorable reaction by coupling it to hydrolysis of which molecule?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "atp",
+          "adenosine triphosphate"
+        ],
+        "explanation": "ATP."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1D-15",
+    "section": "B/B",
+    "aamc_category": "1D",
+    "subtopic": "Bioenergetics: ATP",
+    "answer_type": "free_response",
+    "prompt": "What molecule is the cell's primary energy currency, releasing energy when its terminal phosphate bond is hydrolyzed?",
+    "accepted_answers": [
+      "atp",
+      "adenosine triphosphate"
+    ],
+    "key_terms": [
+      "atp"
+    ],
+    "model_answer": "ATP (adenosine triphosphate)",
+    "explanation": "Hydrolysis of ATP to ADP + Pi releases about -30.5 kJ/mol (-7.3 kcal/mol) under standard conditions, powering cellular work.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 6 Metabolism (ATP)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Hydrolysis of ATP typically yields which two products?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "adp and pi",
+          "adp and phosphate",
+          "adp + pi",
+          "adp and inorganic phosphate"
+        ],
+        "explanation": "ADP and inorganic phosphate (Pi)."
+      },
+      {
+        "stem": "Energy is released because the bonds between ATP's ___ groups are high-energy.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "phosphate",
+          "phosphate groups",
+          "phosphoanhydride"
+        ],
+        "explanation": "Phosphate (phosphoanhydride) bonds."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1D-16",
+    "section": "B/B",
+    "aamc_category": "1D",
+    "subtopic": "Lipid metabolism: beta-oxidation",
+    "answer_type": "free_response",
+    "prompt": "The breakdown of fatty acids into acetyl-CoA units in the mitochondrion is called what process?",
+    "accepted_answers": [
+      "beta-oxidation",
+      "beta oxidation",
+      "b-oxidation"
+    ],
+    "key_terms": [
+      "oxidation"
+    ],
+    "model_answer": "Beta-oxidation",
+    "explanation": "Beta-oxidation removes two carbons at a time from a fatty acyl chain, producing acetyl-CoA plus NADH and FADH2 for the citric acid cycle.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "LibreTexts Biochemistry (Fundamentals of Biochemistry) — Fatty acid oxidation",
+      "url": "https://bio.libretexts.org/Bookshelves/Biochemistry",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Beta-oxidation produces which 2-carbon molecule that feeds the citric acid cycle?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "acetyl-coa",
+          "acetyl coa"
+        ],
+        "explanation": "Acetyl-CoA."
+      },
+      {
+        "stem": "Per gram, do fats or carbohydrates yield MORE ATP?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "fats",
+          "fat",
+          "lipids"
+        ],
+        "explanation": "Fats (they are more reduced, so they store more energy per gram)."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1D-17",
+    "section": "B/B",
+    "aamc_category": "1D",
+    "subtopic": "Metabolic regulation: hormones",
+    "answer_type": "free_response",
+    "prompt": "Which pancreatic hormone LOWERS blood glucose by promoting cellular uptake and glycogen storage?",
+    "accepted_answers": [
+      "insulin"
+    ],
+    "key_terms": [
+      "insulin"
+    ],
+    "model_answer": "Insulin",
+    "explanation": "Insulin (from pancreatic beta cells) lowers blood glucose; glucagon (from alpha cells) raises it by stimulating glycogenolysis and gluconeogenesis.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Endocrine pancreas (insulin/glucagon)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Which pancreatic hormone RAISES blood glucose when it is low?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "glucagon"
+        ],
+        "explanation": "Glucagon."
+      },
+      {
+        "stem": "Insulin is secreted by which cells of the pancreatic islets?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "beta cells",
+          "beta",
+          "b cells"
+        ],
+        "explanation": "Beta cells."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1D-18",
+    "section": "B/B",
+    "aamc_category": "1D",
+    "subtopic": "Carbohydrate storage: glycogen",
+    "answer_type": "free_response",
+    "prompt": "What is the primary storage polysaccharide of glucose in animals (stored in liver and muscle)?",
+    "accepted_answers": [
+      "glycogen"
+    ],
+    "key_terms": [
+      "glycogen"
+    ],
+    "model_answer": "Glycogen",
+    "explanation": "Glycogen is a highly branched glucose polymer; plants instead store glucose as starch. Breaking glycogen down to release glucose is glycogenolysis.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Biology 2e — Ch. 3 Carbohydrates (storage polysaccharides)",
+      "url": "https://openstax.org/details/books/biology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "What is the equivalent glucose-storage polysaccharide in plants?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "starch"
+        ],
+        "explanation": "Starch."
+      },
+      {
+        "stem": "The breakdown of glycogen to release glucose is called ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "glycogenolysis"
+        ],
+        "explanation": "Glycogenolysis."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1D-19",
+    "section": "B/B",
+    "aamc_category": "1D",
+    "subtopic": "Gluconeogenesis",
+    "answer_type": "free_response",
+    "prompt": "What pathway synthesizes glucose from NON-carbohydrate precursors (lactate, glycerol, amino acids), mainly in the liver?",
+    "accepted_answers": [
+      "gluconeogenesis"
+    ],
+    "key_terms": [
+      "gluconeogenesis"
+    ],
+    "model_answer": "Gluconeogenesis",
+    "explanation": "Gluconeogenesis is essentially the reverse of glycolysis (with distinct enzymes bypassing the irreversible steps) and maintains blood glucose during fasting.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "LibreTexts Biochemistry (Fundamentals of Biochemistry) — Gluconeogenesis",
+      "url": "https://bio.libretexts.org/Bookshelves/Biochemistry",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Gluconeogenesis occurs mainly in which organ?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "liver",
+          "the liver"
+        ],
+        "explanation": "The liver."
+      },
+      {
+        "stem": "Is gluconeogenesis favored when blood glucose is HIGH or LOW?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "low",
+          "when low",
+          "low blood glucose"
+        ],
+        "explanation": "When blood glucose is low (fasting)."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-1D-20",
+    "section": "B/B",
+    "aamc_category": "1D",
+    "subtopic": "Oxidative phosphorylation: uncoupling",
+    "answer_type": "free_response",
+    "prompt": "An uncoupling agent makes the inner mitochondrial membrane leaky to protons. What happens to ATP production by oxidative phosphorylation?",
+    "accepted_answers": [
+      "decreases",
+      "it decreases",
+      "drops",
+      "reduced",
+      "falls",
+      "stops",
+      "decreased"
+    ],
+    "key_terms": [
+      "decrease"
+    ],
+    "model_answer": "It decreases (the energy is released as heat instead of making ATP)",
+    "explanation": "Dissipating the proton gradient uncouples electron transport from ATP synthesis; the energy is lost as heat - the basis of thermogenesis by UCP1 in brown fat.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "LibreTexts Biochemistry (Fundamentals of Biochemistry) — Oxidative phosphorylation (uncouplers)",
+      "url": "https://bio.libretexts.org/Bookshelves/Biochemistry",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "If protons leak back WITHOUT passing through ATP synthase, the gradient's energy is released mainly as ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "heat",
+          "thermal energy"
+        ],
+        "explanation": "Heat."
+      },
+      {
+        "stem": "Brown adipose tissue generates heat using which uncoupling protein?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "ucp1",
+          "ucp-1",
+          "thermogenin",
+          "ucp1 (thermogenin)"
+        ],
+        "explanation": "UCP1 (thermogenin)."
+      }
+    ]
   }
 ]

@@ -1,73 +1,111 @@
-# ReadyMCAT — content + teach-on-miss workstream
+# ReadyMCAT — content, provisioning & teach-on-miss
 
-This folder documents the **study-content + teach-on-miss** workstream of ReadyMCAT
-(an MCAT study app forked from Anki). It produces two committed content artifacts and
-one desktop reviewer feature:
+This folder houses ReadyMCAT's **study content** (the pre-loaded, source-cited
+question bank and the first-launch diagnostic), the **tools** that build and
+provision it, and the **teach-on-miss** reviewer feature. ReadyMCAT is an MCAT
+study app forked from Anki; the product rationale is in
+[`../ReadyMCAT-PRD.md`](../ReadyMCAT-PRD.md).
 
-| Artifact                     | Path                                                                        | Consumed by                                                |
-| ---------------------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| AAMC taxonomy + deck mapping | [`/taxonomy.json`](../taxonomy.json)                                        | engine (points-at-stake queue, coverage, per-topic memory) |
-| Teach-on-miss ladders        | [`/subquestions.json`](../subquestions.json)                                | desktop reviewer                                           |
-| Teach-on-miss reviewer flow  | `ts/reviewer/teach_on_miss.ts`, `qt/aqt/reviewer.py`, `qt/aqt/readymcat.py` | desktop app                                                |
+| Artifact                | Path                                                                                                              | Consumed by                                                              |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| Canonical question bank | [`content/question_bank.json`](content/question_bank.json)                                                        | the collection builder                                                   |
+| MCQ section banks       | `content/{bio_biochem,chem_phys,psych_soc}.json`                                                                  | `tools/build_question_bank.py`                                           |
+| Free-response banks     | `content/free_response_{bio_biochem,chem_phys,psych_soc}.json`                                                    | `tools/build_question_bank.py`                                           |
+| Passage banks (+ CARS)  | `content/passage_{bio_biochem,chem_phys,psych_soc}.json`, `content/passage_cars.json`                             | `tools/build_question_bank.py`                                           |
+| Diagnostic bank         | [`diagnostic/diagnostic_quiz.json`](diagnostic/diagnostic_quiz.json)                                              | first-launch diagnostic ([`diagnostic/README.md`](diagnostic/README.md)) |
+| AAMC taxonomy + weights | [`../taxonomy.json`](../taxonomy.json)                                                                            | engine (points-at-stake, coverage, per-topic memory)                     |
+| Teach-on-miss ladders   | each note's `Subquestions` field; legacy [`../subquestions.json`](../subquestions.json)                           | desktop reviewer                                                         |
+| Builder → provisioner   | [`tools/build_question_bank.py`](tools/build_question_bank.py) → `qt/aqt/readymcat_provision.py`                  | first launch (zero import)                                               |
+| Demo dashboard seeder   | [`tools/seed_demo_dashboard.py`](tools/seed_demo_dashboard.py)                                                    | Tools → Load ReadyMCAT demo data (SYNTHETIC)                             |
+| Teach-on-miss reviewer  | `ts/reviewer/` (`mcq.ts`, `fr.ts`, `passage.ts`, `teach_on_miss.ts`), `qt/aqt/reviewer.py`, `qt/aqt/readymcat.py` | desktop app                                                              |
 
-Base deck: the community **"Aidan" deck** (`Aidan_.apkg`, 8,891 notes / 15,175 cards,
-84 subdecks across all four MCAT sections), credited to its author and used for
-educational purposes.
+**Zero import.** A brand-new user gets the full bank pre-loaded on first launch —
+there is no `.apkg` import step. The community **"Aidan" deck** (`Aidan_.apkg`,
+8,891 notes / 15,175 cards, 84 subdecks across all four MCAT sections) is now an
+**optional** import the taxonomy still supports — its tags map onto the same 31
+AAMC categories — rather than the base deck; it is credited to its author and
+used for educational purposes.
 
 ---
 
-## 0. Pre-loaded MCQ deck + per-question teach-on-miss (v2)
+## 0. The pre-loaded question bank (zero import)
 
-The v2 rework ships ReadyMCAT as a **pre-loaded multiple-choice deck**: a brand-new
-user gets the full MCAT MCQ bank with **zero import**.
+On first launch `qt/aqt/readymcat_provision.py` builds **four decks — 1,075
+cards — directly into the new user's collection**, no import required:
 
-| Artifact                         | Path                                                              | Consumed by                     |
-| -------------------------------- | ----------------------------------------------------------------- | ------------------------------- |
-| Canonical MCQ bank               | [`content/question_bank.json`](content/question_bank.json)        | the collection builder          |
-| Section banks (merged)           | `content/{bio_biochem,chem_phys,psych_soc}.json`                  | `tools/build_question_bank.py`  |
-| Collection builder / provisioner | [`tools/build_question_bank.py`](tools/build_question_bank.py)    | `qt/aqt/readymcat_provision.py` |
-| MCQ reviewer + ladder UI         | `ts/reviewer/mcq.ts`, `qt/aqt/reviewer.py`, `qt/aqt/readymcat.py` | desktop app                     |
+| Deck                        | Format                                    |     Cards |
+| --------------------------- | ----------------------------------------- | --------: |
+| `ReadyMCAT`                 | Discrete multiple-choice                  |       414 |
+| `ReadyMCAT::Free Response`  | Type-in / fill-in-the-blank (auto-graded) |       410 |
+| `ReadyMCAT::Passages`       | AAMC-style passage sets (36 passages)     |       174 |
+| `ReadyMCAT::Passages::CARS` | CARS passage sets (15 passages)           |        77 |
+| **Total**                   |                                           | **1,075** |
 
-**Bank.** 414 MCQs / 948 sub-questions across all 31 AAMC categories; each item is
-`{id, section, aamc_category, subtopic, stem, options[4], correct_index, explanation,
-difficulty, cognitive_level, source, subquestions[]}`. `build_question_bank.py`
-validates + merges the three section banks into `question_bank.json`.
+Every item is 100% original and per-item source-cited (OpenStax CC BY,
+LibreTexts, and public-domain/original CARS); see the per-section
+`content/*_SOURCES.md` files and the stdlib validators in `content/`. Nothing is
+taken from UWorld, Kaplan, Blueprint, or AAMC-paid materials, and the app makes
+**no runtime model calls** — the bank is statically authored content shipped with
+the app. Authored items are CC BY-SA 4.0.
 
-**Note type + pre-loading (zero import).** The builder creates a `ReadyMCAT MCQ` note
-type (fields: Question, OptionA–D, CorrectIndex, Explanation, Subtopic, Source,
-Subquestions[JSON]) with **one card per MCQ**, in a single `ReadyMCAT` deck, and tags
-every note `#ReadyMCAT::AAMC::<category>`. On first launch
-`qt/aqt/readymcat_provision.py` builds the deck straight into the new user's
-collection (no `.apkg` import) and drops `taxonomy.json`, `subquestions.json` and
-`diagnostic_quiz.json` next to it. `taxonomy.json` maps `#ReadyMCAT::AAMC::<cat>` →
-`<cat>`, so the pre-loaded deck feeds points-at-stake, the coverage map and the
-honest-memory dashboard unchanged (see §1 / §5).
+**Build + provision.** `tools/build_question_bank.py` merges and validates the
+section banks (MCQ + free-response + passages + CARS) into the canonical
+`content/question_bank.json`. On first launch the provisioner creates the note
+types (one card per question), builds the four decks, tags every AAMC card
+`#ReadyMCAT::AAMC::<category>`, and drops the sidecars (`taxonomy.json`,
+`subquestions.json`, `diagnostic_quiz.json`) next to the collection. It is
+**idempotent per note** (stable guids), so a profile created before CARS existed
+gains exactly the new cards without duplicates.
 
-**MCQ reviewer + FSRS grading.** The reviewer renders each card as an interactive
-four-option MCQ; on submit it grades into FSRS:
+**Input-required answering + FSRS grading.** Unlike a self-graded flashcard,
+every ReadyMCAT card requires a real input — select an MCQ option, type a
+free-response answer (auto-graded by normalized-string / key-term /
+numeric-tolerance matching), or answer a passage-based MCQ with the passage shown
+alongside — and the reviewer grades the input into FSRS:
 
-| Result                                                 | FSRS grade                               |
-| ------------------------------------------------------ | ---------------------------------------- |
-| Correct on the **first** attempt                       | **Good** (ease 3)                        |
-| Needed the ladder (correct only after, or still wrong) | **Again** (ease 1) — relearning / spaced |
+| Result                                                               | FSRS grade                      |
+| -------------------------------------------------------------------- | ------------------------------- |
+| Correct on the **first** attempt                                     | **Good**                        |
+| Needed the teach-on-miss ladder (correct only after, or still wrong) | **Again** — relearning / spaced |
 
-Immediate success right after the scaffold is never treated as mastery (PRD), so a
-missed card always relearns; a card missed **again** after the ladder is additionally
-tagged `ReadyMCAT::struggling` for the points-at-stake boost (§5).
+Immediate success right after the scaffold is never treated as mastery, so a
+missed card always relearns; a card missed **again** after the ladder is
+additionally tagged `ReadyMCAT::struggling` for the points-at-stake boost (§5).
 
-**Per-question teach-on-miss.** This generalizes the curated-subset ladder (§2–3) to
-**every** card: on a wrong answer the reviewer runs the guiding sub-questions stored in
-that card's own `Subquestions` field — one sub-MCQ at a time (attempt → reveal) →
-re-show the main question → correct = spaced re-retrieval, wrong again = reveal the
-earned explanation + surface the source link. The curated `subquestions.json` ladders
-still apply to non-MCQ (Aidan-deck) cards.
+**Per-question teach-on-miss.** Teach-on-miss fires on **every** bundled card: on
+a wrong answer the reviewer runs the guiding sub-questions stored in that card's
+own `Subquestions` field — one at a time (attempt → reveal) → re-show the main
+question → correct = spaced re-retrieval, wrong again = earned explanation +
+resource link (§3). The legacy curated `subquestions.json` ladders (§2) still
+apply to classic self-graded cards from an optional Aidan import.
+
+**First-launch diagnostic.** A short quiz (31-item short mode drawn from a
+37-item bank covering all 31 AAMC content categories) seeds each topic's weakness
+prior so the points-at-stake order is useful from session one; it **never** writes
+the dashboard's memory / performance / readiness scores. Content + method spec:
+[`diagnostic/README.md`](diagnostic/README.md); engine scorer + prior seeding:
+`rslib/src/diagnostic/`.
+
+**Backend endpoints.** The desktop SvelteKit pages reach the backend over the
+local media server (`qt/aqt/mediasrv.py`), which registers `readymcat-dashboard`
+and `readymcat-diagnostic` as pages and exposes `pointsAtStakeQueue`
+(dashboard + ranked queue) and `getDiagnosticQuiz` / `scoreAndSeedDiagnostic`
+(the diagnostic). Endpoint registration is covered by a mediasrv test. The
+home/study hub adds a `readymcat-home` page and a `readymcatHomeStatus`
+aggregation endpoint (backed by `tools/home_launcher.py`); it merges in from the
+`readymcat-home-hub` branch alongside these docs.
+
+**Demo data (synthetic).** **Tools → Load ReadyMCAT demo data (SYNTHETIC)** runs
+`tools/seed_demo_dashboard.py` (wired via `qt/aqt/readymcat_demo.py`) to populate
+clearly-labeled synthetic reviews so the honest-memory dashboard can be previewed
+without accumulating hundreds of real ones.
 
 ---
 
 ## 1. `taxonomy.json` — deck → AAMC outline
 
-Maps the deck's subdecks/tags onto the **31 AAMC content categories** and assigns each a
-`topic_weight` (percent-of-exam). Schema (exactly as the engine expects):
+Maps each card's tags/subdecks onto the **31 AAMC content categories** and assigns
+each a `topic_weight` (percent-of-exam). Schema (exactly as the engine expects):
 
 ```json
 {
@@ -119,7 +157,10 @@ inside broader subdecks). The identical algorithm is implemented in both
 
 ### Coverage report
 
-Generated by `python readymcat/tools/build_taxonomy.py --collection <collection.anki21>`:
+The pre-loaded bank's AAMC cards are natively tagged `#ReadyMCAT::AAMC::<category>`, so it
+covers all **31 / 31** content categories by construction. The report below is an illustrative
+run over the **optional Aidan deck**
+(`python readymcat/tools/build_taxonomy.py --collection <collection.anki21>`):
 
 - Cards examined: **15,175**; categorized: **14,982 (98.7%)**; uncategorized: **193 (1.3%)**.
   The uncategorized cards are the `MCAT::Experimental` deck (research methods / statistics =
@@ -133,7 +174,12 @@ Generated by `python readymcat/tools/build_taxonomy.py --collection <collection.
 
 ---
 
-## 2. `subquestions.json` — teach-on-miss ladders
+## 2. `subquestions.json` — legacy teach-on-miss ladders
+
+These curated ladders are the **legacy** path for classic self-graded cards (e.g. from an
+optional Aidan import); every bundled question in the pre-loaded bank now carries its own
+ladder in its `Subquestions` field (§0), so teach-on-miss is no longer limited to this
+curated subset.
 
 24 curated high-value concepts drawn from the highest-weight categories (1A–1D, 3A/3B,
 4B–4E, 5A/5D/5E, 6B/6C, 7A/7B), each with a 2–3 rung guiding ladder (72 rungs total). Every
@@ -170,9 +216,9 @@ else this curated Khan Academy link).
 
 ## 3. Teach-on-miss (desktop reviewer)
 
-Implements the PRD's core feature. When a card belonging to a curated concept is graded
-**Again**, the reviewer does **not** just flip to the back — it runs the guiding ladder, then
-re-shows the main question. Files:
+Implements the PRD's core feature. When a card is graded **Again**, the reviewer does **not**
+just flip to the back — it runs that card's guiding ladder (its own `Subquestions` for bundled
+cards, or the curated concept ladder for classic cards), then re-shows the main question. Files:
 
 - `qt/aqt/readymcat.py` — loads/caches `subquestions.json`, resolves a card → concept,
   extracts a resource link, and appends instrumentation events to a JSONL log.
@@ -187,7 +233,7 @@ re-shows the main question. Files:
 ### Flow (matches the PRD mermaid exactly)
 
 ```
-Miss (Again) on a tagged card
+Miss (Again) on a card
   → ladder, one sub-question at a time: attempt → Reveal sub-answer → self-mark Got it / Missed
       (a missed rung reveals the sub-answer, logs the gap, and continues — never blocks, never drills deeper)
   → immediately re-show the MAIN question → attempt → Show answer
@@ -214,27 +260,27 @@ they return.
 
 ## 4. How to test end-to-end
 
-1. Build & run the desktop app on a dev profile (imports the deck once):
+1. Build & run the desktop app on a fresh dev profile:
    ```
    just run
    ```
-   On first run, import `Aidan_.apkg` (File → Import). Copy `subquestions.json` next to your
-   collection, or set `READYMCAT_SUBQUESTIONS=/path/to/subquestions.json`, or run from the repo
-   root (the reviewer searches all three locations; it logs how many concepts it loaded).
-2. Study a deck containing a curated concept — e.g. browse to a card tagged under
-   `#Biochemistry::Metabolism::Carbohydrates::Glycolysis` (95 cards) and review it.
-3. Reveal the answer and press **Again**. Instead of advancing, the teach-on-miss ladder
-   appears. Work through the rungs (Reveal → Got it / Missed), then the main question is
-   re-shown.
+   The bank pre-loads automatically on first launch — **no import step** — and the sidecars
+   (`taxonomy.json`, `subquestions.json`, `diagnostic_quiz.json`) are dropped next to the
+   collection. (Optional: import `Aidan_.apkg` via File → Import to exercise the classic
+   self-graded teach-on-miss path in §2.)
+2. Study any of the four decks (`ReadyMCAT`, `ReadyMCAT::Free Response`,
+   `ReadyMCAT::Passages`, `ReadyMCAT::Passages::CARS`). Answer a question wrong (an MCQ pick,
+   a type-in, or a passage MCQ) — the reviewer grades it **Again**.
+3. Instead of advancing, the teach-on-miss ladder appears. Work through the rungs
+   (Reveal → Got it / Missed), then the main question is re-shown.
 4. Try both endings: answer **"I recalled it correctly"** (note the _not-mastered → spaced
    re-retrieval_ message and that the card relearns) and, on another card, **"I missed it
-   again"** (note the earned full answer, the Khan Academy resource nudge, and the
-   `ReadyMCAT::struggling` tag).
+   again"** (note the earned full answer, the resource nudge, and the `ReadyMCAT::struggling`
+   tag).
 5. Confirm the flow always ends at **Continue → next card** (no loops), and inspect
    `readymcat_teach_on_miss_log.jsonl` next to your collection.
-
-Non-curated cards behave exactly like stock Anki on Again, so the change is inert outside the
-tagged set.
+6. Open **Tools → ReadyMCAT Dashboard** for the honest-memory view (and **Tools → Load
+   ReadyMCAT demo data (SYNTHETIC)** first if you want to preview it before 200 real reviews).
 
 ---
 
@@ -246,17 +292,16 @@ tagged set.
 - **`topic_weight`** is percent-of-exam (sums to ≈76.96; CARS excluded). For points-at-stake
   (`topic_weight × weakness`) only relative weights matter; normalize if you prefer.
 - **Per-topic weakness:** aggregate FSRS recall probability over the cards in each category
-  using the same resolver. The 193 uncategorized cards (research methods) should be treated as
+  using the same resolver. The uncategorized cards (research methods) should be treated as
   the "empty/untagged topic" edge case the engine test covers.
 - **Teach-on-miss ↔ points-at-stake handshake:** the reviewer tags missed concepts
-  `ReadyMCAT::struggling` (and `ReadyMCAT::corrected`). **Implemented on the
-  `readymcat-integration` branch:** the points-at-stake queue raises the priority of
-  cards/notes carrying `ReadyMCAT::struggling` (a `STRUGGLING_PRIORITY_BOOST`× multiplier in
-  `rank_due_cards`), so corrected concepts resurface soon and again later (the spaced
-  re-retrieval teach-on-miss relies on) — on top of plain Anki relearning. See
+  `ReadyMCAT::struggling` (and `ReadyMCAT::corrected`). The points-at-stake queue raises the
+  priority of cards/notes carrying `ReadyMCAT::struggling` (a `STRUGGLING_PRIORITY_BOOST`×
+  multiplier in `rank_due_cards`), so corrected concepts resurface soon and again later (the
+  spaced re-retrieval teach-on-miss relies on) — on top of plain Anki relearning. See
   `docs/readymcat-points-at-stake.md` (§ "Seam reconciliations").
-- **Coverage map + give-up rule:** use the coverage numbers in §1 (31/31 categories; 76.96%
-  exam weight) — both clear the ≥50% threshold.
+- **Coverage map + give-up rule:** the pre-loaded bank covers all 31 categories by construction
+  (native `#ReadyMCAT::AAMC` tags), clearing the ≥50% threshold.
 
 ---
 

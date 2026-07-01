@@ -552,7 +552,9 @@ def build_fr_payload(note: Note) -> dict[str, Any] | None:
         "subtopic": fields.get("Subtopic", ""),
         "source": fields.get("Source", ""),
         "subquestions": [
-            s for s in _load_json_list(fields.get("Subquestions")) if isinstance(s, dict)
+            s
+            for s in _load_json_list(fields.get("Subquestions"))
+            if isinstance(s, dict)
         ],
     }
 

@@ -7,12 +7,12 @@ coverage/counts.
 
 ## Deliverables (all under `readymcat/content/`, `free_response_` prefix)
 
-| File | Purpose |
-| --- | --- |
-| `free_response_bio_biochem.json` | The bank: a JSON array of 151 original free-response items (the consumable artifact). |
-| `free_response_bio_biochem_build.py` | Authoring source of truth; hand-authored items as Python dicts, one function per AAMC category, serialized to the JSON above. |
-| `free_response_validate.py` | Self-contained stdlib validator (JSON validity, item schema, auto-gradability, teach-on-miss ladder, category IDs vs `taxonomy.json`). |
-| `free_response_bio_biochem_SOURCES.md` | This file. |
+| File                                   | Purpose                                                                                                                                |
+| -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `free_response_bio_biochem.json`       | The bank: a JSON array of 151 original free-response items (the consumable artifact).                                                  |
+| `free_response_bio_biochem_build.py`   | Authoring source of truth; hand-authored items as Python dicts, one function per AAMC category, serialized to the JSON above.          |
+| `free_response_validate.py`            | Self-contained stdlib validator (JSON validity, item schema, auto-gradability, teach-on-miss ladder, category IDs vs `taxonomy.json`). |
+| `free_response_bio_biochem_SOURCES.md` | This file.                                                                                                                             |
 
 This bank complements the existing multiple-choice banks; every item here is
 **free-response** (a short typed answer), authored on branch
@@ -28,10 +28,10 @@ This bank complements the existing multiple-choice banks; every item here is
 - **No item is copied, scraped, or closely paraphrased** from any copyrighted
   or paid question bank (UWorld, Kaplan, Blueprint, AAMC paid/official prep).
   No AAMC questions, passages, or confidential content are reproduced. The
-  public AAMC *"What's on the MCAT Exam?"* outline was used **only** for the
+  public AAMC _"What's on the MCAT Exam?"_ outline was used **only** for the
   topic structure — i.e., the content-category IDs/names already encoded in
   `taxonomy.json`.
-- **Facts and concepts are not copyrightable**, and no source's *expression*
+- **Facts and concepts are not copyrightable**, and no source's _expression_
   is reproduced. Items were written from an understanding of the underlying
   science, then attributed to the open source that teaches that concept.
 - **Facts/answers are correct** to the level tested on the MCAT.
@@ -40,17 +40,17 @@ This bank complements the existing multiple-choice banks; every item here is
 
 The **original items** in this bank are © ReadyMCAT contributors and released
 under **CC BY-SA 4.0** (consistent with the ReadyMCAT diagnostic bank). Each
-item additionally cites the open source whose *concept* it is grounded in.
+item additionally cites the open source whose _concept_ it is grounded in.
 
-| Source | Publisher | License | Items grounded | Usage |
-| --- | --- | --- | ---: | --- |
-| OpenStax Biology 2e | OpenStax, Rice University | CC BY 4.0 | 77 | Biochemistry, molecular biology, genetics, evolution, cell biology. |
-| OpenStax Anatomy and Physiology 2e | OpenStax, Rice University | CC BY 4.0 | 45 | Nervous & endocrine systems and the organ systems (FC3). |
-| LibreTexts Biochemistry (Fundamentals of Biochemistry) | LibreTexts | CC BY-NC-SA 4.0 | 14 | Enzyme kinetics/inhibition, amino-acid detail, metabolic pathway detail. |
-| OpenStax Microbiology | OpenStax, Rice University | CC BY 4.0 | 13 | Prokaryote structure/genetics and viruses (2B). |
-| OpenStax Chemistry 2e | OpenStax, Rice University | CC BY 4.0 | 2 | Acid-base behavior of amino-acid functional groups. |
-| Khan Academy MCAT Collection | Khan Academy (with AAMC & RWJF) | CC BY-NC-SA | 0 (reference only) | Secondary concept reference / student review link only; no content reproduced. |
-| AAMC "What's on the MCAT Exam?" outline | AAMC | Free public outline (not openly licensed) | 0 | Public topic list only (the 31 category IDs/names already in `taxonomy.json`). |
+| Source                                                 | Publisher                       | License                                   |     Items grounded | Usage                                                                          |
+| ------------------------------------------------------ | ------------------------------- | ----------------------------------------- | -----------------: | ------------------------------------------------------------------------------ |
+| OpenStax Biology 2e                                    | OpenStax, Rice University       | CC BY 4.0                                 |                 77 | Biochemistry, molecular biology, genetics, evolution, cell biology.            |
+| OpenStax Anatomy and Physiology 2e                     | OpenStax, Rice University       | CC BY 4.0                                 |                 45 | Nervous & endocrine systems and the organ systems (FC3).                       |
+| LibreTexts Biochemistry (Fundamentals of Biochemistry) | LibreTexts                      | CC BY-NC-SA 4.0                           |                 14 | Enzyme kinetics/inhibition, amino-acid detail, metabolic pathway detail.       |
+| OpenStax Microbiology                                  | OpenStax, Rice University       | CC BY 4.0                                 |                 13 | Prokaryote structure/genetics and viruses (2B).                                |
+| OpenStax Chemistry 2e                                  | OpenStax, Rice University       | CC BY 4.0                                 |                  2 | Acid-base behavior of amino-acid functional groups.                            |
+| Khan Academy MCAT Collection                           | Khan Academy (with AAMC & RWJF) | CC BY-NC-SA                               | 0 (reference only) | Secondary concept reference / student review link only; no content reproduced. |
+| AAMC "What's on the MCAT Exam?" outline                | AAMC                            | Free public outline (not openly licensed) |                  0 | Public topic list only (the 31 category IDs/names already in `taxonomy.json`). |
 
 **LibreTexts note:** LibreTexts pages carry per-page licenses; the Biochemistry
 material used here is CC BY-NC-SA 4.0. Because only uncopyrightable facts/
@@ -67,9 +67,9 @@ Source URLs (also in each item's `source.url`):
 - LibreTexts Biochemistry — https://bio.libretexts.org/Bookshelves/Biochemistry
 - Khan Academy MCAT — https://www.khanacademy.org/test-prep/mcat
 
-*Download OpenStax books for free at openstax.org; OpenStax content is licensed
+_Download OpenStax books for free at openstax.org; OpenStax content is licensed
 under CC BY 4.0. All Khan Academy content is available for free at
-khanacademy.org.*
+khanacademy.org._
 
 ---
 
@@ -108,18 +108,18 @@ exact IDs from `taxonomy.json` and are cross-checked by the validator.
 
 **All 9 B/B categories are covered (9/9).**
 
-| Category | AAMC content category | Items |
-| --- | --- | ---: |
-| 1A | Structure/function of proteins & amino acids | 18 |
-| 1B | Transmission of genetic information gene→protein | 18 |
-| 1C | Heritable information across generations; genetic diversity | 15 |
-| 1D | Bioenergetics & fuel-molecule metabolism | 20 |
-| 2A | Assemblies of molecules, cells, groups of cells | 13 |
-| 2B | Structure/growth/physiology/genetics of prokaryotes & viruses | 13 |
-| 2C | Cell division, differentiation, specialization | 11 |
-| 3A | Nervous & endocrine systems and coordination | 19 |
-| 3B | Integrative functions of the main organ systems | 24 |
-| **Total** | | **151** |
+| Category  | AAMC content category                                         |   Items |
+| --------- | ------------------------------------------------------------- | ------: |
+| 1A        | Structure/function of proteins & amino acids                  |      18 |
+| 1B        | Transmission of genetic information gene→protein              |      18 |
+| 1C        | Heritable information across generations; genetic diversity   |      15 |
+| 1D        | Bioenergetics & fuel-molecule metabolism                      |      20 |
+| 2A        | Assemblies of molecules, cells, groups of cells               |      13 |
+| 2B        | Structure/growth/physiology/genetics of prokaryotes & viruses |      13 |
+| 2C        | Cell division, differentiation, specialization                |      11 |
+| 3A        | Nervous & endocrine systems and coordination                  |      19 |
+| 3B        | Integrative functions of the main organ systems               |      24 |
+| **Total** |                                                               | **151** |
 
 **Counts:** 151 items · 303 teach-on-miss ladder rungs ·
 difficulty mix easy 41 / medium 100 / hard 10 ·

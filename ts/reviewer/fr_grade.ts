@@ -18,8 +18,7 @@
 //    contain the essential terms still count).
 
 const NUMBER_RE = /[-+]?\d*\.?\d+(?:[eE][-+]?\d+)?/;
-const TOLERANCE_RE =
-    /tolerance\s*[:=]?\s*[±+\-]?\s*([-+]?\d*\.?\d+(?:[eE][-+]?\d+)?)\s*(%?)/i;
+const TOLERANCE_RE = /tolerance\s*[:=]?\s*[±+-]?\s*([-+]?\d*\.?\d+(?:[eE][-+]?\d+)?)\s*(%?)/i;
 
 /** Lowercase, strip punctuation, and collapse whitespace for comparison. */
 export function normalizeAnswer(text: string): string {

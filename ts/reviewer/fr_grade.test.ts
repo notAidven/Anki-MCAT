@@ -3,12 +3,11 @@
 
 import { expect, test } from "vitest";
 
-import {
-    gradeFreeResponse,
-    normalizeAnswer,
-    toleranceFromKeyTerms,
-    toNumber,
-} from "./fr_grade";
+import { gradeFreeResponse, normalizeAnswer, toleranceFromKeyTerms, toNumber } from "./fr_grade";
+
+/* eslint
+@typescript-eslint/no-explicit-any: "off",
+ */
 
 // These mirror pylib/tests/test_readymcat_free_response.py so the browser-side
 // grader and the canonical Python grader stay in lockstep.

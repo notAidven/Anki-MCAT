@@ -7,12 +7,12 @@ existing multiple-choice banks (the diagnostic quiz and any MC item banks); this
 is the **free-response** format, designed for automatic grading with **no AI at
 the grading layer**.
 
-| Artifact | Path |
-| --- | --- |
-| Item bank (deliverable) | `readymcat/content/free_response_psych_soc.json` |
-| Human-authored generator | `readymcat/content/free_response_psych_soc_build.py` |
-| Stdlib validator | `readymcat/content/free_response_psych_soc_validate.py` |
-| This document | `readymcat/content/free_response_psych_soc_SOURCES.md` |
+| Artifact                 | Path                                                    |
+| ------------------------ | ------------------------------------------------------- |
+| Item bank (deliverable)  | `readymcat/content/free_response_psych_soc.json`        |
+| Human-authored generator | `readymcat/content/free_response_psych_soc_build.py`    |
+| Stdlib validator         | `readymcat/content/free_response_psych_soc_validate.py` |
+| This document            | `readymcat/content/free_response_psych_soc_SOURCES.md`  |
 
 The committed **JSON is the source of truth**. It is (re)generated from the
 builder and independently checked by the validator (both stdlib-only, no
@@ -30,7 +30,7 @@ third-party dependencies).
 - The **public AAMC "What's on the MCAT Exam?" content outline** is used **only**
   for the content-category IDs/labels (6A-10A) already encoded in
   `taxonomy.json`, and only for structure/terminology - never for item content.
-- Facts and concepts are **not copyrightable**; no source's *expression* is
+- Facts and concepts are **not copyrightable**; no source's _expression_ is
   reproduced. Theorist/term attributions were checked for correctness (e.g.,
   Weber's law, Young-Helmholtz vs. opponent-process, James-Lange vs.
   Cannon-Bard vs. Schachter-Singer, Piaget/Erikson/Kohlberg/Vygotsky,
@@ -41,23 +41,24 @@ third-party dependencies).
 ### Bank license
 
 Original items (c) ReadyMCAT contributors, released under **CC BY-SA 4.0**. Each
-item cites the open source whose *concept* it is grounded in.
+item cites the open source whose _concept_ it is grounded in.
 
 ---
 
 ## 2. Sources & licensing
 
-| Source | Publisher | License | Used for |
-| --- | --- | --- | --- |
-| **OpenStax Psychology 2e** | OpenStax, Rice University | **CC BY 4.0** | Psychology items (sensation/perception, cognition, memory, consciousness, emotion, motivation, learning, personality, development, disorders, social psychology, stress) |
-| **OpenStax Introduction to Sociology 3e** | OpenStax, Rice University | **CC BY 4.0** | Sociology items (culture, socialization, social interaction, groups/organizations, theory, institutions, demography, stratification, inequality, health) |
-| **OpenStax Biology 2e** | OpenStax, Rice University | **CC BY 4.0** | Behavioral-biology items (neuron/action potential, synaptic transmission, endocrine influence on behavior) |
-| **Khan Academy MCAT Collection** | Khan Academy (with AAMC & RWJF) | **CC BY-NC-SA** | Secondary concept reference (nervous-system organization); concept-only, no content reproduced |
-| **AAMC "What's on the MCAT Exam?" outline** | AAMC | Free public outline; **AAMC-copyrighted, NOT openly licensed** | Content-category IDs/labels only (already in `taxonomy.json`); structure/terminology only |
+| Source                                      | Publisher                       | License                                                        | Used for                                                                                                                                                                 |
+| ------------------------------------------- | ------------------------------- | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **OpenStax Psychology 2e**                  | OpenStax, Rice University       | **CC BY 4.0**                                                  | Psychology items (sensation/perception, cognition, memory, consciousness, emotion, motivation, learning, personality, development, disorders, social psychology, stress) |
+| **OpenStax Introduction to Sociology 3e**   | OpenStax, Rice University       | **CC BY 4.0**                                                  | Sociology items (culture, socialization, social interaction, groups/organizations, theory, institutions, demography, stratification, inequality, health)                 |
+| **OpenStax Biology 2e**                     | OpenStax, Rice University       | **CC BY 4.0**                                                  | Behavioral-biology items (neuron/action potential, synaptic transmission, endocrine influence on behavior)                                                               |
+| **Khan Academy MCAT Collection**            | Khan Academy (with AAMC & RWJF) | **CC BY-NC-SA**                                                | Secondary concept reference (nervous-system organization); concept-only, no content reproduced                                                                           |
+| **AAMC "What's on the MCAT Exam?" outline** | AAMC                            | Free public outline; **AAMC-copyrighted, NOT openly licensed** | Content-category IDs/labels only (already in `taxonomy.json`); structure/terminology only                                                                                |
 
-Attribution for OpenStax: *"Download for free at openstax.org. Licensed under CC BY 4.0."*
+Attribution for OpenStax: _"Download for free at openstax.org. Licensed under CC BY 4.0."_
 
 URLs:
+
 - Psychology 2e - https://openstax.org/details/books/psychology-2e
 - Introduction to Sociology 3e - https://openstax.org/details/books/introduction-sociology-3e
 - Biology 2e - https://openstax.org/details/books/biology-2e
@@ -68,13 +69,13 @@ Every item carries a `source` object with `name` (book + chapter), `url`, and `l
 
 ### Source distribution (per item)
 
-| Source | Items |
-| --- | ---: |
-| OpenStax Psychology 2e | 95 |
-| OpenStax Introduction to Sociology 3e | 45 |
-| OpenStax Biology 2e | 3 |
-| Khan Academy MCAT | 1 |
-| **Total** | **144** |
+| Source                                |   Items |
+| ------------------------------------- | ------: |
+| OpenStax Psychology 2e                |      95 |
+| OpenStax Introduction to Sociology 3e |      45 |
+| OpenStax Biology 2e                   |       3 |
+| Khan Academy MCAT                     |       1 |
+| **Total**                             | **144** |
 
 ---
 
@@ -109,23 +110,27 @@ Each element of the JSON array conforms exactly to:
 
 ```json
 {
-  "id": "fr-ps-<category>-<n>",
-  "section": "P/S",
-  "aamc_category": "<id>",
-  "subtopic": "<label>",
-  "answer_type": "free_response",
-  "prompt": "<question requiring a short typed answer>",
-  "accepted_answers": ["<primary>", "<variant/synonym>", "..."],
-  "key_terms": ["<must-appear term>", "..."],
-  "model_answer": "<ideal concise answer>",
-  "explanation": "<why + brief elaboration>",
-  "difficulty": "easy|medium|hard",
-  "cognitive_level": "recall|application",
-  "source": { "name": "...", "url": "...", "license": "..." },
-  "subquestions": [
-    { "stem": "<guiding step>", "answer_type": "free_response",
-      "accepted_answers": ["..."], "explanation": "<...>" }
-  ]
+    "id": "fr-ps-<category>-<n>",
+    "section": "P/S",
+    "aamc_category": "<id>",
+    "subtopic": "<label>",
+    "answer_type": "free_response",
+    "prompt": "<question requiring a short typed answer>",
+    "accepted_answers": ["<primary>", "<variant/synonym>", "..."],
+    "key_terms": ["<must-appear term>", "..."],
+    "model_answer": "<ideal concise answer>",
+    "explanation": "<why + brief elaboration>",
+    "difficulty": "easy|medium|hard",
+    "cognitive_level": "recall|application",
+    "source": { "name": "...", "url": "...", "license": "..." },
+    "subquestions": [
+        {
+            "stem": "<guiding step>",
+            "answer_type": "free_response",
+            "accepted_answers": ["..."],
+            "explanation": "<...>"
+        }
+    ]
 }
 ```
 
@@ -146,21 +151,21 @@ Comprehensive coverage of P/S: **Foundational Concepts 6, 7, 8, 9, 10**, all
 `taxonomy.json` (`aamc_categories`). Weights are `topic_weight` (percent-of-exam)
 from `taxonomy.json`.
 
-| Category | Name | AAMC weight | Items |
-| --- | --- | ---: | ---: |
-| 6A | Sensing the environment | 2.14 | 14 |
-| 6B | Making sense of the environment | 2.14 | 17 |
-| 6C | Responding to the world | 2.14 | 11 |
-| 7A | Individual influences on behavior | 2.99 | 21 |
-| 7B | Social processes that influence human behavior | 2.99 | 12 |
-| 7C | Attitude and behavior change | 2.99 | 8 |
-| 8A | Self-identity | 1.71 | 11 |
-| 8B | Social thinking | 1.71 | 10 |
-| 8C | Social interactions | 1.71 | 11 |
-| 9A | Understanding social structure | 1.92 | 11 |
-| 9B | Demographic characteristics and processes | 1.92 | 9 |
-| 10A | Social inequality | 1.28 | 9 |
-| **Total** | | | **144** |
+| Category  | Name                                           | AAMC weight |   Items |
+| --------- | ---------------------------------------------- | ----------: | ------: |
+| 6A        | Sensing the environment                        |        2.14 |      14 |
+| 6B        | Making sense of the environment                |        2.14 |      17 |
+| 6C        | Responding to the world                        |        2.14 |      11 |
+| 7A        | Individual influences on behavior              |        2.99 |      21 |
+| 7B        | Social processes that influence human behavior |        2.99 |      12 |
+| 7C        | Attitude and behavior change                   |        2.99 |       8 |
+| 8A        | Self-identity                                  |        1.71 |      11 |
+| 8B        | Social thinking                                |        1.71 |      10 |
+| 8C        | Social interactions                            |        1.71 |      11 |
+| 9A        | Understanding social structure                 |        1.92 |      11 |
+| 9B        | Demographic characteristics and processes      |        1.92 |       9 |
+| 10A       | Social inequality                              |        1.28 |       9 |
+| **Total** |                                                |             | **144** |
 
 By Foundational Concept: **FC6 = 42, FC7 = 41, FC8 = 32, FC9 = 20, FC10 = 9.**
 Higher-weight concepts (FC7 at 2.99, FC6 at 2.14) carry more items.
@@ -245,8 +250,8 @@ exits `0` on success and `1` on any failure.
 
 ## 7. Gaps & notes
 
-- **Grader not included:** this workstream ships the *content* and its
-  auto-grading *contract* (accepted_answers + key_terms). The normalization/
+- **Grader not included:** this workstream ships the _content_ and its
+  auto-grading _contract_ (accepted_answers + key_terms). The normalization/
   matching routine described in section 3 is the intended reviewer-layer
   implementation and is not part of this content deliverable.
 - **Ladders are 2 rungs each** (within the PRD's 2-3 range). Some hard items

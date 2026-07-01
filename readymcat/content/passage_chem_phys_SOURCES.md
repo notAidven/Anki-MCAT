@@ -5,11 +5,11 @@ exam-simulating multiple-choice question bank for the MCAT **Chemical and Physic
 Foundations of Biological Systems (C/P)** section. It records the grounding sources,
 licensing, authoring integrity, coverage, and counts, and how to validate the bank.
 
-| File                              | What it is                                                                                     |
-| --------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `passage_chem_phys.json`          | The question bank: a JSON array of 12 passage sets (10 passages + 2 discrete-question groups).  |
-| `passage_chem_phys_validate.py`   | Self-contained, dependency-free validator (structure + category IDs vs `taxonomy.json` + coverage). |
-| `passage_chem_phys_SOURCES.md`    | This document.                                                                                  |
+| File                            | What it is                                                                                          |
+| ------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `passage_chem_phys.json`        | The question bank: a JSON array of 12 passage sets (10 passages + 2 discrete-question groups).      |
+| `passage_chem_phys_validate.py` | Self-contained, dependency-free validator (structure + category IDs vs `taxonomy.json` + coverage). |
+| `passage_chem_phys_SOURCES.md`  | This document.                                                                                      |
 
 ## What this is
 
@@ -48,14 +48,14 @@ reviewer is a separate feature build.
 All grounding sources are free and, except where noted, openly licensed. Primary
 grounding is **OpenStax** (CC BY 4.0), the most permissive base for authored derivatives.
 
-| Source                                | Publisher              | License                                  | Use here                                                                                   |
-| ------------------------------------- | ---------------------- | ---------------------------------------- | ------------------------------------------------------------------------------------------ |
-| **OpenStax College Physics 2e**       | OpenStax, Rice Univ.   | **CC BY 4.0**                            | Primary grounding for physics (4A-4E): mechanics, fluids, circuits, sound/optics.          |
-| **OpenStax Chemistry 2e**             | OpenStax, Rice Univ.   | **CC BY 4.0**                            | Primary grounding for general chemistry (4C electrochem, 4E nuclear/atomic, 5A/5B/5E).      |
-| **OpenStax Organic Chemistry**        | OpenStax, Rice Univ.   | **CC BY 4.0**                            | Primary grounding for organic topics (5C separations, 5D reactivity/stereochemistry).       |
-| **OpenStax Biology 2e**               | OpenStax, Rice Univ.   | **CC BY 4.0**                            | Secondary grounding for gel electrophoresis (discrete item).                               |
-| **LibreTexts (Chemistry / Organic Chemistry Lab Techniques)** | LibreTexts (UC Davis et al.) | Openly licensed (CC BY-NC-SA / CC BY-SA) | Secondary conceptual reference for separation/purification methods. No text reproduced.    |
-| **AAMC "What's on the MCAT Exam?" outline** | AAMC             | Free public outline; AAMC-copyrighted (NOT openly licensed) | Used **only** for the public content-category IDs/names (already in `taxonomy.json`). No AAMC questions/passages/answers used. |
+| Source                                                        | Publisher                    | License                                                     | Use here                                                                                                                       |
+| ------------------------------------------------------------- | ---------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| **OpenStax College Physics 2e**                               | OpenStax, Rice Univ.         | **CC BY 4.0**                                               | Primary grounding for physics (4A-4E): mechanics, fluids, circuits, sound/optics.                                              |
+| **OpenStax Chemistry 2e**                                     | OpenStax, Rice Univ.         | **CC BY 4.0**                                               | Primary grounding for general chemistry (4C electrochem, 4E nuclear/atomic, 5A/5B/5E).                                         |
+| **OpenStax Organic Chemistry**                                | OpenStax, Rice Univ.         | **CC BY 4.0**                                               | Primary grounding for organic topics (5C separations, 5D reactivity/stereochemistry).                                          |
+| **OpenStax Biology 2e**                                       | OpenStax, Rice Univ.         | **CC BY 4.0**                                               | Secondary grounding for gel electrophoresis (discrete item).                                                                   |
+| **LibreTexts (Chemistry / Organic Chemistry Lab Techniques)** | LibreTexts (UC Davis et al.) | Openly licensed (CC BY-NC-SA / CC BY-SA)                    | Secondary conceptual reference for separation/purification methods. No text reproduced.                                        |
+| **AAMC "What's on the MCAT Exam?" outline**                   | AAMC                         | Free public outline; AAMC-copyrighted (NOT openly licensed) | Used **only** for the public content-category IDs/names (already in `taxonomy.json`). No AAMC questions/passages/answers used. |
 
 **Attribution notice (OpenStax):** "Download for free at openstax.org." OpenStax content
 is licensed under CC BY 4.0.
@@ -74,35 +74,35 @@ unendorsed by the AAMC, OpenStax, LibreTexts, or Khan Academy.
 
 ### Per passage set (grounding + AAMC category)
 
-| Set id       | Type     | Scenario                                             | AAMC category | Primary grounding                                   |
-| ------------ | -------- | ---------------------------------------------------- | ------------- | --------------------------------------------------- |
-| `psg-cp-1`   | passage  | Vertical jump / force platform                       | 4A            | College Physics 2e (mechanics, work-energy, impulse) |
-| `psg-cp-2`   | passage  | Arterial stenosis + alveolar gas exchange            | 4B            | College Physics 2e (fluids, Poiseuille, Bernoulli)  |
-| `psg-cp-3`   | passage  | Zn/Cu galvanic cell + DC resistor circuit            | 4C            | Chemistry 2e ch.16 + College Physics 2e (circuits)  |
-| `psg-cp-4`   | passage  | Diagnostic ultrasound + fiber-optic endoscope        | 4D            | College Physics 2e (sound/Doppler, optics)          |
-| `psg-cp-5`   | passage  | Nuclear medicine (Tc-99m, F-18 PET)                  | 4E            | Chemistry 2e ch.21 (nuclear) + ch.6 (E = hf)        |
-| `psg-cp-6`   | passage  | Blood bicarbonate buffer + weak-acid titration       | 5A            | Chemistry 2e ch.14 (acid-base) + ch.11              |
-| `psg-cp-7`   | passage  | Boiling points & intermolecular forces               | 5B            | Chemistry 2e ch.7-8 (VSEPR) + ch.10 (IMFs)          |
-| `psg-cp-8`   | passage  | Chromatography, extraction, distillation             | 5C            | Organic Chemistry (lab techniques) + LibreTexts     |
-| `psg-cp-9`   | passage  | SN1 vs SN2 substitution + stereochemistry            | 5D            | Organic Chemistry ch.11 (substitution) + ch.5       |
-| `psg-cp-10`  | passage  | Reaction kinetics + Gibbs free energy                | 5E            | Chemistry 2e ch.12 (kinetics) + ch.16 (thermo)      |
-| `psg-cp-11`  | discrete | 6 freestanding physics questions                     | 4A,4B,4C,4D,4E | College Physics 2e (+ Chemistry 2e ch.6)            |
-| `psg-cp-12`  | discrete | 6 freestanding chemistry questions                   | 5A,5B,5C,5D,5E | Chemistry 2e + Organic Chemistry (+ Biology 2e)     |
+| Set id      | Type     | Scenario                                       | AAMC category  | Primary grounding                                    |
+| ----------- | -------- | ---------------------------------------------- | -------------- | ---------------------------------------------------- |
+| `psg-cp-1`  | passage  | Vertical jump / force platform                 | 4A             | College Physics 2e (mechanics, work-energy, impulse) |
+| `psg-cp-2`  | passage  | Arterial stenosis + alveolar gas exchange      | 4B             | College Physics 2e (fluids, Poiseuille, Bernoulli)   |
+| `psg-cp-3`  | passage  | Zn/Cu galvanic cell + DC resistor circuit      | 4C             | Chemistry 2e ch.16 + College Physics 2e (circuits)   |
+| `psg-cp-4`  | passage  | Diagnostic ultrasound + fiber-optic endoscope  | 4D             | College Physics 2e (sound/Doppler, optics)           |
+| `psg-cp-5`  | passage  | Nuclear medicine (Tc-99m, F-18 PET)            | 4E             | Chemistry 2e ch.21 (nuclear) + ch.6 (E = hf)         |
+| `psg-cp-6`  | passage  | Blood bicarbonate buffer + weak-acid titration | 5A             | Chemistry 2e ch.14 (acid-base) + ch.11               |
+| `psg-cp-7`  | passage  | Boiling points & intermolecular forces         | 5B             | Chemistry 2e ch.7-8 (VSEPR) + ch.10 (IMFs)           |
+| `psg-cp-8`  | passage  | Chromatography, extraction, distillation       | 5C             | Organic Chemistry (lab techniques) + LibreTexts      |
+| `psg-cp-9`  | passage  | SN1 vs SN2 substitution + stereochemistry      | 5D             | Organic Chemistry ch.11 (substitution) + ch.5        |
+| `psg-cp-10` | passage  | Reaction kinetics + Gibbs free energy          | 5E             | Chemistry 2e ch.12 (kinetics) + ch.16 (thermo)       |
+| `psg-cp-11` | discrete | 6 freestanding physics questions               | 4A,4B,4C,4D,4E | College Physics 2e (+ Chemistry 2e ch.6)             |
+| `psg-cp-12` | discrete | 6 freestanding chemistry questions             | 5A,5B,5C,5D,5E | Chemistry 2e + Organic Chemistry (+ Biology 2e)      |
 
 ### Questions per AAMC content category
 
-| Category | Name (from `taxonomy.json`)                                                        | Questions |
-| -------- | ---------------------------------------------------------------------------------- | --------- |
-| 4A       | Translational motion, forces, work, energy, and equilibrium in living systems      | 7         |
-| 4B       | Importance of fluids for the circulation of blood, gas movement, and gas exchange  | 6         |
-| 4C       | Electrochemistry and electrical circuits and their elements                        | 6         |
-| 4D       | How light and sound interact with matter                                           | 6         |
-| 4E       | Atoms, nuclear decay, electronic structure, and atomic chemical behavior           | 6         |
-| 5A       | Unique nature of water and its solutions                                           | 6         |
-| 5B       | Nature of molecules and intermolecular interactions                                | 6         |
-| 5C       | Separation and purification methods                                                | 6         |
-| 5D       | Structure, function, and reactivity of biologically relevant molecules             | 7         |
-| 5E       | Principles of chemical thermodynamics and kinetics                                 | 6         |
+| Category | Name (from `taxonomy.json`)                                                       | Questions |
+| -------- | --------------------------------------------------------------------------------- | --------- |
+| 4A       | Translational motion, forces, work, energy, and equilibrium in living systems     | 7         |
+| 4B       | Importance of fluids for the circulation of blood, gas movement, and gas exchange | 6         |
+| 4C       | Electrochemistry and electrical circuits and their elements                       | 6         |
+| 4D       | How light and sound interact with matter                                          | 6         |
+| 4E       | Atoms, nuclear decay, electronic structure, and atomic chemical behavior          | 6         |
+| 5A       | Unique nature of water and its solutions                                          | 6         |
+| 5B       | Nature of molecules and intermolecular interactions                               | 6         |
+| 5C       | Separation and purification methods                                               | 6         |
+| 5D       | Structure, function, and reactivity of biologically relevant molecules            | 7         |
+| 5E       | Principles of chemical thermodynamics and kinetics                                | 6         |
 
 ### Totals
 
@@ -122,26 +122,35 @@ Each element of the top-level array is a passage set:
 
 ```json
 {
-  "id": "psg-cp-<n>",
-  "section": "C/P",
-  "passage": "<original ~200-350 word passage; figures/tables described in words>",
-  "passage_source": {"name": "<grounding>", "url": "<url>", "license": "<e.g. CC BY 4.0>"},
-  "questions": [
-    {
-      "id": "psg-cp-<n>-q<k>",
-      "aamc_category": "<id from taxonomy.json, one of 4A-4E/5A-5E>",
-      "subtopic": "<label>",
-      "stem": "<question>",
-      "options": ["<A>", "<B>", "<C>", "<D>"],
-      "correct_index": 0,
-      "explanation": "<why correct + why distractors wrong; references passage/data>",
-      "difficulty": "easy|medium|hard",
-      "cognitive_level": "comprehension|application|data-analysis",
-      "subquestions": [
-        {"stem": "<guiding MCQ step>", "options": ["..."], "correct_index": 0, "explanation": "<...>"}
-      ]
-    }
-  ]
+    "id": "psg-cp-<n>",
+    "section": "C/P",
+    "passage": "<original ~200-350 word passage; figures/tables described in words>",
+    "passage_source": {
+        "name": "<grounding>",
+        "url": "<url>",
+        "license": "<e.g. CC BY 4.0>"
+    },
+    "questions": [
+        {
+            "id": "psg-cp-<n>-q<k>",
+            "aamc_category": "<id from taxonomy.json, one of 4A-4E/5A-5E>",
+            "subtopic": "<label>",
+            "stem": "<question>",
+            "options": ["<A>", "<B>", "<C>", "<D>"],
+            "correct_index": 0,
+            "explanation": "<why correct + why distractors wrong; references passage/data>",
+            "difficulty": "easy|medium|hard",
+            "cognitive_level": "comprehension|application|data-analysis",
+            "subquestions": [
+                {
+                    "stem": "<guiding MCQ step>",
+                    "options": ["..."],
+                    "correct_index": 0,
+                    "explanation": "<...>"
+                }
+            ]
+        }
+    ]
 }
 ```
 

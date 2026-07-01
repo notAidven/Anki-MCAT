@@ -2503,5 +2503,192 @@
         ]
       }
     ]
+  },
+  {
+    "id": "psg-cars-14",
+    "section": "CARS",
+    "passage": "Social contract theory attempts to ground the legitimacy of political authority in the hypothetical or actual consent of those who are governed. If the state can be understood as an agreement among free and equal individuals to submit to common rules in exchange for mutual protection and the benefits of social cooperation, then political obligations are not arbitrary impositions but self-incurred commitments. The theory has its roots in early modern political philosophy and was given its most rigorous contemporary formulation through the thought experiment of choosing principles of justice from behind a veil of ignorance about one's place in society.\n\nThe veil of ignorance is designed to neutralize the effects of morally arbitrary advantages. Behind this veil, contractors do not know their natural talents, social class, or the particular conception of the good that they happen to hold. Because they must choose principles without knowing whether they will turn out to be among the advantaged or the disadvantaged, the argument holds that they will prefer principles that make the situation of the worst-off members of society as good as possible -- the so-called difference principle. Rational self-interest, operating behind the veil, converges on an egalitarian outcome not through altruism but through prudent risk-avoidance.\n\nLibertarian critics have challenged this argument on two fronts. First, they deny that the veil of ignorance is a neutral device: by requiring contractors to ignore their distinctive identities and life plans, it smuggles in a particular egalitarian assumption about what matters morally. Second, they argue that the difference principle violates individuals' entitlements by requiring redistribution from those who have acquired their holdings through legitimate means. On this view, just distributions are determined by the history of how holdings were acquired and transferred, not by any end-state principle about the pattern of distribution. Taxing the talented to benefit the worst-off, on this account, is no different in principle from forced labor.\n\nCommunitarian critics raise a different objection: the veil of ignorance presupposes a conception of persons as atomistic, self-sufficient choosers whose identities and commitments are separable from their social contexts. This picture, they argue, is a philosophical fiction. Actual persons are constituted by their particular communities, traditions, and relationships; the self that chooses behind a veil of ignorance is an abstraction too thin to generate substantive principles of justice. A more adequate theory would begin not with hypothetical individuals stripped of their particulars but with the historically situated communities that persons actually inhabit.\n\nThe social contract tradition, despite these challenges, remains influential because it takes seriously two commitments that are difficult to honor simultaneously: the idea that political authority must be justifiable to each individual governed, and the idea that just social arrangements must be insensitive to morally arbitrary differences in natural talent and social fortune.",
+    "passage_source": {
+      "name": "original",
+      "url": "",
+      "license": "original"
+    },
+    "questions": [
+      {
+        "id": "psg-cars-14-q1",
+        "aamc_category": "CARS",
+        "skill": "comprehension",
+        "stem": "The veil of ignorance is described in the passage as a device designed to:",
+        "options": [
+          "neutralize the effects of morally arbitrary advantages when choosing principles of justice",
+          "prevent citizens from learning about inequalities in their society",
+          "demonstrate that all existing social inequalities are unjust",
+          "establish that persons cannot make rational choices without full information"
+        ],
+        "correct_index": 0,
+        "explanation": "A is stated: The veil of ignorance is designed to neutralize the effects of morally arbitrary advantages. B confuses the thought experiment with a real device. C is not stated. D inverts the point -- the veil enables rational choice by preventing bias.",
+        "difficulty": "easy",
+        "subquestions": [
+          {
+            "stem": "What information are contractors behind the veil denied?",
+            "options": [
+              "Their natural talents, social class, and particular conception of the good",
+              "The rules of basic logic and economics"
+            ],
+            "correct_index": 0,
+            "explanation": "Behind the veil, contractors do not know their natural talents, social class, or the particular conception of the good that they happen to hold."
+          },
+          {
+            "stem": "What principle do contractors choose as a result?",
+            "options": [
+              "The difference principle -- that society should maximize the situation of the worst-off members",
+              "The principle that all social inequalities must be eliminated immediately"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says they will prefer principles that make the situation of the worst-off members of society as good as possible -- the so-called difference principle."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-14-q2",
+        "aamc_category": "CARS",
+        "skill": "reasoning-within",
+        "stem": "The libertarian critique argues that the difference principle is unjust because it:",
+        "options": [
+          "requires redistribution from those who acquired their holdings legitimately, violating their entitlements",
+          "makes the worst-off members of society too comfortable, reducing their incentive to work",
+          "ignores the contributions of market competition to overall social welfare",
+          "was derived from an unfair veil that only disadvantaged people would accept"
+        ],
+        "correct_index": 0,
+        "explanation": "A is stated: libertarians argue the difference principle violates individuals' entitlements by requiring redistribution from those who have acquired their holdings through legitimate means. B is an incentive-based argument not made. C introduces market competition not mentioned. D conflates the libertarian with the communitarian critique.",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "What does the libertarian alternative say determines just distributions?",
+            "options": [
+              "The history of how holdings were acquired and transferred, not the pattern of distribution",
+              "The marginal utility of each person's economic contribution"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage states: just distributions are determined by the history of how holdings were acquired and transferred, not by any end-state principle."
+          },
+          {
+            "stem": "What is the libertarian's first objection to the veil of ignorance?",
+            "options": [
+              "It smuggles in egalitarian assumptions by requiring contractors to ignore their distinctive identities",
+              "It is psychologically impossible to imagine being without a personal identity"
+            ],
+            "correct_index": 0,
+            "explanation": "The first libertarian objection: by requiring contractors to ignore their distinctive identities and life plans, it smuggles in a particular egalitarian assumption."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-14-q3",
+        "aamc_category": "CARS",
+        "skill": "reasoning-within",
+        "stem": "The communitarian objection claims the veil of ignorance is flawed because it:",
+        "options": [
+          "presupposes a thin, abstracted conception of persons that ignores how actual identities are constituted by community and tradition",
+          "requires too much information about society's worst-off members",
+          "produces redistributive principles incompatible with democratic majority rule",
+          "is derived from a theory of consent that ignores actual historical agreements"
+        ],
+        "correct_index": 0,
+        "explanation": "A is stated: communitarians say the veil presupposes a conception of persons as atomistic, self-sufficient choosers whose identities are separable from their social contexts, when in fact persons are constituted by their particular communities, traditions, and relationships. B is not the communitarian critique. C introduces majority rule not mentioned. D conflates different types of contract theory.",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "What alternative starting point do communitarians propose?",
+            "options": [
+              "Historically situated communities that persons actually inhabit",
+              "Hypothetical individuals with no community ties"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says communitarians prefer beginning with the historically situated communities that persons actually inhabit."
+          },
+          {
+            "stem": "What is the 'self that chooses behind a veil of ignorance' said to be?",
+            "options": [
+              "An abstraction too thin to generate substantive principles of justice",
+              "The most authentic expression of human rational nature"
+            ],
+            "correct_index": 0,
+            "explanation": "Communitarians say the self that chooses behind a veil of ignorance is an abstraction too thin to generate substantive principles of justice."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-14-q4",
+        "aamc_category": "CARS",
+        "skill": "comprehension",
+        "stem": "The passage's final paragraph suggests that the social contract tradition remains influential because it:",
+        "options": [
+          "addresses two commitments that are difficult to honor simultaneously: justifiability to each individual and insensitivity to morally arbitrary advantages",
+          "has definitively answered both libertarian and communitarian objections",
+          "is the only political theory compatible with democratic institutions",
+          "appeals to actual historical consent rather than hypothetical agreement"
+        ],
+        "correct_index": 0,
+        "explanation": "A is stated: the tradition takes seriously two commitments difficult to honor simultaneously -- that political authority must be justifiable to each individual, and that just arrangements must be insensitive to morally arbitrary differences. B is contradicted ('despite these challenges'). C is not stated. D reverses the theory -- the passage specifies hypothetical consent.",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "What is the first commitment social contract theory takes seriously?",
+            "options": [
+              "That political authority must be justifiable to each individual governed",
+              "That the state must maximize total social welfare"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says the first commitment is: political authority must be justifiable to each individual governed."
+          },
+          {
+            "stem": "What is the second commitment?",
+            "options": [
+              "That just arrangements must be insensitive to morally arbitrary differences in talent and fortune",
+              "That traditional community values must be preserved against liberal reform"
+            ],
+            "correct_index": 0,
+            "explanation": "The second: just social arrangements must be insensitive to morally arbitrary differences in natural talent and social fortune."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-14-q5",
+        "aamc_category": "CARS",
+        "skill": "reasoning-beyond",
+        "stem": "A philosopher argues that people's strong emotional attachment to their national culture and religious traditions shows that justice cannot be determined by asking what people would choose behind a veil of ignorance. This argument most closely resembles:",
+        "options": [
+          "The communitarian critique, because it holds that real persons' identities are constituted by their communities and traditions",
+          "The libertarian critique, because it focuses on individuals' entitlements rather than redistributive patterns",
+          "Both critiques equally, since both deny the validity of hypothetical choice procedures",
+          "Neither critique, since the passage's critiques concern procedural rather than substantive justice"
+        ],
+        "correct_index": 0,
+        "explanation": "A is correct: the philosopher's argument -- that cultural and religious attachments reveal that persons are constituted by their communities -- is precisely the communitarian objection. B is wrong -- libertarians focus on entitlements from legitimate acquisition, not cultural attachment. C is too strong -- libertarians accept hypothetical choice in principle. D is false -- both critiques do concern the veil procedure.",
+        "difficulty": "hard",
+        "subquestions": [
+          {
+            "stem": "What does the communitarian critique say about persons' cultural and traditional attachments?",
+            "options": [
+              "They constitute persons' identities and cannot be set aside in a thought experiment",
+              "They are morally arbitrary and should be ignored in choosing principles of justice"
+            ],
+            "correct_index": 0,
+            "explanation": "Communitarians say actual persons are constituted by their particular communities, traditions, and relationships -- these cannot be stripped away behind a veil."
+          },
+          {
+            "stem": "Why does the libertarian critique NOT match the philosopher's argument about cultural attachment?",
+            "options": [
+              "The libertarian critique focuses on entitlement from legitimate acquisition, not on cultural or traditional identity",
+              "Libertarians deny that cultural attachments are real"
+            ],
+            "correct_index": 0,
+            "explanation": "Libertarians argue about redistribution violating property rights -- not about cultural identity constituting the self."
+          }
+        ]
+      }
+    ]
   }
 ]

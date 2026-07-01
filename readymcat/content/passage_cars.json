@@ -222,5 +222,228 @@
         ]
       }
     ]
+  },
+  {
+    "id": "psg-cars-2",
+    "section": "CARS",
+    "passage": "Among the most contested claims in moral philosophy is the assertion that ethical judgments are irreducibly relative to the cultural frameworks that produce them. Cultural relativism, in its strongest form, holds not merely that different societies happen to endorse different moral codes, but that no standpoint outside all cultures exists from which those codes can be objectively ranked. If morality is constituted by social practice rather than discovered through reason or intuition, then condemning another culture's practices amounts to little more than projecting one's own conventions onto alien terrain.\n\nDefenders of this position often draw strength from the anthropological record, which reveals a startling diversity of moral norms across societies separated by time and geography. Practices that one tradition regards as obligatory — ancestor veneration, dowry exchange, arranged marriage — strike others as superstitious, exploitative, or coercive. From this diversity, relativists infer that no norm enjoys a privileged status independent of its cultural home. To insist otherwise, they argue, is to mistake familiarity for objectivity.\n\nYet the relativist position encounters formidable internal difficulties. If moral judgments are valid only within the culture that generates them, then the reformer who criticizes her own society's practices — the abolitionist in a slave-holding nation, the suffragette in a society that bars women from public life — is simply wrong by definition. Her protest cannot be morally correct because the dominant convention of her society says otherwise. This consequence strikes many philosophers as a reductio ad absurdum: a moral theory that silences the reformer and vindicates the oppressor cannot be adequate.\n\nUniversalists reply that moral diversity, while real, does not demonstrate moral relativism any more than disagreement among scientists demonstrates that there are no scientific facts. People may disagree about the boiling point of water and still be wrong; analogously, cultures may disagree about the permissibility of torture yet one of them may be mistaken. The universalist identifies certain core norms — prohibitions on gratuitous cruelty, requirements of basic reciprocity — that appear in some form across virtually every known society, suggesting not conventional agreement but convergent recognition of genuine moral truths.\n\nA nuanced middle position distinguishes between first-order moral claims (what is right or wrong) and metaethical claims (what makes moral judgments true or false). One may acknowledge deep cultural variation in first-order norms while still holding that some metaethical framework — natural law, contractualism, or sentimentalism — provides a transcultural criterion of moral evaluation. On this view, the diversity of moral codes is evidence of human fallibility and limited information, not of the absence of any moral standard. Whether such a criterion is ultimately defensible remains among the central unresolved questions of moral philosophy.",
+    "passage_source": {
+      "name": "original",
+      "url": "",
+      "license": "original"
+    },
+    "questions": [
+      {
+        "id": "psg-cars-2-q1",
+        "aamc_category": "CARS",
+        "skill": "comprehension",
+        "stem": "According to the passage, the strongest form of cultural relativism claims that:",
+        "options": [
+          "no perspective exists from which different moral codes can be objectively compared",
+          "all moral codes are equally good and should be respected without criticism",
+          "cultural diversity proves that moral reformers are always mistaken",
+          "anthropological fieldwork has confirmed that moral universalism is false"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is correct: the passage defines strong relativism as the view that 'no standpoint outside all cultures exists from which those codes can be objectively ranked.' (B) conflates relativism with a tolerationist prescription the passage does not assert. (C) is a consequence the passage attributes to relativism as a criticism (the reformer problem), not a definition of relativism. (D) misrepresents the argument: the passage says relativists 'draw strength' from anthropological diversity but does not claim fieldwork conclusively confirms relativism.",
+        "difficulty": "easy",
+        "subquestions": [
+          {
+            "stem": "What does the passage say the strongest relativist claim is about?",
+            "options": [
+              "The absence of any neutral vantage point to rank moral codes",
+              "The equal practical value of every moral code"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage's definition focuses on the impossibility of an objective ranking standpoint."
+          },
+          {
+            "stem": "Does the passage present anthropological diversity as proving relativism or merely supporting it?",
+            "options": [
+              "As evidence relativists cite in their favor, not as proof",
+              "As conclusive proof that relativism is true"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage says relativists 'draw strength from' the record, not that it proves their view."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-2-q2",
+        "aamc_category": "CARS",
+        "skill": "reasoning-within",
+        "stem": "The author introduces the abolitionist and suffragette examples primarily to:",
+        "options": [
+          "illustrate a consequence of relativism that the author implies undermines the theory",
+          "show that moral reformers are typically proven correct by history",
+          "demonstrate that strong moral convictions can survive cultural disapproval",
+          "argue that relativism is incompatible with historical progress"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is correct: the examples are deployed to generate the 'reductio ad absurdum' — if relativism is true, reformers who challenge their own society's norms are by definition wrong, which the author calls a devastating consequence. (B) and (D) introduce historical-progress claims the passage does not make. (C) is plausible but too psychological; the passage uses the examples as a logical critique of relativism, not a comment on reformers' personal resolve.",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "What happens to internal reformers if strong relativism is true?",
+            "options": [
+              "They are, by definition, morally wrong because their society's dominant norm says so",
+              "They are justified because they appeal to universal human rights"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage explicitly states that on relativism the reformer 'cannot be morally correct because the dominant convention of her society says otherwise.'"
+          },
+          {
+            "stem": "What label does the author give to this consequence of relativism?",
+            "options": [
+              "A reductio ad absurdum",
+              "A pragmatic paradox",
+              "An empirical anomaly"
+            ],
+            "correct_index": 0,
+            "explanation": "The author calls it 'a reductio ad absurdum: a moral theory that silences the reformer.'"
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-2-q3",
+        "aamc_category": "CARS",
+        "skill": "reasoning-within",
+        "stem": "The universalist analogy comparing moral disagreement to scientific disagreement is intended to show that:",
+        "options": [
+          "disagreement about a claim does not prove there is no fact of the matter",
+          "moral philosophy should adopt the methods of natural science",
+          "cultures that disagree about morality are engaged in pseudo-disputes",
+          "moral progress follows the same pattern as scientific progress"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is correct: the universalist uses the boiling-point example to argue that 'disagreement among scientists [does not demonstrate] that there are no scientific facts,' and the same applies to moral facts. (B) is not implied — the analogy concerns the logic of disagreement, not methodology. (C) inverts the point. (D) introduces a developmental claim the passage does not assert.",
+        "difficulty": "medium",
+        "subquestions": [
+          {
+            "stem": "In the universalist's analogy, what corresponds to moral disagreement?",
+            "options": [
+              "Scientific disagreement about an empirical fact like the boiling point of water",
+              "Political disagreement about which party should govern"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage draws the explicit parallel: scientists may disagree about the boiling point yet one can be wrong."
+          },
+          {
+            "stem": "What conclusion does the universalist draw from this analogy?",
+            "options": [
+              "Moral disagreement is compatible with there being genuine moral facts",
+              "Cultures that disagree about morality are equally correct"
+            ],
+            "correct_index": 0,
+            "explanation": "The logic is: disagreement does not equal no fact; therefore moral disagreement does not prove moral relativism."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-2-q4",
+        "aamc_category": "CARS",
+        "skill": "comprehension",
+        "stem": "The 'nuanced middle position' described in the final paragraph holds that:",
+        "options": [
+          "variation in first-order norms may coexist with a transcultural metaethical criterion",
+          "both relativism and universalism are ultimately incoherent and should be abandoned",
+          "metaethical frameworks must be derived from anthropological observation",
+          "cultural diversity in moral norms provides strong evidence against all metaethical theories"
+        ],
+        "correct_index": 0,
+        "explanation": "(A) is correct: the middle position separates first-order questions (what is right) from metaethical questions (what makes judgments true), allowing cultural variation at the first level while preserving a universal standard at the second. (B) is not stated. (C) reverses the relationship. (D) contradicts the passage, which interprets diversity as evidence of fallibility.",
+        "difficulty": "hard",
+        "subquestions": [
+          {
+            "stem": "What two levels of moral inquiry does the middle position distinguish?",
+            "options": [
+              "First-order claims (what is right) and metaethical claims (what makes judgments true)",
+              "Descriptive claims (what cultures do) and normative claims (what cultures should do)"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage explicitly names 'first-order moral claims' and 'metaethical claims' as the two levels."
+          },
+          {
+            "stem": "How does this middle position interpret widespread moral disagreement?",
+            "options": [
+              "As evidence of human fallibility and limited information, not the absence of moral standards",
+              "As proof that moral relativism is correct at both levels"
+            ],
+            "correct_index": 0,
+            "explanation": "The passage states: 'diversity of moral codes is evidence of human fallibility and limited information, not of the absence of any moral standard.'"
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-2-q5",
+        "aamc_category": "CARS",
+        "skill": "reasoning-beyond",
+        "stem": "A moral relativist would be MOST likely to find which of the following arguments persuasive?",
+        "options": [
+          "The fact that widespread cross-cultural prohibitions on murder exist suggests those prohibitions track a genuine moral truth",
+          "A society that endorses human sacrifice is simply expressing different values, not making an error",
+          "Reformers who oppose slavery in slave-holding societies demonstrate that universal moral standards can be recognized",
+          "Moral disagreement across cultures arises from factual disagreements rather than genuine differences in values"
+        ],
+        "correct_index": 1,
+        "explanation": "(B) is correct: relativists hold that a culture's norms are valid within that culture, so a society endorsing human sacrifice is just expressing different values — not wrong. (A) supports universalism by treating cross-cultural convergence as evidence of moral truth. (C) supports universalism by validating the reformer who appeals to universal standards. (D) is a universalist move: if disagreements are merely factual, underlying moral agreement could be reached.",
+        "difficulty": "hard",
+        "subquestions": [
+          {
+            "stem": "What is the core relativist claim about a culture's norms?",
+            "options": [
+              "They are valid within their cultural context and cannot be objectively ranked against others",
+              "They are valid only if they agree with universal human rights standards"
+            ],
+            "correct_index": 0,
+            "explanation": "Relativism holds norms are valid relative to their cultural home, with no external ranking possible."
+          },
+          {
+            "stem": "Why does option (A) support universalism rather than relativism?",
+            "options": [
+              "Because it treats cross-cultural convergence as evidence of an objective moral truth",
+              "Because it treats cultural diversity as evidence of moral relativism"
+            ],
+            "correct_index": 0,
+            "explanation": "Finding cross-cultural prohibitions and inferring they reflect a moral truth is exactly the universalist move."
+          }
+        ]
+      },
+      {
+        "id": "psg-cars-2-q6",
+        "aamc_category": "CARS",
+        "skill": "reasoning-beyond",
+        "stem": "Which finding, if true, would most weaken the relativist's use of anthropological diversity as evidence for relativism?",
+        "options": [
+          "Anthropologists routinely misinterpret foreign practices because of their own cultural biases",
+          "Despite surface variation, all known societies share a core prohibition on inflicting suffering for no reason",
+          "The academic discipline of anthropology originated in colonial contexts that shaped its methods",
+          "Some moral philosophers argue that anthropological data is irrelevant to metaethics"
+        ],
+        "correct_index": 1,
+        "explanation": "(B) most directly weakens the relativist inference: if a core norm appears universally, the diversity the relativist relies on is superficial, supporting universalism. (A) would cast doubt on data reliability but not directly undermine relativism. (C) raises sociological concerns, not logical ones. (D) supports ignoring the evidence but does not show it fails to support relativism.",
+        "difficulty": "hard",
+        "subquestions": [
+          {
+            "stem": "What inference do relativists draw from anthropological diversity?",
+            "options": [
+              "That no moral code has a privileged status independent of its cultural home",
+              "That all cultures must eventually converge on the same moral norms"
+            ],
+            "correct_index": 0,
+            "explanation": "Relativists use diversity to argue that no norm enjoys objective standing beyond its culture."
+          },
+          {
+            "stem": "How would universal cross-cultural agreement on a core norm undermine this inference?",
+            "options": [
+              "It would show that some norms may transcend culture, suggesting objective moral standards",
+              "It would show that cultures are more similar than anthropologists claim"
+            ],
+            "correct_index": 0,
+            "explanation": "A universal norm is exactly what the universalist predicts — it undermines the claim that all norms are merely culturally local."
+          }
+        ]
+      }
+    ]
   }
 ]

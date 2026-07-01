@@ -7,10 +7,15 @@ import type { PageLoad } from "./$types";
 import type { HomeStatus } from "./types";
 
 async function fetchHomeStatus(): Promise<HomeStatus> {
+    // mediasrv rejects any /_anki POST whose Content-Type isn't
+    // "application/binary" with a 403 — and pops a warning dialog in the
+    // desktop app (see qt/aqt/mediasrv.py::_check_dynamic_request_permissions).
+    // The Python handler ignores the request body, so an empty one is fine; the
+    // JSON reply is still parsed with res.json() regardless of its content type.
     const res = await fetch("/_anki/readymcatHomeStatus", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: "{}",
+        headers: { "Content-Type": "application/binary" },
+        body: "",
     });
     if (!res.ok) {
         throw new Error(await res.text());

@@ -27,19 +27,55 @@ const capture = process.env.READYMCAT_SHOT_CAPTURE === "1";
 
 test.setTimeout(120_000);
 
-// Reload until the hub renders (provisioning/seeding may lag server readiness).
-async function waitForHub(page: Page): Promise<void> {
-    for (let i = 0; i < 20; i++) {
-        await page.goto(url);
-        const tile = page.locator(".tiles button.tile").first();
-        try {
-            await tile.waitFor({ state: "visible", timeout: 30_000 });
-            break;
-        } catch {
-            // try again
+const DECK_KEYS = ["mcq", "fr", "passage", "cars"];
+
+// Fetch the hub's status the same way the page does. mediasrv only accepts
+// application/binary POSTs (it ignores the body and replies with JSON); go
+// through page.request so this runs in Node with proper types and resolves
+// against the configured baseURL.
+async function fetchStatusTotals(
+    page: Page,
+): Promise<{ allPresent: boolean; totalSum: number }> {
+    try {
+        const res = await page.request.post("/_anki/readymcatHomeStatus", {
+            headers: { "Content-Type": "application/binary" },
+            data: "",
+        });
+        if (!res.ok()) {
+            return { allPresent: false, totalSum: 0 };
         }
+        const status = await res.json();
+        const decks = status?.decks ?? {};
+        const allPresent = DECK_KEYS.every((k) => decks[k]?.present);
+        const totalSum = DECK_KEYS.reduce(
+            (s: number, k) => s + (decks[k]?.total ?? 0),
+            0,
+        );
+        return { allPresent, totalSum };
+    } catch {
+        return { allPresent: false, totalSum: 0 };
     }
-    await expect(page.locator(".tiles button.tile").first()).toBeVisible({
+}
+
+// Wait until the hub is *fully provisioned*, not just rendered. First-launch
+// provisioning runs deferred on the main thread and writes incrementally, so
+// the page first renders greyed/disabled tiles (decks absent), then tiles pop
+// in one format at a time with still-growing counts. Poll the status endpoint
+// until every format is present and the total count has stopped growing (two
+// equal readings), then reload so the settled numbers are what we capture.
+async function waitForHub(page: Page): Promise<void> {
+    await page.goto(url);
+    let prevSum = -1;
+    for (let i = 0; i < 40; i++) {
+        const { allPresent, totalSum } = await fetchStatusTotals(page);
+        if (allPresent && totalSum > 0 && totalSum === prevSum) {
+            break;
+        }
+        prevSum = allPresent ? totalSum : -1;
+        await page.waitForTimeout(1500);
+    }
+    await page.goto(url);
+    await expect(page.locator(".tiles button.tile:not(.unavailable)")).toHaveCount(4, {
         timeout: 10_000,
     });
     // let any transitions/reactive layout settle before capturing.

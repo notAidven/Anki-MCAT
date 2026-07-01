@@ -82,9 +82,7 @@ def _source_sidecars() -> dict[str, Path | None]:
     root = _repo_root()
     cwd = Path.cwd()
     return {
-        "taxonomy.json": _first_existing(
-            root / "taxonomy.json", cwd / "taxonomy.json"
-        ),
+        "taxonomy.json": _first_existing(root / "taxonomy.json", cwd / "taxonomy.json"),
         "subquestions.json": _first_existing(
             root / "subquestions.json", cwd / "subquestions.json"
         ),
@@ -164,9 +162,7 @@ def maybe_provision_readymcat(mw: "aqt.main.AnkiQt") -> None:
         print("ReadyMCAT: provisioning check failed", exc)
         return
 
-    mw.progress.start(
-        label="Preparing the ReadyMCAT question bank…", immediate=True
-    )
+    mw.progress.start(label="Preparing the ReadyMCAT question bank…", immediate=True)
     try:
         stats = core.provision_collection(mw.col, log=print)
         place_sidecars(mw)

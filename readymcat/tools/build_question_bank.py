@@ -39,7 +39,6 @@ import argparse
 import json
 import os
 import sys
-from dataclasses import dataclass, field
 from pathlib import Path
 from typing import TYPE_CHECKING, Any, Callable
 
@@ -366,17 +365,20 @@ def _fields_for_item(item: dict[str, Any]) -> list[str]:
     ]
 
 
-@dataclass
 class BuildStats:
-    """Summary of a build/provision run."""
+    """Summary of a build/provision run.
 
-    already_present: bool = False
-    notes_created: int = 0
-    cards_created: int = 0
-    categories: list[str] = field(default_factory=list)
-    subquestions: int = 0
-    deck_name: str = MCQ_DECK_NAME
-    notetype_name: str = MCQ_NOTETYPE_NAME
+    A plain class (not a ``@dataclass``) so it loads cleanly when this module is
+    imported by path — mirroring ``seed_demo_dashboard.DemoStats``."""
+
+    def __init__(self) -> None:
+        self.already_present = False
+        self.notes_created = 0
+        self.cards_created = 0
+        self.categories: list[str] = []
+        self.subquestions = 0
+        self.deck_name = MCQ_DECK_NAME
+        self.notetype_name = MCQ_NOTETYPE_NAME
 
     def as_dict(self) -> dict[str, Any]:
         return {
@@ -450,7 +452,8 @@ def provision_collection(
     a config marker. This is what the desktop app runs on first launch so a new
     user gets the full deck with zero import."""
     if has_mcq_deck(col):
-        stats = BuildStats(already_present=True)
+        stats = BuildStats()
+        stats.already_present = True
         stats.notes_created = len(col.find_notes(f'"note:{MCQ_NOTETYPE_NAME}"'))
         log(
             f"ReadyMCAT: MCQ deck '{MCQ_DECK_NAME}' already present "

@@ -1,0 +1,1405 @@
+[
+  {
+    "id": "fr-cp-4A-1",
+    "section": "C/P",
+    "aamc_category": "4A",
+    "subtopic": "Kinematics: free fall",
+    "answer_type": "free_response",
+    "prompt": "A ball is released from rest and falls freely for 3.0 s (g = 10 m/s², neglect air resistance). What is its speed just before landing? Give the value with units.",
+    "accepted_answers": [
+      "30 m/s",
+      "30 m s^-1",
+      "30 m/s^1",
+      "v = 30 m/s",
+      "30"
+    ],
+    "key_terms": [
+      "unit: m/s",
+      "tolerance: ±0.5 m/s",
+      "v = g t"
+    ],
+    "model_answer": "v = v₀ + g t = 0 + (10 m/s²)(3.0 s) = 30 m/s.",
+    "explanation": "From rest v₀ = 0, so speed grows linearly as v = g t. The distance fallen (½ g t² = 45 m) is a common trap; it is a length, not a speed.",
+    "difficulty": "easy",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 2: Kinematics",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "An object dropped from rest has what initial speed v₀ (in m/s)?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "0",
+          "0 m/s",
+          "zero"
+        ],
+        "explanation": "\"Released from rest\" means v₀ = 0."
+      },
+      {
+        "stem": "Write the equation for speed after time t for an object falling from rest.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "v = g t",
+          "v=gt",
+          "gt",
+          "v = at"
+        ],
+        "explanation": "With v₀ = 0 and a = g, v = v₀ + a t reduces to v = g t."
+      },
+      {
+        "stem": "Evaluate v = g t for g = 10 m/s² and t = 3.0 s (give m/s).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "30 m/s",
+          "30"
+        ],
+        "explanation": "(10 m/s²)(3.0 s) = 30 m/s."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4A-2",
+    "section": "C/P",
+    "aamc_category": "4A",
+    "subtopic": "Kinematics: projectile motion",
+    "answer_type": "free_response",
+    "prompt": "A marble rolls off a table 1.25 m high with a horizontal speed of 3.0 m/s (g = 10 m/s²). How far from the base of the table does it land? Give the value with units.",
+    "accepted_answers": [
+      "1.5 m",
+      "1.5 meters",
+      "x = 1.5 m",
+      "1.5"
+    ],
+    "key_terms": [
+      "unit: m",
+      "tolerance: ±0.1 m",
+      "horizontal range"
+    ],
+    "model_answer": "Fall time from h = ½ g t²: t = √(2h/g) = √(2·1.25/10) = √0.25 = 0.50 s. Range x = vₓ t = (3.0)(0.50) = 1.5 m.",
+    "explanation": "Horizontal and vertical motions are independent. The drop height sets the time aloft; the horizontal speed then sets the distance.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 3: Two-Dimensional Kinematics",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "With no air resistance, what happens to the horizontal velocity during the flight?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "stays constant",
+          "constant",
+          "unchanged",
+          "remains 3.0 m/s"
+        ],
+        "explanation": "No horizontal force means aₓ = 0, so vₓ is constant."
+      },
+      {
+        "stem": "How long is the marble airborne? Use h = ½ g t² with h = 1.25 m, g = 10 m/s² (give s).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "0.50 s",
+          "0.5 s",
+          "0.50"
+        ],
+        "explanation": "t = √(2h/g) = √0.25 = 0.50 s; time aloft depends only on the drop height."
+      },
+      {
+        "stem": "Using t = 0.50 s and vₓ = 3.0 m/s, find the horizontal distance (give m).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "1.5 m",
+          "1.5"
+        ],
+        "explanation": "x = vₓ t = (3.0)(0.50) = 1.5 m."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4A-3",
+    "section": "C/P",
+    "aamc_category": "4A",
+    "subtopic": "Newton's second law",
+    "answer_type": "free_response",
+    "prompt": "A constant net force gives a 2.0 kg cart an acceleration of 3.0 m/s². What is the magnitude of the net force? Give the value with units.",
+    "accepted_answers": [
+      "6.0 N",
+      "6 N",
+      "F = 6 N",
+      "6"
+    ],
+    "key_terms": [
+      "unit: N",
+      "tolerance: ±0.1 N",
+      "F = m a"
+    ],
+    "model_answer": "Newton's second law: F_net = m a = (2.0 kg)(3.0 m/s²) = 6.0 N.",
+    "explanation": "Force equals mass times acceleration; the newton is kg·m/s².",
+    "difficulty": "easy",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 4: Dynamics: Newton's Laws of Motion",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "State Newton's second law relating net force, mass, and acceleration.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "F = m a",
+          "F=ma",
+          "force = mass x acceleration",
+          "net force = m a"
+        ],
+        "explanation": "F_net = m a."
+      },
+      {
+        "stem": "Evaluate (2.0 kg)(3.0 m/s²) (give N).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "6.0 N",
+          "6 N",
+          "6"
+        ],
+        "explanation": "2.0 × 3.0 = 6.0 N."
+      },
+      {
+        "stem": "If the same net force acted on a 4.0 kg cart, what acceleration results (m/s²)?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "1.5 m/s^2",
+          "1.5 m/s²",
+          "1.5"
+        ],
+        "explanation": "a = F/m = 6.0/4.0 = 1.5 m/s²; doubling mass halves acceleration."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4A-4",
+    "section": "C/P",
+    "aamc_category": "4A",
+    "subtopic": "Friction",
+    "answer_type": "free_response",
+    "prompt": "A 10 kg crate slides across a level floor with coefficient of kinetic friction 0.30 (g = 10 m/s²). What horizontal force keeps it moving at constant velocity? Give the value with units.",
+    "accepted_answers": [
+      "30 N",
+      "F = 30 N",
+      "30"
+    ],
+    "key_terms": [
+      "unit: N",
+      "tolerance: ±0.5 N",
+      "f = μ_k N"
+    ],
+    "model_answer": "At constant velocity a = 0, so applied force = kinetic friction. N = mg = (10)(10) = 100 N, so f_k = μ_k N = (0.30)(100) = 30 N.",
+    "explanation": "Kinetic friction is μ_k times the normal force; on a level floor the normal force equals the weight.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 5: Further Applications of Newton's Laws: Friction",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "For a crate on a horizontal floor, what does the normal force equal (in N)?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "100 N",
+          "mg",
+          "m g",
+          "100"
+        ],
+        "explanation": "Vertical equilibrium gives N = mg = (10)(10) = 100 N."
+      },
+      {
+        "stem": "Write the equation for kinetic friction in terms of μ_k and N.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "f = μ_k N",
+          "f = mu_k N",
+          "f=μN",
+          "friction = coefficient x normal force"
+        ],
+        "explanation": "Kinetic friction equals the coefficient times the normal force."
+      },
+      {
+        "stem": "Compute (0.30)(100 N) (give N).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "30 N",
+          "30"
+        ],
+        "explanation": "f_k = (0.30)(100) = 30 N, which balances the applied force at constant velocity."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4A-5",
+    "section": "C/P",
+    "aamc_category": "4A",
+    "subtopic": "Inclined plane",
+    "answer_type": "free_response",
+    "prompt": "A block is released from rest on a frictionless incline angled 30° above the horizontal (g = 10 m/s²). What is its acceleration down the incline? Give the value with units.",
+    "accepted_answers": [
+      "5.0 m/s^2",
+      "5.0 m/s²",
+      "5 m/s^2",
+      "a = 5 m/s^2",
+      "5"
+    ],
+    "key_terms": [
+      "unit: m/s^2",
+      "tolerance: ±0.1 m/s^2",
+      "a = g sinθ"
+    ],
+    "model_answer": "Along a frictionless incline a = g sinθ = (10)(sin 30°) = (10)(0.50) = 5.0 m/s².",
+    "explanation": "Only the component of gravity parallel to the surface accelerates the block; that component is g sinθ.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 4-5: Newton's Laws / Inclined planes",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "What component of gravitational acceleration acts along a frictionless incline of angle θ?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "g sinθ",
+          "g sin theta",
+          "gsinθ",
+          "g·sinθ"
+        ],
+        "explanation": "The parallel component is g sinθ; the perpendicular component g cosθ is balanced by the normal force."
+      },
+      {
+        "stem": "What is sin 30°?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "0.5",
+          "0.50",
+          "1/2"
+        ],
+        "explanation": "sin 30° = 0.5."
+      },
+      {
+        "stem": "Compute g sinθ = (10 m/s²)(0.5) (give m/s²).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "5.0 m/s^2",
+          "5 m/s^2",
+          "5"
+        ],
+        "explanation": "a = (10)(0.5) = 5.0 m/s²."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4A-6",
+    "section": "C/P",
+    "aamc_category": "4A",
+    "subtopic": "Torque and static equilibrium",
+    "answer_type": "free_response",
+    "prompt": "On a seesaw pivoted at its center, a 300 N child sits 1.0 m left of the pivot. How far right of the pivot must a 200 N child sit to balance it? Give the distance with units.",
+    "accepted_answers": [
+      "1.5 m",
+      "d = 1.5 m",
+      "1.5"
+    ],
+    "key_terms": [
+      "unit: m",
+      "tolerance: ±0.05 m",
+      "torque balance"
+    ],
+    "model_answer": "Balance requires equal and opposite torques: (300 N)(1.0 m) = (200 N)(d) → d = 300/200 = 1.5 m.",
+    "explanation": "Static equilibrium means net torque = 0. Torque is force × lever arm, so the lighter child must sit farther out.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 9: Statics and Torque",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "For a balanced seesaw, what must be true of the net torque about the pivot?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "zero",
+          "net torque = 0",
+          "torques are equal",
+          "0"
+        ],
+        "explanation": "Rotational equilibrium requires the clockwise and counterclockwise torques to be equal (net torque zero)."
+      },
+      {
+        "stem": "Write the torque-balance equation for this seesaw.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "300(1.0) = 200(d)",
+          "300 x 1.0 = 200 x d",
+          "(300)(1.0)=(200)d",
+          "300 = 200 d"
+        ],
+        "explanation": "Torque = force × distance on each side: (300)(1.0) = (200)(d)."
+      },
+      {
+        "stem": "Solve (300)(1.0) = (200)(d) for d (give m).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "1.5 m",
+          "1.5"
+        ],
+        "explanation": "d = 300/200 = 1.5 m."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4A-7",
+    "section": "C/P",
+    "aamc_category": "4A",
+    "subtopic": "Work by a constant force",
+    "answer_type": "free_response",
+    "prompt": "A worker pushes a box 4.0 m across the floor with a constant 25 N force directed along the motion. How much work does the worker do? Give the value with units.",
+    "accepted_answers": [
+      "100 J",
+      "W = 100 J",
+      "100"
+    ],
+    "key_terms": [
+      "unit: J",
+      "tolerance: ±1 J",
+      "W = F d cosθ"
+    ],
+    "model_answer": "W = F d cosθ = (25 N)(4.0 m)(cos 0°) = (25)(4.0)(1) = 100 J.",
+    "explanation": "Work is force times displacement times the cosine of the angle between them; here the force is along the motion (θ = 0, cos = 1).",
+    "difficulty": "easy",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 7: Work, Energy, and Energy Resources",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Write the equation for work done by a constant force at angle θ to the displacement.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "W = F d cosθ",
+          "W = Fd cos theta",
+          "W=Fdcosθ",
+          "work = F d cosθ"
+        ],
+        "explanation": "W = F d cosθ."
+      },
+      {
+        "stem": "What is cos 0° (force along the motion)?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "1",
+          "1.0",
+          "one"
+        ],
+        "explanation": "cos 0° = 1, so all of the force does work."
+      },
+      {
+        "stem": "Compute (25 N)(4.0 m)(1) (give J).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "100 J",
+          "100"
+        ],
+        "explanation": "W = 100 J."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4A-8",
+    "section": "C/P",
+    "aamc_category": "4A",
+    "subtopic": "Kinetic energy",
+    "answer_type": "free_response",
+    "prompt": "What is the kinetic energy of a 2.0 kg object moving at 3.0 m/s? Give the value with units.",
+    "accepted_answers": [
+      "9.0 J",
+      "9 J",
+      "KE = 9 J",
+      "9"
+    ],
+    "key_terms": [
+      "unit: J",
+      "tolerance: ±0.1 J",
+      "KE = 1/2 m v^2"
+    ],
+    "model_answer": "KE = ½ m v² = ½ (2.0)(3.0)² = ½ (2.0)(9.0) = 9.0 J.",
+    "explanation": "Kinetic energy scales with the square of speed, so doubling the speed would quadruple KE.",
+    "difficulty": "easy",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 7: Work, Energy, and Energy Resources",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Write the equation for kinetic energy.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "KE = 1/2 m v^2",
+          "KE = ½ m v²",
+          "1/2 mv^2",
+          "KE=0.5mv^2"
+        ],
+        "explanation": "KE = ½ m v²."
+      },
+      {
+        "stem": "Evaluate v² for v = 3.0 m/s (give m²/s²).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "9.0",
+          "9",
+          "9 m^2/s^2"
+        ],
+        "explanation": "(3.0)² = 9.0."
+      },
+      {
+        "stem": "Compute ½ (2.0)(9.0) (give J).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "9.0 J",
+          "9 J",
+          "9"
+        ],
+        "explanation": "KE = ½(2.0)(9.0) = 9.0 J."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4A-9",
+    "section": "C/P",
+    "aamc_category": "4A",
+    "subtopic": "Conservation of mechanical energy",
+    "answer_type": "free_response",
+    "prompt": "An object is dropped from rest at a height of 5.0 m (g = 10 m/s², no air resistance). What is its speed just before it hits the ground? Give the value with units.",
+    "accepted_answers": [
+      "10 m/s",
+      "v = 10 m/s",
+      "10"
+    ],
+    "key_terms": [
+      "unit: m/s",
+      "tolerance: ±0.5 m/s",
+      "mgh = 1/2 m v^2"
+    ],
+    "model_answer": "Energy conservation: mgh = ½ m v² → v = √(2 g h) = √(2·10·5.0) = √100 = 10 m/s.",
+    "explanation": "Gravitational PE converts entirely to KE; the mass cancels, so speed depends only on height and g.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 7: Work, Energy, and Energy Resources",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "As the object falls, gravitational potential energy converts to what form of energy?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "kinetic energy",
+          "kinetic",
+          "KE"
+        ],
+        "explanation": "PE → KE with no losses (no friction/air resistance)."
+      },
+      {
+        "stem": "Set mgh = ½ m v² and solve for v.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "v = sqrt(2gh)",
+          "v = √(2gh)",
+          "sqrt(2gh)",
+          "v=√(2gh)"
+        ],
+        "explanation": "The mass cancels: v = √(2gh)."
+      },
+      {
+        "stem": "Compute √(2·10·5.0) (give m/s).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "10 m/s",
+          "10"
+        ],
+        "explanation": "√100 = 10 m/s."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4A-10",
+    "section": "C/P",
+    "aamc_category": "4A",
+    "subtopic": "Power",
+    "answer_type": "free_response",
+    "prompt": "A motor does 600 J of work in 4.0 s. What is its average power output? Give the value with units.",
+    "accepted_answers": [
+      "150 W",
+      "P = 150 W",
+      "150"
+    ],
+    "key_terms": [
+      "unit: W",
+      "tolerance: ±1 W",
+      "P = W/t"
+    ],
+    "model_answer": "P = W/t = 600 J / 4.0 s = 150 W.",
+    "explanation": "Power is the rate of doing work; one watt is one joule per second.",
+    "difficulty": "easy",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 7: Work, Energy, and Energy Resources",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Write the equation relating power, work, and time.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "P = W/t",
+          "P=W/t",
+          "power = work/time",
+          "P = W / t"
+        ],
+        "explanation": "Power is work per unit time."
+      },
+      {
+        "stem": "Compute 600 J ÷ 4.0 s (give W).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "150 W",
+          "150"
+        ],
+        "explanation": "600/4.0 = 150 W."
+      },
+      {
+        "stem": "What is the SI unit of power, and what is it equal to?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "watt",
+          "W",
+          "J/s",
+          "joule per second"
+        ],
+        "explanation": "The watt (W) equals one joule per second."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4A-11",
+    "section": "C/P",
+    "aamc_category": "4A",
+    "subtopic": "Momentum and impulse",
+    "answer_type": "free_response",
+    "prompt": "A 0.50 kg ball moving at 4.0 m/s is brought to rest. What is the magnitude of the impulse delivered to the ball? Give the value with units.",
+    "accepted_answers": [
+      "2.0 kg·m/s",
+      "2.0 kg m/s",
+      "2.0 N·s",
+      "2.0 N s",
+      "2"
+    ],
+    "key_terms": [
+      "unit: kg·m/s",
+      "tolerance: ±0.1 kg·m/s",
+      "impulse = change in momentum"
+    ],
+    "model_answer": "Impulse equals the change in momentum: J = Δp = mΔv = (0.50)(4.0 − 0) = 2.0 kg·m/s (equivalently 2.0 N·s).",
+    "explanation": "Impulse and momentum share units: kg·m/s = N·s. Stopping the ball removes all of its momentum.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 8: Linear Momentum and Collisions",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "The impulse on an object equals its change in what quantity?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "momentum",
+          "change in momentum",
+          "Δp",
+          "linear momentum"
+        ],
+        "explanation": "Impulse–momentum theorem: J = Δp."
+      },
+      {
+        "stem": "Write the equation for (linear) momentum.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "p = m v",
+          "p=mv",
+          "momentum = mass x velocity",
+          "p = mv"
+        ],
+        "explanation": "Momentum p = m v."
+      },
+      {
+        "stem": "Compute Δp = mΔv = (0.50 kg)(4.0 m/s) (give kg·m/s).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "2.0 kg·m/s",
+          "2.0 kg m/s",
+          "2.0 N·s",
+          "2"
+        ],
+        "explanation": "Δp = (0.50)(4.0) = 2.0 kg·m/s."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4A-12",
+    "section": "C/P",
+    "aamc_category": "4A",
+    "subtopic": "Simple harmonic motion (pendulum)",
+    "answer_type": "free_response",
+    "prompt": "What is the period of a simple pendulum of length 1.0 m (g = 9.8 m/s²)? Give the value with units.",
+    "accepted_answers": [
+      "2.0 s",
+      "2.0 seconds",
+      "T = 2.0 s",
+      "2.0"
+    ],
+    "key_terms": [
+      "unit: s",
+      "tolerance: ±0.1 s",
+      "T = 2π√(L/g)"
+    ],
+    "model_answer": "T = 2π√(L/g) = 2π√(1.0/9.8) = 2π(0.319) ≈ 2.0 s.",
+    "explanation": "The period of a simple pendulum depends only on length and g (for small angles), not on mass or amplitude.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 16: Oscillatory Motion and Waves",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Write the period formula for a simple pendulum.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "T = 2π√(L/g)",
+          "T = 2 pi sqrt(L/g)",
+          "2π√(L/g)",
+          "T=2π√(L/g)"
+        ],
+        "explanation": "T = 2π√(L/g)."
+      },
+      {
+        "stem": "Does increasing the bob's mass change the period of a simple pendulum? (yes/no)",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "no",
+          "no change",
+          "does not change",
+          "independent of mass"
+        ],
+        "explanation": "Mass cancels; the period is independent of mass (for small oscillations)."
+      },
+      {
+        "stem": "Evaluate 2π√(1.0/9.8) (give s).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "2.0 s",
+          "2.0",
+          "2 s"
+        ],
+        "explanation": "√(1.0/9.8) ≈ 0.319, and 2π(0.319) ≈ 2.0 s."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4B-1",
+    "section": "C/P",
+    "aamc_category": "4B",
+    "subtopic": "Density and specific gravity",
+    "answer_type": "free_response",
+    "prompt": "An object has a mass of 30 g and a volume of 10 cm³. What is its density? Give the value with units.",
+    "accepted_answers": [
+      "3.0 g/cm^3",
+      "3.0 g/cm³",
+      "3 g/cm^3",
+      "3.0 g/mL",
+      "3"
+    ],
+    "key_terms": [
+      "unit: g/cm^3",
+      "tolerance: ±0.1 g/cm^3",
+      "ρ = m/V"
+    ],
+    "model_answer": "ρ = m/V = 30 g / 10 cm³ = 3.0 g/cm³.",
+    "explanation": "Density is mass per unit volume; 1 cm³ = 1 mL, so 3.0 g/cm³ = 3.0 g/mL. Its specific gravity (relative to water) is 3.0.",
+    "difficulty": "easy",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 11: Fluid Statics",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Write the equation for density.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "ρ = m/V",
+          "rho = m/V",
+          "density = mass/volume",
+          "ρ=m/V"
+        ],
+        "explanation": "Density is mass divided by volume."
+      },
+      {
+        "stem": "Compute 30 g ÷ 10 cm³ (give g/cm³).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "3.0 g/cm^3",
+          "3 g/cm^3",
+          "3"
+        ],
+        "explanation": "30/10 = 3.0 g/cm³."
+      },
+      {
+        "stem": "What is this object's specific gravity relative to water (ρ_water = 1.0 g/cm³)?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "3.0",
+          "3",
+          "3.0 (dimensionless)"
+        ],
+        "explanation": "Specific gravity = ρ_object/ρ_water = 3.0/1.0 = 3.0 (unitless)."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4B-2",
+    "section": "C/P",
+    "aamc_category": "4B",
+    "subtopic": "Buoyancy (Archimedes' principle)",
+    "answer_type": "free_response",
+    "prompt": "A fully submerged object displaces 2.0 × 10⁻³ m³ of water (ρ = 1000 kg/m³, g = 10 m/s²). What is the buoyant force on it? Give the value with units.",
+    "accepted_answers": [
+      "20 N",
+      "F_b = 20 N",
+      "20"
+    ],
+    "key_terms": [
+      "unit: N",
+      "tolerance: ±0.5 N",
+      "F_b = ρ V g"
+    ],
+    "model_answer": "F_b = ρ_fluid V_displaced g = (1000)(2.0×10⁻³)(10) = 20 N.",
+    "explanation": "The buoyant force equals the weight of the displaced fluid (Archimedes' principle).",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 11: Fluid Statics — Archimedes' Principle",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Archimedes' principle: the buoyant force equals the weight of what?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "displaced fluid",
+          "the fluid displaced",
+          "displaced water",
+          "weight of displaced fluid"
+        ],
+        "explanation": "F_b equals the weight of the fluid displaced by the object."
+      },
+      {
+        "stem": "Write the buoyant-force formula in terms of ρ, V, and g.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "F_b = ρ V g",
+          "F = rho V g",
+          "ρVg",
+          "F_b=ρVg"
+        ],
+        "explanation": "F_b = ρ_fluid V_displaced g."
+      },
+      {
+        "stem": "Compute (1000)(2.0×10⁻³)(10) (give N).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "20 N",
+          "20"
+        ],
+        "explanation": "= 20 N."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4B-3",
+    "section": "C/P",
+    "aamc_category": "4B",
+    "subtopic": "Hydrostatic (gauge) pressure",
+    "answer_type": "free_response",
+    "prompt": "What is the gauge pressure due to the water at a depth of 10 m (ρ = 1000 kg/m³, g = 10 m/s²)? Give the value in pascals.",
+    "accepted_answers": [
+      "1.0 × 10^5 Pa",
+      "100000 Pa",
+      "1.0e5 Pa",
+      "100 kPa",
+      "100000"
+    ],
+    "key_terms": [
+      "unit: Pa",
+      "tolerance: ±2000 Pa",
+      "P = ρ g h"
+    ],
+    "model_answer": "Gauge pressure P = ρ g h = (1000)(10)(10) = 1.0 × 10⁵ Pa (= 100 kPa).",
+    "explanation": "Hydrostatic (gauge) pressure grows linearly with depth; absolute pressure would add atmospheric (≈101 kPa).",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 11: Fluid Statics — Pressure",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Write the equation for gauge pressure at depth h in a fluid.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "P = ρ g h",
+          "P = rho g h",
+          "ρgh",
+          "P=ρgh"
+        ],
+        "explanation": "Gauge pressure P = ρ g h."
+      },
+      {
+        "stem": "Compute (1000)(10)(10) (give Pa).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "100000 Pa",
+          "1.0 x 10^5 Pa",
+          "100 kPa",
+          "100000"
+        ],
+        "explanation": "= 1.0×10⁵ Pa."
+      },
+      {
+        "stem": "Does this depth pressure depend on the cross-sectional area of the water column? (yes/no)",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "no",
+          "no it does not",
+          "independent of area"
+        ],
+        "explanation": "Hydrostatic pressure depends only on ρ, g, and depth h — not on area or total volume."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4B-4",
+    "section": "C/P",
+    "aamc_category": "4B",
+    "subtopic": "Pascal's principle (hydraulics)",
+    "answer_type": "free_response",
+    "prompt": "In a hydraulic lift, the input piston has area 0.010 m² and the output piston has area 0.10 m². If 50 N is applied to the input, what force appears at the output? Give the value with units.",
+    "accepted_answers": [
+      "500 N",
+      "F_2 = 500 N",
+      "500"
+    ],
+    "key_terms": [
+      "unit: N",
+      "tolerance: ±5 N",
+      "F2 = F1 A2/A1"
+    ],
+    "model_answer": "Pascal's principle: pressure is transmitted equally, so F₂ = F₁(A₂/A₁) = 50×(0.10/0.010) = 50×10 = 500 N.",
+    "explanation": "The pressure P = F/A is the same on both pistons, so force scales with area — the basis of hydraulic force multiplication.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 11: Fluid Statics — Pascal's Principle",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Pascal's principle: an applied pressure is transmitted how throughout an enclosed fluid?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "equally",
+          "undiminished",
+          "uniformly",
+          "equally in all directions"
+        ],
+        "explanation": "Pressure is transmitted equally (undiminished) to every part of the fluid."
+      },
+      {
+        "stem": "Because pressure is equal on both pistons, write F₂ in terms of F₁, A₁, A₂.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "F2 = F1 A2/A1",
+          "F2 = F1(A2/A1)",
+          "F_2 = F_1 A_2/A_1",
+          "F1 A2/A1"
+        ],
+        "explanation": "Setting F₁/A₁ = F₂/A₂ gives F₂ = F₁(A₂/A₁)."
+      },
+      {
+        "stem": "Compute 50 N × (0.10/0.010) (give N).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "500 N",
+          "500"
+        ],
+        "explanation": "Area ratio = 10, so F₂ = 50×10 = 500 N."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4B-5",
+    "section": "C/P",
+    "aamc_category": "4B",
+    "subtopic": "Continuity equation",
+    "answer_type": "free_response",
+    "prompt": "An incompressible fluid flows at 2.0 m/s through a pipe. Where the pipe's cross-sectional area is half as large, what is the fluid speed? Give the value with units.",
+    "accepted_answers": [
+      "4.0 m/s",
+      "4 m/s",
+      "v_2 = 4 m/s",
+      "4"
+    ],
+    "key_terms": [
+      "unit: m/s",
+      "tolerance: ±0.1 m/s",
+      "A1 v1 = A2 v2"
+    ],
+    "model_answer": "Continuity: A₁v₁ = A₂v₂. With A₂ = A₁/2, v₂ = v₁(A₁/A₂) = 2.0×2 = 4.0 m/s.",
+    "explanation": "For an incompressible fluid the volume flow rate is constant, so narrowing the pipe speeds the fluid up.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 12: Fluid Dynamics — Flow Rate and Continuity",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Write the continuity equation for an incompressible fluid.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "A1 v1 = A2 v2",
+          "A₁v₁ = A₂v₂",
+          "A1v1=A2v2",
+          "Av = constant"
+        ],
+        "explanation": "The volume flow rate Av is constant: A₁v₁ = A₂v₂."
+      },
+      {
+        "stem": "If area is halved, how does speed change to keep Av constant?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "doubles",
+          "speed doubles",
+          "increases by 2",
+          "x2"
+        ],
+        "explanation": "Halving the area doubles the speed."
+      },
+      {
+        "stem": "Compute the new speed from v₁ = 2.0 m/s (give m/s).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "4.0 m/s",
+          "4 m/s",
+          "4"
+        ],
+        "explanation": "v₂ = 2×2.0 = 4.0 m/s."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4B-6",
+    "section": "C/P",
+    "aamc_category": "4B",
+    "subtopic": "Bernoulli's principle",
+    "answer_type": "free_response",
+    "prompt": "According to Bernoulli's principle, in a horizontal pipe where the fluid speed increases, how does the fluid's pressure change? Answer in one word.",
+    "accepted_answers": [
+      "lower",
+      "decreases",
+      "it decreases",
+      "drops",
+      "lowers"
+    ],
+    "key_terms": [
+      "lower",
+      "decreases",
+      "inverse relationship"
+    ],
+    "model_answer": "It decreases. At constant height, P + ½ρv² is constant, so higher speed means lower pressure.",
+    "explanation": "Bernoulli's equation conserves energy per unit volume; faster-moving fluid carries more of its energy as kinetic energy, leaving less as pressure.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 12: Fluid Dynamics — Bernoulli's Equation",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Write Bernoulli's equation (name the three terms that sum to a constant).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "P + 1/2 ρ v^2 + ρ g h",
+          "P + ½ρv² + ρgh",
+          "pressure + kinetic + potential",
+          "P+½ρv²+ρgh = constant"
+        ],
+        "explanation": "P + ½ρv² + ρgh = constant along a streamline."
+      },
+      {
+        "stem": "At constant height, if ½ρv² (the kinetic term) increases, what must happen to P?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "decreases",
+          "must decrease",
+          "lower",
+          "goes down"
+        ],
+        "explanation": "The sum is fixed, so P falls as the kinetic term rises."
+      },
+      {
+        "stem": "Higher fluid speed therefore corresponds to ____ pressure. (one word)",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "lower",
+          "less",
+          "reduced"
+        ],
+        "explanation": "Higher speed ↔ lower pressure."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4B-7",
+    "section": "C/P",
+    "aamc_category": "4B",
+    "subtopic": "Viscous flow (Poiseuille's law)",
+    "answer_type": "free_response",
+    "prompt": "By Poiseuille's law, volume flow rate through a tube is proportional to the fourth power of the radius. If the radius doubles at constant pressure difference, by what factor does the flow rate increase? Give the numeric factor.",
+    "accepted_answers": [
+      "16",
+      "16x",
+      "16 times",
+      "factor of 16"
+    ],
+    "key_terms": [
+      "dimensionless",
+      "exact",
+      "r^4 dependence"
+    ],
+    "model_answer": "Q ∝ r⁴, so doubling r multiplies Q by 2⁴ = 16.",
+    "explanation": "The steep r⁴ dependence is why small changes in vessel radius have large effects on blood flow.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax College Physics 2e, Ch. 12: Fluid Dynamics — Viscosity and Poiseuille's Law",
+      "url": "https://openstax.org/details/books/college-physics-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "In Poiseuille's law, the flow rate is proportional to the radius raised to what power?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "4",
+          "fourth",
+          "r^4",
+          "4th"
+        ],
+        "explanation": "Q ∝ r⁴."
+      },
+      {
+        "stem": "Evaluate 2 raised to that power.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "16",
+          "2^4",
+          "sixteen"
+        ],
+        "explanation": "2⁴ = 16."
+      },
+      {
+        "stem": "So doubling the radius multiplies the flow rate by what factor?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "16",
+          "16x",
+          "sixteen"
+        ],
+        "explanation": "Flow rate increases 16-fold."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4B-8",
+    "section": "C/P",
+    "aamc_category": "4B",
+    "subtopic": "Ideal gas law",
+    "answer_type": "free_response",
+    "prompt": "What volume does 2.0 mol of an ideal gas occupy at 1.0 atm and 273 K? Use R = 0.0821 L·atm/(mol·K). Give the value in liters.",
+    "accepted_answers": [
+      "44.8 L",
+      "44.8 liters",
+      "45 L",
+      "44.8"
+    ],
+    "key_terms": [
+      "unit: L",
+      "tolerance: ±0.5 L",
+      "V = nRT/P"
+    ],
+    "model_answer": "V = nRT/P = (2.0)(0.0821)(273)/(1.0) = 44.8 L.",
+    "explanation": "At STP (273 K, 1 atm) one mole of ideal gas occupies 22.4 L, so two moles occupy 44.8 L.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 9: Gases — The Ideal Gas Law",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Rearrange PV = nRT to solve for volume V.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "V = nRT/P",
+          "V=nRT/P",
+          "nRT/P"
+        ],
+        "explanation": "V = nRT/P."
+      },
+      {
+        "stem": "What volume does 1 mole of ideal gas occupy at STP?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "22.4 L",
+          "22.4 liters",
+          "22.4"
+        ],
+        "explanation": "The molar volume at STP is 22.4 L."
+      },
+      {
+        "stem": "Compute (2.0)(0.0821)(273)/(1.0) (give L).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "44.8 L",
+          "44.8",
+          "45 L"
+        ],
+        "explanation": "= 44.8 L (≈ 2 × 22.4 L)."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4B-9",
+    "section": "C/P",
+    "aamc_category": "4B",
+    "subtopic": "Dalton's law of partial pressures",
+    "answer_type": "free_response",
+    "prompt": "A gas mixture has a total pressure of 1.0 atm. If one component has a mole fraction of 0.25, what is its partial pressure? Give the value with units.",
+    "accepted_answers": [
+      "0.25 atm",
+      "P_A = 0.25 atm",
+      "0.25"
+    ],
+    "key_terms": [
+      "unit: atm",
+      "tolerance: ±0.01 atm",
+      "P_A = X_A P_total"
+    ],
+    "model_answer": "Partial pressure P_A = X_A · P_total = (0.25)(1.0 atm) = 0.25 atm.",
+    "explanation": "Each gas contributes pressure in proportion to its mole fraction; the partial pressures sum to the total (Dalton's law).",
+    "difficulty": "easy",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 9: Gases — Dalton's Law",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Write the relationship between a gas's partial pressure, its mole fraction, and the total pressure.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "P_A = X_A P_total",
+          "P = X P_total",
+          "partial pressure = mole fraction x total",
+          "P_A=X_A·P"
+        ],
+        "explanation": "P_A = X_A P_total."
+      },
+      {
+        "stem": "Compute (0.25)(1.0 atm) (give atm).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "0.25 atm",
+          "0.25"
+        ],
+        "explanation": "= 0.25 atm."
+      },
+      {
+        "stem": "Dalton's law: the partial pressures of all components sum to what?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "total pressure",
+          "the total pressure",
+          "P_total",
+          "1.0 atm"
+        ],
+        "explanation": "Σ P_i = P_total."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4B-10",
+    "section": "C/P",
+    "aamc_category": "4B",
+    "subtopic": "Kinetic-molecular theory / Graham's law",
+    "answer_type": "free_response",
+    "prompt": "By Graham's law, how many times faster does hydrogen gas (H₂, M = 2 g/mol) effuse compared with oxygen gas (O₂, M = 32 g/mol)? Give the numeric factor.",
+    "accepted_answers": [
+      "4",
+      "4x",
+      "4 times",
+      "4:1"
+    ],
+    "key_terms": [
+      "dimensionless",
+      "exact",
+      "rate ∝ 1/√M"
+    ],
+    "model_answer": "Rate ∝ 1/√M, so rate_H2/rate_O2 = √(M_O2/M_H2) = √(32/2) = √16 = 4.",
+    "explanation": "Lighter molecules move faster at a given temperature, so they effuse more quickly — the ratio goes as the square root of the inverse molar-mass ratio.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 9: Gases — Effusion and Diffusion (Graham's Law)",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "In Graham's law, effusion rate is proportional to 1 over the square root of what property?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "molar mass",
+          "molar mass (M)",
+          "mass",
+          "M"
+        ],
+        "explanation": "Rate ∝ 1/√M."
+      },
+      {
+        "stem": "Form the ratio: rate_H2/rate_O2 = √(M_O2/M_H2). Plug in the molar masses.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "√(32/2)",
+          "sqrt(32/2)",
+          "√16",
+          "sqrt(16)"
+        ],
+        "explanation": "= √(32/2) = √16."
+      },
+      {
+        "stem": "Evaluate √16.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "4",
+          "four"
+        ],
+        "explanation": "√16 = 4, so H₂ effuses 4× faster."
+      }
+    ]
+  },
+  {
+    "id": "fr-cp-4B-11",
+    "section": "C/P",
+    "aamc_category": "4B",
+    "subtopic": "Henry's law (gas solubility)",
+    "answer_type": "free_response",
+    "prompt": "By Henry's law, if the partial pressure of a gas above a liquid triples (temperature constant), by what factor does the dissolved gas concentration change? Give the numeric factor.",
+    "accepted_answers": [
+      "3",
+      "3x",
+      "3 times",
+      "triples"
+    ],
+    "key_terms": [
+      "dimensionless",
+      "exact",
+      "C = k P"
+    ],
+    "model_answer": "Henry's law: C = k_H P, so C ∝ P. Tripling the partial pressure triples the dissolved concentration (factor 3).",
+    "explanation": "This linear pressure–solubility relationship underlies gas exchange and, e.g., the fizz when a soda bottle is depressurized.",
+    "difficulty": "easy",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Chemistry 2e, Ch. 11: Solutions and Colloids — Henry's Law",
+      "url": "https://openstax.org/details/books/chemistry-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Write Henry's law relating dissolved concentration C and partial pressure P.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "C = k P",
+          "C = k_H P",
+          "C=kP",
+          "concentration = k times pressure"
+        ],
+        "explanation": "C = k_H P (solubility is proportional to partial pressure)."
+      },
+      {
+        "stem": "Because C ∝ P, tripling P changes C by what factor?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "3",
+          "triples",
+          "x3"
+        ],
+        "explanation": "C scales directly with P."
+      },
+      {
+        "stem": "If instead the partial pressure were halved, the dissolved concentration would do what?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "halve",
+          "halves",
+          "decrease by half",
+          "drop to half"
+        ],
+        "explanation": "C ∝ P, so halving P halves C."
+      }
+    ]
+  }
+]

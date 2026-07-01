@@ -1685,7 +1685,7 @@
     ],
     "model_answer": "Allolactose",
     "explanation": "Allolactose, an inducer derived from lactose, binds the lac repressor and releases it from the operator so transcription proceeds - an inducible operon.",
-    "difficulty": "medium",
+    "difficulty": "hard",
     "cognitive_level": "application",
     "source": {
       "name": "OpenStax Biology 2e — Ch. 16 Gene Regulation (prokaryotic operons)",
@@ -2151,7 +2151,7 @@
     ],
     "model_answer": "They assort independently (behave as unlinked)",
     "explanation": "50% is the maximum recombination frequency; genes far apart on a chromosome (or on different chromosomes) appear unlinked.",
-    "difficulty": "medium",
+    "difficulty": "hard",
     "cognitive_level": "application",
     "source": {
       "name": "OpenStax Biology 2e — Ch. 13 Linkage and recombination",
@@ -3046,7 +3046,7 @@
     ],
     "model_answer": "About 30-32 ATP (older texts say ~36-38)",
     "explanation": "Modern estimates give ~30-32 ATP per glucose because proton leak and the cost of shuttling NADH/ADP reduce the classic 36-38 figure.",
-    "difficulty": "medium",
+    "difficulty": "hard",
     "cognitive_level": "application",
     "source": {
       "name": "OpenStax Biology 2e — Ch. 7 Cellular Respiration (ATP accounting)",
@@ -3364,7 +3364,7 @@
     ],
     "model_answer": "It decreases (the energy is released as heat instead of making ATP)",
     "explanation": "Dissipating the proton gradient uncouples electron transport from ATP synthesis; the energy is lost as heat - the basis of thermogenesis by UCP1 in brown fat.",
-    "difficulty": "medium",
+    "difficulty": "hard",
     "cognitive_level": "application",
     "source": {
       "name": "LibreTexts Biochemistry (Fundamentals of Biochemistry) — Oxidative phosphorylation (uncouplers)",
@@ -5084,6 +5084,2014 @@
           "proto oncogene"
         ],
         "explanation": "A proto-oncogene."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3A-01",
+    "section": "B/B",
+    "aamc_category": "3A",
+    "subtopic": "Neuron: resting potential",
+    "answer_type": "free_response",
+    "prompt": "What is the approximate resting membrane potential of a typical neuron (value with sign and unit)?",
+    "accepted_answers": [
+      "-70 mv",
+      "about -70 mv",
+      "-70 millivolts",
+      "approximately -70 mv",
+      "-70mv",
+      "negative 70 mv"
+    ],
+    "key_terms": [
+      "-70"
+    ],
+    "model_answer": "About -70 mV",
+    "explanation": "The inside of a resting neuron is negative relative to the outside (~-70 mV), set mainly by K+ permeability and the Na+/K+ pump.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 12 The Nervous System (membrane potential)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Is the inside of a resting neuron negative or positive relative to the outside?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "negative",
+          "negative inside",
+          "more negative"
+        ],
+        "explanation": "Negative."
+      },
+      {
+        "stem": "At rest, the membrane is MOST permeable to which ion (via leak channels)?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "potassium",
+          "k+",
+          "k",
+          "potassium (k+)"
+        ],
+        "explanation": "Potassium (K+)."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3A-02",
+    "section": "B/B",
+    "aamc_category": "3A",
+    "subtopic": "Neuron: ion gradients",
+    "answer_type": "free_response",
+    "prompt": "Which membrane pump uses ATP to maintain the Na+ and K+ gradients essential for the resting potential?",
+    "accepted_answers": [
+      "sodium-potassium pump",
+      "na+/k+ atpase",
+      "na/k atpase",
+      "sodium potassium atpase",
+      "na-k pump",
+      "sodium-potassium atpase"
+    ],
+    "key_terms": [
+      "atpase"
+    ],
+    "model_answer": "The Na+/K+-ATPase (sodium-potassium pump)",
+    "explanation": "It pumps 3 Na+ out and 2 K+ in per ATP, sustaining the gradients that set the resting potential and power secondary active transport.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 12 The Nervous System",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "How many Na+ does the pump export per cycle?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "3",
+          "three"
+        ],
+        "explanation": "3 Na+ out."
+      },
+      {
+        "stem": "How many K+ does the pump import per cycle?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "2",
+          "two"
+        ],
+        "explanation": "2 K+ in."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3A-03",
+    "section": "B/B",
+    "aamc_category": "3A",
+    "subtopic": "Action potential: depolarization",
+    "answer_type": "free_response",
+    "prompt": "The rapid rising (depolarizing) phase of a neuronal action potential is caused by the INFLUX of which ion?",
+    "accepted_answers": [
+      "sodium",
+      "na+",
+      "na",
+      "sodium (na+)"
+    ],
+    "key_terms": [
+      "sodium"
+    ],
+    "model_answer": "Sodium (Na+) influx",
+    "explanation": "Voltage-gated Na+ channels open at threshold, letting Na+ rush in and depolarize the membrane toward about +30 mV.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 12 The Action Potential",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Voltage-gated Na+ channels open when the membrane reaches its ___ (a critical voltage).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "threshold",
+          "threshold potential"
+        ],
+        "explanation": "Threshold."
+      },
+      {
+        "stem": "An action potential either fires fully or not at all - this is the ___ principle.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "all-or-none",
+          "all or none",
+          "all-or-nothing"
+        ],
+        "explanation": "All-or-none."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3A-04",
+    "section": "B/B",
+    "aamc_category": "3A",
+    "subtopic": "Action potential: repolarization",
+    "answer_type": "free_response",
+    "prompt": "The falling (repolarizing) phase of the action potential is caused by the EFFLUX of which ion?",
+    "accepted_answers": [
+      "potassium",
+      "k+",
+      "k",
+      "potassium (k+)"
+    ],
+    "key_terms": [
+      "potassium"
+    ],
+    "model_answer": "Potassium (K+) efflux",
+    "explanation": "Voltage-gated K+ channels open (more slowly) and K+ leaves, restoring negativity; a brief overshoot causes hyperpolarization.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 12 The Action Potential",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "A brief dip BELOW the resting potential after the spike is called ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "hyperpolarization",
+          "the undershoot",
+          "afterhyperpolarization"
+        ],
+        "explanation": "Hyperpolarization."
+      },
+      {
+        "stem": "During the ___ period, the neuron cannot fire another action potential.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "refractory",
+          "refractory period",
+          "absolute refractory"
+        ],
+        "explanation": "The refractory period."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3A-05",
+    "section": "B/B",
+    "aamc_category": "3A",
+    "subtopic": "Glia and myelin",
+    "answer_type": "free_response",
+    "prompt": "Which glial cell forms the myelin sheath around axons in the CENTRAL nervous system?",
+    "accepted_answers": [
+      "oligodendrocyte",
+      "oligodendrocytes"
+    ],
+    "key_terms": [
+      "oligodendrocyte"
+    ],
+    "model_answer": "Oligodendrocytes",
+    "explanation": "In the CNS, oligodendrocytes myelinate axons; in the PNS, Schwann cells do.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 12 Nervous Tissue (glia)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Which cell myelinates axons in the PERIPHERAL nervous system (PNS)?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "schwann cell",
+          "schwann cells",
+          "schwann"
+        ],
+        "explanation": "Schwann cells."
+      },
+      {
+        "stem": "Myelin increases conduction speed by letting the impulse jump between nodes - this is ___ conduction.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "saltatory",
+          "saltatory conduction"
+        ],
+        "explanation": "Saltatory conduction."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3A-06",
+    "section": "B/B",
+    "aamc_category": "3A",
+    "subtopic": "Saltatory conduction",
+    "answer_type": "free_response",
+    "prompt": "What are the periodic gaps in the myelin sheath, where the action potential is regenerated, called?",
+    "accepted_answers": [
+      "nodes of ranvier",
+      "node of ranvier",
+      "ranvier nodes"
+    ],
+    "key_terms": [
+      "ranvier"
+    ],
+    "model_answer": "Nodes of Ranvier",
+    "explanation": "Action potentials 'jump' from node to node (saltatory conduction), greatly speeding transmission along myelinated axons.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 12 Nervous Tissue (myelin)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "The jumping of the action potential from node to node is called ___ conduction.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "saltatory",
+          "saltatory conduction"
+        ],
+        "explanation": "Saltatory conduction."
+      },
+      {
+        "stem": "Does myelination INCREASE or DECREASE the speed of conduction?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "increase",
+          "increases",
+          "increase speed",
+          "speeds it up"
+        ],
+        "explanation": "Increases speed."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3A-07",
+    "section": "B/B",
+    "aamc_category": "3A",
+    "subtopic": "Synaptic transmission",
+    "answer_type": "free_response",
+    "prompt": "What general term describes the chemical messengers released from an axon terminal into the synaptic cleft to signal the next cell?",
+    "accepted_answers": [
+      "neurotransmitter",
+      "neurotransmitters"
+    ],
+    "key_terms": [
+      "neurotransmitter"
+    ],
+    "model_answer": "Neurotransmitters",
+    "explanation": "Neurotransmitters diffuse across the synaptic cleft and bind receptors on the postsynaptic membrane; examples include acetylcholine, dopamine, and glutamate.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 12 The Synapse",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "The gap between two neurons across which neurotransmitters diffuse is the synaptic ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "cleft",
+          "synaptic cleft"
+        ],
+        "explanation": "The synaptic cleft."
+      },
+      {
+        "stem": "Neurotransmitter release is triggered by the influx of which ion into the axon terminal?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "calcium",
+          "ca2+",
+          "ca",
+          "calcium (ca2+)"
+        ],
+        "explanation": "Calcium (Ca2+)."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3A-08",
+    "section": "B/B",
+    "aamc_category": "3A",
+    "subtopic": "Neuromuscular junction",
+    "answer_type": "free_response",
+    "prompt": "Which neurotransmitter is released at the NEUROMUSCULAR junction to trigger skeletal muscle contraction?",
+    "accepted_answers": [
+      "acetylcholine",
+      "ach"
+    ],
+    "key_terms": [
+      "acetylcholine"
+    ],
+    "model_answer": "Acetylcholine (ACh)",
+    "explanation": "ACh binds nicotinic receptors on the muscle fiber; acetylcholinesterase then degrades it to terminate the signal.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 11 Muscle Tissue (NMJ)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Which enzyme breaks down acetylcholine in the cleft to end the signal?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "acetylcholinesterase",
+          "ache",
+          "cholinesterase"
+        ],
+        "explanation": "Acetylcholinesterase."
+      },
+      {
+        "stem": "The junction between a motor neuron and a muscle fiber is called the ___ junction.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "neuromuscular",
+          "neuromuscular junction",
+          "nmj"
+        ],
+        "explanation": "The neuromuscular junction."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3A-09",
+    "section": "B/B",
+    "aamc_category": "3A",
+    "subtopic": "Autonomic nervous system: sympathetic",
+    "answer_type": "free_response",
+    "prompt": "Which division of the autonomic nervous system mediates the 'fight-or-flight' response?",
+    "accepted_answers": [
+      "sympathetic",
+      "sympathetic nervous system",
+      "sympathetic division"
+    ],
+    "key_terms": [
+      "sympathetic"
+    ],
+    "model_answer": "The sympathetic nervous system",
+    "explanation": "Sympathetic activation raises heart rate, dilates the pupils, and mobilizes energy; the parasympathetic division does the opposite ('rest and digest').",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 15 The Autonomic Nervous System",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Which division mediates the 'rest-and-digest' response?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "parasympathetic",
+          "parasympathetic nervous system",
+          "parasympathetic division"
+        ],
+        "explanation": "The parasympathetic nervous system."
+      },
+      {
+        "stem": "Does sympathetic activation RAISE or LOWER heart rate?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "raise",
+          "increase",
+          "raises it",
+          "increases it"
+        ],
+        "explanation": "Raises heart rate."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3A-10",
+    "section": "B/B",
+    "aamc_category": "3A",
+    "subtopic": "Autonomic nervous system: vagus nerve",
+    "answer_type": "free_response",
+    "prompt": "Which cranial nerve carries most PARASYMPATHETIC output to the heart and abdominal viscera?",
+    "accepted_answers": [
+      "vagus nerve",
+      "vagus",
+      "cranial nerve x",
+      "cn x",
+      "cn 10",
+      "tenth cranial nerve"
+    ],
+    "key_terms": [
+      "vagus"
+    ],
+    "model_answer": "The vagus nerve (cranial nerve X)",
+    "explanation": "The vagus provides parasympathetic innervation that slows the heart and stimulates digestion, releasing acetylcholine at its targets.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 15 Autonomic Nervous System (vagus)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "The main neurotransmitter of parasympathetic postganglionic neurons is ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "acetylcholine",
+          "ach"
+        ],
+        "explanation": "Acetylcholine."
+      },
+      {
+        "stem": "Does vagal (parasympathetic) activity speed up or slow down the heart?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "slow down",
+          "slows it",
+          "decreases it",
+          "lowers it",
+          "slows"
+        ],
+        "explanation": "Slows the heart."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3A-11",
+    "section": "B/B",
+    "aamc_category": "3A",
+    "subtopic": "Endocrine: hypothalamic-pituitary axis",
+    "answer_type": "free_response",
+    "prompt": "Which endocrine gland, often called the 'master gland', is directly controlled by the hypothalamus?",
+    "accepted_answers": [
+      "pituitary",
+      "pituitary gland",
+      "hypophysis"
+    ],
+    "key_terms": [
+      "pituitary"
+    ],
+    "model_answer": "The pituitary gland",
+    "explanation": "The anterior pituitary secretes hormones (TSH, ACTH, FSH/LH, GH) under hypothalamic releasing hormones; the posterior pituitary stores/releases ADH and oxytocin made by the hypothalamus.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 17 The Endocrine System (pituitary)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Which brain region controls the pituitary and links the nervous and endocrine systems?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "hypothalamus",
+          "the hypothalamus"
+        ],
+        "explanation": "The hypothalamus."
+      },
+      {
+        "stem": "The posterior pituitary releases ADH and which other hypothalamic hormone?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "oxytocin"
+        ],
+        "explanation": "Oxytocin."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3A-12",
+    "section": "B/B",
+    "aamc_category": "3A",
+    "subtopic": "Endocrine: hormone types",
+    "answer_type": "free_response",
+    "prompt": "Steroid hormones (being lipid-soluble) typically bind receptors located WHERE in/on the target cell?",
+    "accepted_answers": [
+      "intracellular",
+      "inside the cell",
+      "cytoplasm or nucleus",
+      "intracellular receptors",
+      "in the cytoplasm/nucleus",
+      "inside the cell (cytoplasm/nucleus)"
+    ],
+    "key_terms": [
+      "intracellular"
+    ],
+    "model_answer": "Intracellularly (in the cytoplasm or nucleus)",
+    "explanation": "Lipid-soluble steroids cross the membrane and bind intracellular receptors that act as transcription factors; water-soluble peptide hormones bind cell-surface receptors and use second messengers.",
+    "difficulty": "hard",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 17 Endocrine System (hormone signaling)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Peptide hormones bind receptors located WHERE (since they cannot cross the membrane)?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "cell surface",
+          "on the cell membrane",
+          "plasma membrane",
+          "cell membrane",
+          "surface receptors"
+        ],
+        "explanation": "On the cell surface (plasma membrane)."
+      },
+      {
+        "stem": "Peptide-hormone signaling often uses an intracellular 'second messenger' such as ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "cyclic amp",
+          "camp",
+          "cyclic amp (camp)",
+          "ca2+",
+          "calcium",
+          "ip3"
+        ],
+        "explanation": "cAMP (or Ca2+/IP3)."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3A-13",
+    "section": "B/B",
+    "aamc_category": "3A",
+    "subtopic": "Endocrine: calcium regulation",
+    "answer_type": "free_response",
+    "prompt": "Which hormone RAISES blood calcium (e.g., by stimulating bone resorption and renal Ca2+ reabsorption)?",
+    "accepted_answers": [
+      "parathyroid hormone",
+      "pth"
+    ],
+    "key_terms": [
+      "parathyroid hormone"
+    ],
+    "model_answer": "Parathyroid hormone (PTH)",
+    "explanation": "PTH raises blood Ca2+; calcitonin (from the thyroid) lowers it. The two are antagonists regulating calcium homeostasis.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 17 Endocrine System (calcium homeostasis)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Which hormone LOWERS blood calcium, opposing PTH?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "calcitonin"
+        ],
+        "explanation": "Calcitonin."
+      },
+      {
+        "stem": "PTH is secreted by which glands?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "parathyroid glands",
+          "parathyroids",
+          "parathyroid"
+        ],
+        "explanation": "The parathyroid glands."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3A-14",
+    "section": "B/B",
+    "aamc_category": "3A",
+    "subtopic": "Endocrine: water balance",
+    "answer_type": "free_response",
+    "prompt": "Which posterior-pituitary hormone promotes water reabsorption in the kidney's collecting ducts, concentrating the urine?",
+    "accepted_answers": [
+      "adh",
+      "antidiuretic hormone",
+      "vasopressin",
+      "adh (vasopressin)"
+    ],
+    "key_terms": [
+      "antidiuretic"
+    ],
+    "model_answer": "Antidiuretic hormone (ADH / vasopressin)",
+    "explanation": "ADH inserts aquaporins into the collecting duct so more water is reabsorbed; alcohol inhibits ADH, causing diuresis.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 17 / Ch. 25 (ADH and the kidney)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "ADH increases water reabsorption by inserting water channels called ___ into the membrane.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "aquaporins",
+          "aquaporin"
+        ],
+        "explanation": "Aquaporins."
+      },
+      {
+        "stem": "Does ADH make the urine MORE concentrated or MORE dilute?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "more concentrated",
+          "concentrated",
+          "more concentrated urine"
+        ],
+        "explanation": "More concentrated."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3A-15",
+    "section": "B/B",
+    "aamc_category": "3A",
+    "subtopic": "Endocrine: feedback",
+    "answer_type": "free_response",
+    "prompt": "Rising blood thyroid hormone inhibits the release of TSH and TRH. What is this regulatory pattern called?",
+    "accepted_answers": [
+      "negative feedback",
+      "negative feedback loop",
+      "negative feedback inhibition"
+    ],
+    "key_terms": [
+      "negative feedback"
+    ],
+    "model_answer": "Negative feedback",
+    "explanation": "Most endocrine axes use negative feedback: the product inhibits its own upstream stimulators, keeping levels stable. Positive feedback (e.g., oxytocin in labor) is rarer.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 17 Endocrine System (feedback)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Give one example of a POSITIVE feedback loop in human physiology.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "oxytocin in labor",
+          "childbirth",
+          "oxytocin",
+          "labor contractions",
+          "lh surge",
+          "blood clotting"
+        ],
+        "explanation": "Oxytocin during labor (also the LH surge, or clotting)."
+      },
+      {
+        "stem": "Negative feedback holds a variable near a stable set point; this overall stability is called ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "homeostasis"
+        ],
+        "explanation": "Homeostasis."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3A-16",
+    "section": "B/B",
+    "aamc_category": "3A",
+    "subtopic": "Endocrine: adrenal gland",
+    "answer_type": "free_response",
+    "prompt": "Which hormone, secreted by the adrenal MEDULLA, reinforces the sympathetic 'fight-or-flight' response?",
+    "accepted_answers": [
+      "epinephrine",
+      "adrenaline",
+      "epinephrine (adrenaline)"
+    ],
+    "key_terms": [
+      "epinephrine"
+    ],
+    "model_answer": "Epinephrine (adrenaline)",
+    "explanation": "The adrenal medulla releases epinephrine (and norepinephrine) into the blood, prolonging sympathetic effects such as increased heart rate and glucose mobilization.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 17 Endocrine System (adrenal gland)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "The adrenal ___ (outer region) instead secretes steroid hormones like cortisol and aldosterone.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "cortex",
+          "adrenal cortex"
+        ],
+        "explanation": "The adrenal cortex."
+      },
+      {
+        "stem": "Epinephrine is an amine/peptide-type hormone, so it binds receptors located where on the target cell?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "cell surface",
+          "plasma membrane",
+          "cell membrane",
+          "surface"
+        ],
+        "explanation": "The cell surface."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3A-17",
+    "section": "B/B",
+    "aamc_category": "3A",
+    "subtopic": "Reflexes",
+    "answer_type": "free_response",
+    "prompt": "What is the term for the neural pathway that produces a rapid, involuntary motor response to a stimulus, often without initial brain involvement?",
+    "accepted_answers": [
+      "reflex arc",
+      "reflex",
+      "reflex arc (reflex)"
+    ],
+    "key_terms": [
+      "reflex"
+    ],
+    "model_answer": "A reflex arc",
+    "explanation": "A simple reflex arc runs sensory (afferent) neuron -> (interneuron) -> motor (efferent) neuron; a monosynaptic reflex (e.g., knee-jerk) skips the interneuron.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 13 The Spinal Cord and Reflexes",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Neurons carrying signals TOWARD the CNS are called ___ (sensory) neurons.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "afferent",
+          "afferent neurons",
+          "sensory"
+        ],
+        "explanation": "Afferent (sensory) neurons."
+      },
+      {
+        "stem": "Neurons carrying signals AWAY from the CNS to effectors are called ___ (motor) neurons.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "efferent",
+          "efferent neurons",
+          "motor"
+        ],
+        "explanation": "Efferent (motor) neurons."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3A-18",
+    "section": "B/B",
+    "aamc_category": "3A",
+    "subtopic": "Nervous system organization",
+    "answer_type": "free_response",
+    "prompt": "The central nervous system (CNS) consists of which two structures?",
+    "accepted_answers": [
+      "brain and spinal cord",
+      "the brain and spinal cord",
+      "brain, spinal cord"
+    ],
+    "key_terms": [
+      "brain",
+      "spinal cord"
+    ],
+    "model_answer": "The brain and the spinal cord",
+    "explanation": "The CNS is the brain plus the spinal cord; everything else (cranial/spinal nerves, ganglia) is the peripheral nervous system (PNS).",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 12 The Nervous System (organization)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "All neural tissue OUTSIDE the brain and spinal cord makes up which system?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "peripheral nervous system",
+          "pns",
+          "peripheral"
+        ],
+        "explanation": "The peripheral nervous system (PNS)."
+      },
+      {
+        "stem": "Is the autonomic nervous system a subdivision of the CNS or the PNS?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "pns",
+          "peripheral nervous system",
+          "peripheral"
+        ],
+        "explanation": "The PNS."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3A-19",
+    "section": "B/B",
+    "aamc_category": "3A",
+    "subtopic": "Synaptic integration",
+    "answer_type": "free_response",
+    "prompt": "When several excitatory postsynaptic potentials add together (over time or space) to reach threshold, this process is called what?",
+    "accepted_answers": [
+      "summation",
+      "temporal and spatial summation",
+      "synaptic summation"
+    ],
+    "key_terms": [
+      "summation"
+    ],
+    "model_answer": "Summation (temporal and/or spatial)",
+    "explanation": "Temporal summation = rapid inputs from one synapse; spatial summation = simultaneous inputs from many synapses. Together they decide whether the neuron fires.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 12 The Synapse (integration)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Summation of inputs arriving in quick succession at ONE synapse is ___ summation.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "temporal",
+          "temporal summation"
+        ],
+        "explanation": "Temporal summation."
+      },
+      {
+        "stem": "Summation of inputs from MANY synapses at once is ___ summation.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "spatial",
+          "spatial summation"
+        ],
+        "explanation": "Spatial summation."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3B-01",
+    "section": "B/B",
+    "aamc_category": "3B",
+    "subtopic": "Circulatory: cardiac blood flow",
+    "answer_type": "free_response",
+    "prompt": "Oxygenated blood returning from the lungs via the pulmonary veins enters which chamber of the heart FIRST?",
+    "accepted_answers": [
+      "left atrium",
+      "the left atrium"
+    ],
+    "key_terms": [
+      "left atrium"
+    ],
+    "model_answer": "The left atrium",
+    "explanation": "Path: pulmonary veins -> left atrium -> left ventricle -> aorta -> body. Uniquely, the pulmonary veins carry OXYGENATED blood.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 19 The Heart (blood flow)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "From the left atrium, blood next passes into which chamber?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "left ventricle",
+          "the left ventricle"
+        ],
+        "explanation": "The left ventricle."
+      },
+      {
+        "stem": "Do the pulmonary VEINS carry oxygenated or deoxygenated blood?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "oxygenated",
+          "oxygenated blood"
+        ],
+        "explanation": "Oxygenated (an exception to the usual vein rule)."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3B-02",
+    "section": "B/B",
+    "aamc_category": "3B",
+    "subtopic": "Circulatory: systemic pump",
+    "answer_type": "free_response",
+    "prompt": "Which heart chamber pumps oxygenated blood out to the ENTIRE body through the aorta?",
+    "accepted_answers": [
+      "left ventricle",
+      "the left ventricle"
+    ],
+    "key_terms": [
+      "left ventricle"
+    ],
+    "model_answer": "The left ventricle",
+    "explanation": "The left ventricle has the thickest wall because it must generate the high pressure needed to drive systemic circulation.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 19 The Heart (chambers)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Why does the left ventricle have a THICKER muscular wall than the right?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "higher pressure",
+          "pumps to whole body",
+          "systemic circulation",
+          "greater pressure",
+          "pumps against higher resistance"
+        ],
+        "explanation": "It must generate higher pressure for the systemic circuit."
+      },
+      {
+        "stem": "The large artery leaving the left ventricle is the ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "aorta"
+        ],
+        "explanation": "The aorta."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3B-03",
+    "section": "B/B",
+    "aamc_category": "3B",
+    "subtopic": "Circulatory: heart valves",
+    "answer_type": "free_response",
+    "prompt": "What is the name of the valve between the left atrium and the left ventricle?",
+    "accepted_answers": [
+      "mitral valve",
+      "bicuspid valve",
+      "mitral (bicuspid) valve",
+      "left atrioventricular valve",
+      "mitral"
+    ],
+    "key_terms": [
+      "mitral"
+    ],
+    "model_answer": "The mitral (bicuspid) valve",
+    "explanation": "The mitral valve is the left AV valve; the tricuspid is the right AV valve. The semilunar valves (aortic, pulmonary) guard the ventricular outflows.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 19 The Heart (valves)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "What is the valve between the right atrium and right ventricle called?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "tricuspid valve",
+          "tricuspid",
+          "right atrioventricular valve"
+        ],
+        "explanation": "The tricuspid valve."
+      },
+      {
+        "stem": "The valves at the exits of the ventricles (aortic and pulmonary) are called ___ valves.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "semilunar",
+          "semilunar valves"
+        ],
+        "explanation": "Semilunar valves."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3B-04",
+    "section": "B/B",
+    "aamc_category": "3B",
+    "subtopic": "Circulatory: conduction system",
+    "answer_type": "free_response",
+    "prompt": "Which structure serves as the natural PACEMAKER of the heart, initiating each heartbeat?",
+    "accepted_answers": [
+      "sinoatrial node",
+      "sa node",
+      "sinoatrial (sa) node"
+    ],
+    "key_terms": [
+      "sinoatrial"
+    ],
+    "model_answer": "The sinoatrial (SA) node",
+    "explanation": "The SA node in the right atrium sets the rhythm; the impulse then spreads to the AV node, bundle of His, and Purkinje fibers.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 19 The Heart (conduction system)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "After the SA node, the impulse is briefly delayed at which node before reaching the ventricles?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "av node",
+          "atrioventricular node",
+          "atrioventricular (av) node"
+        ],
+        "explanation": "The atrioventricular (AV) node."
+      },
+      {
+        "stem": "Fibers that rapidly spread the impulse through the ventricular walls are the ___ fibers.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "purkinje",
+          "purkinje fibers"
+        ],
+        "explanation": "Purkinje fibers."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3B-05",
+    "section": "B/B",
+    "aamc_category": "3B",
+    "subtopic": "Circulatory: blood/oxygen transport",
+    "answer_type": "free_response",
+    "prompt": "Which oxygen-binding protein in red blood cells transports most of the oxygen in the blood?",
+    "accepted_answers": [
+      "hemoglobin",
+      "haemoglobin",
+      "hb"
+    ],
+    "key_terms": [
+      "hemoglobin"
+    ],
+    "model_answer": "Hemoglobin",
+    "explanation": "Each hemoglobin binds up to four O2 at its iron-containing heme groups; most blood O2 is carried this way, not dissolved in plasma.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 18 The Blood (erythrocytes)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Which metal ion in the heme group of hemoglobin actually binds oxygen?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "iron",
+          "fe",
+          "fe2+",
+          "iron (fe2+)"
+        ],
+        "explanation": "Iron (Fe2+)."
+      },
+      {
+        "stem": "How many O2 molecules can one hemoglobin carry at full saturation?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "four",
+          "4"
+        ],
+        "explanation": "Four."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3B-06",
+    "section": "B/B",
+    "aamc_category": "3B",
+    "subtopic": "Respiratory: gas exchange",
+    "answer_type": "free_response",
+    "prompt": "In the lungs, gas exchange between air and blood occurs across the walls of which tiny sac-like structures?",
+    "accepted_answers": [
+      "alveoli",
+      "alveolus",
+      "the alveoli"
+    ],
+    "key_terms": [
+      "alveoli"
+    ],
+    "model_answer": "The alveoli",
+    "explanation": "Alveoli provide a huge, thin surface for O2/CO2 diffusion between air and the surrounding pulmonary capillaries.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 22 The Respiratory System (alveoli)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Gas exchange occurs by simple ___ across the thin alveolar-capillary membrane.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "diffusion"
+        ],
+        "explanation": "Diffusion."
+      },
+      {
+        "stem": "A detergent-like substance that reduces surface tension and keeps alveoli open is called ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "surfactant",
+          "pulmonary surfactant"
+        ],
+        "explanation": "Surfactant."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3B-07",
+    "section": "B/B",
+    "aamc_category": "3B",
+    "subtopic": "Respiratory: mechanics of breathing",
+    "answer_type": "free_response",
+    "prompt": "Which dome-shaped skeletal muscle is the primary driver of inhalation (contracting and flattening to expand the chest)?",
+    "accepted_answers": [
+      "diaphragm",
+      "the diaphragm"
+    ],
+    "key_terms": [
+      "diaphragm"
+    ],
+    "model_answer": "The diaphragm",
+    "explanation": "When the diaphragm contracts (flattens), thoracic volume rises and pressure falls, drawing air in (Boyle's law); relaxation drives passive exhalation.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 22 Respiratory System (ventilation)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "When the diaphragm contracts, does lung volume increase or decrease?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "increase",
+          "increases",
+          "it increases"
+        ],
+        "explanation": "Increases (air flows in)."
+      },
+      {
+        "stem": "Contracting the diaphragm ___ the intrapulmonary pressure (per Boyle's law), so air flows in.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "lowers",
+          "decreases",
+          "reduces",
+          "lowers it"
+        ],
+        "explanation": "Lowers it below atmospheric pressure."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3B-08",
+    "section": "B/B",
+    "aamc_category": "3B",
+    "subtopic": "Respiratory: CO2 transport",
+    "answer_type": "free_response",
+    "prompt": "In what chemical form is the MAJORITY of carbon dioxide transported in the blood?",
+    "accepted_answers": [
+      "bicarbonate",
+      "bicarbonate ion",
+      "hco3-",
+      "as bicarbonate",
+      "hco3"
+    ],
+    "key_terms": [
+      "bicarbonate"
+    ],
+    "model_answer": "As bicarbonate ion (HCO3-)",
+    "explanation": "About 70% of CO2 travels as HCO3- (formed via carbonic anhydrase in red blood cells); the rest binds hemoglobin (carbaminohemoglobin) or is dissolved.",
+    "difficulty": "hard",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 22 Respiratory System (gas transport)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Which enzyme in red blood cells converts CO2 + H2O into carbonic acid/bicarbonate?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "carbonic anhydrase"
+        ],
+        "explanation": "Carbonic anhydrase."
+      },
+      {
+        "stem": "CO2 bound directly to hemoglobin forms ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "carbaminohemoglobin",
+          "carbamino hemoglobin"
+        ],
+        "explanation": "Carbaminohemoglobin."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3B-09",
+    "section": "B/B",
+    "aamc_category": "3B",
+    "subtopic": "Renal: functional unit",
+    "answer_type": "free_response",
+    "prompt": "What is the functional unit of the kidney, where blood is filtered and urine is formed?",
+    "accepted_answers": [
+      "nephron",
+      "the nephron"
+    ],
+    "key_terms": [
+      "nephron"
+    ],
+    "model_answer": "The nephron",
+    "explanation": "Each kidney has about a million nephrons; each has a glomerulus (filter) and a tubule (reabsorption/secretion).",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 25 The Urinary System (nephron)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "The tuft of capillaries where blood is filtered at the start of the nephron is the ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "glomerulus"
+        ],
+        "explanation": "The glomerulus."
+      },
+      {
+        "stem": "The three basic renal processes are filtration, reabsorption, and ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "secretion",
+          "tubular secretion"
+        ],
+        "explanation": "Secretion."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3B-10",
+    "section": "B/B",
+    "aamc_category": "3B",
+    "subtopic": "Renal: reabsorption",
+    "answer_type": "free_response",
+    "prompt": "In a healthy nephron, essentially ALL filtered glucose is reabsorbed in which segment?",
+    "accepted_answers": [
+      "proximal convoluted tubule",
+      "pct",
+      "proximal tubule",
+      "proximal convoluted tubule (pct)"
+    ],
+    "key_terms": [
+      "proximal"
+    ],
+    "model_answer": "The proximal convoluted tubule (PCT)",
+    "explanation": "The PCT reabsorbs glucose (via Na+-glucose symport), amino acids, and most water and ions; glucose appears in urine only when these transporters are saturated (as in diabetes).",
+    "difficulty": "hard",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 25 The Urinary System (reabsorption)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Glucose is reabsorbed in the PCT by cotransport coupled to which ion?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "sodium",
+          "na+",
+          "na",
+          "sodium (na+)"
+        ],
+        "explanation": "Sodium (Na+) - via SGLT symport."
+      },
+      {
+        "stem": "Glucose appears in the urine when these transporters become ___ (as in untreated diabetes).",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "saturated",
+          "overwhelmed",
+          "exceeded"
+        ],
+        "explanation": "Saturated (the transport maximum is exceeded)."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3B-11",
+    "section": "B/B",
+    "aamc_category": "3B",
+    "subtopic": "Digestive: stomach",
+    "answer_type": "free_response",
+    "prompt": "Which enzyme, secreted in the stomach and active at low pH, BEGINS the digestion of proteins?",
+    "accepted_answers": [
+      "pepsin"
+    ],
+    "key_terms": [
+      "pepsin"
+    ],
+    "model_answer": "Pepsin",
+    "explanation": "Pepsin is secreted as inactive pepsinogen and activated by stomach acid (HCl); it works best at about pH 2.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 23 The Digestive System (stomach)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Pepsin is secreted in an inactive precursor form called ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "pepsinogen"
+        ],
+        "explanation": "Pepsinogen."
+      },
+      {
+        "stem": "Which acid, secreted by parietal cells, activates pepsin and denatures proteins?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "hydrochloric acid",
+          "hcl",
+          "hydrochloric acid (hcl)"
+        ],
+        "explanation": "Hydrochloric acid (HCl)."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3B-12",
+    "section": "B/B",
+    "aamc_category": "3B",
+    "subtopic": "Digestive: absorption",
+    "answer_type": "free_response",
+    "prompt": "In which organ does the MAJORITY of nutrient absorption occur?",
+    "accepted_answers": [
+      "small intestine",
+      "the small intestine"
+    ],
+    "key_terms": [
+      "small intestine"
+    ],
+    "model_answer": "The small intestine",
+    "explanation": "The small intestine's villi and microvilli create an enormous absorptive surface area; its first segment is the duodenum.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 23 The Digestive System (small intestine)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Finger-like projections that increase absorptive surface area in the small intestine are ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "villi",
+          "villus",
+          "villi and microvilli",
+          "microvilli"
+        ],
+        "explanation": "Villi (and microvilli)."
+      },
+      {
+        "stem": "The first segment of the small intestine, receiving stomach contents, is the ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "duodenum"
+        ],
+        "explanation": "The duodenum."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3B-13",
+    "section": "B/B",
+    "aamc_category": "3B",
+    "subtopic": "Digestive: accessory organs",
+    "answer_type": "free_response",
+    "prompt": "Which substance, produced by the LIVER, emulsifies fats to aid their digestion and absorption?",
+    "accepted_answers": [
+      "bile",
+      "bile salts",
+      "bile acids"
+    ],
+    "key_terms": [
+      "bile"
+    ],
+    "model_answer": "Bile",
+    "explanation": "Bile (made by the liver, stored in the gallbladder) emulsifies large fat globules into small droplets, increasing the surface area for lipase.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 23 Digestive System (liver, gallbladder)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Bile is stored and concentrated in which organ before release?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "gallbladder",
+          "the gallbladder"
+        ],
+        "explanation": "The gallbladder."
+      },
+      {
+        "stem": "Does bile chemically DIGEST fat, or physically EMULSIFY it?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "emulsify",
+          "emulsifies",
+          "physically emulsifies",
+          "emulsifies it"
+        ],
+        "explanation": "It emulsifies (physically); lipase does the chemical digestion."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3B-14",
+    "section": "B/B",
+    "aamc_category": "3B",
+    "subtopic": "Digestive: pancreatic enzymes",
+    "answer_type": "free_response",
+    "prompt": "Which pancreatic enzyme digests carbohydrates (starch) in the small intestine?",
+    "accepted_answers": [
+      "amylase",
+      "pancreatic amylase"
+    ],
+    "key_terms": [
+      "amylase"
+    ],
+    "model_answer": "(Pancreatic) amylase",
+    "explanation": "Amylase breaks starch into maltose/disaccharides; the pancreas also secretes proteases (trypsin) and lipase, plus bicarbonate to neutralize stomach acid.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 23 Digestive System (pancreas)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Which pancreatic enzyme digests fats?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "lipase",
+          "pancreatic lipase"
+        ],
+        "explanation": "Lipase."
+      },
+      {
+        "stem": "What does the pancreas secrete to NEUTRALIZE the acidic chyme entering the small intestine?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "bicarbonate",
+          "sodium bicarbonate",
+          "hco3-",
+          "bicarbonate ions"
+        ],
+        "explanation": "Bicarbonate."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3B-15",
+    "section": "B/B",
+    "aamc_category": "3B",
+    "subtopic": "Immune: humoral immunity",
+    "answer_type": "free_response",
+    "prompt": "Which lymphocytes produce ANTIBODIES as part of the humoral (antibody-mediated) immune response?",
+    "accepted_answers": [
+      "b cells",
+      "b lymphocytes",
+      "b cell",
+      "plasma cells",
+      "b cells (plasma cells)"
+    ],
+    "key_terms": [
+      "b cell"
+    ],
+    "model_answer": "B cells (which differentiate into antibody-secreting plasma cells)",
+    "explanation": "Activated B cells become plasma cells that secrete antibodies; some become memory B cells for a faster future response.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 21 The Immune System (adaptive)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Antibody-secreting effector B cells are specifically called ___ cells.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "plasma cells",
+          "plasma cell",
+          "plasma"
+        ],
+        "explanation": "Plasma cells."
+      },
+      {
+        "stem": "Long-lived cells enabling a faster response on re-exposure are ___ cells.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "memory cells",
+          "memory b cells",
+          "memory"
+        ],
+        "explanation": "Memory cells."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3B-16",
+    "section": "B/B",
+    "aamc_category": "3B",
+    "subtopic": "Immune: cell-mediated immunity",
+    "answer_type": "free_response",
+    "prompt": "Which lymphocytes are central to CELL-MEDIATED immunity, including directly killing infected cells (cytotoxic) and coordinating the response (helper)?",
+    "accepted_answers": [
+      "t cells",
+      "t lymphocytes",
+      "t cell"
+    ],
+    "key_terms": [
+      "t cell"
+    ],
+    "model_answer": "T cells (T lymphocytes)",
+    "explanation": "Cytotoxic (CD8+) T cells kill infected/abnormal cells; helper (CD4+) T cells activate B cells and other immune cells. HIV targets CD4+ helper T cells.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 21 The Immune System (T cells)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Which T-cell subtype directly DESTROYS virus-infected or cancerous cells?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "cytotoxic t cells",
+          "cd8",
+          "killer t cells",
+          "cytotoxic",
+          "cd8+ t cells"
+        ],
+        "explanation": "Cytotoxic (CD8+) T cells."
+      },
+      {
+        "stem": "Which T-cell subtype (targeted by HIV) COORDINATES the immune response by activating other cells?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "helper t cells",
+          "cd4",
+          "helper",
+          "cd4+ t cells"
+        ],
+        "explanation": "Helper (CD4+) T cells."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3B-17",
+    "section": "B/B",
+    "aamc_category": "3B",
+    "subtopic": "Immune: innate vs adaptive",
+    "answer_type": "free_response",
+    "prompt": "Which branch of immunity is nonspecific, rapid, and present from birth (e.g., skin, phagocytes, inflammation)?",
+    "accepted_answers": [
+      "innate immunity",
+      "innate",
+      "innate immune system"
+    ],
+    "key_terms": [
+      "innate"
+    ],
+    "model_answer": "Innate immunity",
+    "explanation": "Innate immunity is fast and nonspecific (barriers, phagocytes, inflammation); adaptive immunity is slower, specific, and has memory (B and T cells).",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 21 The Immune System (innate vs adaptive)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Which branch of immunity is SPECIFIC and develops immunological memory?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "adaptive immunity",
+          "adaptive",
+          "acquired immunity",
+          "acquired"
+        ],
+        "explanation": "Adaptive (acquired) immunity."
+      },
+      {
+        "stem": "Which white blood cells 'eat' pathogens by phagocytosis in the innate response?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "macrophages",
+          "neutrophils",
+          "phagocytes",
+          "macrophages and neutrophils"
+        ],
+        "explanation": "Phagocytes (macrophages, neutrophils)."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3B-18",
+    "section": "B/B",
+    "aamc_category": "3B",
+    "subtopic": "Musculoskeletal: sarcomere",
+    "answer_type": "free_response",
+    "prompt": "What is the name of the basic contractile unit of a skeletal muscle fiber, the region between two Z lines?",
+    "accepted_answers": [
+      "sarcomere",
+      "the sarcomere"
+    ],
+    "key_terms": [
+      "sarcomere"
+    ],
+    "model_answer": "The sarcomere",
+    "explanation": "Sarcomeres (Z line to Z line) contain overlapping thin (actin) and thick (myosin) filaments; their shortening produces contraction.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 10 Muscle Tissue (sarcomere)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "A sarcomere is bounded on each side by which structure/line?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "z line",
+          "z lines",
+          "z disc",
+          "z disk"
+        ],
+        "explanation": "The Z lines (Z discs)."
+      },
+      {
+        "stem": "During contraction, do the filaments themselves shorten, or slide past each other?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "slide",
+          "slide past each other",
+          "they slide"
+        ],
+        "explanation": "They slide past each other."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3B-19",
+    "section": "B/B",
+    "aamc_category": "3B",
+    "subtopic": "Musculoskeletal: sliding filaments",
+    "answer_type": "free_response",
+    "prompt": "Name the two protein filaments whose interaction produces muscle contraction (the thin and the thick filaments).",
+    "accepted_answers": [
+      "actin and myosin",
+      "myosin and actin",
+      "actin, myosin"
+    ],
+    "key_terms": [
+      "actin",
+      "myosin"
+    ],
+    "model_answer": "Actin (thin) and myosin (thick)",
+    "explanation": "Per the sliding-filament model, myosin heads bind actin and pull it inward, shortening the sarcomere; this requires ATP and Ca2+.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 10 Muscle Tissue (contraction)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Which is the THICK filament - actin or myosin?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "myosin"
+        ],
+        "explanation": "Myosin."
+      },
+      {
+        "stem": "The model in which filaments slide past one another is the ___ theory.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "sliding filament",
+          "sliding-filament",
+          "sliding filament theory"
+        ],
+        "explanation": "The sliding-filament theory."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3B-20",
+    "section": "B/B",
+    "aamc_category": "3B",
+    "subtopic": "Musculoskeletal: excitation-contraction coupling",
+    "answer_type": "free_response",
+    "prompt": "Which ion, released from the sarcoplasmic reticulum, TRIGGERS skeletal muscle contraction by exposing myosin-binding sites on actin?",
+    "accepted_answers": [
+      "calcium",
+      "ca2+",
+      "ca",
+      "calcium (ca2+)"
+    ],
+    "key_terms": [
+      "calcium"
+    ],
+    "model_answer": "Calcium (Ca2+)",
+    "explanation": "Ca2+ binds troponin, which shifts tropomyosin off actin's binding sites so myosin can attach - linking excitation to contraction.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 10 Muscle Tissue (E-C coupling)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Calcium binds which regulatory protein to move tropomyosin off actin's binding sites?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "troponin"
+        ],
+        "explanation": "Troponin."
+      },
+      {
+        "stem": "The intracellular calcium store in a muscle cell is the ___ reticulum.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "sarcoplasmic",
+          "sarcoplasmic reticulum"
+        ],
+        "explanation": "The sarcoplasmic reticulum."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3B-21",
+    "section": "B/B",
+    "aamc_category": "3B",
+    "subtopic": "Musculoskeletal: bone remodeling",
+    "answer_type": "free_response",
+    "prompt": "Which bone cells are responsible for BUILDING new bone matrix (bone formation)?",
+    "accepted_answers": [
+      "osteoblasts",
+      "osteoblast"
+    ],
+    "key_terms": [
+      "osteoblast"
+    ],
+    "model_answer": "Osteoblasts",
+    "explanation": "Osteoblasts build bone ('b' for build); osteoclasts resorb/break down bone ('c' for carve); osteocytes are mature cells maintaining the matrix.",
+    "difficulty": "medium",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 6 Bone Tissue (remodeling)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Which bone cells BREAK DOWN (resorb) bone matrix?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "osteoclasts",
+          "osteoclast"
+        ],
+        "explanation": "Osteoclasts."
+      },
+      {
+        "stem": "PTH raises blood calcium partly by stimulating which of these cells?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "osteoclasts",
+          "osteoclast"
+        ],
+        "explanation": "Osteoclasts (they release Ca2+ from bone)."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3B-22",
+    "section": "B/B",
+    "aamc_category": "3B",
+    "subtopic": "Reproductive: menstrual cycle",
+    "answer_type": "free_response",
+    "prompt": "A mid-cycle SURGE of which hormone triggers ovulation (release of the egg from the ovary)?",
+    "accepted_answers": [
+      "luteinizing hormone",
+      "lh"
+    ],
+    "key_terms": [
+      "luteinizing hormone"
+    ],
+    "model_answer": "Luteinizing hormone (LH)",
+    "explanation": "The LH surge triggers ovulation (around day 14) and forms the corpus luteum; FSH drives follicle maturation earlier in the cycle.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 27 The Reproductive System (ovarian cycle)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Which pituitary hormone stimulates ovarian FOLLICLE growth earlier in the cycle?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "fsh",
+          "follicle-stimulating hormone",
+          "follicle stimulating hormone"
+        ],
+        "explanation": "FSH."
+      },
+      {
+        "stem": "After ovulation, the ruptured follicle becomes the ___, which secretes progesterone.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "corpus luteum"
+        ],
+        "explanation": "The corpus luteum."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3B-23",
+    "section": "B/B",
+    "aamc_category": "3B",
+    "subtopic": "Homeostasis",
+    "answer_type": "free_response",
+    "prompt": "What is the term for the maintenance of a stable internal environment despite external changes?",
+    "accepted_answers": [
+      "homeostasis"
+    ],
+    "key_terms": [
+      "homeostasis"
+    ],
+    "model_answer": "Homeostasis",
+    "explanation": "Homeostasis relies mostly on negative-feedback loops (a receptor/sensor, a control center, and an effector) that hold variables near a set point.",
+    "difficulty": "easy",
+    "cognitive_level": "recall",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 1 An Introduction to the Human Body (homeostasis)",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "Most homeostatic control uses which TYPE of feedback loop?",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "negative feedback",
+          "negative",
+          "negative feedback loop"
+        ],
+        "explanation": "Negative feedback."
+      },
+      {
+        "stem": "The three components of a feedback loop are a receptor/sensor, a control center, and an ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "effector"
+        ],
+        "explanation": "An effector."
+      }
+    ]
+  },
+  {
+    "id": "fr-bb-3B-24",
+    "section": "B/B",
+    "aamc_category": "3B",
+    "subtopic": "Homeostasis: acid-base balance",
+    "answer_type": "free_response",
+    "prompt": "What is the normal pH range of human ARTERIAL blood?",
+    "accepted_answers": [
+      "7.35-7.45",
+      "7.35 to 7.45",
+      "about 7.4",
+      "7.4",
+      "7.35 - 7.45"
+    ],
+    "key_terms": [
+      "7.4"
+    ],
+    "model_answer": "About 7.35-7.45 (roughly 7.4)",
+    "explanation": "Blood pH is tightly held by the bicarbonate buffer system, the lungs (CO2), and the kidneys (HCO3-/H+); below 7.35 is acidosis, above 7.45 is alkalosis.",
+    "difficulty": "medium",
+    "cognitive_level": "application",
+    "source": {
+      "name": "OpenStax Anatomy and Physiology 2e — Ch. 26 Fluid, Electrolyte, and Acid-Base Balance",
+      "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+      "license": "CC BY 4.0"
+    },
+    "subquestions": [
+      {
+        "stem": "A blood pH BELOW 7.35 is called ___.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "acidosis"
+        ],
+        "explanation": "Acidosis."
+      },
+      {
+        "stem": "The main chemical buffer system of the blood is the ___ system.",
+        "answer_type": "free_response",
+        "accepted_answers": [
+          "bicarbonate",
+          "carbonic acid-bicarbonate",
+          "bicarbonate buffer",
+          "carbonic acid/bicarbonate"
+        ],
+        "explanation": "The bicarbonate (carbonic acid-bicarbonate) buffer system."
       }
     ]
   }

@@ -22,7 +22,10 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import os
+import re
 import threading
+import time
 from pathlib import Path
 from types import ModuleType
 from typing import Any
@@ -378,6 +381,170 @@ def study_probe(mw: aqt.main.AnkiQt, options: dict[str, Any]) -> dict[str, Any]:
     if not done.wait(timeout=25):
         return {"ok": False, "error": "timeout"}
     return result
+
+
+# --- dev/e2e retrieve-before-reveal flashcard probe --------------------------
+#
+# The retrieve-before-reveal flow for basic front/back cards renders into the
+# desktop reviewer webview (``mw.web``), which the Playwright harness cannot
+# observe. This dev-only probe launches a review of the seeded authorless demo
+# flashcard deck, optionally triggers the question-side "Stuck? work it out"
+# path (``Reviewer._on_retrieve_first``), waits for the (possibly AI-generated)
+# guiding ladder to paint, and reports what the reviewer showed — proving the
+# ladder appears BEFORE the back is revealed. It can also grab a screenshot of
+# the reviewer for the demo artifact. Gated behind ``dev_mode`` by the mediasrv
+# handler; inert in packaged builds.
+
+# The deck the demo seeder puts its authorless Basic flashcards in (must match
+# readymcat/tools/seed_demo_dashboard.py::DEMO_FLASHCARD_DECK).
+_FLASHCARD_DEMO_DECK = "ReadyMCAT Demo (SYNTHETIC)::Flashcards (no ladder)"
+
+_TAG_STRIP_RE = re.compile(r"<[^>]+>")
+_WS_STRIP_RE = re.compile(r"\s+")
+
+
+def _strip(html: str) -> str:
+    """Plain, whitespace-collapsed text from HTML (for substring checks)."""
+    return _WS_STRIP_RE.sub(" ", _TAG_STRIP_RE.sub(" ", html or "")).strip()
+
+
+class _FlashcardProbeSession:
+    """Runs one flashcard-probe interaction on the main thread and collects the
+    result for the calling mediasrv worker.
+
+    Kept as a small state object (rather than one big closure-heavy function) so
+    each step stays simple and independently readable."""
+
+    def __init__(self, mw: aqt.main.AnkiQt, options: dict[str, Any]) -> None:
+        self.mw = mw
+        self.stuck = bool(options.get("stuck", False))
+        self.screenshot = options.get("screenshot")
+        self.full_window = bool(options.get("full_window"))
+        self.wait_ms = int(options.get("wait_ms", 30000))
+        self.result: dict[str, Any] = {"ok": False}
+        self.done = threading.Event()
+
+    def run(self) -> dict[str, Any]:
+        self.mw.taskman.run_on_main(self._on_main)
+        if not self.done.wait(timeout=self.wait_ms / 1000.0 + 20):
+            return {"ok": False, "error": "timeout"}
+        return self.result
+
+    def _fail(self, error: str) -> None:
+        self.result.update(ok=False, error=error)
+        self.done.set()
+
+    def _read_qa(self, callback: Any) -> None:
+        self.mw.web.evalWithCallback(_PROBE_READ_QA_JS, callback)
+
+    def _take_screenshot(self) -> None:
+        if not self.screenshot:
+            return
+        try:
+            # full_window grabs the whole reviewer window (including the bottom
+            # bar with the "Stuck? work it out" button); otherwise just the
+            # reviewer #qa web view (the guiding-ladder content).
+            target = self.mw if self.full_window else self.mw.web
+            pix = target.grab()
+            if (
+                pix is not None
+                and not pix.isNull()
+                and pix.save(self.screenshot, "PNG")
+            ):
+                self.result["screenshot"] = self.screenshot
+                self.result["screenshotBytes"] = os.path.getsize(self.screenshot)
+        except Exception as exc:  # pragma: no cover - defensive
+            self.result["shotError"] = repr(exc)
+
+    def _finalize(self, qa: Any) -> None:
+        qa_html = qa if isinstance(qa, str) else ""
+        card = self.mw.reviewer.card
+        try:
+            back = card.answer() if card else ""
+        except Exception:  # pragma: no cover - defensive
+            back = ""
+        self._take_screenshot()
+        stripped_back = _strip(back)
+        # The real guiding ladder is showing once we're past the "building
+        # guiding questions" spinner (which also lives in a .tom-wrap).
+        ladder_shown = "tom-wrap" in qa_html and "tom-loading" not in qa_html
+        self.result.update(
+            ok=True,
+            state=self.mw.reviewer.state,
+            card=card is not None,
+            qa=qa_html,
+            qaLen=len(qa_html),
+            ladderShown=ladder_shown,
+            loading="tom-loading" in qa_html,
+            # The back is "hidden" while the ladder runs: the full answer text is
+            # not present in the rendered question/ladder DOM.
+            answerHidden=bool(stripped_back) and stripped_back not in _strip(qa_html),
+        )
+        self.done.set()
+
+    @staticmethod
+    def _ladder_ready(qa: str) -> bool:
+        return "tom-wrap" in qa and "tom-loading" not in qa
+
+    def _check(self, qa: Any, deadline: float) -> None:
+        qa_str = qa if isinstance(qa, str) else ""
+        teaching = self.mw.reviewer.state == "teaching"
+        revealed = self.mw.reviewer.state == "answer"
+        # Done when the generated ladder rendered (past the spinner), generation
+        # fell back to a normal reveal, or we ran out of time.
+        if (
+            (teaching and self._ladder_ready(qa_str))
+            or revealed
+            or time.time() >= deadline
+        ):
+            self._finalize(qa_str)
+            return
+        self.mw.progress.single_shot(
+            500, lambda: self._read_qa(lambda q: self._check(q, deadline)), False
+        )
+
+    def _after_render(self) -> None:
+        if not self.stuck:
+            self._read_qa(self._finalize)
+            return
+        try:
+            self.mw.reviewer._on_retrieve_first()
+        except Exception as exc:  # pragma: no cover - defensive
+            self._fail(repr(exc))
+            return
+        deadline = time.time() + self.wait_ms / 1000.0
+        self._read_qa(lambda qa: self._check(qa, deadline))
+
+    def _on_main(self) -> None:
+        try:
+            did = self.mw.col.decks.id_for_name(_FLASHCARD_DEMO_DECK)
+            if did is None:
+                self._fail(f"deck not found: {_FLASHCARD_DEMO_DECK}")
+                return
+            self.mw.col.decks.select(did)
+            self.mw.col.startTimebox()
+            self.mw.moveToState("review")
+            try:
+                self.mw.raise_()
+                self.mw.activateWindow()
+            except Exception:  # pragma: no cover - defensive
+                pass
+        except Exception as exc:  # pragma: no cover - defensive
+            self._fail(repr(exc))
+            return
+        self.mw.progress.single_shot(1500, self._after_render, False)
+
+
+def flashcard_probe(mw: aqt.main.AnkiQt, options: dict[str, Any]) -> dict[str, Any]:
+    """Drive (and introspect) the retrieve-before-reveal flashcard flow.
+
+    ``options`` keys: ``stuck`` (trigger the question-side "Stuck? work it out"
+    path), ``screenshot`` (path to save a PNG of the reviewer), ``full_window``
+    (grab the whole window incl. the button, not just #qa), and ``wait_ms`` (how
+    long to wait for a generated ladder). Returns the reviewer state, the
+    rendered ``#qa``, whether the guiding ladder is showing, and whether the
+    card's back is still hidden — the end-to-end proof."""
+    return _FlashcardProbeSession(mw, options).run()
 
 
 # --- dev/e2e single-window tab probe -----------------------------------------

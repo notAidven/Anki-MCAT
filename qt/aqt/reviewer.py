@@ -569,10 +569,15 @@ class Reviewer:
             return
         if self.state != "answer":
             return
-        # ReadyMCAT: intercept a miss (Again) on a curated concept and run the
-        # teach-on-miss ladder before the card is rescheduled.
-        if ease == 1 and self._tom is None and self._maybe_start_teach_on_miss():
-            return
+        # ReadyMCAT: for basic front/back cards, teach-on-miss is now offered
+        # retrieve-BEFORE-reveal on the QUESTION side ("Stuck? work it out" ->
+        # `_on_retrieve_first`), so the guiding ladder runs while the back is
+        # still hidden. We deliberately do NOT launch it here, from the "Again"
+        # grade, because that fires AFTER "Show Answer" has already revealed the
+        # back — which defeated the retrieval premise. Once a student has
+        # revealed the answer, "Again" simply reschedules for spaced review.
+        # (ReadyMCAT's MCQ/FR/passage reviewers stay retrieve-first via their
+        # own question-side flows and never reach this path.)
         self._do_answer_card(ease)
 
     def _do_answer_card(self, ease: Literal[1, 2, 3, 4]) -> None:
@@ -610,29 +615,80 @@ class Reviewer:
         if not self.check_timebox():
             self.nextCard()
 
-    # ReadyMCAT teach-on-miss
+    # ReadyMCAT teach-on-miss (retrieve-before-reveal for basic cards)
     ############################################################
 
-    def _maybe_start_teach_on_miss(self) -> bool:
-        """If the just-missed card has a guiding ladder, run it instead of
-        immediately rescheduling.
+    def _retrieve_first_available(self) -> bool:
+        """True when the current basic front/back card can offer the
+        retrieve-BEFORE-reveal "Stuck? work it out" path.
+
+        Eligible when the card is NOT one of ReadyMCAT's own interactive
+        notetypes (MCQ/free-response/passage are already retrieve-first via
+        their own flows) AND a guiding ladder can be produced for it — either
+        an authored concept matches its tags, or runtime AI generation is
+        enabled (`OPENAI_API_KEY` present). Cheap enough to call for every
+        question: the authored ladders are cached after first load and the
+        generation check is a couple of env/module lookups."""
+        if self.card is None:
+            return False
+        try:
+            note = self.card.note()
+        except Exception:  # pragma: no cover - defensive
+            return False
+        if (
+            readymcat.is_mcq_note(note)
+            or readymcat.is_fr_note(note)
+            or readymcat.is_passage_note(note)
+        ):
+            return False
+        data = readymcat.load_subquestions(self.mw.col.path)
+        if readymcat.match_concept(note.tags, data) is not None:
+            return True
+        try:
+            from aqt import readymcat_ladder_gen as ladder_gen
+
+            return ladder_gen.is_enabled()
+        except Exception:  # pragma: no cover - defensive
+            return False
+
+    def _on_retrieve_first(self) -> None:
+        """Question-side "Stuck? work it out": run the guiding ladder with the
+        back still HIDDEN, so the student retrieves toward the answer before it
+        is revealed (retrieve-before-reveal).
+
+        Only meaningful on the question side; if no ladder can be produced we
+        fall back to the normal reveal so the student is never stranded."""
+        if self.mw.state != "review" or self.state != "question":
+            return
+        if self._tom is not None:
+            return
+        if not self._maybe_start_teach_on_miss(trigger="stuck"):
+            # No authored ladder and generation unavailable: behave exactly like
+            # the normal "Show Answer" button.
+            self._showAnswer()
+
+    def _maybe_start_teach_on_miss(self, *, trigger: str = "stuck") -> bool:
+        """If the current card has a guiding ladder, run it instead of revealing
+        the answer.
 
         The ladder is either authored (a curated concept matched by tag) or,
         for any other card, generated at runtime so teach-on-miss also covers
         imported/community decks and the student's own cards (the ReadyMCAT
-        PRD's #1 next step). Returns True if a ladder started or is being
-        generated in the background."""
+        PRD's #1 next step). ``trigger`` records what launched the flow (a
+        question-side "stuck" request) for logging and fallback handling.
+        Returns True if a ladder started or is being generated in the
+        background."""
         if self.card is None:
             return False
         data = readymcat.load_subquestions(self.mw.col.path)
         concept = readymcat.match_concept(self.card.note().tags, data)
         if concept is not None:
-            self._start_teach_on_miss(concept, generated=False)
+            self._start_teach_on_miss(concept, generated=False, trigger=trigger)
             return True
-        return self._maybe_generate_teach_on_miss()
+        return self._maybe_generate_teach_on_miss(trigger=trigger)
 
     def _start_teach_on_miss(
-        self, concept: readymcat.Concept, *, generated: bool
+        self, concept: readymcat.Concept, *, generated: bool, trigger: str = "stuck"
     ) -> None:
         """Run the teach-on-miss ladder UI for a concept (authored or
         generated) and record that it started."""
@@ -656,6 +712,7 @@ class Reviewer:
             "marks": [],
             "result": None,
             "generated": generated,
+            "trigger": trigger,
         }
         self.state = "teaching"
         payload = {
@@ -684,10 +741,12 @@ class Reviewer:
                 "concept": concept.id,
                 "category": concept.category,
                 "generated": generated,
+                "trigger": trigger,
+                "retrieve_before_reveal": trigger == "stuck",
             },
         )
 
-    def _maybe_generate_teach_on_miss(self) -> bool:
+    def _maybe_generate_teach_on_miss(self, *, trigger: str = "stuck") -> bool:
         """Generate a guiding ladder for a card that has no authored concept.
 
         Reuses a cached ladder instantly when present; otherwise generates one
@@ -709,7 +768,7 @@ class Reviewer:
         cached = ladder_gen.cached_ladder(col_path, note.id)
         if cached:
             self._start_teach_on_miss(
-                self._generated_concept(note, cached), generated=True
+                self._generated_concept(note, cached), generated=True, trigger=trigger
             )
             return True
 
@@ -721,7 +780,7 @@ class Reviewer:
         answer = self._mungeQA(self.card.answer())
         context = ladder_gen.build_context(note, question, answer)
 
-        self._tom = {"pending": True, "card_id": card_id}
+        self._tom = {"pending": True, "card_id": card_id, "trigger": trigger}
         self.state = "teaching"
         self.web.eval("_teachOnMissLoading();")
         self.bottom.web.eval(
@@ -792,6 +851,9 @@ class Reviewer:
             },
         )
 
+        # Remember how this was triggered before we clear the pending state, so
+        # the fallback below matches how the flow was launched.
+        trigger = self._tom.get("trigger", "stuck") if self._tom else "stuck"
         # From here we own the pending state and always clear it.
         self._tom = None
         ladder = result.get("ladder") if result.get("ok") else None
@@ -800,12 +862,21 @@ class Reviewer:
             # rescheduling or teaching on the wrong card.
             return
         if not ladder:
-            # Graceful fallback: no usable ladder, reschedule the miss normally.
-            self.state = "answer"
-            self._do_answer_card(1)
+            # Graceful fallback: no usable ladder could be generated. On the
+            # question-side "stuck" path the student hasn't seen the back yet,
+            # so simply reveal it and let them self-grade as in a normal
+            # review (never grade for them or strand them on the spinner).
+            if trigger == "stuck":
+                self.state = "question"
+                self._showAnswer()
+            else:
+                self.state = "answer"
+                self._do_answer_card(1)
             return
         self._start_teach_on_miss(
-            self._generated_concept(self.card.note(), ladder), generated=True
+            self._generated_concept(self.card.note(), ladder),
+            generated=True,
+            trigger=trigger,
         )
 
     def _handle_teach_on_miss(self, cmd: str) -> None:
@@ -1276,6 +1347,10 @@ class Reviewer:
             self.web.update()
         elif url == "statesMutated":
             self._states_mutated = True
+        elif url == "rmcatStuck":
+            # ReadyMCAT: question-side "Stuck? work it out" — run the guiding
+            # ladder with the back still hidden (retrieve-before-reveal).
+            self._on_retrieve_first()
         elif url.startswith("tom:"):
             self._handle_teach_on_miss(url[len("tom:") :])
         elif url.startswith("mcq:"):
@@ -1440,6 +1515,22 @@ timerStopped = false;
             tr.studying_show_answer(),
             self._remaining(),
         )
+        # ReadyMCAT: for eligible basic front/back cards, offer a retrieve-first
+        # option right next to "Show Answer". Clicking it runs the guiding
+        # ladder (authored if present, else AI-generated) with the back still
+        # HIDDEN, so a struggling student retrieves their way to the answer
+        # before it is revealed. It is only shown when a ladder is actually
+        # available (see `_retrieve_first_available`), so normal review is
+        # untouched for everyone else.
+        if self._retrieve_first_available():
+            middle += (
+                """<button id="rmcatstuck" class="rmcat-stuck" title="{title}" """
+                """onclick='pycmd("rmcatStuck");'>{label}</button>"""
+            ).format(
+                title="ReadyMCAT: work it out with guiding questions "
+                "(the answer stays hidden)",
+                label="Stuck? work it out",
+            )
         # wrap it in a table so it has the same top margin as the ease buttons
         middle = (
             "<table cellpadding=0><tr><td class=stat2 align=center>%s</td></tr></table>"

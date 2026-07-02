@@ -96,6 +96,8 @@ def _summary(stats) -> str:
         f"• {stats.cards_created} demo cards across {stats.categories_covered} "
         "AAMC categories",
         f"• {getattr(stats, 'questions_created', 0)} synthetic practice questions",
+        f"• {getattr(stats, 'flashcards_created', 0)} authorless flashcards "
+        "(retrieve-before-reveal teach-on-miss demo)",
         f"• {stats.reviews_created} synthetic graded reviews",
     ]
     if stats.memory_low is not None and stats.memory_high is not None:

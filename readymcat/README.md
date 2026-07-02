@@ -216,16 +216,23 @@ else this curated Khan Academy link).
 
 ## 3. Teach-on-miss (desktop reviewer)
 
-Implements the PRD's core feature. When a card is graded **Again**, the reviewer does **not**
-just flip to the back — it runs that card's guiding ladder (its own `Subquestions` for bundled
-cards, or the curated concept ladder for classic cards), then re-shows the main question. Files:
+Implements the PRD's core feature. The reviewer does **not** just flip to the back on a miss —
+it runs that card's guiding ladder (its own `Subquestions` for bundled cards, or the curated
+concept ladder / a runtime-generated one for classic cards), then re-shows the main question.
+The interactive bundled reviewers (MCQ/FR/passage) are retrieve-first by construction; plain
+**basic front/back flashcards** get a **retrieve-before-reveal** path so the ladder runs while
+the back is still hidden (see "Retrieve-before-reveal for basic front/back flashcards" in the
+PRD). Files:
 
 - `qt/aqt/readymcat.py` — loads/caches `subquestions.json`, resolves a card → concept,
   extracts a resource link, and appends instrumentation events to a JSONL log.
-- `qt/aqt/reviewer.py` — `_answerCard` intercepts an `Again` (ease 1) on a matched card and
-  starts the ladder (`_maybe_start_teach_on_miss`); `tom:*` bridge commands are handled in
-  `_linkHandler`; `_finish_teach_on_miss` reschedules the card as Again (relearning) and
-  advances. `_answerCard` was split into interception + `_do_answer_card` (scheduler body).
+- `qt/aqt/reviewer.py` — for basic front/back cards, `_retrieve_first_available` decides
+  eligibility and `_showAnswerButton` renders a question-side "Stuck? work it out" button;
+  `_on_retrieve_first` (routed from `_linkHandler`'s `rmcatStuck`) starts the ladder with the
+  back still hidden (`_maybe_start_teach_on_miss(trigger="stuck")`). `tom:*` bridge commands are
+  handled in `_linkHandler`; `_finish_teach_on_miss` reschedules the card as Again (relearning)
+  and advances. `_answerCard` (split into interception + `_do_answer_card`) no longer launches
+  teach-on-miss post-reveal — that would reveal the back before the ladder.
 - `ts/reviewer/teach_on_miss.ts` — the in-card UI (exposed globally as `_teachOnMissStart`
   via `index.ts`/`index_wrapper.ts`); drives reveal → self-mark → main re-show → outcome and
   reports over `bridgeCommand`.

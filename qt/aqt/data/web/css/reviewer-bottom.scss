@@ -30,6 +30,24 @@ button {
     position: relative;
 }
 
+/* ReadyMCAT: retrieve-before-reveal "Stuck? work it out" button shown next to
+ * "Show Answer" for eligible basic front/back cards. Styled as a subtle accent
+ * affordance so it reads as the guided-retrieval option without overpowering
+ * the standard Show Answer flow. */
+button.rmcat-stuck {
+    border: 1px solid color(border);
+    border-radius: 6px;
+    background: transparent;
+    color: color(fg-subtle);
+    font-weight: 600;
+    padding: 2px 12px;
+}
+
+button.rmcat-stuck:hover {
+    border-color: color(border-focus);
+    color: color(fg);
+}
+
 .hitem {
     margin-top: 2px;
 }

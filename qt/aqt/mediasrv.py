@@ -750,6 +750,29 @@ def readymcat_study_probe() -> bytes:
     return json.dumps(study_probe(aqt.mw, options)).encode("utf-8")
 
 
+def readymcat_flashcard_probe() -> bytes:
+    """Dev-only introspection endpoint for the retrieve-before-reveal flashcard
+    flow. Launches the seeded authorless demo flashcard deck, optionally
+    triggers the question-side "Stuck? work it out" path, waits for the guiding
+    ladder to paint, and reports what the reviewer showed (and can screenshot
+    it) — the end-to-end proof that the ladder appears BEFORE the back is
+    revealed. Gated behind ``dev_mode`` so it is inert in packaged builds."""
+    import json
+
+    if not dev_mode:
+        return json.dumps({"ok": False, "error": "dev only"}).encode("utf-8")
+
+    from aqt.readymcat_home import flashcard_probe
+
+    try:
+        options = json.loads(request.data or b"{}")
+        if not isinstance(options, dict):
+            options = {}
+    except Exception:
+        options = {}
+    return json.dumps(flashcard_probe(aqt.mw, options)).encode("utf-8")
+
+
 def readymcat_tab_probe() -> bytes:
     """Dev-only introspection endpoint for the single-window tab e2e suite.
 
@@ -799,6 +822,11 @@ post_handler_list = [
     # Playwright suite drive a real study launch and read back the reviewer
     # webview's rendered #qa (see ts/tests/e2e/readymcat_study.test.ts).
     readymcat_study_probe,
+    # ReadyMCAT dev/e2e retrieve-before-reveal flashcard probe (guarded by
+    # dev_mode). Drives the authorless-flashcard "Stuck? work it out" path and
+    # reads back the reviewer's rendered ladder (see
+    # ts/tests/e2e/readymcat_flashcard.test.ts).
+    readymcat_flashcard_probe,
     # ReadyMCAT dev/e2e single-window tab probe (guarded by dev_mode). Drives a
     # real tab switch and reads back what the tab's web view rendered, so the
     # e2e suite can assert all four tabs live in one window (see

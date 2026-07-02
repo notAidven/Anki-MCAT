@@ -34,14 +34,14 @@ Every screen is driven by a live engine read decoded natively in Swift (a tiny
 hand-rolled protobuf reader in `Proto.swift`, extended with `double`/`fixed64`
 for the nested score messages — no SwiftProtobuf dependency):
 
-| Screen | Engine call (service/method) | Swift decode |
-| --- | --- | --- |
-| **Home** tiles (due counts) | `DeckTree` (7/4) with a non-zero `now` | `DeckTree.swift` (child-excluding counters, matching `home_launcher.py`) |
-| **Home** score pills + **Dashboard** | `PointsAtStakeQueue` (45/0) | `PointsAtStake.swift` (`MemoryReport`/`CoverageReport`/`PerformanceReport`/`ReadinessReport`/`TopicMastery`) |
-| **Reviewers** — open a format | `SetCurrentDeck` (7/22) → `GetQueuedCards` (13/3) | one clean deck per format |
-| **Reviewers** — card content | `GetNote` (25/6) → `Note.fields` | `Content.swift` parses the fields (in `build_question_bank.py` order) into typed items + the `Subquestions` JSON ladder |
-| **Reviewers** — grade | `AnswerCard` (13/4) + `AddNoteTags` (49/7) | `ReviewSession.swift` (first-try correct → Good; ladder → Again + `ReadyMCAT::struggling`) |
-| **Diagnostic** | `GetDiagnosticQuiz` (29/0) → `ScoreAndSeedDiagnostic` (29/1) | `Diagnostic.swift` |
+| Screen                               | Engine call (service/method)                                 | Swift decode                                                                                                            |
+| ------------------------------------ | ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------- |
+| **Home** tiles (due counts)          | `DeckTree` (7/4) with a non-zero `now`                       | `DeckTree.swift` (child-excluding counters, matching `home_launcher.py`)                                                |
+| **Home** score pills + **Dashboard** | `PointsAtStakeQueue` (45/0)                                  | `PointsAtStake.swift` (`MemoryReport`/`CoverageReport`/`PerformanceReport`/`ReadinessReport`/`TopicMastery`)            |
+| **Reviewers** — open a format        | `SetCurrentDeck` (7/22) → `GetQueuedCards` (13/3)            | one clean deck per format                                                                                               |
+| **Reviewers** — card content         | `GetNote` (25/6) → `Note.fields`                             | `Content.swift` parses the fields (in `build_question_bank.py` order) into typed items + the `Subquestions` JSON ladder |
+| **Reviewers** — grade                | `AnswerCard` (13/4) + `AddNoteTags` (49/7)                   | `ReviewSession.swift` (first-try correct → Good; ladder → Again + `ReadyMCAT::struggling`)                              |
+| **Diagnostic**                       | `GetDiagnosticQuiz` (29/0) → `ScoreAndSeedDiagnostic` (29/1) | `Diagnostic.swift`                                                                                                      |
 
 Indices are taken verbatim from the generated
 `out/pylib/anki/_backend_generated.py` and validated by the host smoke test
@@ -102,32 +102,32 @@ simulator (the bundled collection is already in `Resources/`).
 The app reads a few env vars on launch (pass via `SIMCTL_CHILD_…`), used only for
 screenshots and verification:
 
-| Env var | Effect |
-| --- | --- |
-| `READYMCAT_TAB=study\|dashboard` | Start on that tab |
-| `READYMCAT_REVIEW=mcq\|fr\|passage\|cars` | Auto-open that reviewer |
-| `READYMCAT_DEMO=correct\|wrong` | Auto-answer the first reviewer question (feedback / teach-on-miss handoff) |
-| `READYMCAT_DIAGNOSTIC=1` | Auto-open the diagnostic |
-| `READYMCAT_AUTOPLAY=1` | Grade a batch of cards tap-free (grading-path check) |
-| `READYMCAT_COLLECTION=demo` | Open a bundled **synthetic** demo collection to preview a populated dashboard (falls back to the real bank if not bundled) |
+| Env var                                   | Effect                                                                                                                     |
+| ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `READYMCAT_TAB=study\|dashboard`          | Start on that tab                                                                                                          |
+| `READYMCAT_REVIEW=mcq\|fr\|passage\|cars` | Auto-open that reviewer                                                                                                    |
+| `READYMCAT_DEMO=correct\|wrong`           | Auto-answer the first reviewer question (feedback / teach-on-miss handoff)                                                 |
+| `READYMCAT_DIAGNOSTIC=1`                  | Auto-open the diagnostic                                                                                                   |
+| `READYMCAT_AUTOPLAY=1`                    | Grade a batch of cards tap-free (grading-path check)                                                                       |
+| `READYMCAT_COLLECTION=demo`               | Open a bundled **synthetic** demo collection to preview a populated dashboard (falls back to the real bank if not bundled) |
 
 ## Verified on the iOS Simulator (iPhone 17)
 
 Every screen was run against the bundled real engine data and screenshotted into
 `ios/docs/`:
 
-| Screen | Screenshot |
-| --- | --- |
-| Home hub — 3 score pills + 4 tiles with real due counts (414/410/174/77) | `docs/01-home.png` |
-| Dashboard — honest give-up state (fresh bank) | `docs/02-dashboard.png` |
-| Dashboard — populated ranges + confidence (synthetic demo) | `docs/10-dashboard-populated.png` |
-| Study — format picker with live due counts | `docs/03-study.png` |
-| MCQ reviewer — tappable options | `docs/04-mcq.png` |
-| MCQ teach-on-miss — correct/incorrect feedback → guiding questions | `docs/05-mcq-teach.png` |
-| Free Response — type-in card | `docs/06-fr.png` |
-| Free Response — auto-graded (model answer + explanation) | `docs/07-fr-graded.png` |
-| Passage/CARS — passage panel + question | `docs/08-passage.png` |
-| Diagnostic — one MCQ per AAMC category (31) | `docs/09-diagnostic.png` |
+| Screen                                                                   | Screenshot                        |
+| ------------------------------------------------------------------------ | --------------------------------- |
+| Home hub — 3 score pills + 4 tiles with real due counts (414/410/174/77) | `docs/01-home.png`                |
+| Dashboard — honest give-up state (fresh bank)                            | `docs/02-dashboard.png`           |
+| Dashboard — populated ranges + confidence (synthetic demo)               | `docs/10-dashboard-populated.png` |
+| Study — format picker with live due counts                               | `docs/03-study.png`               |
+| MCQ reviewer — tappable options                                          | `docs/04-mcq.png`                 |
+| MCQ teach-on-miss — correct/incorrect feedback → guiding questions       | `docs/05-mcq-teach.png`           |
+| Free Response — type-in card                                             | `docs/06-fr.png`                  |
+| Free Response — auto-graded (model answer + explanation)                 | `docs/07-fr-graded.png`           |
+| Passage/CARS — passage panel + question                                  | `docs/08-passage.png`             |
+| Diagnostic — one MCQ per AAMC category (31)                              | `docs/09-diagnostic.png`          |
 
 ### Host FFI smoke test
 

@@ -18,6 +18,11 @@ struct FRReviewerView: View {
     private enum Phase: Hashable { case main, ladder(Int), reattempt }
     @State private var phase: Phase = .main
 
+    private var mainDemoText: String? {
+        guard Demo.active else { return nil }
+        return Demo.wantsCorrect ? (item.acceptedAnswers.first ?? "") : "zzz not the answer"
+    }
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 14) {
@@ -93,6 +98,7 @@ private struct AcceptedList: View {
 private struct FRMainStep: View {
     let item: FRItem
     let tint: Color
+    var demoText: String? = nil
     let onCorrectFirst: () -> Void
     let onWrong: () -> Void
     @State private var correct: Bool?
@@ -100,7 +106,7 @@ private struct FRMainStep: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             TypeInQuestion(stem: item.prompt, accepted: item.acceptedAnswers, keyTerms: item.keyTerms,
-                           submitLabel: "Submit answer", tint: tint) { _, c in correct = c }
+                           submitLabel: "Submit answer", tint: tint, demoText: demoText) { _, c in correct = c }
             if let correct {
                 if correct {
                     ModelAnswer(text: item.modelAnswer)

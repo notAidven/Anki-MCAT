@@ -25,7 +25,6 @@ teach-on-miss flow.
 
 from __future__ import annotations
 
-import importlib.util
 import json
 import os
 import re
@@ -33,6 +32,8 @@ from html import unescape
 from pathlib import Path
 from types import ModuleType
 from typing import Any, Optional
+
+from aqt.readymcat_tools import load_tool_module
 
 #: Sidecar cache, next to the collection (mirrors where the other ReadyMCAT
 #: sidecars live). Keyed by note id so a generated ladder survives restarts and
@@ -52,33 +53,16 @@ _core_loaded = False
 def _core() -> Optional[ModuleType]:
     """Load (and cache) the pure ``ladder_gen`` core module by path.
 
-    Mirrors ``aqt.readymcat._bank`` / ``readymcat_provision._load_core``:
-    returns ``None`` if it cannot be located, in which case generation is
-    simply treated as unavailable and the reviewer falls back.
+    The path lookup lives in ``aqt.readymcat_tools`` (shared by every ReadyMCAT
+    aqt host); this only adds the load-once cache. Defensive: returns ``None``
+    if it cannot be located/imported, in which case generation is treated as
+    unavailable and the reviewer falls back.
     """
     global _core_module, _core_loaded
-    if _core_loaded:
-        return _core_module
-    _core_loaded = True
-    candidates = [
-        Path(__file__).resolve().parents[2] / "readymcat" / "tools" / "ladder_gen.py",
-        Path.cwd() / "readymcat" / "tools" / "ladder_gen.py",
-    ]
-    for path in candidates:
-        try:
-            if not path.is_file():
-                continue
-            spec = importlib.util.spec_from_file_location(
-                "readymcat_ladder_gen_core", path
-            )
-            assert spec and spec.loader
-            module = importlib.util.module_from_spec(spec)
-            spec.loader.exec_module(module)
-            _core_module = module
-            return module
-        except Exception as exc:  # pragma: no cover - defensive
-            print("ReadyMCAT: could not load ladder-gen core", exc)
-    return None
+    if not _core_loaded:
+        _core_loaded = True
+        _core_module = load_tool_module("ladder_gen.py", "readymcat_ladder_gen_core")
+    return _core_module
 
 
 def is_enabled() -> bool:

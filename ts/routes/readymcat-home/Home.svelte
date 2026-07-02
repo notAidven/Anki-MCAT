@@ -8,6 +8,12 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 
     import { glossary } from "$lib/readymcat/glossary";
     import InfoTooltip from "$lib/readymcat/InfoTooltip.svelte";
+    import {
+        MIN_COVERAGE,
+        MIN_REVIEWS,
+        pct,
+        studyNextTopics,
+    } from "$lib/readymcat/scores";
 
     import type { DeckLaunchCounts, DeckLaunchKey, HomeStatus } from "./types";
 
@@ -18,13 +24,10 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
     /** When this snapshot was fetched (ms epoch); drives "last updated". */
     export let generatedAt: number = Date.now();
 
-    // Mirrors the honest-memory dashboard's give-up thresholds exactly (see
-    // ts/routes/readymcat-dashboard/Dashboard.svelte) — the hub's status
-    // strip must agree with the dashboard about when there's enough evidence.
-    const MIN_REVIEWS = 200;
-    const MIN_COVERAGE = 0.5;
-
-    const pct = (x: number): string => `${Math.round(x * 100)}%`;
+    // Give-up thresholds (MIN_REVIEWS / MIN_COVERAGE), the percentage formatter
+    // and the study-next ranking come from $lib/readymcat/scores, shared with
+    // the dashboard so the hub's status strip always agrees with it about when
+    // there's enough evidence.
 
     $: memory = points?.memory;
     $: coverage = points?.coverage;
@@ -49,11 +52,7 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
     $: readyPoint = readiness?.point ?? 0;
     $: readinessReady = readiness?.meetsDataThreshold ?? false;
 
-    $: studyNext = topics
-        .filter((t) => t.totalCards > 0)
-        .map((t) => ({ ...t, points: t.topicWeight * t.studentWeakness }))
-        .sort((a, b) => b.points - a.points)
-        .slice(0, 4);
+    $: studyNext = studyNextTopics(topics, 4);
 
     $: home = status?.available ? status : null;
     $: decks = home?.decks;

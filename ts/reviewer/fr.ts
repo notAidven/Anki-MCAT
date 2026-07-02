@@ -26,8 +26,7 @@
 import { bridgeCommand } from "@tslib/bridgecommand";
 
 import { gradeFreeResponse } from "./fr_grade";
-
-declare const MathJax: any;
+import { firstUrl, makeButton as sharedMakeButton, qaEl, typeset } from "./readymcat_dom";
 
 interface FrSubQuestion {
     stem: string;
@@ -107,35 +106,12 @@ function ensureStyle(): void {
     document.head.appendChild(style);
 }
 
-function qaEl(): HTMLElement {
-    return document.getElementById("qa")!;
-}
-
-async function typeset(el: HTMLElement): Promise<void> {
-    try {
-        if (typeof MathJax !== "undefined" && MathJax.typesetPromise) {
-            if (MathJax.startup?.promise) {
-                await MathJax.startup.promise;
-            }
-            MathJax.typesetClear?.();
-            await MathJax.typesetPromise([el]);
-        }
-    } catch {
-        // ignore math typesetting errors in the free-response overlay
-    }
-}
-
 function makeButton(
     label: string,
     cls: string,
     onClick: () => void,
 ): HTMLButtonElement {
-    const button = document.createElement("button");
-    button.className = `rmfr-btn ${cls}`;
-    button.type = "button";
-    button.textContent = label;
-    button.addEventListener("click", onClick);
-    return button;
+    return sharedMakeButton("rmfr", label, cls, onClick);
 }
 
 function newWrap(title: string, stepText: string): HTMLElement {
@@ -293,11 +269,6 @@ function addProceed(wrap: HTMLElement, label: string, onClick: () => void): void
 
 function addContinue(wrap: HTMLElement): void {
     addProceed(wrap, "Continue", () => bridgeCommand("fr:continue"));
-}
-
-function firstUrl(text: string): string | null {
-    const match = text.match(/https?:\/\/[^\s"'<>)]+/);
-    return match ? match[0] : null;
 }
 
 function addResource(wrap: HTMLElement): void {

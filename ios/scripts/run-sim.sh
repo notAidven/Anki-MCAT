@@ -40,7 +40,17 @@ xcrun -sdk iphonesimulator swiftc \
   -o "$APP/ReadyMCAT"
 
 cp "$ROOT/ios/ReadyMCAT/Info.plist" "$APP/Info.plist"
-cp "$ROOT/ios/ReadyMCAT/Resources/sample.anki2" "$APP/sample.anki2"
+# Bundle the full ReadyMCAT bank + its companion JSON (taxonomy for the
+# points-at-stake dashboard, diagnostic bank, teach-on-miss sub-questions).
+RES="$ROOT/ios/ReadyMCAT/Resources"
+for f in collection.anki2 taxonomy.json diagnostic_quiz.json subquestions.json; do
+  if [ -f "$RES/$f" ]; then
+    cp "$RES/$f" "$APP/$f"
+  else
+    echo "!! missing $RES/$f — run ios/scripts/build-collection.sh first" >&2
+    exit 1
+  fi
+done
 
 echo ">> booting '$DEVICE'"
 xcrun simctl boot "$DEVICE" 2>/dev/null || true

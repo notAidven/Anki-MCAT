@@ -2,9 +2,12 @@
 // License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 //
 // Swift wrapper around the `rsios` C-ABI bridge to Anki's Rust engine (rslib).
-// It drives a real review session over the SHARED engine: open the collection,
-// fetch the next queued card, render its HTML, and grade it — the exact same
-// command-dispatch path the desktop app uses through pylib/rsbridge.
+// Every ReadyMCAT screen gets its data from here: the native Home reads the deck
+// due tree, the native Dashboard reads the PointsAtStakeService, and the native
+// reviewers open a deck, fetch queued cards, read the note's fields, and grade
+// through the shared scheduler — all over the exact same command-dispatch path
+// (`Backend::run_service_method`) the desktop app uses through pylib/rsbridge.
+// No scheduling / scoring / grading logic is re-implemented in the engine layer.
 
 import Foundation
 import RsiosFFI
@@ -21,6 +24,7 @@ enum Rating: Int {
 /// back when grading (we never need to interpret them).
 struct ReviewCard {
     let cardId: Int64
+    let noteId: Int64
     let currentState: [UInt8]
     let stateAgain: [UInt8]
     let stateHard: [UInt8]
@@ -63,15 +67,27 @@ final class AnkiEngine {
     // out/pylib/anki/_backend_generated.py (the authoritative index source) and
     // verified by the host-side smoke test in tools/sample_deck.
     private enum Svc {
-        static let collection: UInt32 = 3
+        static let decks: UInt32 = 7
         static let scheduler: UInt32 = 13
+        static let notes: UInt32 = 25
         static let cardRendering: UInt32 = 27
+        static let collection: UInt32 = 3
+        static let tags: UInt32 = 49
+        static let pointsAtStake: UInt32 = 45
+        static let diagnostic: UInt32 = 29
     }
     private enum Method {
-        static let openCollection: UInt32 = 0   // BackendCollectionService
-        static let getQueuedCards: UInt32 = 3   // BackendSchedulerService
-        static let answerCard: UInt32 = 4       // BackendSchedulerService
+        static let openCollection: UInt32 = 0     // BackendCollectionService
+        static let deckTree: UInt32 = 4           // DecksService.DeckTree
+        static let setCurrentDeck: UInt32 = 22    // DecksService.SetCurrentDeck
+        static let getQueuedCards: UInt32 = 3     // BackendSchedulerService
+        static let answerCard: UInt32 = 4         // BackendSchedulerService
+        static let getNote: UInt32 = 6            // NotesService.GetNote
         static let renderExistingCard: UInt32 = 6 // CardRenderingService
+        static let addNoteTags: UInt32 = 7        // TagsService.AddNoteTags
+        static let pointsAtStakeQueue: UInt32 = 0 // PointsAtStakeService
+        static let getDiagnosticQuiz: UInt32 = 0  // DiagnosticService
+        static let scoreAndSeedDiagnostic: UInt32 = 1 // DiagnosticService
     }
 
     private var backend: OpaquePointer?
@@ -128,7 +144,7 @@ final class AnkiEngine {
             .annotated(message)
     }
 
-    // MARK: - Review loop
+    // MARK: - Collection
 
     func openCollection(path: String, mediaFolder: String, mediaDB: String) throws {
         var w = ProtoWriter()
@@ -138,11 +154,69 @@ final class AnkiEngine {
         try command(Svc.collection, Method.openCollection, w.data)
     }
 
+    // MARK: - Home hub data
+
+    /// The full deck tree with live due/total counters populated (DeckTree with
+    /// a non-zero `now`, which is what asks the backend to fill the counts).
+    func deckTree() throws -> DeckNode {
+        var w = ProtoWriter()
+        w.int64Field(1, Int64(Date().timeIntervalSince1970)) // now (unix secs)
+        let bytes = try command(Svc.decks, Method.deckTree, w.data)
+        return DeckNode.decode(bytes)
+    }
+
+    // MARK: - Dashboard data
+
+    /// The whole honest-scores payload (Memory / Performance / Readiness +
+    /// coverage + per-topic mastery) from the shared PointsAtStakeService.
+    /// `taxonomyPath` may be "" to let the backend find taxonomy.json next to
+    /// the collection.
+    func pointsAtStake(taxonomyPath: String, deckId: Int64 = 0, limit: UInt32 = 0) throws -> PointsAtStake {
+        var w = ProtoWriter()
+        if !taxonomyPath.isEmpty { w.stringField(1, taxonomyPath) } // taxonomy_path
+        if deckId != 0 { w.int64Field(2, deckId) }                   // deck_id
+        if limit != 0 { w.uint64Field(3, UInt64(limit)) }            // limit
+        let bytes = try command(Svc.pointsAtStake, Method.pointsAtStakeQueue, w.data)
+        return PointsAtStake.decode(bytes)
+    }
+
+    // MARK: - Diagnostic
+
+    /// Serve the first-launch diagnostic quiz (one MCQ per AAMC category in
+    /// "short" mode). `quizPath` may be "" to let the backend find
+    /// diagnostic_quiz.json next to the collection.
+    func diagnosticQuiz(quizPath: String, mode: String = "short") throws -> DiagnosticQuiz {
+        var w = ProtoWriter()
+        if !quizPath.isEmpty { w.stringField(1, quizPath) } // quiz_path
+        w.stringField(2, mode)                              // mode
+        let bytes = try command(Svc.diagnostic, Method.getDiagnosticQuiz, w.data)
+        return DiagnosticQuiz.decode(bytes)
+    }
+
+    /// Score a completed diagnostic into the per-topic prior (ordering only).
+    @discardableResult
+    func scoreDiagnostic(answers: [DiagnosticAnswer], mode: String = "short") throws -> DiagnosticPriorSummary {
+        var w = ProtoWriter()
+        for a in answers { w.bytesField(1, a.encoded()) } // responses (repeated)
+        w.stringField(2, mode)                            // mode
+        let bytes = try command(Svc.diagnostic, Method.scoreAndSeedDiagnostic, w.data)
+        return DiagnosticPriorSummary.decode(bytes)
+    }
+
+    // MARK: - Review loop
+
+    /// Scope the scheduler queue to a deck and its children.
+    func setCurrentDeck(_ deckId: Int64) throws {
+        var w = ProtoWriter()
+        w.int64Field(1, deckId) // DeckId.did
+        try command(Svc.decks, Method.setCurrentDeck, w.data)
+    }
+
     /// Fetch the next queued card (and the queue counts). Returns nil when the
-    /// queue is empty (review finished).
+    /// queue is empty (session finished).
     func nextCard() throws -> (ReviewCard?, QueueCounts) {
         var w = ProtoWriter()
-        w.uint64Field(1, 10)            // fetch_limit
+        w.uint64Field(1, 50)            // fetch_limit
         let bytes = try command(Svc.scheduler, Method.getQueuedCards, w.data)
 
         var counts = QueueCounts()
@@ -154,13 +228,15 @@ final class AnkiEngine {
         guard let queuedCard = Proto.firstBytes(bytes, 1) else {
             return (nil, counts)
         }
-        // QueuedCard.card (field 1) -> Card.id (field 1)
+        // QueuedCard.card (field 1) -> Card.id (field 1), Card.note_id (field 2)
         let cardMsg = Proto.firstBytes(queuedCard, 1) ?? []
         let cardId = Int64(bitPattern: Proto.firstVarint(cardMsg, 1) ?? 0)
+        let noteId = Int64(bitPattern: Proto.firstVarint(cardMsg, 2) ?? 0)
         // QueuedCard.states (field 3) -> SchedulingStates {current=1, again=2, hard=3, good=4, easy=5}
         let states = Proto.firstBytes(queuedCard, 3) ?? []
         let card = ReviewCard(
             cardId: cardId,
+            noteId: noteId,
             currentState: Proto.firstBytes(states, 1) ?? [],
             stateAgain: Proto.firstBytes(states, 2) ?? [],
             stateHard: Proto.firstBytes(states, 3) ?? [],
@@ -170,14 +246,19 @@ final class AnkiEngine {
         return (card, counts)
     }
 
+    /// A note's ordered field values (NotesService.GetNote -> Note.fields).
+    func noteFields(noteId: Int64) throws -> [String] {
+        var w = ProtoWriter()
+        w.int64Field(1, noteId) // NoteId.nid
+        let bytes = try command(Svc.notes, Method.getNote, w.data)
+        return Proto.allStrings(bytes, 7) // Note.fields (repeated string)
+    }
+
     /// Render a card to (questionHTML, answerHTML, css).
     func render(cardId: Int64) throws -> (question: String, answer: String, css: String) {
         var w = ProtoWriter()
         w.int64Field(1, cardId)         // card_id
-        // browser=false, partial_render=false -> omitted (proto3 defaults)
         let bytes = try command(Svc.cardRendering, Method.renderExistingCard, w.data)
-
-        // RenderCardResponse { question_nodes=1, answer_nodes=2, css=3 }
         let question = assemble(Proto.allBytes(bytes, 1))
         let answer = assemble(Proto.allBytes(bytes, 2))
         let css = Proto.firstString(bytes, 3) ?? ""
@@ -194,6 +275,16 @@ final class AnkiEngine {
         w.int64Field(5, Int64(Date().timeIntervalSince1970 * 1000))  // answered_at_millis
         w.uint64Field(6, UInt64(millisecondsTaken))                  // milliseconds_taken
         try command(Svc.scheduler, Method.answerCard, w.data)
+    }
+
+    /// Tag a note (used to flag a teach-on-miss card that was missed again as
+    /// `ReadyMCAT::struggling`, mirroring the desktop reviewer so points-at-stake
+    /// boosts the corrected concept back to the top of the queue).
+    func addTag(noteId: Int64, tag: String) throws {
+        var w = ProtoWriter()
+        w.int64Field(1, noteId) // note_ids (repeated int64; single unpacked element)
+        w.stringField(2, tag)   // tags
+        try command(Svc.tags, Method.addNoteTags, w.data)
     }
 
     // MARK: - Helpers

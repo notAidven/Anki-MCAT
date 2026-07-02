@@ -95,6 +95,17 @@ struct ProtoReader {
         return slice
     }
 
+    mutating func fixed64() -> UInt64 {
+        var value: UInt64 = 0
+        for shift in stride(from: 0, through: 56, by: 8) {
+            if idx < data.count {
+                value |= UInt64(data[idx]) << UInt64(shift)
+                idx += 1
+            }
+        }
+        return value
+    }
+
     mutating func skip(_ wire: Int) {
         switch wire {
         case 0: _ = varint()
@@ -158,5 +169,47 @@ enum Proto {
     static func firstString(_ message: [UInt8], _ field: Int) -> String? {
         guard let bytes = firstBytes(message, field) else { return nil }
         return String(decoding: bytes, as: UTF8.self)
+    }
+
+    /// Every length-delimited string field with the given number (repeated
+    /// `string` — e.g. `Note.fields`, `Note.tags`).
+    static func allStrings(_ message: [UInt8], _ field: Int) -> [String] {
+        allBytes(message, field).map { String(decoding: $0, as: UTF8.self) }
+    }
+
+    /// First `double` field (proto wire type 1, fixed64 little-endian bits).
+    static func firstDouble(_ message: [UInt8], _ field: Int) -> Double? {
+        var r = ProtoReader(message)
+        while r.hasMore {
+            let (f, w) = r.tag()
+            if w == 1 {
+                let bits = r.fixed64()
+                if f == field { return Double(bitPattern: bits) }
+            } else {
+                r.skip(w)
+            }
+        }
+        return nil
+    }
+
+    /// A `double` field, defaulting to 0 when absent (proto3 omits zero-valued
+    /// scalars, so a missing field genuinely means 0.0).
+    static func double(_ message: [UInt8], _ field: Int) -> Double {
+        firstDouble(message, field) ?? 0
+    }
+
+    /// A `uint32`/`uint64` varint field, defaulting to 0 when absent.
+    static func uint(_ message: [UInt8], _ field: Int) -> Int {
+        Int(firstVarint(message, field) ?? 0)
+    }
+
+    /// A `bool` field, defaulting to false when absent.
+    static func bool(_ message: [UInt8], _ field: Int) -> Bool {
+        (firstVarint(message, field) ?? 0) != 0
+    }
+
+    /// A `string` field, defaulting to "" when absent.
+    static func string(_ message: [UInt8], _ field: Int) -> String {
+        firstString(message, field) ?? ""
     }
 }

@@ -6,12 +6,20 @@ import SwiftUI
 @main
 struct ReadyMCATApp: App {
     @StateObject private var model = AppModel()
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some Scene {
         WindowGroup {
             RootView()
                 .environmentObject(model)
                 .onAppear { model.bootstrap() }
+        }
+        .onChange(of: scenePhase) { phase in
+            // Sync on foreground so reviews from other devices show up, and any
+            // reviews done here get pushed. No-op until the user configures sync.
+            if phase == .active, model.loaded {
+                model.sync.syncOnActivate()
+            }
         }
     }
 }

@@ -32,6 +32,10 @@ struct RootView: View {
                 DashboardView()
                     .tabItem { Label("Dashboard", systemImage: "chart.bar.fill") }
                     .tag(2)
+
+                SyncView()
+                    .tabItem { Label("Sync", systemImage: "arrow.triangle.2.circlepath") }
+                    .tag(3)
             }
             .tint(Palette.accent)
             // Deterministic launch routing for screenshots/verification, e.g.

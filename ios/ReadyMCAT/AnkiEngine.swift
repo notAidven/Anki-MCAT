@@ -48,6 +48,33 @@ struct QueueCounts {
     var total: Int { new + learning + review }
 }
 
+/// Credentials/handle for a sync session, matching anki.sync.SyncAuth.
+/// `hkey` is the host key returned by SyncLogin; `endpoint` is the base URL of
+/// the (self-hosted) sync server, e.g. "http://127.0.0.1:8080/".
+struct SyncAuth {
+    var hkey: String
+    var endpoint: String
+
+    /// Encode as an anki.sync.SyncAuth message (hkey=1, endpoint=2).
+    func encoded() -> [UInt8] {
+        var w = ProtoWriter()
+        w.stringField(1, hkey)
+        if !endpoint.isEmpty { w.stringField(2, endpoint) }
+        return [UInt8](w.data)
+    }
+}
+
+/// anki.sync.SyncCollectionResponse.ChangesRequired (and the matching
+/// SyncStatusResponse.Required values 0–2). After a `sync_collection` call this
+/// tells us whether the normal sync completed or a full up/down is needed.
+enum SyncRequired: Int {
+    case noChanges = 0
+    case normalSync = 1
+    case fullSync = 2       // both sides changed — ambiguous, user must choose
+    case fullDownload = 3   // local has no cards; only download is possible
+    case fullUpload = 4     // remote has no cards; only upload is possible
+}
+
 enum EngineError: Error, CustomStringConvertible {
     case openFailed(String)
     case backendError(service: UInt32, method: UInt32)
@@ -67,6 +94,7 @@ final class AnkiEngine {
     // out/pylib/anki/_backend_generated.py (the authoritative index source) and
     // verified by the host-side smoke test in tools/sample_deck.
     private enum Svc {
+        static let sync: UInt32 = 1               // BackendSyncService
         static let decks: UInt32 = 7
         static let scheduler: UInt32 = 13
         static let notes: UInt32 = 25
@@ -78,6 +106,7 @@ final class AnkiEngine {
     }
     private enum Method {
         static let openCollection: UInt32 = 0     // BackendCollectionService
+        static let closeCollection: UInt32 = 1    // BackendCollectionService
         static let deckTree: UInt32 = 4           // DecksService.DeckTree
         static let setCurrentDeck: UInt32 = 22    // DecksService.SetCurrentDeck
         static let getQueuedCards: UInt32 = 3     // BackendSchedulerService
@@ -88,6 +117,14 @@ final class AnkiEngine {
         static let pointsAtStakeQueue: UInt32 = 0 // PointsAtStakeService
         static let getDiagnosticQuiz: UInt32 = 0  // DiagnosticService
         static let scoreAndSeedDiagnostic: UInt32 = 1 // DiagnosticService
+        // BackendSyncService (service 1), indices from _backend_generated.py.
+        static let syncMedia: UInt32 = 0
+        static let mediaSyncStatus: UInt32 = 2
+        static let syncLogin: UInt32 = 3
+        static let syncStatus: UInt32 = 4
+        static let syncCollection: UInt32 = 5
+        static let fullUploadOrDownload: UInt32 = 6
+        static let abortSync: UInt32 = 7
     }
 
     private var backend: OpaquePointer?
@@ -152,6 +189,15 @@ final class AnkiEngine {
         w.stringField(2, mediaFolder)   // media_folder_path
         w.stringField(3, mediaDB)       // media_db_path
         try command(Svc.collection, Method.openCollection, w.data)
+    }
+
+    /// Close the open collection, checkpointing SQLite so the .anki2 file on disk
+    /// is fully consistent (used by the headless harness before the host reads
+    /// the revlog). `downgrade` should stay false to preserve the modern schema.
+    func closeCollection(downgrade: Bool = false) throws {
+        var w = ProtoWriter()
+        w.boolField(1, downgrade)       // CloseCollectionRequest.downgrade_to_schema11
+        try command(Svc.collection, Method.closeCollection, w.data)
     }
 
     // MARK: - Home hub data
@@ -285,6 +331,102 @@ final class AnkiEngine {
         w.int64Field(1, noteId) // note_ids (repeated int64; single unpacked element)
         w.stringField(2, tag)   // tags
         try command(Svc.tags, Method.addNoteTags, w.data)
+    }
+
+    // MARK: - Sync (Anki's own collection-sync protocol)
+
+    /// Authenticate against the sync server and obtain a host key. Mirrors the
+    /// desktop's `Collection.sync_login`; the returned auth is what every other
+    /// sync call needs. `endpoint` is the server base URL (http is fine for a
+    /// localhost/self-hosted server — reqwest talks raw sockets, so iOS ATS does
+    /// not apply, and no TLS backend is required).
+    func syncLogin(username: String, password: String, endpoint: String) throws -> SyncAuth {
+        var w = ProtoWriter()
+        w.stringField(1, username)          // SyncLoginRequest.username
+        w.stringField(2, password)          // SyncLoginRequest.password
+        if !endpoint.isEmpty { w.stringField(3, endpoint) } // .endpoint
+        let bytes = try command(Svc.sync, Method.syncLogin, w.data)
+        // Response: SyncAuth { hkey=1, endpoint=2 }. The backend echoes the
+        // endpoint we sent, but fall back to it explicitly to be safe.
+        let hkey = Proto.string(bytes, 1)
+        let ep = Proto.firstString(bytes, 2) ?? endpoint
+        return SyncAuth(hkey: hkey, endpoint: ep)
+    }
+
+    /// Run one normal (incremental) collection sync. Returns what the server
+    /// says is required next. On a NORMAL_SYNC/NO_CHANGES result the incremental
+    /// sync has already been applied; a FULL_* result means the caller must run
+    /// `fullUploadOrDownload`. Identical dispatch to `Collection.sync_collection`.
+    @discardableResult
+    func syncCollection(auth: SyncAuth, syncMedia: Bool = false) throws -> SyncRequired {
+        var w = ProtoWriter()
+        w.bytesField(1, auth.encoded())     // SyncCollectionRequest.auth
+        w.boolField(2, syncMedia)           // .sync_media
+        let bytes = try command(Svc.sync, Method.syncCollection, w.data)
+        let raw = Int(Proto.firstVarint(bytes, 3) ?? 0) // .required (enum)
+        return SyncRequired(rawValue: raw) ?? .noChanges
+    }
+
+    /// Force a full upload (send the whole local collection, replacing the
+    /// server's) or full download (replace the local collection with the
+    /// server's). Mirrors `Collection.full_upload_or_download`.
+    func fullUploadOrDownload(auth: SyncAuth, upload: Bool, serverUsn: Int32? = nil) throws {
+        var w = ProtoWriter()
+        w.bytesField(1, auth.encoded())     // FullUploadOrDownloadRequest.auth
+        w.boolField(2, upload)              // .upload
+        if let usn = serverUsn { w.int64Field(3, Int64(usn)) } // .server_usn (int32)
+        try command(Svc.sync, Method.fullUploadOrDownload, w.data)
+    }
+
+    /// Cheap check (mostly offline) of whether a sync is needed. Input is a bare
+    /// SyncAuth; returns SyncStatusResponse.required.
+    func syncStatus(auth: SyncAuth) throws -> SyncRequired {
+        var w = ProtoWriter()
+        w.stringField(1, auth.hkey)
+        if !auth.endpoint.isEmpty { w.stringField(2, auth.endpoint) }
+        let bytes = try command(Svc.sync, Method.syncStatus, w.data)
+        let raw = Int(Proto.firstVarint(bytes, 1) ?? 0)
+        return SyncRequired(rawValue: raw) ?? .noChanges
+    }
+
+    /// Kick off a media sync in the background (fire-and-forget; the backend runs
+    /// it on its own thread). Input is a bare SyncAuth.
+    func syncMedia(auth: SyncAuth) throws {
+        var w = ProtoWriter()
+        w.stringField(1, auth.hkey)
+        if !auth.endpoint.isEmpty { w.stringField(2, auth.endpoint) }
+        try command(Svc.sync, Method.syncMedia, w.data)
+    }
+
+    // MARK: - Headless review helper (verification)
+
+    /// Grade up to `target` due cards Good across every deck that has cards,
+    /// returning how many were graded. Used only by the headless sync-round-trip
+    /// harness (READYMCAT_SYNC_*), it reuses the exact scheduler path the native
+    /// reviewers use (SetCurrentDeck → GetQueuedCards → AnswerCard).
+    @discardableResult
+    func autoReview(target: Int) throws -> Int {
+        guard target > 0 else { return 0 }
+        var graded = 0
+        let tree = try deckTree()
+        var decks: [Int64] = []
+        collectDeckIds(tree, into: &decks)
+        for did in decks {
+            if graded >= target { break }
+            try setCurrentDeck(did)
+            while graded < target {
+                let (card, _) = try nextCard()
+                guard let card else { break }
+                try answer(card: card, rating: .good, millisecondsTaken: 2000)
+                graded += 1
+            }
+        }
+        return graded
+    }
+
+    private func collectDeckIds(_ node: DeckNode, into out: inout [Int64]) {
+        if node.deckId != 0, node.totalInDeck > 0 { out.append(node.deckId) }
+        for child in node.children { collectDeckIds(child, into: &out) }
     }
 
     // MARK: - Helpers

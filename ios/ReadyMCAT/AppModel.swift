@@ -25,6 +25,9 @@ final class AppModel: ObservableObject {
     private(set) var taxonomyPath = ""
     private(set) var diagnosticPath = ""
 
+    /// Two-way sync on Anki's own protocol (see SyncManager).
+    let sync = SyncManager()
+
     func bootstrap() {
         guard engine == nil else { return }
         do {
@@ -38,9 +41,17 @@ final class AppModel: ObservableObject {
                 mediaDB: paths.mediaDB
             )
             self.engine = engine
+            sync.attach(engine: engine, model: self)
             NSLog("[ReadyMCAT] engine opened; buildhash=\(engine.buildHash)")
             refresh()
             loaded = true
+
+            // Headless verification path (READYMCAT_SYNC_ACTION); otherwise a
+            // normal launch syncs in the background when configured.
+            let docs = URL(fileURLWithPath: paths.collection).deletingLastPathComponent()
+            if !SyncHarness.runIfRequested(engine: engine, model: self, documentsDir: docs) {
+                sync.syncOnActivate()
+            }
         } catch {
             errorText = "\(error)"
             NSLog("[ReadyMCAT] bootstrap error: \(error)")

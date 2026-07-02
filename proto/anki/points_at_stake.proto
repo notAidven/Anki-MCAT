@@ -7,9 +7,18 @@
 //   points_at_stake = topic_weight * student_weakness
 // where topic_weight is the AAMC content-distribution weight for the card's
 // topic and student_weakness is 1 - (mean FSRS recall probability over every
-// card in that topic). The same call also returns the per-topic memory/weakness
-// aggregation, an honest (ranged) overall memory score, and outline coverage,
-// which the desktop dashboard consumes (obeying its give-up rule).
+// card in that topic). The same call also returns the three honest dashboard
+// scores — Memory, Performance and Readiness — plus the per-topic
+// memory/weakness aggregation and outline coverage, which the desktop dashboard
+// consumes (each score obeying its own give-up rule):
+//
+//   * Memory      — mean FSRS recall over graded cards, as a 95% range.
+//   * Performance — first-attempt accuracy on the ReadyMCAT question notetypes
+//                   (MCQ / FreeResponse / Passage) read from the review log, as
+//                   a Wilson 95% range.
+//   * Readiness   — a documented, HEURISTIC (uncalibrated) projection onto the
+//                   real MCAT 472–528 scale, blended from Performance and
+//                   Memory and widened by coverage gaps.
 
 syntax = "proto3";
 
@@ -47,9 +56,17 @@ message PointsAtStakeResponse {
   MemoryReport memory = 3;
   // How much of the AAMC outline the deck covers.
   CoverageReport coverage = 4;
-  // True when there is enough evidence to show a score
-  // (>= 200 graded reviews AND >= 50% topic coverage).
+  // True when there is enough evidence to show the MEMORY score
+  // (>= 200 graded reviews AND >= 50% topic coverage). Kept as the memory
+  // give-up flag for backwards compatibility; performance and readiness carry
+  // their own thresholds.
   bool meets_data_threshold = 5;
+  // Honest performance score: first-attempt accuracy on ReadyMCAT question
+  // cards, always a range with its own give-up rule.
+  PerformanceReport performance = 6;
+  // Heuristic (uncalibrated) readiness projection onto the 472–528 scale, with
+  // its own give-up rule. Never presented as calibrated.
+  ReadinessReport readiness = 7;
 }
 
 message RankedCard {
@@ -114,4 +131,63 @@ message CoverageReport {
   double fraction = 3;
   // Fraction of exam weight covered (0..1).
   double weighted_fraction = 4;
+}
+
+// Honest "chance of getting a NEW exam-style question right": first-attempt
+// accuracy on the ReadyMCAT question notetypes (MCQ / FreeResponse / Passage),
+// read from the review log. A card's FIRST graded review is its first attempt;
+// grade Good/Easy (ease >= 3) is a hit, Again/Hard is a miss — mirroring the
+// reviewer's teach-on-miss grading (first-try -> Good, wrong/after-ladder ->
+// Again). Presented as a Wilson 95% interval, never a bare number.
+message PerformanceReport {
+  // First-attempt accuracy across ReadyMCAT question cards (0..1).
+  double mean = 1;
+  // 95% Wilson score interval for the accuracy (0..1). The dashboard shows this
+  // range, never the bare mean.
+  double range_low = 2;
+  double range_high = 3;
+  // Distinct ReadyMCAT question cards with at least one graded review (the
+  // number of first attempts; drives the give-up rule).
+  uint32 attempts = 4;
+  // First-attempt hits (first graded review graded Good/Easy).
+  uint32 hits = 5;
+  // True when there are enough first attempts to show a score
+  // (>= 30 attempts).
+  bool meets_data_threshold = 6;
+  // Per-AAMC-category performance breakdown (sorted by category id).
+  repeated TopicPerformance topics = 7;
+}
+
+message TopicPerformance {
+  // AAMC category id, e.g. "1A".
+  string category = 1;
+  string name = 2;
+  double topic_weight = 3;
+  // First attempts on this topic's question cards.
+  uint32 attempts = 4;
+  // First-attempt hits on this topic's question cards.
+  uint32 hits = 5;
+  // hits / attempts (0..1); 0 when there are no attempts.
+  double accuracy = 6;
+}
+
+// A documented, HEURISTIC projection onto the real MCAT scaled score (472–528).
+// It is deliberately uncalibrated: the PRD notes readiness needs calibration
+// data the app does not yet have, so `heuristic` is always true and the
+// dashboard must label it as an uncalibrated projection, never a real score.
+message ReadinessReport {
+  // Heuristic projected scaled score on the 472–528 MCAT scale.
+  double point = 1;
+  // Likely range on the 472–528 scale (propagated from the performance and
+  // memory intervals, widened for uncovered exam weight).
+  double range_low = 2;
+  double range_high = 3;
+  // The [0,1] ability blend behind the projection
+  // (0.6 * performance + 0.4 * memory), exposed so the number is explainable.
+  double ability = 4;
+  // True when BOTH the memory and performance give-up rules are met (readiness
+  // is only projected when both of its inputs have enough evidence).
+  bool meets_data_threshold = 5;
+  // Always true: this is an uncalibrated heuristic, never a calibrated score.
+  bool heuristic = 6;
 }

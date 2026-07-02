@@ -40,6 +40,43 @@ pub const GIVE_UP_MIN_REVIEWS: u32 = 200;
 /// dashboard may show a score.
 pub const GIVE_UP_MIN_COVERAGE: f64 = 0.5;
 
+/// Minimum number of first-attempts on ReadyMCAT question cards before the
+/// dashboard may show a PERFORMANCE score. This is an honest-by-intent MVP
+/// default (not calibrated): below ~30 attempts a binomial proportion is too
+/// noisy to report, and the Wilson interval stays visibly wide until far more
+/// attempts accrue (which is the point — the range *is* the confidence signal).
+pub const PERFORMANCE_GIVE_UP_MIN_ATTEMPTS: u32 = 30;
+
+/// The real MCAT total-score scale readiness projects onto.
+pub const MCAT_SCORE_MIN: f64 = 472.0;
+pub const MCAT_SCORE_MAX: f64 = 528.0;
+/// Readiness ability blend weights: performance dominates (it is the closest
+/// proxy for exam performance) with memory as support. Documented heuristic.
+pub const READINESS_W_PERFORMANCE: f64 = 0.6;
+pub const READINESS_W_MEMORY: f64 = 0.4;
+/// Extra half-width (in ability units, 0..1) added to the readiness interval
+/// per unit of UNCOVERED exam weight: untested topics are unknowns, so thin
+/// coverage widens the range. At full coverage it contributes nothing.
+pub const READINESS_COVERAGE_UNCERTAINTY: f64 = 0.10;
+/// z for a 95% two-sided interval (shared by the memory SEM and the Wilson
+/// performance interval).
+const Z_95: f64 = 1.96;
+
+/// The ReadyMCAT question notetypes whose review log drives the PERFORMANCE
+/// score. These names must match `readymcat/tools/build_question_bank.py`
+/// (`MCQ_NOTETYPE_NAME` / `FR_NOTETYPE_NAME` / `PASSAGE_NOTETYPE_NAME`).
+pub const QUESTION_NOTETYPE_NAMES: &[&str] = &[
+    "ReadyMCAT MCQ",
+    "ReadyMCAT FreeResponse",
+    "ReadyMCAT Passage",
+];
+
+/// A first graded review with ease >= this counts as a first-attempt HIT
+/// (Good = 3, Easy = 4). Again (1) / Hard (2) are misses. Mirrors the reviewer
+/// grading where a first-try correct answer is graded Good and anything that
+/// needed the teach-on-miss ladder is graded Again.
+const PERFORMANCE_HIT_MIN_EASE: i64 = 3;
+
 /// Tag the desktop reviewer adds to a note whose teach-on-miss correction was
 /// missed again (see `qt/aqt/reviewer.py`). The points-at-stake queue raises
 /// such a card's priority so the corrected concept resurfaces soon and again
@@ -349,6 +386,147 @@ pub struct CoverageReport {
     pub weighted_fraction: f64,
 }
 
+/// The Wilson score interval for a binomial proportion `hits / n` at
+/// confidence `z`. Chosen over the naive normal (Wald) interval because it
+/// behaves honestly at small `n` and near 0/1 (it never runs past [0, 1] and
+/// stays sensible when every attempt is a hit or a miss). Returns `(low, high)`
+/// clamped to [0, 1]; `(0, 0)` when there is no evidence.
+pub fn wilson_interval(hits: u32, n: u32, z: f64) -> (f64, f64) {
+    if n == 0 {
+        return (0.0, 0.0);
+    }
+    let n = n as f64;
+    let p = hits as f64 / n;
+    let z2 = z * z;
+    let denom = 1.0 + z2 / n;
+    let center = (p + z2 / (2.0 * n)) / denom;
+    let margin = (z / denom) * (p * (1.0 - p) / n + z2 / (4.0 * n * n)).sqrt();
+    (
+        (center - margin).clamp(0.0, 1.0),
+        (center + margin).clamp(0.0, 1.0),
+    )
+}
+
+/// Per-topic first-attempt accuracy accumulator (question notetypes only).
+#[derive(Debug, Clone, Default)]
+pub struct TopicPerfAcc {
+    pub name: String,
+    pub weight: f64,
+    pub attempts: u32,
+    pub hits: u32,
+}
+
+impl TopicPerfAcc {
+    pub fn accuracy(&self) -> f64 {
+        if self.attempts > 0 {
+            self.hits as f64 / self.attempts as f64
+        } else {
+            0.0
+        }
+    }
+}
+
+/// First-attempt accuracy on the ReadyMCAT question notetypes, overall and per
+/// AAMC topic. "First attempt" = a card's earliest graded review; this is the
+/// honest proxy for "chance of getting a NEW question right" because later
+/// reviews are contaminated by having already seen the answer/teaching.
+#[derive(Debug, Clone, Default)]
+pub struct Performance {
+    /// Overall first attempts on ALL question cards (including ones that map to
+    /// no AAMC topic, e.g. CARS passages).
+    pub attempts: u32,
+    pub hits: u32,
+    /// Per-topic breakdown, for question cards that resolve to an AAMC
+    /// category.
+    pub topics: BTreeMap<String, TopicPerfAcc>,
+}
+
+impl Performance {
+    pub fn mean(&self) -> f64 {
+        if self.attempts > 0 {
+            self.hits as f64 / self.attempts as f64
+        } else {
+            0.0
+        }
+    }
+
+    pub fn meets_data_threshold(&self) -> bool {
+        self.attempts >= PERFORMANCE_GIVE_UP_MIN_ATTEMPTS
+    }
+
+    pub fn report(&self) -> PerformanceReport {
+        let (low, high) = wilson_interval(self.hits, self.attempts, Z_95);
+        PerformanceReport {
+            mean: self.mean(),
+            range_low: low,
+            range_high: high,
+            attempts: self.attempts,
+            hits: self.hits,
+            meets_data_threshold: self.meets_data_threshold(),
+        }
+    }
+}
+
+#[derive(Debug, Clone, Copy)]
+pub struct PerformanceReport {
+    pub mean: f64,
+    pub range_low: f64,
+    pub range_high: f64,
+    pub attempts: u32,
+    pub hits: u32,
+    pub meets_data_threshold: bool,
+}
+
+#[derive(Debug, Clone, Copy)]
+pub struct ReadinessReport {
+    pub point: f64,
+    pub range_low: f64,
+    pub range_high: f64,
+    pub ability: f64,
+    pub meets_data_threshold: bool,
+    pub heuristic: bool,
+}
+
+/// Project a HEURISTIC readiness score onto the MCAT 472–528 scale.
+///
+/// This is deliberately uncalibrated (the PRD defers a calibrated readiness
+/// model until held-out data exists), so [`ReadinessReport::heuristic`] is
+/// always `true`. The projection:
+///
+/// * blends performance and memory into an ability in [0, 1] (`0.6 *
+///   performance + 0.4 * memory`),
+/// * maps ability linearly onto 472–528,
+/// * propagates the performance and memory intervals into the readiness range,
+///   and widens it by [`READINESS_COVERAGE_UNCERTAINTY`] per unit of uncovered
+///   exam weight (untested topics are unknowns), and
+/// * only reports (`meets_data_threshold`) when BOTH inputs clear their own
+///   give-up rules.
+pub fn project_readiness(
+    memory: &MemoryReport,
+    memory_meets: bool,
+    performance: &PerformanceReport,
+    coverage: &CoverageReport,
+) -> ReadinessReport {
+    let span = MCAT_SCORE_MAX - MCAT_SCORE_MIN;
+    let blend = |perf: f64, mem: f64| {
+        (READINESS_W_PERFORMANCE * perf + READINESS_W_MEMORY * mem).clamp(0.0, 1.0)
+    };
+    let ability = blend(performance.mean, memory.mean);
+    // Uncovered exam weight -> extra uncertainty on both sides of the range.
+    let extra = READINESS_COVERAGE_UNCERTAINTY * (1.0 - coverage.weighted_fraction).clamp(0.0, 1.0);
+    let ability_low = (blend(performance.range_low, memory.range_low) - extra).clamp(0.0, 1.0);
+    let ability_high = (blend(performance.range_high, memory.range_high) + extra).clamp(0.0, 1.0);
+    let to_score = |a: f64| (MCAT_SCORE_MIN + span * a).round();
+    ReadinessReport {
+        point: to_score(ability),
+        range_low: to_score(ability_low),
+        range_high: to_score(ability_high),
+        ability,
+        meets_data_threshold: memory_meets && performance.meets_data_threshold,
+        heuristic: true,
+    }
+}
+
 /// A due review card with its computed points at stake.
 #[derive(Debug, Clone)]
 pub struct RankedCard {
@@ -441,6 +619,99 @@ impl Collection {
 
         agg.graded_reviews = self.graded_review_count()?;
         Ok(agg)
+    }
+
+    /// The set of notetype ids for the ReadyMCAT question notetypes present in
+    /// the collection (MCQ / FreeResponse / Passage). Empty when none exist
+    /// (e.g. a plain deck with no pre-loaded bank), in which case performance
+    /// simply has no attempts and stays in its give-up state.
+    fn question_notetype_ids(&mut self) -> Result<Vec<NotetypeId>> {
+        let mut ids = Vec::new();
+        for name in QUESTION_NOTETYPE_NAMES {
+            if let Some(nt) = self.get_notetype_by_name(name)? {
+                ids.push(nt.id);
+            }
+        }
+        Ok(ids)
+    }
+
+    /// Compute first-attempt accuracy on the ReadyMCAT question notetypes from
+    /// the review log — the honest PERFORMANCE score. For each question card we
+    /// take its earliest graded review (`min(revlog.id)` with `ease >= 1`) and
+    /// score it a hit when that first review graded Good/Easy. Overall counts
+    /// every question card (including topic-less ones such as CARS); the
+    /// per-topic breakdown counts only cards that resolve to an AAMC category.
+    pub fn compute_performance(&mut self, tax: &Taxonomy) -> Result<Performance> {
+        let mut perf = Performance::default();
+        // Seed the per-topic map with the outline so topics with no attempts
+        // still surface (name + weight), mirroring the memory aggregation.
+        for (id, cat) in &tax.aamc_categories {
+            perf.topics.insert(
+                id.clone(),
+                TopicPerfAcc {
+                    name: cat.name.clone(),
+                    weight: cat.weight,
+                    attempts: 0,
+                    hits: 0,
+                },
+            );
+        }
+
+        let mids = self.question_notetype_ids()?;
+        if mids.is_empty() {
+            return Ok(perf);
+        }
+        let deck_names = self.deck_name_map()?;
+        // notetype ids come from the DB (trusted i64s), safe to inline.
+        let id_list = mids
+            .iter()
+            .map(|id| id.0.to_string())
+            .collect::<Vec<_>>()
+            .join(",");
+        let sql = format!(
+            "SELECT c.did, n.tags, first.ease
+             FROM (
+               SELECT r.cid AS cid, r.ease AS ease
+               FROM revlog r
+               JOIN (
+                 SELECT cid, min(id) AS first_id
+                 FROM revlog WHERE ease >= 1 GROUP BY cid
+               ) m ON r.cid = m.cid AND r.id = m.first_id
+             ) first
+             JOIN cards c ON first.cid = c.id
+             JOIN notes n ON c.nid = n.id
+             WHERE n.mid IN ({id_list})"
+        );
+        let mut stmt = self.storage.db.prepare(&sql)?;
+        let mut rows = stmt.query([])?;
+        while let Some(row) = rows.next()? {
+            let did: DeckId = DeckId(row.get(0)?);
+            let tags: String = row.get(1)?;
+            let ease: i64 = row.get(2)?;
+            let hit = ease >= PERFORMANCE_HIT_MIN_EASE;
+            perf.attempts += 1;
+            if hit {
+                perf.hits += 1;
+            }
+            let tag_refs: Vec<&str> = tags.split_whitespace().collect();
+            let deck_name = deck_names.get(&did).map(String::as_str).unwrap_or("");
+            if let Some(category) = tax.category_for(&tag_refs, deck_name) {
+                let acc = perf
+                    .topics
+                    .entry(category.to_string())
+                    .or_insert_with(|| TopicPerfAcc {
+                        name: category.to_string(),
+                        weight: 0.0,
+                        attempts: 0,
+                        hits: 0,
+                    });
+                acc.attempts += 1;
+                if hit {
+                    acc.hits += 1;
+                }
+            }
+        }
+        Ok(perf)
     }
 
     /// Rank due review cards by points at stake (highest first). `deck_filter`,
@@ -899,5 +1170,275 @@ mod test {
         assert!(r1.student_weakness > r1.fsrs_weakness);
         assert!((r1.prior_weakness - 0.9).abs() < 1e-9);
         assert!((r1.points_at_stake - r1.topic_weight * r1.student_weakness).abs() < 1e-9);
+    }
+
+    // --- Performance + Readiness -------------------------------------------
+
+    /// Ensure a notetype with `name` exists (cloned from Basic), returning it.
+    fn ensure_notetype(
+        col: &mut Collection,
+        name: &str,
+    ) -> std::sync::Arc<crate::notetype::Notetype> {
+        if let Some(nt) = col.get_notetype_by_name(name).unwrap() {
+            return nt;
+        }
+        let mut nt = (*col.get_notetype_by_name("Basic").unwrap().unwrap()).clone();
+        nt.id = crate::notetype::NotetypeId(0);
+        nt.name = name.to_string();
+        col.add_notetype(&mut nt, false).unwrap();
+        col.get_notetype_by_name(name).unwrap().unwrap()
+    }
+
+    fn insert_revlog(col: &mut Collection, id: i64, cid: CardId, ease: i64) {
+        col.storage
+            .db
+            .execute(
+                "INSERT INTO revlog (id, cid, usn, ease, ivl, lastIvl, factor, time, type) \
+                 VALUES (?1, ?2, 0, ?3, 10, 1, 2500, 5000, 1)",
+                rusqlite::params![id, cid.0, ease],
+            )
+            .unwrap();
+    }
+
+    /// Add a question note of `notetype_name` in `deck_name` carrying `tags`,
+    /// with a single first-attempt review of `ease` at revlog id `rev_id`.
+    fn add_question_note(
+        col: &mut Collection,
+        notetype_name: &str,
+        deck_name: &str,
+        tags: &[&str],
+        rev_id: i64,
+        ease: i64,
+    ) -> CardId {
+        let nt = ensure_notetype(col, notetype_name);
+        let deck_id = col.get_or_create_normal_deck(deck_name).unwrap().id;
+        let mut note = nt.new_note();
+        note.set_field(0, "q").unwrap();
+        if !tags.is_empty() {
+            note.tags = tags.iter().map(|t| t.to_string()).collect();
+        }
+        col.add_note(&mut note, deck_id).unwrap();
+        let card_id = col
+            .storage
+            .get_card_by_ordinal(note.id, 0)
+            .unwrap()
+            .unwrap()
+            .id;
+        insert_revlog(col, rev_id, card_id, ease);
+        card_id
+    }
+
+    #[test]
+    fn wilson_interval_is_honest() {
+        // no evidence -> no interval
+        assert_eq!(wilson_interval(0, 0, Z_95), (0.0, 0.0));
+        // every attempt a hit: high clamps to 1, low is pulled well below 1
+        let (low, high) = wilson_interval(10, 10, Z_95);
+        assert!(high >= 0.999);
+        assert!(low > 0.6 && low < 1.0, "low {low}");
+        // a fair coin straddles 0.5
+        let (low, high) = wilson_interval(50, 100, Z_95);
+        assert!(low < 0.5 && 0.5 < high);
+        // more evidence tightens the range for the same proportion
+        let (low_small, high_small) = wilson_interval(50, 100, Z_95);
+        let (low_big, high_big) = wilson_interval(500, 1000, Z_95);
+        assert!((high_big - low_big) < (high_small - low_small));
+    }
+
+    #[test]
+    fn performance_first_attempt_accuracy_per_topic() {
+        let mut col = Collection::new();
+        let tax = taxonomy();
+        let mcq = QUESTION_NOTETYPE_NAMES[0];
+        let fr = QUESTION_NOTETYPE_NAMES[1];
+
+        // 1B (#Physiology::Cells tag): three first attempts, 2 hits.
+        add_question_note(&mut col, mcq, "Default", &["#Physiology::Cells"], 1_000, 3);
+        add_question_note(&mut col, fr, "Default", &["#Physiology::Cells"], 1_001, 3);
+        // ease 1 = Again (a miss / needed the teach-on-miss ladder)
+        let ladder = add_question_note(&mut col, mcq, "Default", &["#Physiology::Cells"], 1_002, 1);
+        // A LATER review of the missed card graded Good must NOT change its
+        // first-attempt verdict (first attempt = earliest revlog id).
+        insert_revlog(&mut col, 5_000, ladder, 3);
+
+        // 1A (MCAT::Biochemistry subdeck, no tag): two attempts, 1 hit.
+        add_question_note(&mut col, mcq, "MCAT::Biochemistry", &[], 1_003, 3);
+        add_question_note(&mut col, fr, "MCAT::Biochemistry", &[], 1_004, 1);
+
+        // Topic-less question (unknown deck, no tag): counts overall only.
+        add_question_note(&mut col, mcq, "Other::Deck", &[], 1_005, 3);
+
+        // A non-question card with reviews must be ignored entirely.
+        let basic = add_card(&mut col, "Default", &["#Physiology::Cells"], 100.0, 1);
+        insert_revlog(&mut col, 1_006, basic, 1);
+
+        let perf = col.compute_performance(&tax).unwrap();
+        assert_eq!(perf.attempts, 6);
+        assert_eq!(perf.hits, 4);
+        assert!((perf.mean() - 4.0 / 6.0).abs() < 1e-9);
+
+        let cell = perf.topics.get("1B").unwrap();
+        assert_eq!((cell.attempts, cell.hits), (3, 2));
+        let bio = perf.topics.get("1A").unwrap();
+        assert_eq!((bio.attempts, bio.hits), (2, 1));
+        // seeded-but-untouched outline topic stays at zero, never invented
+        assert_eq!(perf.topics.get("3A").unwrap().attempts, 0);
+
+        // 6 attempts is below the give-up threshold: no score yet.
+        assert!(!perf.meets_data_threshold());
+        let report = perf.report();
+        assert!(report.range_low < report.mean && report.mean < report.range_high);
+    }
+
+    #[test]
+    fn performance_give_up_threshold_edge() {
+        let mut col = Collection::new();
+        let tax = taxonomy();
+        let mcq = QUESTION_NOTETYPE_NAMES[0];
+        // one short of the threshold -> still abstaining
+        for i in 0..(PERFORMANCE_GIVE_UP_MIN_ATTEMPTS - 1) {
+            add_question_note(
+                &mut col,
+                mcq,
+                "Default",
+                &["#Physiology::Cells"],
+                2_000 + i as i64,
+                3,
+            );
+        }
+        assert!(!col
+            .compute_performance(&tax)
+            .unwrap()
+            .meets_data_threshold());
+        // exactly at the threshold -> a score appears
+        add_question_note(&mut col, mcq, "Default", &["#Physiology::Cells"], 9_999, 3);
+        let perf = col.compute_performance(&tax).unwrap();
+        assert_eq!(perf.attempts, PERFORMANCE_GIVE_UP_MIN_ATTEMPTS);
+        assert!(perf.meets_data_threshold());
+        assert!((perf.mean() - 1.0).abs() < 1e-9);
+    }
+
+    #[test]
+    fn performance_absent_without_question_notetypes() {
+        // A plain collection with reviews but no ReadyMCAT question notetypes
+        // reports zero attempts (give-up), never a fabricated number.
+        let mut col = Collection::new();
+        let tax = taxonomy();
+        let basic = add_card(&mut col, "Default", &["#Physiology::Cells"], 100.0, 1);
+        insert_revlog(&mut col, 1, basic, 3);
+        let perf = col.compute_performance(&tax).unwrap();
+        assert_eq!(perf.attempts, 0);
+        assert!(!perf.meets_data_threshold());
+    }
+
+    fn mem(mean: f64, low: f64, high: f64) -> MemoryReport {
+        MemoryReport {
+            mean,
+            range_low: low,
+            range_high: high,
+            graded_reviews: 500,
+            graded_cards: 300,
+        }
+    }
+
+    fn perf(mean: f64, low: f64, high: f64, meets: bool) -> PerformanceReport {
+        PerformanceReport {
+            mean,
+            range_low: low,
+            range_high: high,
+            attempts: if meets { 100 } else { 5 },
+            hits: (mean * 100.0) as u32,
+            meets_data_threshold: meets,
+        }
+    }
+
+    fn full_coverage() -> CoverageReport {
+        CoverageReport {
+            categories_total: 4,
+            categories_covered: 4,
+            fraction: 1.0,
+            weighted_fraction: 1.0,
+        }
+    }
+
+    #[test]
+    fn readiness_projects_onto_the_mcat_scale() {
+        // ability = 0.6*0.6 + 0.4*0.8 = 0.68 -> 472 + 56*0.68 = 510.08 -> 510
+        let r = project_readiness(
+            &mem(0.8, 0.75, 0.85),
+            true,
+            &perf(0.6, 0.5, 0.7, true),
+            &full_coverage(),
+        );
+        assert_eq!(r.point, 510.0);
+        assert!((r.ability - 0.68).abs() < 1e-9);
+        assert!(r.range_low <= r.point && r.point <= r.range_high);
+        assert!(r.range_low >= MCAT_SCORE_MIN && r.range_high <= MCAT_SCORE_MAX);
+        assert!(r.heuristic);
+        assert!(r.meets_data_threshold);
+    }
+
+    #[test]
+    fn readiness_scale_bounds_are_472_528() {
+        let floor = project_readiness(
+            &mem(0.0, 0.0, 0.0),
+            true,
+            &perf(0.0, 0.0, 0.0, true),
+            &full_coverage(),
+        );
+        assert_eq!(
+            (floor.point, floor.range_low, floor.range_high),
+            (472.0, 472.0, 472.0)
+        );
+        let ceil = project_readiness(
+            &mem(1.0, 1.0, 1.0),
+            true,
+            &perf(1.0, 1.0, 1.0, true),
+            &full_coverage(),
+        );
+        assert_eq!(
+            (ceil.point, ceil.range_low, ceil.range_high),
+            (528.0, 528.0, 528.0)
+        );
+    }
+
+    #[test]
+    fn readiness_gives_up_unless_both_inputs_qualify() {
+        let m = mem(0.8, 0.75, 0.85);
+        let cov = full_coverage();
+        // both inputs qualify -> report
+        assert!(project_readiness(&m, true, &perf(0.6, 0.5, 0.7, true), &cov).meets_data_threshold);
+        // performance short -> abstain
+        assert!(
+            !project_readiness(&m, true, &perf(0.6, 0.5, 0.7, false), &cov).meets_data_threshold
+        );
+        // memory short -> abstain
+        assert!(
+            !project_readiness(&m, false, &perf(0.6, 0.5, 0.7, true), &cov).meets_data_threshold
+        );
+        // still HEURISTIC even when abstaining
+        assert!(project_readiness(&m, false, &perf(0.6, 0.5, 0.7, false), &cov).heuristic);
+    }
+
+    #[test]
+    fn readiness_widens_range_when_coverage_is_thin() {
+        let m = mem(0.8, 0.78, 0.82);
+        let p = perf(0.6, 0.58, 0.62, true);
+        let wide = project_readiness(
+            &m,
+            true,
+            &p,
+            &CoverageReport {
+                categories_total: 4,
+                categories_covered: 2,
+                fraction: 0.5,
+                weighted_fraction: 0.5,
+            },
+        );
+        let tight = project_readiness(&m, true, &p, &full_coverage());
+        // thin coverage -> a visibly wider (less confident) readiness range
+        assert!((wide.range_high - wide.range_low) > (tight.range_high - tight.range_low));
+        // point estimate itself is unchanged by coverage
+        assert_eq!(wide.point, tight.point);
     }
 }

@@ -60,6 +60,27 @@ impl crate::services::PointsAtStakeService for Collection {
 
         let mem = agg.memory_report();
         let cov = agg.coverage_report();
+        let memory_meets = agg.meets_data_threshold();
+
+        // Performance: first-attempt accuracy on the ReadyMCAT question
+        // notetypes, overall + per topic. Readiness is a heuristic projection
+        // blended from performance, memory and coverage.
+        let perf = self.compute_performance(&taxonomy)?;
+        let perf_report = perf.report();
+        let performance_topics = perf
+            .topics
+            .iter()
+            .map(|(id, t)| pb::TopicPerformance {
+                category: id.clone(),
+                name: t.name.clone(),
+                topic_weight: t.weight,
+                attempts: t.attempts,
+                hits: t.hits,
+                accuracy: t.accuracy(),
+            })
+            .collect();
+        let readiness =
+            crate::points_at_stake::project_readiness(&mem, memory_meets, &perf_report, &cov);
 
         Ok(pb::PointsAtStakeResponse {
             ranked_cards,
@@ -77,7 +98,24 @@ impl crate::services::PointsAtStakeService for Collection {
                 fraction: cov.fraction,
                 weighted_fraction: cov.weighted_fraction,
             }),
-            meets_data_threshold: agg.meets_data_threshold(),
+            meets_data_threshold: memory_meets,
+            performance: Some(pb::PerformanceReport {
+                mean: perf_report.mean,
+                range_low: perf_report.range_low,
+                range_high: perf_report.range_high,
+                attempts: perf_report.attempts,
+                hits: perf_report.hits,
+                meets_data_threshold: perf_report.meets_data_threshold,
+                topics: performance_topics,
+            }),
+            readiness: Some(pb::ReadinessReport {
+                point: readiness.point,
+                range_low: readiness.range_low,
+                range_high: readiness.range_high,
+                ability: readiness.ability,
+                meets_data_threshold: readiness.meets_data_threshold,
+                heuristic: readiness.heuristic,
+            }),
         })
     }
 }

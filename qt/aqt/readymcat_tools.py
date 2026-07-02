@@ -84,6 +84,4 @@ def require_tool_module(filename: str, module_name: str) -> ModuleType:
     for path in _candidate_paths(filename):
         if path.is_file():
             return _import_from_path(path, module_name)
-    raise FileNotFoundError(
-        f"{filename} not found; expected under readymcat/tools/."
-    )
+    raise FileNotFoundError(f"{filename} not found; expected under readymcat/tools/.")

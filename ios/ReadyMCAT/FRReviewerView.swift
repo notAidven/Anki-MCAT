@@ -13,10 +13,12 @@ import SwiftUI
 struct FRReviewerView: View {
     let item: FRItem
     let tint: Color
+    var aiLadder: ((CardContext) async -> [LadderRung]?)? = nil
     let onFinish: (ReviewOutcome) -> Void
 
-    private enum Phase: Hashable { case main, ladder(Int), reattempt }
+    private enum Phase: Hashable { case main, ladder(Int), generating, aiLadder, reattempt }
     @State private var phase: Phase = .main
+    @State private var generatedRungs: [LadderRung] = []
 
     private var mainDemoText: String? {
         guard Demo.active else { return nil }
@@ -38,7 +40,30 @@ struct FRReviewerView: View {
         switch phase {
         case .main: return "Free response"
         case .ladder(let i): return "Guiding question \(i + 1) of \(item.subquestions.count)"
+        case .generating: return "Generating guiding questions"
+        case .aiLadder: return "AI guiding questions"
         case .reattempt: return "Back to the original prompt"
+        }
+    }
+
+    /// After a first-try miss: authored ladder if present, else generate one via
+    /// the LLM (retrieve-before-reveal), else fall back to a normal reveal.
+    private func startAfterMiss() {
+        if !item.subquestions.isEmpty {
+            phase = .ladder(0)
+        } else if let aiLadder {
+            phase = .generating
+            Task { @MainActor in
+                let rungs = await aiLadder(item.ladderContext)
+                if let rungs, !rungs.isEmpty {
+                    generatedRungs = rungs
+                    phase = .aiLadder
+                } else {
+                    phase = .reattempt   // graceful fallback
+                }
+            }
+        } else {
+            phase = .reattempt
         }
     }
 
@@ -48,13 +73,19 @@ struct FRReviewerView: View {
         case .main:
             FRMainStep(item: item, tint: tint, demoText: mainDemoText,
                        onCorrectFirst: { onFinish(.correctFirst) },
-                       onWrong: { phase = item.subquestions.isEmpty ? .reattempt : .ladder(0) })
+                       onWrong: { startAfterMiss() })
                 .id("main")
         case .ladder(let i):
             FRLadderStep(sub: item.subquestions[i], index: i, total: item.subquestions.count,
                          tint: tint,
                          onNext: { phase = (i + 1 < item.subquestions.count) ? .ladder(i + 1) : .reattempt })
                 .id("ladder\(i)")
+        case .generating:
+            GeneratingLadderView().id("generating")
+        case .aiLadder:
+            GeneratedLadderView(rungs: generatedRungs, tint: tint,
+                                onDone: { phase = .reattempt })
+                .id("aiLadder")
         case .reattempt:
             FRReattemptStep(item: item, tint: tint,
                             onDone: { correct in
@@ -116,6 +147,11 @@ private struct FRMainStep: View {
                     NoteBox(kind: .spaced,
                             text: "**Not quite.** Rather than just showing the answer, let's rebuild it with a few guiding questions.")
                     PrimaryButton("Start guiding questions", tint: tint) { onWrong() }
+                    if Demo.autoAdvanceOnMiss {
+                        Color.clear.frame(height: 0).onAppear {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { onWrong() }
+                        }
+                    }
                 }
             }
         }

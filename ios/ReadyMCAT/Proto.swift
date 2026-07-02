@@ -58,6 +58,13 @@ struct ProtoWriter {
         varint(UInt64(value.count))
         data.append(contentsOf: value)
     }
+
+    /// Append already-encoded message bytes verbatim (no tag). Used to echo a
+    /// server-returned message back with an extra/overridden field appended
+    /// (proto3 singular fields are last-wins on decode).
+    mutating func raw(_ value: [UInt8]) {
+        data.append(contentsOf: value)
+    }
 }
 
 struct ProtoReader {

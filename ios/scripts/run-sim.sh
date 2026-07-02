@@ -32,11 +32,12 @@ echo ">> compiling Swift app"
 xcrun -sdk iphonesimulator swiftc \
   -target "arm64-apple-ios${IPHONEOS_DEPLOYMENT_TARGET}-simulator" \
   -sdk "$SDK" \
+  -D DEBUG \
   -I "$ROOT/rsios/include" \
   "$ROOT"/ios/ReadyMCAT/*.swift \
   -L "$LIBDIR" -lrsios \
   -framework SwiftUI -framework WebKit -framework UIKit -framework Foundation \
-  -framework CoreFoundation -lobjc -liconv \
+  -framework CoreFoundation -framework Security -lobjc -liconv \
   -o "$APP/ReadyMCAT"
 
 cp "$ROOT/ios/ReadyMCAT/Info.plist" "$APP/Info.plist"

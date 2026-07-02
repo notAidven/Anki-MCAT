@@ -12,6 +12,7 @@ struct RootView: View {
     @State private var tab = 0
     @State private var autoFormat: Format?
     @State private var autoDiagnostic = false
+    @State private var autoDemoDeck: DeckRef?
 
     var body: some View {
         if let error = model.errorText {
@@ -36,12 +37,20 @@ struct RootView: View {
                 SyncView()
                     .tabItem { Label("Sync", systemImage: "arrow.triangle.2.circlepath") }
                     .tag(3)
+
+                SettingsView()
+                    .tabItem { Label("Settings", systemImage: "gearshape.fill") }
+                    .tag(4)
             }
             .tint(Palette.accent)
             // Deterministic launch routing for screenshots/verification, e.g.
             // SIMCTL_CHILD_READYMCAT_TAB=dashboard or READYMCAT_REVIEW=mcq.
             .fullScreenCover(item: $autoFormat) { fmt in
                 ReviewSessionView(format: fmt).environmentObject(model)
+            }
+            .fullScreenCover(item: $autoDemoDeck) { ref in
+                ReviewSessionView(format: .fr, deckIdOverride: ref.id, titleOverride: "AI Demo")
+                    .environmentObject(model)
             }
             .fullScreenCover(isPresented: $autoDiagnostic) {
                 DiagnosticView().environmentObject(model)
@@ -56,10 +65,16 @@ struct RootView: View {
         case "study": tab = 1
         case "dashboard": tab = 2
         case "sync": tab = 3
+        case "settings": tab = 4
         default: break
         }
-        if let raw = env["READYMCAT_REVIEW"], let fmt = Format(rawValue: raw) {
-            autoFormat = fmt
+        if let raw = env["READYMCAT_REVIEW"] {
+            if raw == "demo" {
+                // Authorless AI-ladder demo: seed one card in its own deck and open it.
+                if let id = model.seedAIDemoDeck() { autoDemoDeck = DeckRef(id: id) }
+            } else if let fmt = Format(rawValue: raw) {
+                autoFormat = fmt
+            }
         }
         if env["READYMCAT_DIAGNOSTIC"] != nil { autoDiagnostic = true }
     }

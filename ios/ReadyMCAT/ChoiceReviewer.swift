@@ -27,10 +27,16 @@ struct ChoiceReviewer: View {
     let source: String
     let subs: [MCQSub]
     let tint: Color
+    /// Grounding material + generator for the AI path (both nil-safe): used only
+    /// when the card has NO authored `subs`. When `aiLadder` is nil (no key), a
+    /// miss falls straight through to the normal reveal — today's behavior.
+    var cardContext: CardContext? = nil
+    var aiLadder: ((CardContext) async -> [LadderRung]?)? = nil
     let onFinish: (ReviewOutcome) -> Void
 
-    private enum Phase: Hashable { case main, ladder(Int), reattempt }
+    private enum Phase: Hashable { case main, ladder(Int), generating, aiLadder, reattempt }
     @State private var phase: Phase = .main
+    @State private var generatedRungs: [LadderRung] = []
 
     private var mainDemoChoice: Int? {
         guard Demo.active, !options.isEmpty else { return nil }
@@ -55,20 +61,47 @@ struct ChoiceReviewer: View {
         switch phase {
         case .main: return "main"
         case .ladder(let i): return "ladder\(i)"
+        case .generating: return "generating"
+        case .aiLadder: return "aiLadder"
         case .reattempt: return "reattempt"
         }
     }
 
     private var passageExpanded: Bool {
-        if case .ladder = phase { return false }
-        return true
+        switch phase {
+        case .ladder, .generating, .aiLadder: return false
+        case .main, .reattempt: return true
+        }
     }
 
     private var stepLabel: String {
         switch phase {
         case .main: return passage == nil ? "Multiple choice" : "Passage · multiple choice"
         case .ladder(let i): return "Guiding question \(i + 1) of \(subs.count)"
+        case .generating: return "Generating guiding questions"
+        case .aiLadder: return "AI guiding questions"
         case .reattempt: return "Back to the original question"
+        }
+    }
+
+    /// After a first-try miss: authored ladder if present, else generate one via
+    /// the LLM (retrieve-before-reveal), else fall back to a normal reveal.
+    private func startAfterMiss() {
+        if !subs.isEmpty {
+            phase = .ladder(0)
+        } else if let aiLadder, let cardContext {
+            phase = .generating
+            Task { @MainActor in
+                let rungs = await aiLadder(cardContext)
+                if let rungs, !rungs.isEmpty {
+                    generatedRungs = rungs
+                    phase = .aiLadder
+                } else {
+                    phase = .reattempt   // graceful fallback
+                }
+            }
+        } else {
+            phase = .reattempt
         }
     }
 
@@ -80,7 +113,7 @@ struct ChoiceReviewer: View {
                 stem: question, options: options, correctIndex: correctIndex,
                 explanation: explanation, tint: tint, demoChoice: mainDemoChoice,
                 onCorrectFirst: { onFinish(.correctFirst) },
-                onWrong: { phase = subs.isEmpty ? .reattempt : .ladder(0) }
+                onWrong: { startAfterMiss() }
             )
             .id("main")
         case .ladder(let i):
@@ -89,6 +122,12 @@ struct ChoiceReviewer: View {
                 onNext: { phase = (i + 1 < subs.count) ? .ladder(i + 1) : .reattempt }
             )
             .id("ladder\(i)")
+        case .generating:
+            GeneratingLadderView().id("generating")
+        case .aiLadder:
+            GeneratedLadderView(rungs: generatedRungs, tint: tint,
+                                onDone: { phase = .reattempt })
+                .id("aiLadder")
         case .reattempt:
             ReattemptChoiceStep(
                 stem: question, options: options, correctIndex: correctIndex,
@@ -188,13 +227,15 @@ private struct ReattemptChoiceStep: View {
 struct MCQReviewerView: View {
     let item: MCQItem
     let tint: Color
+    var aiLadder: ((CardContext) async -> [LadderRung]?)? = nil
     let onFinish: (ReviewOutcome) -> Void
     var body: some View {
         ChoiceReviewer(
             title: item.subtopic.isEmpty ? "MCAT question" : item.subtopic,
             passage: nil, question: item.question, options: item.options,
             correctIndex: item.correctIndex, explanation: item.explanation,
-            source: item.source, subs: item.subquestions, tint: tint, onFinish: onFinish
+            source: item.source, subs: item.subquestions, tint: tint,
+            cardContext: item.ladderContext, aiLadder: aiLadder, onFinish: onFinish
         )
     }
 }
@@ -202,13 +243,15 @@ struct MCQReviewerView: View {
 struct PassageReviewerView: View {
     let item: PassageItem
     let tint: Color
+    var aiLadder: ((CardContext) async -> [LadderRung]?)? = nil
     let onFinish: (ReviewOutcome) -> Void
     var body: some View {
         ChoiceReviewer(
             title: item.subtopic.isEmpty ? "Passage question" : item.subtopic,
             passage: item.passage, question: item.question, options: item.options,
             correctIndex: item.correctIndex, explanation: item.explanation,
-            source: item.source, subs: item.subquestions, tint: tint, onFinish: onFinish
+            source: item.source, subs: item.subquestions, tint: tint,
+            cardContext: item.ladderContext, aiLadder: aiLadder, onFinish: onFinish
         )
     }
 }

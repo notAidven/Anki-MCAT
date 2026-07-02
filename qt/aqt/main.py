@@ -99,7 +99,7 @@ MainWindowState = Literal[
     # ReadyMCAT single-window tabs: the Home hub and honest-memory Dashboard are
     # rendered INTO the main window (a dedicated, API-capable web view swapped
     # into the central stack) rather than as separate popup dialogs, so all four
-    # tabs — Home · Study · Decks · Dashboard — live in one window.
+    # tabs — Home · Study · Dashboard · Decks — live in one window.
     "readymcatHome",
     "readymcatDashboard",
 ]

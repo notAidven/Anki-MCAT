@@ -314,7 +314,7 @@ class Toolbar:
     ######################################################################
 
     def _readymcat_tabs(self) -> str:
-        """The persistent Home · Study · Decks · Dashboard tab bar.
+        """The persistent Home · Study · Dashboard · Decks tab bar.
 
         Rendered as the toolbar's centred primary navigation so all four
         ReadyMCAT surfaces live in one window. Active state is refreshed from
@@ -323,8 +323,8 @@ class Toolbar:
         tabs = [
             self._create_tab("home", "Home", self._homeTabHandler),
             self._create_tab("study", "Study", self._studyTabHandler),
-            self._create_tab("decks", tr.actions_decks(), self._deckLinkHandler),
             self._create_tab("dashboard", "Dashboard", self._dashboardTabHandler),
+            self._create_tab("decks", tr.actions_decks(), self._deckLinkHandler),
         ]
         return f"""<div class="rmcat-tabs" role="tablist">{"".join(tabs)}</div>"""
 

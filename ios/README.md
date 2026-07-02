@@ -74,6 +74,81 @@ clean per-format sub-decks (`ReadyMCAT::Multiple Choice`, `::Free Response`,
 touch the `#ReadyMCAT::AAMC` tags the dashboard resolves against, so the honest
 scores are unchanged.
 
+## AI teach-on-miss ladder generation (in-app key)
+
+The bundled bank ships an authored ladder on every card, but an imported deck or
+the student's own cards won't have one. For a card with **no authored ladder**,
+the phone now generates a short, source-grounded guiding ladder at runtime —
+matching the desktop feature — so teach-on-miss works on any deck.
+
+**A faithful Swift port, no Rust change.** `ios/ReadyMCAT/LadderGen.swift` is a
+line-for-line port of the desktop source of truth
+`readymcat/tools/ladder_gen.py`: the same grounded prompt (`buildMessages`), the
+same tolerant `[{q,a}]` parser (`parseLadder`), and the same three deterministic
+guardrails with the same constants —
+
+| Guardrail    | Rule                                                        | Constant                 |
+| ------------ | ----------------------------------------------------------- | ------------------------ |
+| schema       | 2–4 well-formed `{q,a}` rungs                               | `minRungs=2 maxRungs=4`  |
+| answer-leak  | rung 1 must not restate the answer (lexical containment)    | `answerLeakMax=0.7`      |
+| grounding    | each sub-answer's content traces to the card's material     | `groundingMin=0.5`       |
+
+The OpenAI Chat Completions call is a plain `URLSession` request (model
+`gpt-4o-mini`, same body shape as desktop) — no `rsios`/Rust change was needed.
+It is injectable (`ChatFn`) so the guardrails can be unit-tested offline:
+
+```bash
+ios/scripts/test-laddergen.sh      # compiles LadderGen.swift + the tests on the host, runs them
+```
+
+A generated ladder is shown **only** if it clears all three guardrails; otherwise
+the reviewer falls back to a normal reveal, exactly as before. It renders through
+the existing teach-on-miss reviewer as a **retrieve-before-reveal** step
+(`GeneratedLadderView.swift`): the guiding question shows first, the sub-answer is
+revealed on tap, and after the last rung the original card is re-asked and graded
+(first-try → Good; after-ladder → Again + `ReadyMCAT::struggling`).
+
+**Key storage choice: Keychain (preferred), with a UserDefaults fallback.** The
+desktop reads `OPENAI_API_KEY` from the environment; on iOS there is no ambient
+env, so the key is entered in the native **Settings** tab and persisted
+(`APIKeyStore.swift`). An OpenAI key is a billable secret, so it belongs in the
+**Keychain** (encrypted, this-device-only) rather than `UserDefaults` where
+`SyncManager` keeps its self-hosted-server credentials. The reproducible
+verification build is compiled with `swiftc` and is **unsigned**, so it has no
+`application-identifier` entitlement and the Keychain returns
+`errSecMissingEntitlement`; in that (and only that) case the store falls back to
+`UserDefaults` so the feature is still exercisable on the Simulator. A signed
+device/Xcode build uses the Keychain. Generation is enabled **only** when a key
+is present — with no key the app behaves exactly as before (authored ladders
+only).
+
+**Mobile API-key tradeoff (documented, on purpose).** Any key shipped inside a
+mobile app can in principle be extracted from a jailbroken/instrumented device.
+This in-app key is fine for personal use and this MVP; a production build should
+proxy generation through a server so the key never lives on the phone. The
+Settings screen states this.
+
+**Try it.** Settings → paste an OpenAI key → **Save key** → **Run AI ladder
+demo** seeds one authorless card (deck `ReadyMCAT::AI Demo`, an FR note with an
+empty `Subquestions` field) and opens it; answer it wrong to see a ladder
+generated live before the answer. The card is seeded through the shared engine
+(`NewDeck` 7/0 → `AddDeck` 7/1 → `AddNote` 25/1, reusing the Free-Response
+notetype), so it studies through the same native FR path as the real cards. For the reproducible verification path (no
+typing), inject the key and open the demo directly:
+
+```bash
+set -a; source /path/to/anki/.env.local; set +a        # loads OPENAI_API_KEY (gitignored — never committed)
+SIMCTL_CHILD_OPENAI_API_KEY="$OPENAI_API_KEY" \
+SIMCTL_CHILD_READYMCAT_AI_DEMO=1 \
+SIMCTL_CHILD_READYMCAT_REVIEW=demo \
+SIMCTL_CHILD_READYMCAT_DEMO=ailadder \
+  ios/scripts/run-sim.sh "iPhone 17 Pro"
+```
+
+Verified live on the Simulator: the authorless card missed → a real ladder
+generated (`ladder generation: ok=true attempts=2 schema=true leak=false
+grounding=0.67`) and shown before the reveal (`docs/11-ai-teach.png`).
+
 ## Prerequisites
 
 - macOS + Xcode (tested with Xcode 26.4, iOS 26.4 simulator runtime).
@@ -104,9 +179,11 @@ screenshots and verification:
 
 | Env var                                   | Effect                                                                                                                     |
 | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `READYMCAT_TAB=study\|dashboard`          | Start on that tab                                                                                                          |
-| `READYMCAT_REVIEW=mcq\|fr\|passage\|cars` | Auto-open that reviewer                                                                                                    |
-| `READYMCAT_DEMO=correct\|wrong`           | Auto-answer the first reviewer question (feedback / teach-on-miss handoff)                                                 |
+| `READYMCAT_TAB=study\|dashboard\|sync\|settings` | Start on that tab                                                                                                   |
+| `READYMCAT_REVIEW=mcq\|fr\|passage\|cars\|demo`  | Auto-open that reviewer (`demo` = the authorless AI-ladder demo card)                                               |
+| `READYMCAT_DEMO=correct\|wrong\|ailadder` | Auto-answer the first reviewer question (`ailadder` also auto-advances a miss into the AI ladder, for screenshots)          |
+| `READYMCAT_AI_DEMO=1`                     | Seed the authorless demo deck (`ReadyMCAT::AI Demo`) so the AI path is triggerable                                          |
+| `SIMCTL_CHILD_OPENAI_API_KEY=sk-…`        | **DEBUG only** — pre-fill the key store so AI generation is on for the test run (never committed)                          |
 | `READYMCAT_DIAGNOSTIC=1`                  | Auto-open the diagnostic                                                                                                   |
 | `READYMCAT_AUTOPLAY=1`                    | Grade a batch of cards tap-free (grading-path check)                                                                       |
 | `READYMCAT_COLLECTION=demo`               | Open a bundled **synthetic** demo collection to preview a populated dashboard (falls back to the real bank if not bundled) |
@@ -128,6 +205,7 @@ Every screen was run against the bundled real engine data and screenshotted into
 | Free Response — auto-graded (model answer + explanation)                 | `docs/07-fr-graded.png`           |
 | Passage/CARS — passage panel + question                                  | `docs/08-passage.png`             |
 | Diagnostic — one MCQ per AAMC category (31)                              | `docs/09-diagnostic.png`          |
+| **AI teach-on-miss — a live-generated guiding ladder (authorless card)**  | `docs/11-ai-teach.png`            |
 
 ### Host FFI smoke test
 
@@ -165,6 +243,10 @@ indices — is unchanged and still valid.)
   Free Response (type-in, auto-graded by the ported grader), Passage/CARS
   (passage + question), each with the **teach-on-miss** sub-question ladder, and
   graded through the shared scheduler (Good / Again + struggling tag).
+- Native **AI teach-on-miss generation**: for a missed card that has **no
+  authored ladder**, a faithful Swift port of the desktop generator
+  (`LadderGen.swift`) builds a grounded `{q,a}` ladder via the OpenAI API and
+  runs the same retrieve-before-reveal flow — see below.
 - Native **diagnostic**: administers the shared quiz and seeds the ordering prior.
 - **Points-at-stake ordering is active** (the bundled collection selects order 13
   with a `taxonomy.json` beside it).
@@ -175,8 +257,6 @@ indices — is unchanged and still valid.)
 - **Two-way sync** (`rsios` is built with no TLS backend; the feature cargo
   features are wired but off).
 - Device builds / code signing (Simulator-only).
-- Runtime AI generation of teach-on-miss ladders (the ladders are authored
-  content, read from the note's `Subquestions` field).
 - Media rendering beyond text/HTML (the bank is authored as plain text).
 
 ## Notes / known wrinkles

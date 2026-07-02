@@ -31,3 +31,8 @@ ios/Frameworks/*.xcframework
 **/xcuserdata/
 *.xcuserstate
 ios/ReadyMCAT.xcodeproj/project.xcworkspace/
+
+# ReadyMCAT: local secrets — NEVER commit (holds OPENAI_API_KEY for AI ladder generation + eval)
+.env
+.env.local
+.env.*.local

@@ -38,6 +38,11 @@ check:
 bench *args:
     {{ if os() == "windows" { "$env:CARGO_TARGET_DIR='out/rust'; cargo run --release -p mcat_bench --" } else { "CARGO_TARGET_DIR=out/rust cargo run --release -p mcat_bench --" } }} {{ args }}
 
+# ReadyMCAT: run the teach-on-miss ladder-generation eval harness over the
+# held-out golden set (needs OPENAI_API_KEY). Pass --stub to run fully offline.
+eval *args:
+    {{ uv }} run python readymcat/eval/run_eval.py {{ args }}
+
 # Run all tests (Rust, Python, TypeScript). Pass --coverage to enforce coverage, and --html to include HTML reports.
 [arg("coverage", long="coverage", value="--coverage")]
 [arg("html", long="html", value="--html")]

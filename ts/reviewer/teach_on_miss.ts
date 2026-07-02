@@ -67,6 +67,11 @@ const CSS = `
 #qa .tom-note.spaced{border-left-color:#2e7d32;}
 #qa .tom-res a{color:var(--accent,#2186eb);text-decoration:underline;cursor:pointer;}
 #qa .tom-main{border:1px dashed var(--border,#0005);border-radius:10px;padding:1em;}
+#qa .tom-loading{display:flex;flex-direction:column;align-items:center;gap:.7em;text-align:center;}
+#qa .tom-spinner{width:26px;height:26px;border-radius:50%;
+    border:3px solid var(--border,#0003);border-top-color:var(--accent,#2186eb);
+    animation:tom-spin .8s linear infinite;}
+@keyframes tom-spin{to{transform:rotate(360deg);}}
 `;
 
 function ensureStyle(): void {
@@ -308,4 +313,37 @@ export function _teachOnMissStart(data: TeachOnMissPayload): void {
     payload = data;
     rungIndex = 0;
     renderRung();
+}
+
+// Shown while a ladder is being generated at runtime (the AI feature) for a
+// card that has no authored ladder. The Python reviewer calls this before
+// kicking off background generation, then calls `_teachOnMissStart` with the
+// generated ladder when it arrives (or falls back to a normal reschedule).
+export function _teachOnMissLoading(): void {
+    ensureStyle();
+    const wrap = document.createElement("div");
+    wrap.className = "tom-wrap";
+
+    const head = document.createElement("div");
+    head.className = "tom-head";
+    const badge = document.createElement("span");
+    badge.className = "tom-badge";
+    badge.textContent = "ReadyMCAT \u00b7 Teach-on-miss";
+    head.appendChild(badge);
+    wrap.appendChild(head);
+
+    const card = document.createElement("div");
+    card.className = "tom-card tom-loading";
+    const spinner = document.createElement("div");
+    spinner.className = "tom-spinner";
+    const label = document.createElement("div");
+    label.className = "tom-q";
+    label.textContent = "Building your guiding questions\u2026";
+    const hint = document.createElement("div");
+    hint.className = "tom-hint";
+    hint.textContent = "Generating a short retrieval ladder from this card.";
+    card.append(spinner, label, hint);
+    wrap.appendChild(card);
+
+    qaEl().replaceChildren(wrap);
 }

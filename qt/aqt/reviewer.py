@@ -7,6 +7,7 @@ import json
 import random
 import re
 from collections.abc import Callable, Generator, Sequence
+from concurrent.futures import Future
 from dataclasses import dataclass
 from enum import Enum, auto
 from functools import partial
@@ -613,15 +614,30 @@ class Reviewer:
     ############################################################
 
     def _maybe_start_teach_on_miss(self) -> bool:
-        """If the just-missed card is a curated concept, run the guiding ladder
-        instead of immediately rescheduling. Returns True if a ladder started."""
+        """If the just-missed card has a guiding ladder, run it instead of
+        immediately rescheduling.
+
+        The ladder is either authored (a curated concept matched by tag) or,
+        for any other card, generated at runtime so teach-on-miss also covers
+        imported/community decks and the student's own cards (the ReadyMCAT
+        PRD's #1 next step). Returns True if a ladder started or is being
+        generated in the background."""
         if self.card is None:
             return False
         data = readymcat.load_subquestions(self.mw.col.path)
         concept = readymcat.match_concept(self.card.note().tags, data)
-        if concept is None:
-            return False
+        if concept is not None:
+            self._start_teach_on_miss(concept, generated=False)
+            return True
+        return self._maybe_generate_teach_on_miss()
 
+    def _start_teach_on_miss(
+        self, concept: readymcat.Concept, *, generated: bool
+    ) -> None:
+        """Run the teach-on-miss ladder UI for a concept (authored or
+        generated) and record that it started."""
+        if self.card is None:
+            return
         question = self._mungeQA(self.card.question())
         answer = self._mungeQA(self.card.answer())
         resource = dict(concept.resource)
@@ -639,6 +655,7 @@ class Reviewer:
             "resource_url": resource.get("url", ""),
             "marks": [],
             "result": None,
+            "generated": generated,
         }
         self.state = "teaching"
         payload = {
@@ -666,12 +683,133 @@ class Reviewer:
                 "note_id": self.card.note().id,
                 "concept": concept.id,
                 "category": concept.category,
+                "generated": generated,
             },
+        )
+
+    def _maybe_generate_teach_on_miss(self) -> bool:
+        """Generate a guiding ladder for a card that has no authored concept.
+
+        Reuses a cached ladder instantly when present; otherwise generates one
+        on a background thread (so the network call never freezes the UI),
+        showing a brief "building guiding questions" state and starting
+        teach-on-miss when it arrives. Returns False - reschedule the miss
+        normally - when generation is disabled or unavailable."""
+        if self.card is None:
+            return False
+        try:
+            from aqt import readymcat_ladder_gen as ladder_gen
+        except Exception:  # pragma: no cover - defensive
+            return False
+        if not ladder_gen.is_enabled():
+            return False
+
+        note = self.card.note()
+        col_path = self.mw.col.path
+        cached = ladder_gen.cached_ladder(col_path, note.id)
+        if cached:
+            self._start_teach_on_miss(
+                self._generated_concept(note, cached), generated=True
+            )
+            return True
+
+        # Capture the card/note identity so a result that arrives after the
+        # student has moved on is dropped rather than shown on the wrong card.
+        card_id = self.card.id
+        note_id = note.id
+        question = self._mungeQA(self.card.question())
+        answer = self._mungeQA(self.card.answer())
+        context = ladder_gen.build_context(note, question, answer)
+
+        self._tom = {"pending": True, "card_id": card_id}
+        self.state = "teaching"
+        self.web.eval("_teachOnMissLoading();")
+        self.bottom.web.eval(
+            "showAnswer(%s);"
+            % json.dumps(
+                "<center><b>ReadyMCAT</b> &mdash; building guiding "
+                "questions&hellip;</center>"
+            )
+        )
+
+        def task() -> dict[str, Any]:
+            return ladder_gen.generate_and_cache(col_path, note_id, context)
+
+        self.mw.taskman.run_in_background(
+            task,
+            lambda fut: self._on_generated_ladder(fut, card_id, note_id),
+            uses_collection=False,
         )
         return True
 
+    def _generated_concept(
+        self, note: Any, ladder: list[dict[str, str]]
+    ) -> readymcat.Concept:
+        """Wrap a generated ladder in a Concept so the existing teach-on-miss
+        flow (rendering, self-marking, scheduling) runs unchanged."""
+        from aqt import readymcat_ladder_gen as ladder_gen
+
+        title, category = ladder_gen.derive_title_category(note)
+        return readymcat.Concept(
+            id=f"generated::{note.id}",
+            title=title,
+            category=category,
+            match_tags=[],
+            ladder=ladder,
+            resource={},
+        )
+
+    def _on_generated_ladder(
+        self, future: Future, card_id: CardId, note_id: int
+    ) -> None:
+        """Main-thread callback once background ladder generation finishes."""
+        try:
+            result = future.result()
+        except Exception as exc:  # pragma: no cover - defensive
+            print("ReadyMCAT: ladder generation failed", exc)
+            result = {"ok": False, "ladder": None, "error": str(exc)}
+
+        # Only act if we still own the pending teaching state for this card.
+        if (
+            self._tom is None
+            or not self._tom.get("pending")
+            or self._tom.get("card_id") != card_id
+        ):
+            return
+
+        # Instrument the generation outcome distinctly from authored ladders,
+        # so the corrected-concept ablation can compare generated vs authored.
+        readymcat.log_event(
+            self.mw.col.path,
+            {
+                "event": "ladder_generated",
+                "card_id": card_id,
+                "note_id": note_id,
+                "ok": bool(result.get("ok")),
+                "attempts": result.get("attempts"),
+                "validation": result.get("validation"),
+                "error": result.get("error", ""),
+            },
+        )
+
+        # From here we own the pending state and always clear it.
+        self._tom = None
+        ladder = result.get("ladder") if result.get("ok") else None
+        if self.card is None or self.card.id != card_id:
+            # Card changed under us: abandon quietly (leave it due) rather than
+            # rescheduling or teaching on the wrong card.
+            return
+        if not ladder:
+            # Graceful fallback: no usable ladder, reschedule the miss normally.
+            self.state = "answer"
+            self._do_answer_card(1)
+            return
+        self._start_teach_on_miss(
+            self._generated_concept(self.card.note(), ladder), generated=True
+        )
+
     def _handle_teach_on_miss(self, cmd: str) -> None:
-        if self._tom is None:
+        if self._tom is None or self._tom.get("pending"):
             return
         concept: readymcat.Concept = self._tom["concept"]
         if cmd.startswith("mark:"):

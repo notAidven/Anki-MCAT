@@ -40,52 +40,53 @@ from aqt.webview import AnkiWebView, AnkiWebViewKind
 if TYPE_CHECKING:
     from anki.notes import Note
 
-# --- Honest-memory dashboard window -----------------------------------------
+# --- Honest-memory dashboard (in-window view) -------------------------------
 
 
-class ReadyMCATDashboard(QDialog):
+class ReadyMCATDashboardView:
+    """The honest-memory dashboard, rendered INTO the main window.
+
+    Formerly a standalone ``QDialog``; now the Dashboard tab of the single
+    ReadyMCAT window. Like the Home hub it owns its own :class:`AnkiWebView`
+    (kind ``READYMCAT_DASHBOARD``) so the page keeps the internal-API access its
+    ``pointsAtStakeQueue`` fetch needs — the shared ``mw.web`` deliberately
+    lacks it. The main window swaps this web view into its central stack when
+    the Dashboard tab is selected (see
+    ``aqt.main.AnkiQt._readymcatDashboardState``)."""
+
     def __init__(self, mw: aqt.main.AnkiQt) -> None:
-        super().__init__(mw, Qt.WindowType.Window)
         self.mw = mw
-        self.name = "readyMCATDashboard"
-        mw.garbage_collect_on_dialog_finish(self)
-        self.setWindowTitle("ReadyMCAT — Honest Memory")
-        self.setMinimumSize(720, 720)
-        disable_help_button(self)
-        restoreGeom(self, self.name, default_size=(820, 820))
-
-        self.web = AnkiWebView(self, kind=AnkiWebViewKind.READYMCAT_DASHBOARD)
+        # No Qt parent: the main window's central QStackedWidget takes ownership
+        # once this view's web is registered.
+        self.web = AnkiWebView(kind=AnkiWebViewKind.READYMCAT_DASHBOARD)
         self.web.set_bridge_command(self._on_bridge_cmd, self)
-        layout = QVBoxLayout(self)
-        layout.setContentsMargins(0, 0, 0, 0)
-        layout.addWidget(self.web)
+        self._loads = 0
 
+    def show(self) -> None:
+        """(Re)load the dashboard so Memory/Performance/Readiness reflect the
+        latest collection state each time the tab is opened."""
+        self.web.set_bridge_command(self._on_bridge_cmd, self)
+        self._loads += 1
         self.web.load_sveltekit_page(self._page_path())
-        self.show()
-        # Deferred launch routing opens this after the deck browser has painted
-        # and taken focus, so explicitly bring it to the front — otherwise it
-        # opens behind the main window and the user never "lands" on it.
-        self.raise_()
-        self.activateWindow()
 
     def _page_path(self) -> str:
         page = "readymcat-dashboard"
+        params = []
         taxonomy = _bundled_taxonomy_path(self.mw)
         if taxonomy:
-            return f"{page}?taxonomy={quote(taxonomy)}"
-        return page
+            params.append(f"taxonomy={quote(taxonomy)}")
+        # Cache-buster so re-selecting the Dashboard tab does a real navigation
+        # (fresh scores + domReady) instead of a stale same-URL no-op. See the
+        # matching note in aqt.readymcat_home.ReadyMCATHomeView._page_path.
+        params.append(f"_r={self._loads}")
+        return f"{page}?{'&'.join(params)}"
 
     def _on_bridge_cmd(self, cmd: str) -> bool:
-        if cmd == "close":
-            self.close()
+        # ``close`` (Escape) is handled by AnkiWebView.onEsc, which is a no-op in
+        # the main window — there is no dialog to dismiss now.
+        if cmd == "openHome":
+            self.mw.moveToState("readymcatHome")
         return False
-
-    def reject(self) -> None:
-        if self.web:
-            self.web.cleanup()
-            self.web = None  # type: ignore[assignment]
-        saveGeom(self, self.name)
-        QDialog.reject(self)
 
 
 def _bundled_taxonomy_path(mw: aqt.main.AnkiQt) -> str:
@@ -105,7 +106,8 @@ def _bundled_taxonomy_path(mw: aqt.main.AnkiQt) -> str:
 
 
 def show_readymcat_dashboard(mw: aqt.main.AnkiQt) -> None:
-    ReadyMCATDashboard(mw)
+    """Navigate the single window to the Dashboard tab (no longer a popup)."""
+    mw.moveToState("readymcatDashboard")
 
 
 # --- Introductory diagnostic (LEARN MODE) -----------------------------------
@@ -154,10 +156,13 @@ class ReadyMCATDiagnostic(QDialog):
     def _on_bridge_cmd(self, cmd: str) -> bool:
         if cmd == "close":
             self.close()
-            # Rebuild the queue so the freshly-seeded prior orders session one.
+            # Rebuild the queue so the freshly-seeded prior orders session one,
+            # then land the (now single-window) app on the Home tab rather than
+            # leaving the bare deck browser behind the closing dialog.
             try:
                 if self.mw.col is not None:
                     self.mw.reset()
+                    self.mw.moveToState("readymcatHome")
             except Exception as exc:  # pragma: no cover - defensive
                 print("ReadyMCAT: could not refresh after diagnostic", exc)
         return False

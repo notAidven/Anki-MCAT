@@ -51,6 +51,29 @@
     }
 }
 
+// ReadyMCAT: persistent single-window tab bar (Home · Study · Dashboard ·
+// Decks). The tabs reuse .hitem so they inherit the toolbar's fancy/flat
+// button styling; .active gives the current tab a clear, intentional state.
+.rmcat-tabs {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.rmcat-tab {
+    text-decoration: none;
+    &:hover {
+        text-decoration: none;
+    }
+    &.active {
+        font-weight: 800;
+        color: color(fg);
+        background: var(--canvas-inset) !important;
+        border-color: var(--border-subtle) !important;
+        box-shadow: inset 0 -2px 0 0 color(fg);
+    }
+}
+
 body {
     margin: 0;
     padding: 0;

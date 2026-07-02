@@ -609,12 +609,19 @@ def outcome_is_struggling(outcome: str) -> bool:
     return outcome == OUTCOME_WRONG
 
 
-def parse_subquestions(raw: str | None) -> list[dict[str, Any]]:
-    """Parse the note's ``Subquestions`` JSON field into a clean ladder.
+def _parse_choice_ladder(
+    raw: str | None, *, min_options: int, exact: bool
+) -> list[dict[str, Any]]:
+    """Shared parser behind :func:`parse_subquestions` and
+    :func:`parse_passage_subquestions`.
 
-    Each rung is normalised to ``{stem, options[4], correct_index, explanation}``
-    and malformed rungs are dropped, so the reviewer never crashes on bad data
-    (it simply runs a shorter — or empty — ladder)."""
+    Each rung is normalised to ``{stem, options, correct_index, explanation}``.
+    A rung needs at least ``min_options`` options — and *exactly* that many when
+    ``exact`` (the discrete-MCQ case of four); otherwise more are allowed (AAMC
+    passage ladders use four, CARS guiding ladders two or three). Malformed rungs
+    (no stem, too few options, or an out-of-range answer) are dropped so the
+    reviewer runs a shorter — or empty — ladder rather than crashing on bad data.
+    """
     if not raw:
         return []
     try:
@@ -628,47 +635,9 @@ def parse_subquestions(raw: str | None) -> list[dict[str, Any]]:
         if not isinstance(entry, dict):
             continue
         options = entry.get("options")
-        if not isinstance(options, list) or len(options) != 4:
+        if not isinstance(options, list) or len(options) < min_options:
             continue
-        idx = entry.get("correct_index")
-        if not isinstance(idx, int) or not 0 <= idx <= 3:
-            continue
-        stem = str(entry.get("stem", "")).strip()
-        if not stem:
-            continue
-        rungs.append(
-            {
-                "stem": stem,
-                "options": [str(o) for o in options],
-                "correct_index": idx,
-                "explanation": str(entry.get("explanation", "")),
-            }
-        )
-    return rungs
-
-
-def parse_passage_subquestions(raw: str | None) -> list[dict[str, Any]]:
-    """Parse a passage note's ``Subquestions`` JSON into a guiding ladder.
-
-    Like :func:`parse_subquestions`, but accepts a *variable* number of options
-    per rung (>= 2 rather than exactly 4): AAMC passage ladders use four options,
-    while CARS guiding ladders use two or three. Malformed rungs (no stem, fewer
-    than two options, or an out-of-range answer) are dropped so the reviewer runs
-    a shorter — or empty — ladder rather than crashing."""
-    if not raw:
-        return []
-    try:
-        data = json.loads(raw)
-    except (ValueError, TypeError):
-        return []
-    if not isinstance(data, list):
-        return []
-    rungs: list[dict[str, Any]] = []
-    for entry in data:
-        if not isinstance(entry, dict):
-            continue
-        options = entry.get("options")
-        if not isinstance(options, list) or len(options) < 2:
+        if exact and len(options) != min_options:
             continue
         idx = entry.get("correct_index")
         if not isinstance(idx, int) or not 0 <= idx < len(options):
@@ -685,6 +654,24 @@ def parse_passage_subquestions(raw: str | None) -> list[dict[str, Any]]:
             }
         )
     return rungs
+
+
+def parse_subquestions(raw: str | None) -> list[dict[str, Any]]:
+    """Parse the note's ``Subquestions`` JSON field into a clean ladder.
+
+    Each rung is normalised to ``{stem, options[4], correct_index, explanation}``
+    and malformed rungs are dropped, so the reviewer never crashes on bad data
+    (it simply runs a shorter — or empty — ladder)."""
+    return _parse_choice_ladder(raw, min_options=4, exact=True)
+
+
+def parse_passage_subquestions(raw: str | None) -> list[dict[str, Any]]:
+    """Parse a passage note's ``Subquestions`` JSON into a guiding ladder.
+
+    Like :func:`parse_subquestions`, but accepts a *variable* number of options
+    per rung (>= 2 rather than exactly 4): AAMC passage ladders use four options,
+    while CARS guiding ladders use two or three."""
+    return _parse_choice_ladder(raw, min_options=2, exact=False)
 
 
 def mcq_payload_from_fields(fields: dict[str, str]) -> dict[str, Any]:

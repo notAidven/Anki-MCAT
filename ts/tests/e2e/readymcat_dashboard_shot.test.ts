@@ -1,13 +1,15 @@
 // Copyright: Ankitects Pty Ltd and contributors
 // License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 
-// Screenshot helper for the ReadyMCAT honest-memory dashboard. Skipped in the
-// normal e2e suite; opt in with READYMCAT_SHOT_CAPTURE=1, e.g.
+// Screenshot helper for the ReadyMCAT honest-scores dashboard (Memory,
+// Performance, Readiness). Skipped in the normal e2e suite; opt in with
+// READYMCAT_SHOT_CAPTURE=1, e.g.
 //   READYMCAT_SHOT_CAPTURE=1 READYMCAT_SEED_DEMO=1 READYMCAT_SHOT=populated \
 //     yarn test:e2e ts/tests/e2e/readymcat_dashboard_shot.test.ts
 // The launcher (qt/tests/launch_anki_for_e2e.py) inherits READYMCAT_SEED_DEMO,
-// so "populated" auto-seeds SYNTHETIC demo data; without it the empty profile
-// renders the honest give-up/abstain state.
+// so "populated" auto-seeds SYNTHETIC demo data (enough that ALL THREE scores
+// clear their give-up thresholds); without it the empty profile renders the
+// honest give-up/abstain state in every stat card.
 
 import type { Locator, Page } from "@playwright/test";
 import { mkdirSync } from "fs";
@@ -54,7 +56,21 @@ async function waitForState(page: Page, target: Locator): Promise<void> {
     mkdirSync(outDir, { recursive: true });
 
     if (shot === "populated") {
-        await waitForState(page, page.locator(".range"));
+        // A populated stat shows a real range (not the ".muted" give-up text).
+        await waitForState(page, page.locator(".stat .stat-range:not(.muted)"));
+
+        // All three headline scores must be populated at once.
+        await expect(page.locator(".stat:not(.is-giveup)")).toHaveCount(3);
+        for (const label of ["Memory", "Performance", "Readiness"]) {
+            await expect(
+                page.locator(".stat .eyebrow", { hasText: label }).first(),
+            ).toBeVisible();
+        }
+        // Readiness must stay honestly flagged as a heuristic projection.
+        await expect(page.locator(".stat.readiness .caveat")).toContainText(
+            /uncalibrated|heuristic/i,
+        );
+
         await page.screenshot({
             path: resolve(outDir, "readymcat-dashboard-simplified.png"),
             fullPage: true,
@@ -72,7 +88,9 @@ async function waitForState(page: Page, target: Locator): Promise<void> {
             });
         }
     } else {
-        await waitForState(page, page.locator(".giveup"));
+        // Empty profile: every stat card renders its honest give-up state.
+        await waitForState(page, page.locator(".stat.is-giveup"));
+        await expect(page.locator(".stat.is-giveup")).toHaveCount(3);
         await page.screenshot({
             path: resolve(outDir, `readymcat-dashboard-${shot}.png`),
             fullPage: true,

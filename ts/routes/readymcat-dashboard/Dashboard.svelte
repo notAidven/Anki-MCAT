@@ -10,44 +10,88 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
     /** When the aggregation was computed (ms epoch); drives "last updated". */
     export let generatedAt: number = Date.now();
 
-    // The give-up rule (mirrors the Rust thresholds): show no score until there
-    // is enough evidence.
+    // Give-up rules (mirror the Rust thresholds): show no score until there is
+    // enough evidence. Memory needs 200 graded reviews AND 50% coverage;
+    // Performance needs 30 first-attempts on question cards; Readiness needs
+    // BOTH (it is projected from them).
     const MIN_REVIEWS = 200;
     const MIN_COVERAGE = 0.5;
+    const MIN_ATTEMPTS = 30;
+
+    // The real MCAT total-score scale readiness projects onto.
+    const SCORE_MIN = 472;
+    const SCORE_MAX = 528;
 
     const pct = (x: number): string => `${Math.round(x * 100)}%`;
+    // Position of a scaled score on the 472–528 axis, as a 0..1 fraction.
+    const scorePos = (s: number): number =>
+        Math.max(0, Math.min(1, (s - SCORE_MIN) / (SCORE_MAX - SCORE_MIN)));
 
     $: memory = data?.memory;
     $: coverage = data?.coverage;
+    $: performance = data?.performance;
+    $: readiness = data?.readiness;
     $: topics = data?.topics ?? [];
 
-    $: mean = memory?.mean ?? 0;
-    $: rangeLow = memory?.rangeLow ?? 0;
-    $: rangeHigh = memory?.rangeHigh ?? 0;
+    // --- memory -----------------------------------------------------------
+    $: memMean = memory?.mean ?? 0;
+    $: memLow = memory?.rangeLow ?? 0;
+    $: memHigh = memory?.rangeHigh ?? 0;
     $: gradedReviews = memory?.gradedReviews ?? 0;
     $: gradedCards = memory?.gradedCards ?? 0;
+    // meetsDataThreshold is the memory give-up flag (kept for compatibility).
+    $: memoryReady = data?.meetsDataThreshold ?? false;
 
+    // --- coverage ---------------------------------------------------------
     $: coverageFraction = coverage?.fraction ?? 0;
     $: weightedFraction = coverage?.weightedFraction ?? 0;
     $: categoriesCovered = coverage?.categoriesCovered ?? 0;
     $: categoriesTotal = coverage?.categoriesTotal ?? 0;
 
+    // --- performance (accuracy on practice questions) ---------------------
+    $: perfMean = performance?.mean ?? 0;
+    $: perfLow = performance?.rangeLow ?? 0;
+    $: perfHigh = performance?.rangeHigh ?? 0;
+    $: attempts = performance?.attempts ?? 0;
+    $: hits = performance?.hits ?? 0;
+    $: performanceReady = performance?.meetsDataThreshold ?? false;
+    $: perfTopics = performance?.topics ?? [];
+
+    // --- readiness (heuristic 472–528 projection) -------------------------
+    $: readyPoint = readiness?.point ?? 0;
+    $: readyLow = readiness?.rangeLow ?? 0;
+    $: readyHigh = readiness?.rangeHigh ?? 0;
+    $: readinessReady = readiness?.meetsDataThreshold ?? false;
+
+    // give-up progress meters
     $: reviewProgress = Math.min(1, gradedReviews / MIN_REVIEWS);
     $: coverageProgress = Math.min(1, coverageFraction / MIN_COVERAGE);
+    $: attemptsProgress = Math.min(1, attempts / MIN_ATTEMPTS);
 
     // "How sure": the width of the reported 95% interval is the honest measure
     // of confidence — more evidence tightens it. Never invented, always derived.
     type ConfLevel = "high" | "moderate" | "low";
-    function levelFor(margin: number): ConfLevel {
-        if (margin <= 2.5) {
+    // Confidence from a fractional (0..1 → percentage-point) interval width.
+    function fracLevel(marginPts: number): ConfLevel {
+        if (marginPts <= 2.5) {
             return "high";
         }
-        if (margin <= 6) {
+        if (marginPts <= 6) {
             return "moderate";
         }
         return "low";
     }
-    function labelFor(level: ConfLevel): string {
+    // Confidence from a scaled-score interval width (readiness, in points).
+    function scoreLevel(marginPts: number): ConfLevel {
+        if (marginPts <= 3) {
+            return "high";
+        }
+        if (marginPts <= 8) {
+            return "moderate";
+        }
+        return "low";
+    }
+    function confLabel(level: ConfLevel): string {
         if (level === "high") {
             return "High confidence";
         }
@@ -56,9 +100,14 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
         }
         return "Low confidence";
     }
-    $: marginPoints = ((rangeHigh - rangeLow) / 2) * 100;
-    $: confidenceLevel = levelFor(marginPoints);
-    $: confidenceLabel = labelFor(confidenceLevel);
+    const confClass = (level: ConfLevel): string => `is-${level}`;
+
+    $: memMargin = ((memHigh - memLow) / 2) * 100;
+    $: memConf = fracLevel(memMargin);
+    $: perfMargin = ((perfHigh - perfLow) / 2) * 100;
+    $: perfConf = fracLevel(perfMargin);
+    $: readyMargin = (readyHigh - readyLow) / 2;
+    $: readyConf = scoreLevel(readyMargin);
 
     // "What to study next": topics with the most points at stake.
     $: studyNext = topics
@@ -83,6 +132,9 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
         .join(", ");
     $: strongCodes = strongest.map((t) => t.category).join(", ");
 
+    // Per-topic first-attempt accuracy, keyed by category for the detail table.
+    $: accuracyByCat = new Map(perfTopics.map((t) => [t.category, t]));
+
     $: updatedLabel = new Date(generatedAt || Date.now()).toLocaleString(undefined, {
         dateStyle: "medium",
         timeStyle: "short",
@@ -92,10 +144,15 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 <div class="dashboard">
     <header class="masthead">
         <div class="titles">
-            <h1>ReadyMCAT — Honest Memory</h1>
+            <h1>ReadyMCAT — Honest Scores</h1>
             <p class="subtitle">
-                Recall probability from FSRS, aggregated per AAMC topic — shown as a
-                range, never a bare number.
+                Three separate, honest scores — <strong>Memory</strong>
+                ,
+                <strong>Performance</strong>
+                and
+                <strong>Readiness</strong>
+                 — each a range with a confidence level, each hidden until there's enough
+                evidence to back it up.
             </p>
         </div>
         <div class="updated" title="When this aggregation was computed">
@@ -117,49 +174,181 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
                 <p class="detail">{error}</p>
             {/if}
         </section>
-    {:else if !data.meetsDataThreshold}
-        <!-- Give-up / abstain state: no score, and an honest "why". -->
-        <section class="card hero giveup">
-            <div class="eyebrow warn-text">Not enough evidence yet — no score</div>
-            <p class="giveup-lead">
-                A tool that knows when it doesn't know is more trustworthy than one that
-                always answers. Your memory score stays hidden until there are at least {MIN_REVIEWS}
-                graded reviews
-                <em>and</em>
-                {pct(MIN_COVERAGE)} of the outline is covered.
-            </p>
-            <div class="meters">
-                <div class="meter">
-                    <div class="meter-top">
-                        <span>Graded reviews</span>
-                        <span class="meter-val">{gradedReviews} / {MIN_REVIEWS}</span>
-                    </div>
-                    <div class="bar">
+    {:else}
+        <!-- Three co-equal headline stats. Each shows a range + confidence chip
+             when it has enough evidence, or an honest give-up state below it. -->
+        <section class="stats" aria-label="Headline scores">
+            <!-- MEMORY -->
+            <article class="card stat" class:is-giveup={!memoryReady}>
+                <div class="stat-head">
+                    <span class="eyebrow">Memory</span>
+                    <span class="stat-tag">recall right now</span>
+                </div>
+                {#if memoryReady}
+                    <div class="stat-range">{pct(memLow)}–{pct(memHigh)}</div>
+                    <span class="chip conf {confClass(memConf)}">
+                        {confLabel(memConf)} · ±{memMargin.toFixed(1)}%
+                    </span>
+                    <p class="stat-note">
+                        Point ≈ {pct(memMean)} · FSRS recall across {gradedCards.toLocaleString()}
+                        cards.
+                    </p>
+                    <div class="gauge" aria-hidden="true">
                         <div
-                            class="bar-fill"
-                            class:is-met={reviewProgress >= 1}
-                            style:width={pct(reviewProgress)}
+                            class="gauge-band"
+                            style:left={pct(memLow)}
+                            style:width={pct(memHigh - memLow)}
+                        ></div>
+                        <div class="gauge-mean" style:left={pct(memMean)}></div>
+                    </div>
+                    <div class="gauge-scale" aria-hidden="true">
+                        <span>0%</span>
+                        <span>50%</span>
+                        <span>100%</span>
+                    </div>
+                {:else}
+                    <div class="stat-range muted">Not enough data</div>
+                    <span class="chip needs">Needs evidence</span>
+                    <p class="stat-note">
+                        Hidden until {MIN_REVIEWS} graded reviews
+                        <em>and</em>
+                        {pct(MIN_COVERAGE)} coverage.
+                    </p>
+                    <div class="mini-meter">
+                        <div class="meter-top">
+                            <span>Reviews</span>
+                            <span class="meter-val">
+                                {gradedReviews} / {MIN_REVIEWS}
+                            </span>
+                        </div>
+                        <div class="bar">
+                            <div
+                                class="bar-fill"
+                                class:is-met={reviewProgress >= 1}
+                                style:width={pct(reviewProgress)}
+                            ></div>
+                        </div>
+                        <div class="meter-top">
+                            <span>Coverage</span>
+                            <span class="meter-val">
+                                {pct(coverageFraction)} / {pct(MIN_COVERAGE)}
+                            </span>
+                        </div>
+                        <div class="bar">
+                            <div
+                                class="bar-fill"
+                                class:is-met={coverageProgress >= 1}
+                                style:width={pct(coverageProgress)}
+                            ></div>
+                        </div>
+                    </div>
+                {/if}
+            </article>
+
+            <!-- PERFORMANCE -->
+            <article class="card stat" class:is-giveup={!performanceReady}>
+                <div class="stat-head">
+                    <span class="eyebrow">Performance</span>
+                    <span class="stat-tag">practice-question accuracy</span>
+                </div>
+                {#if performanceReady}
+                    <div class="stat-range">{pct(perfLow)}–{pct(perfHigh)}</div>
+                    <span class="chip conf {confClass(perfConf)}">
+                        {confLabel(perfConf)} · ±{perfMargin.toFixed(1)}%
+                    </span>
+                    <p class="stat-note">
+                        Point ≈ {pct(perfMean)} · {hits.toLocaleString()}/{attempts.toLocaleString()}
+                        first tries correct on practice questions.
+                    </p>
+                    <div class="gauge" aria-hidden="true">
+                        <div
+                            class="gauge-band alt"
+                            style:left={pct(perfLow)}
+                            style:width={pct(perfHigh - perfLow)}
+                        ></div>
+                        <div class="gauge-mean alt" style:left={pct(perfMean)}></div>
+                    </div>
+                    <div class="gauge-scale" aria-hidden="true">
+                        <span>0%</span>
+                        <span>50%</span>
+                        <span>100%</span>
+                    </div>
+                {:else}
+                    <div class="stat-range muted">Not enough data</div>
+                    <span class="chip needs">Needs evidence</span>
+                    <p class="stat-note">
+                        First-attempt accuracy on MCQ / free-response / passage cards,
+                        hidden until {MIN_ATTEMPTS} attempts.
+                    </p>
+                    <div class="mini-meter">
+                        <div class="meter-top">
+                            <span>Attempts</span>
+                            <span class="meter-val">{attempts} / {MIN_ATTEMPTS}</span>
+                        </div>
+                        <div class="bar">
+                            <div
+                                class="bar-fill alt"
+                                class:is-met={attemptsProgress >= 1}
+                                style:width={pct(attemptsProgress)}
+                            ></div>
+                        </div>
+                    </div>
+                {/if}
+            </article>
+
+            <!-- READINESS -->
+            <article class="card stat readiness" class:is-giveup={!readinessReady}>
+                <div class="stat-head">
+                    <span class="eyebrow">Readiness</span>
+                    <span class="stat-tag heuristic-tag">heuristic · 472–528</span>
+                </div>
+                {#if readinessReady}
+                    <div class="stat-range">{readyLow}–{readyHigh}</div>
+                    <span class="chip conf {confClass(readyConf)}">
+                        {confLabel(readyConf)} · ±{readyMargin.toFixed(0)}
+                    </span>
+                    <p class="stat-note">
+                        Projected ≈ <strong>{readyPoint}</strong>
+                         on the 472–528 scale.
+                    </p>
+                    <div class="gauge" aria-hidden="true">
+                        <div
+                            class="gauge-band ready"
+                            style:left={pct(scorePos(readyLow))}
+                            style:width={pct(scorePos(readyHigh) - scorePos(readyLow))}
+                        ></div>
+                        <div
+                            class="gauge-mean ready"
+                            style:left={pct(scorePos(readyPoint))}
                         ></div>
                     </div>
-                </div>
-                <div class="meter">
-                    <div class="meter-top">
-                        <span>Topic coverage</span>
-                        <span class="meter-val">
-                            {pct(coverageFraction)} / {pct(MIN_COVERAGE)}
-                        </span>
+                    <div class="gauge-scale" aria-hidden="true">
+                        <span>472</span>
+                        <span>500</span>
+                        <span>528</span>
                     </div>
-                    <div class="bar">
-                        <div
-                            class="bar-fill"
-                            class:is-met={coverageProgress >= 1}
-                            style:width={pct(coverageProgress)}
-                        ></div>
-                    </div>
-                </div>
-            </div>
+                    <p class="caveat">
+                        Heuristic projection from Performance + Memory — <strong>
+                            uncalibrated
+                        </strong>
+                        , not a real MCAT score.
+                    </p>
+                {:else}
+                    <div class="stat-range muted">Not enough data</div>
+                    <span class="chip needs">Needs evidence</span>
+                    <p class="stat-note">
+                        Projected only once <em>both</em>
+                         Memory and Performance have enough evidence.
+                    </p>
+                    <p class="caveat">
+                        When shown it is a heuristic, uncalibrated projection — never a
+                        real MCAT score.
+                    </p>
+                {/if}
+            </article>
         </section>
 
+        <!-- Supporting detail. -->
         <section class="card">
             <div class="eyebrow">Outline coverage</div>
             <div class="cov-head">
@@ -177,80 +366,8 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
         <section class="card">
             <div class="eyebrow">What to study next</div>
             <p class="section-note">
-                Ordering only — not a readiness score. Highest points at stake = topic
-                weight × your weakness ({rankedCount} due cards ranked).
-            </p>
-            <ul class="study-next">
-                {#each studyNext as topic (topic.category)}
-                    <li>
-                        <span class="sn-cat">{topic.category}</span>
-                        <span class="sn-name">{topic.name}</span>
-                        <span class="sn-points">{topic.points.toFixed(1)}</span>
-                    </li>
-                {/each}
-            </ul>
-        </section>
-    {:else}
-        <!-- Populated state: memory hero leads, detail is subordinate. -->
-        <section class="card hero">
-            <div class="eyebrow">Memory score</div>
-            <div class="score-row">
-                <div class="range">{pct(rangeLow)}–{pct(rangeHigh)}</div>
-                <span
-                    class="chip conf"
-                    class:is-high={confidenceLevel === "high"}
-                    class:is-moderate={confidenceLevel === "moderate"}
-                    class:is-low={confidenceLevel === "low"}
-                >
-                    {confidenceLabel} · ±{marginPoints.toFixed(1)}%
-                </span>
-            </div>
-            <p class="point">
-                Point estimate ≈ {pct(mean)} · shown as a 95% interval, never a bare number.
-            </p>
-
-            <div class="gauge" aria-hidden="true">
-                <div
-                    class="gauge-band"
-                    style:left={pct(rangeLow)}
-                    style:width={pct(rangeHigh - rangeLow)}
-                ></div>
-                <div class="gauge-mean" style:left={pct(mean)}></div>
-            </div>
-            <div class="gauge-scale" aria-hidden="true">
-                <span>0%</span>
-                <span>50%</span>
-                <span>100%</span>
-            </div>
-
-            <div class="facts">
-                <div class="fact">
-                    <div class="fact-num">{pct(coverageFraction)}</div>
-                    <div class="fact-label">Outline coverage</div>
-                    <div class="fact-sub">
-                        {categoriesCovered}/{categoriesTotal} cats · {pct(
-                            weightedFraction,
-                        )} by weight
-                    </div>
-                </div>
-                <div class="fact">
-                    <div class="fact-num">{gradedReviews.toLocaleString()}</div>
-                    <div class="fact-label">Graded reviews</div>
-                    <div class="fact-sub">FSRS review log</div>
-                </div>
-                <div class="fact">
-                    <div class="fact-num">{gradedCards.toLocaleString()}</div>
-                    <div class="fact-label">Graded cards</div>
-                    <div class="fact-sub">with a memory state</div>
-                </div>
-            </div>
-        </section>
-
-        <section class="card">
-            <div class="eyebrow">What to study next</div>
-            <p class="section-note">
-                Highest points at stake = topic weight × your weakness. The
-                points-at-stake queue surfaces these first ({rankedCount} due cards ranked).
+                Ordering only — not a score. Highest points at stake = topic weight ×
+                your weakness ({rankedCount} due cards ranked).
             </p>
             <ul class="study-next">
                 {#each studyNext as topic (topic.category)}
@@ -263,43 +380,61 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
             </ul>
         </section>
 
-        <section class="card">
-            <div class="eyebrow">Why this range</div>
-            <ul class="reasons">
-                <li>
-                    <span class="reason-key">Evidence</span>
-                    {gradedReviews.toLocaleString()} graded reviews across {gradedCards}
-                    cards — more evidence narrows the range.
-                </li>
-                <li>
-                    <span class="reason-key">Coverage</span>
-                    {pct(coverageFraction)} of the outline ({pct(weightedFraction)} by exam
-                    weight); topics with no cards are never scored.
-                </li>
-                <li>
-                    <span class="reason-key">Certainty</span>
-                    95% interval spans {pct(rangeLow)}–{pct(rangeHigh)} (±{marginPoints.toFixed(
-                        1,
-                    )}%) → {confidenceLabel.toLowerCase()}.
-                </li>
-                {#if weakCodes}
+        {#if memoryReady}
+            <section class="card">
+                <div class="eyebrow">Why these ranges</div>
+                <ul class="reasons">
                     <li>
-                        <span class="reason-key">Weighing it down</span>
-                        weak, high-yield topics {weakCodes}.
+                        <span class="reason-key">Memory</span>
+                        {gradedReviews.toLocaleString()} graded reviews across {gradedCards}
+                        cards → {pct(memLow)}–{pct(memHigh)} ({confLabel(
+                            memConf,
+                        ).toLowerCase()}).
                     </li>
-                {/if}
-                {#if strongCodes}
+                    {#if performanceReady}
+                        <li>
+                            <span class="reason-key">Performance</span>
+                            {hits.toLocaleString()}/{attempts.toLocaleString()} first-attempt
+                            hits → {pct(perfLow)}–{pct(perfHigh)} ({confLabel(
+                                perfConf,
+                            ).toLowerCase()}).
+                        </li>
+                    {:else}
+                        <li>
+                            <span class="reason-key">Performance</span>
+                            only {attempts}/{MIN_ATTEMPTS} question attempts so far — no score
+                            yet.
+                        </li>
+                    {/if}
                     <li>
-                        <span class="reason-key">Holding it up</span>
-                        strong topics {strongCodes}.
+                        <span class="reason-key">Readiness</span>
+                        {#if readinessReady}
+                            heuristic blend (0.6·performance + 0.4·memory) → {readyLow}–{readyHigh},
+                            widened for {pct(1 - weightedFraction)} uncovered weight.
+                        {:else}
+                            needs both memory and performance before it can be
+                            projected.
+                        {/if}
                     </li>
-                {/if}
-            </ul>
-        </section>
+                    {#if weakCodes}
+                        <li>
+                            <span class="reason-key">Weighing it down</span>
+                            weak, high-yield topics {weakCodes}.
+                        </li>
+                    {/if}
+                    {#if strongCodes}
+                        <li>
+                            <span class="reason-key">Holding it up</span>
+                            strong topics {strongCodes}.
+                        </li>
+                    {/if}
+                </ul>
+            </section>
+        {/if}
 
         <details class="card details">
             <summary>
-                <span class="eyebrow">Per-topic mastery</span>
+                <span class="eyebrow">Per-topic breakdown</span>
                 <span class="summary-meta">
                     {withData.length} with data · {noDataCount} no data · {topics.length}
                     AAMC categories
@@ -312,10 +447,12 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
                         <th class="num">Weight</th>
                         <th class="num">Cards</th>
                         <th>Mastery</th>
+                        <th class="num">Accuracy</th>
                     </tr>
                 </thead>
                 <tbody>
                     {#each topicsByWeight as topic (topic.category)}
+                        {@const perfRow = accuracyByCat.get(topic.category)}
                         <tr
                             class:empty={topic.totalCards === 0 ||
                                 topic.gradedCards === 0}
@@ -350,6 +487,16 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
                                     </div>
                                 {:else}
                                     <span class="detail">no data</span>
+                                {/if}
+                            </td>
+                            <td class="num">
+                                {#if perfRow && perfRow.attempts > 0}
+                                    <span class="mono">{pct(perfRow.accuracy)}</span>
+                                    <span class="acc-sub">
+                                        {perfRow.hits}/{perfRow.attempts}
+                                    </span>
+                                {:else}
+                                    <span class="detail">—</span>
                                 {/if}
                             </td>
                         </tr>
@@ -442,25 +589,94 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
         border-radius: 4px;
     }
 
-    /* --- hero: the top-line summary ------------------------------------ */
-    .hero {
-        padding: 1.25rem 1.25rem 1.1rem;
+    /* --- three co-equal headline stats --------------------------------- */
+    .stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.85rem;
+        margin-bottom: 0.85rem;
     }
 
-    .score-row {
+    @media (max-width: 640px) {
+        .stats {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .stat {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0;
+        padding: 1rem 1.1rem 1.1rem;
+    }
+
+    .stat.is-giveup {
+        border-style: dashed;
+    }
+
+    .stat.readiness {
+        border-color: color-mix(
+            in srgb,
+            var(--accent-card, #2d6cdf) 25%,
+            var(--border-subtle)
+        );
+    }
+
+    .stat-head {
         display: flex;
         align-items: baseline;
-        flex-wrap: wrap;
-        gap: 0.75rem 1rem;
+        justify-content: space-between;
+        gap: 0.5rem;
+        margin-bottom: 0.55rem;
     }
 
-    .range {
-        font-size: 3rem;
+    .stat-head .eyebrow {
+        margin-bottom: 0;
+    }
+
+    .stat-tag {
+        font-size: 0.68rem;
+        color: var(--fg-faint);
+        text-align: right;
+        line-height: 1.2;
+    }
+
+    .heuristic-tag {
+        color: var(--flag2, #d9822b);
+        font-weight: 600;
+    }
+
+    .stat-range {
+        font-size: 1.95rem;
         font-weight: 800;
-        line-height: 1;
+        line-height: 1.05;
         letter-spacing: -0.01em;
         color: var(--accent-card, #2d6cdf);
         font-variant-numeric: tabular-nums;
+        margin-bottom: 0.4rem;
+    }
+
+    .stat-range.muted {
+        color: var(--fg-faint);
+        font-size: 1.35rem;
+        font-weight: 700;
+    }
+
+    .stat-note {
+        color: var(--fg-subtle);
+        font-size: 0.8rem;
+        margin: 0.55rem 0 0.7rem;
+        flex: 1;
+    }
+
+    .caveat {
+        font-size: 0.72rem;
+        line-height: 1.35;
+        color: var(--flag2, #d9822b);
+        margin: 0.6rem 0 0;
+        padding-top: 0.5rem;
+        border-top: 1px dashed
+            color-mix(in srgb, var(--flag2, #d9822b) 35%, transparent);
     }
 
     .chip {
@@ -495,10 +711,10 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
         background: color-mix(in srgb, var(--accent-danger, #c62828) 12%, transparent);
     }
 
-    .point {
+    .chip.needs {
         color: var(--fg-subtle);
-        font-size: 0.86rem;
-        margin: 0.5rem 0 0.9rem;
+        border-style: dashed;
+        align-self: flex-start;
     }
 
     /* interval gauge: the shaded band shows the range, the tick the estimate */
@@ -529,6 +745,23 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
         background: var(--accent-card, #2d6cdf);
     }
 
+    /* performance uses a distinct hue so the three stats read apart */
+    .gauge-band.alt {
+        background: color-mix(in srgb, var(--state-review, #2e7d32) 42%, transparent);
+    }
+
+    .gauge-mean.alt {
+        background: var(--state-review, #2e7d32);
+    }
+
+    .gauge-band.ready {
+        background: color-mix(in srgb, var(--flag2, #d9822b) 45%, transparent);
+    }
+
+    .gauge-mean.ready {
+        background: var(--flag2, #d9822b);
+    }
+
     .gauge-scale {
         display: flex;
         justify-content: space-between;
@@ -537,54 +770,38 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
         margin-top: 0.25rem;
     }
 
-    /* key facts strip */
-    .facts {
+    /* --- give-up meters (inside a stat card) --------------------------- */
+    .mini-meter {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0.75rem;
-        margin-top: 1.1rem;
-        padding-top: 1rem;
-        border-top: 1px solid var(--border-subtle);
-    }
-
-    .fact-num {
-        font-size: 1.35rem;
-        font-weight: 700;
-        font-variant-numeric: tabular-nums;
-    }
-
-    .fact-label {
-        font-size: 0.8rem;
-        font-weight: 600;
-    }
-
-    .fact-sub {
-        font-size: 0.72rem;
-        color: var(--fg-subtle);
-    }
-
-    /* --- give-up meters ------------------------------------------------- */
-    .giveup-lead {
-        margin: 0 0 0.9rem;
-        font-size: 0.9rem;
-        max-width: 60ch;
-    }
-
-    .meters {
-        display: grid;
-        gap: 0.8rem;
+        gap: 0.25rem;
+        margin-top: auto;
     }
 
     .meter-top {
         display: flex;
         justify-content: space-between;
-        font-size: 0.82rem;
-        margin-bottom: 0.3rem;
+        font-size: 0.78rem;
+        margin-top: 0.25rem;
+    }
+
+    .meter-top:first-child {
+        margin-top: 0;
     }
 
     .meter-val {
         font-variant-numeric: tabular-nums;
         color: var(--fg-subtle);
+    }
+
+    /* second-hue fill for the performance meter/gauge */
+    .bar-fill.alt {
+        background: var(--state-review, #2e7d32);
+    }
+
+    .acc-sub {
+        display: block;
+        font-size: 0.68rem;
+        color: var(--fg-faint);
     }
 
     /* --- bars (meters, coverage, table) -------------------------------- */

@@ -1,4 +1,4 @@
-# Copyright: ReadyMCAT contributors
+# Copyright: Ankitects Pty Ltd and contributors
 # License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 #
 # Headless "desktop" sync client for the round-trip proof. This IS the desktop

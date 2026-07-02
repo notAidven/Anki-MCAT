@@ -55,6 +55,7 @@ struct RootView: View {
         switch env["READYMCAT_TAB"] {
         case "study": tab = 1
         case "dashboard": tab = 2
+        case "sync": tab = 3
         default: break
         }
         if let raw = env["READYMCAT_REVIEW"], let fmt = Format(rawValue: raw) {

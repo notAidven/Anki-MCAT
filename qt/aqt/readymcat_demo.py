@@ -16,11 +16,11 @@ tag all say so.
 
 from __future__ import annotations
 
-import importlib.util
 import os
-from pathlib import Path
 from types import ModuleType
 from typing import TYPE_CHECKING
+
+from aqt.readymcat_tools import require_tool_module
 
 if TYPE_CHECKING:
     import aqt.main
@@ -31,32 +31,15 @@ _core: ModuleType | None = None
 def _load_core() -> ModuleType:
     """Load the shared pure-``anki`` seeder module by path (cached).
 
-    Located relative to this file (``qt/aqt/readymcat_demo.py`` -> repo root ->
-    ``readymcat/tools/seed_demo_dashboard.py``), mirroring how ``aqt.readymcat``
-    locates its bundled content files."""
+    The path lookup lives in ``aqt.readymcat_tools`` (shared by every ReadyMCAT
+    aqt host); this only adds the module-level cache. Strict: a missing seeder
+    raises, and the Tools-menu action surfaces the error."""
     global _core
-    if _core is not None:
-        return _core
-    candidates = [
-        Path(__file__).resolve().parents[2]
-        / "readymcat"
-        / "tools"
-        / "seed_demo_dashboard.py",
-        Path.cwd() / "readymcat" / "tools" / "seed_demo_dashboard.py",
-    ]
-    for path in candidates:
-        if path.is_file():
-            spec = importlib.util.spec_from_file_location(
-                "readymcat_seed_demo_dashboard", path
-            )
-            assert spec and spec.loader
-            module = importlib.util.module_from_spec(spec)
-            spec.loader.exec_module(module)
-            _core = module
-            return module
-    raise FileNotFoundError(
-        "seed_demo_dashboard.py not found; expected under readymcat/tools/."
-    )
+    if _core is None:
+        _core = require_tool_module(
+            "seed_demo_dashboard.py", "readymcat_seed_demo_dashboard"
+        )
+    return _core
 
 
 _CONFIRM_LOAD = (

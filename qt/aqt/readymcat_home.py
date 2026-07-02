@@ -20,18 +20,17 @@ between the diagnostic and the hub.
 
 from __future__ import annotations
 
-import importlib.util
 import json
 import os
 import re
 import threading
 import time
-from pathlib import Path
 from types import ModuleType
 from typing import Any
 
 import aqt.main
 from anki.decks import DeckId
+from aqt.readymcat_tools import load_tool_module
 from aqt.webview import AnkiWebView, AnkiWebViewKind
 
 # A single, reused filtered deck used to isolate a one-tap review session for
@@ -52,65 +51,24 @@ _bank_loaded = False
 def _load_home_launcher() -> ModuleType | None:
     """Load (and cache) the pure home-hub helper module by path.
 
-    Mirrors ``aqt.readymcat._bank`` / ``aqt.readymcat_provision._load_core``."""
+    The path lookup lives in ``aqt.readymcat_tools`` (shared by every ReadyMCAT
+    aqt host); this only adds the load-once cache."""
     global _home_launcher, _home_launcher_loaded
-    if _home_launcher_loaded:
-        return _home_launcher
-    _home_launcher_loaded = True
-    candidates = [
-        Path(__file__).resolve().parents[2]
-        / "readymcat"
-        / "tools"
-        / "home_launcher.py",
-        Path.cwd() / "readymcat" / "tools" / "home_launcher.py",
-    ]
-    for path in candidates:
-        try:
-            if not path.is_file():
-                continue
-            spec = importlib.util.spec_from_file_location(
-                "readymcat_home_launcher", path
-            )
-            assert spec and spec.loader
-            module = importlib.util.module_from_spec(spec)
-            spec.loader.exec_module(module)
-            _home_launcher = module
-            return module
-        except Exception as exc:  # pragma: no cover - defensive
-            print("ReadyMCAT: could not load home-hub helpers", exc)
-            continue
-    return None
+    if not _home_launcher_loaded:
+        _home_launcher_loaded = True
+        _home_launcher = load_tool_module("home_launcher.py", "readymcat_home_launcher")
+    return _home_launcher
 
 
 def _load_bank() -> ModuleType | None:
     """Load (and cache) the pure question-bank module (deck name constants)."""
     global _bank_module, _bank_loaded
-    if _bank_loaded:
-        return _bank_module
-    _bank_loaded = True
-    candidates = [
-        Path(__file__).resolve().parents[2]
-        / "readymcat"
-        / "tools"
-        / "build_question_bank.py",
-        Path.cwd() / "readymcat" / "tools" / "build_question_bank.py",
-    ]
-    for path in candidates:
-        try:
-            if not path.is_file():
-                continue
-            spec = importlib.util.spec_from_file_location(
-                "readymcat_build_question_bank_for_home", path
-            )
-            assert spec and spec.loader
-            module = importlib.util.module_from_spec(spec)
-            spec.loader.exec_module(module)
-            _bank_module = module
-            return module
-        except Exception as exc:  # pragma: no cover - defensive
-            print("ReadyMCAT: could not load question-bank helpers", exc)
-            continue
-    return None
+    if not _bank_loaded:
+        _bank_loaded = True
+        _bank_module = load_tool_module(
+            "build_question_bank.py", "readymcat_build_question_bank_for_home"
+        )
+    return _bank_module
 
 
 def _deck_names() -> dict[str, str] | None:

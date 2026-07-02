@@ -23,12 +23,13 @@ it (used by e2e/headless runs that manage their own fixtures).
 
 from __future__ import annotations
 
-import importlib.util
 import os
 import shutil
 from pathlib import Path
 from types import ModuleType
 from typing import TYPE_CHECKING
+
+from aqt.readymcat_tools import require_tool_module
 
 if TYPE_CHECKING:
     import aqt.main
@@ -39,32 +40,15 @@ _core: ModuleType | None = None
 def _load_core() -> ModuleType:
     """Load the shared pure-``anki`` builder module by path (cached).
 
-    Located relative to this file (``qt/aqt/readymcat_provision.py`` -> repo root
-    -> ``readymcat/tools/build_question_bank.py``), mirroring how
-    ``aqt.readymcat_demo`` locates the seeder."""
+    The path lookup lives in ``aqt.readymcat_tools`` (shared by every ReadyMCAT
+    aqt host); this only adds the module-level cache. Strict: a missing builder
+    raises, since provisioning cannot run without it."""
     global _core
-    if _core is not None:
-        return _core
-    candidates = [
-        Path(__file__).resolve().parents[2]
-        / "readymcat"
-        / "tools"
-        / "build_question_bank.py",
-        Path.cwd() / "readymcat" / "tools" / "build_question_bank.py",
-    ]
-    for path in candidates:
-        if path.is_file():
-            spec = importlib.util.spec_from_file_location(
-                "readymcat_build_question_bank", path
-            )
-            assert spec and spec.loader
-            module = importlib.util.module_from_spec(spec)
-            spec.loader.exec_module(module)
-            _core = module
-            return module
-    raise FileNotFoundError(
-        "build_question_bank.py not found; expected under readymcat/tools/."
-    )
+    if _core is None:
+        _core = require_tool_module(
+            "build_question_bank.py", "readymcat_build_question_bank"
+        )
+    return _core
 
 
 def _repo_root() -> Path:

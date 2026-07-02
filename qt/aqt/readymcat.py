@@ -21,7 +21,6 @@ repo root for the schema and ``readymcat/README.md`` for the design.
 
 from __future__ import annotations
 
-import importlib.util
 import json
 import os
 import re
@@ -34,6 +33,7 @@ from urllib.parse import quote
 
 import aqt.main
 from aqt.qt import QDialog, Qt, QVBoxLayout
+from aqt.readymcat_tools import load_tool_module
 from aqt.utils import disable_help_button, restoreGeom, saveGeom
 from aqt.webview import AnkiWebView, AnkiWebViewKind
 
@@ -231,35 +231,17 @@ def quiz_bank_available(mw: aqt.main.AnkiQt) -> bool:
 def _load_home_launcher() -> ModuleType | None:
     """Load (and cache) the pure home-hub helper module by path (the
     ``should_open_diagnostic_on_launch`` routing decision lives there so it
-    is unit tested without a Qt/collection dependency). Mirrors ``_bank()``
-    below."""
+    is unit tested without a Qt/collection dependency).
+
+    The path lookup lives in ``aqt.readymcat_tools`` (shared by every ReadyMCAT
+    aqt host); this only adds the load-once cache."""
     global _home_launcher_cache, _home_launcher_loaded
-    if _home_launcher_loaded:
-        return _home_launcher_cache
-    _home_launcher_loaded = True
-    candidates = [
-        Path(__file__).resolve().parents[2]
-        / "readymcat"
-        / "tools"
-        / "home_launcher.py",
-        Path.cwd() / "readymcat" / "tools" / "home_launcher.py",
-    ]
-    for path in candidates:
-        try:
-            if not path.is_file():
-                continue
-            spec = importlib.util.spec_from_file_location(
-                "readymcat_home_launcher_from_readymcat", path
-            )
-            assert spec and spec.loader
-            module = importlib.util.module_from_spec(spec)
-            spec.loader.exec_module(module)
-            _home_launcher_cache = module
-            return module
-        except Exception as exc:  # pragma: no cover - defensive
-            print("ReadyMCAT: could not load home-hub helpers", exc)
-            continue
-    return None
+    if not _home_launcher_loaded:
+        _home_launcher_loaded = True
+        _home_launcher_cache = load_tool_module(
+            "home_launcher.py", "readymcat_home_launcher_from_readymcat"
+        )
+    return _home_launcher_cache
 
 
 _home_launcher_cache: ModuleType | None = None
@@ -450,35 +432,16 @@ _bank_loaded = False
 def _bank() -> ModuleType | None:
     """Load (and cache) the pure ``build_question_bank`` helper module by path.
 
-    Mirrors ``aqt.readymcat_provision._load_core``; returns ``None`` if it cannot
+    The path lookup lives in ``aqt.readymcat_tools`` (shared by every ReadyMCAT
+    aqt host); this only adds the load-once cache. Returns ``None`` if it cannot
     be located, in which case callers fall back to inline logic."""
     global _bank_module, _bank_loaded
-    if _bank_loaded:
-        return _bank_module
-    _bank_loaded = True
-    candidates = [
-        Path(__file__).resolve().parents[2]
-        / "readymcat"
-        / "tools"
-        / "build_question_bank.py",
-        Path.cwd() / "readymcat" / "tools" / "build_question_bank.py",
-    ]
-    for path in candidates:
-        try:
-            if not path.is_file():
-                continue
-            spec = importlib.util.spec_from_file_location(
-                "readymcat_build_question_bank", path
-            )
-            assert spec and spec.loader
-            module = importlib.util.module_from_spec(spec)
-            spec.loader.exec_module(module)
-            _bank_module = module
-            return module
-        except Exception as exc:  # pragma: no cover - defensive
-            print("ReadyMCAT: could not load question-bank helpers", exc)
-            continue
-    return None
+    if not _bank_loaded:
+        _bank_loaded = True
+        _bank_module = load_tool_module(
+            "build_question_bank.py", "readymcat_build_question_bank"
+        )
+    return _bank_module
 
 
 def mcq_notetype_name() -> str:

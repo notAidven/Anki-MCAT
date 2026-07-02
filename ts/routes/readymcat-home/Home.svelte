@@ -34,6 +34,18 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
     $: categoriesCovered = coverage?.categoriesCovered ?? 0;
     $: categoriesTotal = coverage?.categoriesTotal ?? 0;
 
+    // Performance + readiness (mirror the dashboard) so the hub shows all three
+    // honest scores wherever it shows memory — each with its own give-up rule.
+    $: performance = points?.performance;
+    $: readiness = points?.readiness;
+    $: perfLow = performance?.rangeLow ?? 0;
+    $: perfHigh = performance?.rangeHigh ?? 0;
+    $: performanceReady = performance?.meetsDataThreshold ?? false;
+    $: readyLow = readiness?.rangeLow ?? 0;
+    $: readyHigh = readiness?.rangeHigh ?? 0;
+    $: readyPoint = readiness?.point ?? 0;
+    $: readinessReady = readiness?.meetsDataThreshold ?? false;
+
     $: studyNext = topics
         .filter((t) => t.totalCards > 0)
         .map((t) => ({ ...t, points: t.topicWeight * t.studentWeakness }))
@@ -154,12 +166,31 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
         </div>
         <div class="pills">
             {#if pointsError || !points}
-                <div class="pill warn">Memory: taxonomy not configured</div>
-            {:else if !meetsDataThreshold}
-                <div class="pill warn">Not enough data yet</div>
+                <div class="pill warn">Scores: taxonomy not configured</div>
             {:else}
                 <div class="pill">
-                    Memory <b>{pct(rangeLow)}–{pct(rangeHigh)}</b>
+                    Memory
+                    {#if meetsDataThreshold}
+                        <b>{pct(rangeLow)}–{pct(rangeHigh)}</b>
+                    {:else}
+                        <span class="pill-sub">not enough data</span>
+                    {/if}
+                </div>
+                <div class="pill">
+                    Performance
+                    {#if performanceReady}
+                        <b>{pct(perfLow)}–{pct(perfHigh)}</b>
+                    {:else}
+                        <span class="pill-sub">not enough data</span>
+                    {/if}
+                </div>
+                <div class="pill">
+                    Readiness
+                    {#if readinessReady}
+                        <b>{Math.round(readyLow)}–{Math.round(readyHigh)}</b>
+                    {:else}
+                        <span class="pill-sub">not enough data</span>
+                    {/if}
                 </div>
             {/if}
             {#if points && !pointsError}
@@ -298,25 +329,47 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 
         <div class="stack">
             <section class="card mini-card">
-                <div class="mini-head"><h3>Memory snapshot</h3></div>
+                <div class="mini-head"><h3>Scores</h3></div>
                 {#if !points || pointsError}
                     <p class="empty-note">Not configured yet.</p>
-                {:else if !meetsDataThreshold}
-                    <div class="memory-line"><b>Not enough data yet</b></div>
-                    <p class="mini-sub">
-                        Needs {MIN_REVIEWS} graded reviews and {pct(MIN_COVERAGE)} outline
-                        coverage before a score is shown.
-                    </p>
                 {:else}
                     <div class="memory-line">
-                        <b>{pct(rangeLow)}–{pct(rangeHigh)}</b>
-                        <span>estimated recall</span>
+                        <span>Memory</span>
+                        {#if meetsDataThreshold}
+                            <b>{pct(rangeLow)}–{pct(rangeHigh)}</b>
+                        {:else}
+                            <span>not enough data yet</span>
+                        {/if}
                     </div>
-                    <div class="mini-bar">
-                        <i
-                            style:left={pct(rangeLow)}
-                            style:width={pct(Math.max(0.02, rangeHigh - rangeLow))}
-                        ></i>
+                    {#if meetsDataThreshold}
+                        <div class="mini-bar">
+                            <i
+                                style:left={pct(rangeLow)}
+                                style:width={pct(Math.max(0.02, rangeHigh - rangeLow))}
+                            ></i>
+                        </div>
+                    {:else}
+                        <p class="mini-sub">
+                            Needs {MIN_REVIEWS} graded reviews and {pct(MIN_COVERAGE)} outline
+                            coverage before a score is shown.
+                        </p>
+                    {/if}
+                    <div class="memory-line">
+                        <span>Performance</span>
+                        {#if performanceReady}
+                            <b>{pct(perfLow)}–{pct(perfHigh)}</b>
+                        {:else}
+                            <span>not enough data yet</span>
+                        {/if}
+                    </div>
+                    <div class="memory-line">
+                        <span>Readiness</span>
+                        {#if readinessReady}
+                            <b>{Math.round(readyLow)}–{Math.round(readyHigh)}</b>
+                            <span>≈{Math.round(readyPoint)}/528</span>
+                        {:else}
+                            <span>not enough data yet</span>
+                        {/if}
                     </div>
                 {/if}
                 {#if points && !pointsError}

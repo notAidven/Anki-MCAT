@@ -349,14 +349,7 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
                             <span>not enough data yet</span>
                         {/if}
                     </div>
-                    {#if meetsDataThreshold}
-                        <div class="mini-bar">
-                            <i
-                                style:left={pct(rangeLow)}
-                                style:width={pct(Math.max(0.02, rangeHigh - rangeLow))}
-                            ></i>
-                        </div>
-                    {:else}
+                    {#if !meetsDataThreshold}
                         <p class="mini-sub">
                             Needs {MIN_REVIEWS} graded reviews and {pct(MIN_COVERAGE)} outline
                             coverage before a score is shown.
@@ -848,23 +841,6 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
     .memory-line span {
         font-size: 11.5px;
         color: var(--fg-faint);
-    }
-
-    .mini-bar {
-        height: 6px;
-        border-radius: 999px;
-        background: var(--canvas-inset);
-        margin-top: 8px;
-        overflow: hidden;
-        position: relative;
-    }
-
-    .mini-bar i {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        background: var(--state-review, #2e7d32);
-        border-radius: 999px;
     }
 
     .mini-sub {

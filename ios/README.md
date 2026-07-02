@@ -87,11 +87,11 @@ line-for-line port of the desktop source of truth
 same tolerant `[{q,a}]` parser (`parseLadder`), and the same three deterministic
 guardrails with the same constants —
 
-| Guardrail    | Rule                                                        | Constant                 |
-| ------------ | ----------------------------------------------------------- | ------------------------ |
-| schema       | 2–4 well-formed `{q,a}` rungs                               | `minRungs=2 maxRungs=4`  |
-| answer-leak  | rung 1 must not restate the answer (lexical containment)    | `answerLeakMax=0.7`      |
-| grounding    | each sub-answer's content traces to the card's material     | `groundingMin=0.5`       |
+| Guardrail   | Rule                                                     | Constant                |
+| ----------- | -------------------------------------------------------- | ----------------------- |
+| schema      | 2–4 well-formed `{q,a}` rungs                            | `minRungs=2 maxRungs=4` |
+| answer-leak | rung 1 must not restate the answer (lexical containment) | `answerLeakMax=0.7`     |
+| grounding   | each sub-answer's content traces to the card's material  | `groundingMin=0.5`      |
 
 The OpenAI Chat Completions call is a plain `URLSession` request (model
 `gpt-4o-mini`, same body shape as desktop) — no `rsios`/Rust change was needed.
@@ -177,16 +177,16 @@ simulator (the bundled collection is already in `Resources/`).
 The app reads a few env vars on launch (pass via `SIMCTL_CHILD_…`), used only for
 screenshots and verification:
 
-| Env var                                   | Effect                                                                                                                     |
-| ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `READYMCAT_TAB=study\|dashboard\|sync\|settings` | Start on that tab                                                                                                   |
-| `READYMCAT_REVIEW=mcq\|fr\|passage\|cars\|demo`  | Auto-open that reviewer (`demo` = the authorless AI-ladder demo card)                                               |
-| `READYMCAT_DEMO=correct\|wrong\|ailadder` | Auto-answer the first reviewer question (`ailadder` also auto-advances a miss into the AI ladder, for screenshots)          |
-| `READYMCAT_AI_DEMO=1`                     | Seed the authorless demo deck (`ReadyMCAT::AI Demo`) so the AI path is triggerable                                          |
-| `SIMCTL_CHILD_OPENAI_API_KEY=sk-…`        | **DEBUG only** — pre-fill the key store so AI generation is on for the test run (never committed)                          |
-| `READYMCAT_DIAGNOSTIC=1`                  | Auto-open the diagnostic                                                                                                   |
-| `READYMCAT_AUTOPLAY=1`                    | Grade a batch of cards tap-free (grading-path check)                                                                       |
-| `READYMCAT_COLLECTION=demo`               | Open a bundled **synthetic** demo collection to preview a populated dashboard (falls back to the real bank if not bundled) |
+| Env var                                          | Effect                                                                                                                     |
+| ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
+| `READYMCAT_TAB=study\|dashboard\|sync\|settings` | Start on that tab                                                                                                          |
+| `READYMCAT_REVIEW=mcq\|fr\|passage\|cars\|demo`  | Auto-open that reviewer (`demo` = the authorless AI-ladder demo card)                                                      |
+| `READYMCAT_DEMO=correct\|wrong\|ailadder`        | Auto-answer the first reviewer question (`ailadder` also auto-advances a miss into the AI ladder, for screenshots)         |
+| `READYMCAT_AI_DEMO=1`                            | Seed the authorless demo deck (`ReadyMCAT::AI Demo`) so the AI path is triggerable                                         |
+| `SIMCTL_CHILD_OPENAI_API_KEY=sk-…`               | **DEBUG only** — pre-fill the key store so AI generation is on for the test run (never committed)                          |
+| `READYMCAT_DIAGNOSTIC=1`                         | Auto-open the diagnostic                                                                                                   |
+| `READYMCAT_AUTOPLAY=1`                           | Grade a batch of cards tap-free (grading-path check)                                                                       |
+| `READYMCAT_COLLECTION=demo`                      | Open a bundled **synthetic** demo collection to preview a populated dashboard (falls back to the real bank if not bundled) |
 
 ## Verified on the iOS Simulator (iPhone 17)
 
@@ -205,7 +205,7 @@ Every screen was run against the bundled real engine data and screenshotted into
 | Free Response — auto-graded (model answer + explanation)                 | `docs/07-fr-graded.png`           |
 | Passage/CARS — passage panel + question                                  | `docs/08-passage.png`             |
 | Diagnostic — one MCQ per AAMC category (31)                              | `docs/09-diagnostic.png`          |
-| **AI teach-on-miss — a live-generated guiding ladder (authorless card)**  | `docs/11-ai-teach.png`            |
+| **AI teach-on-miss — a live-generated guiding ladder (authorless card)** | `docs/11-ai-teach.png`            |
 
 ### Host FFI smoke test
 

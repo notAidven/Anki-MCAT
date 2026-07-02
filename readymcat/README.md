@@ -6,6 +6,11 @@ provision it, and the **teach-on-miss** reviewer feature. ReadyMCAT is an MCAT
 study app forked from Anki; the product rationale is in
 [`../ReadyMCAT-PRD.md`](../ReadyMCAT-PRD.md).
 
+> **Proof docs:** [`PROOF-FRIDAY.md`](PROOF-FRIDAY.md) maps every Friday
+> requirement (desktop AI + held-out eval, two-way sync, the three honest scores)
+> to concrete in-repo evidence with real numbers; [`PROOF.md`](PROOF.md) is the
+> broader Wednesday-MVP capture checklist.
+
 | Artifact                | Path                                                                                                              | Consumed by                                                              |
 | ----------------------- | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
 | Canonical question bank | [`content/question_bank.json`](content/question_bank.json)                                                        | the collection builder                                                   |

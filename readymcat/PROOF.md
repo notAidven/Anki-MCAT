@@ -1,5 +1,10 @@
 # ReadyMCAT — Proof Checklist (Wednesday MVP)
 
+> **Friday rubric?** See [`PROOF-FRIDAY.md`](PROOF-FRIDAY.md) — the consolidated
+> Friday-deadline proof that maps every Friday requirement (desktop AI + eval,
+> two-way sync, the three scores) to concrete in-repo evidence with real numbers.
+> This file is the broader Wednesday-MVP capture list.
+
 This is the capture checklist for the ReadyMCAT demo/handin. Two items are
 **manual screen recordings** (the clean-machine install and the iOS Simulator
 review) — the commands below produce the artifacts; you press record. As of this

@@ -11,16 +11,16 @@ server can never lose or duplicate one.
 ## Architecture
 
 ```
- iOS app (Simulator)                     "desktop" (pylib)                self-hosted server
- ┌───────────────────┐                   ┌───────────────────┐           ┌────────────────────┐
- │ SwiftUI Sync tab   │                   │ anki.collection    │           │ anki-sync-server    │
- │ SyncManager        │                   │  .sync_login       │           │ (rslib/sync)        │
- │  → AnkiEngine      │                   │  .sync_collection  │           │  /sync/*  /msync/*  │
- │  → rsios FFI       │  http (loopback)  │  .full_upload_or_  │  http     │  SYNC_USER1=user:pw │
- │  → rslib Backend   │◀─────────────────▶│   download         │◀─────────▶│  per-user .anki2    │
- │  BackendSyncService│   service 1        │ (BackendSyncSvc)   │           │                    │
- └───────────────────┘                   └───────────────────┘           └────────────────────┘
-        SAME rslib sync client on both ends ───────────────┘
+iOS app (Simulator)                     "desktop" (pylib)                self-hosted server
+┌───────────────────┐                   ┌───────────────────┐           ┌────────────────────┐
+│ SwiftUI Sync tab   │                   │ anki.collection    │           │ anki-sync-server    │
+│ SyncManager        │                   │  .sync_login       │           │ (rslib/sync)        │
+│  → AnkiEngine      │                   │  .sync_collection  │           │  /sync/*  /msync/*  │
+│  → rsios FFI       │  http (loopback)  │  .full_upload_or_  │  http     │  SYNC_USER1=user:pw │
+│  → rslib Backend   │◀─────────────────▶│   download         │◀─────────▶│  per-user .anki2    │
+│  BackendSyncService│   service 1        │ (BackendSyncSvc)   │           │                    │
+└───────────────────┘                   └───────────────────┘           └────────────────────┘
+       SAME rslib sync client on both ends ───────────────┘
 ```
 
 - **iOS**: `SyncManager` drives `BackendSyncService` (service index **1**) through
@@ -114,11 +114,11 @@ fails gracefully without data loss), then reconnects & syncs, desktop pulls
   service 1 / method 0, and the server's `/msync/*` routes), but media round-trip
   is not part of the verified proof. The ReadyMCAT bank is text, so reviews are
   unaffected.
-- **Conflict handling**: a normal incremental sync auto-reconciles. A *full*
+- **Conflict handling**: a normal incremental sync auto-reconciles. A _full_
   sync only occurs when a side has no cards (forced upload/download) or both
   diverged independently (`FULL_SYNC`); the app resolves the ambiguous case with
   the "Keep this device's cards on conflict" toggle (default: upload). Two
-  independently-modified collections cannot be *merged* — that is Anki's model,
+  independently-modified collections cannot be _merged_ — that is Anki's model,
   not a ReadyMCAT limitation.
 - **Credentials** are stored in `UserDefaults` (fine for a self-hosted dev
   server); a production build should move the password to the Keychain.

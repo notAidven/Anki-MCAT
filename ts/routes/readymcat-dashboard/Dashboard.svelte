@@ -5,6 +5,9 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 <script lang="ts">
     import type { PointsAtStakeResponse } from "@generated/anki/points_at_stake_pb";
 
+    import { glossary } from "$lib/readymcat/glossary";
+    import InfoTooltip from "$lib/readymcat/InfoTooltip.svelte";
+
     export let data: PointsAtStakeResponse | null;
     export let error: string | null;
     /** When the aggregation was computed (ms epoch); drives "last updated". */
@@ -181,17 +184,21 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
             <!-- MEMORY -->
             <article class="card stat" class:is-giveup={!memoryReady}>
                 <div class="stat-head">
-                    <span class="eyebrow">Memory</span>
+                    <span class="eyebrow">
+                        <InfoTooltip entry={glossary.memory}>Memory</InfoTooltip>
+                    </span>
                     <span class="stat-tag">recall right now</span>
                 </div>
                 {#if memoryReady}
                     <div class="stat-range">{pct(memLow)}–{pct(memHigh)}</div>
                     <span class="chip conf {confClass(memConf)}">
                         {confLabel(memConf)} · ±{memMargin.toFixed(1)}%
+                        <InfoTooltip variant="icon" entry={glossary.confidence} />
                     </span>
                     <p class="stat-note">
-                        Point ≈ {pct(memMean)} · FSRS recall across {gradedCards.toLocaleString()}
-                        cards.
+                        Point ≈ {pct(memMean)} ·
+                        <InfoTooltip entry={glossary.fsrs}>FSRS recall</InfoTooltip>
+                        across {gradedCards.toLocaleString()} cards.
                     </p>
                     <div class="gauge" aria-hidden="true">
                         <div
@@ -208,7 +215,10 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
                     </div>
                 {:else}
                     <div class="stat-range muted">Not enough data</div>
-                    <span class="chip needs">Needs evidence</span>
+                    <span class="chip needs">
+                        Needs evidence
+                        <InfoTooltip variant="icon" entry={glossary.giveUp} />
+                    </span>
                     <p class="stat-note">
                         Hidden until {MIN_REVIEWS} graded reviews
                         <em>and</em>
@@ -248,13 +258,18 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
             <!-- PERFORMANCE -->
             <article class="card stat" class:is-giveup={!performanceReady}>
                 <div class="stat-head">
-                    <span class="eyebrow">Performance</span>
+                    <span class="eyebrow">
+                        <InfoTooltip entry={glossary.performance}>
+                            Performance
+                        </InfoTooltip>
+                    </span>
                     <span class="stat-tag">practice-question accuracy</span>
                 </div>
                 {#if performanceReady}
                     <div class="stat-range">{pct(perfLow)}–{pct(perfHigh)}</div>
                     <span class="chip conf {confClass(perfConf)}">
                         {confLabel(perfConf)} · ±{perfMargin.toFixed(1)}%
+                        <InfoTooltip variant="icon" entry={glossary.confidence} />
                     </span>
                     <p class="stat-note">
                         Point ≈ {pct(perfMean)} · {hits.toLocaleString()}/{attempts.toLocaleString()}
@@ -275,7 +290,10 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
                     </div>
                 {:else}
                     <div class="stat-range muted">Not enough data</div>
-                    <span class="chip needs">Needs evidence</span>
+                    <span class="chip needs">
+                        Needs evidence
+                        <InfoTooltip variant="icon" entry={glossary.giveUp} />
+                    </span>
                     <p class="stat-note">
                         First-attempt accuracy on MCQ / free-response / passage cards,
                         hidden until {MIN_ATTEMPTS} attempts.
@@ -299,13 +317,16 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
             <!-- READINESS -->
             <article class="card stat readiness" class:is-giveup={!readinessReady}>
                 <div class="stat-head">
-                    <span class="eyebrow">Readiness</span>
+                    <span class="eyebrow">
+                        <InfoTooltip entry={glossary.readiness}>Readiness</InfoTooltip>
+                    </span>
                     <span class="stat-tag heuristic-tag">heuristic · 472–528</span>
                 </div>
                 {#if readinessReady}
                     <div class="stat-range">{readyLow}–{readyHigh}</div>
                     <span class="chip conf {confClass(readyConf)}">
                         {confLabel(readyConf)} · ±{readyMargin.toFixed(0)}
+                        <InfoTooltip variant="icon" entry={glossary.confidence} />
                     </span>
                     <p class="stat-note">
                         Projected ≈ <strong>{readyPoint}</strong>
@@ -335,7 +356,10 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
                     </p>
                 {:else}
                     <div class="stat-range muted">Not enough data</div>
-                    <span class="chip needs">Needs evidence</span>
+                    <span class="chip needs">
+                        Needs evidence
+                        <InfoTooltip variant="icon" entry={glossary.giveUp} />
+                    </span>
                     <p class="stat-note">
                         Projected only once <em>both</em>
                         Memory and Performance have enough evidence.
@@ -350,7 +374,9 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 
         <!-- Supporting detail. -->
         <section class="card">
-            <div class="eyebrow">Outline coverage</div>
+            <div class="eyebrow">
+                <InfoTooltip entry={glossary.coverage}>Outline coverage</InfoTooltip>
+            </div>
             <div class="cov-head">
                 {categoriesCovered} / {categoriesTotal} AAMC categories
                 <span class="cov-sub">
@@ -366,8 +392,11 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
         <section class="card">
             <div class="eyebrow">What to study next</div>
             <p class="section-note">
-                Ordering only — not a score. Highest points at stake = topic weight ×
-                your weakness ({rankedCount} due cards ranked).
+                Ordering only — not a score. Highest
+                <InfoTooltip entry={glossary.pointsAtStake}>
+                    points at stake
+                </InfoTooltip>
+                = topic weight × your weakness ({rankedCount} due cards ranked).
             </p>
             <ul class="study-next">
                 {#each studyNext as topic (topic.category)}

@@ -6,6 +6,9 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
     import type { PointsAtStakeResponse } from "@generated/anki/points_at_stake_pb";
     import { bridgeCommand } from "@tslib/bridgecommand";
 
+    import { glossary } from "$lib/readymcat/glossary";
+    import InfoTooltip from "$lib/readymcat/InfoTooltip.svelte";
+
     import type { DeckLaunchCounts, DeckLaunchKey, HomeStatus } from "./types";
 
     export let points: PointsAtStakeResponse | null;
@@ -169,7 +172,7 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
                 <div class="pill warn">Scores: taxonomy not configured</div>
             {:else}
                 <div class="pill">
-                    Memory
+                    <InfoTooltip entry={glossary.memory}>Memory</InfoTooltip>
                     {#if meetsDataThreshold}
                         <b>{pct(rangeLow)}–{pct(rangeHigh)}</b>
                     {:else}
@@ -177,7 +180,7 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
                     {/if}
                 </div>
                 <div class="pill">
-                    Performance
+                    <InfoTooltip entry={glossary.performance}>Performance</InfoTooltip>
                     {#if performanceReady}
                         <b>{pct(perfLow)}–{pct(perfHigh)}</b>
                     {:else}
@@ -185,7 +188,7 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
                     {/if}
                 </div>
                 <div class="pill">
-                    Readiness
+                    <InfoTooltip entry={glossary.readiness}>Readiness</InfoTooltip>
                     {#if readinessReady}
                         <b>{Math.round(readyLow)}–{Math.round(readyHigh)}</b>
                     {:else}
@@ -195,7 +198,8 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
             {/if}
             {#if points && !pointsError}
                 <div class="pill">
-                    Coverage <b>{pct(coverageFraction)}</b>
+                    <InfoTooltip entry={glossary.coverage}>Coverage</InfoTooltip>
+                    <b>{pct(coverageFraction)}</b>
                     <span class="pill-sub">
                         ({categoriesCovered}/{categoriesTotal})
                     </span>
@@ -296,7 +300,11 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
         <section class="card">
             <div class="panel-head">
                 <h3>What to study next</h3>
-                <span class="tag">POINTS AT STAKE</span>
+                <span class="tag">
+                    <InfoTooltip entry={glossary.pointsAtStake}>
+                        POINTS AT STAKE
+                    </InfoTooltip>
+                </span>
             </div>
             {#if !points || pointsError}
                 <p class="empty-note">

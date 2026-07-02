@@ -20,6 +20,10 @@ const configure = (proxy: any, _options: any) => {
 
 const viteConfig = defineViteConfig({
     plugins: [sveltekit(), svg({})],
+    // Under Vitest, resolve Svelte's browser build so client lifecycle APIs
+    // (mount/flushSync) are available for component tests in jsdom. Scoped to
+    // test runs so dev/build resolution is unchanged.
+    resolve: process.env.VITEST ? { conditions: ["browser"] } : {},
     cacheDir: "../node_modules/.vite",
     build: {
         reportCompressedSize: false,

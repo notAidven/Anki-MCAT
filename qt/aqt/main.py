@@ -90,12 +90,12 @@ MainWindowState = Literal[
 # ReadyMCAT: the SvelteKit route a returning/provisioned profile lands on when
 # the app opens (see ``AnkiQt._route_readymcat_launch`` /
 # ``AnkiQt._open_readymcat_landing``). This is the SINGLE switch for the startup
-# landing surface: set it to ``"readymcat-dashboard"`` for the honest-memory
-# dashboard (default) or ``"readymcat-home"`` for the study/launcher home hub —
+# landing surface: set it to ``"readymcat-home"`` for the study/launcher home
+# hub (default) or ``"readymcat-dashboard"`` for the honest-memory dashboard —
 # both are registered SvelteKit pages (see ``aqt.mediasrv.is_sveltekit_page``).
 # A brand-new profile always sees the introductory diagnostic first regardless
 # of this value; it then lands here on subsequent (returning) launches.
-READYMCAT_LANDING_ROUTE = "readymcat-dashboard"
+READYMCAT_LANDING_ROUTE = "readymcat-home"
 
 
 T = TypeVar("T")

@@ -405,6 +405,10 @@ class ReadyMCATHome(QDialog):
 
         self.web.load_sveltekit_page(self._page_path())
         self.show()
+        # Bring the hub to the front when opened as the deferred launch surface
+        # (otherwise it opens behind the freshly-focused deck browser).
+        self.raise_()
+        self.activateWindow()
 
     def _page_path(self) -> str:
         from urllib.parse import quote

@@ -10,9 +10,9 @@ browser. This module guards that contract:
   diagnostic first, and the landing surface is *not* also auto-opened
   (exactly one entry surface opens per launch);
 * every returning/provisioned profile lands directly on
-  ``READYMCAT_LANDING_ROUTE`` — the honest-memory dashboard; and
+  ``READYMCAT_LANDING_ROUTE`` — the study/launcher home hub; and
 * that route is a single, servable flip-point constant, so switching the
-  landing surface to the study/launcher home hub is a one-line change.
+  landing surface to the honest-memory dashboard is a one-line change.
 
 The routing is pure Qt plumbing around the already-tested, Qt-free decision in
 ``aqt.readymcat.maybe_show_diagnostic_on_launch`` (see
@@ -42,10 +42,10 @@ def _fake_mw() -> MagicMock:
 # --- the flip-point constant -------------------------------------------------
 
 
-def test_landing_route_defaults_to_the_dashboard() -> None:
+def test_landing_route_defaults_to_the_home_hub() -> None:
     # Requirement: a returning/provisioned profile opens directly to the
-    # honest-memory dashboard, not the home hub or the deck browser.
-    assert READYMCAT_LANDING_ROUTE == "readymcat-dashboard"
+    # study/launcher home hub, not the deck browser.
+    assert READYMCAT_LANDING_ROUTE == "readymcat-home"
 
 
 def test_landing_route_is_a_servable_sveltekit_page() -> None:
@@ -61,7 +61,7 @@ def test_landing_route_is_a_servable_sveltekit_page() -> None:
 # --- _open_readymcat_landing: the constant -> window mapping -----------------
 
 
-def test_open_landing_opens_the_dashboard_by_default(monkeypatch) -> None:
+def test_open_landing_opens_the_home_hub_by_default(monkeypatch) -> None:
     opened: list[tuple[str, object]] = []
     monkeypatch.setattr(
         aqt.readymcat,
@@ -75,13 +75,13 @@ def test_open_landing_opens_the_dashboard_by_default(monkeypatch) -> None:
     )
     mw = _fake_mw()
     aqt.main.AnkiQt._open_readymcat_landing(mw)
-    assert [kind for kind, _ in opened] == ["dashboard"]
+    assert [kind for kind, _ in opened] == ["home"]
     assert opened[0][1] is mw
 
 
-def test_open_landing_flips_to_the_home_hub_with_one_constant(monkeypatch) -> None:
-    # Flipping the single constant is enough to land on the home hub instead.
-    monkeypatch.setattr(aqt.main, "READYMCAT_LANDING_ROUTE", "readymcat-home")
+def test_open_landing_flips_to_the_dashboard_with_one_constant(monkeypatch) -> None:
+    # Flipping the single constant is enough to land on the dashboard instead.
+    monkeypatch.setattr(aqt.main, "READYMCAT_LANDING_ROUTE", "readymcat-dashboard")
     opened: list[str] = []
     monkeypatch.setattr(
         aqt.readymcat,
@@ -94,7 +94,7 @@ def test_open_landing_flips_to_the_home_hub_with_one_constant(monkeypatch) -> No
         lambda mw: opened.append("home"),
     )
     aqt.main.AnkiQt._open_readymcat_landing(_fake_mw())
-    assert opened == ["home"]
+    assert opened == ["dashboard"]
 
 
 def test_open_landing_is_a_noop_without_a_collection(monkeypatch) -> None:

@@ -62,6 +62,11 @@ class ReadyMCATDashboard(QDialog):
 
         self.web.load_sveltekit_page(self._page_path())
         self.show()
+        # Deferred launch routing opens this after the deck browser has painted
+        # and taken focus, so explicitly bring it to the front — otherwise it
+        # opens behind the main window and the user never "lands" on it.
+        self.raise_()
+        self.activateWindow()
 
     def _page_path(self) -> str:
         page = "readymcat-dashboard"
@@ -134,6 +139,9 @@ class ReadyMCATDiagnostic(QDialog):
 
         self.web.load_sveltekit_page(self._page_path())
         self.show()
+        # Bring the first-launch diagnostic to the front (see the dashboard note).
+        self.raise_()
+        self.activateWindow()
 
     def _page_path(self) -> str:
         page = "readymcat-diagnostic"

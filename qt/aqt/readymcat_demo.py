@@ -95,12 +95,24 @@ def _summary(stats) -> str:
         "",
         f"• {stats.cards_created} demo cards across {stats.categories_covered} "
         "AAMC categories",
+        f"• {getattr(stats, 'questions_created', 0)} synthetic practice questions",
         f"• {stats.reviews_created} synthetic graded reviews",
     ]
     if stats.memory_low is not None and stats.memory_high is not None:
         lines.append(
-            f"• Honest-memory range: {round(stats.memory_low * 100)}%–"
+            f"• Memory range: {round(stats.memory_low * 100)}%–"
             f"{round(stats.memory_high * 100)}% (SYNTHETIC)"
+        )
+    if getattr(stats, "performance_low", None) is not None:
+        lines.append(
+            f"• Performance range: {round(stats.performance_low * 100)}%–"
+            f"{round(stats.performance_high * 100)}% over "
+            f"{stats.performance_attempts} attempts (SYNTHETIC)"
+        )
+    if getattr(stats, "readiness_point", None) is not None and stats.readiness_meets:
+        lines.append(
+            f"• Readiness (HEURISTIC, uncalibrated): ~{round(stats.readiness_point)} "
+            f"({round(stats.readiness_low)}–{round(stats.readiness_high)}) on 472–528"
         )
     if stats.coverage_covered is not None:
         lines.append(

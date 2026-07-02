@@ -750,6 +750,30 @@ def readymcat_study_probe() -> bytes:
     return json.dumps(study_probe(aqt.mw, options)).encode("utf-8")
 
 
+def readymcat_tab_probe() -> bytes:
+    """Dev-only introspection endpoint for the single-window tab e2e suite.
+
+    Switches the one Qt window to a ReadyMCAT tab (Home/Study/Decks/Dashboard)
+    and reports back what that tab's live web view rendered — proving every tab
+    is reachable and paints its content in the single window (the tabs are Qt
+    toolbar navigations, not mediasrv pages, so this is otherwise unobservable
+    over HTTP). Gated behind ``dev_mode`` so it is inert in packaged builds."""
+    import json
+
+    if not dev_mode:
+        return json.dumps({"ok": False, "error": "dev only"}).encode("utf-8")
+
+    from aqt.readymcat_home import tab_probe
+
+    try:
+        options = json.loads(request.data or b"{}")
+        if not isinstance(options, dict):
+            options = {}
+    except Exception:
+        options = {}
+    return json.dumps(tab_probe(aqt.mw, options)).encode("utf-8")
+
+
 post_handler_list = [
     congrats_info,
     get_deck_configs_for_update,
@@ -775,6 +799,11 @@ post_handler_list = [
     # Playwright suite drive a real study launch and read back the reviewer
     # webview's rendered #qa (see ts/tests/e2e/readymcat_study.test.ts).
     readymcat_study_probe,
+    # ReadyMCAT dev/e2e single-window tab probe (guarded by dev_mode). Drives a
+    # real tab switch and reads back what the tab's web view rendered, so the
+    # e2e suite can assert all four tabs live in one window (see
+    # ts/tests/e2e/readymcat_tabs.test.ts).
+    readymcat_tab_probe,
 ]
 
 

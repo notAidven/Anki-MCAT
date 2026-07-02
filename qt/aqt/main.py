@@ -14,7 +14,7 @@ import weakref
 from argparse import Namespace
 from collections.abc import Callable, Sequence
 from concurrent.futures import Future
-from typing import Any, Literal, TypeVar, cast
+from typing import TYPE_CHECKING, Any, Literal, TypeVar, cast
 
 import anki
 import anki.sound
@@ -80,11 +80,39 @@ from aqt.utils import (
 )
 from aqt.webview import AnkiWebView, AnkiWebViewKind
 
+if TYPE_CHECKING:
+    # Imported lazily at runtime (see ``_readymcat_view_for_state``) to avoid a
+    # circular import — these modules import ``aqt.main`` — but referenced here
+    # for type annotations only.
+    from aqt.readymcat import ReadyMCATDashboardView
+    from aqt.readymcat_home import ReadyMCATHomeView
+
 install_pylib_legacy()
 
 MainWindowState = Literal[
-    "startup", "deckBrowser", "overview", "review", "resetRequired", "profileManager"
+    "startup",
+    "deckBrowser",
+    "overview",
+    "review",
+    "resetRequired",
+    "profileManager",
+    # ReadyMCAT single-window tabs: the Home hub and honest-memory Dashboard are
+    # rendered INTO the main window (a dedicated, API-capable web view swapped
+    # into the central stack) rather than as separate popup dialogs, so all four
+    # tabs — Home · Study · Decks · Dashboard — live in one window.
+    "readymcatHome",
+    "readymcatDashboard",
 ]
+
+# ReadyMCAT: main-window states that render a SvelteKit hub/dashboard into their
+# own API-capable web view (see ``AnkiQt._readymcat_view_for_state``) instead of
+# the shared ``mw.web``. The shared web view deliberately lacks internal-API
+# access because it renders untrusted card content, so the ReadyMCAT pages —
+# which POST to ``/_anki/pointsAtStakeQueue`` etc. — must live in their own view.
+READYMCAT_TAB_STATES: tuple[MainWindowState, ...] = (
+    "readymcatHome",
+    "readymcatDashboard",
+)
 
 
 # ReadyMCAT: the SvelteKit route a returning/provisioned profile lands on when
@@ -179,6 +207,10 @@ class AnkiQt(QMainWindow):
     pm: ProfileManagerType
     web: MainWebView
     bottomWeb: BottomWebView
+    # ReadyMCAT single-window central stack + lazily-created in-window tab views.
+    web_stack: QStackedWidget
+    readymcat_home_view: ReadyMCATHomeView | None
+    readymcat_dashboard_view: ReadyMCATDashboardView | None
 
     def __init__(
         self,
@@ -796,10 +828,67 @@ class AnkiQt(QMainWindow):
         self.clearStateShortcuts()
         self.state = state
         gui_hooks.state_will_change(state, oldState)
+        # ReadyMCAT: keep the single window's chrome (central stack, bottom bar,
+        # active toolbar tab) in sync with the state before the state's own
+        # handler runs so, e.g., the deck browser is guaranteed to render into
+        # the shared ``mw.web`` after a ReadyMCAT tab was shown.
+        self._readymcat_sync_chrome(state)
         getattr(self, f"_{state}State", lambda *_: None)(oldState, *args)
         if state != "resetRequired":
             self.bottomWeb.adjustHeightToFit()
         gui_hooks.state_did_change(state, oldState)
+
+    # ReadyMCAT single-window plumbing
+    ##########################################################################
+
+    def _readymcat_sync_chrome(self, state: MainWindowState) -> None:
+        """Point the central stack + bottom bar + active tab at ``state``.
+
+        Standard screens (deck browser, overview, reviewer) render into the
+        shared ``mw.web``; the ReadyMCAT tab states render into their own
+        API-capable web view, which their state handler swaps in. The bottom
+        toolbar (answer buttons / deck actions) is meaningless on the ReadyMCAT
+        hub/dashboard, so it is hidden there."""
+        is_readymcat = state in READYMCAT_TAB_STATES
+        if not is_readymcat and self.web_stack.currentWidget() is not self.web:
+            self.web_stack.setCurrentWidget(self.web)
+        self.bottomWeb.setVisible(not is_readymcat)
+        # reflect the active tab in the persistent toolbar tab bar
+        toolbar = getattr(self, "toolbar", None)
+        if toolbar is not None:
+            toolbar.set_active_tab(state)
+
+    def _readymcat_view_for_state(self, state: MainWindowState) -> Any:
+        """Return (creating + registering on first use) the in-window view for a
+        ReadyMCAT tab state, with its web view added to the central stack."""
+        if state == "readymcatHome":
+            if self.readymcat_home_view is None:
+                from aqt.readymcat_home import ReadyMCATHomeView
+
+                self.readymcat_home_view = ReadyMCATHomeView(self)
+                self.web_stack.addWidget(self.readymcat_home_view.web)
+            return self.readymcat_home_view
+        else:
+            if self.readymcat_dashboard_view is None:
+                from aqt.readymcat import ReadyMCATDashboardView
+
+                self.readymcat_dashboard_view = ReadyMCATDashboardView(self)
+                self.web_stack.addWidget(self.readymcat_dashboard_view.web)
+            return self.readymcat_dashboard_view
+
+    def _readymcatHomeState(self, oldState: MainWindowState) -> None:
+        if self.col is None:
+            return self.moveToState("deckBrowser")
+        view = self._readymcat_view_for_state("readymcatHome")
+        self.web_stack.setCurrentWidget(view.web)
+        view.show()
+
+    def _readymcatDashboardState(self, oldState: MainWindowState) -> None:
+        if self.col is None:
+            return self.moveToState("deckBrowser")
+        view = self._readymcat_view_for_state("readymcatDashboard")
+        self.web_stack.setCurrentWidget(view.web)
+        view.show()
 
     def _deckBrowserState(self, oldState: MainWindowState) -> None:
         self.deckBrowser.show()
@@ -984,6 +1073,17 @@ title="{}" {}>{}</button>""".format(
         self.toolbar = Toolbar(self, tweb)
         # main area
         self.web = MainWebView(self)
+        # ReadyMCAT: the central area is a stack so the ReadyMCAT Home/Dashboard
+        # tabs can be swapped in beside the shared ``mw.web`` (deck browser /
+        # overview / reviewer) without a second window. ``mw.web`` stays index 0
+        # and everything that reaches for it keeps working; the ReadyMCAT views
+        # are added lazily on first navigation (see ``_readymcat_view_for_state``).
+        self.web_stack = QStackedWidget()
+        self.web_stack.addWidget(self.web)
+        # ReadyMCAT in-window tab views, created lazily so start-up cost and
+        # collection access are deferred until a tab is first opened.
+        self.readymcat_home_view = None
+        self.readymcat_dashboard_view = None
         # bottom area
         sweb = self.bottomWeb = BottomWebView(self)
         sweb.setFocusPolicy(Qt.FocusPolicy.WheelFocus)
@@ -993,7 +1093,7 @@ title="{}" {}>{}</button>""".format(
         self.mainLayout.setContentsMargins(0, 0, 0, 0)
         self.mainLayout.setSpacing(0)
         self.mainLayout.addWidget(tweb)
-        self.mainLayout.addWidget(self.web)
+        self.mainLayout.addWidget(self.web_stack)
         self.mainLayout.addWidget(sweb)
         self.form.centralwidget.setLayout(self.mainLayout)
 
@@ -1970,7 +2070,13 @@ title="{}" {}>{}</button>""".format(
 
     def interactiveState(self) -> bool:
         "True if not in profile manager, syncing, etc."
-        return self.state in ("overview", "review", "deckBrowser")
+        return self.state in (
+            "overview",
+            "review",
+            "deckBrowser",
+            "readymcatHome",
+            "readymcatDashboard",
+        )
 
     # GC
     ##########################################################################

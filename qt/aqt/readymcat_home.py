@@ -21,6 +21,7 @@ between the diagnostic and the hub.
 from __future__ import annotations
 
 import importlib.util
+import json
 import threading
 from pathlib import Path
 from types import ModuleType
@@ -28,8 +29,6 @@ from typing import Any
 
 import aqt.main
 from anki.decks import DeckId
-from aqt.qt import QDialog, Qt, QVBoxLayout
-from aqt.utils import disable_help_button, restoreGeom, saveGeom
 from aqt.webview import AnkiWebView, AnkiWebViewKind
 
 # A single, reused filtered deck used to isolate a one-tap review session for
@@ -381,34 +380,139 @@ def study_probe(mw: aqt.main.AnkiQt, options: dict[str, Any]) -> dict[str, Any]:
     return result
 
 
-# --- the hub window ----------------------------------------------------------
+# --- dev/e2e single-window tab probe -----------------------------------------
+#
+# The four ReadyMCAT tabs (Home · Study · Dashboard · Decks) all render inside
+# ONE Qt window (the ReadyMCAT hub/dashboard into their own API-capable web
+# view, the deck browser + reviewer into the shared ``mw.web``), none of which
+# the Playwright harness's own Chromium can observe directly. This dev-only
+# probe drives a real tab switch on the main thread and reads back what that
+# tab's live web view actually rendered, so the e2e suite can assert every tab
+# is reachable and paints its content in the single window (and that the Study
+# tab serves a question). Gated behind ``dev_mode`` by the mediasrv handler.
+
+# One CSS selector whose presence proves a given tab painted its own content.
+_TAB_MARKERS: dict[str, str] = {
+    "home": ".tiles",  # Home.svelte hero: the four launch tiles
+    "dashboard": ".dashboard",  # Dashboard.svelte root
+    "decks": "#studiedToday",  # deck browser stats block
+    "study": "#qa",  # reviewer question/answer container
+}
 
 
-class ReadyMCATHome(QDialog):
-    """The home/study-launcher hub — the app's entry screen."""
+def _tab_probe_js(selector: str) -> str:
+    return (
+        "(function(){"
+        "var el=document.querySelector(%s);"
+        "var qa=document.getElementById('qa');"
+        "var body=document.body?document.body.innerHTML:'';"
+        "return JSON.stringify({"
+        "found:!!el,"
+        "markerLen:el?(el.innerHTML||'').length:0,"
+        "qaLen:qa?(qa.innerHTML||'').length:0,"
+        "interactive:/rmcq-wrap|rmfr-wrap|rmpsg-wrap/.test(body)"
+        "});})()" % json.dumps(selector)
+    )
+
+
+def tab_probe(mw: aqt.main.AnkiQt, options: dict[str, Any]) -> dict[str, Any]:
+    """Switch to one ReadyMCAT tab and report what its web view rendered.
+
+    ``options`` keys: ``tab`` (home|study|dashboard|decks) and, for ``study``,
+    ``key`` (mcq|fr|passage|cars, default mcq). Returns whether the tab's
+    content marker painted, whether the shared ``mw.web`` is the visible central
+    widget (True for Decks/Study, False for the API-capable Home/Dashboard
+    views), and the current main-window state — enough for the e2e suite to
+    prove the single-window contract."""
+    tab = str(options.get("tab", "home"))
+    key = str(options.get("key", "mcq"))
+    if tab not in _TAB_MARKERS:
+        return {"ok": False, "error": f"unknown tab {tab!r}"}
+
+    result: dict[str, Any] = {"ok": False, "tab": tab}
+    done = threading.Event()
+    ctx: dict[str, Any] = {}
+
+    def after_render() -> None:
+        web = ctx["web"]
+
+        def on_read(raw: Any) -> None:
+            try:
+                info = json.loads(raw) if isinstance(raw, str) else {}
+            except (ValueError, TypeError):
+                info = {}
+            result.update(
+                ok=True,
+                state=mw.state,
+                centralIsMainWeb=mw.web_stack.currentWidget() is mw.web,
+                found=bool(info.get("found")),
+                markerLen=int(info.get("markerLen", 0)),
+                qaLen=int(info.get("qaLen", 0)),
+                interactive=bool(info.get("interactive")),
+            )
+            done.set()
+
+        web.evalWithCallback(_tab_probe_js(_TAB_MARKERS[tab]), on_read)
+
+    def on_main() -> None:
+        try:
+            if tab == "home":
+                mw.moveToState("readymcatHome")
+                ctx["web"] = mw.readymcat_home_view.web
+            elif tab == "dashboard":
+                mw.moveToState("readymcatDashboard")
+                ctx["web"] = mw.readymcat_dashboard_view.web
+            elif tab == "decks":
+                mw.moveToState("deckBrowser")
+                ctx["web"] = mw.web
+            else:  # study
+                _launch_for_probe(mw, key, native=True)
+                ctx["web"] = mw.web
+        except Exception as exc:  # pragma: no cover - defensive
+            result.update(ok=False, error=repr(exc))
+            done.set()
+            return
+        # Give the (async) SvelteKit page / reviewer time to load + paint.
+        mw.progress.single_shot(1500, after_render, False)
+
+    mw.taskman.run_on_main(on_main)
+    if not done.wait(timeout=25):
+        return {"ok": False, "tab": tab, "error": "timeout"}
+    return result
+
+
+# --- the in-window hub view --------------------------------------------------
+
+
+class ReadyMCATHomeView:
+    """The home/study-launcher hub, rendered INTO the main window.
+
+    Formerly a standalone ``QDialog`` popup; now a persistent tab of the single
+    ReadyMCAT window. It owns its own :class:`AnkiWebView` (kind
+    ``READYMCAT_HOME``, which grants the internal-API access the hub's
+    ``pointsAtStakeQueue`` / ``readymcatHomeStatus`` fetches need — the shared
+    ``mw.web`` deliberately lacks it) and the main window swaps that web view
+    into its central stack when the Home tab is selected (see
+    ``aqt.main.AnkiQt._readymcatHomeState``). Mirrors the ``DeckBrowser`` /
+    ``Overview`` view pattern (a plain object holding ``mw`` + a web view),
+    rather than a window.
+    """
 
     def __init__(self, mw: aqt.main.AnkiQt) -> None:
-        super().__init__(mw, Qt.WindowType.Window)
         self.mw = mw
-        self.name = "readyMCATHome"
-        mw.garbage_collect_on_dialog_finish(self)
-        self.setWindowTitle("ReadyMCAT — Study Hub")
-        self.setMinimumSize(760, 640)
-        disable_help_button(self)
-        restoreGeom(self, self.name, default_size=(1040, 800))
-
-        self.web = AnkiWebView(self, kind=AnkiWebViewKind.READYMCAT_HOME)
+        # No Qt parent: the main window's central QStackedWidget takes ownership
+        # when this view's web is registered (mirrors how ``mw.web`` is parented
+        # by the layout rather than at construction).
+        self.web = AnkiWebView(kind=AnkiWebViewKind.READYMCAT_HOME)
         self.web.set_bridge_command(self._on_bridge_cmd, self)
-        layout = QVBoxLayout(self)
-        layout.setContentsMargins(0, 0, 0, 0)
-        layout.addWidget(self.web)
+        self._loads = 0
 
+    def show(self) -> None:
+        """(Re)load the hub page so its counts/memory strip reflect the latest
+        collection state each time the tab is opened."""
+        self.web.set_bridge_command(self._on_bridge_cmd, self)
+        self._loads += 1
         self.web.load_sveltekit_page(self._page_path())
-        self.show()
-        # Bring the hub to the front when opened as the deferred launch surface
-        # (otherwise it opens behind the freshly-focused deck browser).
-        self.raise_()
-        self.activateWindow()
 
     def _page_path(self) -> str:
         from urllib.parse import quote
@@ -416,42 +520,40 @@ class ReadyMCATHome(QDialog):
         from aqt.readymcat import _bundled_taxonomy_path
 
         page = "readymcat-home"
+        params = []
         taxonomy = _bundled_taxonomy_path(self.mw)
         if taxonomy:
-            return f"{page}?taxonomy={quote(taxonomy)}"
-        return page
+            params.append(f"taxonomy={quote(taxonomy)}")
+        # Cache-buster: re-selecting the tab must do a REAL navigation so the
+        # page reloads fresh counts and re-fires domReady. Re-loading the exact
+        # same URL is a no-op in the webview (the content stays stale and the
+        # view's pending-eval queue never drains), so vary the URL each show.
+        params.append(f"_r={self._loads}")
+        return f"{page}?{'&'.join(params)}"
 
     def _on_bridge_cmd(self, cmd: str) -> bool:
-        if cmd == "close":
-            self.close()
-        elif cmd.startswith("startDeck:"):
+        # ``close`` is intercepted by AnkiWebView itself (Escape -> onEsc), which
+        # in the main window just drops focus rather than closing anything, so it
+        # never reaches here — there is no window to close now.
+        if cmd.startswith("startDeck:"):
             key = cmd.split(":", 1)[1]
-            self.close()
+            # start_deck_review moves the main window to the reviewer (the Study
+            # tab), swapping the central stack back to mw.web on its own.
             start_deck_review(self.mw, key)
         elif cmd == "openDiagnostic":
-            self.close()
             from aqt.readymcat import show_readymcat_diagnostic
 
             show_readymcat_diagnostic(self.mw)
         elif cmd == "openDashboard":
-            self.close()
-            from aqt.readymcat import show_readymcat_dashboard
-
-            show_readymcat_dashboard(self.mw)
+            self.mw.moveToState("readymcatDashboard")
         elif cmd == "refresh":
             self.web.load_sveltekit_page(self._page_path())
         return False
 
-    def reject(self) -> None:
-        if self.web:
-            self.web.cleanup()
-            self.web = None  # type: ignore[assignment]
-        saveGeom(self, self.name)
-        QDialog.reject(self)
-
 
 def show_readymcat_home(mw: aqt.main.AnkiQt) -> None:
-    ReadyMCATHome(mw)
+    """Navigate the single window to the Home tab (no longer a popup)."""
+    mw.moveToState("readymcatHome")
 
 
 # --- first-launch routing: diagnostic vs. hub, never both -------------------

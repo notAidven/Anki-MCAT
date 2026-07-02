@@ -151,8 +151,8 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
                 <strong>Performance</strong>
                 and
                 <strong>Readiness</strong>
-                 — each a range with a confidence level, each hidden until there's enough
-                evidence to back it up.
+                — each a range with a confidence level, each hidden until there's enough evidence
+                to back it up.
             </p>
         </div>
         <div class="updated" title="When this aggregation was computed">
@@ -309,7 +309,7 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
                     </span>
                     <p class="stat-note">
                         Projected ≈ <strong>{readyPoint}</strong>
-                         on the 472–528 scale.
+                        on the 472–528 scale.
                     </p>
                     <div class="gauge" aria-hidden="true">
                         <div
@@ -338,7 +338,7 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
                     <span class="chip needs">Needs evidence</span>
                     <p class="stat-note">
                         Projected only once <em>both</em>
-                         Memory and Performance have enough evidence.
+                        Memory and Performance have enough evidence.
                     </p>
                     <p class="caveat">
                         When shown it is a heuristic, uncalibrated projection — never a

@@ -114,7 +114,9 @@ def test_performance_reads_first_attempt_accuracy_and_gates_readiness(tmp_path):
     assert resp.performance.hits == 25
     assert abs(resp.performance.mean - 25 / 35) < 1e-9
     assert resp.performance.meets_data_threshold
-    assert resp.performance.range_low < resp.performance.mean < resp.performance.range_high
+    assert (
+        resp.performance.range_low < resp.performance.mean < resp.performance.range_high
+    )
 
     topic_1a = next(t for t in resp.performance.topics if t.category == "1A")
     assert (topic_1a.attempts, topic_1a.hits) == (35, 25)

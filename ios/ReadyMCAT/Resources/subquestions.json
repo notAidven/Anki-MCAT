@@ -1,0 +1,587 @@
+{
+    "version": 1,
+    "description": "ReadyMCAT teach-on-miss ladders. Pre-authored guiding sub-questions for high-value MCAT concepts drawn from the highest-weight AAMC content categories (see taxonomy.json). When a card carrying one of a concept's match_tags is graded 'Again', the desktop reviewer runs that concept's ladder one rung at a time (attempt -> reveal sub-answer -> self-mark Got it / Missed) before re-showing the main question.",
+    "schema": {
+        "concepts[].id": "stable unique concept key (snake_case)",
+        "concepts[].title": "human-readable concept name (shown in the reviewer)",
+        "concepts[].category": "AAMC content category id from taxonomy.json (informational)",
+        "concepts[].match_tags": "list of tag prefixes; a card matches if any of its tags equals or is path-prefixed (on '::') by one of these. Longest matching prefix across all concepts wins.",
+        "concepts[].resource": "{label, url} surfaced as a 'needs content review' nudge if the main question is missed again after the ladder (falls back to the card's own embedded link when present)",
+        "concepts[].ladder": "ordered list of {q, a} rungs (2-3); q = guiding sub-question shown first, a = sub-answer revealed after the student attempts it"
+    },
+    "concepts": [
+        {
+            "id": "biochem_glycolysis_net_yield",
+            "title": "Glycolysis: net ATP / NADH yield",
+            "category": "1D",
+            "match_tags": ["#Biochemistry::Metabolism::Carbohydrates::Glycolysis"],
+            "resource": {
+                "label": "Khan Academy - Biomolecules (Glycolysis)",
+                "url": "https://www.khanacademy.org/test-prep/mcat/biomolecules"
+            },
+            "ladder": [
+                {
+                    "q": "Glycolysis has two phases. In the energy-INVESTMENT phase, how many ATP are consumed, and at which two enzyme steps?",
+                    "a": "2 ATP invested - one at hexokinase (glucose -> glucose-6-phosphate) and one at phosphofructokinase-1 (F6P -> fructose-1,6-bisphosphate)."
+                },
+                {
+                    "q": "In the energy-PAYOFF phase, how many ATP and NADH are produced per glucose (recall each glucose becomes two 3-carbon units)?",
+                    "a": "4 ATP by substrate-level phosphorylation (2 at phosphoglycerate kinase, 2 at pyruvate kinase) and 2 NADH (at glyceraldehyde-3-phosphate dehydrogenase)."
+                },
+                {
+                    "q": "So what is the NET yield per glucose, and what are the carbon end-products?",
+                    "a": "Net 2 ATP + 2 NADH + 2 pyruvate per glucose."
+                }
+            ]
+        },
+        {
+            "id": "biochem_citric_acid_cycle_yield",
+            "title": "Citric acid cycle: inputs and per-turn yield",
+            "category": "1D",
+            "match_tags": ["#Biochemistry::Metabolism::Carbohydrates::CitricAcidCycle"],
+            "resource": {
+                "label": "Khan Academy - Biomolecules (Citric acid cycle)",
+                "url": "https://www.khanacademy.org/test-prep/mcat/biomolecules"
+            },
+            "ladder": [
+                {
+                    "q": "What molecule actually enters the citric acid cycle (it is not pyruvate itself), and how is it formed from pyruvate?",
+                    "a": "Acetyl-CoA. Pyruvate dehydrogenase oxidatively decarboxylates pyruvate, releasing 1 CO2 and producing 1 NADH per pyruvate."
+                },
+                {
+                    "q": "Per ONE turn of the cycle (per acetyl-CoA), how many NADH, FADH2, and GTP are produced?",
+                    "a": "3 NADH, 1 FADH2, and 1 GTP (or ATP) per acetyl-CoA, with 2 CO2 released."
+                },
+                {
+                    "q": "Per molecule of GLUCOSE (which yields 2 acetyl-CoA), what is the cycle's total output?",
+                    "a": "Double it: 6 NADH, 2 FADH2, 2 GTP, and 4 CO2 per glucose."
+                }
+            ]
+        },
+        {
+            "id": "biochem_etc_oxphos",
+            "title": "Electron transport chain & oxidative phosphorylation",
+            "category": "1D",
+            "match_tags": ["#Biochemistry::Metabolism::Carbohydrates::ElectronTransportChain"],
+            "resource": {
+                "label": "Khan Academy - Biomolecules (Oxidative phosphorylation)",
+                "url": "https://www.khanacademy.org/test-prep/mcat/biomolecules"
+            },
+            "ladder": [
+                {
+                    "q": "In the electron transport chain, what is the FINAL electron acceptor and what product forms?",
+                    "a": "Oxygen (O2) is the final electron acceptor; it is reduced to water (H2O)."
+                },
+                {
+                    "q": "As electrons pass through the complexes, what gradient is built, and across which membrane?",
+                    "a": "Protons (H+) are pumped from the matrix into the intermembrane space, building an electrochemical proton gradient across the INNER mitochondrial membrane (the proton-motive force)."
+                },
+                {
+                    "q": "How is that gradient used to make ATP, and what is this coupling called?",
+                    "a": "Protons flow back into the matrix through ATP synthase, driving ATP synthesis. Coupling the oxidation-driven gradient to ATP synthesis is chemiosmosis (oxidative phosphorylation)."
+                }
+            ]
+        },
+        {
+            "id": "biochem_michaelis_menten",
+            "title": "Michaelis-Menten kinetics (Vmax, Km)",
+            "category": "1A",
+            "match_tags": ["#Biochemistry::Enzymes::Kinetics::Monomeric::MichaelisMenten"],
+            "resource": {
+                "label": "Khan Academy - Biomolecules (Enzyme kinetics)",
+                "url": "https://www.khanacademy.org/test-prep/mcat/biomolecules"
+            },
+            "ladder": [
+                {
+                    "q": "What does Vmax represent, and what physically limits it?",
+                    "a": "Vmax is the maximum rate reached when the enzyme is saturated with substrate; it is limited by the total enzyme concentration (Vmax = kcat[E]total)."
+                },
+                {
+                    "q": "What does Km represent operationally, and what does a LOW Km indicate?",
+                    "a": "Km is the substrate concentration at which the rate is half of Vmax. A low Km means high apparent affinity (little substrate needed to reach half-max)."
+                },
+                {
+                    "q": "On a Lineweaver-Burk (double-reciprocal) plot, what do the y- and x-intercepts give you?",
+                    "a": "y-intercept = 1/Vmax; x-intercept = -1/Km (slope = Km/Vmax)."
+                }
+            ]
+        },
+        {
+            "id": "biochem_enzyme_inhibition",
+            "title": "Enzyme inhibition: competitive vs noncompetitive",
+            "category": "1A",
+            "match_tags": ["#Biochemistry::Enzymes::Regulation::Inhibition"],
+            "resource": {
+                "label": "Khan Academy - Biomolecules (Enzyme regulation)",
+                "url": "https://www.khanacademy.org/test-prep/mcat/biomolecules"
+            },
+            "ladder": [
+                {
+                    "q": "A COMPETITIVE inhibitor binds where, and how does it change apparent Km and Vmax?",
+                    "a": "It binds the active site, competing with substrate: apparent Km INCREASES, Vmax is UNCHANGED (it can be overcome by adding more substrate)."
+                },
+                {
+                    "q": "A pure NONCOMPETITIVE inhibitor binds where, and how does it change Km and Vmax?",
+                    "a": "It binds an allosteric site (equally to E and ES), so Vmax DECREASES and Km is UNCHANGED (cannot be overcome by more substrate)."
+                },
+                {
+                    "q": "On a Lineweaver-Burk plot, where do the lines intersect for each?",
+                    "a": "Competitive: lines meet on the y-axis (same Vmax). Noncompetitive: lines meet on the x-axis (same Km)."
+                }
+            ]
+        },
+        {
+            "id": "biochem_amino_acid_pI",
+            "title": "Amino acid acid-base behavior & isoelectric point",
+            "category": "1A",
+            "match_tags": ["#Biochemistry::AminoAcids::AcidBase"],
+            "resource": {
+                "label": "Khan Academy - Biomolecules (Amino acids)",
+                "url": "https://www.khanacademy.org/test-prep/mcat/biomolecules"
+            },
+            "ladder": [
+                {
+                    "q": "At physiological pH (~7.4), what is the charge on the backbone carboxyl group and the amino group of a free amino acid?",
+                    "a": "Carboxyl (pKa ~2) is deprotonated -COO- (negative); amino (pKa ~9-10) is protonated -NH3+ (positive). The result is a zwitterion with net charge ~0."
+                },
+                {
+                    "q": "What is the isoelectric point (pI), and how do you compute it for an amino acid with a NON-ionizable side chain?",
+                    "a": "pI is the pH at which net charge = 0. For a neutral side chain, pI = average of the two backbone pKa values: (pKa_COOH + pKa_NH3+)/2."
+                },
+                {
+                    "q": "For an ACIDIC amino acid (e.g., aspartate, three pKa's), which two pKa's do you average?",
+                    "a": "Average the two LOWEST pKa's (the pair flanking the neutral/zwitterionic form) -> a low pI."
+                }
+            ]
+        },
+        {
+            "id": "biochem_dna_replication",
+            "title": "DNA replication: semiconservative, leading/lagging",
+            "category": "1B",
+            "match_tags": ["#Biochemistry::DNABiotechnology::DNAReplication"],
+            "resource": {
+                "label": "Khan Academy - Biomolecules (DNA)",
+                "url": "https://www.khanacademy.org/test-prep/mcat/biomolecules"
+            },
+            "ladder": [
+                {
+                    "q": "DNA replication is 'semiconservative' - what exactly does that mean for each daughter duplex?",
+                    "a": "Each daughter double helix keeps one parental (template) strand and one newly synthesized strand."
+                },
+                {
+                    "q": "DNA polymerase only synthesizes 5'->3'. What does that force to happen at the replication fork?",
+                    "a": "One new strand (leading) is made continuously toward the fork; the other (lagging) is made discontinuously as Okazaki fragments away from the fork."
+                },
+                {
+                    "q": "Name the enzyme that unwinds the helix and the enzyme that joins Okazaki fragments.",
+                    "a": "Helicase unwinds the duplex; DNA ligase seals the nicks between Okazaki fragments (primase lays RNA primers; topoisomerase relieves supercoiling)."
+                }
+            ]
+        },
+        {
+            "id": "biochem_transcription",
+            "title": "Transcription & mRNA processing",
+            "category": "1B",
+            "match_tags": ["#Biochemistry::RNA&GeneticCode::Transcription"],
+            "resource": {
+                "label": "Khan Academy - Biomolecules (Transcription)",
+                "url": "https://www.khanacademy.org/test-prep/mcat/biomolecules"
+            },
+            "ladder": [
+                {
+                    "q": "What enzyme carries out transcription, and in which directions does it read the template and build the RNA?",
+                    "a": "RNA polymerase reads the template strand 3'->5' and synthesizes RNA 5'->3'. No primer is required."
+                },
+                {
+                    "q": "Name the three main eukaryotic pre-mRNA processing steps before the transcript leaves the nucleus.",
+                    "a": "Addition of a 5' 7-methylguanosine cap, addition of a 3' poly-A tail, and splicing out of introns (joining exons)."
+                },
+                {
+                    "q": "The mature mRNA sequence matches which DNA strand (apart from U replacing T)?",
+                    "a": "The coding (sense) strand. mRNA is complementary to the template strand, so it reads like the coding strand with U in place of T."
+                }
+            ]
+        },
+        {
+            "id": "bio_hardy_weinberg",
+            "title": "Hardy-Weinberg equilibrium",
+            "category": "1C",
+            "match_tags": ["#Physiology::Genetics&Evolution::AnalyticalApproaches::HardyWeinberg"],
+            "resource": {
+                "label": "Khan Academy - Cells (Genetics & evolution)",
+                "url": "https://www.khanacademy.org/test-prep/mcat/cells"
+            },
+            "ladder": [
+                {
+                    "q": "State the two Hardy-Weinberg equations and what p and q represent.",
+                    "a": "p + q = 1 (allele frequencies) and p^2 + 2pq + q^2 = 1 (genotype frequencies), where p = dominant allele frequency and q = recessive allele frequency."
+                },
+                {
+                    "q": "If 1 in 100 individuals shows the recessive phenotype, find q and then p.",
+                    "a": "q^2 = 0.01 -> q = 0.1; p = 1 - q = 0.9."
+                },
+                {
+                    "q": "What fraction of that population are heterozygous carriers?",
+                    "a": "2pq = 2(0.9)(0.1) = 0.18 -> 18% carriers."
+                }
+            ]
+        },
+        {
+            "id": "bio_action_potential",
+            "title": "Neuronal action potential",
+            "category": "3A",
+            "match_tags": ["#Physiology::NervousSystem::NeuralImpulses::ActionPotentials"],
+            "resource": {
+                "label": "Khan Academy - Organ systems (Nervous system)",
+                "url": "https://www.khanacademy.org/test-prep/mcat/organ-systems"
+            },
+            "ladder": [
+                {
+                    "q": "What ion movement drives the DEPOLARIZATION (rising) phase of the action potential?",
+                    "a": "Voltage-gated Na+ channels open and Na+ rushes INTO the cell, driving the membrane potential sharply positive (toward ~+30-40 mV)."
+                },
+                {
+                    "q": "What causes repolarization, and then the brief hyperpolarization that follows?",
+                    "a": "Na+ channels inactivate while voltage-gated K+ channels open, so K+ flows OUT (repolarization); the slow closing of K+ channels overshoots, causing transient hyperpolarization."
+                },
+                {
+                    "q": "What is the absolute refractory period, and why does it make propagation one-way?",
+                    "a": "It is the interval when Na+ channels are inactivated and cannot reopen at any stimulus strength; it prevents the impulse from traveling backward, so action potentials propagate unidirectionally."
+                }
+            ]
+        },
+        {
+            "id": "bio_cardiac_conduction",
+            "title": "Cardiac electrical conduction pathway",
+            "category": "3B",
+            "match_tags": ["#Physiology::Cardiovascular::Anatomy::ElectricalConduction"],
+            "resource": {
+                "label": "Khan Academy - Organ systems (Circulatory system)",
+                "url": "https://www.khanacademy.org/test-prep/mcat/organ-systems"
+            },
+            "ladder": [
+                {
+                    "q": "Trace the normal electrical conduction pathway of the heart from where the signal originates.",
+                    "a": "SA node -> AV node -> bundle of His -> right and left bundle branches -> Purkinje fibers."
+                },
+                {
+                    "q": "Why is the conduction DELAY at the AV node functionally important?",
+                    "a": "It lets the atria finish contracting and fully fill the ventricles before the ventricles contract, optimizing stroke volume."
+                },
+                {
+                    "q": "Which structure is the normal pacemaker and why does it set the heart rate?",
+                    "a": "The SA node - it has the fastest intrinsic rate of spontaneous depolarization, so it entrains (paces) the rest of the conduction system."
+                }
+            ]
+        },
+        {
+            "id": "bio_nephron_function",
+            "title": "Nephron: filtration, reabsorption, secretion",
+            "category": "3B",
+            "match_tags": ["#Physiology::Homeostasis::Excretion::NephronFunction"],
+            "resource": {
+                "label": "Khan Academy - Organ systems (Renal system)",
+                "url": "https://www.khanacademy.org/test-prep/mcat/organ-systems"
+            },
+            "ladder": [
+                {
+                    "q": "Name the basic renal processes that determine what ends up in the urine.",
+                    "a": "Filtration (at the glomerulus), reabsorption, and secretion (along the tubules), then excretion. Urine = filtered - reabsorbed + secreted."
+                },
+                {
+                    "q": "Contrast the DESCENDING vs ASCENDING limb of the loop of Henle in terms of what they move.",
+                    "a": "Descending limb is permeable to water (water leaves, solutes stay) -> filtrate concentrates. Ascending limb is impermeable to water but actively pumps out Na+/K+/Cl- (solutes leave) -> filtrate dilutes."
+                },
+                {
+                    "q": "Which hormone makes the collecting duct permeable to water, and what is the effect on urine?",
+                    "a": "ADH (vasopressin) inserts aquaporins in the collecting duct -> more water reabsorbed -> concentrated urine. (Aldosterone increases Na+ reabsorption distally.)"
+                }
+            ]
+        },
+        {
+            "id": "genchem_buffers_henderson",
+            "title": "Buffers & the Henderson-Hasselbalch equation",
+            "category": "5A",
+            "match_tags": ["#GeneralChemistry::Acids&Bases::Titrations&Buffers"],
+            "resource": {
+                "label": "Khan Academy - Chemical processes (Acids & bases)",
+                "url": "https://www.khanacademy.org/test-prep/mcat/chemical-processes"
+            },
+            "ladder": [
+                {
+                    "q": "Write the Henderson-Hasselbalch equation for a weak-acid buffer.",
+                    "a": "pH = pKa + log([A-]/[HA]) - pH equals pKa plus the log of conjugate base over weak acid."
+                },
+                {
+                    "q": "A buffer is most effective (and pH = pKa) when what is true of [A-] and [HA]?",
+                    "a": "When [A-] = [HA]; then log(1) = 0, so pH = pKa. This is the center of the effective buffering region (about pKa +/- 1)."
+                },
+                {
+                    "q": "At the HALF-equivalence point of a weak-acid titration, what does pH equal?",
+                    "a": "pH = pKa, because exactly half the weak acid has been converted to its conjugate base ([A-] = [HA])."
+                }
+            ]
+        },
+        {
+            "id": "genchem_le_chatelier",
+            "title": "Le Chatelier's principle",
+            "category": "5E",
+            "match_tags": ["#GeneralChemistry::Equilibrium::LeChateliersPrinciple"],
+            "resource": {
+                "label": "Khan Academy - Chemical processes (Equilibrium)",
+                "url": "https://www.khanacademy.org/test-prep/mcat/chemical-processes"
+            },
+            "ladder": [
+                {
+                    "q": "State Le Chatelier's principle in one sentence.",
+                    "a": "When a system at equilibrium is disturbed, it shifts in the direction that partially counteracts the disturbance."
+                },
+                {
+                    "q": "For an EXOTHERMIC reaction, which way does equilibrium shift if you raise the temperature?",
+                    "a": "Toward the reactants (left). Heat behaves like a product, so adding heat shifts away from products and K decreases."
+                },
+                {
+                    "q": "For a gas-phase equilibrium, what happens if you decrease the volume (increase pressure)?",
+                    "a": "It shifts toward the side with FEWER moles of gas to relieve the pressure."
+                }
+            ]
+        },
+        {
+            "id": "genchem_rate_law",
+            "title": "Rate laws & reaction order",
+            "category": "5E",
+            "match_tags": ["#GeneralChemistry::Kinetics::ReactionRates::RateLaws"],
+            "resource": {
+                "label": "Khan Academy - Chemical processes (Kinetics)",
+                "url": "https://www.khanacademy.org/test-prep/mcat/chemical-processes"
+            },
+            "ladder": [
+                {
+                    "q": "For rate = k[A]^m[B]^n, what are m and n called, and can you read them off the balanced equation?",
+                    "a": "They are the reaction orders in A and B (overall order = m + n). They are determined EXPERIMENTALLY, not from stoichiometric coefficients."
+                },
+                {
+                    "q": "If doubling [A] quadruples the rate, what is the order with respect to A?",
+                    "a": "Second order (2^2 = 4). (A 2x rate would be first order; no change would be zero order.)"
+                },
+                {
+                    "q": "How does a catalyst speed a reaction, and does it move the equilibrium?",
+                    "a": "It lowers the activation energy via an alternate pathway, speeding the forward and reverse rates equally. It does NOT change deltaG, K, or the equilibrium position."
+                }
+            ]
+        },
+        {
+            "id": "genchem_ideal_gas_law",
+            "title": "Ideal gas law & deviations",
+            "category": "4B",
+            "match_tags": ["#GeneralChemistry::Gases::KineticTheory::IdealGases"],
+            "resource": {
+                "label": "Khan Academy - Physical processes (Gases)",
+                "url": "https://www.khanacademy.org/test-prep/mcat/physical-processes"
+            },
+            "ladder": [
+                {
+                    "q": "Write the ideal gas law and define every variable (with units of T).",
+                    "a": "PV = nRT: P pressure, V volume, n moles, R the gas constant, T absolute temperature in KELVIN."
+                },
+                {
+                    "q": "At constant T and n, how are P and V related (whose law), and how are V and T related at constant P?",
+                    "a": "P and V are inversely related: P1V1 = P2V2 (Boyle's law). At constant P, V is directly proportional to T (Charles's law)."
+                },
+                {
+                    "q": "Under what conditions do REAL gases deviate most from ideal behavior, and why?",
+                    "a": "High pressure and low temperature: molecules are close together, so their finite volume and intermolecular attractions become significant."
+                }
+            ]
+        },
+        {
+            "id": "ochem_stereochem_isomers",
+            "title": "Stereochemistry: enantiomers vs diastereomers",
+            "category": "5D",
+            "match_tags": ["#OrganicChemistry::Stereochemistry::Isomers"],
+            "resource": {
+                "label": "Khan Academy - Chemical processes (Stereochemistry)",
+                "url": "https://www.khanacademy.org/test-prep/mcat/chemical-processes"
+            },
+            "ladder": [
+                {
+                    "q": "What is the difference between enantiomers and diastereomers?",
+                    "a": "Enantiomers are non-superimposable mirror images (opposite configuration at EVERY chiral center). Diastereomers are stereoisomers that are NOT mirror images (differ at some but not all chiral centers)."
+                },
+                {
+                    "q": "For a molecule with n chiral centers, what is the maximum number of stereoisomers?",
+                    "a": "2^n (fewer if internal symmetry creates meso compounds)."
+                },
+                {
+                    "q": "How do a pair of enantiomers differ in measurable properties?",
+                    "a": "Identical ordinary physical properties EXCEPT they rotate plane-polarized light equally but in OPPOSITE directions (optical activity), and they behave differently in chiral environments."
+                }
+            ]
+        },
+        {
+            "id": "genchem_gibbs_free_energy",
+            "title": "Gibbs free energy & spontaneity",
+            "category": "5E",
+            "match_tags": ["#GeneralChemistry::Thermochemistry::GibbsFreeEnergy"],
+            "resource": {
+                "label": "Khan Academy - Chemical processes (Thermodynamics)",
+                "url": "https://www.khanacademy.org/test-prep/mcat/chemical-processes"
+            },
+            "ladder": [
+                {
+                    "q": "Write the Gibbs free energy relationship among deltaG, deltaH, and deltaS.",
+                    "a": "deltaG = deltaH - T*deltaS (with T in Kelvin)."
+                },
+                {
+                    "q": "What sign of deltaG marks a spontaneous (thermodynamically favorable) process?",
+                    "a": "deltaG < 0 is spontaneous/exergonic; deltaG > 0 is nonspontaneous; deltaG = 0 is at equilibrium."
+                },
+                {
+                    "q": "If deltaH > 0 and deltaS > 0, when is the reaction spontaneous?",
+                    "a": "At HIGH temperature - a large T makes T*deltaS exceed deltaH, so deltaG becomes negative (entropy-driven)."
+                }
+            ]
+        },
+        {
+            "id": "physics_geometric_optics",
+            "title": "Geometric optics: lens/mirror equation",
+            "category": "4D",
+            "match_tags": ["#PhysicsMCAT::Light&Optics::GeometricalOptics"],
+            "resource": {
+                "label": "Khan Academy - Physical processes (Geometric optics)",
+                "url": "https://www.khanacademy.org/test-prep/mcat/physical-processes"
+            },
+            "ladder": [
+                {
+                    "q": "Write the thin-lens / mirror equation relating focal length to object and image distance.",
+                    "a": "1/f = 1/do + 1/di, where f is focal length, do object distance, di image distance."
+                },
+                {
+                    "q": "For a converging lens, what do a POSITIVE vs NEGATIVE image distance (di) tell you about the image?",
+                    "a": "Positive di -> real, inverted image on the far side. Negative di -> virtual, upright image on the same side as the object."
+                },
+                {
+                    "q": "How is magnification computed, and what does a negative m mean?",
+                    "a": "m = -di/do = hi/ho. m < 0 means an inverted (real) image; |m| > 1 means enlarged."
+                }
+            ]
+        },
+        {
+            "id": "physics_ohms_law_circuits",
+            "title": "Ohm's law & series/parallel circuits",
+            "category": "4C",
+            "match_tags": ["#PhysicsMCAT::Electricity&Circuits::Voltage&Resistance"],
+            "resource": {
+                "label": "Khan Academy - Physical processes (Circuits)",
+                "url": "https://www.khanacademy.org/test-prep/mcat/physical-processes"
+            },
+            "ladder": [
+                { "q": "State Ohm's law.", "a": "V = IR (voltage = current x resistance)." },
+                {
+                    "q": "How do resistors combine in SERIES versus in PARALLEL?",
+                    "a": "Series: R_total = R1 + R2 + ... (sum). Parallel: 1/R_total = 1/R1 + 1/R2 + ..., so R_total is LESS than the smallest resistor."
+                },
+                {
+                    "q": "In a series circuit what quantity is the same everywhere; in a parallel circuit what quantity is the same?",
+                    "a": "Series: the same CURRENT flows through every element (voltage divides). Parallel: the same VOLTAGE is across each branch (current divides)."
+                }
+            ]
+        },
+        {
+            "id": "psych_memory_stages",
+            "title": "Memory: stages and stores",
+            "category": "6B",
+            "match_tags": ["#Psychology::ProcessingTheEnvironment::Memory"],
+            "resource": {
+                "label": "Khan Academy - Processing the environment (Memory)",
+                "url": "https://www.khanacademy.org/test-prep/mcat/processing-the-environment"
+            },
+            "ladder": [
+                {
+                    "q": "Name the three sequential stages in the information-processing model of memory.",
+                    "a": "Encoding -> storage -> retrieval."
+                },
+                {
+                    "q": "In the Atkinson-Shiffrin (modal) model, what are the three stores, and roughly their capacity/duration?",
+                    "a": "Sensory memory (large, < ~1 s), short-term/working memory (~7 +/- 2 items, ~15-30 s), and long-term memory (effectively unlimited, durable)."
+                },
+                {
+                    "q": "Distinguish explicit (declarative) from implicit (nondeclarative) long-term memory.",
+                    "a": "Explicit = conscious facts and events (semantic and episodic). Implicit = unconscious skills and conditioned responses (procedural memory, priming)."
+                }
+            ]
+        },
+        {
+            "id": "psych_conformity_obedience",
+            "title": "Conformity & obedience (Asch, Milgram)",
+            "category": "7B",
+            "match_tags": ["#Psychology::SocialPsychology::Conformity&Obedience"],
+            "resource": {
+                "label": "Khan Academy - Behavior (Social psychology)",
+                "url": "https://www.khanacademy.org/test-prep/mcat/behavior"
+            },
+            "ladder": [
+                {
+                    "q": "What did Asch's line-judgment studies demonstrate about conformity?",
+                    "a": "People often conform to a clearly incorrect majority (normative social influence - the desire to fit in and avoid disapproval), even against the evidence of their own senses."
+                },
+                {
+                    "q": "What did Milgram's studies demonstrate, and what is the core concept?",
+                    "a": "Ordinary people will obey an authority figure to deliver apparent harm - obedience to authority. Proximity of the authority and of the victim strongly modulate it."
+                },
+                {
+                    "q": "Distinguish normative from informational social influence.",
+                    "a": "Normative: conform to be liked/accepted -> public compliance. Informational: conform because you believe others have better information -> private acceptance, common in ambiguous situations."
+                }
+            ]
+        },
+        {
+            "id": "psych_operant_conditioning",
+            "title": "Operant conditioning & reinforcement",
+            "category": "7A",
+            "match_tags": ["#Psychology::LearningKA::OperantConditioning"],
+            "resource": {
+                "label": "Khan Academy - Behavior (Learning)",
+                "url": "https://www.khanacademy.org/test-prep/mcat/behavior"
+            },
+            "ladder": [
+                {
+                    "q": "In operant conditioning, distinguish reinforcement from punishment, and 'positive' from 'negative'.",
+                    "a": "Reinforcement increases a behavior; punishment decreases it. 'Positive' = ADD a stimulus; 'negative' = REMOVE a stimulus."
+                },
+                {
+                    "q": "Give an example of NEGATIVE reinforcement and explain why it is reinforcement, not punishment.",
+                    "a": "Taking aspirin to remove a headache: the relief (removing an aversive stimulus) makes you more likely to take aspirin again. Because it INCREASES the behavior, it is reinforcement."
+                },
+                {
+                    "q": "Which reinforcement schedule yields the highest, most extinction-resistant response rate?",
+                    "a": "Variable-ratio (reward after an unpredictable number of responses), e.g., a slot machine."
+                }
+            ]
+        },
+        {
+            "id": "psych_theories_of_emotion",
+            "title": "Theories of emotion",
+            "category": "6C",
+            "match_tags": ["#Psychology::ProcessingTheEnvironment::Emotion::TheoriesOfEmotion"],
+            "resource": {
+                "label": "Khan Academy - Processing the environment (Emotion)",
+                "url": "https://www.khanacademy.org/test-prep/mcat/processing-the-environment"
+            },
+            "ladder": [
+                {
+                    "q": "What sequence does the James-Lange theory propose?",
+                    "a": "Stimulus -> physiological/bodily arousal -> the emotion IS our interpretation of that bodily response ('I tremble, therefore I am afraid')."
+                },
+                {
+                    "q": "How does the Cannon-Bard theory differ from James-Lange?",
+                    "a": "Arousal and the conscious emotion occur SIMULTANEOUSLY and independently - the stimulus triggers both at once."
+                },
+                {
+                    "q": "What does the Schachter-Singer (two-factor) theory add on top of arousal?",
+                    "a": "Emotion = physiological arousal PLUS a cognitive label/appraisal of that arousal from context; identical arousal can be labeled as different emotions depending on context."
+                }
+            ]
+        }
+    ]
+}

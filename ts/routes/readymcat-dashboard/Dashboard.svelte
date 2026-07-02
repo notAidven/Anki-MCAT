@@ -7,25 +7,27 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 
     import { glossary } from "$lib/readymcat/glossary";
     import InfoTooltip from "$lib/readymcat/InfoTooltip.svelte";
+    import {
+        MIN_ATTEMPTS,
+        MIN_COVERAGE,
+        MIN_REVIEWS,
+        pct,
+        SCORE_MAX,
+        SCORE_MIN,
+        studyNextTopics,
+    } from "$lib/readymcat/scores";
 
     export let data: PointsAtStakeResponse | null;
     export let error: string | null;
     /** When the aggregation was computed (ms epoch); drives "last updated". */
     export let generatedAt: number = Date.now();
 
-    // Give-up rules (mirror the Rust thresholds): show no score until there is
-    // enough evidence. Memory needs 200 graded reviews AND 50% coverage;
-    // Performance needs 30 first-attempts on question cards; Readiness needs
-    // BOTH (it is projected from them).
-    const MIN_REVIEWS = 200;
-    const MIN_COVERAGE = 0.5;
-    const MIN_ATTEMPTS = 30;
+    // Give-up rules, the percentage formatter and the study-next ranking live in
+    // $lib/readymcat/scores (shared with the home hub, and mirroring the Rust
+    // thresholds) so the two screens never disagree. Recap: Memory needs 200
+    // graded reviews AND 50% coverage; Performance needs 30 first-attempts;
+    // Readiness needs BOTH (it is projected from them).
 
-    // The real MCAT total-score scale readiness projects onto.
-    const SCORE_MIN = 472;
-    const SCORE_MAX = 528;
-
-    const pct = (x: number): string => `${Math.round(x * 100)}%`;
     // Position of a scaled score on the 472–528 axis, as a 0..1 fraction.
     const scorePos = (s: number): number =>
         Math.max(0, Math.min(1, (s - SCORE_MIN) / (SCORE_MAX - SCORE_MIN)));
@@ -113,11 +115,7 @@ License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
     $: readyConf = scoreLevel(readyMargin);
 
     // "What to study next": topics with the most points at stake.
-    $: studyNext = topics
-        .filter((t) => t.totalCards > 0)
-        .map((t) => ({ ...t, points: t.topicWeight * t.studentWeakness }))
-        .sort((a, b) => b.points - a.points)
-        .slice(0, 5);
+    $: studyNext = studyNextTopics(topics, 5);
 
     $: topicsByWeight = [...topics].sort((a, b) => b.topicWeight - a.topicWeight);
     $: withData = topics.filter((t) => t.gradedCards > 0);

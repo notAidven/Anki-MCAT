@@ -35,11 +35,19 @@ enum CollectionStore {
         let docs = try fm.url(for: .documentDirectory, in: .userDomainMask,
                               appropriateFor: nil, create: true)
 
-        let collectionURL = docs.appendingPathComponent("collection.anki2")
+        // Optional SYNTHETIC demo collection (READYMCAT_COLLECTION=demo) used only
+        // to preview a populated dashboard; the default is the honest fresh bank.
+        // Falls back to the real bank if the demo asset isn't bundled.
+        let wantsDemo = ProcessInfo.processInfo.environment["READYMCAT_COLLECTION"] == "demo"
+        let hasDemo = wantsDemo && Bundle.main.url(forResource: "collection-demo", withExtension: "anki2") != nil
+        let bundledName = hasDemo ? "collection-demo" : "collection"
+        let docName = hasDemo ? "collection-demo.anki2" : "collection.anki2"
+
+        let collectionURL = docs.appendingPathComponent(docName)
         if !fm.fileExists(atPath: collectionURL.path) {
-            guard let bundled = Bundle.main.url(forResource: "collection", withExtension: "anki2") else {
+            guard let bundled = Bundle.main.url(forResource: bundledName, withExtension: "anki2") else {
                 throw NSError(domain: "ReadyMCAT", code: 1, userInfo: [
-                    NSLocalizedDescriptionKey: "Bundled collection.anki2 is missing from the app bundle."
+                    NSLocalizedDescriptionKey: "Bundled \(bundledName).anki2 is missing from the app bundle."
                 ])
             }
             try fm.copyItem(at: bundled, to: collectionURL)

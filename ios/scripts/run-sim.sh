@@ -51,6 +51,9 @@ for f in collection.anki2 taxonomy.json diagnostic_quiz.json subquestions.json; 
     exit 1
   fi
 done
+# Optional SYNTHETIC demo collection (for previewing a populated dashboard via
+# READYMCAT_COLLECTION=demo); bundled only when present.
+[ -f "$RES/collection-demo.anki2" ] && cp "$RES/collection-demo.anki2" "$APP/collection-demo.anki2"
 
 echo ">> booting '$DEVICE'"
 xcrun simctl boot "$DEVICE" 2>/dev/null || true

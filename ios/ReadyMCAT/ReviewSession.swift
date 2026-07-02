@@ -48,6 +48,9 @@ final class ReviewSession: ObservableObject {
     private var shownAt = Date()
     private var started = false
 
+    /// The note id of the card currently shown (for the AI-ladder per-note cache).
+    var currentNoteId: Int64? { current?.noteId }
+
     init(format: Format) { self.format = format }
 
     func begin(engine: AnkiEngine, deckId: Int64) {
@@ -123,12 +126,18 @@ final class ReviewSession: ObservableObject {
 
 struct ReviewSessionView: View {
     let format: Format
+    /// When set, study THIS deck instead of the format's default deck (used by
+    /// the authorless AI demo, which parses its card with the FR path).
+    let deckIdOverride: Int64?
+    let titleOverride: String?
     @EnvironmentObject private var model: AppModel
     @Environment(\.dismiss) private var dismiss
     @StateObject private var session: ReviewSession
 
-    init(format: Format) {
+    init(format: Format, deckIdOverride: Int64? = nil, titleOverride: String? = nil) {
         self.format = format
+        self.deckIdOverride = deckIdOverride
+        self.titleOverride = titleOverride
         _session = StateObject(wrappedValue: ReviewSession(format: format))
     }
 
@@ -147,7 +156,7 @@ struct ReviewSessionView: View {
                 }
             }
             .background(Color(.systemGroupedBackground))
-            .navigationTitle(format.title)
+            .navigationTitle(titleOverride ?? format.title)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -159,23 +168,39 @@ struct ReviewSessionView: View {
             }
         }
         .onAppear {
-            guard let engine = model.engine, let node = model.node(for: format) else {
+            guard let engine = model.engine else {
+                session.errorText = "Engine not ready."
+                return
+            }
+            guard let deckId = deckIdOverride ?? model.node(for: format)?.deckId else {
                 session.errorText = "Deck '\(format.deckName)' not found."
                 return
             }
-            session.begin(engine: engine, deckId: node.deckId)
+            session.begin(engine: engine, deckId: deckId)
         }
+    }
+
+    /// The AI generator hook for the current card, or nil when generation is
+    /// disabled (no key) — in which case reviewers behave exactly as before.
+    private func aiHook() -> ((CardContext) async -> [LadderRung]?)? {
+        guard model.ai.isEnabled else { return nil }
+        let ai = model.ai
+        let noteId = session.currentNoteId
+        return { context in await ai.ladder(forNoteId: noteId, context: context) }
     }
 
     @ViewBuilder
     private func reviewer(for item: ReviewItem) -> some View {
         switch item {
         case .mcq(let m):
-            MCQReviewerView(item: m, tint: Palette.tint(for: format)) { session.finish($0) }
+            MCQReviewerView(item: m, tint: Palette.tint(for: format),
+                            aiLadder: aiHook()) { session.finish($0) }
         case .passage(let p):
-            PassageReviewerView(item: p, tint: Palette.tint(for: format)) { session.finish($0) }
+            PassageReviewerView(item: p, tint: Palette.tint(for: format),
+                                aiLadder: aiHook()) { session.finish($0) }
         case .fr(let f):
-            FRReviewerView(item: f, tint: Palette.tint(for: format)) { session.finish($0) }
+            FRReviewerView(item: f, tint: Palette.tint(for: format),
+                           aiLadder: aiHook()) { session.finish($0) }
         }
     }
 

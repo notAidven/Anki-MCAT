@@ -116,9 +116,12 @@ extension String {
 func pct(_ x: Double) -> String { "\(Int((x * 100).rounded()))%" }
 
 /// Screenshot/verification-only auto-answer, driven by the READYMCAT_DEMO env var
-/// ("correct" or "wrong"). Has no effect in normal use.
+/// ("correct", "wrong", or "ailadder"). Has no effect in normal use.
+/// "ailadder" additionally auto-advances a first-try miss into the ladder (so the
+/// AI teach-on-miss ladder can be captured without a manual tap).
 enum Demo {
     static var mode: String? { ProcessInfo.processInfo.environment["READYMCAT_DEMO"] }
     static var wantsCorrect: Bool { mode == "correct" }
-    static var active: Bool { mode == "correct" || mode == "wrong" }
+    static var active: Bool { mode == "correct" || mode == "wrong" || mode == "ailadder" }
+    static var autoAdvanceOnMiss: Bool { mode == "ailadder" }
 }

@@ -107,10 +107,13 @@ final class AnkiEngine {
     private enum Method {
         static let openCollection: UInt32 = 0     // BackendCollectionService
         static let closeCollection: UInt32 = 1    // BackendCollectionService
+        static let newDeck: UInt32 = 0            // DecksService.NewDeck
+        static let addDeck: UInt32 = 1            // DecksService.AddDeck
         static let deckTree: UInt32 = 4           // DecksService.DeckTree
         static let setCurrentDeck: UInt32 = 22    // DecksService.SetCurrentDeck
         static let getQueuedCards: UInt32 = 3     // BackendSchedulerService
         static let answerCard: UInt32 = 4         // BackendSchedulerService
+        static let addNote: UInt32 = 1            // NotesService.AddNote
         static let getNote: UInt32 = 6            // NotesService.GetNote
         static let renderExistingCard: UInt32 = 6 // CardRenderingService
         static let addNoteTags: UInt32 = 7        // TagsService.AddNoteTags
@@ -331,6 +334,48 @@ final class AnkiEngine {
         w.int64Field(1, noteId) // note_ids (repeated int64; single unpacked element)
         w.stringField(2, tag)   // tags
         try command(Svc.tags, Method.addNoteTags, w.data)
+    }
+
+    // MARK: - Demo seeding (an authorless card so the AI ladder path is reachable)
+
+    /// Create a normal deck by name and return its id. NewDeck hands back a Deck
+    /// with the engine's defaults (id 0, normal kind, default config); we echo
+    /// those bytes back to AddDeck with the name appended (proto3 singular
+    /// fields are last-wins), so the engine owns every invariant. AddDeck also
+    /// auto-creates any missing parent (e.g. "ReadyMCAT").
+    func createDeck(name: String) throws -> Int64 {
+        let base = try command(Svc.decks, Method.newDeck, Data())   // Deck defaults
+        var w = ProtoWriter()
+        w.raw(base)
+        w.stringField(2, name)   // Deck.name
+        let bytes = try command(Svc.decks, Method.addDeck, w.data)  // OpChangesWithId{id=2}
+        return Int64(bitPattern: Proto.firstVarint(bytes, 2) ?? 0)
+    }
+
+    /// The notetype id backing a note (Note.notetype_id, field 3). Used to reuse
+    /// an existing ReadyMCAT notetype when seeding the demo card, so the demo is
+    /// parsed by the same Content.swift path as the real cards.
+    func noteNotetypeId(noteId: Int64) throws -> Int64 {
+        var w = ProtoWriter()
+        w.int64Field(1, noteId)
+        let bytes = try command(Svc.notes, Method.getNote, w.data)
+        return Int64(bitPattern: Proto.firstVarint(bytes, 3) ?? 0)
+    }
+
+    /// Add a note (with its generated cards) to a deck. Returns the new note id.
+    /// (NotesService.AddNote; Note{notetype_id=3, tags=6*, fields=7*} inside
+    /// AddNoteRequest{note=1, deck_id=2}; AddNoteResponse{note_id=2}.)
+    @discardableResult
+    func addNote(notetypeId: Int64, deckId: Int64, fields: [String], tags: [String] = []) throws -> Int64 {
+        var note = ProtoWriter()
+        note.int64Field(3, notetypeId)
+        for t in tags { note.stringField(6, t) }
+        for f in fields { note.stringField(7, f) }
+        var w = ProtoWriter()
+        w.bytesField(1, [UInt8](note.data)) // note
+        w.int64Field(2, deckId)             // deck_id
+        let bytes = try command(Svc.notes, Method.addNote, w.data)
+        return Int64(bitPattern: Proto.firstVarint(bytes, 2) ?? 0)
     }
 
     // MARK: - Sync (Anki's own collection-sync protocol)

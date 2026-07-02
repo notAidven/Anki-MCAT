@@ -58,10 +58,25 @@ final class ReviewSession: ObservableObject {
         do {
             try engine.setCurrentDeck(deckId)
             loadNext()
+            // Tap-free grading verification: grade a batch through the SAME
+            // finish() path the reviewers use, to confirm AnswerCard persists.
+            if ProcessInfo.processInfo.environment["READYMCAT_AUTOPLAY"] != nil {
+                autoplay(limit: 12)
+            }
         } catch {
             errorText = "\(error)"
             NSLog("[ReadyMCAT] session begin error: \(error)")
         }
+    }
+
+    /// Verification helper: grade up to `limit` cards first-try-correct (Good).
+    func autoplay(limit: Int) {
+        var n = 0
+        while item != nil && n < limit {
+            finish(.correctFirst)
+            n += 1
+        }
+        NSLog("[ReadyMCAT][autoplay] graded \(n) cards; remaining new=\(counts.new) learn=\(counts.learning) review=\(counts.review)")
     }
 
     private func loadNext() {

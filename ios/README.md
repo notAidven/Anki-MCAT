@@ -1,176 +1,191 @@
-# ReadyMCAT — iOS companion (Wednesday MVP)
+# ReadyMCAT — iOS app (native SwiftUI on the shared Rust engine)
 
-A minimal SwiftUI app that runs a **real Anki review session on the shared Rust
-engine (`rslib`)** on the iOS Simulator. It loads a bundled `.anki2` collection,
-asks the engine for the next due card, renders the card's question/answer HTML in
-a `WKWebView`, grades it (Again / Hard / Good / Easy), and continues — exactly
-the loop the desktop app runs, but driven from Swift through a thin C interface
-instead of Python/PyO3.
+A **native SwiftUI** iOS app that reproduces the ReadyMCAT design on the phone —
+Home hub, honest-scores Dashboard, and the MCQ / Free-Response / Passage/CARS
+reviewers with teach-on-miss — all backed by the **same Rust engine (`rslib`)**
+that powers the desktop app. It is **not** a web view of the desktop UI: every
+screen is native SwiftUI, and it talks to the engine through the existing `rsios`
+C-ABI FFI using the identical `Backend::run_service_method(service, method,
+protobuf_bytes)` dispatch `pylib/rsbridge` uses. There is **no second copy of any
+engine logic** — scheduling, FSRS, rendering, the points-at-stake scores, and the
+diagnostic all run in the shared Rust core.
 
-There is **no second copy of any engine logic**: Swift calls the same
-`Backend::run_service_method(service, method, protobuf_bytes)` dispatch that
-`pylib/rsbridge` uses.
-
-![Question rendered in WKWebView on the iOS Simulator](../docs/img/readymcat-question.png)
+![Native Home hub on the iOS Simulator](docs/01-home.png)
 
 ## Architecture
 
 ```
-SwiftUI app (ios/ReadyMCAT)
-   │  protobuf bytes  (service idx, method idx, input)
+SwiftUI screens (Home / Study / Dashboard / reviewers / diagnostic)
+   │        observe
    ▼
-RsiosFFI.xcframework  ──►  rsios  (C-ABI staticlib, this repo: /rsios)
+AppModel (opens the collection once; publishes deck tree + points-at-stake)
+   │  protobuf bytes  (service idx, method idx, input)   — AnkiEngine.swift
+   ▼
+RsiosFFI.xcframework  ──►  rsios  (C-ABI staticlib, /rsios)
    │  #[no_mangle] extern "C"        wraps anki::backend::Backend
    ▼
-rslib  (anki crate — the shared Rust engine: scheduler, FSRS, SQLite, rendering)
+rslib  (the shared Rust engine: scheduler, FSRS, SQLite, rendering,
+        PointsAtStakeService, DiagnosticService)
 ```
 
-- **`/rsios`** — new thin C-ABI crate (`crate-type = ["staticlib"]`). It mirrors
-  `pylib/rsbridge` but exposes a C ABI: `rsios_open_backend`, `rsios_command`,
-  `rsios_free_buffer`, `rsios_close_backend`, `rsios_buildhash`
-  (see `rsios/include/rsios.h`). `rsios_command` forwards straight to
-  `Backend::run_service_method`, so every engine call goes through the identical
-  command path the Python bridge uses.
-- **`RsiosFFI.xcframework`** — `rslib` + `rsios` cross-compiled for
-  `aarch64-apple-ios-sim` and packaged with the C header + clang module map so
-  Swift can `import RsiosFFI`.
-- **`ios/ReadyMCAT`** — the SwiftUI app. `AnkiEngine.swift` is the Swift side of
-  the bridge; `Proto.swift` is a tiny hand-rolled protobuf reader/writer (so we
-  need no SwiftProtobuf dependency or `protoc-gen-swift` plugin for the handful
-  of messages the review loop uses).
+### How each SwiftUI screen gets its data
 
-### Review loop & protobuf indices
+Every screen is driven by a live engine read decoded natively in Swift (a tiny
+hand-rolled protobuf reader in `Proto.swift`, extended with `double`/`fixed64`
+for the nested score messages — no SwiftProtobuf dependency):
 
-The app uses these backend service/method indices (taken verbatim from the
-generated `out/pylib/anki/_backend_generated.py`, the authoritative index
-source, and verified by the host smoke test — see below):
+| Screen | Engine call (service/method) | Swift decode |
+| --- | --- | --- |
+| **Home** tiles (due counts) | `DeckTree` (7/4) with a non-zero `now` | `DeckTree.swift` (child-excluding counters, matching `home_launcher.py`) |
+| **Home** score pills + **Dashboard** | `PointsAtStakeQueue` (45/0) | `PointsAtStake.swift` (`MemoryReport`/`CoverageReport`/`PerformanceReport`/`ReadinessReport`/`TopicMastery`) |
+| **Reviewers** — open a format | `SetCurrentDeck` (7/22) → `GetQueuedCards` (13/3) | one clean deck per format |
+| **Reviewers** — card content | `GetNote` (25/6) → `Note.fields` | `Content.swift` parses the fields (in `build_question_bank.py` order) into typed items + the `Subquestions` JSON ladder |
+| **Reviewers** — grade | `AnswerCard` (13/4) + `AddNoteTags` (49/7) | `ReviewSession.swift` (first-try correct → Good; ladder → Again + `ReadyMCAT::struggling`) |
+| **Diagnostic** | `GetDiagnosticQuiz` (29/0) → `ScoreAndSeedDiagnostic` (29/1) | `Diagnostic.swift` |
 
-| Call                 | service | method | message                                                           |
-| -------------------- | :-----: | :----: | ----------------------------------------------------------------- |
-| `OpenCollection`     |    3    |   0    | `collection.OpenCollectionRequest`                                |
-| `GetQueuedCards`     |   13    |   3    | `scheduler.GetQueuedCardsRequest` → `QueuedCards`                 |
-| `RenderExistingCard` |   27    |   6    | `card_rendering.RenderExistingCardRequest` → `RenderCardResponse` |
-| `AnswerCard`         |   13    |   4    | `scheduler.CardAnswer`                                            |
+Indices are taken verbatim from the generated
+`out/pylib/anki/_backend_generated.py` and validated by the host smoke test
+(below). The free-response grader (`Grading.swift`) is a faithful Swift port of
+`grade_free_response` (normalize / squash / numeric-tolerance / key-term), so the
+phone auto-grades type-in answers exactly as the desktop reviewer does.
 
-`GetQueuedCards` returns the next card plus its `SchedulingStates`; the app
-echoes the relevant state blob back in `CardAnswer.new_state` when grading, so
-FSRS schedules the card correctly (no scheduling logic is re-implemented in
-Swift).
+### The bundled bank
+
+The app ships the **full pre-loaded ReadyMCAT bank** (~1,075 cards). It is built
+on the host with the same tooling the desktop uses and bundled into the app; on
+first launch the app copies it (plus its companion JSON) into Documents (Anki
+opens the collection read-write, and the points-at-stake engine looks for
+`taxonomy.json` next to the collection):
+
+```
+ios/ReadyMCAT/Resources/
+  collection.anki2       # 1,075 cards: MCQ 414 · Free Response 410 · Passages 174 · CARS 77
+  taxonomy.json          # tags → 31 AAMC categories (+ weights) — powers the Dashboard
+  diagnostic_quiz.json   # one MCQ per AAMC category
+  subquestions.json      # curated teach-on-miss ladders (sidecar)
+```
+
+`ios/scripts/build-collection.sh` regenerates `collection.anki2`: it runs
+`readymcat/tools/build_question_bank.py --collection …` to provision all four
+content types, then raises the daily new/review limits, selects
+`ReviewCardOrder::PointsAtStake` (order 13), and lays the four formats out as
+clean per-format sub-decks (`ReadyMCAT::Multiple Choice`, `::Free Response`,
+`::Passages`, `::CARS`) so each Home tile maps 1:1 to a deck. Deck moves never
+touch the `#ReadyMCAT::AAMC` tags the dashboard resolves against, so the honest
+scores are unchanged.
 
 ## Prerequisites
 
 - macOS + Xcode (tested with Xcode 26.4, iOS 26.4 simulator runtime).
-- Rust via rustup, plus the simulator target:
-  `rustup target add aarch64-apple-ios-sim`.
-- `protoc` (Protocol Buffers compiler) for the `rslib` build. Anki's normal
-  build downloads it to `out/extracted/protoc/bin/protoc` (the path
-  `.cargo/config.toml` points `PROTOC` at). If you build the rest of Anki once,
-  it's already there; otherwise install `protobuf` and set `PROTOC`/`PROTOC_BINARY`
-  to your `protoc`.
+- Rust via rustup + the simulator target: `rustup target add aarch64-apple-ios-sim`.
+- `protoc` for the `rslib` build (Anki's build downloads it to
+  `out/extracted/protoc/bin/protoc`; export `PROTOC` to it if building from a
+  worktree without `out/`).
 
 ## Build & run
 
-Everything is scripted. From the repo root:
-
 ```bash
-# 1. Build the Rust engine for the simulator and package the xcframework
-ios/scripts/build-rust.sh
+# 1. Build the shared Rust engine for the simulator and package the xcframework.
+#    (git-ignored, ~100 MB debug — run this before opening the project.)
+PROTOC=/path/to/anki/out/extracted/protoc/bin/protoc PROTOC_BINARY="$PROTOC" \
+  ios/scripts/build-rust.sh
 
-# 2a. Build + run on the simulator WITHOUT Xcode (swiftc + simctl)
-ios/scripts/run-sim.sh "iPhone 17"           # interactive (then: open -a Simulator)
-AUTORUN=1 ios/scripts/run-sim.sh "iPhone 17" # headless self-review + result file
+# 2. Build + run on the simulator (swiftc + simctl; globs all ios/ReadyMCAT/*.swift).
+ios/scripts/run-sim.sh "iPhone 17"
 ```
 
-Or with Xcode:
+Or with Xcode (after `build-rust.sh`): `open ios/ReadyMCAT.xcodeproj` and run on a
+simulator (the bundled collection is already in `Resources/`).
 
-```bash
-# (after build-rust.sh)
-open ios/ReadyMCAT.xcodeproj          # then Run on a simulator, or:
-xcodebuild -project ios/ReadyMCAT.xcodeproj -scheme ReadyMCAT \
-  -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 17' build
+### Deterministic launch routing (screenshots / verification)
+
+The app reads a few env vars on launch (pass via `SIMCTL_CHILD_…`), used only for
+screenshots and verification:
+
+| Env var | Effect |
+| --- | --- |
+| `READYMCAT_TAB=study\|dashboard` | Start on that tab |
+| `READYMCAT_REVIEW=mcq\|fr\|passage\|cars` | Auto-open that reviewer |
+| `READYMCAT_DEMO=correct\|wrong` | Auto-answer the first reviewer question (feedback / teach-on-miss handoff) |
+| `READYMCAT_DIAGNOSTIC=1` | Auto-open the diagnostic |
+| `READYMCAT_AUTOPLAY=1` | Grade a batch of cards tap-free (grading-path check) |
+| `READYMCAT_COLLECTION=demo` | Open a bundled **synthetic** demo collection to preview a populated dashboard (falls back to the real bank if not bundled) |
+
+## Verified on the iOS Simulator (iPhone 17)
+
+Every screen was run against the bundled real engine data and screenshotted into
+`ios/docs/`:
+
+| Screen | Screenshot |
+| --- | --- |
+| Home hub — 3 score pills + 4 tiles with real due counts (414/410/174/77) | `docs/01-home.png` |
+| Dashboard — honest give-up state (fresh bank) | `docs/02-dashboard.png` |
+| Dashboard — populated ranges + confidence (synthetic demo) | `docs/10-dashboard-populated.png` |
+| Study — format picker with live due counts | `docs/03-study.png` |
+| MCQ reviewer — tappable options | `docs/04-mcq.png` |
+| MCQ teach-on-miss — correct/incorrect feedback → guiding questions | `docs/05-mcq-teach.png` |
+| Free Response — type-in card | `docs/06-fr.png` |
+| Free Response — auto-graded (model answer + explanation) | `docs/07-fr-graded.png` |
+| Passage/CARS — passage panel + question | `docs/08-passage.png` |
+| Diagnostic — one MCQ per AAMC category (31) | `docs/09-diagnostic.png` |
+
+### Host FFI smoke test
+
+`ios/scripts/host-ffi-smoke.py` drives the **exact** rsios dispatch
+(`run_service_method` by service/method index) for every engine call the app
+makes, on a throwaway copy of the bundled collection, and asserts that grading a
+card advances the queue:
+
+```
+[1] deck_tree OK: {'ReadyMCAT::Multiple Choice': (414, 414), …}
+[2] set_current_deck + get_queued_cards OK: new=414 …
+[3] get_note OK: 10 fields; …
+[4] answer_card OK: graded Good; new 414 -> 413
+[5] points_at_stake OK: coverage 31/31, 31 topics, memory_ready=False
+[6] get_diagnostic_quiz OK: present=True, 31 items
+HOST FFI SMOKE OK — all native-app engine indices validated.
 ```
 
-> The `.xcframework` is a large (~100 MB debug) reproducible artifact and is
-> git-ignored — run `ios/scripts/build-rust.sh` before opening the project.
+(`tools/sample_deck` — the original Rust host smoke test for the review-loop
+indices — is unchanged and still valid.)
 
-### Regenerating the bundled sample deck
+## Parity: native on the phone vs. deferred
 
-`ios/ReadyMCAT/Resources/sample.anki2` (5 MCAT-flavoured Basic cards) is produced
-by a host helper that also smoke-tests the FFI review loop end to end:
-
-```bash
-cargo run -p sample_deck --release -- ios/ReadyMCAT/Resources/sample.anki2
-```
-
-The helper creates the collection with `rslib`'s high-level API, then opens it
-through `init_backend` + `run_service_method` and drives
-open → get_queued_cards → render → answer_card, asserting the queue drains —
-the same path the Swift app uses, so the indices are validated on the host.
-
-## Verified
-
-On the iOS Simulator (iPhone 17, iOS 26.4), the auto-review studied the whole
-queue on the shared engine and drained it to zero, e.g.:
-
-```
-[ReadyMCAT] copied bundled collection to .../Documents/collection.anki2
-[ReadyMCAT] engine opened
-[ReadyMCAT][autorun] graded card id=… (1) … (10)
-[ReadyMCAT][autorun] AUTO REVIEW DONE: 10 cards graded, 0 remaining
-review_result.json -> {"reviewed": 10, "remaining": 0}
-```
-
-(5 new cards plus their intraday-learning repetitions — the real FSRS scheduler
-re-queues a card after a "Good" on a new card, which is why the graded count
-exceeds 5.)
-
-## What works vs. what's stubbed
-
-**Works (Wednesday bar):**
+**Native SwiftUI on the shared engine (verified on the Simulator):**
 
 - Cross-compiled `rslib` + `rsios` for the iOS Simulator, packaged as an
   `.xcframework`.
-- Real review loop on the shared engine: open collection, get next card, render
-  Q/A HTML in `WKWebView`, grade Again/Hard/Good/Easy, advance, finish.
-- Bundled `.anki2`, copied into Documents (writable) on first launch.
-- Builds with both `xcodebuild` and a plain `swiftc` script; runs on the
-  Simulator.
+- Full ~1,075-card bank bundled + copied to Documents on first launch.
+- Native **Home hub**: three honest scores, four format tiles with real due
+  counts, "what to study next" (points-at-stake), diagnostic entry.
+- Native **Dashboard**: Memory / Performance / Readiness as ranges with
+  confidence chips and honest give-up states, coverage, and per-topic breakdown —
+  decoded from the shared `PointsAtStakeService`.
+- Native **reviewers**: MCQ (tappable options with correct/incorrect feedback),
+  Free Response (type-in, auto-graded by the ported grader), Passage/CARS
+  (passage + question), each with the **teach-on-miss** sub-question ladder, and
+  graded through the shared scheduler (Good / Again + struggling tag).
+- Native **diagnostic**: administers the shared quiz and seeds the ordering prior.
+- **Points-at-stake ordering is active** (the bundled collection selects order 13
+  with a `taxonomy.json` beside it).
+- Native `TabView` navigation (Home · Study · Dashboard).
 
-**Out of scope / stubbed for Wednesday (per the PRD):**
+**Deferred (unchanged from the plan):**
 
-- Two-way sync (Friday). `rsios` is built with no TLS backend; the `rustls` /
-  `native-tls` cargo features are wired but off.
-- Teach-on-miss reviewer (desktop-first).
-- Points-at-stake ordering on iOS — the engine change has **landed on `main`**
-  (`ReviewCardOrder::PointsAtStake` in `rslib`), so it is compiled into the phone
-  binary, but it is **not yet activated here**: the app orders by whatever
-  `get_queued_cards` returns (default order), because the bundled `sample.anki2`
-  does not select that review order and no `taxonomy.json` is bundled beside it.
-  Turning it on is a content/config step (bundle a taxonomy + a collection whose
-  deck config selects order 13), not another engine change.
-- Device builds / code signing (Simulator-only for Wednesday).
-- Media rendering beyond text/HTML (sample deck has no media).
-
-## Upstream files touched (merge-difficulty estimate)
-
-The iOS work is almost entirely **additive** (new `/rsios`, `/ios`,
-`/tools/sample_deck`). Edits to existing upstream files are minimal:
-
-| File                   | Change                                                                                        | Merge risk              |
-| ---------------------- | --------------------------------------------------------------------------------------------- | ----------------------- |
-| `Cargo.toml`           | add `rsios` + `tools/sample_deck` to workspace members                                        | trivial                 |
-| `rslib/i18n/gather.rs` | tolerate a missing translation submodule dir instead of panicking (English-only mobile build) | low — 4 lines, isolated |
-| `.gitignore`           | ignore iOS build artifacts                                                                    | trivial                 |
-
-`rslib/i18n/gather.rs` is the only behavioural edit, and it only relaxes a
-build-time `unwrap()` so the engine compiles without the optional `ftl/*-repo`
-translation submodules checked out.
+- **Two-way sync** (`rsios` is built with no TLS backend; the feature cargo
+  features are wired but off).
+- Device builds / code signing (Simulator-only).
+- Runtime AI generation of teach-on-miss ladders (the ladders are authored
+  content, read from the note's `Subquestions` field).
+- Media rendering beyond text/HTML (the bank is authored as plain text).
 
 ## Notes / known wrinkles
 
-- The debug static lib links a few C objects (sqlite/zstd/blake3) compiled at the
-  SDK's default deployment version; `build-rust.sh` pins
-  `IPHONEOS_DEPLOYMENT_TARGET=16.0` to keep them aligned and quiet the linker.
-- `rsios_buildhash()` returns an empty string in a from-source dev build (the
-  build hash isn't stamped); it's wired purely as a "is the engine linked?"
-  smoke test.
+- The debug static lib links a few C objects built at the SDK's default
+  deployment version; `build-rust.sh` pins `IPHONEOS_DEPLOYMENT_TARGET=16.0`, so
+  the linker emits a benign "built for newer iOS-simulator version" warning.
+- Card content is authored as plain text, so the reviewers render natively with
+  SwiftUI `Text` (no `WKWebView`); a light entity/tag cleanup (`String.plainText`)
+  is a safety net.
+- `rsios_buildhash()` is empty in a from-source dev build; it is wired purely as
+  an "is the engine linked?" smoke test.

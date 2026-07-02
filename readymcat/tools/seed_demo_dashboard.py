@@ -212,8 +212,7 @@ DEMO_FLASHCARDS: list[tuple[str, str]] = [
         "The size of the shift grows with the relative speed.",
     ),
     (
-        "How do insulin and glucagon oppose each other to regulate blood "
-        "glucose?",
+        "How do insulin and glucagon oppose each other to regulate blood glucose?",
         "Insulin, released by pancreatic beta cells when blood glucose is "
         "high, lowers blood glucose by promoting glucose uptake into cells and "
         "storage as glycogen (glycogenesis) and fat. Glucagon, released by "
@@ -652,8 +651,10 @@ def _seed_question_attempts(
     try:
         bank = _load_question_bank()
     except Exception as exc:  # pragma: no cover - defensive
-        log(f"ReadyMCAT demo: could not load question bank builder ({exc}); "
-            "skipping performance seeding.")
+        log(
+            f"ReadyMCAT demo: could not load question bank builder ({exc}); "
+            "skipping performance seeding."
+        )
         return
 
     # Ensure the three question notetypes exist (their names must match what the

@@ -861,12 +861,15 @@ def _passage_question_category(
 
 # --- free-response: note type + note building ------------------------------
 
-_FR_CARD_CSS = _CARD_CSS + """
+_FR_CARD_CSS = (
+    _CARD_CSS
+    + """
 .rmcat-prompt { font-size: 1.08em; font-weight: 600; margin-bottom: .6em; }
 .rmcat-typein { font-size: .82em; opacity: .6; text-transform: uppercase;
   letter-spacing: .04em; margin-top: .6em; }
 .rmcat-model { margin-top: .8em; }
 """
+)
 
 _FR_FRONT_TEMPLATE = """\
 <div class="rmcat-fr">
@@ -959,11 +962,14 @@ def build_fr_notes(
 
 # --- passage: note type + note building ------------------------------------
 
-_PASSAGE_CARD_CSS = _CARD_CSS + """
+_PASSAGE_CARD_CSS = (
+    _CARD_CSS
+    + """
 .rmcat-passage { border-left: 3px solid var(--accent, #2186eb); padding-left: 1em;
   margin-bottom: 1em; white-space: pre-wrap; font-size: .96em; }
 .rmcat-question { font-size: 1.06em; font-weight: 600; margin: .8em 0 .4em; }
 """
+)
 
 _PASSAGE_FRONT_TEMPLATE = """\
 <div class="rmcat-passage-card" data-correct-index="{{CorrectIndex}}"
@@ -1039,9 +1045,7 @@ def build_passage_notes(
     """Create the passage note type + sub-deck and add one note per question,
     tagged by that question's AAMC category. A passage's questions are added
     consecutively so they stay grouped together in the deck."""
-    stats = BuildStats(
-        deck_name=PASSAGE_DECK_NAME, notetype_name=PASSAGE_NOTETYPE_NAME
-    )
+    stats = BuildStats(deck_name=PASSAGE_DECK_NAME, notetype_name=PASSAGE_NOTETYPE_NAME)
     notetype = ensure_passage_notetype(col)
     deck_id = col.decks.id(PASSAGE_DECK_NAME)
     categories: set[str] = set()
@@ -1090,9 +1094,7 @@ def cars_note_guid(question_id: str) -> str:
     only the CARS notes that are missing, so a profile provisioned *before* CARS
     existed gains exactly the new CARS cards on next launch and relaunches never
     duplicate them."""
-    digest = hashlib.sha256(
-        f"readymcat-cars:{question_id}".encode("utf-8")
-    ).hexdigest()
+    digest = hashlib.sha256(f"readymcat-cars:{question_id}".encode("utf-8")).hexdigest()
     return f"rmcat-cars-{digest[:16]}"
 
 
@@ -1452,9 +1454,7 @@ def grade_free_response(
             if tolerance is not None:
                 magnitude, is_percent = tolerance
                 bound = (
-                    magnitude / 100.0 * abs(accepted_num)
-                    if is_percent
-                    else magnitude
+                    magnitude / 100.0 * abs(accepted_num) if is_percent else magnitude
                 )
                 if abs(user_num - accepted_num) <= bound + 1e-9:
                     return True
@@ -1533,7 +1533,9 @@ def fr_payload_from_fields(fields: dict[str, str]) -> dict[str, Any]:
     Kept pure so the reviewer's data contract is testable without a webview."""
     return {
         "prompt": fields.get("Prompt", ""),
-        "acceptedAnswers": [str(a) for a in _load_json_list(fields.get("AcceptedAnswers"))],
+        "acceptedAnswers": [
+            str(a) for a in _load_json_list(fields.get("AcceptedAnswers"))
+        ],
         "keyTerms": [str(k) for k in _load_json_list(fields.get("KeyTerms"))],
         "modelAnswer": fields.get("ModelAnswer", ""),
         "explanation": fields.get("Explanation", ""),

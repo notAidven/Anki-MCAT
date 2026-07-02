@@ -40,6 +40,7 @@ The only non-AAMC assumption is the *even split within each FC*; it is documente
 here and in README so the engine team (and graders) can see exactly where the
 numbers come from.
 """
+
 from __future__ import annotations
 
 import argparse
@@ -85,22 +86,31 @@ CATEGORY_NAMES = {
 
 # section -> (scored questions, {FC label: (fc_percent, [categories])})
 SECTIONS = {
-    "Bio/Biochem": (59, {
-        "FC1": (55, ["1A", "1B", "1C", "1D"]),
-        "FC2": (20, ["2A", "2B", "2C"]),
-        "FC3": (25, ["3A", "3B"]),
-    }),
-    "Chem/Phys": (59, {
-        "FC4": (40, ["4A", "4B", "4C", "4D", "4E"]),
-        "FC5": (60, ["5A", "5B", "5C", "5D", "5E"]),
-    }),
-    "Psych/Soc": (59, {
-        "FC6": (25, ["6A", "6B", "6C"]),
-        "FC7": (35, ["7A", "7B", "7C"]),
-        "FC8": (20, ["8A", "8B", "8C"]),
-        "FC9": (15, ["9A", "9B"]),
-        "FC10": (5, ["10A"]),
-    }),
+    "Bio/Biochem": (
+        59,
+        {
+            "FC1": (55, ["1A", "1B", "1C", "1D"]),
+            "FC2": (20, ["2A", "2B", "2C"]),
+            "FC3": (25, ["3A", "3B"]),
+        },
+    ),
+    "Chem/Phys": (
+        59,
+        {
+            "FC4": (40, ["4A", "4B", "4C", "4D", "4E"]),
+            "FC5": (60, ["5A", "5B", "5C", "5D", "5E"]),
+        },
+    ),
+    "Psych/Soc": (
+        59,
+        {
+            "FC6": (25, ["6A", "6B", "6C"]),
+            "FC7": (35, ["7A", "7B", "7C"]),
+            "FC8": (20, ["8A", "8B", "8C"]),
+            "FC9": (15, ["9A", "9B"]),
+            "FC10": (5, ["10A"]),
+        },
+    ),
 }
 CARS_QUESTIONS = 53
 TOTAL_QUESTIONS = sum(q for q, _ in SECTIONS.values()) + CARS_QUESTIONS  # 230
@@ -171,7 +181,10 @@ SUBDECK_MAPPINGS = [
     ("MCAT::Organic Chemistry::Carboxylic Acids & Derivatives", "5D"),
     ("MCAT::Organic Chemistry::Nitrogen & Phosphorus", "5D"),
     ("MCAT::Organic Chemistry::Common Organic Reactions", "5D"),
-    ("MCAT::Organic Chemistry::Lab Techniques", "5C"),  # separations; spectroscopy->4D by tag
+    (
+        "MCAT::Organic Chemistry::Lab Techniques",
+        "5C",
+    ),  # separations; spectroscopy->4D by tag
     ("MCAT::Organic Chemistry", "5D"),  # discipline fallback
     # --- Physics ---
     ("MCAT::Physics::Kinematics", "4A"),
@@ -256,9 +269,7 @@ def build_taxonomy() -> dict:
         cat: {"name": CATEGORY_NAMES[cat], "weight": weights[cat]}
         for cat in CATEGORY_NAMES
     }
-    mappings = [
-        {"deck_tag_or_subdeck": k, "category": v} for k, v in MAPPINGS
-    ]
+    mappings = [{"deck_tag_or_subdeck": k, "category": v} for k, v in MAPPINGS]
     # sanity: every mapping points to a defined category
     for m in mappings:
         assert m["category"] in aamc_categories, m
@@ -290,23 +301,35 @@ def coverage_report(collection_path: str, weights: dict[str, float]) -> None:
     covered_weight = sum(weights[c] for c in covered)
 
     print("\n=== ReadyMCAT coverage report ===")
-    print(f"cards examined: {total}    categorized: {total - uncategorized}    "
-          f"uncategorized: {uncategorized} ({uncategorized / total:.1%})")
-    print(f"AAMC content categories covered: {len(covered)}/{len(CATEGORY_NAMES)} "
-          f"({len(covered) / len(CATEGORY_NAMES):.1%})")
-    print(f"exam weight covered (content categories): {covered_weight:.2f} of "
-          f"{total_weight:.2f} possible content-category percent "
-          f"({covered_weight / total_weight:.1%} of content weight)")
-    print(f"exam weight covered (whole exam incl. CARS): {covered_weight:.2f}% "
-          f"(CARS = {100 - total_weight:.2f}% has no content categories)")
+    print(
+        f"cards examined: {total}    categorized: {total - uncategorized}    "
+        f"uncategorized: {uncategorized} ({uncategorized / total:.1%})"
+    )
+    print(
+        f"AAMC content categories covered: {len(covered)}/{len(CATEGORY_NAMES)} "
+        f"({len(covered) / len(CATEGORY_NAMES):.1%})"
+    )
+    print(
+        f"exam weight covered (content categories): {covered_weight:.2f} of "
+        f"{total_weight:.2f} possible content-category percent "
+        f"({covered_weight / total_weight:.1%} of content weight)"
+    )
+    print(
+        f"exam weight covered (whole exam incl. CARS): {covered_weight:.2f}% "
+        f"(CARS = {100 - total_weight:.2f}% has no content categories)"
+    )
     print("\n  cat  weight   cards  name")
     for cat in sorted(CATEGORY_NAMES, key=lambda c: (c[0].zfill(2), c)):
         flag = " " if per_cat[cat] else "!"
-        print(f"{flag} {cat:>3}  {weights[cat]:>5.2f}  {per_cat[cat]:>6}  "
-              f"{CATEGORY_NAMES[cat][:54]}")
+        print(
+            f"{flag} {cat:>3}  {weights[cat]:>5.2f}  {per_cat[cat]:>6}  "
+            f"{CATEGORY_NAMES[cat][:54]}"
+        )
     if uncat_decks:
-        print("\nuncategorized cards by deck (intentional: SIRS/research-methods, "
-              "umbrella decks):")
+        print(
+            "\nuncategorized cards by deck (intentional: SIRS/research-methods, "
+            "umbrella decks):"
+        )
         for deck, n in uncat_decks.most_common():
             print(f"  {n:>5}  {deck}")
 
@@ -314,8 +337,11 @@ def coverage_report(collection_path: str, weights: dict[str, float]) -> None:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--out", default=None, help="write taxonomy.json here")
-    ap.add_argument("--collection", default=None,
-                    help="collection.anki2/.anki21 to compute coverage against")
+    ap.add_argument(
+        "--collection",
+        default=None,
+        help="collection.anki2/.anki21 to compute coverage against",
+    )
     args = ap.parse_args()
 
     taxonomy = build_taxonomy()
@@ -323,12 +349,16 @@ def main() -> int:
         with open(args.out, "w", encoding="utf-8") as f:
             json.dump(taxonomy, f, indent=2, ensure_ascii=False)
             f.write("\n")
-        print(f"wrote {args.out}: {len(taxonomy['aamc_categories'])} categories, "
-              f"{len(taxonomy['mappings'])} mappings")
+        print(
+            f"wrote {args.out}: {len(taxonomy['aamc_categories'])} categories, "
+            f"{len(taxonomy['mappings'])} mappings"
+        )
 
     if args.collection:
-        weights = {c: taxonomy["aamc_categories"][c]["weight"]
-                   for c in taxonomy["aamc_categories"]}
+        weights = {
+            c: taxonomy["aamc_categories"][c]["weight"]
+            for c in taxonomy["aamc_categories"]
+        }
         coverage_report(args.collection, weights)
     return 0
 

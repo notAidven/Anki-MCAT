@@ -16,7 +16,7 @@
 
 import { bridgeCommand } from "@tslib/bridgecommand";
 
-declare const MathJax: any;
+import { qaEl, typeset } from "./readymcat_dom";
 
 interface Rung {
     q: string;
@@ -82,24 +82,6 @@ function ensureStyle(): void {
     style.id = STYLE_ID;
     style.textContent = CSS;
     document.head.appendChild(style);
-}
-
-function qaEl(): HTMLElement {
-    return document.getElementById("qa")!;
-}
-
-async function typeset(el: HTMLElement): Promise<void> {
-    try {
-        if (typeof MathJax !== "undefined" && MathJax.typesetPromise) {
-            if (MathJax.startup?.promise) {
-                await MathJax.startup.promise;
-            }
-            MathJax.typesetClear?.();
-            await MathJax.typesetPromise([el]);
-        }
-    } catch {
-        // ignore math typesetting errors in the teach-on-miss overlay
-    }
 }
 
 function makeButton(

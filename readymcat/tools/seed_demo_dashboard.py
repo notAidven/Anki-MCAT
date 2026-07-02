@@ -153,6 +153,77 @@ TARGET_ACCURACY: dict[str, float] = {
 #: they never pollute the counts of the real pre-loaded ReadyMCAT decks.
 DEMO_QUESTION_DECK = f"{DEMO_HOLDING_DECK}::Practice Questions"
 
+#: Sub-deck for the plain Basic front/back flashcards that have NO authored
+#: ReadyMCAT ladder. These demonstrate the retrieve-BEFORE-reveal teach-on-miss
+#: flow: because no concept in ``subquestions.json`` matches their tags, the
+#: reviewer's "Stuck? work it out" path AI-generates a guiding ladder from the
+#: card's own front/back (needs OPENAI_API_KEY). Kept in their own deck so they
+#: never pollute the real pre-loaded ReadyMCAT deck counts.
+DEMO_FLASHCARD_DECK = f"{DEMO_HOLDING_DECK}::Flashcards (no ladder)"
+
+#: Per-note honesty sub-tag for the demo flashcards (in addition to DEMO_TAG),
+#: so they are easy to find/remove on their own. Deliberately does NOT start
+#: with '#', so it never collides with a taxonomy tag mapping OR with an
+#: authored teach-on-miss concept's ``#...`` match_tags — keeping these cards
+#: authorless so the AI generation path is what fires.
+DEMO_FLASHCARD_TAG = f"{DEMO_TAG}::flashcards"
+
+#: A few authorless Basic front/back flashcards. MCAT-relevant with reasonably
+#: rich backs so the runtime ladder generator has enough grounding material to
+#: pass its source-grounding guardrail. None of these carry a ``#...`` tag, so
+#: none matches an authored ladder — the guiding ladder is AI-generated.
+DEMO_FLASHCARDS: list[tuple[str, str]] = [
+    (
+        "What reaction does the enzyme carbonic anhydrase catalyze, and why "
+        "does it matter physiologically?",
+        "Carbonic anhydrase catalyzes the rapid interconversion of carbon "
+        "dioxide and water into carbonic acid (H2CO3), which dissociates into "
+        "bicarbonate (HCO3-) and a proton (H+). This lets red blood cells "
+        "carry CO2 as bicarbonate and is central to blood pH buffering and to "
+        "acid secretion in the stomach and kidney.",
+    ),
+    (
+        "In an SN2 reaction, how does the rate depend on substrate and "
+        "nucleophile, and what happens to stereochemistry?",
+        "SN2 is bimolecular: rate = k[substrate][nucleophile]. It proceeds "
+        "through a single concerted step in which the nucleophile attacks the "
+        "carbon from the side opposite the leaving group (backside attack), "
+        "inverting the configuration at that carbon (Walden inversion). It is "
+        "fastest on unhindered methyl and primary substrates with strong, "
+        "unhindered nucleophiles in polar aprotic solvents.",
+    ),
+    (
+        "State the Nernst equation and explain what it lets you calculate.",
+        "The Nernst equation is E = E0 - (RT/nF) ln Q, where E0 is the "
+        "standard cell potential, R the gas constant, T the temperature in "
+        "kelvin, n the number of electrons transferred, F the Faraday "
+        "constant, and Q the reaction quotient. It gives the actual cell "
+        "potential when concentrations are not standard; at 25 C it simplifies "
+        "to E = E0 - (0.0592/n) log Q.",
+    ),
+    (
+        "What is the Doppler effect, and how does the observed frequency change "
+        "as a source moves toward versus away from an observer?",
+        "The Doppler effect is the change in observed frequency of a wave when "
+        "the source and observer move relative to each other. As the source "
+        "approaches, the wavefronts are compressed, so the observed frequency "
+        "is higher (shorter wavelength); as it recedes, the wavefronts are "
+        "stretched, so the observed frequency is lower (longer wavelength). "
+        "The size of the shift grows with the relative speed.",
+    ),
+    (
+        "How do insulin and glucagon oppose each other to regulate blood "
+        "glucose?",
+        "Insulin, released by pancreatic beta cells when blood glucose is "
+        "high, lowers blood glucose by promoting glucose uptake into cells and "
+        "storage as glycogen (glycogenesis) and fat. Glucagon, released by "
+        "alpha cells when blood glucose is low, raises blood glucose by "
+        "stimulating glycogen breakdown (glycogenolysis) and new glucose "
+        "synthesis (gluconeogenesis) in the liver. Together they keep blood "
+        "glucose within a narrow range (negative feedback).",
+    ),
+]
+
 
 class DemoStats:
     """Summary of what a seeding run created (or found already present)."""
@@ -164,6 +235,9 @@ class DemoStats:
         self.reviews_created = 0
         #: Synthetic practice-question cards created (drive the performance score).
         self.questions_created = 0
+        #: Authorless Basic front/back flashcards created (drive the
+        #: retrieve-before-reveal teach-on-miss demo).
+        self.flashcards_created = 0
         #: First-attempt hits designed into those question cards.
         self.question_hits = 0
         self.taxonomy_path = ""
@@ -200,6 +274,7 @@ class DemoStats:
             "cards_created": self.cards_created,
             "reviews_created": self.reviews_created,
             "questions_created": self.questions_created,
+            "flashcards_created": self.flashcards_created,
             "question_hits": self.question_hits,
             "taxonomy_path": self.taxonomy_path,
             "category_recall": self.category_recall,
@@ -350,6 +425,7 @@ def seed_demo_data(
     question_cards_per_type: int = 3,
     seed: int = 1234,
     reseed: bool = False,
+    seed_flashcards: bool = True,
     log: Callable[[str], None] = print,
 ) -> DemoStats:
     """Populate ``col`` with synthetic, clearly-labelled ReadyMCAT demo data.
@@ -501,6 +577,14 @@ def seed_demo_data(
         log=log,
     )
 
+    # --- retrieve-before-reveal demo: authorless Basic flashcards -----------
+    # A handful of plain front/back cards with NO authored ladder, so the
+    # reviewer's "Stuck? work it out" path AI-generates a guiding ladder from the
+    # card itself (retrieve-before-reveal). Independent of the memory/perf
+    # seeding above (plain NEW cards, no FSRS state or review history).
+    if seed_flashcards:
+        _seed_flashcards(col, stats=stats, log=log)
+
     # Persist card FSRS state in batches (one backend call per chunk).
     for start in range(0, len(cards_to_update), 200):
         col.update_cards(cards_to_update[start : start + 200], skip_undo_entry=True)
@@ -538,6 +622,7 @@ def seed_demo_data(
         "ReadyMCAT demo: seeded SYNTHETIC data — "
         f"{stats.cards_created} memory cards across {stats.categories_covered} "
         f"AAMC categories plus {stats.questions_created} practice questions, "
+        f"{stats.flashcards_created} authorless flashcards, "
         f"{stats.reviews_created} graded reviews. "
         f"Delete anytime with search 'tag:{DEMO_TAG}'."
     )
@@ -644,6 +729,46 @@ def _seed_question_attempts(
         f"ReadyMCAT demo: seeded {stats.questions_created} synthetic practice "
         f"questions ({stats.question_hits} designed first-try hits) for the "
         "performance score."
+    )
+
+
+def _seed_flashcards(
+    col: "Collection",
+    *,
+    stats: DemoStats,
+    log: Callable[[str], None],
+) -> None:
+    """Create a few authorless Basic front/back flashcards for the
+    retrieve-BEFORE-reveal teach-on-miss demo.
+
+    These are plain ``Basic`` notes (a front and a back), left as NEW cards so
+    they are immediately reviewable, in their own demo sub-deck. Crucially they
+    carry NO ``#...`` tag, so no authored ``subquestions.json`` concept matches
+    them: when the student hits "Stuck? work it out" the reviewer AI-generates a
+    guiding ladder from the card's own front/back (needs OPENAI_API_KEY),
+    demonstrating teach-on-miss on decks with no authored ladder. Tagged
+    ``ReadyMCAT_SYNTHETIC_DEMO`` (and ``::flashcards``) so they are removed with
+    the rest of the demo data."""
+    notetype = col.models.by_name("Basic")
+    if notetype is None:  # pragma: no cover - Basic ships with every collection
+        log("ReadyMCAT demo: no 'Basic' notetype; skipping flashcard demo.")
+        return
+    deck_id = col.decks.id(DEMO_FLASHCARD_DECK)
+    for front, back in DEMO_FLASHCARDS:
+        note = col.new_note(notetype)
+        # Front carries a visible SYNTHETIC marker; the back stays clean so the
+        # runtime ladder generator grounds on real subject material.
+        note.fields[0] = f"[SYNTHETIC DEMO] {front}"
+        note.fields[1] = back
+        note.add_tag(DEMO_TAG)
+        note.add_tag(DEMO_FLASHCARD_TAG)
+        col.add_note(note, deck_id)
+        stats.flashcards_created += 1
+    log(
+        f"ReadyMCAT demo: seeded {stats.flashcards_created} authorless Basic "
+        "flashcards (no authored ladder) for the retrieve-before-reveal "
+        f"teach-on-miss demo, in deck '{DEMO_FLASHCARD_DECK}'. "
+        f"Delete anytime with search 'tag:{DEMO_FLASHCARD_TAG}'."
     )
 
 

@@ -15,6 +15,7 @@
         "out/**",
         "**/*-lock.json",
         "readymcat/content/question_bank.json",
+        "**/worker-configuration.d.ts",
         "qt/aqt/data/web/js/vendor/*.js",
         "ftl/qt-repo",
         "ftl/core-repo",

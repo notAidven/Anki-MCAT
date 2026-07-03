@@ -47,13 +47,13 @@ and keeps "what ships == what the eval scored."
 client folds MCQ options into `question`, and the correct answer + explanation
 into `answer`):
 
-| Field      | Type       | Required | Notes                                                        |
-| ---------- | ---------- | -------- | ------------------------------------------------------------ |
-| `question` | string     | yes      | The missed question (stem + options, as the student saw it). |
-| `answer`   | string     | no       | Correct answer / explanation (used for reference; not leaked). |
-| `source`   | string     | no       | Cited source material (grounding).                           |
-| `choices`  | string[]   | no       | Accepted for forward-compat/observability; **not** injected into the prompt. |
-| `topic`    | string     | no       | Accepted for forward-compat/observability; **not** injected into the prompt. |
+| Field      | Type     | Required | Notes                                                                        |
+| ---------- | -------- | -------- | ---------------------------------------------------------------------------- |
+| `question` | string   | yes      | The missed question (stem + options, as the student saw it).                 |
+| `answer`   | string   | no       | Correct answer / explanation (used for reference; not leaked).               |
+| `source`   | string   | no       | Cited source material (grounding).                                           |
+| `choices`  | string[] | no       | Accepted for forward-compat/observability; **not** injected into the prompt. |
+| `topic`    | string   | no       | Accepted for forward-compat/observability; **not** injected into the prompt. |
 
 Fields are capped (8 KB each, 16 KB combined) → `400` if exceeded.
 
@@ -68,14 +68,14 @@ stray prose). `model` echoes the server-side model for observability.
 
 **Errors** (all clean JSON `{ "error": "…" }`, never leaking the key):
 
-| Status | When                                                   |
-| ------ | ------------------------------------------------------ |
+| Status | When                                                                  |
+| ------ | --------------------------------------------------------------------- |
 | `400`  | Invalid JSON, missing/empty `question`, wrong types, oversized input. |
-| `401`  | Missing or wrong `Authorization: Bearer` app token.    |
-| `404`  | Any path other than `/v1/ladder` (or `/health`).       |
-| `405`  | Non-`POST` method on `/v1/ladder`.                     |
-| `500`  | Proxy misconfigured (a secret is unset).               |
-| `502`  | OpenAI/network failure, non-2xx upstream, or bad shape. |
+| `401`  | Missing or wrong `Authorization: Bearer` app token.                   |
+| `404`  | Any path other than `/v1/ladder` (or `/health`).                      |
+| `405`  | Non-`POST` method on `/v1/ladder`.                                    |
+| `500`  | Proxy misconfigured (a secret is unset).                              |
+| `502`  | OpenAI/network failure, non-2xx upstream, or bad shape.               |
 
 ### `GET /health`
 
@@ -85,11 +85,11 @@ Liveness probe → `{ "ok": true, "service": "readymcat-openai-proxy", "route": 
 
 Non-secret settings live in `wrangler.jsonc` (`vars`) and are safe to commit:
 
-| Var               | Default                      | Meaning                          |
-| ----------------- | ---------------------------- | -------------------------------- |
-| `MODEL`           | `gpt-4o-mini`                | OpenAI model (pinned server-side so a leaked token can't select an expensive model). |
-| `TEMPERATURE`     | `0.4`                        | Sampling temperature.            |
-| `OPENAI_BASE_URL` | `https://api.openai.com/v1`  | Upstream base URL.               |
+| Var               | Default                     | Meaning                                                                              |
+| ----------------- | --------------------------- | ------------------------------------------------------------------------------------ |
+| `MODEL`           | `gpt-4o-mini`               | OpenAI model (pinned server-side so a leaked token can't select an expensive model). |
+| `TEMPERATURE`     | `0.4`                       | Sampling temperature.                                                                |
+| `OPENAI_BASE_URL` | `https://api.openai.com/v1` | Upstream base URL.                                                                   |
 
 Secrets are **never** in config — set with `wrangler secret put` (prod) or the
 gitignored `.dev.vars` (local): `OPENAI_API_KEY`, `APP_TOKEN`.
@@ -136,8 +136,8 @@ Verified response (content abbreviated):
 
 ```json
 {
-  "content": "[{\"q\": \"What are the two main phases of glycolysis?\", \"a\": \"The investment phase and the payoff phase.\"}, … ]",
-  "model": "gpt-4o-mini"
+    "content": "[{\"q\": \"What are the two main phases of glycolysis?\", \"a\": \"The investment phase and the payoff phase.\"}, … ]",
+    "model": "gpt-4o-mini"
 }
 ```
 

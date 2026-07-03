@@ -117,7 +117,7 @@ revealed on tap, and after the last rung the original card is re-asked and grade
 native **Settings** tab holds only a non-secret **Proxy Base URL** and an
 optional **app token** sent as `Authorization: Bearer …` (`ProxyConfigStore.swift`).
 The OpenAI key never touches the device — it is a server secret in the Worker.
-The app token is *low-value*: it only gates who may call your proxy and is
+The app token is _low-value_: it only gates who may call your proxy and is
 trivially rotated server-side. It is still kept in the **Keychain** (preferred),
 with the same `UserDefaults` fallback the unsigned `swiftc` Simulator build needs
 (no `application-identifier` entitlement → `errSecMissingEntitlement`) that
@@ -203,8 +203,8 @@ screenshots and verification:
 | `READYMCAT_REVIEW=mcq\|fr\|passage\|cars\|demo`  | Auto-open that reviewer (`demo` = the authorless AI-ladder demo card)                                                      |
 | `READYMCAT_DEMO=correct\|wrong\|ailadder`        | Auto-answer the first reviewer question (`ailadder` also auto-advances a miss into the AI ladder, for screenshots)         |
 | `READYMCAT_AI_DEMO=1`                            | Seed the authorless demo deck (`ReadyMCAT::AI Demo`) so the AI path is triggerable                                         |
-| `READYMCAT_PROXY_URL=http://127.0.0.1:8787`     | **DEBUG only** — pre-fill the proxy base URL so AI generation is on for the test run                                       |
-| `READYMCAT_APP_TOKEN=<token>`                   | **DEBUG only** — pre-fill the low-value app token (matches the proxy's `.dev.vars` APP_TOKEN); never committed             |
+| `READYMCAT_PROXY_URL=http://127.0.0.1:8787`      | **DEBUG only** — pre-fill the proxy base URL so AI generation is on for the test run                                       |
+| `READYMCAT_APP_TOKEN=<token>`                    | **DEBUG only** — pre-fill the low-value app token (matches the proxy's `.dev.vars` APP_TOKEN); never committed             |
 | `READYMCAT_DIAGNOSTIC=1`                         | Auto-open the diagnostic                                                                                                   |
 | `READYMCAT_AUTOPLAY=1`                           | Grade a batch of cards tap-free (grading-path check)                                                                       |
 | `READYMCAT_COLLECTION=demo`                      | Open a bundled **synthetic** demo collection to preview a populated dashboard (falls back to the real bank if not bundled) |

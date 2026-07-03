@@ -1,4 +1,4 @@
-// Copyright: ReadyMCAT contributors
+// Copyright: Ankitects Pty Ltd and contributors
 // License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 //
 // ReadyMCAT OpenAI proxy — a Cloudflare Worker that keeps the OpenAI key OFF the
@@ -48,98 +48,97 @@ const ROUTE = "/v1/ladder";
  * byte-identical so what ships is what the eval harness scored.
  */
 interface LadderRequest {
-  question: string;
-  answer?: string;
-  source?: string;
-  choices?: string[];
-  topic?: string;
+    question: string;
+    answer?: string;
+    source?: string;
+    choices?: string[];
+    topic?: string;
 }
 
 interface ChatMessage {
-  role: "system" | "user";
-  content: string;
+    role: "system" | "user";
+    content: string;
 }
 
 // --- small helpers -----------------------------------------------------------
 
 const CORS_HEADERS: Record<string, string> = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "POST, OPTIONS",
-  "Access-Control-Allow-Headers": "Authorization, Content-Type",
-  "Access-Control-Max-Age": "86400",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Authorization, Content-Type",
+    "Access-Control-Max-Age": "86400",
 };
 
 function jsonResponse(body: unknown, status = 200): Response {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: { "Content-Type": "application/json; charset=utf-8", ...CORS_HEADERS },
-  });
+    return new Response(JSON.stringify(body), {
+        status,
+        headers: { "Content-Type": "application/json; charset=utf-8", ...CORS_HEADERS },
+    });
 }
 
 function errorResponse(message: string, status: number): Response {
-  return jsonResponse({ error: message }, status);
+    return jsonResponse({ error: message }, status);
 }
 
 /** Constant-time-ish string compare for the low-value app token. */
 function tokensMatch(provided: string, expected: string): boolean {
-  const a = new TextEncoder().encode(provided);
-  const b = new TextEncoder().encode(expected);
-  // timingSafeEqual requires equal lengths; a length mismatch is an obvious
-  // non-match. (The app token is low-value; length is not a meaningful secret.)
-  if (a.byteLength !== b.byteLength) return false;
-  return crypto.subtle.timingSafeEqual(a, b);
+    const a = new TextEncoder().encode(provided);
+    const b = new TextEncoder().encode(expected);
+    // timingSafeEqual requires equal lengths; a length mismatch is an obvious
+    // non-match. (The app token is low-value; length is not a meaningful secret.)
+    if (a.byteLength !== b.byteLength) { return false; }
+    return crypto.subtle.timingSafeEqual(a, b);
 }
 
 /** Extract "Bearer <token>" from the Authorization header. */
 function bearerToken(request: Request): string | null {
-  const header = request.headers.get("Authorization") ?? "";
-  const match = /^Bearer\s+(.+)$/i.exec(header.trim());
-  return match ? match[1].trim() : null;
+    const header = request.headers.get("Authorization") ?? "";
+    const match = /^Bearer\s+(.+)$/i.exec(header.trim());
+    return match ? match[1].trim() : null;
 }
 
 // --- prompt (faithful port of ladder_gen.build_messages) ---------------------
 
 function buildMessages(req: LadderRequest): ChatMessage[] {
-  const question = (req.question ?? "").trim();
-  const answer = (req.answer ?? "").trim();
-  const source = (req.source ?? "").trim();
+    const question = (req.question ?? "").trim();
+    const answer = (req.answer ?? "").trim();
+    const source = (req.source ?? "").trim();
 
-  const system =
-    "You are a tutor for the MCAT. A student just answered a question " +
-    "WRONG. Do NOT reveal the answer. Instead, write a short ladder of " +
-    "guiding sub-questions that make the student RETRIEVE their way to the " +
-    "answer themselves (active retrieval, not passive reading).\n\n" +
-    "Hard rules:\n" +
-    `- Output ${MIN_RUNGS}-${MAX_RUNGS} rungs, ordered from foundational to ` +
-    "the step just before the answer.\n" +
-    "- The FIRST rung must NOT state or give away the final answer; it " +
-    "establishes a prerequisite idea.\n" +
-    "- Every sub-answer must be grounded ONLY in the provided material — " +
-    "do not introduce facts that are not supported by it.\n" +
-    "- Each rung is one short guiding question ('q') and its short, " +
-    "correct sub-answer ('a').\n" +
-    'Return ONLY a JSON array: [{"q": "...", "a": "..."}, ...] with no ' +
-    "prose, no markdown, no code fences.";
+    const system = "You are a tutor for the MCAT. A student just answered a question "
+        + "WRONG. Do NOT reveal the answer. Instead, write a short ladder of "
+        + "guiding sub-questions that make the student RETRIEVE their way to the "
+        + "answer themselves (active retrieval, not passive reading).\n\n"
+        + "Hard rules:\n"
+        + `- Output ${MIN_RUNGS}-${MAX_RUNGS} rungs, ordered from foundational to `
+        + "the step just before the answer.\n"
+        + "- The FIRST rung must NOT state or give away the final answer; it "
+        + "establishes a prerequisite idea.\n"
+        + "- Every sub-answer must be grounded ONLY in the provided material — "
+        + "do not introduce facts that are not supported by it.\n"
+        + "- Each rung is one short guiding question ('q') and its short, "
+        + "correct sub-answer ('a').\n"
+        + "Return ONLY a JSON array: [{\"q\": \"...\", \"a\": \"...\"}, ...] with no "
+        + "prose, no markdown, no code fences.";
 
-  const parts: string[] = [`QUESTION THE STUDENT MISSED:\n${question}`];
-  if (answer) {
+    const parts: string[] = [`QUESTION THE STUDENT MISSED:\n${question}`];
+    if (answer) {
+        parts.push(
+            "\nCORRECT ANSWER / EXPLANATION (for your reference only, "
+                + `do NOT reveal it directly):\n${answer}`,
+        );
+    }
+    if (source) {
+        parts.push(`\nCITED SOURCE MATERIAL:\n${source}`);
+    }
     parts.push(
-      "\nCORRECT ANSWER / EXPLANATION (for your reference only, " +
-        `do NOT reveal it directly):\n${answer}`,
+        `\nWrite the ${MIN_RUNGS}-${MAX_RUNGS} guiding sub-questions now as the `
+            + "JSON array described.",
     );
-  }
-  if (source) {
-    parts.push(`\nCITED SOURCE MATERIAL:\n${source}`);
-  }
-  parts.push(
-    `\nWrite the ${MIN_RUNGS}-${MAX_RUNGS} guiding sub-questions now as the ` +
-      "JSON array described.",
-  );
 
-  return [
-    { role: "system", content: system },
-    { role: "user", content: parts.join("\n") },
-  ];
+    return [
+        { role: "system", content: system },
+        { role: "user", content: parts.join("\n") },
+    ];
 }
 
 // --- OpenAI call (faithful port of ladder_gen.openai_chat) -------------------
@@ -148,173 +147,173 @@ function buildMessages(req: LadderRequest): ChatMessage[] {
 class UpstreamError extends Error {}
 
 async function callOpenAI(
-  messages: ChatMessage[],
-  env: Env,
+    messages: ChatMessage[],
+    env: Env,
 ): Promise<string> {
-  const apiKey = env.OPENAI_API_KEY;
-  const model = env.MODEL || DEFAULT_MODEL;
-  const temperature = Number.parseFloat(env.TEMPERATURE) || DEFAULT_TEMPERATURE;
-  const baseURL = (env.OPENAI_BASE_URL || DEFAULT_OPENAI_BASE_URL).replace(/\/+$/, "");
+    const apiKey = env.OPENAI_API_KEY;
+    const model = env.MODEL || DEFAULT_MODEL;
+    const temperature = Number.parseFloat(env.TEMPERATURE) || DEFAULT_TEMPERATURE;
+    const baseURL = (env.OPENAI_BASE_URL || DEFAULT_OPENAI_BASE_URL).replace(/\/+$/, "");
 
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), OPENAI_TIMEOUT_MS);
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), OPENAI_TIMEOUT_MS);
 
-  let upstream: Response;
-  try {
-    upstream = await fetch(`${baseURL}/chat/completions`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model,
-        messages,
-        temperature,
-        response_format: { type: "text" },
-      }),
-      signal: controller.signal,
-    });
-  } catch (err) {
-    const reason = err instanceof Error ? err.message : String(err);
-    throw new UpstreamError(`OpenAI request failed: ${reason}`);
-  } finally {
-    clearTimeout(timeout);
-  }
+    let upstream: Response;
+    try {
+        upstream = await fetch(`${baseURL}/chat/completions`, {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${apiKey}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                model,
+                messages,
+                temperature,
+                response_format: { type: "text" },
+            }),
+            signal: controller.signal,
+        });
+    } catch (err) {
+        const reason = err instanceof Error ? err.message : String(err);
+        throw new UpstreamError(`OpenAI request failed: ${reason}`);
+    } finally {
+        clearTimeout(timeout);
+    }
 
-  if (!upstream.ok) {
-    // Truncate the upstream body; OpenAI errors never echo the key, but we keep
-    // it short and generic so nothing sensitive can leak into client logs.
-    const detail = (await upstream.text()).slice(0, 300);
-    throw new UpstreamError(`OpenAI HTTP ${upstream.status}: ${detail}`);
-  }
+    if (!upstream.ok) {
+        // Truncate the upstream body; OpenAI errors never echo the key, but we keep
+        // it short and generic so nothing sensitive can leak into client logs.
+        const detail = (await upstream.text()).slice(0, 300);
+        throw new UpstreamError(`OpenAI HTTP ${upstream.status}: ${detail}`);
+    }
 
-  let payload: unknown;
-  try {
-    payload = await upstream.json();
-  } catch {
-    throw new UpstreamError("OpenAI returned non-JSON");
-  }
+    let payload: unknown;
+    try {
+        payload = await upstream.json();
+    } catch {
+        throw new UpstreamError("OpenAI returned non-JSON");
+    }
 
-  const content = (payload as { choices?: { message?: { content?: unknown } }[] })
-    ?.choices?.[0]?.message?.content;
-  if (typeof content !== "string") {
-    throw new UpstreamError("unexpected OpenAI response shape");
-  }
-  return content;
+    const content = (payload as { choices?: { message?: { content?: unknown } }[] })
+        ?.choices?.[0]?.message?.content;
+    if (typeof content !== "string") {
+        throw new UpstreamError("unexpected OpenAI response shape");
+    }
+    return content;
 }
 
 // --- input validation --------------------------------------------------------
 
 function parseLadderRequest(raw: unknown): LadderRequest | { error: string } {
-  if (typeof raw !== "object" || raw === null) {
-    return { error: "body must be a JSON object" };
-  }
-  const obj = raw as Record<string, unknown>;
-
-  const question = obj.question;
-  if (typeof question !== "string" || question.trim().length === 0) {
-    return { error: "`question` is required and must be a non-empty string" };
-  }
-
-  const optionalString = (v: unknown, name: string): string | { error: string } => {
-    if (v === undefined || v === null) return "";
-    if (typeof v !== "string") return { error: `\`${name}\` must be a string` };
-    return v;
-  };
-
-  const answer = optionalString(obj.answer, "answer");
-  if (typeof answer === "object") return answer;
-  const source = optionalString(obj.source, "source");
-  if (typeof source === "object") return source;
-  const topic = optionalString(obj.topic, "topic");
-  if (typeof topic === "object") return topic;
-
-  let choices: string[] | undefined;
-  if (obj.choices !== undefined && obj.choices !== null) {
-    if (!Array.isArray(obj.choices) || obj.choices.some((c) => typeof c !== "string")) {
-      return { error: "`choices` must be an array of strings" };
+    if (typeof raw !== "object" || raw === null) {
+        return { error: "body must be a JSON object" };
     }
-    choices = obj.choices as string[];
-  }
+    const obj = raw as Record<string, unknown>;
 
-  if (
-    question.length > MAX_FIELD_CHARS ||
-    answer.length > MAX_FIELD_CHARS ||
-    source.length > MAX_FIELD_CHARS
-  ) {
-    return { error: `each field must be at most ${MAX_FIELD_CHARS} characters` };
-  }
-  if (question.length + answer.length + source.length > MAX_TOTAL_CHARS) {
-    return { error: `combined input must be at most ${MAX_TOTAL_CHARS} characters` };
-  }
+    const question = obj.question;
+    if (typeof question !== "string" || question.trim().length === 0) {
+        return { error: "`question` is required and must be a non-empty string" };
+    }
 
-  return { question, answer, source, topic: topic || undefined, choices };
+    const optionalString = (v: unknown, name: string): string | { error: string } => {
+        if (v === undefined || v === null) { return ""; }
+        if (typeof v !== "string") { return { error: `\`${name}\` must be a string` }; }
+        return v;
+    };
+
+    const answer = optionalString(obj.answer, "answer");
+    if (typeof answer === "object") { return answer; }
+    const source = optionalString(obj.source, "source");
+    if (typeof source === "object") { return source; }
+    const topic = optionalString(obj.topic, "topic");
+    if (typeof topic === "object") { return topic; }
+
+    let choices: string[] | undefined;
+    if (obj.choices !== undefined && obj.choices !== null) {
+        if (!Array.isArray(obj.choices) || obj.choices.some((c) => typeof c !== "string")) {
+            return { error: "`choices` must be an array of strings" };
+        }
+        choices = obj.choices as string[];
+    }
+
+    if (
+        question.length > MAX_FIELD_CHARS
+        || answer.length > MAX_FIELD_CHARS
+        || source.length > MAX_FIELD_CHARS
+    ) {
+        return { error: `each field must be at most ${MAX_FIELD_CHARS} characters` };
+    }
+    if (question.length + answer.length + source.length > MAX_TOTAL_CHARS) {
+        return { error: `combined input must be at most ${MAX_TOTAL_CHARS} characters` };
+    }
+
+    return { question, answer, source, topic: topic || undefined, choices };
 }
 
 // --- request handling --------------------------------------------------------
 
 async function handleLadder(request: Request, env: Env): Promise<Response> {
-  // Server misconfiguration → 500 (but never echo which secret is missing in a
-  // way that helps an attacker; the message is generic).
-  if (!env.OPENAI_API_KEY || !env.APP_TOKEN) {
-    console.error("proxy misconfigured: OPENAI_API_KEY and/or APP_TOKEN unset");
-    return errorResponse("proxy is not configured", 500);
-  }
+    // Server misconfiguration → 500 (but never echo which secret is missing in a
+    // way that helps an attacker; the message is generic).
+    if (!env.OPENAI_API_KEY || !env.APP_TOKEN) {
+        console.error("proxy misconfigured: OPENAI_API_KEY and/or APP_TOKEN unset");
+        return errorResponse("proxy is not configured", 500);
+    }
 
-  // Abuse gate: the low-value app token. Its ONLY job is to stop a stranger from
-  // spending your OpenAI budget — the high-value OpenAI key stays server-side.
-  const provided = bearerToken(request);
-  if (!provided || !tokensMatch(provided, env.APP_TOKEN)) {
-    return errorResponse("unauthorized", 401);
-  }
+    // Abuse gate: the low-value app token. Its ONLY job is to stop a stranger from
+    // spending your OpenAI budget — the high-value OpenAI key stays server-side.
+    const provided = bearerToken(request);
+    if (!provided || !tokensMatch(provided, env.APP_TOKEN)) {
+        return errorResponse("unauthorized", 401);
+    }
 
-  let raw: unknown;
-  try {
-    raw = await request.json();
-  } catch {
-    return errorResponse("invalid JSON body", 400);
-  }
+    let raw: unknown;
+    try {
+        raw = await request.json();
+    } catch {
+        return errorResponse("invalid JSON body", 400);
+    }
 
-  const parsed = parseLadderRequest(raw);
-  if ("error" in parsed) {
-    return errorResponse(parsed.error, 400);
-  }
+    const parsed = parseLadderRequest(raw);
+    if ("error" in parsed) {
+        return errorResponse(parsed.error, 400);
+    }
 
-  const messages = buildMessages(parsed);
-  try {
-    const content = await callOpenAI(messages, env);
-    return jsonResponse({ content, model: env.MODEL || DEFAULT_MODEL });
-  } catch (err) {
-    const reason = err instanceof Error ? err.message : String(err);
-    console.error("upstream error:", reason);
-    return errorResponse("upstream generation failed", 502);
-  }
+    const messages = buildMessages(parsed);
+    try {
+        const content = await callOpenAI(messages, env);
+        return jsonResponse({ content, model: env.MODEL || DEFAULT_MODEL });
+    } catch (err) {
+        const reason = err instanceof Error ? err.message : String(err);
+        console.error("upstream error:", reason);
+        return errorResponse("upstream generation failed", 502);
+    }
 }
 
 export default {
-  async fetch(request: Request, env: Env): Promise<Response> {
-    const url = new URL(request.url);
+    async fetch(request: Request, env: Env): Promise<Response> {
+        const url = new URL(request.url);
 
-    if (request.method === "OPTIONS") {
-      return new Response(null, { status: 204, headers: CORS_HEADERS });
-    }
+        if (request.method === "OPTIONS") {
+            return new Response(null, { status: 204, headers: CORS_HEADERS });
+        }
 
-    // Lightweight liveness probe (handy for `wrangler dev` sanity checks).
-    if (request.method === "GET" && (url.pathname === "/" || url.pathname === "/health")) {
-      return jsonResponse({ ok: true, service: "readymcat-openai-proxy", route: ROUTE });
-    }
+        // Lightweight liveness probe (handy for `wrangler dev` sanity checks).
+        if (request.method === "GET" && (url.pathname === "/" || url.pathname === "/health")) {
+            return jsonResponse({ ok: true, service: "readymcat-openai-proxy", route: ROUTE });
+        }
 
-    if (url.pathname !== ROUTE) {
-      return errorResponse("not found", 404);
-    }
-    if (request.method !== "POST") {
-      return new Response(JSON.stringify({ error: "method not allowed" }), {
-        status: 405,
-        headers: { "Content-Type": "application/json; charset=utf-8", Allow: "POST", ...CORS_HEADERS },
-      });
-    }
+        if (url.pathname !== ROUTE) {
+            return errorResponse("not found", 404);
+        }
+        if (request.method !== "POST") {
+            return new Response(JSON.stringify({ error: "method not allowed" }), {
+                status: 405,
+                headers: { "Content-Type": "application/json; charset=utf-8", Allow: "POST", ...CORS_HEADERS },
+            });
+        }
 
-    return handleLadder(request, env);
-  },
+        return handleLadder(request, env);
+    },
 } satisfies ExportedHandler<Env>;

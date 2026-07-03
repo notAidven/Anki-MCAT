@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Local secrets — NEVER commit. The real OpenAI key lives ONLY here (locally)
+# and, in production, as a Cloudflare Worker secret (`wrangler secret put`).
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+
+# Wrangler local state / build output
+.wrangler/
+dist/
+
+# Logs / OS cruft
+*.log
+.DS_Store

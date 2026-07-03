@@ -73,9 +73,11 @@ guiding sub-questions. Authored ladders ship on every bundled card, but that onl
 covers ReadyMCAT's own bank. Runtime generation closes the gap the PRD flagged as
 the #1 next step so teach-on-miss works on _any_ deck.
 
-**What was skipped (honest scope).** Generation is **desktop-only** for now — iOS
-still runs authored ladders on the bundled bank (extending it to a native Swift
-path is a clean follow-on). There is **no other runtime AI**: no generated
+**What was skipped (honest scope).** Generation runs on **both desktop and iOS**;
+on iOS it is routed through a **server-side proxy** (a Cloudflare Worker,
+`ios/backend/openai-proxy`) so **no OpenAI key ships on the phone** — the key is a
+server secret and the device holds only a non-secret proxy URL and a low-value
+app token. There is **no other runtime AI**: no generated
 flashcards, no chatbot. Generation is **off entirely** when no `OPENAI_API_KEY` is
 present. The guardrails are **lexical proxies** (honest heuristics, not a
 calibrated model), and their thresholds are named constants the calibration work

@@ -74,7 +74,7 @@ clean per-format sub-decks (`ReadyMCAT::Multiple Choice`, `::Free Response`,
 touch the `#ReadyMCAT::AAMC` tags the dashboard resolves against, so the honest
 scores are unchanged.
 
-## AI teach-on-miss ladder generation (in-app key)
+## AI teach-on-miss ladder generation (server-side proxy)
 
 The bundled bank ships an authored ladder on every card, but an imported deck or
 the student's own cards won't have one. For a card with **no authored ladder**,
@@ -93,9 +93,14 @@ guardrails with the same constants —
 | answer-leak | rung 1 must not restate the answer (lexical containment) | `answerLeakMax=0.7`     |
 | grounding   | each sub-answer's content traces to the card's material  | `groundingMin=0.5`      |
 
-The OpenAI Chat Completions call is a plain `URLSession` request (model
-`gpt-4o-mini`, same body shape as desktop) — no `rsios`/Rust change was needed.
-It is injectable (`ChatFn`) so the guardrails can be unit-tested offline:
+The OpenAI key is **not** on the phone. Instead of calling `api.openai.com`
+directly, the app POSTs the structured card to a **server-side proxy** (a
+Cloudflare Worker — see [`backend/openai-proxy/`](backend/openai-proxy/)) that
+holds the OpenAI key as a server secret, builds the identical prompt (model
+`gpt-4o-mini`), and returns the raw completion — so the Swift parser + guardrails
+run on it unchanged, and no `rsios`/Rust change was needed. The model call
+(`ChatFn`, wired to `LadderProxyClient`) is injectable, so the guardrails can be
+unit-tested offline:
 
 ```bash
 ios/scripts/test-laddergen.sh      # compiles LadderGen.swift + the tests on the host, runs them
@@ -108,42 +113,57 @@ the existing teach-on-miss reviewer as a **retrieve-before-reveal** step
 revealed on tap, and after the last rung the original card is re-asked and graded
 (first-try → Good; after-ladder → Again + `ReadyMCAT::struggling`).
 
-**Key storage choice: Keychain (preferred), with a UserDefaults fallback.** The
-desktop reads `OPENAI_API_KEY` from the environment; on iOS there is no ambient
-env, so the key is entered in the native **Settings** tab and persisted
-(`APIKeyStore.swift`). An OpenAI key is a billable secret, so it belongs in the
-**Keychain** (encrypted, this-device-only) rather than `UserDefaults` where
-`SyncManager` keeps its self-hosted-server credentials. The reproducible
-verification build is compiled with `swiftc` and is **unsigned**, so it has no
-`application-identifier` entitlement and the Keychain returns
-`errSecMissingEntitlement`; in that (and only that) case the store falls back to
-`UserDefaults` so the feature is still exercisable on the Simulator. A signed
-device/Xcode build uses the Keychain. Generation is enabled **only** when a key
-is present — with no key the app behaves exactly as before (authored ladders
-only).
+**On-device config: a proxy URL + a low-value app token (no OpenAI key).** The
+native **Settings** tab holds only a non-secret **Proxy Base URL** and an
+optional **app token** sent as `Authorization: Bearer …` (`ProxyConfigStore.swift`).
+The OpenAI key never touches the device — it is a server secret in the Worker.
+The app token is *low-value*: it only gates who may call your proxy and is
+trivially rotated server-side. It is still kept in the **Keychain** (preferred),
+with the same `UserDefaults` fallback the unsigned `swiftc` Simulator build needs
+(no `application-identifier` entitlement → `errSecMissingEntitlement`) that
+`SyncManager` uses for its credentials. Generation is enabled **only** when the
+AI toggle is on **and** a proxy URL is set — otherwise the app behaves exactly as
+before (authored ladders only).
 
-**Mobile API-key tradeoff (documented, on purpose).** Any key shipped inside a
-mobile app can in principle be extracted from a jailbroken/instrumented device.
-This in-app key is fine for personal use and this MVP; a production build should
-proxy generation through a server so the key never lives on the phone. The
-Settings screen states this.
+**Mobile API-key tradeoff — now resolved.** Any key shipped inside a mobile app
+can in principle be extracted from a jailbroken/instrumented device. Earlier
+builds shipped the OpenAI key on the phone (Keychain) and documented this as an
+MVP tradeoff; that key is now **gone from the device entirely** — it lives only
+in the server-side proxy. The phone holds just a non-secret URL and a low-value,
+easily-rotated app token. Follow-up hardening (rate-limiting, Cloudflare Access,
+App Attest) is listed in the [proxy README](backend/openai-proxy/README.md).
 
-**Try it.** Settings → paste an OpenAI key → **Save key** → **Run AI ladder
-demo** seeds one authorless card (deck `ReadyMCAT::AI Demo`, an FR note with an
-empty `Subquestions` field) and opens it; answer it wrong to see a ladder
+**Try it.** First run the proxy locally (`cd ios/backend/openai-proxy && npm
+install && npm run dev` — see its [README](backend/openai-proxy/README.md)). Then
+in the app: Settings → set **Proxy Base URL** to `http://127.0.0.1:8787` + the
+**App token** → toggle **Generate ladders with AI** on → **Save** → **Run AI
+ladder demo** seeds one authorless card (deck `ReadyMCAT::AI Demo`, an FR note
+with an empty `Subquestions` field) and opens it; answer it wrong to see a ladder
 generated live before the answer. The card is seeded through the shared engine
 (`NewDeck` 7/0 → `AddDeck` 7/1 → `AddNote` 25/1, reusing the Free-Response
-notetype), so it studies through the same native FR path as the real cards. For the reproducible verification path (no
-typing), inject the key and open the demo directly:
+notetype), so it studies through the same native FR path as the real cards. For
+the reproducible verification path (no typing), DEBUG builds seed the proxy
+config from launch env vars:
 
 ```bash
-set -a; source /path/to/anki/.env.local; set +a        # loads OPENAI_API_KEY (gitignored — never committed)
-SIMCTL_CHILD_OPENAI_API_KEY="$OPENAI_API_KEY" \
+# terminal 1: run the proxy (holds the OpenAI key server-side, from its .dev.vars)
+cd ios/backend/openai-proxy && npm install && npm run dev
+
+# terminal 2: launch the app pointed at the local proxy (the Simulator reaches
+# the host Mac at 127.0.0.1). The app token matches the proxy's .dev.vars APP_TOKEN.
+SIMCTL_CHILD_READYMCAT_PROXY_URL="http://127.0.0.1:8787" \
+SIMCTL_CHILD_READYMCAT_APP_TOKEN="<your-dev-app-token>" \
 SIMCTL_CHILD_READYMCAT_AI_DEMO=1 \
 SIMCTL_CHILD_READYMCAT_REVIEW=demo \
 SIMCTL_CHILD_READYMCAT_DEMO=ailadder \
   ios/scripts/run-sim.sh "iPhone 17 Pro"
 ```
+
+> **ATS (local http).** The Simulator reaching `http://127.0.0.1:8787` is
+> cleartext HTTP. iOS permits localhost by default in most cases; if a local run
+> is blocked, add `NSAppTransportSecurity → NSAllowsLocalNetworking` to
+> `ios/ReadyMCAT/Info.plist` for **dev builds only**. Production `*.workers.dev`
+> is HTTPS, so no exception is needed.
 
 Verified live on the Simulator: the authorless card missed → a real ladder
 generated (`ladder generation: ok=true attempts=2 schema=true leak=false
@@ -183,7 +203,8 @@ screenshots and verification:
 | `READYMCAT_REVIEW=mcq\|fr\|passage\|cars\|demo`  | Auto-open that reviewer (`demo` = the authorless AI-ladder demo card)                                                      |
 | `READYMCAT_DEMO=correct\|wrong\|ailadder`        | Auto-answer the first reviewer question (`ailadder` also auto-advances a miss into the AI ladder, for screenshots)         |
 | `READYMCAT_AI_DEMO=1`                            | Seed the authorless demo deck (`ReadyMCAT::AI Demo`) so the AI path is triggerable                                         |
-| `SIMCTL_CHILD_OPENAI_API_KEY=sk-…`               | **DEBUG only** — pre-fill the key store so AI generation is on for the test run (never committed)                          |
+| `READYMCAT_PROXY_URL=http://127.0.0.1:8787`     | **DEBUG only** — pre-fill the proxy base URL so AI generation is on for the test run                                       |
+| `READYMCAT_APP_TOKEN=<token>`                   | **DEBUG only** — pre-fill the low-value app token (matches the proxy's `.dev.vars` APP_TOKEN); never committed             |
 | `READYMCAT_DIAGNOSTIC=1`                         | Auto-open the diagnostic                                                                                                   |
 | `READYMCAT_AUTOPLAY=1`                           | Grade a batch of cards tap-free (grading-path check)                                                                       |
 | `READYMCAT_COLLECTION=demo`                      | Open a bundled **synthetic** demo collection to preview a populated dashboard (falls back to the real bank if not bundled) |
@@ -245,8 +266,9 @@ indices — is unchanged and still valid.)
   graded through the shared scheduler (Good / Again + struggling tag).
 - Native **AI teach-on-miss generation**: for a missed card that has **no
   authored ladder**, a faithful Swift port of the desktop generator
-  (`LadderGen.swift`) builds a grounded `{q,a}` ladder via the OpenAI API and
-  runs the same retrieve-before-reveal flow — see below.
+  (`LadderGen.swift`) builds a grounded `{q,a}` ladder via a **server-side proxy**
+  (a Cloudflare Worker — no OpenAI key on the phone) and runs the same
+  retrieve-before-reveal flow — see below.
 - Native **diagnostic**: administers the shared quiz and seeds the ordering prior.
 - **Points-at-stake ordering is active** (the bundled collection selects order 13
   with a `taxonomy.json` beside it).

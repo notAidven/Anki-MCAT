@@ -1,55 +1,69 @@
 // Copyright: ReadyMCAT contributors
 // License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 //
-// The Settings tab: enter an OpenAI API key to turn on runtime AI generation of
-// teach-on-miss ladders for cards that have no authored one. The key is stored
-// in the Keychain (see APIKeyStore). With no key, generation stays off and the
-// app behaves exactly as before — authored ladders only.
+// The Settings tab: point the app at the ReadyMCAT proxy (a Cloudflare Worker)
+// to turn on runtime AI generation of teach-on-miss ladders for cards that have
+// no authored one. The OpenAI key is NOT entered here — it lives server-side in
+// the Worker. On device we keep only a non-secret Proxy Base URL and an optional
+// LOW-VALUE app token (see ProxyConfigStore). With AI off or no URL, generation
+// stays off and the app behaves exactly as before — authored ladders only.
 //
 // A "Run AI ladder demo" button seeds a single authorless demo card and opens it
-// so the AI path is reachable in-app on the Simulator without any launch env.
+// so the AI path is reachable in-app on the Simulator.
 
 import SwiftUI
 
 struct SettingsView: View {
     @EnvironmentObject private var model: AppModel
-    var body: some View { SettingsForm(keyStore: model.keyStore, ai: model.ai) }
+    var body: some View { SettingsForm(config: model.proxyConfig, ai: model.ai) }
 }
 
 private struct SettingsForm: View {
     @EnvironmentObject private var model: AppModel
-    @ObservedObject var keyStore: APIKeyStore
+    @ObservedObject var config: ProxyConfigStore
     @ObservedObject var ai: AILadderService
 
     @State private var demoDeck: DeckRef?
     @State private var seedFailed = false
 
+    private var enabledBinding: Binding<Bool> {
+        Binding(get: { config.aiEnabled }, set: { config.setEnabled($0) })
+    }
+
     var body: some View {
         NavigationStack {
             Form {
                 Section {
-                    SecureField("sk-…", text: $keyStore.key)
+                    Toggle("Generate ladders with AI", isOn: enabledBinding)
+
+                    TextField("https://your-worker.workers.dev", text: $config.baseURL)
+                        .textContentType(.URL)
+                        .keyboardType(.URL)
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
+
+                    SecureField("App token (optional)", text: $config.appToken)
                         .textContentType(.password)
                         .textInputAutocapitalization(.never)
                         .autocorrectionDisabled()
+
                     HStack {
                         Button {
-                            _ = keyStore.save()
+                            _ = config.save()
                         } label: {
-                            Label("Save key", systemImage: "key.fill")
+                            Label("Save", systemImage: "checkmark.circle.fill")
                         }
-                        .disabled(keyStore.trimmedKey.isEmpty)
                         Spacer()
-                        if keyStore.stored {
-                            Button(role: .destructive) { keyStore.clear() } label: {
+                        if !config.trimmedBaseURL.isEmpty || config.tokenStored {
+                            Button(role: .destructive) { config.clear() } label: {
                                 Label("Remove", systemImage: "trash")
                             }
                         }
                     }
                 } header: {
-                    Text("OpenAI API key")
+                    Text("AI ladder proxy")
                 } footer: {
-                    Text("Stored in the device Keychain. Used only to generate a short guiding-question ladder when you miss a card that has no authored one — model \(LadderGen.defaultModel), calling api.openai.com directly. Your key never leaves the device except in that request.")
+                    Text("The app calls YOUR proxy (a Cloudflare Worker) over HTTPS — never OpenAI directly. The proxy holds the OpenAI key as a server-side secret and generates the ladder (model \(LadderGen.defaultModel)). The Base URL is not secret; the App Token is a low-value key that just gates who may call your proxy. For local testing point this at your `wrangler dev` URL, e.g. http://127.0.0.1:8787.")
                 }
 
                 Section("Status") {
@@ -58,11 +72,15 @@ private struct SettingsForm: View {
                             .foregroundStyle(ai.isEnabled ? Palette.review : .secondary)
                         Text(ai.isEnabled
                              ? "AI ladder generation is ON"
-                             : "AI ladder generation is OFF (no key)")
+                             : "AI ladder generation is OFF")
                             .font(.subheadline).foregroundStyle(.secondary)
                     }
-                    if keyStore.stored {
-                        Label("Key stored in \(keyStore.backend.rawValue)", systemImage: "checkmark.circle.fill")
+                    if !config.trimmedBaseURL.isEmpty {
+                        Label("Proxy: \(config.trimmedBaseURL)", systemImage: "network")
+                            .font(.caption).foregroundStyle(.secondary).lineLimit(1).truncationMode(.middle)
+                    }
+                    if config.tokenStored {
+                        Label("App token stored in \(config.tokenBackend.rawValue)", systemImage: "checkmark.circle.fill")
                             .font(.caption).foregroundStyle(Palette.review)
                     }
                     if let summary = ai.lastSummary {
@@ -93,10 +111,10 @@ private struct SettingsForm: View {
                 }
 
                 Section {
-                    Text("Security tradeoff: any API key shipped inside a mobile app can, in principle, be extracted from a jailbroken or instrumented device. This in-app key is fine for personal use and this MVP (Keychain-encrypted, this-device-only); a production build should proxy generation through a server so the key never lives on the phone.")
+                    Text("No OpenAI key on this phone. Moving the key to a server-side proxy removes the mobile tradeoff of the earlier build (any key shipped in an app can be extracted from a jailbroken/instrumented device). The high-value OpenAI key now lives only in the Worker; the phone holds just a non-secret URL and a low-value, easily-rotated app token. Harden the proxy further with rate-limiting, Cloudflare Access, or App Attest — see the proxy README.")
                         .font(.footnote).foregroundStyle(.secondary)
                 } header: {
-                    Text("About the mobile key")
+                    Text("About the proxy")
                 }
             }
             .navigationTitle("Settings")

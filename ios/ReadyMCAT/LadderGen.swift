@@ -12,11 +12,15 @@
 // A generated ladder is shown to the student ONLY when it passes all three; the
 // reviewer otherwise falls back to a normal reveal.
 //
-// The one bit of IO — the OpenAI Chat Completions call — is a thin `URLSession`
-// request (no third-party dependency) and is INJECTABLE (`ChatFn`) so the unit
+// The one bit of IO — the model call — is INJECTABLE (`ChatFn`) so the unit
 // tests run fully offline and deterministically, exactly like the Python core's
-// injectable `chat_fn`. Keeping the prompt + guardrails identical to the desktop
-// means what ships on the phone is what the desktop eval harness scores.
+// injectable `chat_fn`. In the app that `ChatFn` is wired to `LadderProxyClient`,
+// which POSTs the structured card to the ReadyMCAT Cloudflare Worker that holds
+// the OpenAI key SERVER-side (see ios/backend/openai-proxy) — no OpenAI key ever
+// ships on the phone. The Worker returns the raw completion text, so the parser
+// and the three guardrails below run byte-for-byte unchanged. Keeping the prompt
+// + parser + guardrails identical to the desktop means what ships on the phone
+// is what the desktop eval harness scores.
 //
 // Foundation-only (no SwiftUI/UIKit, no app types) so the guardrail logic can be
 // compiled and unit-tested standalone on the host (see ios/scripts/test-laddergen.sh).
@@ -41,13 +45,13 @@ enum LadderGen {
     /// scaffolding toward it.
     static let answerLeakMax = 0.7
 
-    /// Cheap, capable default (matches the desktop DEFAULT_MODEL).
+    /// Cheap, capable default (matches the desktop DEFAULT_MODEL). The model +
+    /// temperature are now applied SERVER-side by the proxy Worker; these mirror
+    /// its defaults so the documented contract and the UI stay in sync.
     static let defaultModel = "gpt-4o-mini"
     static let defaultTimeoutSecs = 30
     static let defaultAttempts = 2
     static let defaultTemperature = 0.4
-
-    static let openAIChatURL = "https://api.openai.com/v1/chat/completions"
 
     /// Short, deliberately generic stopword set — enough to stop the lexical
     /// proxies keying on filler words, without pretending to be real NLP.
@@ -319,10 +323,13 @@ extension LadderGen {
     }
 }
 
-// MARK: - OpenAI call (the one bit of IO; injectable for tests)
+// MARK: - model call injection point (the one bit of IO; injectable for tests)
 
 /// A chat function takes (messages, model) and returns the assistant's text.
 /// Injectable so tests never touch the network (mirrors `ladder_gen.ChatFn`).
+/// In the app it is wired to `LadderProxyClient` (the Cloudflare Worker proxy);
+/// tests inject a stub. The direct api.openai.com call was removed from the app
+/// when the OpenAI key moved server-side.
 typealias ChatFn = (_ messages: [[String: String]], _ model: String) async throws -> String
 
 /// Raised when generation cannot produce a valid ladder / a transport error.
@@ -357,65 +364,10 @@ struct GenerationOutcome {
 }
 
 extension LadderGen {
-    /// Minimal OpenAI Chat Completions call over `URLSession` (no dependency).
-    /// Faithful to `ladder_gen.openai_chat`: same URL, same body shape
-    /// (model/messages/temperature/response_format), Bearer auth. Throws
-    /// `LadderGenError` on any transport/API error so callers fall back.
-    static func openAIChat(
-        _ messages: [[String: String]],
-        model: String = defaultModel,
-        apiKey: String,
-        temperature: Double = defaultTemperature,
-        timeout: Int = defaultTimeoutSecs,
-        session: URLSession = .shared
-    ) async throws -> String {
-        guard !apiKey.isEmpty else { throw LadderGenError("OPENAI_API_KEY is not set") }
-        guard let url = URL(string: openAIChatURL) else {
-            throw LadderGenError("bad OpenAI URL")
-        }
-        let payload: [String: Any] = [
-            "model": model,
-            "messages": messages,
-            "temperature": temperature,
-            "response_format": ["type": "text"],
-        ]
-        guard let body = try? JSONSerialization.data(withJSONObject: payload) else {
-            throw LadderGenError("could not encode request body")
-        }
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.timeoutInterval = TimeInterval(timeout)
-        request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = body
-
-        let data: Data
-        let response: URLResponse
-        do {
-            (data, response) = try await session.data(for: request)
-        } catch {
-            throw LadderGenError("OpenAI request failed: \(error.localizedDescription)")
-        }
-        if let http = response as? HTTPURLResponse, !(200...299).contains(http.statusCode) {
-            let detail = String(decoding: data.prefix(500), as: UTF8.self)
-            throw LadderGenError("OpenAI HTTP \(http.statusCode): \(detail)")
-        }
-        guard
-            let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-            let choices = json["choices"] as? [Any],
-            let firstChoice = choices.first as? [String: Any],
-            let message = firstChoice["message"] as? [String: Any],
-            let content = message["content"] as? String
-        else {
-            throw LadderGenError("unexpected OpenAI response shape")
-        }
-        return content
-    }
-
     /// Generate + validate a ladder, retrying up to `attempts` times. `chat` is
-    /// injected (the caller wires in `openAIChat` with the user's key; tests
-    /// inject a stub). The returned outcome's `ok` is true only when a produced
-    /// ladder passed every guardrail. Mirrors `ladder_gen.generate_ladder`.
+    /// injected (the app wires in `LadderProxyClient` → the Cloudflare Worker;
+    /// tests inject a stub). The returned outcome's `ok` is true only when a
+    /// produced ladder passed every guardrail. Mirrors `ladder_gen.generate_ladder`.
     static func generateLadder(
         _ context: CardContext,
         chat: ChatFn,

@@ -32,8 +32,9 @@ final class AppModel: ObservableObject {
     /// Two-way sync on Anki's own protocol (see SyncManager).
     let sync = SyncManager()
 
-    /// The user's OpenAI key (Keychain) + the runtime teach-on-miss generator.
-    let keyStore: APIKeyStore
+    /// The proxy configuration (base URL + low-value app token) + the runtime
+    /// teach-on-miss generator. The OpenAI key lives server-side, not here.
+    let proxyConfig: ProxyConfigStore
     let ai: AILadderService
 
     /// Fully-qualified name of the authorless demo deck (seeded on demand so the
@@ -41,9 +42,9 @@ final class AppModel: ObservableObject {
     static let demoDeckName = "ReadyMCAT::AI Demo"
 
     init() {
-        let store = APIKeyStore()
-        keyStore = store
-        ai = AILadderService(keyStore: store)
+        let store = ProxyConfigStore()
+        proxyConfig = store
+        ai = AILadderService(config: store)
     }
 
     func bootstrap() {

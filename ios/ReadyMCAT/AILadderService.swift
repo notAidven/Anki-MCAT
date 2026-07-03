@@ -3,7 +3,7 @@
 //
 // The host around the pure LadderGen core (the iOS analogue of the desktop's
 // qt/aqt/readymcat_ladder_gen.py). It:
-//   * decides whether generation is enabled (a key is present), and
+//   * decides whether generation is enabled (a proxy URL is configured), and
 //   * turns a parsed review item into the grounding CardContext, then
 //   * generates + validates a ladder, caching a validated one per note so a card
 //     is only ever generated once per session and every later miss is instant.
@@ -11,13 +11,19 @@
 // It hands back a `[LadderRung]` ONLY when the guardrails pass; the reviewer
 // shows it iff non-nil and otherwise falls back to a normal reveal — the same
 // contract as the desktop.
+//
+// The OpenAI key is NO LONGER on the phone: the injected `ChatFn` now calls the
+// ReadyMCAT proxy (a Cloudflare Worker, see ios/backend/openai-proxy) via
+// `LadderProxyClient`, which returns the raw completion text. Everything after
+// that — parsing, the three guardrails, the retry loop, per-note caching — is
+// unchanged, so behavior (and the eval-scored guardrails) match exactly.
 
 import Foundation
 import SwiftUI
 
 @MainActor
 final class AILadderService: ObservableObject {
-    private let keyStore: APIKeyStore
+    private let config: ProxyConfigStore
 
     /// Per-note cache of validated ladders (generate once, reuse on later misses).
     private var cache: [Int64: [LadderRung]] = [:]
@@ -26,11 +32,12 @@ final class AILadderService: ObservableObject {
     /// surface and NSLog); nil until the first attempt.
     @Published private(set) var lastSummary: String?
 
-    init(keyStore: APIKeyStore) { self.keyStore = keyStore }
+    init(config: ProxyConfigStore) { self.config = config }
 
-    /// True when a key is present. When false the reviewer never calls generate,
-    /// so the app behaves exactly as authored-ladders-only.
-    var isEnabled: Bool { keyStore.isEnabled }
+    /// True when a proxy URL is configured and AI is toggled on. When false the
+    /// reviewer never calls generate, so the app behaves exactly as
+    /// authored-ladders-only.
+    var isEnabled: Bool { config.isEnabled }
 
     /// Generate + validate a ladder for a missed card. Returns the rungs to show
     /// (guardrails passed) or nil (disabled / transport error / failed a
@@ -39,9 +46,16 @@ final class AILadderService: ObservableObject {
         guard isEnabled else { return nil }
         if let noteId, let cached = cache[noteId] { return cached }
 
-        let apiKey = keyStore.trimmedKey
-        let chat: ChatFn = { messages, model in
-            try await LadderGen.openAIChat(messages, model: model, apiKey: apiKey)
+        let baseURL = config.trimmedBaseURL
+        let token = config.trimmedToken
+        // The prompt is built SERVER-SIDE by the Worker from the structured card
+        // context, so a leaked app token can't drive arbitrary prompts. The
+        // `messages`/`model` args that generateLadder builds locally are
+        // intentionally unused here — we send the CardContext and let the Worker
+        // build the (identical) prompt. What comes back is the raw completion,
+        // exactly what the old direct-OpenAI ChatFn returned.
+        let chat: ChatFn = { _, _ in
+            try await LadderProxyClient.generate(context: context, baseURL: baseURL, token: token)
         }
         let outcome = await LadderGen.generateLadder(context, chat: chat)
         lastSummary = summarize(outcome)

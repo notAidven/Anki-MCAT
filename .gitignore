@@ -36,3 +36,6 @@ ios/ReadyMCAT.xcodeproj/project.xcworkspace/
 .env
 .env.local
 .env.*.local
+
+# ReadyMCAT: large Anki decks (host externally / Git LFS, not git)
+*.apkg

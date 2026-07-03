@@ -88,8 +88,9 @@ just run
 just run     # first launch auto-opens the diagnostic; retake via Tools → ReadyMCAT Diagnostic
 ```
 
-Capture: the short diagnostic administering the 31-item short mode across all 31
-AAMC content categories. It seeds the points-at-stake weakness prior and **never**
+Capture: the short diagnostic administering the short mode — one item per category
+drawn from the 37-item bank (i.e. 31 items) — spanning all 31 AAMC content
+categories. It seeds the points-at-stake weakness prior and **never**
 shows a score or writes the dashboard's memory/performance/readiness numbers (a
 guardrail test enforces this).
 

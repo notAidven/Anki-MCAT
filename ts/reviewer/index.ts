@@ -22,6 +22,23 @@ import { registerPackage } from "@tslib/runtime-require";
 import { allImagesLoaded, preloadAnswerImages } from "./images";
 import { preloadResources } from "./preload";
 
+// ReadyMCAT teach-on-miss: exposed globally (via index_wrapper) so the Python
+// reviewer can launch the guiding sub-question ladder with `_teachOnMissStart`,
+// or show a loading state with `_teachOnMissLoading` while a ladder is being
+// generated at runtime for a card that has no authored one.
+export { _teachOnMissLoading, _teachOnMissStart } from "./teach_on_miss";
+// ReadyMCAT MCQ reviewer: exposed globally so the Python reviewer can render a
+// pre-loaded multiple-choice card (with per-question teach-on-miss) via
+// `_mcqStart`.
+export { _mcqStart } from "./mcq";
+// ReadyMCAT free-response reviewer: a type-in card auto-graded against the
+// item's accepted answers / key terms, with per-question teach-on-miss, via
+// `_frStart`.
+export { _frStart } from "./fr";
+// ReadyMCAT passage reviewer: a shared passage with one multiple-choice card per
+// question (per-question teach-on-miss), via `_passageStart`.
+export { _passageStart } from "./passage";
+
 declare const MathJax: any;
 
 type Callback = () => void | Promise<void>;

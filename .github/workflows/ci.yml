@@ -18,6 +18,8 @@ env:
 
 jobs:
   minilints:
+    # Fork guard: this workflow is upstream's; skip all jobs on forks.
+    if: github.repository == 'ankitects/anki'
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 #v4
@@ -36,6 +38,7 @@ jobs:
   # Lightweight formatting checks (no build outputs needed).
   # Uses individual tool installs instead of setup-anki to stay fast.
   format:
+    if: github.repository == 'ankitects/anki'
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 #v4
@@ -64,6 +67,7 @@ jobs:
 
   # Linux runs on every PR and push to main.
   check-linux:
+    if: github.repository == 'ankitects/anki'
     runs-on: ubuntu-24.04
     name: check (linux)
     steps:
@@ -195,9 +199,10 @@ jobs:
   # Runs on pushes to main or on PRs with the check:macos label.
   check-macos:
     if: >-
-      github.event_name == 'push'
+      github.repository == 'ankitects/anki'
+      && (github.event_name == 'push'
       || github.event_name == 'workflow_dispatch'
-      || contains(github.event.pull_request.labels.*.name, 'check:macos')
+      || contains(github.event.pull_request.labels.*.name, 'check:macos'))
     runs-on: macos-latest
     name: check (macos)
     steps:
@@ -261,9 +266,10 @@ jobs:
   # Runs on pushes to main or on PRs with the check:windows label.
   check-windows:
     if: >-
-      github.event_name == 'push'
+      github.repository == 'ankitects/anki'
+      && (github.event_name == 'push'
       || github.event_name == 'workflow_dispatch'
-      || contains(github.event.pull_request.labels.*.name, 'check:windows')
+      || contains(github.event.pull_request.labels.*.name, 'check:windows'))
     runs-on: windows-latest
     name: check (windows)
     # Colocate CARGO_HOME and TEMP on D: to keep all I/O on the same fast

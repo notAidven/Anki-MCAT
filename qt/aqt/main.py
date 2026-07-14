@@ -14,7 +14,7 @@ import weakref
 from argparse import Namespace
 from collections.abc import Callable, Sequence
 from concurrent.futures import Future
-from typing import Any, Literal, TypeVar, cast
+from typing import TYPE_CHECKING, Any, Literal, TypeVar, cast
 
 import anki
 import anki.sound
@@ -80,11 +80,50 @@ from aqt.utils import (
 )
 from aqt.webview import AnkiWebView, AnkiWebViewKind
 
+if TYPE_CHECKING:
+    # Imported lazily at runtime (see ``_readymcat_view_for_state``) to avoid a
+    # circular import — these modules import ``aqt.main`` — but referenced here
+    # for type annotations only.
+    from aqt.readymcat import ReadyMCATDashboardView
+    from aqt.readymcat_home import ReadyMCATHomeView
+
 install_pylib_legacy()
 
 MainWindowState = Literal[
-    "startup", "deckBrowser", "overview", "review", "resetRequired", "profileManager"
+    "startup",
+    "deckBrowser",
+    "overview",
+    "review",
+    "resetRequired",
+    "profileManager",
+    # ReadyMCAT single-window tabs: the Home hub and honest-memory Dashboard are
+    # rendered INTO the main window (a dedicated, API-capable web view swapped
+    # into the central stack) rather than as separate popup dialogs, so all four
+    # tabs — Home · Study · Dashboard · Decks — live in one window.
+    "readymcatHome",
+    "readymcatDashboard",
 ]
+
+# ReadyMCAT: main-window states that render a SvelteKit hub/dashboard into their
+# own API-capable web view (see ``AnkiQt._readymcat_view_for_state``) instead of
+# the shared ``mw.web``. The shared web view deliberately lacks internal-API
+# access because it renders untrusted card content, so the ReadyMCAT pages —
+# which POST to ``/_anki/pointsAtStakeQueue`` etc. — must live in their own view.
+READYMCAT_TAB_STATES: tuple[MainWindowState, ...] = (
+    "readymcatHome",
+    "readymcatDashboard",
+)
+
+
+# ReadyMCAT: the SvelteKit route a returning/provisioned profile lands on when
+# the app opens (see ``AnkiQt._route_readymcat_launch`` /
+# ``AnkiQt._open_readymcat_landing``). This is the SINGLE switch for the startup
+# landing surface: set it to ``"readymcat-home"`` for the study/launcher home
+# hub (default) or ``"readymcat-dashboard"`` for the honest-memory dashboard —
+# both are registered SvelteKit pages (see ``aqt.mediasrv.is_sveltekit_page``).
+# A brand-new profile always sees the introductory diagnostic first regardless
+# of this value; it then lands here on subsequent (returning) launches.
+READYMCAT_LANDING_ROUTE = "readymcat-home"
 
 
 T = TypeVar("T")
@@ -168,6 +207,10 @@ class AnkiQt(QMainWindow):
     pm: ProfileManagerType
     web: MainWebView
     bottomWeb: BottomWebView
+    # ReadyMCAT single-window central stack + lazily-created in-window tab views.
+    web_stack: QStackedWidget
+    readymcat_home_view: ReadyMCATHomeView | None
+    readymcat_dashboard_view: ReadyMCATDashboardView | None
 
     def __init__(
         self,
@@ -663,6 +706,27 @@ class AnkiQt(QMainWindow):
             gui_hooks.collection_did_load(self.col)
             self.apply_collection_options()
             self.moveToState("deckBrowser")
+            # ReadyMCAT: on first launch, pre-load the bundled MCQ deck (zero
+            # import) and drop the topic-aware sidecar files next to the
+            # collection. Deferred so the deck browser paints first; idempotent
+            # and silent on later launches.
+            from aqt.readymcat_provision import maybe_provision_readymcat
+
+            self.progress.single_shot(50, lambda: maybe_provision_readymcat(self))
+            # ReadyMCAT: route this launch to exactly one entry surface,
+            # deferred so the deck browser paints first. A genuinely new profile
+            # (no diagnostic prior yet) sees the introductory diagnostic first —
+            # it seeds study *ordering* and prerequisite *placement* only, never
+            # a score; every returning/provisioned profile lands directly on the
+            # ReadyMCAT landing route (see ``READYMCAT_LANDING_ROUTE``) instead
+            # of the deck browser. Defensive + silent if unavailable.
+            self.progress.single_shot(250, self._route_readymcat_launch)
+            # ReadyMCAT dev/e2e: when READYMCAT_SEED_DEMO is set, populate the
+            # profile with SYNTHETIC demo data so the honest-memory dashboard can
+            # be screenshotted fully populated. No-op (and silent) otherwise.
+            from aqt.readymcat_demo import maybe_seed_demo_on_launch
+
+            maybe_seed_demo_on_launch(self)
         except Exception:
             # dump error to stderr so it gets picked up by errors.py
             traceback.print_exc()
@@ -764,10 +828,67 @@ class AnkiQt(QMainWindow):
         self.clearStateShortcuts()
         self.state = state
         gui_hooks.state_will_change(state, oldState)
+        # ReadyMCAT: keep the single window's chrome (central stack, bottom bar,
+        # active toolbar tab) in sync with the state before the state's own
+        # handler runs so, e.g., the deck browser is guaranteed to render into
+        # the shared ``mw.web`` after a ReadyMCAT tab was shown.
+        self._readymcat_sync_chrome(state)
         getattr(self, f"_{state}State", lambda *_: None)(oldState, *args)
         if state != "resetRequired":
             self.bottomWeb.adjustHeightToFit()
         gui_hooks.state_did_change(state, oldState)
+
+    # ReadyMCAT single-window plumbing
+    ##########################################################################
+
+    def _readymcat_sync_chrome(self, state: MainWindowState) -> None:
+        """Point the central stack + bottom bar + active tab at ``state``.
+
+        Standard screens (deck browser, overview, reviewer) render into the
+        shared ``mw.web``; the ReadyMCAT tab states render into their own
+        API-capable web view, which their state handler swaps in. The bottom
+        toolbar (answer buttons / deck actions) is meaningless on the ReadyMCAT
+        hub/dashboard, so it is hidden there."""
+        is_readymcat = state in READYMCAT_TAB_STATES
+        if not is_readymcat and self.web_stack.currentWidget() is not self.web:
+            self.web_stack.setCurrentWidget(self.web)
+        self.bottomWeb.setVisible(not is_readymcat)
+        # reflect the active tab in the persistent toolbar tab bar
+        toolbar = getattr(self, "toolbar", None)
+        if toolbar is not None:
+            toolbar.set_active_tab(state)
+
+    def _readymcat_view_for_state(self, state: MainWindowState) -> Any:
+        """Return (creating + registering on first use) the in-window view for a
+        ReadyMCAT tab state, with its web view added to the central stack."""
+        if state == "readymcatHome":
+            if self.readymcat_home_view is None:
+                from aqt.readymcat_home import ReadyMCATHomeView
+
+                self.readymcat_home_view = ReadyMCATHomeView(self)
+                self.web_stack.addWidget(self.readymcat_home_view.web)
+            return self.readymcat_home_view
+        else:
+            if self.readymcat_dashboard_view is None:
+                from aqt.readymcat import ReadyMCATDashboardView
+
+                self.readymcat_dashboard_view = ReadyMCATDashboardView(self)
+                self.web_stack.addWidget(self.readymcat_dashboard_view.web)
+            return self.readymcat_dashboard_view
+
+    def _readymcatHomeState(self, oldState: MainWindowState) -> None:
+        if self.col is None:
+            return self.moveToState("deckBrowser")
+        view = self._readymcat_view_for_state("readymcatHome")
+        self.web_stack.setCurrentWidget(view.web)
+        view.show()
+
+    def _readymcatDashboardState(self, oldState: MainWindowState) -> None:
+        if self.col is None:
+            return self.moveToState("deckBrowser")
+        view = self._readymcat_view_for_state("readymcatDashboard")
+        self.web_stack.setCurrentWidget(view.web)
+        view.show()
 
     def _deckBrowserState(self, oldState: MainWindowState) -> None:
         self.deckBrowser.show()
@@ -952,6 +1073,17 @@ title="{}" {}>{}</button>""".format(
         self.toolbar = Toolbar(self, tweb)
         # main area
         self.web = MainWebView(self)
+        # ReadyMCAT: the central area is a stack so the ReadyMCAT Home/Dashboard
+        # tabs can be swapped in beside the shared ``mw.web`` (deck browser /
+        # overview / reviewer) without a second window. ``mw.web`` stays index 0
+        # and everything that reaches for it keeps working; the ReadyMCAT views
+        # are added lazily on first navigation (see ``_readymcat_view_for_state``).
+        self.web_stack = QStackedWidget()
+        self.web_stack.addWidget(self.web)
+        # ReadyMCAT in-window tab views, created lazily so start-up cost and
+        # collection access are deferred until a tab is first opened.
+        self.readymcat_home_view = None
+        self.readymcat_dashboard_view = None
         # bottom area
         sweb = self.bottomWeb = BottomWebView(self)
         sweb.setFocusPolicy(Qt.FocusPolicy.WheelFocus)
@@ -961,7 +1093,7 @@ title="{}" {}>{}</button>""".format(
         self.mainLayout.setContentsMargins(0, 0, 0, 0)
         self.mainLayout.setSpacing(0)
         self.mainLayout.addWidget(tweb)
-        self.mainLayout.addWidget(self.web)
+        self.mainLayout.addWidget(self.web_stack)
         self.mainLayout.addWidget(sweb)
         self.form.centralwidget.setLayout(self.mainLayout)
 
@@ -1314,6 +1446,84 @@ title="{}" {}>{}</button>""".format(
     def onPrefs(self) -> None:
         aqt.dialogs.open("Preferences", self)
 
+    def on_readymcat_home(self) -> None:
+        if not self.col:
+            return
+        from aqt.readymcat_home import show_readymcat_home
+
+        show_readymcat_home(self)
+
+    def on_readymcat_dashboard(self) -> None:
+        if not self.col:
+            return
+        from aqt.readymcat import show_readymcat_dashboard
+
+        show_readymcat_dashboard(self)
+
+    def on_readymcat_diagnostic(self) -> None:
+        if not self.col:
+            return
+        from aqt.readymcat import show_readymcat_diagnostic
+
+        show_readymcat_diagnostic(self)
+
+    def on_readymcat_load_demo(self) -> None:
+        if not self.col:
+            return
+        from aqt.readymcat_demo import load_readymcat_demo_data
+
+        load_readymcat_demo_data(self)
+
+    def _route_readymcat_launch(self) -> None:
+        """ReadyMCAT startup routing: open exactly one entry surface on launch.
+
+        A genuinely new profile (no diagnostic prior yet, and a question bank
+        actually available) sees the introductory diagnostic first, exactly as
+        before — it seeds study *ordering* and prerequisite *placement* only,
+        never a score. Every returning/provisioned profile instead lands
+        directly on ``READYMCAT_LANDING_ROUTE`` (the honest-memory dashboard),
+        rather than on the deck browser. Once the diagnostic has been taken the
+        profile is "returning", so later launches land on the dashboard too.
+
+        The deck browser stays the base window and remains reachable from the
+        toolbar and the Tools menu, so the four ReadyMCAT decks are always
+        accessible. Reuses the tested, Qt-free diagnostic decision in
+        ``aqt.readymcat.maybe_show_diagnostic_on_launch`` (which loads the pure
+        ``home_launcher`` helpers by path) so the two entry surfaces never
+        double-open. Defensive + silent so a failure here never blocks
+        start-up.
+        """
+        if self.col is None:
+            return
+        try:
+            from aqt.readymcat import maybe_show_diagnostic_on_launch
+
+            if maybe_show_diagnostic_on_launch(self):
+                return
+            self._open_readymcat_landing()
+        except Exception as exc:  # pragma: no cover - defensive
+            print("ReadyMCAT: launch routing failed", exc)
+
+    def _open_readymcat_landing(self) -> None:
+        """Open the configured ReadyMCAT landing surface.
+
+        The single place that maps ``READYMCAT_LANDING_ROUTE`` to its window, so
+        switching the startup landing surface between the honest-memory
+        dashboard and the study/launcher home hub is a one-line change to that
+        constant. Any value other than ``"readymcat-home"`` lands on the
+        dashboard.
+        """
+        if self.col is None:
+            return
+        if READYMCAT_LANDING_ROUTE == "readymcat-home":
+            from aqt.readymcat_home import show_readymcat_home
+
+            show_readymcat_home(self)
+        else:
+            from aqt.readymcat import show_readymcat_dashboard
+
+            show_readymcat_dashboard(self)
+
     def on_check_for_updates(self) -> None:
         from packaging.version import Version
 
@@ -1447,6 +1657,38 @@ title="{}" {}>{}</button>""".format(
         qconnect(m.actionNoteTypes.triggered, self.onNoteTypes)
         qconnect(m.action_check_for_updates.triggered, self.on_check_for_updates)
         qconnect(m.actionPreferences.triggered, self.onPrefs)
+
+        # ReadyMCAT: home / study-launcher hub (the app's entry screen; also
+        # reachable here in case a student closes it and wants it back).
+        m.menuTools.addSeparator()
+        self._readymcat_home_action = QAction("ReadyMCAT Home", self)
+        m.menuTools.addAction(self._readymcat_home_action)
+        qconnect(self._readymcat_home_action.triggered, self.on_readymcat_home)
+
+        # ReadyMCAT: honest-memory dashboard
+        self._readymcat_action = QAction("ReadyMCAT Dashboard", self)
+        m.menuTools.addAction(self._readymcat_action)
+        qconnect(self._readymcat_action.triggered, self.on_readymcat_dashboard)
+
+        # ReadyMCAT: introductory diagnostic (LEARN MODE first-launch intake).
+        # Also auto-offered once on first launch; this lets a student retake it.
+        self._readymcat_diagnostic_action = QAction("ReadyMCAT Diagnostic", self)
+        m.menuTools.addAction(self._readymcat_diagnostic_action)
+        qconnect(
+            self._readymcat_diagnostic_action.triggered,
+            self.on_readymcat_diagnostic,
+        )
+
+        # ReadyMCAT: load SYNTHETIC demo data so the dashboard can be previewed
+        # fully populated. Clearly labelled as fake (a UI preview, not readiness).
+        self._readymcat_demo_action = QAction(
+            "Load ReadyMCAT demo data (SYNTHETIC)", self
+        )
+        m.menuTools.addAction(self._readymcat_demo_action)
+        qconnect(
+            self._readymcat_demo_action.triggered,
+            self.on_readymcat_load_demo,
+        )
 
         # View
         qconnect(
@@ -1828,7 +2070,13 @@ title="{}" {}>{}</button>""".format(
 
     def interactiveState(self) -> bool:
         "True if not in profile manager, syncing, etc."
-        return self.state in ("overview", "review", "deckBrowser")
+        return self.state in (
+            "overview",
+            "review",
+            "deckBrowser",
+            "readymcatHome",
+            "readymcatDashboard",
+        )
 
     # GC
     ##########################################################################

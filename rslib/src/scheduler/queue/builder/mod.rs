@@ -287,9 +287,39 @@ impl Collection {
 
         queues.gather_cards(self)?;
 
+        // ReadyMCAT: re-rank the gathered review cards by points at stake
+        // (topic_weight x student_weakness) when that order is selected.
+        if queues.context.sort_options.review_order == ReviewCardOrder::PointsAtStake {
+            self.reorder_review_by_points_at_stake(&mut queues.review)?;
+        }
+
         let queues = queues.build(self.learn_ahead_secs() as i64);
 
         Ok(queues)
+    }
+
+    /// Re-sort gathered review cards so the highest points-at-stake (weakest,
+    /// highest-yield topic) cards come first. Falls back to the gathered order
+    /// when no taxonomy is available.
+    fn reorder_review_by_points_at_stake(&mut self, review: &mut [DueCard]) -> Result<()> {
+        let Some(taxonomy) = self.load_taxonomy(None)? else {
+            return Ok(());
+        };
+        let aggregation = self.compute_topic_aggregation(&taxonomy)?;
+        let ranked = self.rank_due_cards(&taxonomy, &aggregation, None)?;
+        let points: HashMap<CardId, f64> = ranked
+            .iter()
+            .map(|r| (r.card_id, r.points_at_stake))
+            .collect();
+        review.sort_by(|a, b| {
+            let pa = points.get(&a.id).copied().unwrap_or(0.0);
+            let pb = points.get(&b.id).copied().unwrap_or(0.0);
+            pb.partial_cmp(&pa)
+                .unwrap_or(std::cmp::Ordering::Equal)
+                .then(a.due.cmp(&b.due))
+                .then(a.id.cmp(&b.id))
+        });
+        Ok(())
     }
 }
 

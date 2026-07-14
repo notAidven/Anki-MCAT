@@ -62,10 +62,23 @@ From the top level of Anki's source folder:
 
 (`.\run` on Windows)
 
+If you have the [`just`](https://just.systems) command runner installed, the
+equivalent (and recommended) invocation is `just run` — see the
+[top-level README](../README.md#build--run-both-apps) for the full clone → build
+→ run walkthrough and the one-time prerequisites.
+
 This will build Anki and run it in place.
 
 The first build will take a while, as it downloads and builds a bunch of
 dependencies. When the build is complete, Anki will automatically start.
+
+> **ReadyMCAT note:** this fork pre-loads the full MCAT question bank (1,075
+> cards across four decks) into a brand-new profile on first launch — there is
+> **no import step and no external deck to download**. First-launch provisioning
+> (`qt/aqt/readymcat_provision.py`) also copies the diagnostic, `taxonomy.json`
+> and `subquestions.json` sidecars next to the new collection, all from files
+> that ship in the repo, so a fresh clone runs out of the box with zero manual
+> file-copying. See [readymcat/README.md](../readymcat/README.md).
 
 If Anki fails to start, you may need to install [extra libraries](https://docs.ankiweb.net/platform/linux/missing-libraries.html).
 

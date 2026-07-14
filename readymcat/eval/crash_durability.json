@@ -1,0 +1,170 @@
+{
+    "source": "SIGKILL durability loop on a throwaway collection",
+    "kills": 20,
+    "all_passed": true,
+    "final_revlog_count": 20,
+    "no_corruption": true,
+    "no_lost_reviews": true,
+    "iterations": [
+        {
+            "iteration": 1,
+            "committed_before_kill": true,
+            "integrity": "ok",
+            "revlog_count": 1,
+            "expected": 1,
+            "ok": true
+        },
+        {
+            "iteration": 2,
+            "committed_before_kill": true,
+            "integrity": "ok",
+            "revlog_count": 2,
+            "expected": 2,
+            "ok": true
+        },
+        {
+            "iteration": 3,
+            "committed_before_kill": true,
+            "integrity": "ok",
+            "revlog_count": 3,
+            "expected": 3,
+            "ok": true
+        },
+        {
+            "iteration": 4,
+            "committed_before_kill": true,
+            "integrity": "ok",
+            "revlog_count": 4,
+            "expected": 4,
+            "ok": true
+        },
+        {
+            "iteration": 5,
+            "committed_before_kill": true,
+            "integrity": "ok",
+            "revlog_count": 5,
+            "expected": 5,
+            "ok": true
+        },
+        {
+            "iteration": 6,
+            "committed_before_kill": true,
+            "integrity": "ok",
+            "revlog_count": 6,
+            "expected": 6,
+            "ok": true
+        },
+        {
+            "iteration": 7,
+            "committed_before_kill": true,
+            "integrity": "ok",
+            "revlog_count": 7,
+            "expected": 7,
+            "ok": true
+        },
+        {
+            "iteration": 8,
+            "committed_before_kill": true,
+            "integrity": "ok",
+            "revlog_count": 8,
+            "expected": 8,
+            "ok": true
+        },
+        {
+            "iteration": 9,
+            "committed_before_kill": true,
+            "integrity": "ok",
+            "revlog_count": 9,
+            "expected": 9,
+            "ok": true
+        },
+        {
+            "iteration": 10,
+            "committed_before_kill": true,
+            "integrity": "ok",
+            "revlog_count": 10,
+            "expected": 10,
+            "ok": true
+        },
+        {
+            "iteration": 11,
+            "committed_before_kill": true,
+            "integrity": "ok",
+            "revlog_count": 11,
+            "expected": 11,
+            "ok": true
+        },
+        {
+            "iteration": 12,
+            "committed_before_kill": true,
+            "integrity": "ok",
+            "revlog_count": 12,
+            "expected": 12,
+            "ok": true
+        },
+        {
+            "iteration": 13,
+            "committed_before_kill": true,
+            "integrity": "ok",
+            "revlog_count": 13,
+            "expected": 13,
+            "ok": true
+        },
+        {
+            "iteration": 14,
+            "committed_before_kill": true,
+            "integrity": "ok",
+            "revlog_count": 14,
+            "expected": 14,
+            "ok": true
+        },
+        {
+            "iteration": 15,
+            "committed_before_kill": true,
+            "integrity": "ok",
+            "revlog_count": 15,
+            "expected": 15,
+            "ok": true
+        },
+        {
+            "iteration": 16,
+            "committed_before_kill": true,
+            "integrity": "ok",
+            "revlog_count": 16,
+            "expected": 16,
+            "ok": true
+        },
+        {
+            "iteration": 17,
+            "committed_before_kill": true,
+            "integrity": "ok",
+            "revlog_count": 17,
+            "expected": 17,
+            "ok": true
+        },
+        {
+            "iteration": 18,
+            "committed_before_kill": true,
+            "integrity": "ok",
+            "revlog_count": 18,
+            "expected": 18,
+            "ok": true
+        },
+        {
+            "iteration": 19,
+            "committed_before_kill": true,
+            "integrity": "ok",
+            "revlog_count": 19,
+            "expected": 19,
+            "ok": true
+        },
+        {
+            "iteration": 20,
+            "committed_before_kill": true,
+            "integrity": "ok",
+            "revlog_count": 20,
+            "expected": 20,
+            "ok": true
+        }
+    ]
+}

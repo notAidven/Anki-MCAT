@@ -1,0 +1,30 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "readymcat-openai-proxy",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-07-01",
+
+  // Structured request logs + traces in the Cloudflare dashboard.
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+
+  // Non-secret configuration. These are safe to commit and to ship: they only
+  // describe WHICH model/params the Worker uses when it calls OpenAI. They match
+  // the shared desktop source of truth (readymcat/tools/ladder_gen.py) and the
+  // iOS port (ios/ReadyMCAT/LadderGen.swift): gpt-4o-mini, temperature 0.4.
+  //
+  // The model is pinned SERVER-SIDE on purpose: a leaked app token cannot make
+  // the Worker run a different (e.g. more expensive) model.
+  "vars": {
+    "MODEL": "gpt-4o-mini",
+    "TEMPERATURE": "0.4",
+    "OPENAI_BASE_URL": "https://api.openai.com/v1"
+  }
+
+  // SECRETS (never in this file — set with `wrangler secret put`, or locally in
+  // the gitignored .dev.vars):
+  //   OPENAI_API_KEY   the high-value key. Stays server-side; never on device.
+  //   APP_TOKEN        the low-value app token the iOS client sends as a Bearer.
+}

@@ -59,6 +59,9 @@ class AnkiWebViewKind(Enum):
     FIELDS = "fields"
     IMPORT_LOG = "import log"
     IMPORT_ANKI_PACKAGE = "anki package import"
+    READYMCAT_DASHBOARD = "readymcat dashboard"
+    READYMCAT_DIAGNOSTIC = "readymcat diagnostic"
+    READYMCAT_HOME = "readymcat home"
 
 
 class AuthInterceptor(QWebEngineUrlRequestInterceptor):
@@ -142,6 +145,9 @@ class AnkiWebPage(QWebEnginePage):
             AnkiWebViewKind.IMPORT_ANKI_PACKAGE,
             AnkiWebViewKind.IMPORT_CSV,
             AnkiWebViewKind.IMPORT_LOG,
+            AnkiWebViewKind.READYMCAT_DASHBOARD,
+            AnkiWebViewKind.READYMCAT_DIAGNOSTIC,
+            AnkiWebViewKind.READYMCAT_HOME,
         )
 
         global _profile_with_api_access, _profile_without_api_access

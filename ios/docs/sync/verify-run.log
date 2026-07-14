@@ -1,0 +1,20 @@
+[33m>>[0m cleaning /Users/evacab/Desktop/rmcat-sync/out/sync-verify
+[33m>>[0m starting sync server on http://127.0.0.1:27701/
+[32mOK:[0m server healthy (pid 84714)
+[33m>>[0m building + installing iOS app on 'iPhone 17 Pro'
+[33m>>[0m 1) phone first sync (expect full upload)
+[32mOK:[0m phone uploaded the bank
+[33m>>[0m 2) desktop first sync (expect full download)
+{"ok": true, "action": "sync", "steps": ["login ok", "sync: full download"], "reviewed": 0, "error": null, "revlog_count": 0, "revlog_unique": 0, "revlog_ids": [], "cards": 1075, "notes": 1075}
+[32mOK:[0m desktop downloaded bank; revlog baseline 0
+[33m>>[0m 3) phone reviews 5, syncs up; desktop syncs down
+{"ok": true, "action": "sync", "steps": ["login ok", "sync: up to date"], "reviewed": 0, "error": null, "revlog_count": 5, "revlog_unique": 5, "revlog_ids": [1783010216967, 1783010216969, 1783010216970, 1783010216972, 1783010216974], "cards": 1075, "notes": 1075}
+[32mOK:[0m phone->desktop: 5 reviews landed
+[33m>>[0m 4) desktop reviews 3, syncs up; phone syncs down
+{"ok": true, "action": "review_sync", "steps": ["login ok", "pre-sync: up to date", "reviewed 3", "post-sync: up to date"], "reviewed": 3, "error": null, "revlog_count": 8, "revlog_unique": 8, "revlog_ids": [1783010216967, 1783010216969, 1783010216970, 1783010216972, 1783010216974, 1783010218689, 1783010218690, 1783010218691], "cards": 1075, "notes": 1075}
+[32mOK:[0m desktop->phone: 3 reviews landed
+[33m>>[0m 5) phone reviews 4 OFFLINE, sync fails gracefully, then reconnects
+{"ok": true, "action": "sync", "steps": ["login ok", "sync: up to date"], "reviewed": 0, "error": null, "revlog_count": 12, "revlog_unique": 12, "revlog_ids": [1783010216967, 1783010216969, 1783010216970, 1783010216972, 1783010216974, 1783010218689, 1783010218690, 1783010218691, 1783010221142, 1783010221144, 1783010221145, 1783010221147], "cards": 1075, "notes": 1075}
+[32mOK:[0m offline reviews synced after reconnect
+[32mOK:[0m revlog id sets IDENTICAL on phone & desktop: 12 rows, 12 unique (no loss, no double-count)
+[32m==== SYNC ROUND-TRIP VERIFIED ====[0m

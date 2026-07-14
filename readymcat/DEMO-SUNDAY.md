@@ -1,0 +1,23 @@
+# ReadyMCAT — demo video shot list (3–5 min)
+
+Target: 4:00. Record the desktop at 1280×800+, the phone on the booted iPhone 17
+Pro simulator (or a real device). Keep narration to the **bolded** lines.
+
+Launch first: `cd anki && set -a; source .env.local; set +a; just run` (loads the
+OpenAI key so AI ladders work on desktop), and have the Simulator open with the
+app running (`bash ios/scripts/run-sim.sh "iPhone 17 Pro"`).
+
+| # | Time      | On screen                                                                                                                                                                | Say                                                                                                                                                                                                                   |
+| - | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1 | 0:00–0:25 | Desktop opens on the **ReadyMCAT Home hub**; tabs Home / Study / Dashboard / Decks; four format tiles                                                                    | **"ReadyMCAT is an all-in-one MCAT app built into Anki — 1,075 questions pre-loaded, no deck to import."**                                                                                                            |
+| 2 | 0:25–1:15 | Start an **MCQ**; pick a **wrong** option; Submit → the correct answer is **hidden**, only **"Start guiding questions"** shows; work the ladder; re-attempt; then reveal | **"Here's the core idea: get it wrong and you don't get handed the answer. You get guiding questions and have to retrieve it first — no confusing 'I read it so I know it.'"**                                        |
+| 3 | 1:15–1:45 | Study tab; point at ordering — weakest AAMC categories surface first                                                                                                     | **"Ordering is a new Rust scheduler — Points-at-Stake — topic weight × your weakness, with a boost for concepts you've struggled with. It's a real `ReviewCardOrder` in the engine, exposed over protobuf."**         |
+| 4 | 1:45–2:20 | **Dashboard**: Memory / Performance / Readiness as **ranges**; show a "not enough data" give-up state; hover the honesty tooltips                                        | **"Three honest scores, always as ranges. Memory is FSRS recall, Performance is first-attempt accuracy, Readiness is a labelled heuristic — and each says 'not enough data' until it's earned it."**                  |
+| 5 | 2:20–2:50 | Trigger an **AI-generated** ladder on an authorless card; show the cited **Source**; mention iOS routes through the Cloudflare proxy                                     | **"When there's no authored ladder, we generate one — every rung traced to a named source. On the phone the OpenAI key never ships on-device; it's a Cloudflare Worker proxy."**                                      |
+| 6 | 2:50–3:30 | Phone: review a card in the Simulator → **Sync**; switch to desktop → **Sync** → the same review appears                                                                 | **"Two-way sync: I review on the phone, sync, and it shows up on the desktop — no lost or double-counted reviews. It rides Anki's own sync protocol."**                                                               |
+| 7 | 3:30–3:55 | Flash the eval artifacts: `calibration.png`, `performance_heldout.png`, `ablation.png`, and the AI eval vs baseline                                                      | **"And we tested it: memory calibration, held-out performance that's distinct from memory, our AI beating a keyword baseline — and, honestly, the teach-on-miss time-cost ablation came out null, which we report."** |
+| 8 | 3:55–4:10 | Repo README (exam up front, both-app build)                                                                                                                              | **"Public AGPL fork, builds for desktop and phone, everything reproducible."**                                                                                                                                        |
+
+**Honesty beat (don't skip):** in scene 7, explicitly say the ablation was a
+null result and the calibration is a synthetic stress test — the rubric rewards
+honest reporting of what didn't work.

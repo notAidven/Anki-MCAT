@@ -213,3 +213,120 @@ class TestEditorPageCSP:
         assert "frame-src" not in directives
         assert "child-src" not in directives
         assert "img-src" not in directives
+
+
+class TestReadyMCATEndpointsRegistered:
+    """The ReadyMCAT dashboard + diagnostic POST endpoints must stay registered.
+
+    The diagnostic page fetches ``_anki/getDiagnosticQuiz`` and posts
+    ``_anki/scoreAndSeedDiagnostic``. If those camelCase names are missing from
+    the collection POST handler map, ``_extract_collection_post_request`` returns
+    NotFound and the page 404s with "Invalid path: _anki/getDiagnosticQuiz" — the
+    regression these tests guard. They must coexist with the dashboard's
+    ``pointsAtStakeQueue`` (which aggregates MCQ/FR/passage) and the reviewer's
+    scheduling endpoints, so nothing else was dropped in the merge.
+    """
+
+    def test_diagnostic_endpoints_are_registered(self) -> None:
+        from aqt.mediasrv import post_handlers
+
+        for name in ("getDiagnosticQuiz", "scoreAndSeedDiagnostic"):
+            assert name in post_handlers, f"{name} not registered (would 404)"
+            assert callable(post_handlers[name])
+
+    def test_diagnostic_backend_methods_return_data_not_404(self) -> None:
+        # Each exposed endpoint resolves to a RustBackend ``<name>_raw`` method,
+        # so a registered endpoint returns real serialized data rather than a
+        # 404. (mediasrv asserts this at import time; we assert it explicitly.)
+        from anki._backend import RustBackend
+
+        assert hasattr(RustBackend, "get_diagnostic_quiz_raw")
+        assert hasattr(RustBackend, "score_and_seed_diagnostic_raw")
+
+    def test_dashboard_and_reviewer_endpoints_coexist(self) -> None:
+        from aqt.mediasrv import post_handlers
+
+        # nothing else got dropped: the dashboard aggregation serving
+        # MCQ/FR/passage, plus the reviewer's scheduling endpoints.
+        for name in (
+            "pointsAtStakeQueue",
+            "getSchedulingStatesWithContext",
+            "setSchedulingStates",
+            "congratsInfo",
+        ):
+            assert name in post_handlers, f"{name} unexpectedly missing"
+
+
+class TestReadyMCATHomeEndpointRegistered:
+    """The ReadyMCAT home hub's page route and status endpoint must stay
+    registered, or the hub 404s on load ("Invalid path: readymcat-home") or
+    its tiles silently show stale/zeroed counts ("_anki/readymcatHomeStatus").
+    """
+
+    def test_home_page_route_is_registered(self) -> None:
+        from aqt.mediasrv import is_sveltekit_page
+
+        assert is_sveltekit_page("readymcat-home")
+
+    def test_home_status_endpoint_is_registered(self) -> None:
+        from aqt.mediasrv import post_handlers
+
+        assert "readymcatHomeStatus" in post_handlers
+        assert callable(post_handlers["readymcatHomeStatus"])
+
+    def test_home_status_coexists_with_dashboard_and_diagnostic(self) -> None:
+        from aqt.mediasrv import post_handlers
+
+        for name in (
+            "readymcatHomeStatus",
+            "pointsAtStakeQueue",
+            "getDiagnosticQuiz",
+            "scoreAndSeedDiagnostic",
+        ):
+            assert name in post_handlers, f"{name} unexpectedly missing"
+
+
+class TestReadyMCATHomeStatusMidSyncReturnsJSON:
+    """While a sync holds the collection, ``readymcatHomeStatus`` must still
+    answer with a well-formed JSON body (HTTP 200), never an empty/None body.
+
+    The regression this guards: the home hub's client did ``res.json()`` on the
+    reply; when the sync-guard returned an empty body the browser threw
+    ``SyntaxError: Unexpected end of JSON input`` and the hub showed a raw
+    "Couldn't load your ReadyMCAT counts" error instead of a graceful
+    "updating…" state. The fix is a JSON "not available yet" fallback, so the
+    client can always parse the reply and fall back to its polling/loading UI.
+    """
+
+    def test_returns_parseable_json_while_sync_lock_held(self) -> None:
+        import json
+
+        from aqt.mediasrv import post_handlers
+        from aqt.sync import sync_backend_lock
+
+        handler = post_handlers["readymcatHomeStatus"]
+
+        # Simulate a sync in progress: the sync path holds this lock for the
+        # whole backend call, so the guard must not read the collection.
+        assert sync_backend_lock.acquire(blocking=False)
+        try:
+            body = handler()
+        finally:
+            sync_backend_lock.release()
+
+        assert body, "must not return an empty body mid-sync (breaks res.json())"
+        payload = json.loads(body)  # must not raise Unexpected end of JSON input
+        assert payload["available"] is False
+        assert payload.get("reason")
+
+    def test_build_home_status_without_collection_is_valid_json_shape(self) -> None:
+        # The pure aggregation must degrade to an "unavailable" JSON shape (not
+        # raise) when the collection isn't open, so the endpoint stays parseable.
+        from aqt.readymcat_home import build_home_status
+
+        class _FakeMW:
+            col = None
+
+        status = build_home_status(_FakeMW())  # type: ignore[arg-type]
+        assert status["available"] is False
+        assert status.get("reason")

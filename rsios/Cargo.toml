@@ -1,0 +1,31 @@
+[package]
+name = "rsios"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+rust-version.workspace = true
+description = "ReadyMCAT iOS C-ABI bridge to Anki's Rust backend (rslib)"
+
+[lib]
+name = "rsios"
+# staticlib -> .a for packaging into an .xcframework and linking from Swift.
+crate-type = ["staticlib"]
+path = "src/lib.rs"
+test = false
+
+[dependencies]
+anki.workspace = true
+# rsios doesn't call tokio directly, but anki's engine uses tokio's
+# AsyncReadExt/AsyncWriteExt (the `io-util` feature). On desktop that feature is
+# enabled transitively (e.g. via the rustls/TLS stack); for this minimal,
+# TLS-less iOS build we enable it explicitly so the shared (feature-unified)
+# tokio build includes it.
+tokio = { workspace = true, features = ["io-util"] }
+
+[features]
+# TLS backends are only needed for sync, which is out of scope for the
+# Wednesday iOS bar. Left here so a future sync build can opt in.
+rustls = ["anki/rustls"]
+native-tls = ["anki/native-tls"]

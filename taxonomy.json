@@ -1,0 +1,603 @@
+{
+    "version": 1,
+    "aamc_categories": {
+        "1A": {
+            "name": "Structure and function of proteins and their constituent amino acids",
+            "weight": 3.53
+        },
+        "1B": {
+            "name": "Transmission of genetic information from the gene to the protein",
+            "weight": 3.53
+        },
+        "1C": {
+            "name": "Transmission of heritable information from generation to generation and the processes that increase genetic diversity",
+            "weight": 3.53
+        },
+        "1D": {
+            "name": "Principles of bioenergetics and fuel molecule metabolism",
+            "weight": 3.53
+        },
+        "2A": {
+            "name": "Assemblies of molecules, cells, and groups of cells within single cellular and multicellular organisms",
+            "weight": 1.71
+        },
+        "2B": {
+            "name": "The structure, growth, physiology, and genetics of prokaryotes and viruses",
+            "weight": 1.71
+        },
+        "2C": {
+            "name": "Processes of cell division, differentiation, and specialization",
+            "weight": 1.71
+        },
+        "3A": {
+            "name": "Structure and functions of the nervous and endocrine systems and ways these systems coordinate the organ systems",
+            "weight": 3.21
+        },
+        "3B": {
+            "name": "Structure and integrative functions of the main organ systems",
+            "weight": 3.21
+        },
+        "4A": {
+            "name": "Translational motion, forces, work, energy, and equilibrium in living systems",
+            "weight": 2.05
+        },
+        "4B": {
+            "name": "Importance of fluids for the circulation of blood, gas movement, and gas exchange",
+            "weight": 2.05
+        },
+        "4C": {
+            "name": "Electrochemistry and electrical circuits and their elements",
+            "weight": 2.05
+        },
+        "4D": {
+            "name": "How light and sound interact with matter",
+            "weight": 2.05
+        },
+        "4E": {
+            "name": "Atoms, nuclear decay, electronic structure, and atomic chemical behavior",
+            "weight": 2.05
+        },
+        "5A": {
+            "name": "Unique nature of water and its solutions",
+            "weight": 3.08
+        },
+        "5B": {
+            "name": "Nature of molecules and intermolecular interactions",
+            "weight": 3.08
+        },
+        "5C": {
+            "name": "Separation and purification methods",
+            "weight": 3.08
+        },
+        "5D": {
+            "name": "Structure, function, and reactivity of biologically relevant molecules",
+            "weight": 3.08
+        },
+        "5E": {
+            "name": "Principles of chemical thermodynamics and kinetics",
+            "weight": 3.08
+        },
+        "6A": {
+            "name": "Sensing the environment",
+            "weight": 2.14
+        },
+        "6B": {
+            "name": "Making sense of the environment",
+            "weight": 2.14
+        },
+        "6C": {
+            "name": "Responding to the world",
+            "weight": 2.14
+        },
+        "7A": {
+            "name": "Individual influences on behavior",
+            "weight": 2.99
+        },
+        "7B": {
+            "name": "Social processes that influence human behavior",
+            "weight": 2.99
+        },
+        "7C": {
+            "name": "Attitude and behavior change",
+            "weight": 2.99
+        },
+        "8A": {
+            "name": "Self-identity",
+            "weight": 1.71
+        },
+        "8B": {
+            "name": "Social thinking",
+            "weight": 1.71
+        },
+        "8C": {
+            "name": "Social interactions",
+            "weight": 1.71
+        },
+        "9A": {
+            "name": "Understanding social structure",
+            "weight": 1.92
+        },
+        "9B": {
+            "name": "Demographic characteristics and processes",
+            "weight": 1.92
+        },
+        "10A": {
+            "name": "Social inequality",
+            "weight": 1.28
+        }
+    },
+    "mappings": [
+        {
+            "deck_tag_or_subdeck": "#Physiology::Cells::ProkaryoticCells",
+            "category": "2B"
+        },
+        {
+            "deck_tag_or_subdeck": "#Physiology::Cells::Viruses",
+            "category": "2B"
+        },
+        {
+            "deck_tag_or_subdeck": "#OrganicChemistry::Spectroscopy",
+            "category": "4D"
+        },
+        {
+            "deck_tag_or_subdeck": "#Psychology::SocialPsychology",
+            "category": "7B"
+        },
+        {
+            "deck_tag_or_subdeck": "#Psychology::NormativeBehaviors",
+            "category": "7B"
+        },
+        {
+            "deck_tag_or_subdeck": "#Psychology::Attitude&BehaviorTheories",
+            "category": "7C"
+        },
+        {
+            "deck_tag_or_subdeck": "#Psychology::Individuals&Society::SelfIdentity",
+            "category": "8A"
+        },
+        {
+            "deck_tag_or_subdeck": "#Psychology::Individuals&Society::PerceptionPrejudice&Bias",
+            "category": "8B"
+        },
+        {
+            "deck_tag_or_subdeck": "#Psychology::Individuals&Society::SocialInteractions",
+            "category": "8C"
+        },
+        {
+            "deck_tag_or_subdeck": "#Psychology::Individuals&Society::SocialBehavior",
+            "category": "8C"
+        },
+        {
+            "deck_tag_or_subdeck": "#Psychology::Demographics::Inequality",
+            "category": "10A"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Biochemistry::Amino Acids",
+            "category": "1A"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Biochemistry::Non-enzymatic Proteins",
+            "category": "1A"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Biochemistry::Enzymes",
+            "category": "1A"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Biochemistry::Carbohydrates",
+            "category": "1D"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Biochemistry::Lipids",
+            "category": "1D"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Biochemistry::Membranes",
+            "category": "2A"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Biochemistry::Metabolism",
+            "category": "1D"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Biochemistry::Bioenergetics",
+            "category": "1D"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Biochemistry::DNA & Biotechnology",
+            "category": "1B"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Biochemistry::RNA & Gene Expression",
+            "category": "1B"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Biochemistry",
+            "category": "1A"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Biology::Cells",
+            "category": "2A"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Biology::Genetics & Evolution",
+            "category": "1C"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Biology::Embryogenesis",
+            "category": "2C"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Biology::Nervous System",
+            "category": "3A"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Biology::Endocrine",
+            "category": "3A"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Biology::Cardiovascular System",
+            "category": "3B"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Biology::Respiratory System",
+            "category": "3B"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Biology::Digestion",
+            "category": "3B"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Biology::Immune System",
+            "category": "3B"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Biology::Musculoskeletal System",
+            "category": "3B"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Biology::Reproductive System",
+            "category": "3B"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Biology::Homeostasis",
+            "category": "3B"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Biology",
+            "category": "3B"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::General Chemistry::Acids & Bases",
+            "category": "5A"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::General Chemistry::Solutions",
+            "category": "5A"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::General Chemistry::Atoms & Bonding",
+            "category": "5B"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::General Chemistry::Common Ion Names",
+            "category": "5B"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::General Chemistry::Gases",
+            "category": "4B"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::General Chemistry::Periodic Table",
+            "category": "4E"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::General Chemistry::Stoichiometry",
+            "category": "4E"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::General Chemistry::Electrochemistry",
+            "category": "4C"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::General Chemistry::Redox & Inorganic Reactions",
+            "category": "4C"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::General Chemistry::Equilibrium",
+            "category": "5E"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::General Chemistry::Chemical Kinetics",
+            "category": "5E"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::General Chemistry::Thermochemistry",
+            "category": "5E"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::General Chemistry",
+            "category": "5B"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Organic Chemistry::Principles of Organic Chemistry",
+            "category": "5D"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Organic Chemistry::Alcohols",
+            "category": "5D"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Organic Chemistry::Aldehydes & Ketones",
+            "category": "5D"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Organic Chemistry::Carboxylic Acids & Derivatives",
+            "category": "5D"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Organic Chemistry::Nitrogen & Phosphorus",
+            "category": "5D"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Organic Chemistry::Common Organic Reactions",
+            "category": "5D"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Organic Chemistry::Lab Techniques",
+            "category": "5C"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Organic Chemistry",
+            "category": "5D"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Physics::Kinematics",
+            "category": "4A"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Physics::Math",
+            "category": "4A"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Physics::Thermodynamics",
+            "category": "5E"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Physics::Fluids & Solids",
+            "category": "4B"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Physics::Electricity & Circuits",
+            "category": "4C"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Physics::Electrostatics",
+            "category": "4C"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Physics::Light & Optics",
+            "category": "4D"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Physics::Waves & Sounds",
+            "category": "4D"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Physics::Atomic Nuclei & Nuclear Decay",
+            "category": "4E"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Physics",
+            "category": "4A"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Psychology::Sensation",
+            "category": "6A"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Psychology::Vision",
+            "category": "6A"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Psychology::Auditory System",
+            "category": "6A"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Psychology::Cognition",
+            "category": "6B"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Psychology::Memory",
+            "category": "6B"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Psychology::Sleep & Consciousness",
+            "category": "6B"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Psychology::Emotion",
+            "category": "6C"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Psychology::Stress",
+            "category": "6C"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Psychology::Attention, Motivation, & Attitudes",
+            "category": "7A"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Psychology::Personality",
+            "category": "7A"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Psychology::Disorders",
+            "category": "7A"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Psychology::Therapy",
+            "category": "7A"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Psychology::Behavior & Neuroscience",
+            "category": "7A"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Psychology::Drugs & Biology",
+            "category": "7A"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Psychology::Childhood & Adolescent Development",
+            "category": "7A"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Psychology::Social Psychology & Interactions",
+            "category": "7B"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Psychology::Individuals & Society",
+            "category": "7B"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Psychology::Self Identity",
+            "category": "8A"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Psychology::Society & Culture",
+            "category": "9A"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Psychology::Demographics",
+            "category": "9B"
+        },
+        {
+            "deck_tag_or_subdeck": "MCAT::Psychology",
+            "category": "7A"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::10A",
+            "category": "10A"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::1A",
+            "category": "1A"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::1B",
+            "category": "1B"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::1C",
+            "category": "1C"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::1D",
+            "category": "1D"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::2A",
+            "category": "2A"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::2B",
+            "category": "2B"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::2C",
+            "category": "2C"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::3A",
+            "category": "3A"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::3B",
+            "category": "3B"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::4A",
+            "category": "4A"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::4B",
+            "category": "4B"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::4C",
+            "category": "4C"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::4D",
+            "category": "4D"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::4E",
+            "category": "4E"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::5A",
+            "category": "5A"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::5B",
+            "category": "5B"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::5C",
+            "category": "5C"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::5D",
+            "category": "5D"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::5E",
+            "category": "5E"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::6A",
+            "category": "6A"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::6B",
+            "category": "6B"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::6C",
+            "category": "6C"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::7A",
+            "category": "7A"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::7B",
+            "category": "7B"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::7C",
+            "category": "7C"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::8A",
+            "category": "8A"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::8B",
+            "category": "8B"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::8C",
+            "category": "8C"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::9A",
+            "category": "9A"
+        },
+        {
+            "deck_tag_or_subdeck": "#ReadyMCAT::AAMC::9B",
+            "category": "9B"
+        }
+    ]
+}

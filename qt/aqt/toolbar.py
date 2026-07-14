@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import enum
+import json
 import re
 from collections.abc import Callable
 from typing import Any, cast
@@ -285,10 +286,14 @@ class Toolbar:
         web_context = web_context or TopToolbar(self)
         link_handler = link_handler or self._linkHandler
         self.web.set_bridge_command(link_handler, web_context)
+        # ReadyMCAT: the centre of the toolbar is the persistent single-window
+        # tab bar (Home · Study · Decks · Dashboard); the standard Anki
+        # utilities (Add / Browse / Stats / Sync) move to the right tray so they
+        # stay one click away without competing with the tabs.
         body = self._body.format(
-            toolbar_content=self._centerLinks(),
+            toolbar_content=self._readymcat_tabs(),
             left_tray_content=self._left_tray_content(),
-            right_tray_content=self._right_tray_content(),
+            right_tray_content=self._utility_links() + self._right_tray_content(),
         )
         self.web.stdHtml(
             body,
@@ -297,11 +302,110 @@ class Toolbar:
             context=web_context,
         )
         self.web.adjustHeightToFit()
+        self.set_active_tab(self.mw.state)
 
     def redraw(self) -> None:
         self.set_sync_active(self.mw.media_syncer.is_syncing())
         self.update_sync_status()
+        self.set_active_tab(self.mw.state)
         gui_hooks.top_toolbar_did_redraw(self)
+
+    # ReadyMCAT single-window tab bar
+    ######################################################################
+
+    def _readymcat_tabs(self) -> str:
+        """The persistent Home · Study · Dashboard · Decks tab bar.
+
+        Rendered as the toolbar's centred primary navigation so all four
+        ReadyMCAT surfaces live in one window. Active state is refreshed from
+        the main-window state on every ``moveToState`` / redraw (see
+        ``set_active_tab``)."""
+        tabs = [
+            self._create_tab("home", "Home", self._homeTabHandler),
+            self._create_tab("study", "Study", self._studyTabHandler),
+            self._create_tab("dashboard", "Dashboard", self._dashboardTabHandler),
+            self._create_tab("decks", tr.actions_decks(), self._deckLinkHandler),
+        ]
+        return f"""<div class="rmcat-tabs" role="tablist">{"".join(tabs)}</div>"""
+
+    def _create_tab(self, tab_id: str, label: str, func: Callable) -> str:
+        """Generate one tab link and register its bridge handler."""
+        cmd = f"rmcatTab:{tab_id}"
+        self.link_handlers[cmd] = func
+        return (
+            f'<a class="hitem rmcat-tab" data-rmcat-tab="{tab_id}" '
+            f'id="rmcat-tab-{tab_id}" role="tab" aria-selected="false" '
+            f'tabindex="-1" aria-label="{label}" href=# '
+            f"onclick=\"return pycmd('{cmd}')\">{label}</a>"
+        )
+
+    def set_active_tab(self, state: str) -> None:
+        """Highlight the tab matching the current main-window ``state`` (or none
+        for transient states like the profile manager)."""
+        tab = {
+            "deckBrowser": "decks",
+            "overview": "study",
+            "review": "study",
+            "readymcatHome": "home",
+            "readymcatDashboard": "dashboard",
+        }.get(state, "")
+        self.web.eval(
+            "(function(){var t=%s;"
+            "document.querySelectorAll('.rmcat-tab').forEach(function(el){"
+            "var on=el.dataset.rmcatTab===t;"
+            "el.classList.toggle('active',on);"
+            "el.setAttribute('aria-selected',on?'true':'false');});})();"
+            % json.dumps(tab)
+        )
+
+    def _homeTabHandler(self) -> None:
+        self.mw.moveToState("readymcatHome")
+
+    def _dashboardTabHandler(self) -> None:
+        self.mw.moveToState("readymcatDashboard")
+
+    def _studyTabHandler(self) -> None:
+        # Go straight into the reviewer for the currently-selected deck in a
+        # single load (a double moveToState races the reviewer's paint — see
+        # aqt.readymcat_home._start_review_now). The reviewer falls back to the
+        # deck overview / congrats screen on its own when nothing is due.
+        if self.mw.state == "review":
+            return
+        if self.mw.col is not None:
+            self.mw.col.startTimebox()
+        self.mw.moveToState("review")
+
+    def _utility_links(self) -> str:
+        """The standard Add / Browse / Stats / Sync links, shown in the right
+        tray now that the toolbar centre hosts the ReadyMCAT tab bar."""
+        links = [
+            self.create_link(
+                "add",
+                tr.actions_add(),
+                self._addLinkHandler,
+                tip=tr.actions_shortcut_key(val="A"),
+                id="add",
+            ),
+            self.create_link(
+                "browse",
+                tr.qt_misc_browse(),
+                self._browseLinkHandler,
+                tip=tr.actions_shortcut_key(val="B"),
+                id="browse",
+            ),
+            self.create_link(
+                "stats",
+                tr.qt_misc_stats(),
+                self._statsLinkHandler,
+                tip=tr.actions_shortcut_key(val="T"),
+                id="stats",
+            ),
+            self._create_sync_link(),
+        ]
+
+        gui_hooks.top_toolbar_did_init_links(links, self)
+
+        return "\n".join(links)
 
     # Available links
     ######################################################################

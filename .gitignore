@@ -24,3 +24,21 @@ ts/.svelte-kit
 docs/_build/
 docs/autoapi/
 .complexipy_cache
+
+# ReadyMCAT iOS: large/reproducible build artifacts
+/build
+ios/Frameworks/*.xcframework
+**/xcuserdata/
+*.xcuserstate
+ios/ReadyMCAT.xcodeproj/project.xcworkspace/
+
+# ReadyMCAT: local secrets — NEVER commit (holds OPENAI_API_KEY for AI ladder generation + eval)
+.env
+.env.local
+.env.*.local
+
+# ReadyMCAT: large Anki decks dropped at the repo root (e.g. an optional
+# Aidan_.apkg import) — host externally / Git LFS, not git. Scoped to the repo
+# root on purpose so Anki's own tracked .apkg test fixtures under
+# pylib/tests/support/ are NOT ignored and stay available to the test suite.
+/*.apkg

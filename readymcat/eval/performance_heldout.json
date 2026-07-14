@@ -1,0 +1,222 @@
+{
+    "source": "synthetic cohort, real engine",
+    "held_out_set": "paraphrase_set.json",
+    "n_concepts_scored": 24,
+    "assumptions": {
+        "students": 25,
+        "memory_transfer_coupling_rho": 0.55,
+        "transfer_penalty": 0.12,
+        "seed": 20260703,
+        "note": "outcomes are SYNTHETIC (no human cohort yet); this validates the held-out scoring pipeline and quantifies distinctness under the stated cognitive assumption. Architectural distinctness (different inputs/code path) is independent of these assumptions."
+    },
+    "overall_performance": {
+        "attempts": 1200,
+        "hits": 674,
+        "accuracy": 0.5617,
+        "range_low": 0.5334,
+        "range_high": 0.5895,
+        "meets_cutoff": true,
+        "cutoff_attempts": 30
+    },
+    "memory_meets_cutoff": true,
+    "pearson_r": 0.5938,
+    "spearman_r": 0.5451,
+    "mean_transfer_gap": 0.1389,
+    "r_squared_shared_variance": 0.3526,
+    "per_concept": [
+        {
+            "concept": "Glycolysis: net ATP / NADH yield",
+            "category": "C00",
+            "memory_recall": 0.7257,
+            "perf_attempts": 50,
+            "perf_hits": 25,
+            "perf_accuracy": 0.5
+        },
+        {
+            "concept": "Citric acid cycle: inputs and per-turn yield",
+            "category": "C01",
+            "memory_recall": 0.9087,
+            "perf_attempts": 50,
+            "perf_hits": 36,
+            "perf_accuracy": 0.72
+        },
+        {
+            "concept": "Electron transport chain & oxidative phosphorylation",
+            "category": "C02",
+            "memory_recall": 0.8409,
+            "perf_attempts": 50,
+            "perf_hits": 30,
+            "perf_accuracy": 0.6
+        },
+        {
+            "concept": "Michaelis-Menten kinetics (Vmax, Km)",
+            "category": "C03",
+            "memory_recall": 0.6487,
+            "perf_attempts": 50,
+            "perf_hits": 36,
+            "perf_accuracy": 0.72
+        },
+        {
+            "concept": "Enzyme inhibition: competitive vs noncompetitive",
+            "category": "C04",
+            "memory_recall": 0.9603,
+            "perf_attempts": 50,
+            "perf_hits": 35,
+            "perf_accuracy": 0.7
+        },
+        {
+            "concept": "Amino acid acid-base behavior & isoelectric point",
+            "category": "C05",
+            "memory_recall": 0.6639,
+            "perf_attempts": 50,
+            "perf_hits": 27,
+            "perf_accuracy": 0.54
+        },
+        {
+            "concept": "DNA replication: semiconservative, leading/lagging",
+            "category": "C06",
+            "memory_recall": 0.5757,
+            "perf_attempts": 50,
+            "perf_hits": 16,
+            "perf_accuracy": 0.32
+        },
+        {
+            "concept": "Transcription & mRNA processing",
+            "category": "C07",
+            "memory_recall": 0.9031,
+            "perf_attempts": 50,
+            "perf_hits": 37,
+            "perf_accuracy": 0.74
+        },
+        {
+            "concept": "Hardy-Weinberg equilibrium",
+            "category": "C08",
+            "memory_recall": 0.5638,
+            "perf_attempts": 50,
+            "perf_hits": 33,
+            "perf_accuracy": 0.66
+        },
+        {
+            "concept": "Neuronal action potential",
+            "category": "C09",
+            "memory_recall": 0.7588,
+            "perf_attempts": 50,
+            "perf_hits": 25,
+            "perf_accuracy": 0.5
+        },
+        {
+            "concept": "Cardiac electrical conduction pathway",
+            "category": "C10",
+            "memory_recall": 0.5821,
+            "perf_attempts": 50,
+            "perf_hits": 25,
+            "perf_accuracy": 0.5
+        },
+        {
+            "concept": "Nephron: filtration, reabsorption, secretion",
+            "category": "C11",
+            "memory_recall": 0.5508,
+            "perf_attempts": 50,
+            "perf_hits": 31,
+            "perf_accuracy": 0.62
+        },
+        {
+            "concept": "Buffers & the Henderson-Hasselbalch equation",
+            "category": "C12",
+            "memory_recall": 0.5714,
+            "perf_attempts": 50,
+            "perf_hits": 29,
+            "perf_accuracy": 0.58
+        },
+        {
+            "concept": "Le Chatelier's principle",
+            "category": "C13",
+            "memory_recall": 0.6503,
+            "perf_attempts": 50,
+            "perf_hits": 29,
+            "perf_accuracy": 0.58
+        },
+        {
+            "concept": "Rate laws & reaction order",
+            "category": "C14",
+            "memory_recall": 0.5314,
+            "perf_attempts": 50,
+            "perf_hits": 25,
+            "perf_accuracy": 0.5
+        },
+        {
+            "concept": "Ideal gas law & deviations",
+            "category": "C15",
+            "memory_recall": 0.7065,
+            "perf_attempts": 50,
+            "perf_hits": 25,
+            "perf_accuracy": 0.5
+        },
+        {
+            "concept": "Stereochemistry: enantiomers vs diastereomers",
+            "category": "C16",
+            "memory_recall": 0.7628,
+            "perf_attempts": 50,
+            "perf_hits": 37,
+            "perf_accuracy": 0.74
+        },
+        {
+            "concept": "Gibbs free energy & spontaneity",
+            "category": "C17",
+            "memory_recall": 0.7835,
+            "perf_attempts": 50,
+            "perf_hits": 39,
+            "perf_accuracy": 0.78
+        },
+        {
+            "concept": "Geometric optics: lens/mirror equation",
+            "category": "C18",
+            "memory_recall": 0.8642,
+            "perf_attempts": 50,
+            "perf_hits": 30,
+            "perf_accuracy": 0.6
+        },
+        {
+            "concept": "Ohm's law & series/parallel circuits",
+            "category": "C19",
+            "memory_recall": 0.6195,
+            "perf_attempts": 50,
+            "perf_hits": 23,
+            "perf_accuracy": 0.46
+        },
+        {
+            "concept": "Memory: stages and stores",
+            "category": "C20",
+            "memory_recall": 0.5871,
+            "perf_attempts": 50,
+            "perf_hits": 17,
+            "perf_accuracy": 0.34
+        },
+        {
+            "concept": "Conformity & obedience (Asch, Milgram)",
+            "category": "C21",
+            "memory_recall": 0.7049,
+            "perf_attempts": 50,
+            "perf_hits": 19,
+            "perf_accuracy": 0.38
+        },
+        {
+            "concept": "Operant conditioning & reinforcement",
+            "category": "C22",
+            "memory_recall": 0.4575,
+            "perf_attempts": 50,
+            "perf_hits": 14,
+            "perf_accuracy": 0.28
+        },
+        {
+            "concept": "Theories of emotion",
+            "category": "C23",
+            "memory_recall": 0.8928,
+            "perf_attempts": 50,
+            "perf_hits": 31,
+            "perf_accuracy": 0.62
+        }
+    ],
+    "distinct_from_memory": true,
+    "chart": "/Users/evacab/Desktop/Anki-MCAT/anki/readymcat/eval/performance_heldout.png"
+}

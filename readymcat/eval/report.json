@@ -1,0 +1,2110 @@
+{
+    "mode": "live",
+    "genModel": "gpt-4o-mini",
+    "judgeModel": "gpt-4o",
+    "baseline": "TF-IDF retrieval of nearest authored ladder (subquestions.json)",
+    "aggregate": {
+        "n": 16,
+        "accuracyGenerated": 1.0,
+        "accuracyBaseline": 0.188,
+        "wrongAnswerRateGenerated": 0.0,
+        "wrongAnswerRateBaseline": 0.625,
+        "groundingMean": 0.809,
+        "groundingMeanBaseline": 0.33,
+        "groundingPassRate": 1.0,
+        "groundingPassRateBaseline": 0.25,
+        "schemaPassRate": 1.0,
+        "schemaPassRateBaseline": 1.0,
+        "answerLeakRate": 0.0,
+        "answerLeakRateBaseline": 0.0,
+        "judgeMeanGenerated": 4.875,
+        "judgeMeanBaseline": 2.688,
+        "judgePassRate": 1.0,
+        "winRateVsBaseline": 0.75
+    },
+    "gates": {
+        "gates": {
+            "schema_100pct": true,
+            "no_answer_leak": true,
+            "grounding_ok": true,
+            "judge_mean_ok": true,
+            "ai_higher_accuracy": true,
+            "ai_lower_wrong_answer_rate": true,
+            "beats_baseline": true
+        },
+        "passed": true
+    },
+    "judgeCalibration": {
+        "agreement": 1.0,
+        "cases": [
+            {
+                "expectedPass": true,
+                "score": 4,
+                "agree": true
+            },
+            {
+                "expectedPass": false,
+                "score": 1,
+                "agree": true
+            }
+        ]
+    },
+    "perCard": [
+        {
+            "id": "gs-bb-glycolysis-yield",
+            "section": "B/B",
+            "attempts": 1,
+            "error": "",
+            "ai": {
+                "ladder": [
+                    {
+                        "question": "What are the two main phases of glycolysis?",
+                        "options": [
+                            "Energy-investment phase and payoff phase",
+                            "Anaerobic phase and aerobic phase",
+                            "Oxidative phase and reductive phase"
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Glycolysis consists of an energy-investment phase and a payoff phase."
+                    },
+                    {
+                        "question": "How many ATP molecules are invested during the energy-investment phase of glycolysis?",
+                        "options": [
+                            "2 ATP",
+                            "4 ATP",
+                            "1 ATP"
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Glycolysis invests 2 ATP in the energy-investment phase."
+                    },
+                    {
+                        "question": "How many ATP and NADH are produced during the payoff phase of glycolysis?",
+                        "options": [
+                            "4 ATP and 2 NADH",
+                            "2 ATP and 4 NADH",
+                            "4 ATP and 4 NADH"
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "The payoff phase produces 4 ATP and 2 NADH."
+                    }
+                ],
+                "deterministic": {
+                    "passed": true,
+                    "schemaOk": true,
+                    "schemaProblems": [],
+                    "answerLeak": false,
+                    "groundingScore": 0.944,
+                    "grounded": true
+                },
+                "judge": {
+                    "score": 5,
+                    "leaks": false,
+                    "factuallyWrong": false,
+                    "offTopic": false,
+                    "dangerous": false,
+                    "scaffolds": true,
+                    "grounded": true,
+                    "groundingScore": 0.944,
+                    "schemaOk": true,
+                    "rationale": "The ladder effectively breaks down the glycolysis process into phases, asks about ATP investment and production, and builds logically to the net yield without revealing the answer prematurely."
+                },
+                "groundingScore": 0.944,
+                "grounded": true,
+                "passedCutoff": true,
+                "dangerous": false
+            },
+            "baseline": {
+                "ladder": [
+                    {
+                        "question": "Glycolysis has two phases. In the energy-INVESTMENT phase, how many ATP are consumed, and at which two enzyme steps?",
+                        "options": [
+                            "2 ATP invested - one at hexokinase (glucose -> glucose-6-phosphate) and one at phosphofructokinase-1 (F6P -> fructose-1,6-bisphosphate).",
+                            "4 ATP by substrate-level phosphorylation (2 at phosphoglycerate kinase, 2 at pyruvate kinase) and 2 NADH (at glyceraldehyde-3-phosphate dehydrogenase).",
+                            "Net 2 ATP + 2 NADH + 2 pyruvate per glucose."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "2 ATP invested - one at hexokinase (glucose -> glucose-6-phosphate) and one at phosphofructokinase-1 (F6P -> fructose-1,6-bisphosphate)."
+                    },
+                    {
+                        "question": "In the energy-PAYOFF phase, how many ATP and NADH are produced per glucose (recall each glucose becomes two 3-carbon units)?",
+                        "options": [
+                            "4 ATP by substrate-level phosphorylation (2 at phosphoglycerate kinase, 2 at pyruvate kinase) and 2 NADH (at glyceraldehyde-3-phosphate dehydrogenase).",
+                            "2 ATP invested - one at hexokinase (glucose -> glucose-6-phosphate) and one at phosphofructokinase-1 (F6P -> fructose-1,6-bisphosphate).",
+                            "Net 2 ATP + 2 NADH + 2 pyruvate per glucose."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "4 ATP by substrate-level phosphorylation (2 at phosphoglycerate kinase, 2 at pyruvate kinase) and 2 NADH (at glyceraldehyde-3-phosphate dehydrogenase)."
+                    },
+                    {
+                        "question": "So what is the NET yield per glucose, and what are the carbon end-products?",
+                        "options": [
+                            "Net 2 ATP + 2 NADH + 2 pyruvate per glucose.",
+                            "2 ATP invested - one at hexokinase (glucose -> glucose-6-phosphate) and one at phosphofructokinase-1 (F6P -> fructose-1,6-bisphosphate).",
+                            "4 ATP by substrate-level phosphorylation (2 at phosphoglycerate kinase, 2 at pyruvate kinase) and 2 NADH (at glyceraldehyde-3-phosphate dehydrogenase)."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Net 2 ATP + 2 NADH + 2 pyruvate per glucose."
+                    }
+                ],
+                "deterministic": {
+                    "passed": false,
+                    "schemaOk": true,
+                    "schemaProblems": [],
+                    "answerLeak": false,
+                    "groundingScore": 0.487,
+                    "grounded": false
+                },
+                "judge": {
+                    "score": 5,
+                    "leaks": false,
+                    "factuallyWrong": false,
+                    "offTopic": false,
+                    "dangerous": false,
+                    "scaffolds": true,
+                    "grounded": false,
+                    "groundingScore": 0.487,
+                    "schemaOk": true,
+                    "rationale": "The ladder is well-structured, each question builds on the previous, and all information is accurate and relevant to the topic of glycolysis."
+                },
+                "groundingScore": 0.487,
+                "grounded": false,
+                "passedCutoff": false,
+                "dangerous": false,
+                "retrievedConceptId": "biochem_glycolysis_net_yield",
+                "retrievedConceptTitle": "Glycolysis: net ATP / NADH yield",
+                "similarity": 0.785
+            },
+            "win": false
+        },
+        {
+            "id": "gs-bb-enzyme-km",
+            "section": "B/B",
+            "attempts": 1,
+            "error": "",
+            "ai": {
+                "ladder": [
+                    {
+                        "question": "What does Vmax represent in Michaelis-Menten kinetics?",
+                        "options": [
+                            "The maximum reaction rate of the enzyme",
+                            "The substrate concentration at half-maximal rate",
+                            "The time taken for the reaction to complete"
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Vmax is the maximum reaction rate of the enzyme."
+                    },
+                    {
+                        "question": "How does substrate concentration affect the reaction rate in enzyme kinetics?",
+                        "options": [
+                            "It increases linearly until Vmax is reached",
+                            "It has no effect on the reaction rate",
+                            "It decreases the reaction rate as substrate concentration increases"
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "The reaction rate increases linearly until Vmax is reached."
+                    },
+                    {
+                        "question": "What does a low Km value indicate about an enzyme's affinity for its substrate?",
+                        "options": [
+                            "High affinity for the substrate",
+                            "Low affinity for the substrate",
+                            "No effect on affinity"
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "A low Km indicates high affinity of the enzyme for its substrate."
+                    }
+                ],
+                "deterministic": {
+                    "passed": true,
+                    "schemaOk": true,
+                    "schemaProblems": [],
+                    "answerLeak": false,
+                    "groundingScore": 0.79,
+                    "grounded": true
+                },
+                "judge": {
+                    "score": 4,
+                    "leaks": false,
+                    "factuallyWrong": false,
+                    "offTopic": false,
+                    "dangerous": false,
+                    "scaffolds": true,
+                    "grounded": true,
+                    "groundingScore": 0.79,
+                    "schemaOk": true,
+                    "rationale": "The ladder effectively scaffolds understanding of enzyme kinetics and Km, though it could more directly address the definition of Km itself."
+                },
+                "groundingScore": 0.79,
+                "grounded": true,
+                "passedCutoff": true,
+                "dangerous": false
+            },
+            "baseline": {
+                "ladder": [
+                    {
+                        "question": "What does Vmax represent, and what physically limits it?",
+                        "options": [
+                            "Vmax is the maximum rate reached when the enzyme is saturated with substrate; it is limited by the total enzyme concentration (Vmax = kcat[E]total).",
+                            "Km is the substrate concentration at which the rate is half of Vmax. A low Km means high apparent affinity (little substrate needed to reach half-max).",
+                            "y-intercept = 1/Vmax; x-intercept = -1/Km (slope = Km/Vmax)."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Vmax is the maximum rate reached when the enzyme is saturated with substrate; it is limited by the total enzyme concentration (Vmax = kcat[E]total)."
+                    },
+                    {
+                        "question": "What does Km represent operationally, and what does a LOW Km indicate?",
+                        "options": [
+                            "Km is the substrate concentration at which the rate is half of Vmax. A low Km means high apparent affinity (little substrate needed to reach half-max).",
+                            "Vmax is the maximum rate reached when the enzyme is saturated with substrate; it is limited by the total enzyme concentration (Vmax = kcat[E]total).",
+                            "y-intercept = 1/Vmax; x-intercept = -1/Km (slope = Km/Vmax)."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Km is the substrate concentration at which the rate is half of Vmax. A low Km means high apparent affinity (little substrate needed to reach half-max)."
+                    },
+                    {
+                        "question": "On a Lineweaver-Burk (double-reciprocal) plot, what do the y- and x-intercepts give you?",
+                        "options": [
+                            "y-intercept = 1/Vmax; x-intercept = -1/Km (slope = Km/Vmax).",
+                            "Vmax is the maximum rate reached when the enzyme is saturated with substrate; it is limited by the total enzyme concentration (Vmax = kcat[E]total).",
+                            "Km is the substrate concentration at which the rate is half of Vmax. A low Km means high apparent affinity (little substrate needed to reach half-max)."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "y-intercept = 1/Vmax; x-intercept = -1/Km (slope = Km/Vmax)."
+                    }
+                ],
+                "deterministic": {
+                    "passed": false,
+                    "schemaOk": true,
+                    "schemaProblems": [],
+                    "answerLeak": false,
+                    "groundingScore": 0.483,
+                    "grounded": false
+                },
+                "judge": {
+                    "score": 3,
+                    "leaks": true,
+                    "factuallyWrong": false,
+                    "offTopic": false,
+                    "dangerous": true,
+                    "scaffolds": true,
+                    "grounded": false,
+                    "groundingScore": 0.483,
+                    "schemaOk": true,
+                    "rationale": "The first rung directly provides the correct answer about Km, but the ladder is factually correct and builds understanding of related concepts."
+                },
+                "groundingScore": 0.483,
+                "grounded": false,
+                "passedCutoff": false,
+                "dangerous": true,
+                "retrievedConceptId": "biochem_michaelis_menten",
+                "retrievedConceptTitle": "Michaelis-Menten kinetics (Vmax, Km)",
+                "similarity": 0.578
+            },
+            "win": true
+        },
+        {
+            "id": "gs-bb-hemoglobin-cooperativity",
+            "section": "B/B",
+            "attempts": 1,
+            "error": "",
+            "ai": {
+                "ladder": [
+                    {
+                        "question": "What is the primary structural difference between hemoglobin and myoglobin?",
+                        "options": [
+                            "Hemoglobin has four subunits, while myoglobin has one.",
+                            "Hemoglobin is found only in muscles, while myoglobin is found in blood.",
+                            "Hemoglobin binds carbon dioxide, while myoglobin does not.",
+                            "Hemoglobin is a single polypeptide chain, while myoglobin is a complex of chains."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Hemoglobin has four subunits, while myoglobin has one."
+                    },
+                    {
+                        "question": "What does the term 'cooperativity' refer to in the context of oxygen binding?",
+                        "options": [
+                            "The ability of a molecule to bind multiple oxygen molecules simultaneously.",
+                            "The increase in affinity for oxygen as one oxygen molecule binds.",
+                            "The decrease in affinity for oxygen as more oxygen molecules bind.",
+                            "The ability to release oxygen under low pH conditions."
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "Cooperativity refers to the increase in affinity for oxygen as one oxygen molecule binds."
+                    },
+                    {
+                        "question": "How does the binding of oxygen to hemoglobin affect its affinity for subsequent oxygen molecules?",
+                        "options": [
+                            "It decreases the affinity for subsequent oxygen molecules.",
+                            "It has no effect on the affinity for subsequent oxygen molecules.",
+                            "It increases the affinity for subsequent oxygen molecules.",
+                            "It causes hemoglobin to release all bound oxygen."
+                        ],
+                        "correctIndex": 2,
+                        "explanation": "Binding at one heme increases affinity at the others."
+                    }
+                ],
+                "deterministic": {
+                    "passed": true,
+                    "schemaOk": true,
+                    "schemaProblems": [],
+                    "answerLeak": false,
+                    "groundingScore": 0.726,
+                    "grounded": true
+                },
+                "judge": {
+                    "score": 5,
+                    "leaks": false,
+                    "factuallyWrong": false,
+                    "offTopic": false,
+                    "dangerous": false,
+                    "scaffolds": true,
+                    "grounded": true,
+                    "groundingScore": 0.726,
+                    "schemaOk": true,
+                    "rationale": "The ladder is well-structured, each rung builds on the previous one, and all information is accurate and relevant to the question."
+                },
+                "groundingScore": 0.726,
+                "grounded": true,
+                "passedCutoff": true,
+                "dangerous": false
+            },
+            "baseline": {
+                "ladder": [
+                    {
+                        "question": "In the electron transport chain, what is the FINAL electron acceptor and what product forms?",
+                        "options": [
+                            "Oxygen (O2) is the final electron acceptor; it is reduced to water (H2O).",
+                            "Protons (H+) are pumped from the matrix into the intermembrane space, building an electrochemical proton gradient across the INNER mitochondrial membrane (the proton-motive force).",
+                            "Protons flow back into the matrix through ATP synthase, driving ATP synthesis. Coupling the oxidation-driven gradient to ATP synthesis is chemiosmosis (oxidative phosphorylation)."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Oxygen (O2) is the final electron acceptor; it is reduced to water (H2O)."
+                    },
+                    {
+                        "question": "As electrons pass through the complexes, what gradient is built, and across which membrane?",
+                        "options": [
+                            "Protons (H+) are pumped from the matrix into the intermembrane space, building an electrochemical proton gradient across the INNER mitochondrial membrane (the proton-motive force).",
+                            "Oxygen (O2) is the final electron acceptor; it is reduced to water (H2O).",
+                            "Protons flow back into the matrix through ATP synthase, driving ATP synthesis. Coupling the oxidation-driven gradient to ATP synthesis is chemiosmosis (oxidative phosphorylation)."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Protons (H+) are pumped from the matrix into the intermembrane space, building an electrochemical proton gradient across the INNER mitochondrial membrane (the proton-motive force)."
+                    },
+                    {
+                        "question": "How is that gradient used to make ATP, and what is this coupling called?",
+                        "options": [
+                            "Protons flow back into the matrix through ATP synthase, driving ATP synthesis. Coupling the oxidation-driven gradient to ATP synthesis is chemiosmosis (oxidative phosphorylation).",
+                            "Oxygen (O2) is the final electron acceptor; it is reduced to water (H2O).",
+                            "Protons (H+) are pumped from the matrix into the intermembrane space, building an electrochemical proton gradient across the INNER mitochondrial membrane (the proton-motive force)."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Protons flow back into the matrix through ATP synthase, driving ATP synthesis. Coupling the oxidation-driven gradient to ATP synthesis is chemiosmosis (oxidative phosphorylation)."
+                    }
+                ],
+                "deterministic": {
+                    "passed": false,
+                    "schemaOk": true,
+                    "schemaProblems": [],
+                    "answerLeak": false,
+                    "groundingScore": 0.048,
+                    "grounded": false
+                },
+                "judge": {
+                    "score": 1,
+                    "leaks": false,
+                    "factuallyWrong": false,
+                    "offTopic": true,
+                    "dangerous": true,
+                    "scaffolds": false,
+                    "grounded": false,
+                    "groundingScore": 0.048,
+                    "schemaOk": true,
+                    "rationale": "The ladder is off-topic as it addresses the electron transport chain, not the oxygen-binding curves of hemoglobin and myoglobin."
+                },
+                "groundingScore": 0.048,
+                "grounded": false,
+                "passedCutoff": false,
+                "dangerous": true,
+                "retrievedConceptId": "biochem_etc_oxphos",
+                "retrievedConceptTitle": "Electron transport chain & oxidative phosphorylation",
+                "similarity": 0.062
+            },
+            "win": true
+        },
+        {
+            "id": "gs-bb-dna-replication-direction",
+            "section": "B/B",
+            "attempts": 1,
+            "error": "",
+            "ai": {
+                "ladder": [
+                    {
+                        "question": "In what direction does DNA polymerase synthesize new DNA strands?",
+                        "options": [
+                            "5' to 3'",
+                            "3' to 5'",
+                            "both directions",
+                            "none of the above"
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "DNA polymerase only adds nucleotides 5' to 3'."
+                    },
+                    {
+                        "question": "Which template strand direction allows for continuous synthesis toward the replication fork?",
+                        "options": [
+                            "3' to 5'",
+                            "5' to 3'",
+                            "both directions",
+                            "none of the above"
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "The template read 3' to 5' allows for continuous synthesis toward the replication fork."
+                    },
+                    {
+                        "question": "What is the nature of the synthesis on the lagging strand?",
+                        "options": [
+                            "continuous",
+                            "discontinuous",
+                            "both continuous and discontinuous",
+                            "none of the above"
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "The synthesis on the lagging strand is discontinuous."
+                    }
+                ],
+                "deterministic": {
+                    "passed": true,
+                    "schemaOk": true,
+                    "schemaProblems": [],
+                    "answerLeak": false,
+                    "groundingScore": 0.833,
+                    "grounded": true
+                },
+                "judge": {
+                    "score": 5,
+                    "leaks": false,
+                    "factuallyWrong": false,
+                    "offTopic": false,
+                    "dangerous": false,
+                    "scaffolds": true,
+                    "grounded": true,
+                    "groundingScore": 0.833,
+                    "schemaOk": true,
+                    "rationale": "The ladder effectively scaffolds the student's understanding by building from the directionality of DNA synthesis to the implications for leading and lagging strand synthesis, without revealing the final answer prematurely."
+                },
+                "groundingScore": 0.833,
+                "grounded": true,
+                "passedCutoff": true,
+                "dangerous": false
+            },
+            "baseline": {
+                "ladder": [
+                    {
+                        "question": "DNA replication is 'semiconservative' - what exactly does that mean for each daughter duplex?",
+                        "options": [
+                            "Each daughter double helix keeps one parental (template) strand and one newly synthesized strand.",
+                            "One new strand (leading) is made continuously toward the fork; the other (lagging) is made discontinuously as Okazaki fragments away from the fork.",
+                            "Helicase unwinds the duplex; DNA ligase seals the nicks between Okazaki fragments (primase lays RNA primers; topoisomerase relieves supercoiling)."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Each daughter double helix keeps one parental (template) strand and one newly synthesized strand."
+                    },
+                    {
+                        "question": "DNA polymerase only synthesizes 5'->3'. What does that force to happen at the replication fork?",
+                        "options": [
+                            "One new strand (leading) is made continuously toward the fork; the other (lagging) is made discontinuously as Okazaki fragments away from the fork.",
+                            "Each daughter double helix keeps one parental (template) strand and one newly synthesized strand.",
+                            "Helicase unwinds the duplex; DNA ligase seals the nicks between Okazaki fragments (primase lays RNA primers; topoisomerase relieves supercoiling)."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "One new strand (leading) is made continuously toward the fork; the other (lagging) is made discontinuously as Okazaki fragments away from the fork."
+                    },
+                    {
+                        "question": "Name the enzyme that unwinds the helix and the enzyme that joins Okazaki fragments.",
+                        "options": [
+                            "Helicase unwinds the duplex; DNA ligase seals the nicks between Okazaki fragments (primase lays RNA primers; topoisomerase relieves supercoiling).",
+                            "Each daughter double helix keeps one parental (template) strand and one newly synthesized strand.",
+                            "One new strand (leading) is made continuously toward the fork; the other (lagging) is made discontinuously as Okazaki fragments away from the fork."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Helicase unwinds the duplex; DNA ligase seals the nicks between Okazaki fragments (primase lays RNA primers; topoisomerase relieves supercoiling)."
+                    }
+                ],
+                "deterministic": {
+                    "passed": true,
+                    "schemaOk": true,
+                    "schemaProblems": [],
+                    "answerLeak": false,
+                    "groundingScore": 0.5,
+                    "grounded": true
+                },
+                "judge": {
+                    "score": 2,
+                    "leaks": true,
+                    "factuallyWrong": false,
+                    "offTopic": false,
+                    "dangerous": true,
+                    "scaffolds": true,
+                    "grounded": true,
+                    "groundingScore": 0.5,
+                    "schemaOk": true,
+                    "rationale": "The first rung directly gives away the answer, undermining the retrieval process, though the questions are factually correct and related to the topic."
+                },
+                "groundingScore": 0.5,
+                "grounded": true,
+                "passedCutoff": false,
+                "dangerous": true,
+                "retrievedConceptId": "biochem_dna_replication",
+                "retrievedConceptTitle": "DNA replication: semiconservative, leading/lagging",
+                "similarity": 0.654
+            },
+            "win": true
+        },
+        {
+            "id": "gs-bb-action-potential",
+            "section": "B/B",
+            "attempts": 1,
+            "error": "",
+            "ai": {
+                "ladder": [
+                    {
+                        "question": "What is the primary ion that enters the neuron during depolarization?",
+                        "options": [
+                            "Na+",
+                            "K+",
+                            "Ca2+",
+                            "Cl-"
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Depolarization occurs when voltage-gated sodium channels open and Na+ rushes into the cell."
+                    },
+                    {
+                        "question": "What happens to voltage-gated sodium channels during the repolarization phase?",
+                        "options": [
+                            "They open and allow Na+ to enter",
+                            "They inactivate",
+                            "They remain closed",
+                            "They open and allow K+ to enter"
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "Repolarization occurs when Na+ channels inactivate."
+                    },
+                    {
+                        "question": "Which ion flows out of the cell to help return the membrane potential to its negative resting state?",
+                        "options": [
+                            "Na+",
+                            "K+",
+                            "Ca2+",
+                            "Cl-"
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "Voltage-gated potassium channels open, letting K+ flow out and returning the membrane toward its negative resting potential."
+                    }
+                ],
+                "deterministic": {
+                    "passed": true,
+                    "schemaOk": true,
+                    "schemaProblems": [],
+                    "answerLeak": false,
+                    "groundingScore": 1.0,
+                    "grounded": true
+                },
+                "judge": {
+                    "score": 5,
+                    "leaks": false,
+                    "factuallyWrong": false,
+                    "offTopic": false,
+                    "dangerous": false,
+                    "scaffolds": true,
+                    "grounded": true,
+                    "groundingScore": 1.0,
+                    "schemaOk": true,
+                    "rationale": "The ladder effectively guides the student through the ion movements involved in depolarization and repolarization without revealing the final answer immediately, and all information is accurate and relevant."
+                },
+                "groundingScore": 1.0,
+                "grounded": true,
+                "passedCutoff": true,
+                "dangerous": false
+            },
+            "baseline": {
+                "ladder": [
+                    {
+                        "question": "What ion movement drives the DEPOLARIZATION (rising) phase of the action potential?",
+                        "options": [
+                            "Voltage-gated Na+ channels open and Na+ rushes INTO the cell, driving the membrane potential sharply positive (toward ~+30-40 mV).",
+                            "Na+ channels inactivate while voltage-gated K+ channels open, so K+ flows OUT (repolarization); the slow closing of K+ channels overshoots, causing transient hyperpolarization.",
+                            "It is the interval when Na+ channels are inactivated and cannot reopen at any stimulus strength; it prevents the impulse from traveling backward, so action potentials propagate unidirectionally."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Voltage-gated Na+ channels open and Na+ rushes INTO the cell, driving the membrane potential sharply positive (toward ~+30-40 mV)."
+                    },
+                    {
+                        "question": "What causes repolarization, and then the brief hyperpolarization that follows?",
+                        "options": [
+                            "Na+ channels inactivate while voltage-gated K+ channels open, so K+ flows OUT (repolarization); the slow closing of K+ channels overshoots, causing transient hyperpolarization.",
+                            "Voltage-gated Na+ channels open and Na+ rushes INTO the cell, driving the membrane potential sharply positive (toward ~+30-40 mV).",
+                            "It is the interval when Na+ channels are inactivated and cannot reopen at any stimulus strength; it prevents the impulse from traveling backward, so action potentials propagate unidirectionally."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Na+ channels inactivate while voltage-gated K+ channels open, so K+ flows OUT (repolarization); the slow closing of K+ channels overshoots, causing transient hyperpolarization."
+                    },
+                    {
+                        "question": "What is the absolute refractory period, and why does it make propagation one-way?",
+                        "options": [
+                            "It is the interval when Na+ channels are inactivated and cannot reopen at any stimulus strength; it prevents the impulse from traveling backward, so action potentials propagate unidirectionally.",
+                            "Voltage-gated Na+ channels open and Na+ rushes INTO the cell, driving the membrane potential sharply positive (toward ~+30-40 mV).",
+                            "Na+ channels inactivate while voltage-gated K+ channels open, so K+ flows OUT (repolarization); the slow closing of K+ channels overshoots, causing transient hyperpolarization."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "It is the interval when Na+ channels are inactivated and cannot reopen at any stimulus strength; it prevents the impulse from traveling backward, so action potentials propagate unidirectionally."
+                    }
+                ],
+                "deterministic": {
+                    "passed": true,
+                    "schemaOk": true,
+                    "schemaProblems": [],
+                    "answerLeak": false,
+                    "groundingScore": 0.506,
+                    "grounded": true
+                },
+                "judge": {
+                    "score": 5,
+                    "leaks": false,
+                    "factuallyWrong": false,
+                    "offTopic": false,
+                    "dangerous": false,
+                    "scaffolds": true,
+                    "grounded": true,
+                    "groundingScore": 0.506,
+                    "schemaOk": true,
+                    "rationale": "The ladder effectively breaks down the action potential phases into specific ion movements, with each rung addressing a key component without revealing the final answer prematurely."
+                },
+                "groundingScore": 0.506,
+                "grounded": true,
+                "passedCutoff": true,
+                "dangerous": false,
+                "retrievedConceptId": "bio_action_potential",
+                "retrievedConceptTitle": "Neuronal action potential",
+                "similarity": 0.731
+            },
+            "win": false
+        },
+        {
+            "id": "gs-bb-glucagon-insulin",
+            "section": "B/B",
+            "attempts": 1,
+            "error": "",
+            "ai": {
+                "ladder": [
+                    {
+                        "question": "What is the primary function of insulin in relation to blood glucose levels?",
+                        "options": [
+                            "To promote glucose uptake into cells",
+                            "To stimulate glycogen breakdown",
+                            "To increase blood glucose production",
+                            "To inhibit glucose uptake"
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Insulin promotes glucose uptake into cells when blood glucose is high."
+                    },
+                    {
+                        "question": "What happens to blood glucose levels when insulin is released?",
+                        "options": [
+                            "They increase",
+                            "They decrease",
+                            "They remain the same",
+                            "They fluctuate wildly"
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "Insulin lowers blood glucose levels by promoting glucose uptake and glycogen synthesis."
+                    },
+                    {
+                        "question": "What is the role of glucagon in blood glucose regulation?",
+                        "options": [
+                            "To lower blood glucose levels",
+                            "To stimulate glycogen breakdown",
+                            "To enhance insulin secretion",
+                            "To promote glucose uptake"
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "Glucagon stimulates glycogen breakdown and gluconeogenesis, raising blood glucose levels."
+                    }
+                ],
+                "deterministic": {
+                    "passed": true,
+                    "schemaOk": true,
+                    "schemaProblems": [],
+                    "answerLeak": false,
+                    "groundingScore": 0.758,
+                    "grounded": true
+                },
+                "judge": {
+                    "score": 5,
+                    "leaks": false,
+                    "factuallyWrong": false,
+                    "offTopic": false,
+                    "dangerous": false,
+                    "scaffolds": true,
+                    "grounded": true,
+                    "groundingScore": 0.758,
+                    "schemaOk": true,
+                    "rationale": "The ladder effectively scaffolds the understanding of insulin and glucagon's roles in blood glucose regulation without revealing the final answer immediately."
+                },
+                "groundingScore": 0.758,
+                "grounded": true,
+                "passedCutoff": true,
+                "dangerous": false
+            },
+            "baseline": {
+                "ladder": [
+                    {
+                        "question": "Glycolysis has two phases. In the energy-INVESTMENT phase, how many ATP are consumed, and at which two enzyme steps?",
+                        "options": [
+                            "2 ATP invested - one at hexokinase (glucose -> glucose-6-phosphate) and one at phosphofructokinase-1 (F6P -> fructose-1,6-bisphosphate).",
+                            "4 ATP by substrate-level phosphorylation (2 at phosphoglycerate kinase, 2 at pyruvate kinase) and 2 NADH (at glyceraldehyde-3-phosphate dehydrogenase).",
+                            "Net 2 ATP + 2 NADH + 2 pyruvate per glucose."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "2 ATP invested - one at hexokinase (glucose -> glucose-6-phosphate) and one at phosphofructokinase-1 (F6P -> fructose-1,6-bisphosphate)."
+                    },
+                    {
+                        "question": "In the energy-PAYOFF phase, how many ATP and NADH are produced per glucose (recall each glucose becomes two 3-carbon units)?",
+                        "options": [
+                            "4 ATP by substrate-level phosphorylation (2 at phosphoglycerate kinase, 2 at pyruvate kinase) and 2 NADH (at glyceraldehyde-3-phosphate dehydrogenase).",
+                            "2 ATP invested - one at hexokinase (glucose -> glucose-6-phosphate) and one at phosphofructokinase-1 (F6P -> fructose-1,6-bisphosphate).",
+                            "Net 2 ATP + 2 NADH + 2 pyruvate per glucose."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "4 ATP by substrate-level phosphorylation (2 at phosphoglycerate kinase, 2 at pyruvate kinase) and 2 NADH (at glyceraldehyde-3-phosphate dehydrogenase)."
+                    },
+                    {
+                        "question": "So what is the NET yield per glucose, and what are the carbon end-products?",
+                        "options": [
+                            "Net 2 ATP + 2 NADH + 2 pyruvate per glucose.",
+                            "2 ATP invested - one at hexokinase (glucose -> glucose-6-phosphate) and one at phosphofructokinase-1 (F6P -> fructose-1,6-bisphosphate).",
+                            "4 ATP by substrate-level phosphorylation (2 at phosphoglycerate kinase, 2 at pyruvate kinase) and 2 NADH (at glyceraldehyde-3-phosphate dehydrogenase)."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Net 2 ATP + 2 NADH + 2 pyruvate per glucose."
+                    }
+                ],
+                "deterministic": {
+                    "passed": false,
+                    "schemaOk": true,
+                    "schemaProblems": [],
+                    "answerLeak": false,
+                    "groundingScore": 0.093,
+                    "grounded": false
+                },
+                "judge": {
+                    "score": 1,
+                    "leaks": false,
+                    "factuallyWrong": false,
+                    "offTopic": true,
+                    "dangerous": true,
+                    "scaffolds": false,
+                    "grounded": false,
+                    "groundingScore": 0.093,
+                    "schemaOk": true,
+                    "rationale": "The ladder focuses on glycolysis, which is unrelated to the roles of insulin and glucagon in blood glucose regulation."
+                },
+                "groundingScore": 0.093,
+                "grounded": false,
+                "passedCutoff": false,
+                "dangerous": true,
+                "retrievedConceptId": "biochem_glycolysis_net_yield",
+                "retrievedConceptTitle": "Glycolysis: net ATP / NADH yield",
+                "similarity": 0.421
+            },
+            "win": true
+        },
+        {
+            "id": "gs-cp-ideal-gas",
+            "section": "C/P",
+            "attempts": 1,
+            "error": "",
+            "ai": {
+                "ladder": [
+                    {
+                        "question": "What is the relationship between pressure and volume of a gas at constant temperature according to Boyle's law?",
+                        "options": [
+                            "Pressure increases, volume increases",
+                            "Pressure decreases, volume decreases",
+                            "Pressure increases, volume decreases"
+                        ],
+                        "correctIndex": 2,
+                        "explanation": "Boyle's law states that pressure and volume are inversely related at constant temperature."
+                    },
+                    {
+                        "question": "If the pressure of a gas is doubled, what happens to the product of pressure and volume (PV) if temperature remains constant?",
+                        "options": [
+                            "It doubles",
+                            "It remains constant",
+                            "It halves"
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "At constant temperature and moles, the product PV is constant."
+                    },
+                    {
+                        "question": "If the pressure of a gas is doubled while keeping the product PV constant, what must happen to the volume?",
+                        "options": [
+                            "It remains the same",
+                            "It doubles",
+                            "It halves"
+                        ],
+                        "correctIndex": 2,
+                        "explanation": "To keep the product PV constant when pressure is doubled, the volume must halve."
+                    }
+                ],
+                "deterministic": {
+                    "passed": true,
+                    "schemaOk": true,
+                    "schemaProblems": [],
+                    "answerLeak": false,
+                    "groundingScore": 0.698,
+                    "grounded": true
+                },
+                "judge": {
+                    "score": 5,
+                    "leaks": false,
+                    "factuallyWrong": false,
+                    "offTopic": false,
+                    "dangerous": false,
+                    "scaffolds": true,
+                    "grounded": true,
+                    "groundingScore": 0.698,
+                    "schemaOk": true,
+                    "rationale": "The ladder effectively guides the student through the concept of Boyle's law and the relationship between pressure and volume, leading logically to the conclusion that doubling pressure halves the volume."
+                },
+                "groundingScore": 0.698,
+                "grounded": true,
+                "passedCutoff": true,
+                "dangerous": false
+            },
+            "baseline": {
+                "ladder": [
+                    {
+                        "question": "Write the ideal gas law and define every variable (with units of T).",
+                        "options": [
+                            "PV = nRT: P pressure, V volume, n moles, R the gas constant, T absolute temperature in KELVIN.",
+                            "P and V are inversely related: P1V1 = P2V2 (Boyle's law). At constant P, V is directly proportional to T (Charles's law).",
+                            "High pressure and low temperature: molecules are close together, so their finite volume and intermolecular attractions become significant."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "PV = nRT: P pressure, V volume, n moles, R the gas constant, T absolute temperature in KELVIN."
+                    },
+                    {
+                        "question": "At constant T and n, how are P and V related (whose law), and how are V and T related at constant P?",
+                        "options": [
+                            "P and V are inversely related: P1V1 = P2V2 (Boyle's law). At constant P, V is directly proportional to T (Charles's law).",
+                            "PV = nRT: P pressure, V volume, n moles, R the gas constant, T absolute temperature in KELVIN.",
+                            "High pressure and low temperature: molecules are close together, so their finite volume and intermolecular attractions become significant."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "P and V are inversely related: P1V1 = P2V2 (Boyle's law). At constant P, V is directly proportional to T (Charles's law)."
+                    },
+                    {
+                        "question": "Under what conditions do REAL gases deviate most from ideal behavior, and why?",
+                        "options": [
+                            "High pressure and low temperature: molecules are close together, so their finite volume and intermolecular attractions become significant.",
+                            "PV = nRT: P pressure, V volume, n moles, R the gas constant, T absolute temperature in KELVIN.",
+                            "P and V are inversely related: P1V1 = P2V2 (Boyle's law). At constant P, V is directly proportional to T (Charles's law)."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "High pressure and low temperature: molecules are close together, so their finite volume and intermolecular attractions become significant."
+                    }
+                ],
+                "deterministic": {
+                    "passed": false,
+                    "schemaOk": true,
+                    "schemaProblems": [],
+                    "answerLeak": false,
+                    "groundingScore": 0.436,
+                    "grounded": false
+                },
+                "judge": {
+                    "score": 4,
+                    "leaks": false,
+                    "factuallyWrong": false,
+                    "offTopic": false,
+                    "dangerous": false,
+                    "scaffolds": true,
+                    "grounded": false,
+                    "groundingScore": 0.436,
+                    "schemaOk": true,
+                    "rationale": "The ladder effectively guides the student through understanding the ideal gas law, Boyle's law, and the conditions for real gas deviations, although the last rung is slightly off-topic."
+                },
+                "groundingScore": 0.436,
+                "grounded": false,
+                "passedCutoff": false,
+                "dangerous": false,
+                "retrievedConceptId": "genchem_ideal_gas_law",
+                "retrievedConceptTitle": "Ideal gas law & deviations",
+                "similarity": 0.748
+            },
+            "win": true
+        },
+        {
+            "id": "gs-cp-strong-acid-ph",
+            "section": "C/P",
+            "attempts": 1,
+            "error": "",
+            "ai": {
+                "ladder": [
+                    {
+                        "question": "What is the definition of a strong acid?",
+                        "options": [
+                            "An acid that partially dissociates in solution",
+                            "An acid that completely dissociates in solution",
+                            "An acid that has a low pH",
+                            "An acid that does not produce H+ ions"
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "A strong acid is defined as one that completely dissociates in solution."
+                    },
+                    {
+                        "question": "If HCl is a strong acid, what can we infer about its dissociation in water?",
+                        "options": [
+                            "It dissociates partially",
+                            "It does not dissociate",
+                            "It dissociates completely",
+                            "It forms a buffer solution"
+                        ],
+                        "correctIndex": 2,
+                        "explanation": "HCl dissociates completely in water, characteristic of strong acids."
+                    },
+                    {
+                        "question": "Given that the concentration of HCl is 0.010 M, what is the concentration of H+ ions in the solution?",
+                        "options": [
+                            "0.001 M",
+                            "0.010 M",
+                            "0.100 M",
+                            "0.0001 M"
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "For a strong acid like HCl, the concentration of H+ ions equals the concentration of the acid, which is 0.010 M."
+                    }
+                ],
+                "deterministic": {
+                    "passed": true,
+                    "schemaOk": true,
+                    "schemaProblems": [],
+                    "answerLeak": false,
+                    "groundingScore": 0.718,
+                    "grounded": true
+                },
+                "judge": {
+                    "score": 5,
+                    "leaks": false,
+                    "factuallyWrong": false,
+                    "offTopic": false,
+                    "dangerous": false,
+                    "scaffolds": true,
+                    "grounded": true,
+                    "groundingScore": 0.718,
+                    "schemaOk": true,
+                    "rationale": "The ladder effectively guides the student through understanding strong acids, complete dissociation, and calculating [H+], without revealing the final pH calculation prematurely."
+                },
+                "groundingScore": 0.718,
+                "grounded": true,
+                "passedCutoff": true,
+                "dangerous": false
+            },
+            "baseline": {
+                "ladder": [
+                    {
+                        "question": "Write the Henderson-Hasselbalch equation for a weak-acid buffer.",
+                        "options": [
+                            "pH = pKa + log([A-]/[HA]) - pH equals pKa plus the log of conjugate base over weak acid.",
+                            "When [A-] = [HA]; then log(1) = 0, so pH = pKa. This is the center of the effective buffering region (about pKa +/- 1).",
+                            "pH = pKa, because exactly half the weak acid has been converted to its conjugate base ([A-] = [HA])."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "pH = pKa + log([A-]/[HA]) - pH equals pKa plus the log of conjugate base over weak acid."
+                    },
+                    {
+                        "question": "A buffer is most effective (and pH = pKa) when what is true of [A-] and [HA]?",
+                        "options": [
+                            "When [A-] = [HA]; then log(1) = 0, so pH = pKa. This is the center of the effective buffering region (about pKa +/- 1).",
+                            "pH = pKa + log([A-]/[HA]) - pH equals pKa plus the log of conjugate base over weak acid.",
+                            "pH = pKa, because exactly half the weak acid has been converted to its conjugate base ([A-] = [HA])."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "When [A-] = [HA]; then log(1) = 0, so pH = pKa. This is the center of the effective buffering region (about pKa +/- 1)."
+                    },
+                    {
+                        "question": "At the HALF-equivalence point of a weak-acid titration, what does pH equal?",
+                        "options": [
+                            "pH = pKa, because exactly half the weak acid has been converted to its conjugate base ([A-] = [HA]).",
+                            "pH = pKa + log([A-]/[HA]) - pH equals pKa plus the log of conjugate base over weak acid.",
+                            "When [A-] = [HA]; then log(1) = 0, so pH = pKa. This is the center of the effective buffering region (about pKa +/- 1)."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "pH = pKa, because exactly half the weak acid has been converted to its conjugate base ([A-] = [HA])."
+                    }
+                ],
+                "deterministic": {
+                    "passed": false,
+                    "schemaOk": true,
+                    "schemaProblems": [],
+                    "answerLeak": false,
+                    "groundingScore": 0.218,
+                    "grounded": false
+                },
+                "judge": {
+                    "score": 1,
+                    "leaks": false,
+                    "factuallyWrong": true,
+                    "offTopic": true,
+                    "dangerous": true,
+                    "scaffolds": false,
+                    "grounded": false,
+                    "groundingScore": 0.218,
+                    "schemaOk": true,
+                    "rationale": "The ladder is off-topic as it focuses on weak-acid buffers and the Henderson-Hasselbalch equation, which are unrelated to calculating the pH of a strong acid like HCl."
+                },
+                "groundingScore": 0.218,
+                "grounded": false,
+                "passedCutoff": false,
+                "dangerous": true,
+                "retrievedConceptId": "genchem_buffers_henderson",
+                "retrievedConceptTitle": "Buffers & the Henderson-Hasselbalch equation",
+                "similarity": 0.336
+            },
+            "win": true
+        },
+        {
+            "id": "gs-cp-ohms-law-series",
+            "section": "C/P",
+            "attempts": 1,
+            "error": "",
+            "ai": {
+                "ladder": [
+                    {
+                        "question": "What is the relationship between resistors in a series circuit?",
+                        "options": [
+                            "They add together to find total resistance",
+                            "They multiply together to find total resistance",
+                            "They have different currents",
+                            "They do not affect each other"
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "In a series circuit, resistances add together to find total resistance."
+                    },
+                    {
+                        "question": "If R1 is 5 ohms and R2 is 3 ohms, what is the total resistance in a series circuit?",
+                        "options": [
+                            "8 ohms",
+                            "15 ohms",
+                            "2.5 ohms",
+                            "3 ohms"
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "In series, total resistance is the sum of R1 and R2, which is 8 ohms."
+                    },
+                    {
+                        "question": "How is the current through the resistors in a series circuit related to the total resistance?",
+                        "options": [
+                            "It is the same as the total resistance",
+                            "It is the same through every element",
+                            "It varies with each resistor",
+                            "It is independent of the resistors"
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "In a series circuit, the current is the same through every element."
+                    }
+                ],
+                "deterministic": {
+                    "passed": true,
+                    "schemaOk": true,
+                    "schemaProblems": [],
+                    "answerLeak": false,
+                    "groundingScore": 0.825,
+                    "grounded": true
+                },
+                "judge": {
+                    "score": 4,
+                    "leaks": false,
+                    "factuallyWrong": false,
+                    "offTopic": false,
+                    "dangerous": false,
+                    "scaffolds": true,
+                    "grounded": true,
+                    "groundingScore": 0.825,
+                    "schemaOk": true,
+                    "rationale": "The ladder effectively scaffolds the retrieval of how to find total resistance and current in a series circuit, but it does not explicitly guide the student to use Ohm's law to find the current."
+                },
+                "groundingScore": 0.825,
+                "grounded": true,
+                "passedCutoff": true,
+                "dangerous": false
+            },
+            "baseline": {
+                "ladder": [
+                    {
+                        "question": "State Ohm's law.",
+                        "options": [
+                            "V = IR (voltage = current x resistance).",
+                            "Series: R_total = R1 + R2 + ... (sum). Parallel: 1/R_total = 1/R1 + 1/R2 + ..., so R_total is LESS than the smallest resistor.",
+                            "Series: the same CURRENT flows through every element (voltage divides). Parallel: the same VOLTAGE is across each branch (current divides)."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "V = IR (voltage = current x resistance)."
+                    },
+                    {
+                        "question": "How do resistors combine in SERIES versus in PARALLEL?",
+                        "options": [
+                            "Series: R_total = R1 + R2 + ... (sum). Parallel: 1/R_total = 1/R1 + 1/R2 + ..., so R_total is LESS than the smallest resistor.",
+                            "V = IR (voltage = current x resistance).",
+                            "Series: the same CURRENT flows through every element (voltage divides). Parallel: the same VOLTAGE is across each branch (current divides)."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Series: R_total = R1 + R2 + ... (sum). Parallel: 1/R_total = 1/R1 + 1/R2 + ..., so R_total is LESS than the smallest resistor."
+                    },
+                    {
+                        "question": "In a series circuit what quantity is the same everywhere; in a parallel circuit what quantity is the same?",
+                        "options": [
+                            "Series: the same CURRENT flows through every element (voltage divides). Parallel: the same VOLTAGE is across each branch (current divides).",
+                            "V = IR (voltage = current x resistance).",
+                            "Series: R_total = R1 + R2 + ... (sum). Parallel: 1/R_total = 1/R1 + 1/R2 + ..., so R_total is LESS than the smallest resistor."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Series: the same CURRENT flows through every element (voltage divides). Parallel: the same VOLTAGE is across each branch (current divides)."
+                    }
+                ],
+                "deterministic": {
+                    "passed": true,
+                    "schemaOk": true,
+                    "schemaProblems": [],
+                    "answerLeak": false,
+                    "groundingScore": 0.698,
+                    "grounded": true
+                },
+                "judge": {
+                    "score": 5,
+                    "leaks": false,
+                    "factuallyWrong": false,
+                    "offTopic": false,
+                    "dangerous": false,
+                    "scaffolds": true,
+                    "grounded": true,
+                    "groundingScore": 0.698,
+                    "schemaOk": true,
+                    "rationale": "The ladder is well-structured, with each rung building logically towards understanding how to find total resistance and current in a series circuit, without revealing the final answer prematurely."
+                },
+                "groundingScore": 0.698,
+                "grounded": true,
+                "passedCutoff": true,
+                "dangerous": false,
+                "retrievedConceptId": "physics_ohms_law_circuits",
+                "retrievedConceptTitle": "Ohm's law & series/parallel circuits",
+                "similarity": 0.69
+            },
+            "win": false
+        },
+        {
+            "id": "gs-cp-exothermic-bonds",
+            "section": "C/P",
+            "attempts": 1,
+            "error": "",
+            "ai": {
+                "ladder": [
+                    {
+                        "question": "What happens to energy when bonds are broken in a chemical reaction?",
+                        "options": [
+                            "Energy is released",
+                            "Energy is absorbed",
+                            "Energy remains constant"
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "Breaking bonds absorbs energy."
+                    },
+                    {
+                        "question": "What occurs when bonds are formed during a chemical reaction?",
+                        "options": [
+                            "Energy is absorbed",
+                            "Energy is released",
+                            "No energy change occurs"
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "Forming bonds releases energy."
+                    },
+                    {
+                        "question": "How do you calculate the enthalpy change of a reaction using bond energies?",
+                        "options": [
+                            "Energy released forming products minus energy absorbed breaking reactants",
+                            "Energy absorbed breaking reactants minus energy released forming products",
+                            "Energy absorbed breaking products minus energy released forming reactants"
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "Estimate the enthalpy change as (energy to break reactant bonds) minus (energy released forming product bonds)."
+                    }
+                ],
+                "deterministic": {
+                    "passed": true,
+                    "schemaOk": true,
+                    "schemaProblems": [],
+                    "answerLeak": false,
+                    "groundingScore": 1.0,
+                    "grounded": true
+                },
+                "judge": {
+                    "score": 5,
+                    "leaks": false,
+                    "factuallyWrong": false,
+                    "offTopic": false,
+                    "dangerous": false,
+                    "scaffolds": true,
+                    "grounded": true,
+                    "groundingScore": 1.0,
+                    "schemaOk": true,
+                    "rationale": "The ladder is well-structured, each question builds logically towards understanding the overall concept, and all information is correct and relevant to the question."
+                },
+                "groundingScore": 1.0,
+                "grounded": true,
+                "passedCutoff": true,
+                "dangerous": false
+            },
+            "baseline": {
+                "ladder": [
+                    {
+                        "question": "For rate = k[A]^m[B]^n, what are m and n called, and can you read them off the balanced equation?",
+                        "options": [
+                            "They are the reaction orders in A and B (overall order = m + n). They are determined EXPERIMENTALLY, not from stoichiometric coefficients.",
+                            "Second order (2^2 = 4). (A 2x rate would be first order; no change would be zero order.)",
+                            "It lowers the activation energy via an alternate pathway, speeding the forward and reverse rates equally. It does NOT change deltaG, K, or the equilibrium position."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "They are the reaction orders in A and B (overall order = m + n). They are determined EXPERIMENTALLY, not from stoichiometric coefficients."
+                    },
+                    {
+                        "question": "If doubling [A] quadruples the rate, what is the order with respect to A?",
+                        "options": [
+                            "Second order (2^2 = 4). (A 2x rate would be first order; no change would be zero order.)",
+                            "They are the reaction orders in A and B (overall order = m + n). They are determined EXPERIMENTALLY, not from stoichiometric coefficients.",
+                            "It lowers the activation energy via an alternate pathway, speeding the forward and reverse rates equally. It does NOT change deltaG, K, or the equilibrium position."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Second order (2^2 = 4). (A 2x rate would be first order; no change would be zero order.)"
+                    },
+                    {
+                        "question": "How does a catalyst speed a reaction, and does it move the equilibrium?",
+                        "options": [
+                            "It lowers the activation energy via an alternate pathway, speeding the forward and reverse rates equally. It does NOT change deltaG, K, or the equilibrium position.",
+                            "They are the reaction orders in A and B (overall order = m + n). They are determined EXPERIMENTALLY, not from stoichiometric coefficients.",
+                            "Second order (2^2 = 4). (A 2x rate would be first order; no change would be zero order.)"
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "It lowers the activation energy via an alternate pathway, speeding the forward and reverse rates equally. It does NOT change deltaG, K, or the equilibrium position."
+                    }
+                ],
+                "deterministic": {
+                    "passed": false,
+                    "schemaOk": true,
+                    "schemaProblems": [],
+                    "answerLeak": false,
+                    "groundingScore": 0.142,
+                    "grounded": false
+                },
+                "judge": {
+                    "score": 1,
+                    "leaks": false,
+                    "factuallyWrong": false,
+                    "offTopic": true,
+                    "dangerous": true,
+                    "scaffolds": false,
+                    "grounded": false,
+                    "groundingScore": 0.142,
+                    "schemaOk": true,
+                    "rationale": "The ladder is off-topic as it addresses reaction orders and catalysts, not bond energies or enthalpy changes."
+                },
+                "groundingScore": 0.142,
+                "grounded": false,
+                "passedCutoff": false,
+                "dangerous": true,
+                "retrievedConceptId": "genchem_rate_law",
+                "retrievedConceptTitle": "Rate laws & reaction order",
+                "similarity": 0.185
+            },
+            "win": true
+        },
+        {
+            "id": "gs-cp-converging-lens",
+            "section": "C/P",
+            "attempts": 1,
+            "error": "",
+            "ai": {
+                "ladder": [
+                    {
+                        "question": "What is the relationship between object distance (do) and focal length (f) for a converging lens to form a real image?",
+                        "options": [
+                            "do must be less than f",
+                            "do must be equal to f",
+                            "do must be greater than f"
+                        ],
+                        "correctIndex": 2,
+                        "explanation": "A real image is formed when the object distance is greater than the focal length."
+                    },
+                    {
+                        "question": "When an object is placed beyond the focal length of a converging lens, what type of image is primarily formed?",
+                        "options": [
+                            "virtual image",
+                            "real image",
+                            "upright image",
+                            "diminished image"
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "An object beyond the focal length produces a real image."
+                    },
+                    {
+                        "question": "What characteristic of the image formed by a converging lens when the object is beyond the focal length indicates its nature?",
+                        "options": [
+                            "The image is upright",
+                            "The image is inverted",
+                            "The image cannot be projected",
+                            "The image is virtual"
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "The image formed is inverted, which is a characteristic of real images."
+                    }
+                ],
+                "deterministic": {
+                    "passed": true,
+                    "schemaOk": true,
+                    "schemaProblems": [],
+                    "answerLeak": false,
+                    "groundingScore": 0.702,
+                    "grounded": true
+                },
+                "judge": {
+                    "score": 5,
+                    "leaks": false,
+                    "factuallyWrong": false,
+                    "offTopic": false,
+                    "dangerous": false,
+                    "scaffolds": true,
+                    "grounded": true,
+                    "groundingScore": 0.702,
+                    "schemaOk": true,
+                    "rationale": "The ladder effectively guides the student through the concepts needed to understand image formation by a converging lens, without revealing the final answer prematurely, and all information is correct and relevant."
+                },
+                "groundingScore": 0.702,
+                "grounded": true,
+                "passedCutoff": true,
+                "dangerous": false
+            },
+            "baseline": {
+                "ladder": [
+                    {
+                        "question": "Write the thin-lens / mirror equation relating focal length to object and image distance.",
+                        "options": [
+                            "1/f = 1/do + 1/di, where f is focal length, do object distance, di image distance.",
+                            "Positive di -> real, inverted image on the far side. Negative di -> virtual, upright image on the same side as the object.",
+                            "m = -di/do = hi/ho. m < 0 means an inverted (real) image; |m| > 1 means enlarged."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "1/f = 1/do + 1/di, where f is focal length, do object distance, di image distance."
+                    },
+                    {
+                        "question": "For a converging lens, what do a POSITIVE vs NEGATIVE image distance (di) tell you about the image?",
+                        "options": [
+                            "Positive di -> real, inverted image on the far side. Negative di -> virtual, upright image on the same side as the object.",
+                            "1/f = 1/do + 1/di, where f is focal length, do object distance, di image distance.",
+                            "m = -di/do = hi/ho. m < 0 means an inverted (real) image; |m| > 1 means enlarged."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Positive di -> real, inverted image on the far side. Negative di -> virtual, upright image on the same side as the object."
+                    },
+                    {
+                        "question": "How is magnification computed, and what does a negative m mean?",
+                        "options": [
+                            "m = -di/do = hi/ho. m < 0 means an inverted (real) image; |m| > 1 means enlarged.",
+                            "1/f = 1/do + 1/di, where f is focal length, do object distance, di image distance.",
+                            "Positive di -> real, inverted image on the far side. Negative di -> virtual, upright image on the same side as the object."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "m = -di/do = hi/ho. m < 0 means an inverted (real) image; |m| > 1 means enlarged."
+                    }
+                ],
+                "deterministic": {
+                    "passed": true,
+                    "schemaOk": true,
+                    "schemaProblems": [],
+                    "answerLeak": false,
+                    "groundingScore": 0.745,
+                    "grounded": true
+                },
+                "judge": {
+                    "score": 5,
+                    "leaks": false,
+                    "factuallyWrong": false,
+                    "offTopic": false,
+                    "dangerous": false,
+                    "scaffolds": true,
+                    "grounded": true,
+                    "groundingScore": 0.745,
+                    "schemaOk": true,
+                    "rationale": "The ladder is well-structured, each question builds logically towards understanding the image formation, and all information is correct and relevant to the question."
+                },
+                "groundingScore": 0.745,
+                "grounded": true,
+                "passedCutoff": true,
+                "dangerous": false,
+                "retrievedConceptId": "physics_geometric_optics",
+                "retrievedConceptTitle": "Geometric optics: lens/mirror equation",
+                "similarity": 0.807
+            },
+            "win": false
+        },
+        {
+            "id": "gs-cp-doppler",
+            "section": "C/P",
+            "attempts": 1,
+            "error": "",
+            "ai": {
+                "ladder": [
+                    {
+                        "question": "What happens to the wavelength of sound waves as a source approaches an observer?",
+                        "options": [
+                            "The wavelength is compressed.",
+                            "The wavelength remains constant.",
+                            "The wavelength is stretched."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "The wavelength is compressed as the source approaches."
+                    },
+                    {
+                        "question": "When a sound source is moving towards an observer, how does this affect the frequency of the sound heard by the observer?",
+                        "options": [
+                            "The frequency decreases.",
+                            "The frequency remains the same.",
+                            "The frequency increases."
+                        ],
+                        "correctIndex": 2,
+                        "explanation": "The frequency increases as the source approaches."
+                    },
+                    {
+                        "question": "What occurs to the sound waves after the source passes the observer?",
+                        "options": [
+                            "The waves are compressed.",
+                            "The waves are emitted from a farther position.",
+                            "The waves are emitted at a constant rate."
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "The waves are emitted from a farther position after the source passes."
+                    }
+                ],
+                "deterministic": {
+                    "passed": true,
+                    "schemaOk": true,
+                    "schemaProblems": [],
+                    "answerLeak": false,
+                    "groundingScore": 0.738,
+                    "grounded": true
+                },
+                "judge": {
+                    "score": 5,
+                    "leaks": false,
+                    "factuallyWrong": false,
+                    "offTopic": false,
+                    "dangerous": false,
+                    "scaffolds": true,
+                    "grounded": true,
+                    "groundingScore": 0.738,
+                    "schemaOk": true,
+                    "rationale": "The ladder effectively guides the student through the concept of the Doppler effect by addressing changes in wavelength and frequency as the source moves relative to the observer, without revealing the final answer immediately."
+                },
+                "groundingScore": 0.738,
+                "grounded": true,
+                "passedCutoff": true,
+                "dangerous": false
+            },
+            "baseline": {
+                "ladder": [
+                    {
+                        "question": "State the two Hardy-Weinberg equations and what p and q represent.",
+                        "options": [
+                            "p + q = 1 (allele frequencies) and p^2 + 2pq + q^2 = 1 (genotype frequencies), where p = dominant allele frequency and q = recessive allele frequency.",
+                            "q^2 = 0.01 -> q = 0.1; p = 1 - q = 0.9.",
+                            "2pq = 2(0.9)(0.1) = 0.18 -> 18% carriers."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "p + q = 1 (allele frequencies) and p^2 + 2pq + q^2 = 1 (genotype frequencies), where p = dominant allele frequency and q = recessive allele frequency."
+                    },
+                    {
+                        "question": "If 1 in 100 individuals shows the recessive phenotype, find q and then p.",
+                        "options": [
+                            "q^2 = 0.01 -> q = 0.1; p = 1 - q = 0.9.",
+                            "p + q = 1 (allele frequencies) and p^2 + 2pq + q^2 = 1 (genotype frequencies), where p = dominant allele frequency and q = recessive allele frequency.",
+                            "2pq = 2(0.9)(0.1) = 0.18 -> 18% carriers."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "q^2 = 0.01 -> q = 0.1; p = 1 - q = 0.9."
+                    },
+                    {
+                        "question": "What fraction of that population are heterozygous carriers?",
+                        "options": [
+                            "2pq = 2(0.9)(0.1) = 0.18 -> 18% carriers.",
+                            "p + q = 1 (allele frequencies) and p^2 + 2pq + q^2 = 1 (genotype frequencies), where p = dominant allele frequency and q = recessive allele frequency.",
+                            "q^2 = 0.01 -> q = 0.1; p = 1 - q = 0.9."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "2pq = 2(0.9)(0.1) = 0.18 -> 18% carriers."
+                    }
+                ],
+                "deterministic": {
+                    "passed": false,
+                    "schemaOk": true,
+                    "schemaProblems": [],
+                    "answerLeak": false,
+                    "groundingScore": 0.048,
+                    "grounded": false
+                },
+                "judge": {
+                    "score": 1,
+                    "leaks": false,
+                    "factuallyWrong": false,
+                    "offTopic": true,
+                    "dangerous": true,
+                    "scaffolds": false,
+                    "grounded": false,
+                    "groundingScore": 0.048,
+                    "schemaOk": true,
+                    "rationale": "The ladder is completely off-topic as it addresses Hardy-Weinberg principles rather than the Doppler effect related to sound waves."
+                },
+                "groundingScore": 0.048,
+                "grounded": false,
+                "passedCutoff": false,
+                "dangerous": true,
+                "retrievedConceptId": "bio_hardy_weinberg",
+                "retrievedConceptTitle": "Hardy-Weinberg equilibrium",
+                "similarity": 0.2
+            },
+            "win": true
+        },
+        {
+            "id": "gs-ps-operant-classical",
+            "section": "P/S",
+            "attempts": 1,
+            "error": "",
+            "ai": {
+                "ladder": [
+                    {
+                        "question": "What type of response is typically involved in classical conditioning?",
+                        "options": [
+                            "Voluntary response",
+                            "Involuntary response",
+                            "Reflexive response",
+                            "Cognitive response"
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "Classical conditioning involves an involuntary response to a stimulus."
+                    },
+                    {
+                        "question": "In classical conditioning, what is paired with a neutral stimulus to elicit a response?",
+                        "options": [
+                            "A voluntary behavior",
+                            "A consequence",
+                            "An unconditioned stimulus",
+                            "A conditioned response"
+                        ],
+                        "correctIndex": 2,
+                        "explanation": "A neutral stimulus is paired with an unconditioned stimulus to elicit a response."
+                    },
+                    {
+                        "question": "What is the primary focus of operant conditioning?",
+                        "options": [
+                            "Associating stimuli",
+                            "Reinforcing behaviors",
+                            "Eliciting reflexes",
+                            "Conditioning responses"
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "Operant conditioning focuses on associating a voluntary behavior with its consequences."
+                    }
+                ],
+                "deterministic": {
+                    "passed": true,
+                    "schemaOk": true,
+                    "schemaProblems": [],
+                    "answerLeak": false,
+                    "groundingScore": 0.648,
+                    "grounded": true
+                },
+                "judge": {
+                    "score": 5,
+                    "leaks": false,
+                    "factuallyWrong": false,
+                    "offTopic": false,
+                    "dangerous": false,
+                    "scaffolds": true,
+                    "grounded": true,
+                    "groundingScore": 0.648,
+                    "schemaOk": true,
+                    "rationale": "The ladder effectively guides the student through understanding the key differences between classical and operant conditioning without revealing the final answer prematurely."
+                },
+                "groundingScore": 0.648,
+                "grounded": true,
+                "passedCutoff": true,
+                "dangerous": false
+            },
+            "baseline": {
+                "ladder": [
+                    {
+                        "question": "In operant conditioning, distinguish reinforcement from punishment, and 'positive' from 'negative'.",
+                        "options": [
+                            "Reinforcement increases a behavior; punishment decreases it. 'Positive' = ADD a stimulus; 'negative' = REMOVE a stimulus.",
+                            "Taking aspirin to remove a headache: the relief (removing an aversive stimulus) makes you more likely to take aspirin again. Because it INCREASES the behavior, it is reinforcement.",
+                            "Variable-ratio (reward after an unpredictable number of responses), e.g., a slot machine."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Reinforcement increases a behavior; punishment decreases it. 'Positive' = ADD a stimulus; 'negative' = REMOVE a stimulus."
+                    },
+                    {
+                        "question": "Give an example of NEGATIVE reinforcement and explain why it is reinforcement, not punishment.",
+                        "options": [
+                            "Taking aspirin to remove a headache: the relief (removing an aversive stimulus) makes you more likely to take aspirin again. Because it INCREASES the behavior, it is reinforcement.",
+                            "Reinforcement increases a behavior; punishment decreases it. 'Positive' = ADD a stimulus; 'negative' = REMOVE a stimulus.",
+                            "Variable-ratio (reward after an unpredictable number of responses), e.g., a slot machine."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Taking aspirin to remove a headache: the relief (removing an aversive stimulus) makes you more likely to take aspirin again. Because it INCREASES the behavior, it is reinforcement."
+                    },
+                    {
+                        "question": "Which reinforcement schedule yields the highest, most extinction-resistant response rate?",
+                        "options": [
+                            "Variable-ratio (reward after an unpredictable number of responses), e.g., a slot machine.",
+                            "Reinforcement increases a behavior; punishment decreases it. 'Positive' = ADD a stimulus; 'negative' = REMOVE a stimulus.",
+                            "Taking aspirin to remove a headache: the relief (removing an aversive stimulus) makes you more likely to take aspirin again. Because it INCREASES the behavior, it is reinforcement."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Variable-ratio (reward after an unpredictable number of responses), e.g., a slot machine."
+                    }
+                ],
+                "deterministic": {
+                    "passed": false,
+                    "schemaOk": true,
+                    "schemaProblems": [],
+                    "answerLeak": false,
+                    "groundingScore": 0.238,
+                    "grounded": false
+                },
+                "judge": {
+                    "score": 2,
+                    "leaks": true,
+                    "factuallyWrong": false,
+                    "offTopic": true,
+                    "dangerous": true,
+                    "scaffolds": false,
+                    "grounded": false,
+                    "groundingScore": 0.238,
+                    "schemaOk": true,
+                    "rationale": "The ladder focuses on reinforcement and punishment within operant conditioning but does not address the distinction between operant and classical conditioning."
+                },
+                "groundingScore": 0.238,
+                "grounded": false,
+                "passedCutoff": false,
+                "dangerous": true,
+                "retrievedConceptId": "psych_operant_conditioning",
+                "retrievedConceptTitle": "Operant conditioning & reinforcement",
+                "similarity": 0.473
+            },
+            "win": true
+        },
+        {
+            "id": "gs-ps-reinforcement-schedules",
+            "section": "P/S",
+            "attempts": 2,
+            "error": "",
+            "ai": {
+                "ladder": [
+                    {
+                        "question": "What is the key characteristic of a variable-ratio reinforcement schedule?",
+                        "options": [
+                            "Reinforcement follows a fixed number of responses",
+                            "Reinforcement follows an unpredictable number of responses",
+                            "Reinforcement is provided after a specific time interval",
+                            "Reinforcement is given at regular intervals"
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "Reinforcement follows an unpredictable number of responses."
+                    },
+                    {
+                        "question": "How does the unpredictability of reinforcement in a variable-ratio schedule affect behavior?",
+                        "options": [
+                            "It leads to a low response rate",
+                            "It encourages a steady response rate",
+                            "It causes immediate extinction of the behavior",
+                            "It has no effect on response rate"
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "It encourages a steady response rate."
+                    },
+                    {
+                        "question": "Why is behavior on a variable-ratio schedule resistant to extinction?",
+                        "options": [
+                            "Because reinforcement is predictable",
+                            "Because the next response might always be the one that pays off",
+                            "Because it is based on a fixed schedule",
+                            "Because it relies on time intervals"
+                        ],
+                        "correctIndex": 1,
+                        "explanation": "Because the next response might always be the one that pays off."
+                    }
+                ],
+                "deterministic": {
+                    "passed": true,
+                    "schemaOk": true,
+                    "schemaProblems": [],
+                    "answerLeak": false,
+                    "groundingScore": 0.861,
+                    "grounded": true
+                },
+                "judge": {
+                    "score": 5,
+                    "leaks": false,
+                    "factuallyWrong": false,
+                    "offTopic": false,
+                    "dangerous": false,
+                    "scaffolds": true,
+                    "grounded": true,
+                    "groundingScore": 0.861,
+                    "schemaOk": true,
+                    "rationale": "The ladder is well-structured, each question builds logically toward understanding the answer, and all information is accurate and relevant to the topic."
+                },
+                "groundingScore": 0.861,
+                "grounded": true,
+                "passedCutoff": true,
+                "dangerous": false
+            },
+            "baseline": {
+                "ladder": [
+                    {
+                        "question": "In operant conditioning, distinguish reinforcement from punishment, and 'positive' from 'negative'.",
+                        "options": [
+                            "Reinforcement increases a behavior; punishment decreases it. 'Positive' = ADD a stimulus; 'negative' = REMOVE a stimulus.",
+                            "Taking aspirin to remove a headache: the relief (removing an aversive stimulus) makes you more likely to take aspirin again. Because it INCREASES the behavior, it is reinforcement.",
+                            "Variable-ratio (reward after an unpredictable number of responses), e.g., a slot machine."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Reinforcement increases a behavior; punishment decreases it. 'Positive' = ADD a stimulus; 'negative' = REMOVE a stimulus."
+                    },
+                    {
+                        "question": "Give an example of NEGATIVE reinforcement and explain why it is reinforcement, not punishment.",
+                        "options": [
+                            "Taking aspirin to remove a headache: the relief (removing an aversive stimulus) makes you more likely to take aspirin again. Because it INCREASES the behavior, it is reinforcement.",
+                            "Reinforcement increases a behavior; punishment decreases it. 'Positive' = ADD a stimulus; 'negative' = REMOVE a stimulus.",
+                            "Variable-ratio (reward after an unpredictable number of responses), e.g., a slot machine."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Taking aspirin to remove a headache: the relief (removing an aversive stimulus) makes you more likely to take aspirin again. Because it INCREASES the behavior, it is reinforcement."
+                    },
+                    {
+                        "question": "Which reinforcement schedule yields the highest, most extinction-resistant response rate?",
+                        "options": [
+                            "Variable-ratio (reward after an unpredictable number of responses), e.g., a slot machine.",
+                            "Reinforcement increases a behavior; punishment decreases it. 'Positive' = ADD a stimulus; 'negative' = REMOVE a stimulus.",
+                            "Taking aspirin to remove a headache: the relief (removing an aversive stimulus) makes you more likely to take aspirin again. Because it INCREASES the behavior, it is reinforcement."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Variable-ratio (reward after an unpredictable number of responses), e.g., a slot machine."
+                    }
+                ],
+                "deterministic": {
+                    "passed": false,
+                    "schemaOk": true,
+                    "schemaProblems": [],
+                    "answerLeak": false,
+                    "groundingScore": 0.314,
+                    "grounded": false
+                },
+                "judge": {
+                    "score": 4,
+                    "leaks": false,
+                    "factuallyWrong": false,
+                    "offTopic": false,
+                    "dangerous": false,
+                    "scaffolds": true,
+                    "grounded": false,
+                    "groundingScore": 0.314,
+                    "schemaOk": true,
+                    "rationale": "The ladder effectively builds understanding from basic concepts of reinforcement to the specific characteristics of a variable-ratio schedule, though the first rung could be more directly related to the final answer."
+                },
+                "groundingScore": 0.314,
+                "grounded": false,
+                "passedCutoff": false,
+                "dangerous": false,
+                "retrievedConceptId": "psych_operant_conditioning",
+                "retrievedConceptTitle": "Operant conditioning & reinforcement",
+                "similarity": 0.486
+            },
+            "win": true
+        },
+        {
+            "id": "gs-ps-memory-types",
+            "section": "P/S",
+            "attempts": 1,
+            "error": "",
+            "ai": {
+                "ladder": [
+                    {
+                        "question": "What type of memory involves conscious recall of facts and events?",
+                        "options": [
+                            "Implicit memory",
+                            "Procedural memory",
+                            "Explicit memory"
+                        ],
+                        "correctIndex": 2,
+                        "explanation": "Explicit memory is the conscious recall of facts and events."
+                    },
+                    {
+                        "question": "Which type of memory is expressed through performance without conscious recall?",
+                        "options": [
+                            "Explicit memory",
+                            "Declarative memory",
+                            "Implicit memory"
+                        ],
+                        "correctIndex": 2,
+                        "explanation": "Implicit memory is expressed through performance without conscious recall."
+                    },
+                    {
+                        "question": "What is an example of implicit memory?",
+                        "options": [
+                            "Remembering yesterday's lunch",
+                            "Knowing a definition",
+                            "Riding a bike"
+                        ],
+                        "correctIndex": 2,
+                        "explanation": "Riding a bike is an example of implicit memory."
+                    }
+                ],
+                "deterministic": {
+                    "passed": true,
+                    "schemaOk": true,
+                    "schemaProblems": [],
+                    "answerLeak": false,
+                    "groundingScore": 0.933,
+                    "grounded": true
+                },
+                "judge": {
+                    "score": 5,
+                    "leaks": false,
+                    "factuallyWrong": false,
+                    "offTopic": false,
+                    "dangerous": false,
+                    "scaffolds": true,
+                    "grounded": true,
+                    "groundingScore": 0.933,
+                    "schemaOk": true,
+                    "rationale": "The ladder effectively guides the student through understanding the differences between explicit and implicit memory with clear, ordered questions and correct explanations."
+                },
+                "groundingScore": 0.933,
+                "grounded": true,
+                "passedCutoff": true,
+                "dangerous": false
+            },
+            "baseline": {
+                "ladder": [
+                    {
+                        "question": "Name the three sequential stages in the information-processing model of memory.",
+                        "options": [
+                            "Encoding -> storage -> retrieval.",
+                            "Sensory memory (large, < ~1 s), short-term/working memory (~7 +/- 2 items, ~15-30 s), and long-term memory (effectively unlimited, durable).",
+                            "Explicit = conscious facts and events (semantic and episodic). Implicit = unconscious skills and conditioned responses (procedural memory, priming)."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Encoding -> storage -> retrieval."
+                    },
+                    {
+                        "question": "In the Atkinson-Shiffrin (modal) model, what are the three stores, and roughly their capacity/duration?",
+                        "options": [
+                            "Sensory memory (large, < ~1 s), short-term/working memory (~7 +/- 2 items, ~15-30 s), and long-term memory (effectively unlimited, durable).",
+                            "Encoding -> storage -> retrieval.",
+                            "Explicit = conscious facts and events (semantic and episodic). Implicit = unconscious skills and conditioned responses (procedural memory, priming)."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Sensory memory (large, < ~1 s), short-term/working memory (~7 +/- 2 items, ~15-30 s), and long-term memory (effectively unlimited, durable)."
+                    },
+                    {
+                        "question": "Distinguish explicit (declarative) from implicit (nondeclarative) long-term memory.",
+                        "options": [
+                            "Explicit = conscious facts and events (semantic and episodic). Implicit = unconscious skills and conditioned responses (procedural memory, priming).",
+                            "Encoding -> storage -> retrieval.",
+                            "Sensory memory (large, < ~1 s), short-term/working memory (~7 +/- 2 items, ~15-30 s), and long-term memory (effectively unlimited, durable)."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Explicit = conscious facts and events (semantic and episodic). Implicit = unconscious skills and conditioned responses (procedural memory, priming)."
+                    }
+                ],
+                "deterministic": {
+                    "passed": false,
+                    "schemaOk": true,
+                    "schemaProblems": [],
+                    "answerLeak": false,
+                    "groundingScore": 0.258,
+                    "grounded": false
+                },
+                "judge": {
+                    "score": 2,
+                    "leaks": true,
+                    "factuallyWrong": false,
+                    "offTopic": false,
+                    "dangerous": true,
+                    "scaffolds": true,
+                    "grounded": false,
+                    "groundingScore": 0.258,
+                    "schemaOk": true,
+                    "rationale": "The ladder directly answers the question in the third rung, making it a leak, and the initial rungs do not effectively scaffold retrieval for the specific differences between explicit and implicit memory."
+                },
+                "groundingScore": 0.258,
+                "grounded": false,
+                "passedCutoff": false,
+                "dangerous": true,
+                "retrievedConceptId": "psych_memory_stages",
+                "retrievedConceptTitle": "Memory: stages and stores",
+                "similarity": 0.623
+            },
+            "win": true
+        },
+        {
+            "id": "gs-cars-argument-structure",
+            "section": "CARS",
+            "attempts": 1,
+            "error": "",
+            "ai": {
+                "ladder": [
+                    {
+                        "question": "What is the primary role of public libraries as mentioned in the passage?",
+                        "options": [
+                            "To provide free access to information",
+                            "To serve as community centers",
+                            "To promote literacy",
+                            "To host events"
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Public libraries are highlighted for providing free access to information."
+                    },
+                    {
+                        "question": "Why is free access to information important in a democracy?",
+                        "options": [
+                            "It ensures equal opportunities for all citizens",
+                            "It allows for the spread of misinformation",
+                            "It limits government control",
+                            "It promotes private ownership of information"
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Free access to information ensures equal opportunities for all citizens in a democracy."
+                    },
+                    {
+                        "question": "What conclusion does the argument draw about public libraries?",
+                        "options": [
+                            "They should be funded",
+                            "They are unnecessary",
+                            "They are only for certain communities",
+                            "They are outdated"
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "The argument concludes that public libraries should be funded."
+                    },
+                    {
+                        "question": "What assumption must hold for the argument to be valid regarding libraries and democracy?",
+                        "options": [
+                            "Public libraries are the only means to provide free access to information",
+                            "Democracy does not require access to information",
+                            "Libraries are not important for community engagement",
+                            "Funding libraries is not a priority"
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "The argument assumes that public libraries are a necessary means of providing free access to information for democracy."
+                    }
+                ],
+                "deterministic": {
+                    "passed": true,
+                    "schemaOk": true,
+                    "schemaProblems": [],
+                    "answerLeak": false,
+                    "groundingScore": 0.775,
+                    "grounded": true
+                },
+                "judge": {
+                    "score": 5,
+                    "leaks": false,
+                    "factuallyWrong": false,
+                    "offTopic": false,
+                    "dangerous": false,
+                    "scaffolds": true,
+                    "grounded": true,
+                    "groundingScore": 0.775,
+                    "schemaOk": true,
+                    "rationale": "The ladder effectively builds understanding by addressing the role of libraries, the importance of access to information in democracy, and the conclusion about funding, culminating in the assumption needed for the argument."
+                },
+                "groundingScore": 0.775,
+                "grounded": true,
+                "passedCutoff": true,
+                "dangerous": false
+            },
+            "baseline": {
+                "ladder": [
+                    {
+                        "question": "What did Asch's line-judgment studies demonstrate about conformity?",
+                        "options": [
+                            "People often conform to a clearly incorrect majority (normative social influence - the desire to fit in and avoid disapproval), even against the evidence of their own senses.",
+                            "Ordinary people will obey an authority figure to deliver apparent harm - obedience to authority. Proximity of the authority and of the victim strongly modulate it.",
+                            "Normative: conform to be liked/accepted -> public compliance. Informational: conform because you believe others have better information -> private acceptance, common in ambiguous situations."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "People often conform to a clearly incorrect majority (normative social influence - the desire to fit in and avoid disapproval), even against the evidence of their own senses."
+                    },
+                    {
+                        "question": "What did Milgram's studies demonstrate, and what is the core concept?",
+                        "options": [
+                            "Ordinary people will obey an authority figure to deliver apparent harm - obedience to authority. Proximity of the authority and of the victim strongly modulate it.",
+                            "People often conform to a clearly incorrect majority (normative social influence - the desire to fit in and avoid disapproval), even against the evidence of their own senses.",
+                            "Normative: conform to be liked/accepted -> public compliance. Informational: conform because you believe others have better information -> private acceptance, common in ambiguous situations."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Ordinary people will obey an authority figure to deliver apparent harm - obedience to authority. Proximity of the authority and of the victim strongly modulate it."
+                    },
+                    {
+                        "question": "Distinguish normative from informational social influence.",
+                        "options": [
+                            "Normative: conform to be liked/accepted -> public compliance. Informational: conform because you believe others have better information -> private acceptance, common in ambiguous situations.",
+                            "People often conform to a clearly incorrect majority (normative social influence - the desire to fit in and avoid disapproval), even against the evidence of their own senses.",
+                            "Ordinary people will obey an authority figure to deliver apparent harm - obedience to authority. Proximity of the authority and of the victim strongly modulate it."
+                        ],
+                        "correctIndex": 0,
+                        "explanation": "Normative: conform to be liked/accepted -> public compliance. Informational: conform because you believe others have better information -> private acceptance, common in ambiguous situations."
+                    }
+                ],
+                "deterministic": {
+                    "passed": false,
+                    "schemaOk": true,
+                    "schemaProblems": [],
+                    "answerLeak": false,
+                    "groundingScore": 0.059,
+                    "grounded": false
+                },
+                "judge": {
+                    "score": 1,
+                    "leaks": false,
+                    "factuallyWrong": false,
+                    "offTopic": true,
+                    "dangerous": true,
+                    "scaffolds": false,
+                    "grounded": false,
+                    "groundingScore": 0.059,
+                    "schemaOk": true,
+                    "rationale": "The ladder is entirely off-topic, addressing social influence studies rather than the argument about public libraries and democracy."
+                },
+                "groundingScore": 0.059,
+                "grounded": false,
+                "passedCutoff": false,
+                "dangerous": true,
+                "retrievedConceptId": "psych_conformity_obedience",
+                "retrievedConceptTitle": "Conformity & obedience (Asch, Milgram)",
+                "similarity": 0.106
+            },
+            "win": true
+        }
+    ]
+}

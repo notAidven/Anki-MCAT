@@ -1,0 +1,101 @@
+{
+    "source": "synthetic",
+    "n": 3535,
+    "base_rate_observed": 0.8388,
+    "mean_predicted": 0.8577,
+    "brier": 0.14,
+    "brier_base_rate": 0.1352,
+    "brier_skill": -0.0351,
+    "log_loss": 0.4682,
+    "ece": 0.0659,
+    "mce": 0.1781,
+    "calibration_slope": 0.2435,
+    "calibration_intercept": 1.1595,
+    "bins": [
+        {
+            "lo": 0.0,
+            "hi": 0.1,
+            "n": 0,
+            "pred_mean": null,
+            "obs_rate": null
+        },
+        {
+            "lo": 0.1,
+            "hi": 0.2,
+            "n": 0,
+            "pred_mean": null,
+            "obs_rate": null
+        },
+        {
+            "lo": 0.2,
+            "hi": 0.3,
+            "n": 0,
+            "pred_mean": null,
+            "obs_rate": null
+        },
+        {
+            "lo": 0.3,
+            "hi": 0.4,
+            "n": 0,
+            "pred_mean": null,
+            "obs_rate": null
+        },
+        {
+            "lo": 0.4,
+            "hi": 0.5,
+            "n": 0,
+            "pred_mean": null,
+            "obs_rate": null
+        },
+        {
+            "lo": 0.5,
+            "hi": 0.6,
+            "n": 39,
+            "pred_mean": 0.5911,
+            "obs_rate": 0.7692
+        },
+        {
+            "lo": 0.6,
+            "hi": 0.7,
+            "n": 316,
+            "pred_mean": 0.6539,
+            "obs_rate": 0.7627
+        },
+        {
+            "lo": 0.7,
+            "hi": 0.8,
+            "n": 553,
+            "pred_mean": 0.7583,
+            "obs_rate": 0.8336
+        },
+        {
+            "lo": 0.8,
+            "hi": 0.9,
+            "n": 1099,
+            "pred_mean": 0.8556,
+            "obs_rate": 0.8344
+        },
+        {
+            "lo": 0.9,
+            "hi": 1.0,
+            "n": 1528,
+            "pred_mean": 0.9441,
+            "obs_rate": 0.8613
+        }
+    ],
+    "synthetic_params": {
+        "cards": 600,
+        "slip": 0.04,
+        "guess": 0.02,
+        "seed": 20260703
+    },
+    "chart": "readymcat/eval/calibration.png",
+    "gates": {
+        "gates": {
+            "enough_predictions": true,
+            "ece_within_bound": true,
+            "not_worse_than_base_rate": true
+        },
+        "passed": true
+    }
+}

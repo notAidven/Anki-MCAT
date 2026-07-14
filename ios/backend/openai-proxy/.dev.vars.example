@@ -1,0 +1,17 @@
+# Local development secrets for `wrangler dev`. Copy to `.dev.vars` and fill in.
+#
+#   cp .dev.vars.example .dev.vars
+#
+# `.dev.vars` is gitignored — NEVER commit real secret values.
+# In production these are set with `wrangler secret put` instead (see README).
+
+# The HIGH-VALUE secret. This is the whole point of the proxy: it lives here on
+# the server, never on the phone. For local testing, paste the same key your
+# desktop app uses (repo root `anki/.env.local` -> OPENAI_API_KEY).
+OPENAI_API_KEY=sk-your-openai-key-here
+
+# The LOW-VALUE app token the iOS client sends as `Authorization: Bearer <token>`.
+# Its only job is to stop strangers from spending your OpenAI budget. Rotate it
+# freely; unlike the OpenAI key, leaking it costs you nothing but some abuse.
+# Generate one with e.g.:  openssl rand -hex 32
+APP_TOKEN=dev-app-token-change-me

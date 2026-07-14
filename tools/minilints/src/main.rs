@@ -39,6 +39,10 @@ const IGNORED_FOLDERS: &[&str] = &[
     "./.venv",
     "./qt/installer/windows-template",
     "./qt/installer/mac-template",
+    // ReadyMCAT iOS OpenAI proxy: gitignored local dependency/build artifacts
+    // (present only after `npm install` / `wrangler dev`); never linted.
+    "./ios/backend/openai-proxy/node_modules",
+    "./ios/backend/openai-proxy/.wrangler",
 ];
 
 fn main() -> Result<()> {

@@ -236,6 +236,7 @@ import anki.collection_pb2
 import anki.config_pb2
 import anki.deck_config_pb2
 import anki.decks_pb2
+import anki.diagnostic_pb2
 import anki.i18n_pb2
 import anki.image_occlusion_pb2
 import anki.import_export_pb2
@@ -243,6 +244,7 @@ import anki.links_pb2
 import anki.media_pb2
 import anki.notes_pb2
 import anki.notetypes_pb2
+import anki.points_at_stake_pb2
 import anki.scheduler_pb2
 import anki.search_pb2
 import anki.stats_pb2

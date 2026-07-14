@@ -1,0 +1,3308 @@
+[
+    {
+        "id": "psg-cp-1",
+        "section": "C/P",
+        "passage": "A biomechanics laboratory studies vertical jumping with a force platform, a rigid plate that records the force a person exerts on it as a function of time. A 60 kg athlete stands motionless on the platform and then performs a maximal jump: she dips down, drives upward, and leaves the plate. High-speed video tracks a marker on her hip to follow the vertical motion of her center of mass.\n\nWhile the athlete stands still, the platform reads a steady value equal to her weight. During the propulsion phase the reading rises well above this baseline, climbs to a peak, and then drops abruptly to zero at the instant her feet leave the plate. The interval from the start of propulsion to takeoff lasts about 0.20 s. After takeoff the center of mass rises to a measured peak height of 0.45 m above its takeoff position before falling back. Treating the body as a point mass at the center of mass and neglecting air resistance, the researchers reconstruct the takeoff velocity, the mechanical energy of the jump, and the forces during landing.\n\nOn landing, the athlete returns to the plate moving downward, and the platform again registers a large force as she decelerates to rest over about 0.15 s. The researchers note that athletes who land with stiff legs stop in a shorter time and record much larger peak forces than athletes who flex their knees and ankles to cushion the impact. Throughout, the platform measures the contact force between athlete and plate; gravitational acceleration is taken as g = 10 m/s^2.",
+        "passage_source": {
+            "name": "OpenStax College Physics 2e, ch. 2-4 (kinematics, dynamics), ch. 7 (work, energy, power), ch. 8 (impulse and momentum)",
+            "url": "https://openstax.org/details/books/college-physics-2e",
+            "license": "CC BY 4.0"
+        },
+        "questions": [
+            {
+                "id": "psg-cp-1-q1",
+                "aamc_category": "4A",
+                "subtopic": "Projectile/free-fall kinematics",
+                "stem": "Using the measured peak height of 0.45 m, what was the athlete's vertical speed at the instant of takeoff?",
+                "options": [
+                    "1.5 m/s",
+                    "3 m/s",
+                    "4.5 m/s",
+                    "9 m/s"
+                ],
+                "correct_index": 1,
+                "explanation": "At the peak the vertical velocity is zero, so v^2 = v0^2 - 2gh gives v0 = sqrt(2gh) = sqrt(2*10*0.45) = sqrt(9) = 3 m/s. '1.5 m/s' halves the correct value; '9 m/s' reports v0^2 (units m^2/s^2), not v0; '4.5 m/s' comes from incorrectly using v0 = g*h. Only 3 m/s is consistent with a 0.45 m peak height.",
+                "difficulty": "easy",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "At the highest point of the jump, what is the vertical component of the center-of-mass velocity?",
+                        "options": [
+                            "It equals the takeoff speed",
+                            "It is zero",
+                            "It equals g",
+                            "It is maximal"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "At the apex the object momentarily stops rising and has not yet begun to fall, so the vertical velocity is zero. This is what lets you connect takeoff speed to peak height."
+                    },
+                    {
+                        "stem": "Which kinematic relation links takeoff speed v0, g, and peak height h (with final vertical speed = 0)?",
+                        "options": [
+                            "v0 = g*h",
+                            "v0^2 = 2*g*h",
+                            "v0 = 2*g*h",
+                            "h = v0*g"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Using v_f^2 = v0^2 - 2gh with v_f = 0 gives v0^2 = 2gh. This is the energy/kinematic bridge between speed and height."
+                    },
+                    {
+                        "stem": "Evaluate sqrt(2 * 10 m/s^2 * 0.45 m).",
+                        "options": [
+                            "3 m/s",
+                            "9 m/s",
+                            "1.5 m/s",
+                            "4.5 m/s"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "2*10*0.45 = 9, and sqrt(9) = 3 m/s. The value 9 is v0^2 (units m^2/s^2), not the speed itself."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-1-q2",
+                "aamc_category": "4A",
+                "subtopic": "Work-energy theorem / gravitational PE",
+                "stem": "How much gravitational potential energy does the athlete's center of mass gain between takeoff and the peak of the jump?",
+                "options": [
+                    "135 J",
+                    "270 J",
+                    "540 J",
+                    "27 J"
+                ],
+                "correct_index": 1,
+                "explanation": "By energy conservation the kinetic energy at takeoff converts to gravitational PE at the peak: PE = mgh = 60*10*0.45 = 270 J (equivalently KE = 1/2 m v0^2 = 0.5*60*3^2 = 270 J). '135 J' drops the factor from mis-halving; '540 J' doubles it; '27 J' omits g. The equality of the KE and PE routes confirms 270 J.",
+                "difficulty": "medium",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "Between takeoff and the apex, kinetic energy is converted into which form of energy (ignoring air resistance)?",
+                        "options": [
+                            "Thermal energy",
+                            "Gravitational potential energy",
+                            "Elastic potential energy",
+                            "Electrical energy"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "As the body rises and slows, KE is stored as gravitational PE; with no air resistance mechanical energy is conserved."
+                    },
+                    {
+                        "stem": "Which expression gives gravitational potential energy near Earth's surface?",
+                        "options": [
+                            "PE = mgh",
+                            "PE = 1/2 m v^2",
+                            "PE = mgh^2",
+                            "PE = m/gh"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Gravitational PE relative to a reference height is mgh. (1/2 m v^2 is kinetic energy.)"
+                    },
+                    {
+                        "stem": "Evaluate mgh for m = 60 kg, g = 10 m/s^2, h = 0.45 m.",
+                        "options": [
+                            "270 J",
+                            "135 J",
+                            "540 J",
+                            "6 J"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "60*10 = 600, and 600*0.45 = 270 J. This matches 1/2 m v0^2 = 270 J, confirming energy conservation."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-1-q3",
+                "aamc_category": "4A",
+                "subtopic": "Impulse-momentum and Newton's second law",
+                "stem": "The athlete lands moving downward at the same speed she took off and is brought to rest in 0.15 s. What average force does the platform exert on her during landing?",
+                "options": [
+                    "1200 N",
+                    "1800 N",
+                    "600 N",
+                    "2400 N"
+                ],
+                "correct_index": 1,
+                "explanation": "By symmetry she lands at 3 m/s. Impulse-momentum gives the net upward force: F_net = m*dv/dt = 60*3/0.15 = 1200 N. But F_net = N - mg, so the platform's normal force N = F_net + mg = 1200 + 600 = 1800 N. '1200 N' is only the net force (forgetting to add weight); '600 N' is just her weight; '2400 N' double-counts. The ground reaction force is 1800 N.",
+                "difficulty": "hard",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "At what speed does the athlete strike the platform on landing (air resistance neglected, landing at takeoff height)?",
+                        "options": [
+                            "1.5 m/s",
+                            "3 m/s",
+                            "0 m/s",
+                            "6 m/s"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "By symmetry of projectile motion, she returns to the takeoff level with the same speed she left, 3 m/s (now directed downward)."
+                    },
+                    {
+                        "stem": "Using impulse-momentum, what NET force stops her (magnitude, dv = 3 m/s over 0.15 s)?",
+                        "options": [
+                            "1200 N",
+                            "180 N",
+                            "20 N",
+                            "600 N"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "F_net = m*dv/dt = 60*3/0.15 = 1200 N. This is the resultant of all forces, not the platform force alone."
+                    },
+                    {
+                        "stem": "During landing the forces on her are the upward normal force N and downward weight mg. If the NET upward force is 1200 N, what is N?",
+                        "options": [
+                            "600 N",
+                            "1200 N",
+                            "1800 N",
+                            "2400 N"
+                        ],
+                        "correct_index": 2,
+                        "explanation": "F_net = N - mg, so N = F_net + mg = 1200 + 600 = 1800 N. The platform must both stop her and support her weight."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-1-q4",
+                "aamc_category": "4A",
+                "subtopic": "Newton's second and third laws",
+                "stem": "During propulsion the platform's reading exceeds the athlete's weight. Which statement best explains this in terms of Newton's laws?",
+                "options": [
+                    "By Newton's third law the plate's push on her equals her push on the plate; that force exceeds mg because a net upward force (N - mg = ma) is required to accelerate her center of mass upward.",
+                    "The reading exceeds mg because the gravitational field strength increases while she accelerates.",
+                    "The reading equals mg at every instant because her weight cannot change.",
+                    "The reading exceeds mg because her kinetic energy adds directly to the contact force."
+                ],
+                "correct_index": 0,
+                "explanation": "To accelerate upward she needs a net upward force, so by Newton's second law N - mg = ma with a > 0, giving N > mg; by Newton's third law the force she exerts on the plate (what it reads) equals the force it exerts on her. Choice 2 is wrong because g does not change; choice 3 confuses weight with the contact force; choice 4 conflates energy (joules) with force (newtons).",
+                "difficulty": "medium",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "To make her center of mass accelerate upward during push-off, the net force on her must point which way?",
+                        "options": [
+                            "Upward",
+                            "Downward",
+                            "Horizontally",
+                            "There is no net force"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Upward acceleration requires a net upward force (Newton's second law, F_net = ma)."
+                    },
+                    {
+                        "stem": "With upward normal force N and downward weight mg, what does N - mg = ma imply when a > 0?",
+                        "options": [
+                            "N < mg",
+                            "N = mg",
+                            "N > mg",
+                            "N = 0"
+                        ],
+                        "correct_index": 2,
+                        "explanation": "If a > 0 (upward), then N = mg + ma > mg: the plate must read more than her weight during propulsion."
+                    },
+                    {
+                        "stem": "The platform reads the force she exerts on it. How does that compare with the force it exerts on her?",
+                        "options": [
+                            "Larger",
+                            "Smaller",
+                            "Equal in magnitude, opposite in direction",
+                            "Unrelated"
+                        ],
+                        "correct_index": 2,
+                        "explanation": "Newton's third law: the action-reaction pair are equal in magnitude and opposite in direction, so the reading equals the force on her."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-1-q5",
+                "aamc_category": "4A",
+                "subtopic": "Work, energy, and power",
+                "stem": "If the propulsion phase lasts 0.20 s and delivers the 270 J of kinetic energy the athlete has at takeoff, what is the approximate average mechanical power output during propulsion?",
+                "options": [
+                    "1350 W",
+                    "54 W",
+                    "2700 W",
+                    "135 W"
+                ],
+                "correct_index": 0,
+                "explanation": "Average power = energy/time = 270 J / 0.20 s = 1350 W. '2700 W' halves the time; '135 W' uses 2 s; '54 W' divides by 5. 1350 W (~1.8 hp) is physiologically reasonable for an explosive jump.",
+                "difficulty": "medium",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "Which relationship defines average power?",
+                        "options": [
+                            "Power = work / time",
+                            "Power = work * time",
+                            "Power = force * distance",
+                            "Power = mass / time"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Average power is the rate of doing work: P = W/t (force*distance is work, not power)."
+                    },
+                    {
+                        "stem": "Roughly how much work does the propulsion do on the body (equal to its takeoff KE)?",
+                        "options": [
+                            "270 J",
+                            "60 J",
+                            "2700 J",
+                            "27 J"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "The work-energy theorem sets the net work equal to the KE gained, 270 J."
+                    },
+                    {
+                        "stem": "Evaluate 270 J / 0.20 s.",
+                        "options": [
+                            "1350 W",
+                            "540 W",
+                            "135 W",
+                            "2700 W"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "270/0.20 = 1350 W. Dividing by a fifth of a second multiplies by 5."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "psg-cp-2",
+        "section": "C/P",
+        "passage": "Atherosclerotic plaque narrows an artery and changes how blood moves through it. In a benchtop model of a coronary artery, a pump drives an incompressible fluid with the density of blood (1050 kg/m^3) through a rigid tube at a steady volume flow rate. Midway along the tube a molded plaque reduces the internal radius to half its normal value over a short segment before the tube widens again. Pressure sensors record the fluid's lateral (static) pressure against the wall upstream of, within, and downstream of the narrowing, while a Doppler probe measures flow speed at the same locations.\n\nAway from the narrowing the fluid moves at 0.20 m/s. Because the fluid is incompressible and the flow is steady, the same volume per second must cross every section, so the fluid accelerates as it enters the constricted segment. The investigators also compare the pump pressure needed to maintain the flow rate before and after the plaque forms, and they note that the vessel's resistance is extremely sensitive to its radius.\n\nA second module models gas exchange. Air in an alveolus is held at an oxygen partial pressure of about 100 mmHg, while blood entering the surrounding pulmonary capillary has an oxygen partial pressure of about 40 mmHg. A thin, moist membrane separates the two compartments, and the team measures how quickly oxygen crosses as they vary the partial-pressure difference, the membrane thickness, and its area. Height differences in the standing circulation are represented by raising or lowering the capillary bed relative to the pump. Take g = 10 m/s^2.",
+        "passage_source": {
+            "name": "OpenStax College Physics 2e, ch. 11 (fluid statics) and ch. 12 (fluid dynamics: continuity, Bernoulli, Poiseuille, diffusion)",
+            "url": "https://openstax.org/details/books/college-physics-2e",
+            "license": "CC BY 4.0"
+        },
+        "questions": [
+            {
+                "id": "psg-cp-2-q1",
+                "aamc_category": "4B",
+                "subtopic": "Continuity equation",
+                "stem": "In the constricted segment, where the radius is half its normal value, what is the flow speed of the blood-mimicking fluid?",
+                "options": [
+                    "0.40 m/s",
+                    "0.80 m/s",
+                    "1.6 m/s",
+                    "0.050 m/s"
+                ],
+                "correct_index": 1,
+                "explanation": "Continuity for an incompressible fluid is A1v1 = A2v2. Halving the radius quarters the cross-sectional area (A ~ r^2), so the speed must quadruple: v2 = 0.20 * 4 = 0.80 m/s. '0.40 m/s' assumes speed scales with 1/r (factor 2); '1.6 m/s' uses factor 8; '0.050 m/s' has the fluid slowing, which violates continuity.",
+                "difficulty": "medium",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "For steady flow of an incompressible fluid, what is conserved across every cross-section?",
+                        "options": [
+                            "The flow speed",
+                            "The volume flow rate (A*v)",
+                            "The pressure",
+                            "The cross-sectional area"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Volume flow rate Q = A*v is constant (continuity); speed and pressure can change, area varies along the tube."
+                    },
+                    {
+                        "stem": "If the radius is halved, how does the cross-sectional area change?",
+                        "options": [
+                            "Halved",
+                            "Quartered",
+                            "Doubled",
+                            "Unchanged"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "A = pi*r^2 depends on r^2, so halving r multiplies area by (1/2)^2 = 1/4."
+                    },
+                    {
+                        "stem": "If area drops to 1/4, by what factor must speed rise to keep A*v constant?",
+                        "options": [
+                            "2x",
+                            "4x",
+                            "8x",
+                            "1/4"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "To hold A*v fixed, v must scale as 1/A, so a quarter-area means 4x speed: 0.20 -> 0.80 m/s."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-2-q2",
+                "aamc_category": "4B",
+                "subtopic": "Poiseuille's law / vascular resistance",
+                "stem": "Holding everything else fixed, by what factor does the flow resistance of the narrowed segment increase relative to the normal vessel?",
+                "options": [
+                    "4x",
+                    "8x",
+                    "16x",
+                    "2x"
+                ],
+                "correct_index": 2,
+                "explanation": "Poiseuille's law, Q = (pi*r^4*deltaP)/(8*eta*L), makes resistance proportional to 1/r^4. Halving r multiplies resistance by (1/(1/2))^4 = 2^4 = 16. '4x' uses r^2 (area) scaling; '2x' uses r^1; '8x' uses r^3. The fourth-power dependence is why small radius changes dominate vascular resistance.",
+                "difficulty": "hard",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "In Poiseuille's law, resistance to flow depends most strongly on which vessel property?",
+                        "options": [
+                            "Length",
+                            "Radius",
+                            "Fluid density",
+                            "Wall color"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Resistance ~ 1/r^4, an extremely strong dependence; length enters only linearly and density does not appear."
+                    },
+                    {
+                        "stem": "Resistance is proportional to 1/r^4. If r is halved, by what factor is 1/r^4 multiplied?",
+                        "options": [
+                            "4",
+                            "8",
+                            "16",
+                            "2"
+                        ],
+                        "correct_index": 2,
+                        "explanation": "1/(1/2)^4 = 2^4 = 16. The radius change is raised to the fourth power."
+                    },
+                    {
+                        "stem": "Physiologically, why does this matter for blood vessels?",
+                        "options": [
+                            "Small radius changes have negligible effect",
+                            "Small radius changes cause large resistance/flow changes",
+                            "Only length controls flow",
+                            "Density controls flow"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Because of the r^4 term, modest vasoconstriction or a small plaque produces a large change in resistance and flow."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-2-q3",
+                "aamc_category": "4B",
+                "subtopic": "Bernoulli's principle",
+                "stem": "As the fluid speeds up through the narrowed segment at the same height, what happens to the lateral (static) pressure it exerts on the vessel wall?",
+                "options": [
+                    "It decreases, because by Bernoulli's principle faster-moving fluid at the same height has lower static pressure.",
+                    "It increases, because faster fluid pushes harder on the wall.",
+                    "It stays the same, because pressure depends only on depth.",
+                    "It rises to the pump pressure, because energy is added in the constriction."
+                ],
+                "correct_index": 0,
+                "explanation": "Bernoulli's equation, P + 1/2*rho*v^2 + rho*g*h = constant, shows that at constant height an increase in speed (kinetic term) must be offset by a decrease in static pressure P. So lateral pressure falls in the fast, narrow region (which can even collapse a compliant vessel). The other choices confuse dynamic pushing, static-only depth pressure, or invent added energy.",
+                "difficulty": "medium",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "Which terms appear in Bernoulli's equation for an ideal fluid?",
+                        "options": [
+                            "Static pressure, kinetic term (1/2 rho v^2), and gravitational term (rho g h)",
+                            "Only static pressure",
+                            "Only speed",
+                            "Temperature and volume"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Bernoulli sums static pressure, the kinetic energy density, and the gravitational potential energy density along a streamline."
+                    },
+                    {
+                        "stem": "Along a horizontal streamline (constant h), if the 1/2*rho*v^2 term increases, what must the static pressure P do to keep the sum constant?",
+                        "options": [
+                            "Increase",
+                            "Decrease",
+                            "Stay constant",
+                            "Become zero"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "With rho*g*h fixed, a larger kinetic term forces a smaller static pressure P."
+                    },
+                    {
+                        "stem": "What clinical consequence can this pressure drop have in a stenosis?",
+                        "options": [
+                            "It can transiently collapse or draw in a compliant vessel wall",
+                            "It permanently seals the vessel",
+                            "It increases the fluid's density",
+                            "It has no biological relevance"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "The low static pressure in the fast jet can suck inward on a compliant wall, a real effect in vascular flutter/collapse."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-2-q4",
+                "aamc_category": "4B",
+                "subtopic": "Hydrostatic pressure",
+                "stem": "The capillary bed is raised 0.30 m above the pump. How much does hydrostatic pressure alone change the fluid pressure between the pump and the capillary bed?",
+                "options": [
+                    "315 Pa",
+                    "3150 Pa",
+                    "31500 Pa",
+                    "105 Pa"
+                ],
+                "correct_index": 1,
+                "explanation": "Hydrostatic pressure difference is deltaP = rho*g*h = 1050*10*0.30 = 3150 Pa. '315 Pa' drops a factor of 10 (e.g., h = 0.03 m); '31500 Pa' uses h = 3 m; '105 Pa' omits g. This term is why blood pressure differs between the feet and the head when standing.",
+                "difficulty": "medium",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "Which formula gives the pressure difference due to a height change in a static fluid?",
+                        "options": [
+                            "deltaP = rho*g*h",
+                            "deltaP = 1/2*rho*v^2",
+                            "deltaP = rho/g*h",
+                            "deltaP = m*g"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Hydrostatic pressure varies as rho*g*h with vertical height; the 1/2*rho*v^2 term is dynamic, not hydrostatic."
+                    },
+                    {
+                        "stem": "Insert rho = 1050 kg/m^3, g = 10 m/s^2, h = 0.30 m.",
+                        "options": [
+                            "1050*10*0.30",
+                            "1050/10*0.30",
+                            "1050*10/0.30",
+                            "1050+10+0.30"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "The relation is a product rho*g*h = 1050*10*0.30."
+                    },
+                    {
+                        "stem": "Evaluate 1050*10*0.30 (in Pa).",
+                        "options": [
+                            "315 Pa",
+                            "3150 Pa",
+                            "31500 Pa",
+                            "3.15 Pa"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "1050*10 = 10500, times 0.30 = 3150 Pa."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-2-q5",
+                "aamc_category": "4B",
+                "subtopic": "Gas exchange and partial-pressure gradients",
+                "stem": "In the gas-exchange module, which way does oxygen move across the alveolar membrane, and what drives it?",
+                "options": [
+                    "From alveolus to blood, driven by the higher oxygen partial pressure in the alveolar air (100 vs 40 mmHg).",
+                    "From blood to alveolus, driven by the higher oxygen partial pressure in the blood.",
+                    "No net movement, because both compartments contain oxygen.",
+                    "From alveolus to blood, driven by a temperature difference across the membrane."
+                ],
+                "correct_index": 0,
+                "explanation": "Gases diffuse down their partial-pressure gradient. Alveolar PO2 (~100 mmHg) exceeds capillary PO2 (~40 mmHg), so oxygen diffuses from alveolus into blood until the gradient closes. Choice 2 reverses the gradient; choice 3 ignores that net diffusion depends on the difference, not mere presence; choice 4 misattributes the driving force to temperature rather than partial pressure.",
+                "difficulty": "easy",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "What quantity sets the direction of net diffusion of a gas across a membrane?",
+                        "options": [
+                            "Total gas pressure",
+                            "The gas's partial-pressure gradient",
+                            "The membrane's color",
+                            "The fluid's viscosity"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Each gas diffuses independently down its own partial-pressure gradient (a consequence of Dalton's law and Fick's law of diffusion)."
+                    },
+                    {
+                        "stem": "Which compartment has the higher oxygen partial pressure here?",
+                        "options": [
+                            "The alveolar air (100 mmHg)",
+                            "The entering capillary blood (40 mmHg)",
+                            "They are equal",
+                            "Neither contains oxygen"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Alveolar air is held at ~100 mmHg versus ~40 mmHg in the venous blood arriving at the capillary."
+                    },
+                    {
+                        "stem": "Therefore, net oxygen movement is in which direction?",
+                        "options": [
+                            "Alveolus -> blood",
+                            "Blood -> alveolus",
+                            "No net movement",
+                            "Oscillating with no net direction"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "From high to low partial pressure means alveolus -> blood, oxygenating the blood."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "psg-cp-3",
+        "section": "C/P",
+        "passage": "Students build and analyze a galvanic (voltaic) cell and then use batteries to study simple circuits. In the cell, a strip of zinc metal sits in zinc sulfate solution and a strip of copper metal sits in copper sulfate solution; a salt bridge connects the two half-cells, and a wire with a voltmeter links the metal strips. Under standard conditions the tabulated reduction potentials are Zn^2+ + 2 e- -> Zn, E = -0.76 V, and Cu^2+ + 2 e- -> Cu, E = +0.34 V. When the wire is connected, one electrode gains mass while the other slowly dissolves, and the voltmeter registers a steady potential difference. The students confirm which metal is oxidized by weighing the electrodes before and after.\n\nThey then replace the standard 1 M solutions with more dilute ones and record how the measured cell voltage shifts away from its standard value, relating the change to the reaction quotient Q for Zn + Cu^2+ -> Zn^2+ + Cu.\n\nIn the circuit module, a 12 V battery is connected to three resistors: a 6 ohm and a 3 ohm resistor wired in parallel with each other, and that combination wired in series with a 4 ohm resistor. An ammeter reads the current leaving the battery. The students compute the equivalent resistance, the current, and the power the battery delivers, treating the battery as an ideal source with negligible internal resistance and the wires as resistanceless.",
+        "passage_source": {
+            "name": "OpenStax Chemistry 2e, ch. 16 (electrochemistry: galvanic cells, standard reduction potentials, Nernst equation); OpenStax College Physics 2e, ch. 20-21 (current, resistance, DC circuits, power)",
+            "url": "https://openstax.org/details/books/chemistry-2e",
+            "license": "CC BY 4.0"
+        },
+        "questions": [
+            {
+                "id": "psg-cp-3-q1",
+                "aamc_category": "4C",
+                "subtopic": "Standard cell potential",
+                "stem": "What is the standard cell potential (EMF) of the zinc-copper cell?",
+                "options": [
+                    "0.42 V",
+                    "1.10 V",
+                    "-1.10 V",
+                    "0.34 V"
+                ],
+                "correct_index": 1,
+                "explanation": "The cathode is the half-cell with the more positive reduction potential (Cu, +0.34 V); the anode is Zn (-0.76 V). E_cell = E_cathode - E_anode = 0.34 - (-0.76) = +1.10 V. '0.42 V' subtracts the wrong way in magnitude; '-1.10 V' assigns the electrodes backwards (a nonspontaneous sign); '0.34 V' ignores the zinc half-cell. A positive EMF confirms the reaction is spontaneous as written.",
+                "difficulty": "medium",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "Which half-reaction is the cathode (site of reduction)?",
+                        "options": [
+                            "The one with the more positive standard reduction potential (Cu)",
+                            "The one with the more negative potential (Zn)",
+                            "Always the metal listed first",
+                            "Whichever electrode is larger"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "The species more easily reduced (more positive E) is the cathode; here that is Cu^2+/Cu at +0.34 V."
+                    },
+                    {
+                        "stem": "Which formula gives the standard cell potential?",
+                        "options": [
+                            "E_cell = E_cathode - E_anode",
+                            "E_cell = E_anode - E_cathode",
+                            "E_cell = E_cathode + E_anode",
+                            "E_cell = E_cathode * E_anode"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Standard cell potential is the cathode reduction potential minus the anode reduction potential."
+                    },
+                    {
+                        "stem": "Evaluate 0.34 V - (-0.76 V).",
+                        "options": [
+                            "0.42 V",
+                            "1.10 V",
+                            "-0.42 V",
+                            "-1.10 V"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Subtracting a negative adds: 0.34 + 0.76 = 1.10 V."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-3-q2",
+                "aamc_category": "4C",
+                "subtopic": "Anode/cathode and electron flow",
+                "stem": "Which electrode is the anode, and which way do electrons flow in the external wire?",
+                "options": [
+                    "Zinc is the anode; electrons flow through the wire from the zinc electrode to the copper electrode.",
+                    "Copper is the anode; electrons flow from copper to zinc.",
+                    "Zinc is the anode; electrons flow from copper to zinc.",
+                    "Copper is the anode; electrons flow from zinc to copper."
+                ],
+                "correct_index": 0,
+                "explanation": "Oxidation occurs at the anode. Zinc has the more negative reduction potential and is oxidized (it dissolves, losing mass), so Zn is the anode; copper ion is reduced onto the copper electrode (which gains mass), the cathode. Electrons always travel through the external circuit from anode to cathode, i.e., Zn -> Cu. The other options misassign the anode or reverse electron flow.",
+                "difficulty": "medium",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "At which electrode does oxidation occur, by definition?",
+                        "options": [
+                            "The anode",
+                            "The cathode",
+                            "The salt bridge",
+                            "Neither"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Oxidation is always at the anode; reduction is at the cathode ('an-ox, red-cat')."
+                    },
+                    {
+                        "stem": "Which metal is oxidized here (loses mass / dissolves)?",
+                        "options": [
+                            "Zinc",
+                            "Copper",
+                            "Both equally",
+                            "Neither"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Zinc's more negative reduction potential means it is preferentially oxidized; the passage notes the dissolving electrode."
+                    },
+                    {
+                        "stem": "In the external wire, electrons flow from which electrode to which?",
+                        "options": [
+                            "From anode (Zn) to cathode (Cu)",
+                            "From cathode (Cu) to anode (Zn)",
+                            "They do not move",
+                            "Randomly"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Electrons released by oxidation at the anode travel through the wire to the cathode: Zn -> Cu."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-3-q3",
+                "aamc_category": "4C",
+                "subtopic": "Nernst equation / concentration effects",
+                "stem": "Starting from standard conditions, the students lower the Cu^2+ concentration while holding Zn^2+ fixed. What happens to the measured cell voltage?",
+                "options": [
+                    "It decreases, because lowering [Cu^2+] raises the reaction quotient Q, and E = E_standard - (RT/nF)lnQ falls as Q rises.",
+                    "It increases, because lowering [Cu^2+] lowers Q and raises E.",
+                    "It is unchanged, because concentration does not affect cell voltage.",
+                    "It immediately reverses sign, because the cell becomes electrolytic."
+                ],
+                "correct_index": 0,
+                "explanation": "For Zn + Cu^2+ -> Zn^2+ + Cu, Q = [Zn^2+]/[Cu^2+]. Lowering [Cu^2+] increases Q; the Nernst equation E = E_standard - (RT/nF)lnQ then gives a lower E. Choice 2 has the effect of Q backwards; choice 3 ignores the Nernst dependence; choice 4 overstates it (a small dilution does not flip the spontaneous cell into electrolysis).",
+                "difficulty": "hard",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "Write the reaction quotient Q for Zn + Cu^2+ -> Zn^2+ + Cu (pure solids/liquids omitted).",
+                        "options": [
+                            "Q = [Zn^2+]/[Cu^2+]",
+                            "Q = [Cu^2+]/[Zn^2+]",
+                            "Q = [Zn^2+]*[Cu^2+]",
+                            "Q = [Cu^2+] only"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Products over reactants for the dissolved species: [Zn^2+] (product) over [Cu^2+] (reactant); solid Zn and Cu are omitted."
+                    },
+                    {
+                        "stem": "Lowering [Cu^2+] (the denominator) does what to Q?",
+                        "options": [
+                            "Increases Q",
+                            "Decreases Q",
+                            "Leaves Q unchanged",
+                            "Sets Q to zero"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Shrinking the denominator increases the ratio Q."
+                    },
+                    {
+                        "stem": "By the Nernst equation E = E_standard - (RT/nF)lnQ, a larger Q makes E do what?",
+                        "options": [
+                            "Increase",
+                            "Decrease",
+                            "Stay constant",
+                            "Undefined"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "A larger Q makes lnQ larger, subtracting more from E_standard, so E decreases."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-3-q4",
+                "aamc_category": "4C",
+                "subtopic": "Equivalent resistance and Ohm's law",
+                "stem": "In the circuit module, what current does the ammeter read leaving the 12 V battery?",
+                "options": [
+                    "2 A",
+                    "1 A",
+                    "6 A",
+                    "0.5 A"
+                ],
+                "correct_index": 0,
+                "explanation": "The 6 ohm and 3 ohm resistors in parallel combine to (6*3)/(6+3) = 2 ohm; in series with the 4 ohm resistor the equivalent resistance is 2 + 4 = 6 ohm. Ohm's law gives I = V/R = 12/6 = 2 A. '1 A' uses R = 12 ohm (adding the parallel pair as if in series); '6 A' divides by the 2 ohm parallel value alone; '0.5 A' inverts a step.",
+                "difficulty": "hard",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "What is the equivalent resistance of a 6 ohm and a 3 ohm resistor in parallel?",
+                        "options": [
+                            "9 ohm",
+                            "2 ohm",
+                            "4.5 ohm",
+                            "18 ohm"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "For parallel resistors, R = (R1*R2)/(R1+R2) = 18/9 = 2 ohm (always less than the smallest branch)."
+                    },
+                    {
+                        "stem": "Add the 4 ohm series resistor. What is the total circuit resistance?",
+                        "options": [
+                            "2 ohm",
+                            "4 ohm",
+                            "6 ohm",
+                            "10 ohm"
+                        ],
+                        "correct_index": 2,
+                        "explanation": "Series resistances add: 2 + 4 = 6 ohm."
+                    },
+                    {
+                        "stem": "Apply Ohm's law with V = 12 V and R = 6 ohm.",
+                        "options": [
+                            "I = 0.5 A",
+                            "I = 2 A",
+                            "I = 6 A",
+                            "I = 72 A"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "I = V/R = 12/6 = 2 A."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-3-q5",
+                "aamc_category": "4C",
+                "subtopic": "Electrical power",
+                "stem": "What total electrical power does the 12 V battery deliver to the circuit?",
+                "options": [
+                    "24 W",
+                    "12 W",
+                    "6 W",
+                    "48 W"
+                ],
+                "correct_index": 0,
+                "explanation": "Power delivered by the source is P = IV = 2 A * 12 V = 24 W (equivalently I^2*R_total = 4*6 = 24 W, or V^2/R = 144/6 = 24 W). '12 W' forgets to multiply by current; '48 W' doubles it; '6 W' confuses power with resistance. All three power formulas agree at 24 W.",
+                "difficulty": "medium",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "Which expression gives the power delivered by a source of voltage V carrying current I?",
+                        "options": [
+                            "P = IV",
+                            "P = I/V",
+                            "P = V/I",
+                            "P = I + V"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Electrical power is the product P = IV; the other forms have wrong units."
+                    },
+                    {
+                        "stem": "Insert I = 2 A and V = 12 V.",
+                        "options": [
+                            "2 * 12",
+                            "12 / 2",
+                            "2 / 12",
+                            "12 - 2"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "P = IV means multiply: 2 A * 12 V."
+                    },
+                    {
+                        "stem": "Evaluate 2 A * 12 V.",
+                        "options": [
+                            "6 W",
+                            "24 W",
+                            "48 W",
+                            "14 W"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "2 * 12 = 24 W, matching I^2*R = 4*6 and V^2/R = 144/6."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "psg-cp-4",
+        "section": "C/P",
+        "passage": "Diagnostic imaging often relies on how waves interact with tissue. In an ultrasound scanner, a transducer emits pulses of high-frequency sound into the body and listens for echoes returning from boundaries between tissues. A common obstetric probe operates at 2.0 MHz, and sound travels through soft tissue at about 1540 m/s. The scanner forms an image from the time delay and strength of each returning echo, and clinicians choose the probe frequency to trade off image detail against how deep the sound can penetrate.\n\nA Doppler mode measures blood flow. When a pulse reflects from red blood cells moving relative to the transducer, the returning sound is shifted in frequency; the scanner converts this shift into a flow velocity and direction, coloring flow toward and away from the probe differently.\n\nA second instrument, a fiber-optic endoscope, guides visible light instead of sound. Light travels along a thin glass fiber whose core has a higher refractive index (about 1.5) than its surrounding cladding (about 1.2). Rays that strike the core-cladding boundary at a large enough angle are trapped inside the core and travel the fiber's length with little loss, so the endoscope can illuminate and image tissue deep inside the body and around bends. The physicians rely on the same refraction principles when a laser beam crosses from one tissue layer into another and changes direction. Throughout, the team treats soft tissue as a uniform medium for sound and the fiber as an ideal light guide.",
+        "passage_source": {
+            "name": "OpenStax College Physics 2e, ch. 16-17 (sound, intensity, Doppler effect) and ch. 25 (geometric optics: reflection, refraction, total internal reflection)",
+            "url": "https://openstax.org/details/books/college-physics-2e",
+            "license": "CC BY 4.0"
+        },
+        "questions": [
+            {
+                "id": "psg-cp-4-q1",
+                "aamc_category": "4D",
+                "subtopic": "Wave speed, frequency, wavelength",
+                "stem": "What is the wavelength of the 2.0 MHz ultrasound in soft tissue (speed 1540 m/s)?",
+                "options": [
+                    "0.077 mm",
+                    "0.77 mm",
+                    "1.3 mm",
+                    "7.7 mm"
+                ],
+                "correct_index": 1,
+                "explanation": "The wave relation v = f*lambda gives lambda = v/f = 1540/(2.0x10^6) = 7.7x10^-4 m = 0.77 mm. '7.7 mm' is off by 10x; '0.077 mm' by 10x the other way; '1.3 mm' inverts a step. Sub-millimeter wavelength is why ultrasound can resolve fine structures.",
+                "difficulty": "medium",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "Which equation relates wave speed v, frequency f, and wavelength lambda?",
+                        "options": [
+                            "v = f*lambda",
+                            "v = f/lambda",
+                            "v = lambda/f",
+                            "v = f + lambda"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "For any wave, speed equals frequency times wavelength: v = f*lambda."
+                    },
+                    {
+                        "stem": "Solve for wavelength and substitute v = 1540 m/s, f = 2.0x10^6 Hz.",
+                        "options": [
+                            "lambda = 1540/(2.0x10^6)",
+                            "lambda = (2.0x10^6)/1540",
+                            "lambda = 1540*(2.0x10^6)",
+                            "lambda = 1540-2.0x10^6"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Rearranging v = f*lambda gives lambda = v/f = 1540/(2.0x10^6)."
+                    },
+                    {
+                        "stem": "Evaluate 1540/(2.0x10^6) m and convert to mm.",
+                        "options": [
+                            "0.77 mm",
+                            "7.7 mm",
+                            "0.077 mm",
+                            "77 mm"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "1540/2,000,000 = 7.7x10^-4 m; times 1000 mm/m = 0.77 mm."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-4-q2",
+                "aamc_category": "4D",
+                "subtopic": "Frequency, resolution, and attenuation",
+                "stem": "Why do clinicians pick a higher-frequency probe for a superficial structure but a lower-frequency probe for a deep organ?",
+                "options": [
+                    "Higher frequency penetrates deeper and also resolves better, so there is no trade-off.",
+                    "Lower frequency has a shorter wavelength and therefore resolves fine detail better.",
+                    "Higher frequency has a shorter wavelength (finer resolution) but is attenuated more strongly, so it penetrates less deeply.",
+                    "Frequency changes penetration but has no effect on spatial resolution."
+                ],
+                "correct_index": 2,
+                "explanation": "Since v is roughly fixed in tissue, a higher frequency means a shorter wavelength, which improves spatial resolution; but higher-frequency sound is absorbed/scattered more, limiting depth. Hence high frequency for shallow, high-detail targets and low frequency for deep targets. Choice 1 denies the real trade-off; choice 2 reverses the frequency-wavelength relation; choice 4 ignores the wavelength-resolution link.",
+                "difficulty": "medium",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "At fixed wave speed, a higher frequency corresponds to a ___ wavelength.",
+                        "options": [
+                            "longer",
+                            "shorter",
+                            "unchanged",
+                            "zero"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Because v = f*lambda with v ~ constant, raising f lowers lambda."
+                    },
+                    {
+                        "stem": "A shorter wavelength allows the scanner to resolve...",
+                        "options": [
+                            "coarser features only",
+                            "finer, smaller features",
+                            "no features",
+                            "only color, not size"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Resolution scales with wavelength; shorter wavelengths distinguish smaller, closely spaced structures."
+                    },
+                    {
+                        "stem": "Higher-frequency ultrasound is attenuated (absorbed/scattered) ___ as it travels, so it penetrates ___.",
+                        "options": [
+                            "less; deeper",
+                            "more; less deeply",
+                            "not at all; infinitely",
+                            "more; more deeply"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Attenuation rises with frequency, so high-frequency beams lose energy quickly and cannot reach deep tissue."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-4-q3",
+                "aamc_category": "4D",
+                "subtopic": "Doppler effect",
+                "stem": "In Doppler mode, how does the frequency of the returning ultrasound compare with the emitted frequency when red blood cells move toward the transducer?",
+                "options": [
+                    "The returning frequency is lower than the emitted frequency.",
+                    "The returning frequency is higher than the emitted frequency.",
+                    "The frequency is unchanged; only echo amplitude encodes velocity.",
+                    "The wavelength lengthens while the frequency stays the same."
+                ],
+                "correct_index": 1,
+                "explanation": "By the Doppler effect, motion of the reflector toward the transducer compresses the returning wavefronts, raising the detected frequency (an upshift). Flow away from the probe lowers it. Choice 1 reverses the shift; choice 3 denies the Doppler mechanism; choice 4 is internally inconsistent (in a fixed medium f and lambda shift together).",
+                "difficulty": "medium",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "In the Doppler effect, an observer and source approaching each other detect a frequency that is...",
+                        "options": [
+                            "lower",
+                            "higher",
+                            "unchanged",
+                            "zero"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Approaching motion crowds wavefronts, raising the observed frequency."
+                    },
+                    {
+                        "stem": "A red blood cell moving toward the probe reflects the pulse and acts like a source moving toward the transducer. The returning frequency is therefore...",
+                        "options": [
+                            "decreased",
+                            "increased",
+                            "unchanged",
+                            "randomized"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "The moving reflector both receives an upshifted wave and re-emits toward the probe, compounding into a higher returning frequency."
+                    },
+                    {
+                        "stem": "So the scanner interprets an upshifted echo as flow...",
+                        "options": [
+                            "away from the probe",
+                            "toward the probe",
+                            "of zero velocity",
+                            "perpendicular only"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "An increase in returning frequency corresponds to flow toward the transducer."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-4-q4",
+                "aamc_category": "4D",
+                "subtopic": "Total internal reflection (condition)",
+                "stem": "What conditions allow light to be trapped in the endoscope's fiber core by total internal reflection?",
+                "options": [
+                    "Any ray entering the fiber is totally internally reflected, regardless of its angle.",
+                    "Light must pass from the lower-index cladding into the higher-index core above the critical angle.",
+                    "Total internal reflection occurs only when the core and cladding indices are exactly equal.",
+                    "Light must travel from the higher-index core toward the lower-index cladding and strike the boundary at an angle greater than the critical angle."
+                ],
+                "correct_index": 3,
+                "explanation": "Total internal reflection requires light going from a higher-index medium (core, 1.5) to a lower-index medium (cladding, 1.2) AND an angle of incidence beyond the critical angle. Choice 1 ignores the angle requirement; choice 2 reverses the index ordering; choice 3 is wrong because equal indices give no reflection boundary at all.",
+                "difficulty": "medium",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "Total internal reflection can occur only when light travels from a medium of ___ index toward one of ___ index.",
+                        "options": [
+                            "higher; lower",
+                            "lower; higher",
+                            "equal; equal",
+                            "zero; infinite"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "TIR needs n1 > n2 (higher to lower index), as from the fiber core into the cladding."
+                    },
+                    {
+                        "stem": "In addition to that index ordering, the angle of incidence must be...",
+                        "options": [
+                            "exactly zero",
+                            "less than the critical angle",
+                            "greater than the critical angle",
+                            "exactly 45 degrees"
+                        ],
+                        "correct_index": 2,
+                        "explanation": "Only incidence angles beyond the critical angle produce total internal reflection; below it, light refracts out."
+                    },
+                    {
+                        "stem": "In the fiber, which layer is the higher-index 'core' the light stays within?",
+                        "options": [
+                            "The n = 1.2 cladding",
+                            "The n = 1.5 core",
+                            "The surrounding air",
+                            "The tissue"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Light is confined to the higher-index core (n = 1.5); the lower-index cladding (n = 1.2) forms the reflecting boundary."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-4-q5",
+                "aamc_category": "4D",
+                "subtopic": "Critical angle calculation",
+                "stem": "For the fiber core (n = 1.5) and cladding (n = 1.2), what is the critical angle for total internal reflection at the core-cladding boundary?",
+                "options": [
+                    "37 degrees",
+                    "48 degrees",
+                    "53 degrees",
+                    "90 degrees"
+                ],
+                "correct_index": 2,
+                "explanation": "The critical angle satisfies sin(theta_c) = n_cladding/n_core = 1.2/1.5 = 0.80, so theta_c = arcsin(0.80) ~ 53 degrees. '37 degrees' is arcsin of 0.6 (the complement error); '90 degrees' would require equal indices; '48 degrees' comes from a mis-set ratio. Rays striking beyond ~53 degrees are guided.",
+                "difficulty": "hard",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "Which relation gives the critical angle between core (n1) and cladding (n2)?",
+                        "options": [
+                            "sin(theta_c) = n2/n1",
+                            "sin(theta_c) = n1/n2",
+                            "cos(theta_c) = n2/n1",
+                            "tan(theta_c) = n1*n2"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Setting the refraction angle to 90 degrees in Snell's law gives sin(theta_c) = n2/n1, the lower index over the higher."
+                    },
+                    {
+                        "stem": "Compute n2/n1 = 1.2/1.5.",
+                        "options": [
+                            "0.80",
+                            "1.25",
+                            "0.60",
+                            "0.20"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "1.2/1.5 = 0.80; this is sin(theta_c)."
+                    },
+                    {
+                        "stem": "Find theta_c = arcsin(0.80).",
+                        "options": [
+                            "about 37 degrees",
+                            "about 53 degrees",
+                            "about 90 degrees",
+                            "about 27 degrees"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "arcsin(0.80) ~ 53 degrees (the 3-4-5 triangle: sin 53 ~ 0.8)."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "psg-cp-5",
+        "section": "C/P",
+        "passage": "Nuclear medicine uses radioactive isotopes to image the body. The most widely used tracer, technetium-99m, is a metastable ('m') nuclear state that returns to its ground state by emitting a single gamma-ray photon, without changing its number of protons or neutrons. Because those gamma photons escape the body and reach a gamma camera, and because the isotope's half-life is a convenient 6.0 hours, it images well and clears quickly. A patient receives an initial activity of 800 MBq, and the staff track how the activity falls over the following day.\n\nPositron emission tomography (PET) uses a different decay. Fluorine-18, built into a glucose analog, decays by positron emission: inside the nucleus a proton is converted into a neutron, and a positron is ejected. The positron soon annihilates with a nearby electron, producing two photons the scanner detects in coincidence.\n\nThe passage also compares decay modes. Some heavy parents decay by alpha emission, ejecting a helium-4 nucleus, while others undergo beta-minus decay. In every case the totals of mass number and charge are conserved across the nuclear equation. Finally, the team notes that alpha, beta, and especially gamma emissions are all 'ionizing': each quantum can carry enough energy to eject electrons from the atoms it strikes, which is both the basis of detection and the reason for strict dose limits. Planck's relation ties a photon's energy to its frequency, and gamma photons lie at the high-energy end of the electromagnetic spectrum.",
+        "passage_source": {
+            "name": "OpenStax Chemistry 2e, ch. 21 (nuclear chemistry: radioactive decay modes, half-life, nuclear equations) and ch. 6 (electronic structure, Planck relation E = hf)",
+            "url": "https://openstax.org/details/books/chemistry-2e",
+            "license": "CC BY 4.0"
+        },
+        "questions": [
+            {
+                "id": "psg-cp-5-q1",
+                "aamc_category": "4E",
+                "subtopic": "Radioactive half-life",
+                "stem": "Technetium-99m has a 6.0 hour half-life. If the patient starts with 800 MBq, what activity remains 24 hours later (ignoring biological clearance)?",
+                "options": [
+                    "25 MBq",
+                    "50 MBq",
+                    "100 MBq",
+                    "200 MBq"
+                ],
+                "correct_index": 1,
+                "explanation": "In 24 hours there are 24/6 = 4 half-lives, so the surviving fraction is (1/2)^4 = 1/16, giving 800/16 = 50 MBq. '100 MBq' uses 3 half-lives; '200 MBq' uses 2; '25 MBq' uses 5. Each half-life halves the activity: 800 -> 400 -> 200 -> 100 -> 50.",
+                "difficulty": "medium",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "How many half-lives elapse in 24 hours if each is 6.0 hours?",
+                        "options": [
+                            "2",
+                            "3",
+                            "4",
+                            "6"
+                        ],
+                        "correct_index": 2,
+                        "explanation": "24/6 = 4 half-lives."
+                    },
+                    {
+                        "stem": "What fraction of the original activity remains after 4 half-lives?",
+                        "options": [
+                            "1/8",
+                            "1/16",
+                            "1/4",
+                            "1/32"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Each half-life multiplies by 1/2, so after 4 it is (1/2)^4 = 1/16."
+                    },
+                    {
+                        "stem": "Evaluate 800 MBq x 1/16.",
+                        "options": [
+                            "25 MBq",
+                            "50 MBq",
+                            "100 MBq",
+                            "200 MBq"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "800/16 = 50 MBq. Halving four times: 800 -> 400 -> 200 -> 100 -> 50."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-5-q2",
+                "aamc_category": "4E",
+                "subtopic": "Gamma emission / isomeric transition",
+                "stem": "When technetium-99m emits its gamma photon, what happens to the nucleus?",
+                "options": [
+                    "A gamma photon is emitted and the mass number decreases by 4.",
+                    "Only a gamma photon is emitted; the atomic number and mass number are both unchanged.",
+                    "A neutron is converted to a proton, raising the atomic number by 1.",
+                    "An alpha particle is emitted, lowering the atomic number by 2."
+                ],
+                "correct_index": 1,
+                "explanation": "Gamma emission (here an isomeric transition) releases excess nuclear energy as a photon but changes neither the proton count (Z) nor the neutron count, so Tc-99m -> Tc-99 with the same Z and A. Choices 1, 3, and 4 describe alpha or beta processes, which do change Z and/or A.",
+                "difficulty": "easy",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "A gamma ray is fundamentally what kind of particle?",
+                        "options": [
+                            "A helium nucleus",
+                            "A high-energy photon",
+                            "An electron",
+                            "A proton"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Gamma radiation is a high-energy electromagnetic photon, not a massive particle."
+                    },
+                    {
+                        "stem": "Emitting a photon carries away energy but not nucleons. What happens to Z and A?",
+                        "options": [
+                            "Both decrease",
+                            "Both increase",
+                            "Both stay the same",
+                            "Z rises, A falls"
+                        ],
+                        "correct_index": 2,
+                        "explanation": "With no nucleons lost, the atomic number and mass number are unchanged."
+                    },
+                    {
+                        "stem": "So technetium-99m becomes...",
+                        "options": [
+                            "Tc-95",
+                            "Tc-99 (same element, lower energy)",
+                            "Mo-99",
+                            "Ru-99"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "It is the same isotope in a lower-energy state: Tc-99m -> Tc-99 + gamma."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-5-q3",
+                "aamc_category": "4E",
+                "subtopic": "Positron (beta-plus) emission",
+                "stem": "In fluorine-18's positron emission, what change occurs in the nucleus?",
+                "options": [
+                    "A neutron becomes a proton, so the atomic number rises by 1 (F-18 -> Ne-18).",
+                    "A gamma photon is emitted with no change in atomic number.",
+                    "A proton becomes a neutron, so the atomic number falls by 1 while the mass number is unchanged (F-18 -> O-18).",
+                    "Two protons and two neutrons leave together as an alpha particle."
+                ],
+                "correct_index": 2,
+                "explanation": "Positron (beta-plus) emission converts a proton into a neutron, ejecting a positron; the atomic number decreases by 1 (9 -> 8) while the mass number stays at 18, so F-18 becomes O-18. Choice 1 describes beta-minus; choice 2 is gamma; choice 4 is alpha decay.",
+                "difficulty": "medium",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "Positron emission converts which nucleon into which?",
+                        "options": [
+                            "A neutron into a proton",
+                            "A proton into a neutron",
+                            "An electron into a proton",
+                            "A proton into an alpha particle"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "A proton is converted to a neutron, ejecting a positron (and a neutrino)."
+                    },
+                    {
+                        "stem": "Converting a proton to a neutron changes the atomic number Z how?",
+                        "options": [
+                            "Increases by 1",
+                            "Decreases by 1",
+                            "No change",
+                            "Decreases by 2"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Losing a proton lowers Z by 1; the total nucleon count (mass number) is unchanged."
+                    },
+                    {
+                        "stem": "Fluorine has Z = 9. The daughter with Z = 8 and A = 18 is...",
+                        "options": [
+                            "Ne-18",
+                            "O-18",
+                            "N-18",
+                            "F-17"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Z = 8 is oxygen, so F-18 -> O-18 (mass number preserved)."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-5-q4",
+                "aamc_category": "4E",
+                "subtopic": "Balancing nuclear equations (alpha decay)",
+                "stem": "A radium-226 nucleus (Z = 88) undergoes alpha decay. What is the daughter nuclide?",
+                "options": [
+                    "Ra-222 (Z = 88)",
+                    "Rn-224 (Z = 86)",
+                    "Rn-222 (Z = 86)",
+                    "At-222 (Z = 85)"
+                ],
+                "correct_index": 2,
+                "explanation": "An alpha particle is a helium-4 nucleus (2 protons, 2 neutrons), so the mass number drops by 4 (226 -> 222) and the atomic number drops by 2 (88 -> 86). Element 86 is radon, giving Rn-222. 'Ra-222' wrongly keeps Z = 88; 'Rn-224' subtracts only 2 from A; 'At-222' has Z = 85 (subtracting 3).",
+                "difficulty": "medium",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "An alpha particle consists of...",
+                        "options": [
+                            "1 proton and 1 neutron",
+                            "2 protons and 2 neutrons (a He-4 nucleus)",
+                            "an electron",
+                            "a photon"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "The alpha particle is a helium-4 nucleus: 2 protons and 2 neutrons."
+                    },
+                    {
+                        "stem": "Alpha decay changes the mass number A by...",
+                        "options": [
+                            "-2",
+                            "-4",
+                            "0",
+                            "-1"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Losing 2 protons + 2 neutrons removes 4 nucleons, so A decreases by 4: 226 -> 222."
+                    },
+                    {
+                        "stem": "Alpha decay changes the atomic number Z by -2. From Z = 88, the daughter element (Z = 86) is...",
+                        "options": [
+                            "radium (Ra)",
+                            "radon (Rn)",
+                            "astatine (At)",
+                            "polonium (Po)"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "88 - 2 = 86, which is radon (Rn); combined with A = 222 the daughter is Rn-222."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-5-q5",
+                "aamc_category": "4E",
+                "subtopic": "Photon energy and ionization",
+                "stem": "The passage calls gamma photons 'ionizing.' Which explanation is correct?",
+                "options": [
+                    "Each photon's energy, E = hf, is large enough to eject bound electrons from the atoms it strikes.",
+                    "The photons are ionizing because they carry a net electric charge.",
+                    "They are ionizing only because they move at the speed of light, like all light.",
+                    "Ionization occurs because gamma photons have unusually long wavelengths."
+                ],
+                "correct_index": 0,
+                "explanation": "By Planck's relation E = hf, gamma photons (very high frequency, short wavelength) carry large energy per photon; when that energy exceeds an electron's binding energy, the electron is ejected (ionization). Choice 2 is wrong because photons are uncharged; choice 3 is true of all light yet most light is non-ionizing; choice 4 inverts the wavelength-energy relationship.",
+                "difficulty": "medium",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "Planck's relation for the energy of a photon is...",
+                        "options": [
+                            "E = hf",
+                            "E = mf",
+                            "E = h/f",
+                            "E = f/h"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "A photon's energy is Planck's constant times its frequency, E = hf (= hc/lambda)."
+                    },
+                    {
+                        "stem": "Compared with visible light, gamma photons have a much ___ frequency and therefore ___ energy per photon.",
+                        "options": [
+                            "lower; lower",
+                            "higher; higher",
+                            "higher; lower",
+                            "lower; higher"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Gamma rays sit at the high-frequency, short-wavelength end, so E = hf is very large."
+                    },
+                    {
+                        "stem": "Ionization occurs when a single photon's energy exceeds what?",
+                        "options": [
+                            "The atom's mass",
+                            "An electron's binding (ionization) energy",
+                            "The speed of light",
+                            "Avogadro's number"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "If E = hf is greater than the electron's binding energy, the photon can knock the electron free, ionizing the atom."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "psg-cp-6",
+        "section": "C/P",
+        "passage": "Water's ability to dissolve ions and to resist changes in acidity underlies much of physiology. Blood plasma is held near pH 7.4 largely by the carbonic acid-bicarbonate buffer: dissolved carbon dioxide forms carbonic acid, which dissociates into a hydrogen ion and bicarbonate, H2CO3 <=> H+ + HCO3-. The effective pKa for this equilibrium in plasma is about 6.1. Normally the concentration of bicarbonate is roughly twenty times that of dissolved carbonic acid, and the lungs and kidneys adjust the two components to hold that ratio steady. The Henderson-Hasselbalch equation links the pH to the ratio of conjugate base to weak acid.\n\nTo study buffering directly, students titrate a weak acid at 25 C. They place 0.10 M acetic acid (pKa 4.74) in a flask and add sodium hydroxide from a burette while a pH meter records the curve. Early on the pH rises slowly through a buffering plateau; near the end it climbs steeply through the equivalence point, where exactly enough base has been added to neutralize all the acid. A separate reference solution at 25 C is measured to have a pH of 3.0.\n\nThe students note that at 25 C the ion product of water fixes pH + pOH = 14, and that a solution's acidity reflects the balance between hydrogen and hydroxide ions produced when water and solutes interact. They also test the buffer's resilience by adding a few drops of strong acid to the bicarbonate system and to plain water, comparing how far the pH of each moves.",
+        "passage_source": {
+            "name": "OpenStax Chemistry 2e, ch. 14 (acid-base equilibria: pH/pOH, buffers, titration curves, Henderson-Hasselbalch) and ch. 11 (solutions)",
+            "url": "https://openstax.org/details/books/chemistry-2e",
+            "license": "CC BY 4.0"
+        },
+        "questions": [
+            {
+                "id": "psg-cp-6-q1",
+                "aamc_category": "5A",
+                "subtopic": "Henderson-Hasselbalch equation",
+                "stem": "Using pKa = 6.1 and a bicarbonate-to-carbonic-acid ratio of 20:1, what blood pH does the Henderson-Hasselbalch equation predict?",
+                "options": [
+                    "4.8",
+                    "6.1",
+                    "7.4",
+                    "8.7"
+                ],
+                "correct_index": 2,
+                "explanation": "pH = pKa + log([HCO3-]/[H2CO3]) = 6.1 + log(20) = 6.1 + 1.30 = 7.4. '6.1' forgets the ratio term (log 1 = 0); '4.8' subtracts instead of adds; '8.7' uses log(400). The 20:1 ratio is exactly what places physiological pH at 7.4 despite a pKa of 6.1.",
+                "difficulty": "medium",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "Write the Henderson-Hasselbalch equation for a buffer.",
+                        "options": [
+                            "pH = pKa + log([A-]/[HA])",
+                            "pH = pKa - log([A-]/[HA])",
+                            "pH = pKa * [A-]/[HA]",
+                            "pH = pKa + [A-]/[HA]"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "pH equals pKa plus the base-10 log of the conjugate-base-to-weak-acid ratio."
+                    },
+                    {
+                        "stem": "Evaluate log(20).",
+                        "options": [
+                            "about 1.3",
+                            "about 2.0",
+                            "about 0.3",
+                            "about 20"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "log(20) = log(2) + log(10) = 0.30 + 1.0 = 1.30."
+                    },
+                    {
+                        "stem": "Add: 6.1 + 1.3.",
+                        "options": [
+                            "4.8",
+                            "6.1",
+                            "7.4",
+                            "8.7"
+                        ],
+                        "correct_index": 2,
+                        "explanation": "6.1 + 1.3 = 7.4, the normal arterial blood pH."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-6-q2",
+                "aamc_category": "5A",
+                "subtopic": "pH, pOH, and [H+]",
+                "stem": "The reference solution at 25 C has pH 3.0. What are its hydrogen-ion concentration and pOH?",
+                "options": [
+                    "[H+] = 1x10^-3 M and pOH = 11",
+                    "[H+] = 1x10^-11 M and pOH = 11",
+                    "[H+] = 1x10^-3 M and pOH = 3",
+                    "[H+] = 3 M and pOH = 11"
+                ],
+                "correct_index": 0,
+                "explanation": "By definition [H+] = 10^-pH = 10^-3 = 1x10^-3 M, and at 25 C pH + pOH = 14, so pOH = 14 - 3 = 11. Option 2 confuses [H+] with [OH-]; option 3 sets pOH = pH; option 4 misreads pH 3 as [H+] = 3 M.",
+                "difficulty": "easy",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "How do you get [H+] from pH?",
+                        "options": [
+                            "[H+] = 10^-pH",
+                            "[H+] = 10^pH",
+                            "[H+] = pH/14",
+                            "[H+] = 14 - pH"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "pH is defined as -log[H+], so [H+] = 10^-pH; for pH 3 that is 1x10^-3 M."
+                    },
+                    {
+                        "stem": "At 25 C, what is the relationship between pH and pOH?",
+                        "options": [
+                            "pH + pOH = 14",
+                            "pH - pOH = 14",
+                            "pH * pOH = 14",
+                            "pH = pOH"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "The ion product of water gives pH + pOH = 14 at 25 C."
+                    },
+                    {
+                        "stem": "Compute pOH for pH = 3.0.",
+                        "options": [
+                            "3",
+                            "7",
+                            "11",
+                            "14"
+                        ],
+                        "correct_index": 2,
+                        "explanation": "pOH = 14 - 3 = 11."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-6-q3",
+                "aamc_category": "5A",
+                "subtopic": "Buffer region / half-equivalence point",
+                "stem": "Halfway to the equivalence point in the acetic acid titration, what is the pH?",
+                "options": [
+                    "About 7.0 (neutral), regardless of the acid.",
+                    "About 2.0, the pH of the starting acid.",
+                    "Equal to the pKa (about 4.74), because half-neutralization makes [HA] = [A-].",
+                    "Equal to 14 minus the pKa."
+                ],
+                "correct_index": 2,
+                "explanation": "At half-equivalence, half the acetic acid has been converted to acetate, so [HA] = [A-]; Henderson-Hasselbalch gives pH = pKa + log(1) = pKa = 4.74. This is the point of maximum buffering. The other choices ignore the buffer relation or confuse pH with pOH.",
+                "difficulty": "medium",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "At the half-equivalence point, how do [HA] and [A-] compare?",
+                        "options": [
+                            "[HA] >> [A-]",
+                            "[HA] = [A-]",
+                            "[A-] >> [HA]",
+                            "[A-] = 0"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Adding base to convert exactly half the acid leaves equal concentrations of acid and conjugate base."
+                    },
+                    {
+                        "stem": "Substitute [A-]/[HA] = 1 into pH = pKa + log([A-]/[HA]).",
+                        "options": [
+                            "pH = pKa + log(1)",
+                            "pH = pKa + 1",
+                            "pH = pKa * 1",
+                            "pH = pKa - 1"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "The ratio is 1, so the log term is log(1)."
+                    },
+                    {
+                        "stem": "Since log(1) = 0, the pH equals...",
+                        "options": [
+                            "0",
+                            "the pKa (4.74)",
+                            "7.0",
+                            "14"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "pH = pKa + 0 = pKa = 4.74 at half-equivalence."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-6-q4",
+                "aamc_category": "5A",
+                "subtopic": "Equivalence point of a weak acid-strong base titration",
+                "stem": "At the equivalence point of the acetic acid-NaOH titration, the pH is:",
+                "options": [
+                    "exactly 7, because equal moles of acid and base were combined",
+                    "greater than 7 (basic), because the solution now contains acetate, a weak base",
+                    "less than 7 (acidic), because unreacted acetic acid remains",
+                    "exactly equal to the pKa"
+                ],
+                "correct_index": 1,
+                "explanation": "At equivalence all acetic acid has been converted to acetate. Acetate is the conjugate base of a weak acid and reacts with water to give OH-, so the solution is basic (pH > 7). Choice 1 is the strong-acid/strong-base result; choice 3 wrongly claims leftover acid; choice 4 describes the half-equivalence point.",
+                "difficulty": "medium",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "At the equivalence point, essentially all the acetic acid has become...",
+                        "options": [
+                            "carbon dioxide",
+                            "acetate ion (A-)",
+                            "water only",
+                            "sodium metal"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Stoichiometric NaOH converts all HA to its conjugate base, acetate."
+                    },
+                    {
+                        "stem": "Acetate ion reacts with water to produce which ion, making the solution basic?",
+                        "options": [
+                            "H+",
+                            "OH-",
+                            "Cl-",
+                            "Na+"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "As a weak base, acetate takes a proton from water, releasing OH- (hydrolysis)."
+                    },
+                    {
+                        "stem": "Therefore the equivalence-point pH is...",
+                        "options": [
+                            "exactly 7",
+                            "greater than 7",
+                            "less than 7",
+                            "undefined"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Excess OH- from acetate hydrolysis makes the pH greater than 7."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-6-q5",
+                "aamc_category": "5A",
+                "subtopic": "Buffer action",
+                "stem": "Adding a few drops of strong acid changes the pH of plain water far more than that of the bicarbonate buffer. Why?",
+                "options": [
+                    "Plain water contains more dissolved oxygen to react with the acid.",
+                    "The buffer is at a higher temperature, which resists pH change.",
+                    "Strong acid fails to dissociate when a buffer is present.",
+                    "Bicarbonate ion neutralizes the added H+ (forming carbonic acid), so the base-to-acid ratio, and thus the pH, shift only slightly."
+                ],
+                "correct_index": 3,
+                "explanation": "A buffer contains a weak acid and its conjugate base; the conjugate base (HCO3-) consumes added H+ to form H2CO3, so only the ratio in the Henderson-Hasselbalch equation changes slightly and pH barely moves. Plain water has no such reservoir, so the same acid drops its pH sharply. The other choices invent irrelevant mechanisms.",
+                "difficulty": "medium",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "A buffer resists pH change because it contains...",
+                        "options": [
+                            "only a strong acid",
+                            "a weak acid and its conjugate base together",
+                            "only water",
+                            "a metal catalyst"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "The paired weak acid and conjugate base absorb added acid or base."
+                    },
+                    {
+                        "stem": "When strong acid (H+) is added to the bicarbonate buffer, which component reacts with it?",
+                        "options": [
+                            "Bicarbonate (HCO3-), the conjugate base",
+                            "Nothing reacts",
+                            "Only water",
+                            "Sodium ions"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "The conjugate base HCO3- consumes H+, becoming H2CO3, so free H+ does not accumulate."
+                    },
+                    {
+                        "stem": "Because only the [HCO3-]/[H2CO3] ratio shifts slightly, the pH...",
+                        "options": [
+                            "swings wildly",
+                            "changes only a little",
+                            "goes to 0",
+                            "goes to 14"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "pH depends on the log of the ratio, so a small ratio change means a small pH change - unlike plain water."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "psg-cp-7",
+        "section": "C/P",
+        "passage": "The physical properties of a substance are set largely by the forces between its molecules. Consider a data set the students assemble. Among the hydrides of Group 16, hydrogen sulfide (H2S) boils at -60 C, yet water (H2O), a lighter molecule, boils at +100 C - a striking exception to the usual trend that heavier molecules boil higher. The students also compare two compounds with the identical formula C2H6O: ethanol, which boils at 78 C, and dimethyl ether, which boils at -24 C. Finally, they tabulate the boiling points of the noble gases and find a steady rise from helium through xenon.\n\nTo interpret the data they review molecular structure. Oxygen is far more electronegative than hydrogen, so each O-H bond is polar; in water the two O-H bonds and two lone pairs on oxygen arrange the electron domains tetrahedrally, giving the molecule a bent shape with an H-O-H angle near 104.5 degrees and a net dipole moment. They classify the intermolecular forces available to each substance: London dispersion forces (present in all molecules, stronger in larger and more polarizable electron clouds), dipole-dipole forces (between permanent dipoles), and hydrogen bonding (the especially strong attraction when H bonded to N, O, or F is drawn to a lone pair on another such atom).\n\nTheir goal is to connect each measured boiling point to the strongest intermolecular force a molecule can form, and to explain the anomalies - water's high boiling point, ethanol versus its isomer, and the noble-gas trend - in terms of hydrogen bonding, polarity, geometry, and polarizability.",
+        "passage_source": {
+            "name": "OpenStax Chemistry 2e, ch. 7-8 (chemical bonding, molecular geometry/VSEPR, hybridization) and ch. 10 (liquids and solids: intermolecular forces)",
+            "url": "https://openstax.org/details/books/chemistry-2e",
+            "license": "CC BY 4.0"
+        },
+        "questions": [
+            {
+                "id": "psg-cp-7-q1",
+                "aamc_category": "5B",
+                "subtopic": "Hydrogen bonding",
+                "stem": "Why does water boil at 100 C while the heavier H2S boils at -60 C?",
+                "options": [
+                    "Water forms hydrogen bonds (O-H to a lone pair on another O), which are far stronger than the dispersion/dipole forces available to H2S.",
+                    "Water is nonpolar, so its molecules pack more tightly than those of H2S.",
+                    "H2S is a larger molecule, so it has weaker dispersion forces than water.",
+                    "Water has a lower molar mass, and lighter molecules always boil higher."
+                ],
+                "correct_index": 0,
+                "explanation": "Sulfur is not electronegative enough to support strong hydrogen bonding, so H2S is held together mainly by weaker dipole-dipole and dispersion forces; water's extensive O-H...O hydrogen bonding makes it boil far higher despite its lower mass. Choice 2 wrongly calls water nonpolar; choice 3 has the dispersion comparison backwards; choice 4 states a false general rule.",
+                "difficulty": "easy",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "Hydrogen bonding requires H to be covalently bonded to which atoms?",
+                        "options": [
+                            "N, O, or F",
+                            "C or H",
+                            "S or P",
+                            "any metal"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Only H bonded to the small, highly electronegative atoms N, O, or F produces true hydrogen bonding."
+                    },
+                    {
+                        "stem": "Which molecule can act as a hydrogen-bond donor, H2O or H2S?",
+                        "options": [
+                            "H2O (O-H bonds)",
+                            "H2S (S-H bonds)",
+                            "both equally",
+                            "neither"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "O is electronegative enough for strong H-bonding; S-H bonds are only weakly polar, so H2S does not hydrogen bond significantly."
+                    },
+                    {
+                        "stem": "Therefore the substance with hydrogen bonding boils...",
+                        "options": [
+                            "lower",
+                            "higher",
+                            "at the same temperature",
+                            "not at all"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Stronger intermolecular attraction (H-bonding in water) requires more energy to vaporize, so water boils higher."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-7-q2",
+                "aamc_category": "5B",
+                "subtopic": "VSEPR molecular geometry",
+                "stem": "What is the molecular geometry (shape) of the water molecule?",
+                "options": [
+                    "Linear",
+                    "Bent (angular), about 104.5 degrees",
+                    "Trigonal planar",
+                    "Tetrahedral"
+                ],
+                "correct_index": 1,
+                "explanation": "Oxygen has four electron domains (two O-H bonds and two lone pairs), so the electron-domain geometry is tetrahedral, but the molecular shape - counting only atoms - is bent, with the angle compressed to ~104.5 degrees by lone-pair repulsion. 'Linear' ignores the lone pairs; 'tetrahedral' describes the electron domains, not the atomic shape; 'trigonal planar' has the wrong domain count.",
+                "difficulty": "medium",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "How many electron domains surround the oxygen in water (bonds + lone pairs)?",
+                        "options": [
+                            "2",
+                            "3",
+                            "4",
+                            "5"
+                        ],
+                        "correct_index": 2,
+                        "explanation": "Two O-H bonding domains plus two lone pairs give four electron domains."
+                    },
+                    {
+                        "stem": "Four electron domains give what electron-domain geometry?",
+                        "options": [
+                            "Linear",
+                            "Trigonal planar",
+                            "Tetrahedral",
+                            "Octahedral"
+                        ],
+                        "correct_index": 2,
+                        "explanation": "Four domains arrange tetrahedrally to minimize repulsion."
+                    },
+                    {
+                        "stem": "Counting only the atoms (two H around O with two lone pairs), the molecular shape is...",
+                        "options": [
+                            "linear",
+                            "bent",
+                            "tetrahedral",
+                            "trigonal pyramidal"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Two bonded atoms plus two lone pairs on the central atom give a bent shape (~104.5 degrees)."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-7-q3",
+                "aamc_category": "5B",
+                "subtopic": "Orbital hybridization",
+                "stem": "What is the hybridization of the oxygen atom in water?",
+                "options": [
+                    "sp",
+                    "sp2",
+                    "sp3",
+                    "sp3d"
+                ],
+                "correct_index": 2,
+                "explanation": "Hybridization follows the number of electron domains: four domains (two bonds + two lone pairs) require four hybrid orbitals, i.e., sp3. 'sp' and 'sp2' correspond to two and three domains; 'sp3d' to five. Two of oxygen's sp3 orbitals hold the lone pairs and two form the O-H bonds.",
+                "difficulty": "medium",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "How many hybrid orbitals must oxygen provide (one per electron domain)?",
+                        "options": [
+                            "2",
+                            "3",
+                            "4",
+                            "5"
+                        ],
+                        "correct_index": 2,
+                        "explanation": "Four electron domains need four hybrid orbitals."
+                    },
+                    {
+                        "stem": "Four equivalent hybrid orbitals are formed by mixing which atomic orbitals?",
+                        "options": [
+                            "one s + one p",
+                            "one s + two p",
+                            "one s + three p",
+                            "one s + three p + one d"
+                        ],
+                        "correct_index": 2,
+                        "explanation": "One s and three p orbitals combine to give four sp3 hybrids."
+                    },
+                    {
+                        "stem": "Name the hybridization with four sp orbitals.",
+                        "options": [
+                            "sp",
+                            "sp2",
+                            "sp3",
+                            "sp3d2"
+                        ],
+                        "correct_index": 2,
+                        "explanation": "Four hybrids from s + 3p are called sp3."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-7-q4",
+                "aamc_category": "5B",
+                "subtopic": "Isomers and intermolecular forces",
+                "stem": "Ethanol (bp 78 C) and dimethyl ether (bp -24 C) share the formula C2H6O. Why does ethanol boil so much higher?",
+                "options": [
+                    "Ethanol has a much larger molar mass than dimethyl ether.",
+                    "Dimethyl ether is ionic while ethanol is covalent.",
+                    "Ethanol is nonpolar, so it has stronger dispersion forces.",
+                    "Ethanol has an O-H group and can hydrogen bond, whereas dimethyl ether (C-O-C, no O-H) relies only on weaker dipole-dipole and dispersion forces."
+                ],
+                "correct_index": 3,
+                "explanation": "Same formula means nearly identical molar mass and dispersion forces, so the difference is hydrogen bonding: ethanol's O-H lets it donate hydrogen bonds, but dimethyl ether has no O-H and cannot, so it boils ~100 C lower. Choice 1 ignores that they are isomers; choice 2 wrongly calls the ether ionic; choice 3 mislabels ethanol nonpolar.",
+                "difficulty": "medium",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "How do the molar masses of these two isomers compare?",
+                        "options": [
+                            "Ethanol is much heavier",
+                            "They are equal (same formula, C2H6O)",
+                            "The ether is much heavier",
+                            "They cannot be compared"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "As isomers they have identical molecular formulas and molar masses, so mass cannot explain the gap."
+                    },
+                    {
+                        "stem": "Which molecule has an -O-H group able to hydrogen bond?",
+                        "options": [
+                            "Dimethyl ether (CH3-O-CH3)",
+                            "Ethanol (CH3CH2-O-H)",
+                            "Both",
+                            "Neither"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Ethanol's hydroxyl O-H is a hydrogen-bond donor; the ether's oxygen is between two carbons with no O-H."
+                    },
+                    {
+                        "stem": "Therefore ethanol's stronger intermolecular attraction makes its boiling point...",
+                        "options": [
+                            "much lower",
+                            "much higher",
+                            "identical",
+                            "zero"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Hydrogen bonding requires more energy to break, raising ethanol's boiling point well above the ether's."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-7-q5",
+                "aamc_category": "5B",
+                "subtopic": "London dispersion forces / polarizability",
+                "stem": "The noble gases' boiling points rise steadily from helium to xenon. What best explains this trend?",
+                "options": [
+                    "Heavier noble gases have more electrons and more polarizable electron clouds, giving stronger London dispersion forces.",
+                    "Heavier noble gases are more polar, giving stronger dipole-dipole forces.",
+                    "Heavier noble gases form hydrogen bonds.",
+                    "Heavier noble gases are ionic solids at room temperature."
+                ],
+                "correct_index": 0,
+                "explanation": "Noble gases are nonpolar single atoms, so their only intermolecular force is London dispersion, whose strength grows with the number of electrons and polarizability - both increasing down the group. So Xe (most electrons) boils highest. Choices 2-4 attribute forces (dipole, hydrogen bonding, ionic) that monatomic noble gases cannot have.",
+                "difficulty": "medium",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "What is the only intermolecular force acting between noble-gas atoms?",
+                        "options": [
+                            "Hydrogen bonding",
+                            "Dipole-dipole",
+                            "London dispersion",
+                            "Ionic bonding"
+                        ],
+                        "correct_index": 2,
+                        "explanation": "Being nonpolar single atoms, noble gases can only attract via temporary induced dipoles (dispersion)."
+                    },
+                    {
+                        "stem": "London dispersion forces get stronger as an atom's electron cloud becomes...",
+                        "options": [
+                            "smaller and less polarizable",
+                            "larger and more polarizable",
+                            "positively charged",
+                            "spherical"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "More electrons in a larger, more polarizable cloud produce larger instantaneous dipoles and stronger dispersion."
+                    },
+                    {
+                        "stem": "From He to Xe, the number of electrons increases, so the boiling point...",
+                        "options": [
+                            "decreases",
+                            "increases",
+                            "stays constant",
+                            "drops to zero"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Growing polarizability strengthens dispersion down the group, raising boiling points."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "psg-cp-8",
+        "section": "C/P",
+        "passage": "Purifying the product of a reaction is a routine but crucial task. A student runs a reaction that yields a mixture of a carboxylic acid (benzoic acid) and a neutral, nonpolar hydrocarbon, both dissolved in an organic solvent, and sets out to separate and identify them.\n\nShe first checks the mixture by thin-layer chromatography (TLC) on a silica gel plate, a polar stationary phase, developed in a relatively nonpolar solvent. After development, one spot has traveled 3.0 cm from the origin while the solvent front has advanced 5.0 cm. She records the retention factor (Rf) for the spot and notes that, on polar silica, more polar compounds cling to the plate and move less, whereas less polar compounds travel farther.\n\nTo separate the two components in bulk, she performs a liquid-liquid extraction, shaking the organic solution with aqueous sodium hydroxide in a separatory funnel. The carboxylic acid reacts with the base and is converted to its sodium carboxylate salt; the neutral hydrocarbon does not react. After the layers settle, she drains them apart and then treats the aqueous layer with hydrochloric acid to reverse the reaction and recover the purified acid.\n\nFinally, she considers how to separate two miscible liquids that differ in boiling point and reviews simple distillation, in which the mixture is heated, the vapor is drawn off and condensed, and the collected liquid is enriched in one component. Throughout, she relies on differences in polarity, acid-base behavior, and volatility - the physical and chemical handles that separations exploit.",
+        "passage_source": {
+            "name": "OpenStax Organic Chemistry, laboratory techniques for separation and purification (thin-layer/column chromatography, liquid-liquid extraction, distillation)",
+            "url": "https://openstax.org/details/books/organic-chemistry",
+            "license": "CC BY 4.0"
+        },
+        "questions": [
+            {
+                "id": "psg-cp-8-q1",
+                "aamc_category": "5C",
+                "subtopic": "Chromatography retention factor (Rf)",
+                "stem": "The spot traveled 3.0 cm and the solvent front advanced 5.0 cm. What is the spot's Rf?",
+                "options": [
+                    "0.30",
+                    "0.60",
+                    "1.67",
+                    "0.15"
+                ],
+                "correct_index": 1,
+                "explanation": "Rf = (distance traveled by the compound)/(distance traveled by the solvent front) = 3.0/5.0 = 0.60. '1.67' inverts the ratio; '0.30' and '0.15' come from dividing by the wrong distance. Rf is dimensionless and always between 0 and 1.",
+                "difficulty": "easy",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "How is Rf defined in thin-layer chromatography?",
+                        "options": [
+                            "compound distance / solvent-front distance",
+                            "solvent-front distance / compound distance",
+                            "compound distance * solvent-front distance",
+                            "solvent-front distance - compound distance"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Rf is the ratio of how far the compound moved to how far the solvent front moved."
+                    },
+                    {
+                        "stem": "Insert the measured distances.",
+                        "options": [
+                            "3.0/5.0",
+                            "5.0/3.0",
+                            "3.0*5.0",
+                            "5.0-3.0"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Compound distance (3.0 cm) over solvent-front distance (5.0 cm)."
+                    },
+                    {
+                        "stem": "Evaluate 3.0/5.0.",
+                        "options": [
+                            "0.30",
+                            "0.60",
+                            "1.67",
+                            "0.06"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "3.0/5.0 = 0.60, a valid Rf between 0 and 1."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-8-q2",
+                "aamc_category": "5C",
+                "subtopic": "Chromatography and polarity",
+                "stem": "On the polar silica plate, how does a more polar compound behave relative to a less polar one?",
+                "options": [
+                    "It travels farther and shows a higher Rf.",
+                    "It clings more strongly to the polar plate, travels less, and shows a lower Rf.",
+                    "It does not interact with the plate at all.",
+                    "It always co-migrates with the solvent front."
+                ],
+                "correct_index": 1,
+                "explanation": "Silica gel is a polar stationary phase, so polar compounds adsorb to it more strongly ('like binds like'), spend more time stuck, and move less - a lower Rf. Less polar compounds are carried farther by the mobile phase (higher Rf). The other options deny the adsorption interaction or reverse it.",
+                "difficulty": "medium",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "Is silica gel a polar or nonpolar stationary phase?",
+                        "options": [
+                            "Polar",
+                            "Nonpolar",
+                            "Ionic only",
+                            "It has no polarity"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Silica gel presents polar Si-OH groups, making it a polar stationary phase."
+                    },
+                    {
+                        "stem": "A polar compound interacts with polar silica...",
+                        "options": [
+                            "weakly",
+                            "strongly",
+                            "not at all",
+                            "only when heated"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Polar-polar attraction makes the compound adsorb strongly to the plate."
+                    },
+                    {
+                        "stem": "Stronger adsorption to the plate means the compound moves ___ and has a ___ Rf.",
+                        "options": [
+                            "more; higher",
+                            "less; lower",
+                            "less; higher",
+                            "more; lower"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "More time bound to the stationary phase means it travels less and has a lower Rf."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-8-q3",
+                "aamc_category": "5C",
+                "subtopic": "Acid-base (liquid-liquid) extraction",
+                "stem": "When the organic solution is shaken with aqueous NaOH, what happens to the benzoic acid?",
+                "options": [
+                    "It is oxidized to carbon dioxide and escapes as a gas.",
+                    "It remains unchanged and stays in the organic layer.",
+                    "It is deprotonated to its carboxylate salt, which is water-soluble and moves into the aqueous layer.",
+                    "It polymerizes into an insoluble solid at the interface."
+                ],
+                "correct_index": 2,
+                "explanation": "NaOH deprotonates the carboxylic acid to sodium benzoate, an ionic salt that is far more soluble in water than in the organic phase, so it partitions into the aqueous layer - separating it from the unreactive, nonpolar hydrocarbon that stays in the organic layer. The other choices invent oxidation, non-reaction, or polymerization that do not occur here.",
+                "difficulty": "medium",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "A carboxylic acid reacting with the base NaOH forms what?",
+                        "options": [
+                            "An ester",
+                            "A carboxylate salt plus water",
+                            "An alcohol",
+                            "An alkane"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Acid-base neutralization converts R-COOH to R-COO- Na+ (a carboxylate salt) and water."
+                    },
+                    {
+                        "stem": "Is the ionic sodium carboxylate more soluble in water or in the organic solvent?",
+                        "options": [
+                            "Water",
+                            "Organic solvent",
+                            "Neither",
+                            "Both equally"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Charged, ionic species dissolve preferentially in the polar aqueous phase."
+                    },
+                    {
+                        "stem": "So after shaking, the (former) acid ends up in which layer?",
+                        "options": [
+                            "Organic layer with the hydrocarbon",
+                            "Aqueous layer, separated from the hydrocarbon",
+                            "Evaporated away",
+                            "Precipitated as a solid"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "As a water-soluble carboxylate it moves to the aqueous layer, leaving the neutral hydrocarbon behind in the organic layer."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-8-q4",
+                "aamc_category": "5C",
+                "subtopic": "Recovering a product from extraction",
+                "stem": "How does the student recover the purified benzoic acid from the aqueous layer?",
+                "options": [
+                    "Add hydrochloric acid to reprotonate the carboxylate, regenerating neutral, water-insoluble benzoic acid.",
+                    "Add more sodium hydroxide to the aqueous layer.",
+                    "Boil the aqueous layer to drive off the acid as vapor.",
+                    "Add a nonpolar solvent to dissolve the sodium ions."
+                ],
+                "correct_index": 0,
+                "explanation": "In the aqueous layer the acid exists as the benzoate ion; adding a strong acid (HCl) restores the proton, regenerating neutral benzoic acid, which is only sparingly soluble in water and precipitates (or can be re-extracted) as the purified product. Adding more base (2) keeps it ionized; boiling (3) will not vaporize the salt; option 4 targets the wrong species.",
+                "difficulty": "medium",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "In the aqueous layer, the acid is present as which species?",
+                        "options": [
+                            "Neutral benzoic acid",
+                            "Benzoate (carboxylate) ion",
+                            "Carbon dioxide",
+                            "Benzene"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "The base left it as the deprotonated benzoate ion in water."
+                    },
+                    {
+                        "stem": "Adding HCl (a source of H+) to benzoate does what?",
+                        "options": [
+                            "Reprotonates it to neutral benzoic acid",
+                            "Oxidizes it",
+                            "Dissolves it further",
+                            "Has no effect"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "H+ restores the carboxylic acid, reversing the earlier deprotonation."
+                    },
+                    {
+                        "stem": "Neutral benzoic acid in water is...",
+                        "options": [
+                            "highly soluble, staying dissolved",
+                            "poorly soluble, so it precipitates and can be collected",
+                            "a gas",
+                            "ionic"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Neutral benzoic acid has low water solubility, so it comes out of solution and is recovered pure."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-8-q5",
+                "aamc_category": "5C",
+                "subtopic": "Distillation",
+                "stem": "Simple distillation separates two miscible liquids primarily by their difference in:",
+                "options": [
+                    "color",
+                    "molar mass alone",
+                    "polarity on silica",
+                    "boiling point (volatility)"
+                ],
+                "correct_index": 3,
+                "explanation": "Distillation vaporizes a mixture and condenses the vapor, which is enriched in the more volatile (lower-boiling) component, so the separation is governed by boiling-point differences. Color is irrelevant; molar mass affects boiling point only indirectly; polarity-on-silica describes chromatography, not distillation.",
+                "difficulty": "easy",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "What two physical changes occur during distillation?",
+                        "options": [
+                            "Melting then freezing",
+                            "Vaporization then condensation",
+                            "Dissolving then filtering",
+                            "Adsorption then elution"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "The liquid is boiled to vapor and then the vapor is condensed back to liquid."
+                    },
+                    {
+                        "stem": "Which component preferentially enters the vapor first?",
+                        "options": [
+                            "The higher-boiling (less volatile) one",
+                            "The more volatile (lower-boiling) one",
+                            "Whichever is more colored",
+                            "The denser one"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "The more volatile, lower-boiling component vaporizes more readily and enriches the distillate."
+                    },
+                    {
+                        "stem": "Therefore distillation exploits differences in...",
+                        "options": [
+                            "boiling point",
+                            "chromatographic Rf",
+                            "atomic number",
+                            "refractive index"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Separation depends on how the components' boiling points (volatilities) differ."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "psg-cp-9",
+        "section": "C/P",
+        "passage": "Nucleophilic substitution is central to organic and biochemical reactivity, from laboratory synthesis to the alkylation of DNA. A class studies how two bromoalkanes react with hydroxide ion, which acts as the nucleophile, in a hydroxylic solvent.\n\nThe first substrate is 1-bromobutane, a primary alkyl halide in which the carbon bearing bromine is attached to only one other carbon. With a good nucleophile it reacts by a one-step, concerted mechanism (SN2): hydroxide attacks the carbon from the side opposite the leaving bromide, and as bromide departs the other three groups invert like an umbrella in the wind. The measured rate depends on the concentrations of both the substrate and the hydroxide.\n\nThe second substrate is 2-bromo-2-methylpropane (tert-butyl bromide), a tertiary halide whose brominated carbon is attached to three other carbons. It reacts by a two-step mechanism (SN1): the carbon-bromine bond breaks first to give a carbocation, which the nucleophile then captures. The measured rate depends only on the concentration of the substrate, and because the carbocation is trigonal planar, a nucleophile can approach from either face.\n\nThe class also revisits structure. They note that a carbon bonded to four different groups is a stereocenter and examine 2-bromobutane as an example. They track how the functional group changes when hydroxide replaces bromide, and they rank the stability of primary, secondary, and tertiary carbocations to explain why substrate structure dictates the mechanism. The instructor stresses that the same electronic and steric principles govern reactions of biological molecules such as the phosphate esters of nucleotides.",
+        "passage_source": {
+            "name": "OpenStax Organic Chemistry, ch. 11 (reactions of alkyl halides: SN1/SN2 nucleophilic substitution) and ch. 5 (stereochemistry, chirality, stereocenters)",
+            "url": "https://openstax.org/details/books/organic-chemistry",
+            "license": "CC BY 4.0"
+        },
+        "questions": [
+            {
+                "id": "psg-cp-9-q1",
+                "aamc_category": "5D",
+                "subtopic": "SN2 kinetics / rate law",
+                "stem": "For 1-bromobutane reacting with hydroxide by SN2, what happens to the rate if the hydroxide concentration is doubled while the substrate concentration is held constant?",
+                "options": [
+                    "It is unchanged",
+                    "It doubles",
+                    "It quadruples",
+                    "It is halved"
+                ],
+                "correct_index": 1,
+                "explanation": "SN2 is bimolecular: rate = k[substrate][OH-], first order in each and second order overall. Doubling a first-order reactant doubles the rate. 'Unchanged' describes SN1; 'quadruples' would require the nucleophile to be second order; 'halved' has the wrong direction.",
+                "difficulty": "medium",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "What is the rate law for an SN2 reaction?",
+                        "options": [
+                            "rate = k[substrate][nucleophile]",
+                            "rate = k[substrate]",
+                            "rate = k[nucleophile]^2",
+                            "rate = k"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "SN2 is bimolecular; both substrate and nucleophile appear to the first power (second order overall)."
+                    },
+                    {
+                        "stem": "What is the reaction order with respect to hydroxide?",
+                        "options": [
+                            "Zero order",
+                            "First order",
+                            "Second order",
+                            "Third order"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Hydroxide appears to the first power in the SN2 rate law."
+                    },
+                    {
+                        "stem": "Doubling a first-order reactant multiplies the rate by...",
+                        "options": [
+                            "1",
+                            "2",
+                            "4",
+                            "0.5"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "For a first-order dependence, rate scales linearly, so 2x concentration gives 2x rate."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-9-q2",
+                "aamc_category": "5D",
+                "subtopic": "SN1 kinetics / rate-determining step",
+                "stem": "For tert-butyl bromide reacting by SN1, doubling the hydroxide concentration changes the rate how?",
+                "options": [
+                    "It doubles",
+                    "It quadruples",
+                    "It does not change",
+                    "It is halved"
+                ],
+                "correct_index": 2,
+                "explanation": "The SN1 rate-determining step is unimolecular ionization to the carbocation, so rate = k[substrate] and the nucleophile does not appear; changing [OH-] has no effect on rate. 'Doubles/quadruples' would require the nucleophile in the rate law; 'halved' is unfounded.",
+                "difficulty": "medium",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "What is the rate-determining (slow) step of an SN1 reaction?",
+                        "options": [
+                            "Nucleophile attack on the carbocation",
+                            "Ionization of the substrate to form the carbocation",
+                            "Deprotonation of the solvent",
+                            "Loss of a proton from the nucleophile"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "The slow step is the substrate ionizing to a carbocation; the fast nucleophilic capture follows."
+                    },
+                    {
+                        "stem": "Does the nucleophile appear in the SN1 rate law?",
+                        "options": [
+                            "Yes, first order",
+                            "Yes, second order",
+                            "No; rate = k[substrate] only",
+                            "Only at high temperature"
+                        ],
+                        "correct_index": 2,
+                        "explanation": "Because the nucleophile enters after the rate-determining step, it is absent from the rate law."
+                    },
+                    {
+                        "stem": "Therefore doubling [OH-] changes the SN1 rate by a factor of...",
+                        "options": [
+                            "2",
+                            "4",
+                            "1 (no change)",
+                            "0.5"
+                        ],
+                        "correct_index": 2,
+                        "explanation": "With the nucleophile absent from the rate law, its concentration does not affect the rate."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-9-q3",
+                "aamc_category": "5D",
+                "subtopic": "Stereochemistry of substitution",
+                "stem": "If the SN2 reaction occurs at a stereocenter, what is the stereochemical outcome at that carbon?",
+                "options": [
+                    "Retention of configuration",
+                    "Inversion of configuration (Walden inversion from backside attack)",
+                    "Complete racemization",
+                    "No stereochemical change is possible"
+                ],
+                "correct_index": 1,
+                "explanation": "In SN2, the nucleophile attacks from the side opposite the leaving group; as the leaving group departs, the other three substituents 'flip,' inverting the configuration at the stereocenter. Racemization (choice 3) is the SN1 outcome via a planar carbocation; retention (1) is not typical of either; choice 4 is simply wrong for a stereocenter.",
+                "difficulty": "medium",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "From which direction does the nucleophile attack in an SN2 reaction?",
+                        "options": [
+                            "The same side as the leaving group",
+                            "The side opposite (backside) to the leaving group",
+                            "Perpendicular to the C-LG bond only",
+                            "It does not matter"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "SN2 requires backside attack, 180 degrees from the leaving group."
+                    },
+                    {
+                        "stem": "Backside attack causes the other three groups to...",
+                        "options": [
+                            "stay fixed",
+                            "invert (like an umbrella)",
+                            "leave the molecule",
+                            "become identical"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "The substituents invert their spatial arrangement as the nucleophile bonds and the leaving group departs."
+                    },
+                    {
+                        "stem": "The net stereochemical result at the stereocenter is therefore...",
+                        "options": [
+                            "retention",
+                            "inversion",
+                            "no change",
+                            "loss of the carbon"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "This inversion of configuration is the hallmark of SN2 (contrast the racemization seen in SN1)."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-9-q4",
+                "aamc_category": "5D",
+                "subtopic": "Carbocation stability and mechanism choice",
+                "stem": "Why does the tertiary substrate react by SN1 while the primary substrate reacts by SN2?",
+                "options": [
+                    "The primary carbon forms a more stable carbocation than the tertiary carbon.",
+                    "Hydroxide is intrinsically a better nucleophile toward tertiary carbons.",
+                    "Tertiary substrates present less steric hindrance to backside attack.",
+                    "The tertiary carbocation is stabilized by its three attached alkyl groups (favoring SN1), while the primary carbon forms an unstable carbocation but is sterically open to concerted backside attack (favoring SN2)."
+                ],
+                "correct_index": 3,
+                "explanation": "Carbocation stability increases 3 > 2 > 1 (alkyl groups donate electron density and provide hyperconjugation), so tertiary substrates readily ionize (SN1); a primary carbocation is too unstable, but the uncrowded primary carbon is open to direct backside attack (SN2). Choice 1 inverts the stability order; choice 2 is false; choice 3 has the steric argument backwards (tertiary is MORE hindered).",
+                "difficulty": "hard",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "Rank carbocation stability from most to least stable.",
+                        "options": [
+                            "primary > secondary > tertiary",
+                            "tertiary > secondary > primary",
+                            "secondary > tertiary > primary",
+                            "all are equal"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "More adjacent alkyl groups stabilize the positive charge, so tertiary is most stable, primary least."
+                    },
+                    {
+                        "stem": "SN1 requires forming a carbocation, so it is favored by which substrate?",
+                        "options": [
+                            "Primary",
+                            "Tertiary (stable carbocation)",
+                            "Methyl",
+                            "None"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "A stable tertiary carbocation makes the SN1 ionization feasible."
+                    },
+                    {
+                        "stem": "A primary carbon cannot form a stable cation but is sterically open, so it favors...",
+                        "options": [
+                            "SN1",
+                            "concerted SN2 backside attack",
+                            "no reaction",
+                            "elimination only"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "With little steric blocking and no stable cation, the primary substrate undergoes concerted SN2."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-9-q5",
+                "aamc_category": "5D",
+                "subtopic": "Chirality / stereocenters",
+                "stem": "Is 2-bromobutane (CH3-CHBr-CH2-CH3) chiral, and why?",
+                "options": [
+                    "Yes; its C2 is bonded to four different groups (H, Br, CH3, and CH2CH3), making it a stereocenter.",
+                    "No; it contains no carbon bonded to four different groups.",
+                    "Yes; but only because it contains a bromine atom.",
+                    "No; all of its carbons are sp2 hybridized."
+                ],
+                "correct_index": 0,
+                "explanation": "C2 carries four different substituents - H, Br, a methyl group, and an ethyl group - so it is a stereocenter and the molecule is chiral (it has a non-superimposable mirror image). Choice 1's claim is factually correct; the others miscount the groups, misattribute chirality to merely containing Br, or wrongly assign hybridization.",
+                "difficulty": "medium",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "What condition makes a carbon a stereocenter?",
+                        "options": [
+                            "It is bonded to four different groups",
+                            "It is bonded to any halogen",
+                            "It is sp2 hybridized",
+                            "It is a terminal carbon"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "A tetrahedral carbon with four distinct substituents is a stereocenter."
+                    },
+                    {
+                        "stem": "List the four groups on C2 of 2-bromobutane.",
+                        "options": [
+                            "H, Br, CH3, CH2CH3 (all different)",
+                            "H, H, CH3, Br",
+                            "Br, Br, CH3, H",
+                            "CH3, CH3, H, H"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "C2 bears a hydrogen, a bromine, a methyl group, and an ethyl group - four different substituents."
+                    },
+                    {
+                        "stem": "Four different groups on that carbon mean the molecule is...",
+                        "options": [
+                            "achiral",
+                            "chiral (has a non-superimposable mirror image)",
+                            "ionic",
+                            "aromatic"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "A single stereocenter with four different groups makes the molecule chiral."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "psg-cp-10",
+        "section": "C/P",
+        "passage": "A research team studies both how fast a reaction goes and whether it goes at all - kinetics and thermodynamics, two independent questions. They first examine the decomposition of a reactant, X, measuring its initial rate as they vary the starting concentration at fixed temperature. In three trials the initial concentration of X is 0.10, 0.20, and 0.30 M, and the corresponding initial rates are 2.0x10^-3, 8.0x10^-3, and 1.8x10^-2 M/s. From these data they extract the reaction order in X and the rate constant.\n\nThey then vary temperature and find, as expected, that the rate rises steeply as the sample is warmed. They interpret this with the Arrhenius picture: only molecules with at least the activation energy can react, and warming increases that fraction. Adding a catalyst speeds the reaction further, and the team is careful to note what a catalyst does and does not change.\n\nSeparately, they assess the reaction's thermodynamics. Calorimetry gives a standard enthalpy change delta_H = +50 kJ/mol, and the standard entropy change is delta_S = +100 J/(mol.K). Using the Gibbs relation delta_G = delta_H - T*delta_S, they compute the free-energy change at 298 K to judge spontaneity, and they determine the temperature above which the reaction becomes spontaneous. They stress that kinetics (how fast) and thermodynamics (how favorable) are separate: a reaction can be thermodynamically favorable yet immeasurably slow, or fast yet unfavorable. They treat delta_H and delta_S as approximately constant over the range considered.",
+        "passage_source": {
+            "name": "OpenStax Chemistry 2e, ch. 12 (chemical kinetics: rate laws, Arrhenius, catalysis) and ch. 16 (thermodynamics: entropy and Gibbs free energy); ch. 5 (thermochemistry/calorimetry)",
+            "url": "https://openstax.org/details/books/chemistry-2e",
+            "license": "CC BY 4.0"
+        },
+        "questions": [
+            {
+                "id": "psg-cp-10-q1",
+                "aamc_category": "5E",
+                "subtopic": "Determining reaction order from data",
+                "stem": "Based on the initial-rate data, what is the reaction order with respect to X?",
+                "options": [
+                    "0",
+                    "1",
+                    "2",
+                    "3"
+                ],
+                "correct_index": 2,
+                "explanation": "Going from 0.10 to 0.20 M doubles [X], and the rate rises from 2.0x10^-3 to 8.0x10^-3 M/s - a factor of 4. Since rate ~ [X]^n and 2^n = 4, n = 2 (second order). The 0.30 M trial confirms it: tripling [X] gives 9x the rate (1.8x10^-2). Zero, first, and third order predict 1x, 2x, and 8x, respectively.",
+                "difficulty": "medium",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "From trial 1 to trial 2, [X] changes by what factor?",
+                        "options": [
+                            "1x (no change)",
+                            "2x (0.10 -> 0.20 M)",
+                            "4x",
+                            "0.5x"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "0.20/0.10 = 2, so the concentration doubles."
+                    },
+                    {
+                        "stem": "Over that same change, the rate goes from 2.0x10^-3 to 8.0x10^-3 M/s - a factor of...",
+                        "options": [
+                            "2",
+                            "3",
+                            "4",
+                            "8"
+                        ],
+                        "correct_index": 2,
+                        "explanation": "8.0/2.0 = 4, so the rate quadruples."
+                    },
+                    {
+                        "stem": "If doubling [X] quadruples the rate, and rate ~ [X]^n, then n =",
+                        "options": [
+                            "1",
+                            "2",
+                            "3",
+                            "0"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "2^n = 4 gives n = 2: the reaction is second order in X."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-10-q2",
+                "aamc_category": "5E",
+                "subtopic": "Rate constant from a rate law",
+                "stem": "Using the rate law and trial 1 ([X] = 0.10 M, rate = 2.0x10^-3 M/s), what is the rate constant k?",
+                "options": [
+                    "0.020 M^-1 s^-1",
+                    "0.20 M^-1 s^-1",
+                    "2.0 M^-1 s^-1",
+                    "0.0020 M^-1 s^-1"
+                ],
+                "correct_index": 1,
+                "explanation": "For a second-order reaction, rate = k[X]^2, so k = rate/[X]^2 = 2.0x10^-3 / (0.10)^2 = 2.0x10^-3 / 0.010 = 0.20 M^-1 s^-1. '0.020' divides by 0.10 (first-order error); '2.0' divides by 0.001; '0.0020' fails to divide at all. The units M^-1 s^-1 are correct for second order.",
+                "difficulty": "medium",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "For a second-order reaction in X, the rate law is...",
+                        "options": [
+                            "rate = k[X]^2",
+                            "rate = k[X]",
+                            "rate = k",
+                            "rate = k[X]^3"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Second order means the rate depends on the square of [X]."
+                    },
+                    {
+                        "stem": "Solve for k and substitute: k = rate/[X]^2 = 2.0x10^-3 / (0.10)^2.",
+                        "options": [
+                            "2.0x10^-3 / 0.010",
+                            "2.0x10^-3 / 0.10",
+                            "2.0x10^-3 * 0.010",
+                            "2.0x10^-3 / 0.001"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "(0.10)^2 = 0.010, so divide the rate by 0.010."
+                    },
+                    {
+                        "stem": "Evaluate 2.0x10^-3 / 0.010.",
+                        "options": [
+                            "0.020 M^-1 s^-1",
+                            "0.20 M^-1 s^-1",
+                            "2.0 M^-1 s^-1",
+                            "20 M^-1 s^-1"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "2.0x10^-3 / 1.0x10^-2 = 0.20 M^-1 s^-1."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-10-q3",
+                "aamc_category": "5E",
+                "subtopic": "Catalysis and activation energy",
+                "stem": "The team adds a catalyst and the reaction speeds up. Which statement correctly describes what the catalyst does?",
+                "options": [
+                    "It provides an alternate pathway with a lower activation energy, increasing the rate without changing delta_G or the equilibrium position.",
+                    "It makes the reaction more thermodynamically favorable by lowering delta_G.",
+                    "It raises the activation energy so that more collisions succeed.",
+                    "It shifts the equilibrium toward products by being consumed in the reaction."
+                ],
+                "correct_index": 0,
+                "explanation": "A catalyst offers a lower-activation-energy route, so a larger fraction of collisions surmount the barrier (higher rate), but it speeds the forward and reverse reactions equally and is regenerated, leaving delta_G, delta_H, and the equilibrium constant unchanged. Choice 2 confuses kinetics with thermodynamics; choice 3 has the Ea change backwards; choice 4 wrongly says the catalyst is consumed and shifts equilibrium.",
+                "difficulty": "medium",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "A catalyst changes the reaction by...",
+                        "options": [
+                            "lowering the activation energy via an alternate pathway",
+                            "raising the activation energy",
+                            "increasing the temperature",
+                            "adding energy to the products"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Catalysts create a new mechanism with a lower energy barrier."
+                    },
+                    {
+                        "stem": "A lower activation energy affects the rate how?",
+                        "options": [
+                            "Decreases it",
+                            "Increases it",
+                            "No effect",
+                            "Stops the reaction"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "More molecules exceed the lower barrier, so the rate (rate constant) increases."
+                    },
+                    {
+                        "stem": "Does a catalyst change delta_G or the equilibrium constant of the reaction?",
+                        "options": [
+                            "Yes, it lowers delta_G",
+                            "No; it speeds forward and reverse equally, leaving delta_G and K unchanged",
+                            "Yes, it raises K only",
+                            "It sets delta_G to zero"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Thermodynamics (delta_G, K) is fixed by the states, not the path, so a catalyst leaves them unchanged."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-10-q4",
+                "aamc_category": "5E",
+                "subtopic": "Gibbs free energy and spontaneity",
+                "stem": "Using delta_H = +50 kJ/mol and delta_S = +100 J/(mol.K), what is delta_G at 298 K?",
+                "options": [
+                    "-20.2 kJ/mol",
+                    "+20.2 kJ/mol",
+                    "+79.8 kJ/mol",
+                    "0 kJ/mol"
+                ],
+                "correct_index": 1,
+                "explanation": "delta_G = delta_H - T*delta_S. Converting entropy to kJ: delta_S = 0.100 kJ/(mol.K), so T*delta_S = 298 * 0.100 = 29.8 kJ/mol, and delta_G = 50 - 29.8 = +20.2 kJ/mol. A positive delta_G means the reaction is nonspontaneous at 298 K. '+79.8' adds the terms; '-20.2' flips the sign; '0' ignores the calculation. Watch the J-to-kJ unit conversion.",
+                "difficulty": "hard",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "Which equation relates free energy, enthalpy, entropy, and temperature?",
+                        "options": [
+                            "delta_G = delta_H - T*delta_S",
+                            "delta_G = delta_H + T*delta_S",
+                            "delta_G = T*delta_H - delta_S",
+                            "delta_G = delta_S - T*delta_H"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "The Gibbs relation is delta_G = delta_H - T*delta_S."
+                    },
+                    {
+                        "stem": "Convert delta_S to kJ and compute T*delta_S at 298 K.",
+                        "options": [
+                            "298 * 100 = 29800 kJ/mol",
+                            "298 * 0.100 = 29.8 kJ/mol",
+                            "298 / 0.100 = 2980 kJ/mol",
+                            "0.100 - 298 kJ/mol"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "delta_S = 100 J = 0.100 kJ per mol.K; times 298 K gives 29.8 kJ/mol (units must match delta_H in kJ)."
+                    },
+                    {
+                        "stem": "Compute delta_G = 50 - 29.8 kJ/mol.",
+                        "options": [
+                            "+20.2 kJ/mol (nonspontaneous)",
+                            "-20.2 kJ/mol (spontaneous)",
+                            "+79.8 kJ/mol",
+                            "0 kJ/mol"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "50 - 29.8 = +20.2 kJ/mol; the positive sign means the reaction is nonspontaneous at 298 K."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-10-q5",
+                "aamc_category": "5E",
+                "subtopic": "Temperature dependence of spontaneity",
+                "stem": "Above what temperature does this reaction become spontaneous (delta_G < 0)?",
+                "options": [
+                    "298 K",
+                    "500 K",
+                    "250 K",
+                    "1000 K"
+                ],
+                "correct_index": 1,
+                "explanation": "Setting delta_G = delta_H - T*delta_S < 0 gives T > delta_H/delta_S = 50000 J / 100 J.K^-1 = 500 K. Because both delta_H and delta_S are positive, the reaction is entropy-driven and becomes spontaneous only at high temperature. '298 K' is where delta_G is still positive; '250 K' is below the crossover; '1000 K' overshoots the threshold.",
+                "difficulty": "hard",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "The reaction is spontaneous when delta_G is...",
+                        "options": [
+                            "positive",
+                            "negative",
+                            "zero only",
+                            "very large"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Spontaneity requires delta_G < 0."
+                    },
+                    {
+                        "stem": "Set delta_H - T*delta_S < 0 and solve for T.",
+                        "options": [
+                            "T > delta_H/delta_S",
+                            "T < delta_H/delta_S",
+                            "T > delta_S/delta_H",
+                            "T > delta_H*delta_S"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Rearranging gives T > delta_H/delta_S (dividing by positive delta_S keeps the inequality)."
+                    },
+                    {
+                        "stem": "Evaluate delta_H/delta_S = 50000 J / 100 J.K^-1 (use joules for both).",
+                        "options": [
+                            "500 K",
+                            "50 K",
+                            "5000 K",
+                            "0.002 K"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "50000/100 = 500 K; above this temperature the entropy term wins and delta_G turns negative."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "psg-cp-11",
+        "section": "C/P",
+        "passage": "The following six questions are discrete and passage-independent: each stands alone and is not based on a shared passage, mirroring the freestanding question groups that appear between passages on the MCAT Chemical and Physical Foundations of Biological Systems section. Each question tests a single core physics principle - statics and torque, buoyancy, electrostatics, sound intensity, periodic atomic properties, or momentum conservation - and should be answered from fundamental principles rather than any preceding text. Constants are stated where needed; take g = 10 m/s^2.",
+        "passage_source": {
+            "name": "OpenStax College Physics 2e (ch. 6/9 statics and torque, ch. 11 buoyancy, ch. 18-19 electrostatics/Coulomb's law, ch. 17 sound intensity/decibels, ch. 8 momentum); atomic periodicity from OpenStax Chemistry 2e ch. 6",
+            "url": "https://openstax.org/details/books/college-physics-2e",
+            "license": "CC BY 4.0"
+        },
+        "questions": [
+            {
+                "id": "psg-cp-11-q1",
+                "aamc_category": "4A",
+                "subtopic": "Static equilibrium and torque",
+                "stem": "A forearm holds a 50 N ball in the hand, 30 cm from the elbow joint, while the biceps tendon attaches 3.0 cm from the elbow. Ignoring the forearm's weight, what muscle force keeps the forearm horizontal and in static equilibrium?",
+                "options": [
+                    "50 N",
+                    "150 N",
+                    "500 N",
+                    "5000 N"
+                ],
+                "correct_index": 2,
+                "explanation": "Rotational equilibrium about the elbow requires the muscle torque to balance the load torque: F_m x 0.030 m = 50 N x 0.30 m, so F_m = (50 x 0.30)/0.030 = 500 N. The short lever arm of the muscle forces a large force (a class-3 lever trades force for range of motion). '50 N' ignores the lever arms; '150 N' uses a factor of 3 only; '5000 N' misplaces a decimal.",
+                "difficulty": "hard",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "Torque about a pivot equals...",
+                        "options": [
+                            "force x lever-arm distance",
+                            "force / distance",
+                            "mass x velocity",
+                            "force x time"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Torque = force times the perpendicular lever-arm distance to the pivot."
+                    },
+                    {
+                        "stem": "Set the muscle torque equal to the load torque about the elbow.",
+                        "options": [
+                            "F_m x 0.030 = 50 x 0.30",
+                            "F_m x 0.30 = 50 x 0.030",
+                            "F_m x 0.030 = 50 x 0.030",
+                            "F_m = 50"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "The muscle acts at 0.030 m and the 50 N load at 0.30 m; balance the two torques."
+                    },
+                    {
+                        "stem": "Solve F_m = (50 x 0.30)/0.030.",
+                        "options": [
+                            "50 N",
+                            "150 N",
+                            "500 N",
+                            "1500 N"
+                        ],
+                        "correct_index": 2,
+                        "explanation": "50 x 0.30 = 15; 15/0.030 = 500 N."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-11-q2",
+                "aamc_category": "4B",
+                "subtopic": "Buoyancy (Archimedes' principle)",
+                "stem": "A solid block of density 800 kg/m^3 floats in water (density 1000 kg/m^3). What fraction of the block's volume is submerged?",
+                "options": [
+                    "0.20",
+                    "0.80",
+                    "1.25",
+                    "0.08"
+                ],
+                "correct_index": 1,
+                "explanation": "For a floating object the buoyant force equals its weight: rho_water * V_sub * g = rho_block * V * g, so V_sub/V = rho_block/rho_water = 800/1000 = 0.80. Eighty percent is submerged. '1.25' inverts the ratio (impossible, >1); '0.20' is the fraction above water; '0.08' misplaces a decimal.",
+                "difficulty": "medium",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "For a floating object, the buoyant force equals...",
+                        "options": [
+                            "zero",
+                            "the object's weight",
+                            "the water's total weight",
+                            "the atmospheric pressure"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Floating means equilibrium: the upward buoyant force exactly balances the object's weight."
+                    },
+                    {
+                        "stem": "Setting rho_water*V_sub*g = rho_block*V*g, the submerged fraction V_sub/V equals...",
+                        "options": [
+                            "rho_water/rho_block",
+                            "rho_block/rho_water",
+                            "rho_block*rho_water",
+                            "1"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Canceling g and rearranging gives V_sub/V = rho_block/rho_water."
+                    },
+                    {
+                        "stem": "Evaluate 800/1000.",
+                        "options": [
+                            "0.08",
+                            "0.80",
+                            "1.25",
+                            "8.0"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "800/1000 = 0.80, so 80% of the volume is underwater."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-11-q3",
+                "aamc_category": "4C",
+                "subtopic": "Coulomb's law (inverse-square)",
+                "stem": "Two point charges attract each other with a force F. If the distance between them is doubled while the charges are unchanged, the new force is:",
+                "options": [
+                    "4F",
+                    "2F",
+                    "F/2",
+                    "F/4"
+                ],
+                "correct_index": 3,
+                "explanation": "Coulomb's law makes force inversely proportional to the square of the separation, F ~ 1/r^2. Doubling r multiplies the force by 1/(2^2) = 1/4, giving F/4. '4F' would result from halving the distance; '2F' and 'F/2' use a linear (1/r) dependence, not the correct inverse-square.",
+                "difficulty": "medium",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "How does the Coulomb force depend on the separation r?",
+                        "options": [
+                            "F ~ r",
+                            "F ~ 1/r",
+                            "F ~ 1/r^2",
+                            "F ~ r^2"
+                        ],
+                        "correct_index": 2,
+                        "explanation": "Coulomb's law: F = kq1q2/r^2, an inverse-square dependence."
+                    },
+                    {
+                        "stem": "Doubling r multiplies 1/r^2 by what factor?",
+                        "options": [
+                            "1/2",
+                            "1/4",
+                            "2",
+                            "4"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "1/(2)^2 = 1/4."
+                    },
+                    {
+                        "stem": "So the new force is...",
+                        "options": [
+                            "4F",
+                            "2F",
+                            "F/4",
+                            "F"
+                        ],
+                        "correct_index": 2,
+                        "explanation": "The force drops to one-fourth of its original value, F/4."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-11-q4",
+                "aamc_category": "4D",
+                "subtopic": "Sound intensity and the decibel scale",
+                "stem": "A sound's intensity increases by a factor of 100. By how many decibels does its sound intensity level rise? (level = 10 log10(I/I0))",
+                "options": [
+                    "2 dB",
+                    "10 dB",
+                    "20 dB",
+                    "100 dB"
+                ],
+                "correct_index": 2,
+                "explanation": "The change in level is 10 log10(I2/I1) = 10 log10(100) = 10 x 2 = 20 dB. The decibel scale is logarithmic, so a 100-fold intensity change is only +20 dB. '100 dB' treats the scale as linear; '10 dB' is a 10x change; '2 dB' forgets the factor of 10.",
+                "difficulty": "medium",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "The decibel change for an intensity ratio is...",
+                        "options": [
+                            "10 log10(I2/I1)",
+                            "log10(I2/I1)",
+                            "10 (I2/I1)",
+                            "I2/I1"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Sound level difference = 10 times the base-10 log of the intensity ratio."
+                    },
+                    {
+                        "stem": "Evaluate log10(100).",
+                        "options": [
+                            "1",
+                            "2",
+                            "10",
+                            "100"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "100 = 10^2, so log10(100) = 2."
+                    },
+                    {
+                        "stem": "Multiply by 10.",
+                        "options": [
+                            "2 dB",
+                            "20 dB",
+                            "100 dB",
+                            "200 dB"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "10 x 2 = 20 dB for a 100-fold intensity increase."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-11-q5",
+                "aamc_category": "4E",
+                "subtopic": "Periodic trends (ionization energy)",
+                "stem": "Which neutral atom has the greater first ionization energy, sodium (Na) or chlorine (Cl)?",
+                "options": [
+                    "Na, because it has fewer electrons than Cl.",
+                    "Cl, because first ionization energy generally increases from left to right across a period.",
+                    "Na, because metals always hold their electrons more tightly than nonmetals.",
+                    "They are equal, since both lie in period 3."
+                ],
+                "correct_index": 1,
+                "explanation": "Across period 3, increasing effective nuclear charge pulls the valence electrons in more tightly, so ionization energy rises from Na (group 1) to Cl (group 17); removing an electron from Cl is much harder. Choice 1 confuses electron count with binding; choice 3 states the opposite of the metal/nonmetal trend; choice 4 ignores the periodic trend.",
+                "difficulty": "easy",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "Across a period (left to right), first ionization energy generally...",
+                        "options": [
+                            "decreases",
+                            "increases",
+                            "stays constant",
+                            "varies randomly"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Greater effective nuclear charge across a period binds valence electrons more tightly, raising ionization energy."
+                    },
+                    {
+                        "stem": "In period 3, which group are Na and Cl in?",
+                        "options": [
+                            "Na group 1 (left), Cl group 17 (right)",
+                            "Na group 17, Cl group 1",
+                            "both group 1",
+                            "both group 17"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Na is an alkali metal on the far left; Cl is a halogen on the far right."
+                    },
+                    {
+                        "stem": "Therefore the atom farther right, Cl, has the ___ ionization energy.",
+                        "options": [
+                            "lower",
+                            "higher",
+                            "same",
+                            "zero"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Being farther right in the same period, Cl has the higher first ionization energy."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-11-q6",
+                "aamc_category": "4A",
+                "subtopic": "Conservation of momentum (inelastic collision)",
+                "stem": "A 2.0 kg cart moving at 3.0 m/s collides with and sticks to a 1.0 kg cart at rest on a frictionless track. What is their common speed just after the collision?",
+                "options": [
+                    "1 m/s",
+                    "2 m/s",
+                    "3 m/s",
+                    "6 m/s"
+                ],
+                "correct_index": 1,
+                "explanation": "With no external horizontal force, momentum is conserved. For a perfectly inelastic collision, m1v1 = (m1+m2)v_f, so v_f = (2.0 x 3.0)/(2.0+1.0) = 6/3 = 2.0 m/s. '3 m/s' ignores the added mass; '6 m/s' forgets to divide by total mass; '1 m/s' uses the wrong mass sum. (Kinetic energy is NOT conserved here, but momentum is.)",
+                "difficulty": "medium",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "In a collision with no external horizontal force, which quantity is conserved?",
+                        "options": [
+                            "Kinetic energy",
+                            "Momentum",
+                            "Force",
+                            "Acceleration"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Total momentum is always conserved in collisions; kinetic energy is conserved only in elastic ones."
+                    },
+                    {
+                        "stem": "For a perfectly inelastic collision (they stick), the equation is...",
+                        "options": [
+                            "m1v1 = (m1+m2)v_f",
+                            "m1v1 = m2v_f",
+                            "1/2 m1 v1^2 = (m1+m2)v_f",
+                            "v1 = v_f"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Total momentum before equals total momentum of the combined mass after."
+                    },
+                    {
+                        "stem": "Evaluate v_f = (2.0 x 3.0)/(2.0 + 1.0).",
+                        "options": [
+                            "1 m/s",
+                            "2 m/s",
+                            "3 m/s",
+                            "6 m/s"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "6/3 = 2.0 m/s for the stuck-together carts."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "psg-cp-12",
+        "section": "C/P",
+        "passage": "The following six questions are discrete and passage-independent: each stands alone and is not based on a shared passage, as with the freestanding discrete questions interspersed between passages on the MCAT Chemical and Physical Foundations section. Each probes a single core chemistry principle - solution concentration, molecular polarity and geometry, gel electrophoresis, amino-acid acid-base behavior, chemical equilibrium, or reaction classification - and should be answered from fundamental principles rather than any preceding text. Assume aqueous solutions at 25 C and standard conditions unless stated otherwise.",
+        "passage_source": {
+            "name": "OpenStax Chemistry 2e (ch. 3/4 solution concentration and dilution, ch. 7 molecular polarity, ch. 13 equilibrium/Le Chatelier) and OpenStax Organic Chemistry (amino acids/zwitterions, condensation vs hydrolysis); electrophoresis from OpenStax Biology 2e",
+            "url": "https://openstax.org/details/books/chemistry-2e",
+            "license": "CC BY 4.0"
+        },
+        "questions": [
+            {
+                "id": "psg-cp-12-q1",
+                "aamc_category": "5A",
+                "subtopic": "Dilution and molarity",
+                "stem": "A 10 mL sample of 2.0 M stock solution is diluted with water to a final volume of 100 mL. What is the final molarity?",
+                "options": [
+                    "0.02 M",
+                    "0.20 M",
+                    "0.50 M",
+                    "2.0 M"
+                ],
+                "correct_index": 1,
+                "explanation": "Moles are conserved on dilution, so M1V1 = M2V2 gives M2 = M1V1/V2 = (2.0 M x 10 mL)/(100 mL) = 0.20 M - a tenfold dilution matching the tenfold volume increase. '2.0 M' forgets to dilute; '0.02 M' over-dilutes 100x; '0.50 M' uses the wrong volume ratio.",
+                "difficulty": "easy",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "Which relationship governs dilution (moles conserved)?",
+                        "options": [
+                            "M1V1 = M2V2",
+                            "M1/V1 = M2/V2",
+                            "M1V2 = M2V1",
+                            "M1 + V1 = M2 + V2"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "The number of moles (M x V) is unchanged, so M1V1 = M2V2."
+                    },
+                    {
+                        "stem": "Solve for M2 and substitute: M2 = (2.0 x 10)/100.",
+                        "options": [
+                            "(2.0 x 10)/100",
+                            "(2.0 x 100)/10",
+                            "2.0 x 10 x 100",
+                            "2.0/(10 x 100)"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "M2 = M1V1/V2 = 2.0 M times 10 mL, divided by 100 mL."
+                    },
+                    {
+                        "stem": "Evaluate (2.0 x 10)/100.",
+                        "options": [
+                            "0.02 M",
+                            "0.20 M",
+                            "2.0 M",
+                            "20 M"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "20/100 = 0.20 M, a tenfold dilution."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-12-q2",
+                "aamc_category": "5B",
+                "subtopic": "Molecular geometry and net dipole",
+                "stem": "Carbon dioxide (O=C=O) contains two polar C=O bonds, yet the molecule has no net dipole moment. Why?",
+                "options": [
+                    "The C=O bonds are actually nonpolar.",
+                    "CO2 is bent, so the two bond dipoles add together.",
+                    "CO2 is linear and symmetric, so the two equal bond dipoles point in opposite directions and cancel.",
+                    "Carbon is more electronegative than oxygen, which cancels the dipoles."
+                ],
+                "correct_index": 2,
+                "explanation": "Each C=O bond is polar (O is more electronegative than C), but CO2 is linear (180 degrees), so the two equal bond dipoles point in exactly opposite directions and sum to zero - a nonpolar molecule with polar bonds. Choice 1 denies the bond polarity; choice 2 gives the wrong geometry; choice 4 reverses the electronegativity order.",
+                "difficulty": "medium",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "Are the individual C=O bonds polar?",
+                        "options": [
+                            "Yes; oxygen is more electronegative than carbon",
+                            "No; C and O have equal electronegativity",
+                            "No; the bonds are ionic",
+                            "Yes; carbon is more electronegative"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Oxygen is more electronegative, so each C=O bond is polar."
+                    },
+                    {
+                        "stem": "What is the molecular shape of CO2?",
+                        "options": [
+                            "Bent",
+                            "Linear (O=C=O, 180 degrees)",
+                            "Trigonal planar",
+                            "Tetrahedral"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Carbon has two electron domains (two double bonds, no lone pairs), giving a linear shape."
+                    },
+                    {
+                        "stem": "Two equal bond dipoles pointing in opposite directions in a linear molecule...",
+                        "options": [
+                            "reinforce each other",
+                            "cancel to a net dipole of zero",
+                            "create a permanent dipole",
+                            "make the molecule ionic"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Equal and opposite vectors cancel, so CO2 has no net dipole despite polar bonds."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-12-q3",
+                "aamc_category": "5C",
+                "subtopic": "Gel electrophoresis",
+                "stem": "In agarose gel electrophoresis, DNA fragments migrate toward the positive electrode. Which fragments travel the farthest through the gel?",
+                "options": [
+                    "The largest fragments, because they carry the most charge.",
+                    "The smallest fragments, because they move most easily through the gel's pores.",
+                    "All fragments travel equally far.",
+                    "None move; only the buffer flows."
+                ],
+                "correct_index": 1,
+                "explanation": "DNA's phosphate backbone is uniformly negatively charged, so all fragments migrate toward the positive electrode (anode); the gel acts as a molecular sieve, so small fragments thread through the pores fastest and travel farthest, while large ones lag. Charge-per-length is roughly constant, so size, not total charge, determines the separation.",
+                "difficulty": "medium",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "Why does DNA migrate toward the positive electrode?",
+                        "options": [
+                            "Its phosphate backbone is negatively charged",
+                            "It is positively charged",
+                            "It is neutral but pushed by the buffer",
+                            "Because of its color"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "The negatively charged phosphate backbone is attracted to the positive electrode (anode)."
+                    },
+                    {
+                        "stem": "The gel matrix acts as a...",
+                        "options": [
+                            "heat source",
+                            "molecular sieve that slows large fragments",
+                            "source of charge",
+                            "pH buffer only"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Pores in the gel impede larger molecules more than smaller ones, separating by size."
+                    },
+                    {
+                        "stem": "Therefore, the fragments that travel farthest are the...",
+                        "options": [
+                            "largest",
+                            "smallest",
+                            "most charged",
+                            "least charged"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Smallest fragments pass through the pores most easily and migrate farthest."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-12-q4",
+                "aamc_category": "5D",
+                "subtopic": "Amino acid acid-base behavior (zwitterion)",
+                "stem": "At physiological pH (about 7.4), in what form does a simple amino acid such as glycine predominantly exist?",
+                "options": [
+                    "Fully protonated, with -COOH and -NH3+.",
+                    "Fully deprotonated, with -COO- and -NH2.",
+                    "A zwitterion, with -COO- and -NH3+ (net charge near zero).",
+                    "Fully uncharged, with -COOH and -NH2."
+                ],
+                "correct_index": 2,
+                "explanation": "The carboxyl group (pKa ~2) is deprotonated to -COO- at pH 7.4, while the amino group (pKa ~9-10) remains protonated as -NH3+, giving a doubly charged but net-neutral zwitterion. Choices 1 and 2 hold near very low or very high pH, respectively; the fully uncharged form (choice 4) is never significantly populated in water.",
+                "difficulty": "medium",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "At pH 7.4, is the carboxyl group (pKa ~2) protonated or deprotonated?",
+                        "options": [
+                            "Protonated (-COOH)",
+                            "Deprotonated (-COO-)",
+                            "Unchanged",
+                            "Removed entirely"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Well above its pKa of ~2, the carboxyl is deprotonated to -COO-."
+                    },
+                    {
+                        "stem": "At pH 7.4, is the amino group (pKa ~9-10) protonated or deprotonated?",
+                        "options": [
+                            "Protonated (-NH3+)",
+                            "Deprotonated (-NH2)",
+                            "Neutral radical",
+                            "Removed entirely"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Below its pKa of ~9-10, the amino group stays protonated as -NH3+."
+                    },
+                    {
+                        "stem": "A molecule bearing both -COO- and -NH3+ simultaneously is called a...",
+                        "options": [
+                            "cation",
+                            "anion",
+                            "zwitterion",
+                            "nonelectrolyte"
+                        ],
+                        "correct_index": 2,
+                        "explanation": "Opposite charges on the same molecule (net ~0) define a zwitterion."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-12-q5",
+                "aamc_category": "5E",
+                "subtopic": "Chemical equilibrium (Le Chatelier)",
+                "stem": "An exothermic reaction is at equilibrium. If the temperature is raised, how does the equilibrium respond?",
+                "options": [
+                    "It shifts toward products, and K increases.",
+                    "It shifts toward reactants, and K decreases.",
+                    "It does not shift; temperature never affects equilibrium.",
+                    "It shifts toward products, but K is unchanged."
+                ],
+                "correct_index": 1,
+                "explanation": "For an exothermic reaction, heat is effectively a product; adding heat (raising T) drives the system away from that product, toward reactants, and lowers the equilibrium constant K. Choice 1 is the endothermic response; choice 3 wrongly claims temperature independence (T is the only factor that changes K); choice 4 forgets that only temperature changes actually change K.",
+                "difficulty": "medium",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "For an exothermic reaction, heat can be treated as a...",
+                        "options": [
+                            "reactant",
+                            "product",
+                            "catalyst",
+                            "solvent"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Exothermic reactions release heat, so heat appears on the product side."
+                    },
+                    {
+                        "stem": "By Le Chatelier, adding heat (raising T) shifts the reaction...",
+                        "options": [
+                            "toward products",
+                            "toward reactants",
+                            "not at all",
+                            "to completion"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "The system relieves the added heat by shifting away from the product side, toward reactants."
+                    },
+                    {
+                        "stem": "This shift toward reactants means the equilibrium constant K...",
+                        "options": [
+                            "increases",
+                            "decreases",
+                            "stays the same",
+                            "becomes infinite"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Fewer products at the new equilibrium means a smaller K for an exothermic reaction as T rises."
+                    }
+                ]
+            },
+            {
+                "id": "psg-cp-12-q6",
+                "aamc_category": "5D",
+                "subtopic": "Classifying organic reactions",
+                "stem": "Two amino acids join to form a dipeptide plus one water molecule. This bond-forming reaction is best classified as:",
+                "options": [
+                    "a hydrolysis reaction",
+                    "an oxidation reaction",
+                    "a condensation (dehydration) reaction",
+                    "a neutralization reaction"
+                ],
+                "correct_index": 2,
+                "explanation": "Forming the peptide bond expels a water molecule, so joining the two monomers is a condensation (dehydration) reaction. Its reverse - adding water to cleave the bond - is hydrolysis (choice 1). No change in oxidation state occurs (not choice 2), and it is not a simple acid-base neutralization (choice 4).",
+                "difficulty": "medium",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "What small molecule is released when the peptide bond forms?",
+                        "options": [
+                            "Carbon dioxide",
+                            "Water",
+                            "Ammonia",
+                            "Hydrogen gas"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "A hydroxyl from the carboxyl and an H from the amino group leave together as water."
+                    },
+                    {
+                        "stem": "A reaction that joins two molecules with loss of water is called...",
+                        "options": [
+                            "hydrolysis",
+                            "condensation (dehydration)",
+                            "combustion",
+                            "reduction"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Joining with loss of water is a condensation/dehydration reaction."
+                    },
+                    {
+                        "stem": "The reverse reaction, breaking the peptide bond by adding water, is...",
+                        "options": [
+                            "condensation",
+                            "hydrolysis",
+                            "oxidation",
+                            "esterification"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Adding water to cleave a bond is hydrolysis - the opposite of condensation."
+                    }
+                ]
+            }
+        ]
+    }
+]

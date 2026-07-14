@@ -1,0 +1,133 @@
+// Copyright: Ankitects Pty Ltd and contributors
+// License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
+
+// ReadyMCAT engine extension.
+//
+// The first-launch introductory diagnostic. This service serves the question
+// bank, scores a completed diagnostic into a per-topic proficiency PRIOR, and
+// persists it. The prior seeds the points-at-stake ordering (with a decay so it
+// self-erases as FSRS reviews accrue) and coarse prerequisite-placement bands.
+//
+// HONESTY RULE: the diagnostic is a prior, not a readiness verdict. Nothing
+// here ever writes the dashboard's memory / performance / readiness scores; it
+// influences card ordering and prerequisite placement ONLY. See
+// rslib/src/diagnostic/ and readymcat/diagnostic/README.md.
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+
+package anki.diagnostic;
+
+import "anki/generic.proto";
+
+service DiagnosticService {
+  // Serve the diagnostic question bank for the requested administration mode.
+  rpc GetDiagnosticQuiz(DiagnosticQuizRequest) returns (DiagnosticQuiz);
+  // Score a completed diagnostic into a per-topic prior + placement bands,
+  // persist it, and return it. Ordering + placement only — never a score.
+  rpc ScoreAndSeedDiagnostic(DiagnosticResponses) returns (DiagnosticPrior);
+  // The persisted prior, if the student has taken the diagnostic. Used to gate
+  // the first-launch flow (present == already taken).
+  rpc GetDiagnosticPrior(generic.Empty) returns (DiagnosticPrior);
+  // Forget the persisted prior so the diagnostic can be retaken.
+  rpc ClearDiagnosticPrior(generic.Empty) returns (generic.Empty);
+}
+
+// Backend-only counterpart (required so service indices stay paired). Empty:
+// every method is delegated to the Collection implementation.
+service BackendDiagnosticService {}
+
+message DiagnosticQuizRequest {
+  // Path to diagnostic_quiz.json. When empty, the file is looked up next to the
+  // collection (collection folder, then media folder).
+  string quiz_path = 1;
+  // "short" (default; one item per category) or "extended" (the whole bank).
+  string mode = 2;
+}
+
+message DiagnosticQuiz {
+  string quiz_id = 1;
+  string title = 2;
+  string description = 3;
+  string mode = 4;
+  repeated DiagnosticItem items = 5;
+  // False when no bank could be located.
+  bool present = 6;
+}
+
+message DiagnosticOption {
+  string key = 1;
+  string text = 2;
+}
+
+message DiagnosticItem {
+  string id = 1;
+  // AAMC content-category id, e.g. "1A" (joins to taxonomy.json).
+  string category = 2;
+  string category_name = 3;
+  string section = 4;
+  string discipline = 5;
+  string cognitive_level = 6;
+  string difficulty = 7;
+  string stem = 8;
+  repeated DiagnosticOption options = 9;
+  // The correct option key. Auto-grading is unambiguous for single-best MCQs.
+  string answer = 10;
+  // Shown only after the student answers (honest, just-in-time review).
+  string rationale = 11;
+  // Free grounding source for review (e.g. OpenStax); shown after answering.
+  string source_url = 12;
+}
+
+message DiagnosticResponse {
+  string item_id = 1;
+  // AAMC content-category id.
+  string category = 2;
+  // The option key the student chose (empty when skipped).
+  string chosen = 3;
+  // False => skipped => NO evidence (never counted as wrong).
+  bool answered = 4;
+  bool correct = 5;
+  string difficulty = 6;
+}
+
+message DiagnosticResponses {
+  repeated DiagnosticResponse responses = 1;
+  // "short" | "extended" (recorded on the persisted prior).
+  string mode = 2;
+  // Scorer knobs. 0 => use the documented defaults (mu0=0.5, kappa=6, c0=8).
+  double mu0 = 3;
+  double kappa = 4;
+  double decay_pseudocount = 5;
+  // Escape hatches, off by default: disable Step-1 difficulty weighting or
+  // Step-3 hierarchical pooling (e.g. to reproduce the README worked example).
+  bool disable_difficulty = 6;
+  bool disable_pooling = 7;
+}
+
+// The per-category prior. HONESTY: `weakness` seeds ORDERING only and decays as
+// FSRS reviews accrue; `band` is for prerequisite PLACEMENT. Neither is a
+// dashboard score, and the diagnostic is never surfaced as a number.
+message CategoryPrior {
+  string category = 1;
+  // Items answered (0-2) and number correct, for traceability.
+  uint32 n = 2;
+  uint32 k = 3;
+  // Shrunk, pooled proficiency in [0,1].
+  double p_hat = 4;
+  // 1 - p_hat; the points-at-stake ordering seed.
+  double weakness = 5;
+  // Prerequisite placement band: "held" | "partial" | "gap".
+  string band = 6;
+}
+
+message DiagnosticPrior {
+  // False when no diagnostic has been taken yet.
+  bool present = 1;
+  int64 taken_at = 2;
+  string mode = 3;
+  // Step-5 decay pseudo-count c0 ("~5-10 reviews").
+  double decay_pseudocount = 4;
+  repeated CategoryPrior categories = 5;
+}

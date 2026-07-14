@@ -12,6 +12,7 @@ members = [
   "build/runner",
   "ftl",
   "pylib/rsbridge",
+  "rsios",
   "rslib",
   "rslib/i18n",
   "rslib/io",
@@ -19,7 +20,9 @@ members = [
   "rslib/process",
   "rslib/proto",
   "rslib/sync",
+  "tools/mcat_bench",
   "tools/minilints",
+  "tools/sample_deck",
 ]
 resolver = "2"
 

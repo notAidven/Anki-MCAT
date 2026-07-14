@@ -1,0 +1,150 @@
+{
+    "version": 1,
+    "description": "Held-out golden set for the ReadyMCAT teach-on-miss ladder-generation eval. Each card is a (question, answer, source) triple the generator turns into a guiding {q,a} ladder. These cards are used ONLY to score generation; the generator prompt is zero-shot and never sees them as few-shot examples, so there is no train/test leakage in our pipeline. Answers are concise and grounded in free/open sources (OpenStax, LibreTexts) matching ReadyMCAT's sourcing ethos.",
+    "cards": [
+        {
+            "id": "gs-bb-glycolysis-yield",
+            "section": "B/B",
+            "aamc_category": "1D",
+            "subtopic": "Glycolysis energetics",
+            "question": "What is the net yield of ATP and NADH from one molecule of glucose in glycolysis?",
+            "answer": "Glycolysis invests 2 ATP in the energy-investment phase (at hexokinase and phosphofructokinase-1) and produces 4 ATP and 2 NADH in the payoff phase, for a net yield of 2 ATP and 2 NADH per glucose.",
+            "source": "OpenStax Biology 2e, Section 7.2 (Glycolysis)"
+        },
+        {
+            "id": "gs-bb-enzyme-km",
+            "section": "B/B",
+            "aamc_category": "1A",
+            "subtopic": "Enzyme kinetics",
+            "question": "In Michaelis-Menten kinetics, what does the Michaelis constant (Km) represent about an enzyme?",
+            "answer": "Km is the substrate concentration at which the reaction rate is half of Vmax. A low Km indicates high affinity of the enzyme for its substrate (half-maximal rate is reached at low substrate), while a high Km indicates low affinity.",
+            "source": "LibreTexts Biochemistry, Enzyme Kinetics (Michaelis-Menten)"
+        },
+        {
+            "id": "gs-bb-hemoglobin-cooperativity",
+            "section": "B/B",
+            "aamc_category": "1A",
+            "subtopic": "Protein structure and function",
+            "question": "Why does hemoglobin show a sigmoidal oxygen-binding curve while myoglobin's is hyperbolic?",
+            "answer": "Hemoglobin has four subunits that bind oxygen cooperatively: binding at one heme increases affinity at the others, producing an S-shaped (sigmoidal) curve. Myoglobin is a single subunit with no cooperativity, so its binding curve is hyperbolic.",
+            "source": "OpenStax Biology 2e, Section 39.4 (Transport of Gases)"
+        },
+        {
+            "id": "gs-bb-dna-replication-direction",
+            "section": "B/B",
+            "aamc_category": "1B",
+            "subtopic": "DNA replication",
+            "question": "Why is one new DNA strand synthesized continuously (leading) and the other discontinuously (lagging)?",
+            "answer": "DNA polymerase only adds nucleotides 5' to 3', so it can synthesize continuously toward the replication fork on the template read 3' to 5' (leading strand). The opposite template runs the wrong way, so synthesis proceeds away from the fork in short Okazaki fragments (lagging strand), later joined by ligase.",
+            "source": "OpenStax Biology 2e, Section 14.4 (DNA Replication)"
+        },
+        {
+            "id": "gs-bb-action-potential",
+            "section": "B/B",
+            "aamc_category": "3A",
+            "subtopic": "Neuron action potentials",
+            "question": "What ion movements produce the depolarization and repolarization phases of a neuronal action potential?",
+            "answer": "Depolarization occurs when voltage-gated sodium channels open and Na+ rushes into the cell, driving the membrane potential positive. Repolarization occurs when Na+ channels inactivate and voltage-gated potassium channels open, letting K+ flow out and returning the membrane toward its negative resting potential.",
+            "source": "OpenStax Biology 2e, Section 35.2 (How Neurons Communicate)"
+        },
+        {
+            "id": "gs-bb-glucagon-insulin",
+            "section": "B/B",
+            "aamc_category": "5D",
+            "subtopic": "Hormonal regulation of glucose",
+            "question": "How do insulin and glucagon have opposing effects on blood glucose?",
+            "answer": "Insulin, released when blood glucose is high, promotes glucose uptake into cells and glycogen synthesis, lowering blood glucose. Glucagon, released when blood glucose is low, stimulates glycogen breakdown (glycogenolysis) and gluconeogenesis in the liver, raising blood glucose.",
+            "source": "OpenStax Biology 2e, Section 37.5 (Endocrine Regulation of Metabolism)"
+        },
+        {
+            "id": "gs-cp-ideal-gas",
+            "section": "C/P",
+            "aamc_category": "4A",
+            "subtopic": "Ideal gas law",
+            "question": "According to the ideal gas law, what happens to the volume of a fixed amount of gas at constant temperature if its pressure is doubled?",
+            "answer": "By the ideal gas law PV = nRT, at constant temperature and moles the product PV is constant (Boyle's law). Doubling the pressure therefore halves the volume.",
+            "source": "OpenStax Chemistry 2e, Section 9.2 (Relating Pressure, Volume, Amount, and Temperature)"
+        },
+        {
+            "id": "gs-cp-strong-acid-ph",
+            "section": "C/P",
+            "aamc_category": "5B",
+            "subtopic": "Acid-base pH",
+            "question": "What is the pH of a 0.010 M solution of the strong acid HCl, and why?",
+            "answer": "HCl is a strong acid that dissociates completely, so [H+] equals 0.010 M = 1.0 x 10^-2 M. pH = -log[H+] = 2. The strong-acid assumption of complete dissociation is what lets you read [H+] directly from the concentration.",
+            "source": "OpenStax Chemistry 2e, Section 14.2 (pH and pOH)"
+        },
+        {
+            "id": "gs-cp-ohms-law-series",
+            "section": "C/P",
+            "aamc_category": "4B",
+            "subtopic": "DC circuits",
+            "question": "In a series circuit with two resistors, how do you find the total resistance and the current from the battery?",
+            "answer": "In series, resistances add: R_total = R1 + R2. The current is the same through every element and is found from Ohm's law, I = V / R_total, where V is the battery voltage.",
+            "source": "OpenStax College Physics, Section 21.1 (Resistors in Series and Parallel)"
+        },
+        {
+            "id": "gs-cp-exothermic-bonds",
+            "section": "C/P",
+            "aamc_category": "4E",
+            "subtopic": "Thermochemistry",
+            "question": "Using bond energies, how can you tell whether a reaction is exothermic or endothermic?",
+            "answer": "Breaking bonds absorbs energy and forming bonds releases energy. Estimate the enthalpy change as (energy to break reactant bonds) minus (energy released forming product bonds). If more energy is released forming products than is absorbed breaking reactants, the net change is negative and the reaction is exothermic; otherwise it is endothermic.",
+            "source": "OpenStax Chemistry 2e, Section 5.3 (Enthalpy)"
+        },
+        {
+            "id": "gs-cp-converging-lens",
+            "section": "C/P",
+            "aamc_category": "4C",
+            "subtopic": "Geometrical optics",
+            "question": "For an object placed beyond the focal length of a converging lens, what kind of image forms and why?",
+            "answer": "When the object is beyond the focal length of a converging lens, the refracted rays actually meet on the far side, forming a real, inverted image. This follows from the thin-lens equation 1/f = 1/do + 1/di, which gives a positive image distance (real image) for do > f.",
+            "source": "OpenStax College Physics, Section 25.6 (Image Formation by Lenses)"
+        },
+        {
+            "id": "gs-cp-doppler",
+            "section": "C/P",
+            "aamc_category": "4C",
+            "subtopic": "Doppler effect",
+            "question": "Why does the pitch of an ambulance siren drop as it passes you?",
+            "answer": "The Doppler effect: while the source approaches, each successive wavefront is emitted from a closer position, compressing the wavelength and raising the observed frequency (higher pitch). After it passes and recedes, wavefronts are stretched, lowering the observed frequency (lower pitch).",
+            "source": "OpenStax College Physics, Section 17.4 (Doppler Effect and Sonic Booms)"
+        },
+        {
+            "id": "gs-ps-operant-classical",
+            "section": "P/S",
+            "aamc_category": "7A",
+            "subtopic": "Learning",
+            "question": "What distinguishes operant conditioning from classical conditioning?",
+            "answer": "Classical conditioning associates two stimuli so a neutral stimulus comes to elicit an involuntary response (as in Pavlov's dogs). Operant conditioning associates a voluntary behavior with its consequence, so reinforcement makes the behavior more likely and punishment makes it less likely.",
+            "source": "OpenStax Psychology 2e, Sections 6.2-6.3 (Classical and Operant Conditioning)"
+        },
+        {
+            "id": "gs-ps-reinforcement-schedules",
+            "section": "P/S",
+            "aamc_category": "7A",
+            "subtopic": "Reinforcement schedules",
+            "question": "Why does a variable-ratio reinforcement schedule produce the highest and most persistent rate of responding?",
+            "answer": "On a variable-ratio schedule, reinforcement follows an unpredictable number of responses, so the next response might always be the one that pays off. This uncertainty drives a high, steady response rate and makes the behavior highly resistant to extinction, which is why gambling is so persistent.",
+            "source": "OpenStax Psychology 2e, Section 6.3 (Operant Conditioning)"
+        },
+        {
+            "id": "gs-ps-memory-types",
+            "section": "P/S",
+            "aamc_category": "7B",
+            "subtopic": "Memory systems",
+            "question": "How do explicit (declarative) and implicit (procedural) long-term memory differ?",
+            "answer": "Explicit memory is the conscious recall of facts and events (declarative), such as knowing a definition or remembering yesterday's lunch. Implicit memory is expressed through performance without conscious recall (procedural), such as riding a bike, and relies on different brain systems.",
+            "source": "OpenStax Psychology 2e, Section 8.1 (How Memory Functions)"
+        },
+        {
+            "id": "gs-cars-argument-structure",
+            "section": "CARS",
+            "aamc_category": "CARS",
+            "subtopic": "Argument analysis",
+            "question": "A passage author argues that public libraries should be funded because they provide free access to information that a democracy requires. To evaluate this argument, what unstated assumption must hold?",
+            "answer": "The argument moves from 'democracy requires free access to information' to 'libraries should be funded,' so it assumes that public libraries are a necessary (or the appropriate) means of providing that free access -- that the information a democracy needs would not be adequately available without them. Identifying that bridging assumption is what lets you test the argument rather than just restate its conclusion.",
+            "source": "Original CARS-style reasoning item (public-domain themed)"
+        }
+    ]
+}

@@ -6,6 +6,8 @@ on:
 
 jobs:
   check-linked-issue:
+    # Fork guard: this workflow is upstream's; skip on forks.
+    if: github.repository == 'ankitects/anki'
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write

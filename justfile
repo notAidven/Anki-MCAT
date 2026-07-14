@@ -34,6 +34,68 @@ wheels:
 check:
     {{ ninja }} pylib qt check
 
+# ReadyMCAT: one-command §10 speed benchmark on a synthetic 50k-card deck —
+# p50/p95/worst for queue build, button press, next card, dashboard load +
+# refresh, and cold start; a full-upload + incremental collection sync; and peak
+# RSS vs a stated memory ceiling. Writes tools/mcat_bench/bench-results.{json,md}.
+bench *args:
+    {{ if os() == "windows" { "$env:CARGO_TARGET_DIR='out/rust'; cargo run --release -p mcat_bench --" } else { "CARGO_TARGET_DIR=out/rust cargo run --release -p mcat_bench --" } }} {{ args }}
+
+# ReadyMCAT: run the teach-on-miss ladder-generation eval harness over the
+# held-out golden set (needs OPENAI_API_KEY). Pass --stub to run fully offline.
+eval *args:
+    {{ uv }} run python readymcat/eval/run_eval.py {{ args }}
+
+# ReadyMCAT: literal leakage / training-data scan (spec 7e) — flags any held-out
+# eval item (golden_set + paraphrase_set) that is an exact or near-duplicate of
+# an authored bank question. Writes readymcat/eval/leakage_scan.json; exits
+# non-zero if anything is flagged. Pure stdlib, offline.
+leakage-scan *args:
+    {{ uv }} run python readymcat/eval/leakage_scan.py {{ args }}
+
+# ReadyMCAT: calibrate the MEMORY (FSRS) model — writes a reliability chart
+# (calibration.png) + a Brier/log-loss score (calibration.json) on held-out
+# reviews. Synthetic by default; pass --collection PATH to score real reviews.
+calibrate *args:
+    PYTHONPATH=out/pylib out/pyenv/bin/python readymcat/eval/calibrate_memory.py {{ args }}
+
+# ReadyMCAT: held-out PERFORMANCE check — paraphrase accuracy on unseen
+# exam-style items, demonstrating performance is a signal distinct from memory.
+perf-heldout *args:
+    PYTHONPATH=out/pylib out/pyenv/bin/python readymcat/eval/performance_heldout.py {{ args }}
+
+# ReadyMCAT: study-feature ablation — teach-on-miss ON vs OFF vs plain-Anki at
+# equal study time, reporting re-retrieval/accuracy honestly (incl. null results).
+ablation *args:
+    {{ uv }} run --with matplotlib python readymcat/eval/ablation.py {{ args }}
+
+# ReadyMCAT: crash / durability test — SIGKILL the engine mid-review N times on a
+# THROWAWAY profile and confirm no corruption / no lost reviews (never touches a
+# real profile). Writes readymcat/eval/crash_durability.json.
+crash-test *args:
+    PYTHONPATH=out/pylib out/pyenv/bin/python readymcat/eval/crash_durability.py {{ args }}
+
+# ReadyMCAT: same-card sync-CONFLICT proof — two headless clients review the same
+# card offline, then sync; verifies winner-by-timestamp + loser's revlog preserved.
+sync-conflict *args:
+    bash ios/scripts/verify-sync-conflict.sh {{ args }}
+
+# ReadyMCAT: seed SYNTHETIC demo data so the honest dashboard + topic-mastery
+# rings render fully populated (Memory / Performance / Readiness) for a UI
+# preview. The data is FAKE and clearly labelled (tag:ReadyMCAT_SYNTHETIC_DEMO).
+# Target a profile with --anki-base BASE [--profile "User 1"], or a --collection
+# PATH; pass --reseed to rebuild existing demo data. Close the desktop app first
+# so the collection is not open elsewhere. Example:
+#   just seed-demo --anki-base "$HOME/Library/Application Support/Anki2" --reseed
+seed-demo *args:
+    PYTHONPATH=out/pylib out/pyenv/bin/python readymcat/tools/seed_demo_dashboard.py {{ args }}
+
+# ReadyMCAT: remove ALL SYNTHETIC demo data (notes, cards AND the synthetic
+# reviews) from a profile, leaving a clean real-data-only collection. Same
+# --anki-base/--profile or --collection target as seed-demo. Close the app first.
+clear-demo *args:
+    PYTHONPATH=out/pylib out/pyenv/bin/python readymcat/tools/seed_demo_dashboard.py --clear-demo {{ args }}
+
 # Run all tests (Rust, Python, TypeScript). Pass --coverage to enforce coverage, and --html to include HTML reports.
 [arg("coverage", long="coverage", value="--coverage")]
 [arg("html", long="html", value="--html")]

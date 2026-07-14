@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ReadyMCAT — Study Hub (Direction A: "Not enough data yet" abstain state)</title>
+<style>
+  :root{
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --sp-1: 4px;
+    --sp-2: 8px;
+    --sp-3: 12px;
+    --sp-4: 16px;
+    --sp-5: 24px;
+    --sp-6: 32px;
+    --sp-7: 48px;
+    --sp-8: 64px;
+    --serif: ui-serif, Georgia, "Iowan Old Style", "Times New Roman", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+    --bio: #34d399;
+    --chemphys: #60a5fa;
+    --psychsoc: #c084fc;
+    --cars: #fb923c;
+    --amber: #f5b942;
+    --rose: #fb7185;
+    --teal: #2dd4bf;
+    --indigo: #818cf8;
+  }
+  html[data-theme="dark"]{
+    --bg: #0b0e14;
+    --bg-grad: radial-gradient(circle at 12% -10%, #1b2436 0%, #0b0e14 45%);
+    --surface: #12161f;
+    --surface-raised: #171c28;
+    --surface-sunken: #0e121a;
+    --border: #232939;
+    --border-soft: #1c2130;
+    --text-1: #eef1f7;
+    --text-2: #9aa4ba;
+    --text-3: #6b7488;
+    --shadow: 0 20px 40px -20px rgba(0,0,0,0.6);
+    --hairline: rgba(255,255,255,0.06);
+  }
+  html[data-theme="light"]{
+    --bg: #f4f5f9;
+    --bg-grad: radial-gradient(circle at 12% -10%, #eef0fb 0%, #f4f5f9 45%);
+    --surface: #ffffff;
+    --surface-raised: #ffffff;
+    --surface-sunken: #f0f1f6;
+    --border: #e5e7f0;
+    --border-soft: #edeef5;
+    --text-1: #171a23;
+    --text-2: #5b6474;
+    --text-3: #8991a3;
+    --shadow: 0 20px 40px -24px rgba(30,35,60,0.18);
+    --hairline: rgba(20,22,40,0.06);
+  }
+  *{ box-sizing: border-box; }
+  body{
+    margin:0;
+    background: var(--bg-grad);
+    background-color: var(--bg);
+    color: var(--text-1);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    min-height:100vh;
+  }
+  a{ color:inherit; }
+  .wrap{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: var(--sp-5) var(--sp-6) var(--sp-8);
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: var(--sp-4) 0 var(--sp-6);
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family: var(--serif);
+    font-size: 21px;
+    letter-spacing: 0.01em;
+  }
+  .brand .mark{
+    width:30px; height:30px; border-radius:9px;
+    background: linear-gradient(135deg, var(--indigo), var(--teal));
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--sans); font-weight:800; font-size:14px; color:#0b0e14;
+  }
+  .nav{ display:flex; align-items:center; gap: var(--sp-6); }
+  .navlinks{ display:flex; gap: var(--sp-5); font-size:14px; color:var(--text-2); }
+  .navlinks a.active{ color: var(--text-1); font-weight:600; }
+  .topbar-right{ display:flex; align-items:center; gap: var(--sp-4); }
+  .streakpill{
+    display:flex; align-items:center; gap:6px;
+    background: var(--surface-raised); border:1px solid var(--border);
+    padding: 6px 12px; border-radius:999px; font-size:13px; font-weight:600;
+  }
+  .themebtn{
+    width:34px; height:34px; border-radius:999px;
+    border:1px solid var(--border); background: var(--surface-raised);
+    color: var(--text-2); cursor:pointer; display:flex; align-items:center; justify-content:center;
+    font-size:15px;
+  }
+  .avatar{
+    width:34px; height:34px; border-radius:999px;
+    background: linear-gradient(135deg,#818cf8,#c084fc);
+    display:flex; align-items:center; justify-content:center;
+    font-size:13px; font-weight:700; color:#0b0e14;
+  }
+
+  /* ---------- Section headers ---------- */
+  .section-head{
+    display:flex; align-items:baseline; justify-content:space-between;
+    margin: var(--sp-7) 0 var(--sp-4);
+  }
+  .section-head h2{
+    font-family: var(--serif); font-weight: 500; font-size: 20px; margin:0; letter-spacing:0.01em;
+  }
+  .section-head .link{ font-size:13px; color: var(--teal); font-weight:600; text-decoration:none; }
+
+  .hero{ display:grid; grid-template-columns: 1.35fr 1fr; gap: var(--sp-5); align-items:stretch; }
+  .card{ background: var(--surface); border:1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+
+  /* ---- Abstain memory card ---- */
+  .memory-card{ padding: var(--sp-6); display:flex; flex-direction:column; gap: var(--sp-5); }
+  .memory-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:var(--sp-4); }
+  .eyebrow{
+    text-transform:uppercase; letter-spacing:0.09em; font-size:11px; font-weight:700;
+    color: var(--text-3); display:flex; align-items:center; gap:8px;
+  }
+  .eyebrow .dot{ width:6px; height:6px; border-radius:50%; background: var(--text-3); }
+  .abstain-headline{
+    display:flex; align-items:center; gap:14px; margin-top: var(--sp-2);
+  }
+  .lock-badge{
+    width:46px; height:46px; border-radius:12px; flex-shrink:0;
+    background: var(--surface-sunken); border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center; color: var(--text-3);
+  }
+  .abstain-title{
+    font-family: var(--serif); font-size: 26px; font-weight:500; color: var(--text-1); letter-spacing:-0.01em;
+  }
+  .memory-caption{ font-size:14px; color: var(--text-2); max-width:46ch; margin-top:2px; }
+  .asof{ font-size:12px; color:var(--text-3); white-space:nowrap; }
+
+  .unlock-reqs{ display:flex; flex-direction:column; gap: var(--sp-4); }
+  .req-row{ display:flex; flex-direction:column; gap:6px; }
+  .req-label{ display:flex; justify-content:space-between; font-size:13px; }
+  .req-label .name{ color: var(--text-2); font-weight:600; }
+  .req-label .fraction{ color: var(--text-1); font-weight:700; font-variant-numeric: tabular-nums; }
+  .req-bar{ height:9px; border-radius:999px; background: var(--surface-sunken); border:1px solid var(--border-soft); overflow:hidden; }
+  .req-bar i{ display:block; height:100%; border-radius:999px; background: linear-gradient(90deg, var(--amber), var(--teal)); }
+
+  .memory-stats{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4);
+    padding-top: var(--sp-4); border-top:1px solid var(--hairline);
+  }
+  .mstat .label{ font-size:11px; color:var(--text-3); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px;}
+  .mstat .value{ font-size:19px; font-weight:700; }
+  .mstat .value small{ font-size:12px; font-weight:500; color: var(--text-2); }
+
+  .honesty-note{
+    display:flex; gap:8px; align-items:flex-start;
+    font-size:12px; color: var(--text-3);
+    background: var(--surface-sunken); border:1px dashed var(--border);
+    border-radius: var(--radius-sm); padding: 10px 12px;
+  }
+  .honesty-note strong{ color: var(--text-2); }
+
+  /* Study next card (reused) */
+  .next-card{ padding: var(--sp-5) var(--sp-5) var(--sp-4); display:flex; flex-direction:column; }
+  .next-head{ display:flex; justify-content:space-between; align-items:center; margin-bottom: var(--sp-3); }
+  .next-head h3{ font-family:var(--serif); font-weight:500; font-size:17px; margin:0; }
+  .next-head .badge{
+    font-size:11px; font-weight:700; color: var(--amber);
+    background: rgba(245,185,66,0.12); padding:3px 9px; border-radius:999px; letter-spacing:0.03em;
+  }
+  .prior-note{ font-size:11.5px; color: var(--text-3); margin: -6px 0 10px; }
+  .next-list{ display:flex; flex-direction:column; gap: 2px; flex:1; }
+  .next-item{
+    display:grid; grid-template-columns: 22px 1fr auto; gap: 12px; align-items:center;
+    padding: 11px 6px; border-radius: var(--radius-sm); border-bottom: 1px solid var(--hairline);
+  }
+  .next-item:last-child{ border-bottom:none; }
+  .rank{ font-family:var(--serif); font-size:15px; color: var(--text-3); }
+  .next-item.rank1 .rank{ color: var(--amber); font-weight:700; }
+  .next-topic{ min-width:0; }
+  .next-topic .name{ font-size:14px; font-weight:600; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .next-topic .meta{ display:flex; align-items:center; gap:6px; margin-top:4px; }
+  .tag{ font-size:10.5px; font-weight:700; padding:2px 7px; border-radius:5px; letter-spacing:0.02em; }
+  .tag.bio{ background: rgba(52,211,153,0.14); color: var(--bio); }
+  .tag.chemphys{ background: rgba(96,165,250,0.14); color: var(--chemphys); }
+  .tag.psychsoc{ background: rgba(192,132,252,0.14); color: var(--psychsoc); }
+  .tag.cars{ background: rgba(251,146,60,0.14); color: var(--cars); }
+  .weak{ font-size:11.5px; color: var(--text-3); }
+  .stake{ display:flex; flex-direction:column; align-items:flex-end; gap:5px; }
+  .stake-bar{ width:56px; height:5px; border-radius:999px; background: var(--surface-sunken); overflow:hidden; }
+  .stake-bar i{ display:block; height:100%; background: linear-gradient(90deg, var(--rose), var(--amber)); }
+  .stake-label{ font-size:10px; color: var(--text-3); font-weight:600; }
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    border-radius: var(--radius-sm); font-size:14px; font-weight:700;
+    padding: 12px 18px; cursor:pointer; border:1px solid transparent; text-decoration:none;
+  }
+  .btn-primary{ background: linear-gradient(135deg, var(--teal), #22c1a8); color: #0a1512; }
+  .btn-ghost{ background: transparent; border:1px solid var(--border); color: var(--text-1); }
+  .btn-block{ width:100%; margin-top: var(--sp-4); }
+
+  /* Format grid (reused, lighter progress since new) */
+  .format-grid{ display:grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-4); }
+  .fmt-card{ padding: var(--sp-5); display:flex; flex-direction:column; gap: var(--sp-3); }
+  .fmt-icon{ width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; }
+  .fmt-icon svg{ width:19px; height:19px; }
+  .fmt-mcq .fmt-icon{ background: rgba(96,165,250,0.14); color:var(--chemphys); }
+  .fmt-fr .fmt-icon{ background: rgba(192,132,252,0.14); color:var(--psychsoc); }
+  .fmt-ps .fmt-icon{ background: rgba(52,211,153,0.14); color:var(--bio); }
+  .fmt-cars .fmt-icon{ background: rgba(251,146,60,0.14); color:var(--cars); }
+  .fmt-title{ font-size:15px; font-weight:700; margin:0; }
+  .fmt-desc{ font-size:12.5px; color: var(--text-3); line-height:1.5; min-height:32px; }
+  .fmt-count{ font-size:26px; font-weight:700; font-family: var(--serif); margin-top:2px; }
+  .fmt-count small{ font-size:12px; color: var(--text-3); font-family: var(--sans); font-weight:500; }
+  .fmt-progress{ height:6px; border-radius:999px; background: var(--surface-sunken); overflow:hidden; margin-top:4px; }
+  .fmt-progress i{ display:block; height:100%; border-radius:999px; }
+  .fmt-mcq .fmt-progress i{ background: var(--chemphys); }
+  .fmt-fr .fmt-progress i{ background: var(--psychsoc); }
+  .fmt-ps .fmt-progress i{ background: var(--bio); }
+  .fmt-cars .fmt-progress i{ background: var(--cars); }
+  .fmt-footer{ display:flex; justify-content:space-between; align-items:center; margin-top:auto; padding-top:6px; }
+  .due-badge{ font-size:11px; font-weight:700; color: var(--rose); }
+  .fmt-cta{ font-size:12.5px; font-weight:700; color: var(--text-1); display:flex; align-items:center; gap:4px; }
+
+  .diag-banner{
+    display:flex; align-items:center; justify-content:space-between; gap: var(--sp-5);
+    padding: var(--sp-5); background: linear-gradient(120deg, var(--surface) 55%, rgba(129,140,248,0.08));
+  }
+  .diag-left{ display:flex; align-items:center; gap: var(--sp-4); }
+  .diag-icon{
+    width:46px; height:46px; border-radius:12px; flex-shrink:0;
+    background: rgba(129,140,248,0.15); color: var(--indigo);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .diag-title{ font-size:15px; font-weight:700; margin:0 0 4px; }
+  .diag-sub{ font-size:13px; color: var(--text-3); }
+
+  .progress-strip{ display:grid; grid-template-columns: repeat(4, 1fr) 1.4fr; gap: var(--sp-4); padding: var(--sp-5); }
+  .pstat .label{ font-size:11px; text-transform:uppercase; letter-spacing:0.06em; color: var(--text-3); margin-bottom:8px; }
+  .pstat .value{ font-size:24px; font-weight:700; font-family:var(--serif); }
+  .pstat .value small{ font-size:12px; font-family:var(--sans); color:var(--text-2); font-weight:500;}
+  .spark{ display:flex; align-items:flex-end; gap:4px; height:44px; }
+  .spark i{ flex:1; background: linear-gradient(180deg, var(--teal), rgba(45,212,191,0.25)); border-radius:3px 3px 1px 1px; }
+
+  @media (max-width: 920px){
+    .hero{ grid-template-columns: 1fr; }
+    .format-grid{ grid-template-columns: repeat(2, 1fr); }
+    .progress-strip{ grid-template-columns: repeat(2,1fr); }
+    .progress-strip .spark-cell{ grid-column: span 2; }
+  }
+  @media (max-width: 640px){
+    .wrap{ padding: var(--sp-4) var(--sp-4) var(--sp-7); }
+    .navlinks{ display:none; }
+    .brand span.word{ display:none; }
+    .abstain-title{ font-size:20px; }
+    .memory-stats{ grid-template-columns: repeat(3,1fr); gap: var(--sp-2); }
+    .format-grid{ grid-template-columns: 1fr 1fr; gap: var(--sp-3); }
+    .diag-banner{ flex-direction:column; align-items:flex-start; }
+    .diag-banner .btn{ width:100%; }
+    .progress-strip{ grid-template-columns: 1fr 1fr; }
+    .progress-strip .spark-cell{ grid-column: span 2; }
+    .section-head h2{ font-size:18px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <div class="brand"><span class="mark">R</span><span class="word">ReadyMCAT</span></div>
+    <div class="nav">
+      <div class="navlinks">
+        <a class="active" href="#">Study Hub</a>
+        <a href="#">Progress</a>
+        <a href="#">Coverage Map</a>
+      </div>
+      <div class="topbar-right">
+        <div class="streakpill">🔥 4-day streak</div>
+        <button class="themebtn" onclick="toggleTheme()" aria-label="Toggle theme">◐</button>
+        <div class="avatar">PS</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO: Abstain memory card + What to study next (from diagnostic priors) -->
+  <div class="hero">
+    <div class="card memory-card">
+      <div class="memory-top">
+        <div>
+          <div class="eyebrow"><span class="dot"></span>Honest memory snapshot</div>
+          <div class="abstain-headline">
+            <div class="lock-badge">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+            </div>
+            <div class="abstain-title">Not enough data yet</div>
+          </div>
+          <div class="memory-caption">We won't guess. Your memory range unlocks automatically once you've cleared both thresholds below — usually within a week of normal studying.</div>
+        </div>
+        <div class="asof">Checked 40&nbsp;min ago</div>
+      </div>
+
+      <div class="unlock-reqs">
+        <div class="req-row">
+          <div class="req-label"><span class="name">Graded reviews</span><span class="fraction">126 / 200</span></div>
+          <div class="req-bar"><i style="width:63%"></i></div>
+        </div>
+        <div class="req-row">
+          <div class="req-label"><span class="name">AAMC category coverage</span><span class="fraction">38% / 50%</span></div>
+          <div class="req-bar"><i style="width:76%"></i></div>
+        </div>
+      </div>
+
+      <div class="memory-stats">
+        <div class="mstat">
+          <div class="label">Categories touched</div>
+          <div class="value">12<small> / 31 AAMC</small></div>
+        </div>
+        <div class="mstat">
+          <div class="label">Reviews logged</div>
+          <div class="value">126<small> total</small></div>
+        </div>
+        <div class="mstat">
+          <div class="label">Est. days to unlock</div>
+          <div class="value">~5<small> at current pace</small></div>
+        </div>
+      </div>
+
+      <div class="honesty-note">
+        ⓘ&nbsp; <strong>This is the give-up rule working as intended</strong> — a confident-looking score with this little evidence would be a guess, not an honest one.
+      </div>
+    </div>
+
+    <div class="card next-card">
+      <div class="next-head">
+        <h3>What to study next</h3>
+        <span class="badge">DIAGNOSTIC PRIORS</span>
+      </div>
+      <div class="prior-note">Based on your intake diagnostic, not yet on live memory data.</div>
+      <div class="next-list">
+        <div class="next-item rank1">
+          <div class="rank">1</div>
+          <div class="next-topic">
+            <div class="name">Enzyme Kinetics &amp; Regulation</div>
+            <div class="meta"><span class="tag chemphys">BIOCHEM</span><span class="weak">weak on diagnostic</span></div>
+          </div>
+          <div class="stake"><div class="stake-bar"><i style="width:100%"></i></div><span class="stake-label">HIGH YIELD</span></div>
+        </div>
+        <div class="next-item">
+          <div class="rank">2</div>
+          <div class="next-topic">
+            <div class="name">Thermodynamics &amp; Kinetics</div>
+            <div class="meta"><span class="tag chemphys">CHEM/PHYS</span><span class="weak">weak on diagnostic</span></div>
+          </div>
+          <div class="stake"><div class="stake-bar"><i style="width:85%"></i></div><span class="stake-label">HIGH YIELD</span></div>
+        </div>
+        <div class="next-item">
+          <div class="rank">3</div>
+          <div class="next-topic">
+            <div class="name">Research Methods &amp; Statistics</div>
+            <div class="meta"><span class="tag psychsoc">PSYCH/SOC</span><span class="weak">weak on diagnostic</span></div>
+          </div>
+          <div class="stake"><div class="stake-bar"><i style="width:74%"></i></div><span class="stake-label">MED-HIGH</span></div>
+        </div>
+        <div class="next-item">
+          <div class="rank">4</div>
+          <div class="next-topic">
+            <div class="name">Cell Structure &amp; Function</div>
+            <div class="meta"><span class="tag bio">BIO</span><span class="weak">not yet sampled</span></div>
+          </div>
+          <div class="stake"><div class="stake-bar"><i style="width:58%"></i></div><span class="stake-label">MEDIUM</span></div>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-block">Start targeted session →</button>
+    </div>
+  </div>
+
+  <!-- STUDY BY FORMAT -->
+  <div class="section-head">
+    <h2>Study by format</h2>
+    <a class="link" href="#">See all decks</a>
+  </div>
+  <div class="format-grid">
+    <div class="card fmt-card fmt-mcq">
+      <div class="fmt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></div>
+      <div><div class="fmt-title">Multiple Choice</div><div class="fmt-desc">Discrete exam-style MCQs, one concept at a time.</div></div>
+      <div class="fmt-count">1,240<small> questions</small></div>
+      <div class="fmt-progress"><i style="width:6%; background:var(--chemphys)"></i></div>
+      <div class="fmt-footer"><span class="due-badge">8 due</span><span class="fmt-cta">Study →</span></div>
+    </div>
+    <div class="card fmt-card fmt-fr">
+      <div class="fmt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div>
+      <div><div class="fmt-title">Free Response</div><div class="fmt-desc">Type-in recall — the fast core review loop.</div></div>
+      <div class="fmt-count">8,412<small> cards</small></div>
+      <div class="fmt-progress"><i style="width:9%; background:var(--psychsoc)"></i></div>
+      <div class="fmt-footer"><span class="due-badge">31 due</span><span class="fmt-cta">Study →</span></div>
+    </div>
+    <div class="card fmt-card fmt-ps">
+      <div class="fmt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div>
+      <div><div class="fmt-title">Passage Sets</div><div class="fmt-desc">Full AAMC-style passages, several questions each.</div></div>
+      <div class="fmt-count">46<small> sets</small></div>
+      <div class="fmt-progress"><i style="width:0%; background:var(--bio)"></i></div>
+      <div class="fmt-footer"><span class="due-badge">Not started</span><span class="fmt-cta">Study →</span></div>
+    </div>
+    <div class="card fmt-card fmt-cars">
+      <div class="fmt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5a2 2 0 0 1 2-2h8l6 6v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M14 3v6h6"/></svg></div>
+      <div><div class="fmt-title">CARS</div><div class="fmt-desc">Critical Analysis &amp; Reasoning passage sets.</div></div>
+      <div class="fmt-count">128<small> passages</small></div>
+      <div class="fmt-progress"><i style="width:0%; background:var(--cars)"></i></div>
+      <div class="fmt-footer"><span class="due-badge">Not started</span><span class="fmt-cta">Study →</span></div>
+    </div>
+  </div>
+
+  <!-- DIAGNOSTIC -->
+  <div class="section-head"><h2>Diagnostic</h2></div>
+  <div class="card diag-banner">
+    <div class="diag-left">
+      <div class="diag-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+      <div>
+        <div class="diag-title">Diagnostic Quiz</div>
+        <div class="diag-sub">Taken 4 days ago · sampled 31/31 AAMC categories · seeded your study order</div>
+      </div>
+    </div>
+    <button class="btn btn-ghost">Retake diagnostic</button>
+  </div>
+
+  <!-- OVERALL PROGRESS -->
+  <div class="section-head"><h2>Overall progress</h2></div>
+  <div class="card progress-strip">
+    <div class="pstat"><div class="label">Cards studied</div><div class="value">98<small> unique</small></div></div>
+    <div class="pstat"><div class="label">Day streak</div><div class="value">4<small> days</small></div></div>
+    <div class="pstat"><div class="label">Sessions this week</div><div class="value">4<small> sessions</small></div></div>
+    <div class="pstat"><div class="label">7-day accuracy</div><div class="value">64<small>%</small></div></div>
+    <div class="pstat spark-cell">
+      <div class="label">Reviews, last 14 days</div>
+      <div class="spark">
+        <i style="height:0%"></i><i style="height:0%"></i><i style="height:0%"></i><i style="height:0%"></i>
+        <i style="height:0%"></i><i style="height:0%"></i><i style="height:0%"></i><i style="height:0%"></i>
+        <i style="height:22%"></i><i style="height:38%"></i><i style="height:30%"></i><i style="height:55%"></i>
+        <i style="height:40%"></i><i style="height:62%"></i>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function applyTheme(t){ document.documentElement.setAttribute('data-theme', t); }
+  function toggleTheme(){
+    const cur = document.documentElement.getAttribute('data-theme');
+    applyTheme(cur === 'dark' ? 'light' : 'dark');
+  }
+  const qp = new URLSearchParams(location.search).get('theme');
+  if(qp === 'light' || qp === 'dark'){ applyTheme(qp); }
+</script>
+</body>
+</html>

@@ -422,6 +422,9 @@ def is_sveltekit_page(path: str) -> bool:
         "import-csv",
         "import-page",
         "image-occlusion",
+        "readymcat-dashboard",
+        "readymcat-diagnostic",
+        "readymcat-home",
     ]
 
 
@@ -704,6 +707,108 @@ def save_custom_colours() -> bytes:
     return b""
 
 
+def readymcat_home_status() -> bytes:
+    """Serve the ReadyMCAT home hub's per-deck due/total counts, overall
+    progress and diagnostic status as plain JSON.
+
+    A Python-level handler (not a Rust/proto service like
+    ``pointsAtStakeQueue``) since it's a thin, read-only aggregation over
+    existing collection APIs (``col.decks.deck_tree()``, the review log,
+    ``get_diagnostic_prior()``) — see ``readymcat/tools/home_launcher.py``
+    for the actual (unit-tested) number-crunching.
+
+    ALWAYS returns a well-formed JSON body (never empty / non-JSON): the hub's
+    client parses the reply with ``res.json()``, so any empty or invalid body
+    surfaces to the user as a raw ``SyntaxError: Unexpected end of JSON input``.
+    ``build_home_status`` already degrades to an ``{"available": false, ...}``
+    shape when the collection isn't ready; we additionally wrap the whole call
+    so an unexpected failure still yields that same parseable shape rather than
+    bubbling up to the plain-text 500 path.
+    """
+    import json
+
+    try:
+        from aqt.readymcat_home import build_home_status
+
+        payload = build_home_status(aqt.mw)
+    except Exception as exc:  # pragma: no cover - defensive
+        payload = {"available": False, "reason": f"error: {exc}"}
+    return json.dumps(payload).encode("utf-8")
+
+
+def readymcat_study_probe() -> bytes:
+    """Dev-only introspection endpoint for the Playwright e2e suite.
+
+    Drives a real study launch (native Study Now or a home-hub tile) and reads
+    back what the desktop reviewer webview actually painted, so the e2e harness
+    can assert the interactive reviewer shows a question, is answerable, and
+    triggers teach-on-miss on a miss — none of which is otherwise observable
+    over HTTP, since the reviewer renders in the Qt ``mw.web`` webview rather
+    than a mediasrv-served page. Gated behind ``dev_mode`` (ANKIDEV) so it is
+    inert in packaged builds."""
+    import json
+
+    if not dev_mode:
+        return json.dumps({"ok": False, "error": "dev only"}).encode("utf-8")
+
+    from aqt.readymcat_home import study_probe
+
+    try:
+        options = json.loads(request.data or b"{}")
+        if not isinstance(options, dict):
+            options = {}
+    except Exception:
+        options = {}
+    return json.dumps(study_probe(aqt.mw, options)).encode("utf-8")
+
+
+def readymcat_flashcard_probe() -> bytes:
+    """Dev-only introspection endpoint for the retrieve-before-reveal flashcard
+    flow. Launches the seeded authorless demo flashcard deck, optionally
+    triggers the question-side "Stuck? work it out" path, waits for the guiding
+    ladder to paint, and reports what the reviewer showed (and can screenshot
+    it) — the end-to-end proof that the ladder appears BEFORE the back is
+    revealed. Gated behind ``dev_mode`` so it is inert in packaged builds."""
+    import json
+
+    if not dev_mode:
+        return json.dumps({"ok": False, "error": "dev only"}).encode("utf-8")
+
+    from aqt.readymcat_home import flashcard_probe
+
+    try:
+        options = json.loads(request.data or b"{}")
+        if not isinstance(options, dict):
+            options = {}
+    except Exception:
+        options = {}
+    return json.dumps(flashcard_probe(aqt.mw, options)).encode("utf-8")
+
+
+def readymcat_tab_probe() -> bytes:
+    """Dev-only introspection endpoint for the single-window tab e2e suite.
+
+    Switches the one Qt window to a ReadyMCAT tab (Home/Study/Decks/Dashboard)
+    and reports back what that tab's live web view rendered — proving every tab
+    is reachable and paints its content in the single window (the tabs are Qt
+    toolbar navigations, not mediasrv pages, so this is otherwise unobservable
+    over HTTP). Gated behind ``dev_mode`` so it is inert in packaged builds."""
+    import json
+
+    if not dev_mode:
+        return json.dumps({"ok": False, "error": "dev only"}).encode("utf-8")
+
+    from aqt.readymcat_home import tab_probe
+
+    try:
+        options = json.loads(request.data or b"{}")
+        if not isinstance(options, dict):
+            options = {}
+    except Exception:
+        options = {}
+    return json.dumps(tab_probe(aqt.mw, options)).encode("utf-8")
+
+
 post_handler_list = [
     congrats_info,
     get_deck_configs_for_update,
@@ -720,6 +825,25 @@ post_handler_list = [
     deck_options_require_close,
     deck_options_ready,
     save_custom_colours,
+    # ReadyMCAT home hub (ts/routes/readymcat-home): per-deck launch counts +
+    # overall progress + diagnostic status. Must stay registered here or the
+    # hub's ``_anki/readymcatHomeStatus`` fetch 404s (see
+    # qt/tests/test_mediasrv.py::TestReadyMCATHomeEndpointRegistered).
+    readymcat_home_status,
+    # ReadyMCAT dev/e2e reviewer probe (guarded by dev_mode). Lets the
+    # Playwright suite drive a real study launch and read back the reviewer
+    # webview's rendered #qa (see ts/tests/e2e/readymcat_study.test.ts).
+    readymcat_study_probe,
+    # ReadyMCAT dev/e2e retrieve-before-reveal flashcard probe (guarded by
+    # dev_mode). Drives the authorless-flashcard "Stuck? work it out" path and
+    # reads back the reviewer's rendered ladder (see
+    # ts/tests/e2e/readymcat_flashcard.test.ts).
+    readymcat_flashcard_probe,
+    # ReadyMCAT dev/e2e single-window tab probe (guarded by dev_mode). Drives a
+    # real tab switch and reads back what the tab's web view rendered, so the
+    # e2e suite can assert all four tabs live in one window (see
+    # ts/tests/e2e/readymcat_tabs.test.ts).
+    readymcat_tab_probe,
 ]
 
 
@@ -765,6 +889,18 @@ exposed_backend_list = [
     # DeckConfigService
     "get_ignored_before_count",
     "get_retention_workload",
+    # ReadyMCAT PointsAtStakeService — the honest-memory dashboard
+    # (ts/routes/readymcat-dashboard) fetches its per-topic aggregation, ranged
+    # memory score and coverage map through this read-only method. It aggregates
+    # every pre-loaded content type (MCQ + free-response + passage).
+    "points_at_stake_queue",
+    # ReadyMCAT DiagnosticService — the first-launch introductory diagnostic
+    # (ts/routes/readymcat-diagnostic) serves its question bank and posts the
+    # answers back to be scored + seeded into the points-at-stake prior. Both
+    # methods must stay registered alongside points_at_stake_queue: without them
+    # the diagnostic page 404s on "_anki/getDiagnosticQuiz".
+    "get_diagnostic_quiz",
+    "score_and_seed_diagnostic",
 ]
 
 
@@ -784,6 +920,61 @@ post_handlers = {
     stringcase.camelcase(handler): raw_backend_request(handler)
     for handler in exposed_backend_list
 }
+
+
+def _sync_guarded(
+    handler: Callable[[], bytes], busy_fallback: bytes = b""
+) -> Callable[[], bytes]:
+    """Skip a collection-reading handler while a sync is running.
+
+    ReadyMCAT's always-on Home hub polls ``readymcatHomeStatus`` /
+    ``pointsAtStakeQueue`` on a timer; each reads the collection on this mediasrv
+    *worker* thread. If that overlaps a GUI sync (which drives the backend hard
+    from other threads with the GIL released) it corrupts the process heap and
+    crashes with a SIGTRAP in the progress busy-cursor's ``QImage::toCGImage`` on
+    macOS. ``aqt.sync`` holds ``sync_backend_lock`` for the whole of every sync
+    call, so here we try to take it non-blocking: if a sync holds it we return
+    ``busy_fallback`` instead of reading the collection; otherwise we hold it for
+    the handler so a sync cannot start mid-read. This guarantees a collection
+    read never runs concurrently with a sync.
+
+    ``busy_fallback`` must be a body the *client* can still handle: for the
+    JSON ``readymcatHomeStatus`` endpoint it is a well-formed
+    ``{"available": false, "reason": "syncing"}`` payload, so the hub parses it
+    and shows its graceful "updating…" state (and recovers on the next poll)
+    rather than throwing ``SyntaxError: Unexpected end of JSON input`` on an
+    empty body. It defaults to empty for protobuf endpoints, whose generated
+    client already tolerates a missing reply.
+    """
+
+    def wrapped() -> bytes:
+        from aqt.sync import sync_backend_lock
+
+        if not sync_backend_lock.acquire(blocking=False):
+            return busy_fallback
+        try:
+            return handler()
+        finally:
+            sync_backend_lock.release()
+
+    return wrapped
+
+
+# Per-endpoint "a sync is in progress" fallback bodies. The home hub's JSON
+# endpoint must stay parseable (see ``_sync_guarded``); protobuf endpoints keep
+# the empty default. Kept as a literal (rather than ``json.dumps``) so the
+# module needs no top-level ``json`` import — it mirrors the exact shape
+# ``build_home_status`` emits for an unavailable collection.
+_SYNC_BUSY_FALLBACKS: dict[str, bytes] = {
+    "readymcatHomeStatus": b'{"available": false, "reason": "syncing"}',
+}
+
+for _guarded_name in ("readymcatHomeStatus", "pointsAtStakeQueue"):
+    if _guarded_name in post_handlers:
+        post_handlers[_guarded_name] = _sync_guarded(
+            post_handlers[_guarded_name],
+            _SYNC_BUSY_FALLBACKS.get(_guarded_name, b""),
+        )
 
 
 def _extract_collection_post_request(path: str) -> DynamicRequest | NotFound:

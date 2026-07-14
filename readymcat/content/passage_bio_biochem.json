@@ -1,0 +1,1892 @@
+[
+    {
+        "id": "psg-bb-1",
+        "section": "B/B",
+        "passage": "Researchers characterized a bacterial hydrolase, EnzA, that cleaves a colorless substrate into a yellow product, allowing the initial reaction velocity to be measured by absorbance. Working at constant enzyme concentration, saturating buffer, and 37 deg C, they varied the substrate concentration [S] and recorded the initial velocity (v0). As [S] increased, v0 rose steeply at first and then leveled off, tracing the hyperbolic curve expected for a single-active-site enzyme. From these data the team estimated a maximum velocity (Vmax) of 100 micromol/min and a Michaelis constant (Km) of 2.0 mM, where Km is the [S] at which v0 equals half of Vmax.\n\nThe team then repeated the assay in the presence of two candidate drugs. With a fixed concentration of Inhibitor A, the measured Vmax remained 100 micromol/min, but the apparent Km rose to 6.0 mM; adding excess substrate fully restored the maximal rate. With a fixed concentration of Inhibitor B, the apparent Km stayed at 2.0 mM, but Vmax fell to 50 micromol/min, and no amount of added substrate recovered the original maximal rate.\n\nA double-reciprocal (Lineweaver-Burk) plot summarized the results: the control line and the Inhibitor A line shared the same y-intercept but differed in slope, whereas the control line and the Inhibitor B line shared the same x-intercept but differed in y-intercept. The researchers concluded that the two inhibitors act by distinct mechanisms, a distinction that matters clinically because it determines whether raising the physiological substrate concentration can overcome the drug's effect.",
+        "passage_source": {
+            "name": "LibreTexts, Fundamentals of Biochemistry (Jakubowski and Flatt), Unit I: Structure and Catalysis (enzyme kinetics and inhibition)",
+            "url": "https://bio.libretexts.org/Bookshelves/Biochemistry/Fundamentals_of_Biochemistry_(Jakubowski_and_Flatt)",
+            "license": "CC BY-NC-SA 4.0"
+        },
+        "questions": [
+            {
+                "id": "psg-bb-1-q1",
+                "aamc_category": "1A",
+                "subtopic": "Enzyme inhibition: competitive vs noncompetitive",
+                "stem": "Based on its effect on the kinetic parameters, Inhibitor A is best classified as which type of inhibitor?",
+                "options": [
+                    "Uncompetitive",
+                    "Pure noncompetitive",
+                    "Competitive",
+                    "Irreversible"
+                ],
+                "correct_index": 2,
+                "explanation": "Inhibitor A leaves Vmax unchanged (still 100 micromol/min) but raises the apparent Km (2.0 to 6.0 mM), and excess substrate fully overcomes it. That pattern, plus a shared y-intercept (1/Vmax) on the Lineweaver-Burk plot, is the signature of a competitive inhibitor. Pure noncompetitive inhibition would lower Vmax with unchanged Km (that is Inhibitor B). Uncompetitive inhibition lowers both Km and Vmax. An irreversible inhibitor could not be reversed by adding substrate.",
+                "difficulty": "medium",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "How did Inhibitor A change Vmax and Km relative to the control?",
+                        "options": [
+                            "Vmax unchanged, Km increased",
+                            "Vmax decreased, Km unchanged",
+                            "Both decreased",
+                            "Both increased"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "The passage states Vmax stayed at 100 micromol/min while the apparent Km rose from 2.0 to 6.0 mM."
+                    },
+                    {
+                        "stem": "Excess substrate fully restored the maximal rate with Inhibitor A. What does that imply about where it binds?",
+                        "options": [
+                            "It binds a distant allosteric site",
+                            "It competes with substrate for the active site",
+                            "It covalently modifies the enzyme",
+                            "It binds only the enzyme-substrate complex"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "Being outcompeted by high substrate means the inhibitor and substrate contest the same site (the active site) -- the definition of competitive inhibition."
+                    },
+                    {
+                        "stem": "An unchanged y-intercept (1/Vmax) on a Lineweaver-Burk plot indicates which parameter is unchanged?",
+                        "options": ["Km", "Vmax", "Substrate size", "Temperature"],
+                        "correct_index": 1,
+                        "explanation": "The y-intercept of a double-reciprocal plot equals 1/Vmax, so a shared y-intercept means Vmax is unchanged -- consistent with competitive inhibition."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-1-q2",
+                "aamc_category": "1A",
+                "subtopic": "Enzyme inhibition: interpreting Vmax and Km",
+                "stem": "Inhibitor B is best classified as which type of inhibitor?",
+                "options": [
+                    "Competitive",
+                    "Pure noncompetitive",
+                    "An allosteric activator",
+                    "A substrate analog"
+                ],
+                "correct_index": 1,
+                "explanation": "Inhibitor B lowers Vmax (100 to 50 micromol/min) while leaving Km unchanged (2.0 mM), and it cannot be reversed by adding substrate; on the Lineweaver-Burk plot the lines share an x-intercept (-1/Km). Those are the hallmarks of pure noncompetitive inhibition. A competitive inhibitor would raise Km with unchanged Vmax; an activator would raise activity; a substrate analog would typically act competitively.",
+                "difficulty": "medium",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "How did Inhibitor B change Vmax and Km?",
+                        "options": [
+                            "Vmax unchanged, Km increased",
+                            "Vmax decreased, Km unchanged",
+                            "Both increased",
+                            "Both unchanged"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "The passage reports Vmax fell to 50 micromol/min while Km stayed at 2.0 mM."
+                    },
+                    {
+                        "stem": "Because added substrate did not restore Vmax, Inhibitor B most likely binds:",
+                        "options": [
+                            "the same site as the substrate",
+                            "a site distinct from the substrate-binding site",
+                            "the yellow product only",
+                            "the buffer"
+                        ],
+                        "correct_index": 1,
+                        "explanation": "If substrate cannot displace the inhibitor, they occupy different sites; a noncompetitive inhibitor binds a separate site and reduces the enzyme's catalytic capacity (Vmax)."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-1-q3",
+                "aamc_category": "1A",
+                "subtopic": "Meaning of the Michaelis constant Km",
+                "stem": "In this assay, the Km of 2.0 mM represents which quantity?",
+                "options": [
+                    "The maximum reaction velocity",
+                    "The total enzyme concentration",
+                    "The substrate concentration at which velocity is half of Vmax",
+                    "The turnover number (kcat)"
+                ],
+                "correct_index": 2,
+                "explanation": "By definition, Km is the substrate concentration at which v0 equals one-half of Vmax; the passage states this explicitly. Vmax is the maximal velocity (a separate parameter), enzyme concentration is held constant and is not Km, and kcat is the per-enzyme turnover number.",
+                "difficulty": "easy",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "At v0 = 50 micromol/min (half of the 100 micromol/min Vmax), what is [S]?",
+                        "options": ["2.0 mM", "1.0 mM", "6.0 mM", "100 mM"],
+                        "correct_index": 0,
+                        "explanation": "By the definition of Km, the substrate concentration giving half-maximal velocity is Km itself = 2.0 mM."
+                    },
+                    {
+                        "stem": "A lower Km generally indicates what about the enzyme's affinity for its substrate?",
+                        "options": [
+                            "Higher affinity",
+                            "Lower affinity",
+                            "No relationship to affinity",
+                            "A higher Vmax"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "A lower Km means half-maximal rate is reached at lower [S], reflecting tighter binding (higher apparent affinity)."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-1-q4",
+                "aamc_category": "1A",
+                "subtopic": "Catalytic efficiency (kcat/Km)",
+                "stem": "By raising the apparent Km without changing Vmax, Inhibitor A's effect on catalytic efficiency (kcat/Km) at low, sub-saturating [S] is to:",
+                "options": [
+                    "increase it",
+                    "leave it unchanged",
+                    "decrease it",
+                    "raise Vmax"
+                ],
+                "correct_index": 2,
+                "explanation": "Catalytic efficiency is kcat/Km. Because kcat (derived from Vmax) is unchanged but the apparent Km is larger, the ratio kcat/Km falls, so the enzyme is less efficient at low [S] -- exactly where a competitive inhibitor bites hardest. It does not increase efficiency, and Vmax is unchanged, not raised.",
+                "difficulty": "medium",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "kcat/Km is largest when Km is ___ and kcat is ___.",
+                        "options": ["small; large", "large; small", "large; large", "zero; zero"],
+                        "correct_index": 0,
+                        "explanation": "Efficiency rises with a bigger numerator (kcat) and a smaller denominator (Km)."
+                    },
+                    {
+                        "stem": "If apparent Km rises while kcat stays the same, kcat/Km will:",
+                        "options": ["fall", "rise", "stay the same", "become negative"],
+                        "correct_index": 0,
+                        "explanation": "A larger denominator with a fixed numerator lowers the ratio."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-1-q5",
+                "aamc_category": "1A",
+                "subtopic": "Irreversible (covalent) inhibition of a serine hydrolase",
+                "stem": "EnzA belongs to the serine-hydrolase family, which uses a nucleophilic serine in a Ser-His-Asp catalytic triad. An agent that covalently and irreversibly modifies this serine would most resemble which experimental result?",
+                "options": [
+                    "An increase in Km that added substrate reverses",
+                    "A drop in Vmax that added substrate cannot reverse",
+                    "No change in either parameter",
+                    "An increase in Vmax"
+                ],
+                "correct_index": 1,
+                "explanation": "Covalently inactivating enzyme molecules removes functional enzyme, lowering the maximal rate (Vmax); because the bond is not displaced by substrate, added substrate cannot restore activity. This resembles the Vmax-lowering, substrate-irreversible pattern seen with Inhibitor B (though the molecular mechanism differs). It is not the reversible, Km-raising behavior of a competitive inhibitor, and inhibition never raises Vmax.",
+                "difficulty": "hard",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "Covalently inactivating a fraction of enzyme molecules reduces the amount of active enzyme. Which parameter depends on the amount of active enzyme?",
+                        "options": ["Vmax", "Km", "The substrate's structure", "The assay pH"],
+                        "correct_index": 0,
+                        "explanation": "Vmax is proportional to the concentration of functional enzyme (Vmax = kcat[E]total), so removing active enzyme lowers Vmax."
+                    },
+                    {
+                        "stem": "Can substrate outcompete an inhibitor that is covalently bonded within the active site?",
+                        "options": [
+                            "No, the covalent bond is not displaced by substrate",
+                            "Yes, easily",
+                            "Only at low temperature",
+                            "Only if Km decreases"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Irreversible covalent modification is not relieved by mass action from substrate, distinguishing it from reversible competitive inhibition."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "psg-bb-2",
+        "section": "B/B",
+        "passage": "A biochemistry lab studied how a small globular enzyme, RibN, loses activity when it unfolds. In its native state, RibN is stabilized by a hydrophobic core, numerous hydrogen bonds within its alpha-helices and beta-sheets, and a single disulfide bond linking two cysteine residues. The team monitored folding both by measuring enzyme activity and by tracking buried tryptophan residues, which fluoresce differently when the protein unfolds. Slowly heating the wild-type enzyme, they found that activity was retained up to about 55 deg C and then fell sharply, with a melting temperature (Tm, the temperature at which half the protein is unfolded) of 65 deg C.\n\nThey compared three samples. A cysteine-to-alanine mutant that cannot form the disulfide bond behaved like wild type at low temperature but had a Tm of only 52 deg C. Adding 6 M urea, a chemical denaturant, to wild-type enzyme lowered its Tm dramatically and abolished activity even at room temperature; on dialysis to remove the urea, activity slowly returned. Boiling followed by cooling left the protein inactive and aggregated, yet sequencing showed that the polypeptide's amino acid sequence was fully intact.\n\nThe investigators emphasized that all of these treatments disrupted the folded shape without breaking the peptide bonds of the backbone, and that the enzyme's function depended on maintaining its three-dimensional conformation, not merely on possessing the correct sequence.",
+        "passage_source": {
+            "name": "OpenStax Biology 2e, Ch. 3: Biological Macromolecules (Proteins: structure and denaturation)",
+            "url": "https://openstax.org/details/books/biology-2e",
+            "license": "CC BY 4.0"
+        },
+        "questions": [
+            {
+                "id": "psg-bb-2-q1",
+                "aamc_category": "1A",
+                "subtopic": "Levels of protein structure",
+                "stem": "The amino acid sequence that sequencing showed to be intact after boiling corresponds to which level of protein structure?",
+                "options": [
+                    "Secondary structure",
+                    "Primary structure",
+                    "Tertiary structure",
+                    "Quaternary structure"
+                ],
+                "correct_index": 1,
+                "explanation": "Primary structure is the covalently bonded sequence of amino acids; the peptide bonds that define it are not broken by heat, which is why sequencing still reads the full sequence. Secondary (helices/sheets), tertiary (overall 3D fold), and quaternary (subunit assembly) structures all rely on noncovalent interactions that heat disrupts.",
+                "difficulty": "easy",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "Which type of bond joins amino acids in the polypeptide backbone?",
+                        "options": ["Peptide (covalent) bonds", "Hydrogen bonds", "Ionic bonds", "Disulfide bonds"],
+                        "correct_index": 0,
+                        "explanation": "Adjacent residues are joined by covalent peptide (amide) bonds, which define the primary sequence."
+                    },
+                    {
+                        "stem": "Heat denaturation primarily disrupts covalent backbone bonds or noncovalent interactions?",
+                        "options": ["Noncovalent interactions", "Covalent backbone bonds", "Both equally", "Neither"],
+                        "correct_index": 0,
+                        "explanation": "Denaturation unfolds the protein by breaking noncovalent contacts (H-bonds, hydrophobic packing, ionic pairs) while leaving peptide bonds intact."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-2-q2",
+                "aamc_category": "1A",
+                "subtopic": "Disulfide bonds and stability",
+                "stem": "The cysteine-to-alanine mutant had a lower Tm (52 vs 65 deg C) than wild type. This is best explained by loss of:",
+                "options": [
+                    "a peptide bond in the backbone",
+                    "a disulfide bond that stabilized the folded structure",
+                    "the primary sequence",
+                    "an active-site metal ion"
+                ],
+                "correct_index": 1,
+                "explanation": "Disulfide bonds are covalent cross-links between cysteine side chains that stabilize the folded state; removing the two cysteines (Cys to Ala) eliminates that cross-link, so the protein unfolds at a lower temperature. Peptide bonds and primary sequence are unaffected by this side-chain substitution, and no metal cofactor is described.",
+                "difficulty": "medium",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "Disulfide bonds form between the side chains of which residue?",
+                        "options": ["Cysteine", "Alanine", "Glycine", "Lysine"],
+                        "correct_index": 0,
+                        "explanation": "Two cysteine thiol (-SH) groups oxidize to form a disulfide (-S-S-) bond."
+                    },
+                    {
+                        "stem": "Removing a stabilizing cross-link should make the protein unfold at a ___ temperature.",
+                        "options": ["lower", "higher", "identical", "boiling-only"],
+                        "correct_index": 0,
+                        "explanation": "Less stabilization means the folded state is lost with less thermal energy, lowering Tm."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-2-q3",
+                "aamc_category": "1A",
+                "subtopic": "Sequence determines fold (reversible denaturation)",
+                "stem": "That activity returned after the urea was removed by dialysis best supports which conclusion?",
+                "options": [
+                    "Urea broke peptide bonds that later reformed",
+                    "The information needed for folding is contained in the amino acid sequence",
+                    "The enzyme requires urea to be active",
+                    "Folding is impossible once disrupted"
+                ],
+                "correct_index": 1,
+                "explanation": "Dialysis only removed the denaturant; no new amino acids were added, yet the protein refolded and regained activity. This shows the primary sequence itself carries the information to specify the native fold (an Anfinsen-type result). Urea does not cleave peptide bonds, the enzyme is not urea-dependent, and refolding clearly is possible here.",
+                "difficulty": "medium",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "Did dialysis add new amino acids or simply remove the denaturant?",
+                        "options": [
+                            "Removed the denaturant",
+                            "Added amino acids",
+                            "Broke disulfides",
+                            "Raised the temperature"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Dialysis lowers the urea concentration; the polypeptide itself is unchanged."
+                    },
+                    {
+                        "stem": "If the sequence alone can direct refolding, primary structure largely determines:",
+                        "options": [
+                            "the native 3D conformation",
+                            "the laboratory temperature",
+                            "the buffer pH",
+                            "only the molecular weight"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "The capacity to refold spontaneously indicates the sequence encodes the three-dimensional structure."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-2-q4",
+                "aamc_category": "1A",
+                "subtopic": "Hydrophobic core and buried charges",
+                "stem": "A different mutation replaces a leucine buried in the hydrophobic core with aspartate (a charged residue). Compared with wild type, this mutant is most likely to:",
+                "options": [
+                    "fold more stably due to new hydrophobic contacts",
+                    "be unaffected because both are amino acids",
+                    "fold less stably because a charged side chain is poorly accommodated in a nonpolar core",
+                    "spontaneously gain a new disulfide bond"
+                ],
+                "correct_index": 2,
+                "explanation": "Aspartate carries a polar, charged carboxylate side chain; burying it in the water-excluded hydrophobic core is energetically unfavorable and tends to destabilize the fold. Leucine is nonpolar and packs well there, so the substitution removes favorable hydrophobic packing rather than adding it, and it cannot create a disulfide (that requires cysteines).",
+                "difficulty": "hard",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "Is aspartate's side chain polar/charged or nonpolar?",
+                        "options": ["Polar/charged", "Nonpolar", "Aromatic and neutral", "A metal ion"],
+                        "correct_index": 0,
+                        "explanation": "Aspartate has an ionizable carboxylate side chain that is negatively charged near physiological pH."
+                    },
+                    {
+                        "stem": "Placing a charged group in a water-excluded hydrophobic core is energetically:",
+                        "options": ["unfavorable", "favorable", "neutral", "impossible to assess"],
+                        "correct_index": 0,
+                        "explanation": "Desolvating and burying a charge in a nonpolar environment costs energy, destabilizing the folded protein."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "psg-bb-3",
+        "section": "B/B",
+        "passage": "To dissect how mutations disrupt protein output, a lab engineered a set of Escherichia coli strains, each carrying a single defined change in a gene (galK) that encodes a metabolic enzyme. For every strain they measured two quantities: the steady-state level of galK messenger RNA (by quantitative PCR) and the amount of functional enzyme (by an activity assay). Results were expressed as a percentage of the wild-type value.\n\nWild type showed 100 percent mRNA and 100 percent enzyme activity. Strain 1, carrying a substitution in the promoter region upstream of the coding sequence, showed 15 percent mRNA and 14 percent activity. Strain 2, carrying a single base-pair change that converted a glutamine codon (CAG) into a stop codon (TAG) near the beginning of the coding sequence, showed 95 percent mRNA but less than 2 percent activity; the protein it produced was abnormally short. Strain 3, carrying a single-nucleotide deletion just after the start codon, showed 92 percent mRNA and less than 2 percent activity, and its protein product bore no resemblance to the wild-type sequence beyond its first few residues. Strain 4, carrying a base change that altered a codon from CTG to CTA (both of which encode leucine), showed 98 percent mRNA and 97 percent activity.\n\nThe investigators noted that a mutation's consequences depend on where in the gene it falls and how it interacts with the genetic code: some changes reduce how much mRNA is made, others corrupt translation of the message, and some have essentially no effect at all.",
+        "passage_source": {
+            "name": "OpenStax Biology 2e, Ch. 15 Genes and Proteins and Ch. 14 (mutations, transcription, translation)",
+            "url": "https://openstax.org/details/books/biology-2e",
+            "license": "CC BY 4.0"
+        },
+        "questions": [
+            {
+                "id": "psg-bb-3-q1",
+                "aamc_category": "1B",
+                "subtopic": "Promoter mutations and transcription",
+                "stem": "Strain 1 shows low mRNA (15 percent) with activity (14 percent) that tracks the mRNA level. This points to a defect in:",
+                "options": [
+                    "translation of the mRNA",
+                    "transcription of the gene",
+                    "protein folding",
+                    "the timing of DNA replication"
+                ],
+                "correct_index": 1,
+                "explanation": "A promoter is where RNA polymerase binds to begin transcription; a promoter mutation lowers how much mRNA is made. Because activity falls in proportion to mRNA (each mRNA is translated normally), the lesion is at transcription, not translation, folding, or replication.",
+                "difficulty": "medium",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "The promoter is the site where which enzyme binds to begin making RNA?",
+                        "options": ["RNA polymerase", "DNA polymerase", "The ribosome", "DNA ligase"],
+                        "correct_index": 0,
+                        "explanation": "RNA polymerase binds the promoter to initiate transcription of the gene into mRNA."
+                    },
+                    {
+                        "stem": "If less mRNA is made but each mRNA is translated normally, the defect lies at the level of:",
+                        "options": ["transcription", "translation", "folding", "secretion"],
+                        "correct_index": 0,
+                        "explanation": "Reduced mRNA with a normal protein-per-mRNA ratio localizes the problem to mRNA synthesis (transcription)."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-3-q2",
+                "aamc_category": "1B",
+                "subtopic": "Nonsense mutation",
+                "stem": "Strain 2 (CAG to TAG) makes normal amounts of mRNA but a short, nonfunctional protein. This is a:",
+                "options": [
+                    "silent mutation",
+                    "nonsense mutation creating a premature stop codon",
+                    "promoter mutation",
+                    "frameshift caused by an insertion"
+                ],
+                "correct_index": 1,
+                "explanation": "Converting a sense codon (CAG, glutamine) into a stop codon (TAG) is a nonsense mutation; the ribosome terminates early, yielding a truncated protein while mRNA levels stay near normal. It is not silent (the product changed), not a promoter defect (mRNA is normal), and not a frameshift (a single substitution keeps the reading frame).",
+                "difficulty": "medium",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "A codon that signals the ribosome to stop translation is called a:",
+                        "options": ["stop (nonsense) codon", "start codon", "anticodon", "promoter"],
+                        "correct_index": 0,
+                        "explanation": "TAG is one of the three stop codons that terminate translation."
+                    },
+                    {
+                        "stem": "A premature stop codon truncates the protein but leaves the mRNA amount roughly:",
+                        "options": ["unchanged", "zero", "doubled", "negative"],
+                        "correct_index": 0,
+                        "explanation": "The mutation changes the message's meaning, not its production, so mRNA stays near wild-type levels (95 percent here)."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-3-q3",
+                "aamc_category": "1B",
+                "subtopic": "Frameshift mutation",
+                "stem": "Strain 3 (a single-nucleotide deletion near the start) yields a protein unrelated to wild type after its first residues because the deletion causes a:",
+                "options": [
+                    "conservative single amino-acid substitution",
+                    "change only in the promoter",
+                    "frameshift that alters all downstream codons",
+                    "longer poly-A tail"
+                ],
+                "correct_index": 2,
+                "explanation": "The ribosome reads mRNA in non-overlapping triplets (codons). Deleting one nucleotide shifts the reading frame for every codon downstream, so the entire remaining sequence is mistranslated -- a frameshift. It is not a single substitution, a promoter change, or an mRNA-tail change.",
+                "difficulty": "hard",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "The ribosome reads mRNA in groups of how many nucleotides?",
+                        "options": ["Three (a codon)", "Two", "Four", "One"],
+                        "correct_index": 0,
+                        "explanation": "Each codon is three nucleotides, so the frame depends on where reading begins."
+                    },
+                    {
+                        "stem": "Deleting one nucleotide shifts the reading frame for codons located:",
+                        "options": [
+                            "downstream of (after) the deletion",
+                            "only upstream of it",
+                            "nowhere",
+                            "only at the stop codon"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Everything after the deletion is read in a new frame, scrambling the downstream sequence."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-3-q4",
+                "aamc_category": "1B",
+                "subtopic": "Silent mutation and the degenerate code",
+                "stem": "Strain 4 (CTG to CTA, both leucine) has near-normal activity. This silent outcome is possible because the genetic code is:",
+                "options": [
+                    "degenerate (redundant): more than one codon can specify the same amino acid",
+                    "nonoverlapping",
+                    "read from 3' to 5'",
+                    "translated without tRNA"
+                ],
+                "correct_index": 0,
+                "explanation": "Degeneracy (redundancy) means several codons encode the same amino acid, so changing one leucine codon to another leucine codon leaves the protein sequence unchanged. Being nonoverlapping and the direction of reading are true features of the code but do not explain a silent substitution, and translation always requires tRNAs.",
+                "difficulty": "medium",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "If two different codons both specify leucine, changing one to the other changes the amino acid how?",
+                        "options": ["Not at all", "Completely", "Adds a stop codon", "Deletes a residue"],
+                        "correct_index": 0,
+                        "explanation": "Both codons insert leucine, so the encoded protein is unchanged (a synonymous/silent change)."
+                    },
+                    {
+                        "stem": "The property in which several codons map to one amino acid is called:",
+                        "options": ["degeneracy (redundancy)", "proofreading", "splicing", "capping"],
+                        "correct_index": 0,
+                        "explanation": "Degeneracy of the genetic code allows many synonymous codons per amino acid."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "psg-bb-4",
+        "section": "B/B",
+        "passage": "In a classic-style linkage experiment, geneticists studied two genes in a fruit fly stock: one affecting body color (B = gray, dominant; b = black) and one affecting wing shape (V = normal, dominant; v = vestigial). The two genes reside on the same chromosome. Females heterozygous for both genes, with both dominant alleles on one homolog and both recessive alleles on the other (arrangement B V / b v), were testcrossed to males that were homozygous recessive (b v / b v). Because the testcross father contributes only b and v alleles, each offspring's phenotype directly reveals which allele combination it received from the mother.\n\nAmong 1,000 offspring, the researchers counted four phenotypic classes: 425 gray, normal-winged; 415 black, vestigial-winged; 82 gray, vestigial-winged; and 78 black, normal-winged. The first two classes matched the parental (non-recombinant) allele combinations, whereas the last two classes represented new combinations that could only arise if the maternal homologs exchanged segments.\n\nThe team used the frequency of these new-combination offspring to estimate how far apart the two genes lie, applying the rule that one map unit (centimorgan) corresponds to a 1 percent recombination frequency. They noted that if the two genes had been on different chromosomes, or extremely far apart on the same one, the four classes would instead have appeared in roughly equal numbers.",
+        "passage_source": {
+            "name": "OpenStax Biology 2e, Ch. 13: Modern Understandings of Inheritance (linkage, recombination, genetic maps)",
+            "url": "https://openstax.org/details/books/biology-2e",
+            "license": "CC BY 4.0"
+        },
+        "questions": [
+            {
+                "id": "psg-bb-4-q1",
+                "aamc_category": "1C",
+                "subtopic": "Identifying recombinant offspring",
+                "stem": "Which offspring are the recombinant (new-combination) classes?",
+                "options": [
+                    "Gray normal-winged (425) and black vestigial (415)",
+                    "Gray vestigial (82) and black normal-winged (78)",
+                    "Gray normal-winged (425) and gray vestigial (82)",
+                    "All four classes equally"
+                ],
+                "correct_index": 1,
+                "explanation": "The mother's homologs carried B V and b v, so offspring showing gray-normal or black-vestigial are parental types (the two most frequent classes). The rare gray-vestigial (82) and black-normal (78) offspring carry new allele combinations (B v and b V) produced by crossing over, so they are the recombinants.",
+                "difficulty": "medium",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "The mother's homologs carried B V and b v. Which offspring allele combinations are NEW?",
+                        "options": ["B v and b V", "B V and b v", "Only B V", "Only b v"],
+                        "correct_index": 0,
+                        "explanation": "B v and b V are combinations not present on either parental homolog, so they must arise from recombination."
+                    },
+                    {
+                        "stem": "For linked genes, recombinant classes are typically ___ frequent than parental classes.",
+                        "options": ["less", "more", "equally", "never"],
+                        "correct_index": 0,
+                        "explanation": "Because crossing over between nearby loci is relatively uncommon, recombinants are the minority classes."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-4-q2",
+                "aamc_category": "1C",
+                "subtopic": "Calculating recombination frequency / map distance",
+                "stem": "The recombination frequency, and thus the map distance between the two genes, is approximately:",
+                "options": [
+                    "50 map units",
+                    "84 map units",
+                    "16 map units",
+                    "2 map units"
+                ],
+                "correct_index": 2,
+                "explanation": "Recombinants total 82 + 78 = 160 of 1,000 offspring, giving a recombination frequency of 160/1000 = 16 percent, which corresponds to 16 map units. 50 map units would mean the genes assort independently; 84 and 2 do not match the data.",
+                "difficulty": "medium",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "How many total recombinant offspring are there?",
+                        "options": ["160", "840", "1000", "78"],
+                        "correct_index": 0,
+                        "explanation": "Add the two recombinant classes: 82 + 78 = 160."
+                    },
+                    {
+                        "stem": "Recombination frequency = recombinants / total x 100 = 160 / 1000 x 100 = ?",
+                        "options": ["16 percent", "1.6 percent", "84 percent", "50 percent"],
+                        "correct_index": 0,
+                        "explanation": "160/1000 = 0.16 = 16 percent, i.e., about 16 centimorgans."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-4-q3",
+                "aamc_category": "1C",
+                "subtopic": "When crossing over occurs",
+                "stem": "The exchange of segments between homologous chromosomes that generated the recombinant offspring occurs during:",
+                "options": [
+                    "anaphase of mitosis",
+                    "prophase I of meiosis",
+                    "S phase of interphase",
+                    "cytokinesis"
+                ],
+                "correct_index": 1,
+                "explanation": "Homologous chromosomes pair (synapse) and exchange segments by crossing over during prophase I of meiosis, generating recombinant gametes. Mitotic anaphase separates sister chromatids without recombination, S phase replicates DNA, and cytokinesis divides the cytoplasm.",
+                "difficulty": "medium",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "Crossing over occurs between homologous chromosomes that pair during which division?",
+                        "options": ["Meiosis", "Mitosis", "Binary fission", "Endocytosis"],
+                        "correct_index": 0,
+                        "explanation": "Homolog pairing and recombination are hallmarks of meiosis, not mitosis."
+                    },
+                    {
+                        "stem": "Homologs synapse and exchange segments in which specific phase?",
+                        "options": ["Prophase I", "Metaphase II", "Telophase II", "G1"],
+                        "correct_index": 0,
+                        "explanation": "Synapsis and crossing over take place in prophase I."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-4-q4",
+                "aamc_category": "1C",
+                "subtopic": "Independent assortment vs linkage",
+                "stem": "If the two genes had instead assorted independently (e.g., on different chromosomes), the expected ratio of the four phenotypic classes in this testcross would be:",
+                "options": [
+                    "1:1:1:1",
+                    "3:1",
+                    "9:3:3:1",
+                    "2:1"
+                ],
+                "correct_index": 0,
+                "explanation": "With independent assortment, the doubly heterozygous mother makes the four gamete types in equal proportions, so a testcross yields a 1:1:1:1 ratio. The 9:3:3:1 ratio is an F2 dihybrid ratio, and 3:1 is a monohybrid F2 ratio, neither of which applies to this testcross.",
+                "difficulty": "hard",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "A testcross crosses a heterozygote to a partner that is:",
+                        "options": ["homozygous recessive", "homozygous dominant", "also heterozygous", "haploid"],
+                        "correct_index": 0,
+                        "explanation": "The recessive tester contributes only recessive alleles, so offspring phenotypes reveal the heterozygote's gametes."
+                    },
+                    {
+                        "stem": "With independent assortment, the four gamete combinations from the heterozygote occur in what proportion?",
+                        "options": ["Equal (about 25 percent each)", "9:3:3:1", "All one type", "3:1"],
+                        "correct_index": 0,
+                        "explanation": "Independent assortment gives equal frequencies of each gamete, producing 1:1:1:1 in a testcross."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "psg-bb-5",
+        "section": "B/B",
+        "passage": "To probe how mitochondria couple fuel oxidation to ATP synthesis, researchers suspended isolated mitochondria in a buffered chamber fitted with an oxygen electrode, so that the rate of oxygen consumption could be followed continuously. Because the electron transport chain uses O2 as its final electron acceptor, oxygen consumption serves as a readout of electron flow.\n\nThe team added an oxidizable substrate (to feed electrons into the chain) plus ADP and inorganic phosphate (the raw materials for ATP synthesis). Oxygen consumption rose to a brisk, steady rate, and ATP accumulated in the chamber. They then added oligomycin, a compound that blocks the proton channel of ATP synthase. Oxygen consumption fell almost to zero, and ATP synthesis stopped. Finally, they added 2,4-dinitrophenol (DNP), a small molecule that ferries protons across the inner mitochondrial membrane. Oxygen consumption surged back to a high rate, yet no ATP was produced; the released energy instead appeared as heat.\n\nThe investigators explained the pattern in terms of the proton-motive force. Electron transport pumps protons from the matrix into the intermembrane space, building an electrochemical gradient; ATP synthase normally lets those protons flow back into the matrix, harnessing the gradient to make ATP. Blocking ATP synthase lets the gradient build until it opposes further pumping, so electron flow (and O2 use) slows. A protonophore like DNP short-circuits the gradient, so electron transport races ahead while its energy is dissipated as heat rather than captured as ATP.",
+        "passage_source": {
+            "name": "OpenStax Biology 2e, Ch. 7: Cellular Respiration (oxidative phosphorylation, chemiosmosis)",
+            "url": "https://openstax.org/details/books/biology-2e",
+            "license": "CC BY 4.0"
+        },
+        "questions": [
+            {
+                "id": "psg-bb-5-q1",
+                "aamc_category": "1D",
+                "subtopic": "O2 as the terminal electron acceptor",
+                "stem": "In this experiment, oxygen consumption is used as a readout of electron flow because O2:",
+                "options": [
+                    "is pumped across the inner membrane",
+                    "is the final electron acceptor of the electron transport chain",
+                    "directly phosphorylates ADP",
+                    "inhibits ATP synthase"
+                ],
+                "correct_index": 1,
+                "explanation": "At the end of the electron transport chain, O2 accepts the electrons (and protons) to form water; therefore, the rate at which O2 is consumed reflects the rate of electron flow. O2 is not pumped, does not phosphorylate ADP (ATP synthase does that), and does not inhibit ATP synthase.",
+                "difficulty": "easy",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "At the end of the chain, electrons are passed to O2, forming what product?",
+                        "options": ["Water", "Glucose", "Carbon dioxide", "Lactate"],
+                        "correct_index": 0,
+                        "explanation": "O2 is reduced to water when it accepts electrons and protons at Complex IV."
+                    },
+                    {
+                        "stem": "If electrons cannot reach O2, oxygen consumption will:",
+                        "options": ["fall", "rise", "be unaffected", "become negative"],
+                        "correct_index": 0,
+                        "explanation": "No electron flow to O2 means little O2 is consumed."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-5-q2",
+                "aamc_category": "1D",
+                "subtopic": "Respiratory control and coupling",
+                "stem": "Why did oxygen consumption fall when oligomycin blocked ATP synthase?",
+                "options": [
+                    "O2 was chemically destroyed by oligomycin",
+                    "The proton gradient built up and opposed further pumping, slowing electron transport",
+                    "The substrate was consumed instantly",
+                    "DNP was already present"
+                ],
+                "correct_index": 1,
+                "explanation": "Blocking ATP synthase removes the main return path for protons, so the intermembrane proton gradient builds until it opposes further pumping by the chain. Because pumping and electron transport are coupled, electron flow (and O2 use) slows. Oligomycin does not destroy O2 or the substrate, and DNP was added only later.",
+                "difficulty": "medium",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "Blocking the return path for protons through ATP synthase causes the proton gradient to:",
+                        "options": ["increase", "disappear", "reverse polarity", "stay exactly constant"],
+                        "correct_index": 0,
+                        "explanation": "With no outflow, protons accumulate in the intermembrane space and the gradient grows."
+                    },
+                    {
+                        "stem": "A large opposing proton gradient makes further proton pumping by the chain:",
+                        "options": [
+                            "harder, so electron flow slows",
+                            "easier, so electron flow speeds up",
+                            "impossible to measure",
+                            "independent of pumping"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Pumping against a steep gradient is thermodynamically harder, so coupled electron transport slows (respiratory control)."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-5-q3",
+                "aamc_category": "1D",
+                "subtopic": "Uncouplers (protonophores)",
+                "stem": "DNP restored high oxygen consumption but produced no ATP. DNP acts as a(n):",
+                "options": [
+                    "inhibitor of the electron transport chain",
+                    "competitive inhibitor of ATP synthase",
+                    "uncoupler that dissipates the proton gradient",
+                    "electron donor to O2"
+                ],
+                "correct_index": 2,
+                "explanation": "By ferrying protons across the inner membrane, DNP collapses the proton-motive force, uncoupling electron transport from ATP synthesis. Electron flow (O2 use) resumes because the opposing gradient is gone, but the energy is released as heat rather than captured as ATP. DNP does not block the chain, act on ATP synthase's active site, or donate electrons to O2.",
+                "difficulty": "hard",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "By carrying protons across the membrane, DNP causes the proton-motive force to:",
+                        "options": ["collapse", "strengthen", "stay fixed", "invert permanently"],
+                        "correct_index": 0,
+                        "explanation": "A protonophore lets protons leak back, dissipating (collapsing) the gradient."
+                    },
+                    {
+                        "stem": "With the gradient dissipated, electron transport proceeds but its energy is released mostly as:",
+                        "options": ["heat", "ATP", "DNA", "visible light"],
+                        "correct_index": 0,
+                        "explanation": "Uncoupled respiration releases the free energy as heat instead of storing it in ATP."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-5-q4",
+                "aamc_category": "1D",
+                "subtopic": "Location of chemiosmosis",
+                "stem": "The proton gradient that powers ATP synthesis in these mitochondria is established across the:",
+                "options": [
+                    "outer mitochondrial membrane",
+                    "inner mitochondrial membrane",
+                    "nuclear envelope",
+                    "plasma membrane of the cell"
+                ],
+                "correct_index": 1,
+                "explanation": "The electron transport chain and ATP synthase are embedded in the inner mitochondrial membrane, which pumps protons into the intermembrane space to build the gradient. The outer membrane is permeable to small ions and holds no gradient, and neither the nuclear envelope nor the plasma membrane houses this chain.",
+                "difficulty": "medium",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "Protons are pumped from the matrix into which compartment?",
+                        "options": ["The intermembrane space", "The cytosol", "The nucleus", "The lysosome"],
+                        "correct_index": 0,
+                        "explanation": "Protons accumulate in the intermembrane space, between the inner and outer membranes."
+                    },
+                    {
+                        "stem": "ATP synthase and the electron transport chain are embedded in which membrane?",
+                        "options": [
+                            "The inner mitochondrial membrane",
+                            "The outer mitochondrial membrane",
+                            "The Golgi membrane",
+                            "The bacterial cell wall"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Both machines reside in the inner membrane (with its cristae folds)."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-5-q5",
+                "aamc_category": "1D",
+                "subtopic": "Oxidative phosphorylation vs substrate-level phosphorylation",
+                "stem": "Compared with substrate-level phosphorylation in glycolysis, oxidative phosphorylation in these mitochondria:",
+                "options": [
+                    "occurs in the cytosol without any membrane",
+                    "produces the majority of ATP per glucose and requires oxygen",
+                    "does not depend on the electron transport chain",
+                    "produces ATP even when the proton gradient is gone"
+                ],
+                "correct_index": 1,
+                "explanation": "Oxidative phosphorylation generates most of the ATP from complete glucose oxidation (roughly 26 to 28 of about 30 to 32 total) and depends on O2 as the terminal electron acceptor. Glycolysis, not oxidative phosphorylation, occurs in the cytosol and yields only a small net ATP by substrate-level phosphorylation; and the experiment shows ATP synthesis fails once the gradient is dissipated.",
+                "difficulty": "medium",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "Glycolysis occurs in the cytosol and yields a net of how many ATP per glucose by substrate-level phosphorylation?",
+                        "options": ["2", "36", "0", "10"],
+                        "correct_index": 0,
+                        "explanation": "Glycolysis nets 2 ATP (4 made minus 2 invested) per glucose."
+                    },
+                    {
+                        "stem": "Most ATP from complete glucose oxidation is generated by:",
+                        "options": [
+                            "oxidative phosphorylation",
+                            "glycolysis alone",
+                            "fermentation",
+                            "the citric acid cycle's GTP alone"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "The bulk of ATP comes from oxidative phosphorylation driven by NADH and FADH2 feeding the electron transport chain."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "psg-bb-6",
+        "section": "B/B",
+        "passage": "A cell-biology group compared how three different solutes cross the plasma membrane of cultured cells. For each solute they measured the initial rate of uptake into the cell as a function of the solute's external concentration, under conditions where metabolic ATP could be depleted with an inhibitor when desired.\n\nSolute X, a small hydrophobic steroid, entered at a rate that increased linearly with external concentration and did not plateau even at very high concentrations; depleting ATP had no effect on its uptake. Solute Y, a polar sugar, entered at a rate that rose with concentration and then leveled off at a maximum, tracing a curve resembling enzyme saturation; adding a structurally similar sugar reduced Y's uptake, but ATP depletion did not. Solute Z, an ion, was accumulated inside the cell to a concentration far higher than outside, against its concentration gradient; this uptake collapsed when ATP was depleted.\n\nThe researchers interpreted the linear, nonsaturable, ATP-independent uptake of X as simple diffusion directly through the lipid bilayer. The saturable, competable, but ATP-independent uptake of Y indicated a finite number of specific membrane transport proteins moving the sugar down its gradient. The accumulation of Z against its gradient, abolished by ATP depletion, indicated a pump doing work at the expense of cellular energy. The experiment thus separated three transport modes using two simple criteria: whether the rate saturates, and whether it requires cellular energy.",
+        "passage_source": {
+            "name": "OpenStax Biology 2e, Ch. 5: Structure and Function of Plasma Membranes (passive and active transport)",
+            "url": "https://openstax.org/details/books/biology-2e",
+            "license": "CC BY 4.0"
+        },
+        "questions": [
+            {
+                "id": "psg-bb-6-q1",
+                "aamc_category": "2A",
+                "subtopic": "Facilitated diffusion (saturable carriers)",
+                "stem": "The saturable but ATP-independent uptake of Solute Y is best explained by:",
+                "options": [
+                    "simple diffusion through the bilayer",
+                    "facilitated diffusion via a finite number of transport proteins",
+                    "primary active transport",
+                    "osmosis of water"
+                ],
+                "correct_index": 1,
+                "explanation": "Saturation (a maximum rate) and inhibition by a similar sugar indicate a limited number of specific transport proteins, while ATP independence and movement down the gradient make it facilitated diffusion, not active transport. Simple diffusion would not saturate, and osmosis refers to water movement, not sugar.",
+                "difficulty": "medium",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "Why would uptake level off (saturate) at high concentration?",
+                        "options": [
+                            "The transport proteins become fully occupied",
+                            "The membrane dissolves",
+                            "Water stops moving",
+                            "ATP runs out"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "A finite number of transporters can be maxed out, capping the rate -- like enzyme saturation."
+                    },
+                    {
+                        "stem": "Facilitated diffusion moves solutes ___ their concentration gradient and ___ ATP.",
+                        "options": ["down; without", "up; with", "down; with", "up; without"],
+                        "correct_index": 0,
+                        "explanation": "It is passive: solutes move down the gradient without energy input."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-6-q2",
+                "aamc_category": "2A",
+                "subtopic": "Simple diffusion through the bilayer",
+                "stem": "Solute X shows linear, nonsaturable, ATP-independent uptake. This is characteristic of:",
+                "options": [
+                    "a saturable carrier protein",
+                    "the Na+/K+ pump",
+                    "simple diffusion through the lipid bilayer",
+                    "receptor-mediated endocytosis"
+                ],
+                "correct_index": 2,
+                "explanation": "A small hydrophobic molecule can dissolve directly through the membrane's nonpolar interior; with no protein to saturate, the rate rises linearly with concentration and needs no ATP. A carrier would saturate, the Na+/K+ pump uses ATP, and endocytosis is a bulk, energy-dependent process.",
+                "difficulty": "medium",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "A small hydrophobic molecule can cross the hydrophobic membrane interior how?",
+                        "options": [
+                            "Directly, by dissolving through the bilayer",
+                            "Only through aquaporins",
+                            "Only via ATP-driven pumps",
+                            "It cannot cross at all"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Nonpolar, lipid-soluble molecules pass directly through the bilayer."
+                    },
+                    {
+                        "stem": "Because there is no protein to saturate, the rate versus concentration is:",
+                        "options": [
+                            "linear (no plateau)",
+                            "sigmoidal",
+                            "flat at all concentrations",
+                            "a plateau reached at low concentration"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Simple diffusion rate is proportional to the concentration gradient, so it stays linear."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-6-q3",
+                "aamc_category": "2A",
+                "subtopic": "Primary active transport",
+                "stem": "Solute Z is accumulated against its concentration gradient, and its uptake stops without ATP. This is:",
+                "options": [
+                    "simple diffusion",
+                    "facilitated diffusion",
+                    "primary active transport",
+                    "filtration"
+                ],
+                "correct_index": 2,
+                "explanation": "Moving a solute from low to high concentration (against its gradient) requires energy; the dependence on ATP identifies primary active transport. Simple and facilitated diffusion are passive and cannot build a solute against its gradient, and filtration is a pressure-driven bulk process.",
+                "difficulty": "medium",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "Moving a solute from low to high concentration (against the gradient) requires:",
+                        "options": ["energy input", "no energy", "only a larger gradient", "removing the membrane"],
+                        "correct_index": 0,
+                        "explanation": "Working against a gradient is thermodynamically unfavorable and must be powered."
+                    },
+                    {
+                        "stem": "That uptake collapses when ATP is depleted indicates the transporter uses:",
+                        "options": ["cellular energy (ATP)", "light", "sound", "gravity"],
+                        "correct_index": 0,
+                        "explanation": "ATP dependence is the signature of primary active transport (e.g., an ATPase pump)."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-6-q4",
+                "aamc_category": "2A",
+                "subtopic": "Osmosis and tonicity",
+                "stem": "If these cells are placed in a hypertonic solution (higher solute concentration outside than inside), water will:",
+                "options": [
+                    "leave the cell, causing it to shrink",
+                    "enter the cell, causing it to swell and possibly lyse",
+                    "not move at all",
+                    "move only if ATP is supplied"
+                ],
+                "correct_index": 0,
+                "explanation": "Osmosis moves water toward the compartment with higher solute concentration. In a hypertonic environment the outside is more concentrated, so water leaves the cell and it shrinks (crenates). Swelling/lysis occurs in a hypotonic solution, water does move, and osmosis is passive (no ATP).",
+                "difficulty": "medium",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "Osmosis moves water toward the side with ___ solute concentration.",
+                        "options": ["higher", "lower", "equal", "zero"],
+                        "correct_index": 0,
+                        "explanation": "Water diffuses toward higher solute (lower water) concentration."
+                    },
+                    {
+                        "stem": "In a hypertonic environment the outside has more solute, so water moves:",
+                        "options": ["out of the cell", "into the cell", "in a circle", "nowhere"],
+                        "correct_index": 0,
+                        "explanation": "Water follows its gradient out of the cell, shrinking it."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "psg-bb-7",
+        "section": "B/B",
+        "passage": "Microbiologists grew a pure culture of a rod-shaped bacterium in a closed flask of nutrient broth held at 37 deg C and tracked population size by measuring turbidity (optical density) over time. The resulting growth curve had four phases. During an initial lag phase, cell number changed little as the cells synthesized enzymes and adjusted to the medium. This was followed by an exponential (log) phase, during which the population doubled at a constant interval; the team measured a doubling time of 20 minutes. Growth then slowed into a stationary phase, in which the number of new cells produced roughly equaled the number dying, as nutrients ran low and wastes accumulated. Finally, in the death phase, viable counts declined.\n\nTo test antibiotics, the researchers exposed separate exponential-phase cultures to two drugs. Penicillin, which blocks the cross-linking step in synthesis of the peptidoglycan cell wall, killed rapidly growing cells but had little effect on cells that were not actively dividing. A second drug bound the bacterial ribosome and halted protein synthesis, stopping growth without immediately lysing the cells.\n\nThe team highlighted features that distinguish these prokaryotes from the animal cells in a companion culture: the bacteria lacked a membrane-bound nucleus and membrane-bound organelles, divided asexually by binary fission rather than mitosis, and could acquire new genes horizontally, for example by taking up plasmids during conjugation. These traits shape both how the population grows and how drugs can target the bacteria selectively.",
+        "passage_source": {
+            "name": "OpenStax Microbiology, Ch. 9 Microbial Growth and Ch. 14 (mechanisms of antibacterial drugs)",
+            "url": "https://openstax.org/details/books/microbiology",
+            "license": "CC BY 4.0"
+        },
+        "questions": [
+            {
+                "id": "psg-bb-7-q1",
+                "aamc_category": "2B",
+                "subtopic": "Exponential growth calculation",
+                "stem": "Starting from 1,000 cells in early exponential phase with a 20-minute doubling time, about how many cells are present after 2 hours (120 minutes) of continued exponential growth?",
+                "options": [
+                    "2,000",
+                    "6,000",
+                    "12,000",
+                    "64,000"
+                ],
+                "correct_index": 3,
+                "explanation": "In 120 minutes there are 120/20 = 6 doublings, so the population multiplies by 2^6 = 64: 1,000 x 64 = 64,000. The other choices assume far fewer doublings or simple addition rather than exponential growth.",
+                "difficulty": "medium",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "How many 20-minute doublings occur in 120 minutes?",
+                        "options": ["6", "2", "12", "60"],
+                        "correct_index": 0,
+                        "explanation": "120 minutes / 20 minutes per doubling = 6 doublings."
+                    },
+                    {
+                        "stem": "Multiply the starting count by 2 raised to the number of doublings: 1,000 x 2^6 = ?",
+                        "options": ["64,000", "6,000", "1,000,000", "12,000"],
+                        "correct_index": 0,
+                        "explanation": "2^6 = 64, and 1,000 x 64 = 64,000."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-7-q2",
+                "aamc_category": "2B",
+                "subtopic": "Antibiotic mechanism and selective toxicity",
+                "stem": "Penicillin killed actively growing cells but spared non-dividing ones because it targets:",
+                "options": [
+                    "the animal-cell nucleus",
+                    "synthesis of the peptidoglycan cell wall, which occurs during growth and division",
+                    "mitochondrial DNA",
+                    "the plasma membrane of all cells equally"
+                ],
+                "correct_index": 1,
+                "explanation": "Penicillin blocks cross-linking during peptidoglycan cell-wall synthesis; this matters mainly when cells are building new wall to grow and divide, so quiescent cells are spared. Because animal cells lack peptidoglycan, the drug is selectively toxic to bacteria. It does not act on a nucleus (bacteria have none), mitochondria, or all membranes.",
+                "difficulty": "medium",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "Penicillin blocks building of which bacteria-specific structure?",
+                        "options": [
+                            "The peptidoglycan cell wall",
+                            "The nucleus",
+                            "The mitochondrion",
+                            "The Golgi apparatus"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Peptidoglycan is unique to bacterial cell walls, so targeting it spares human cells."
+                    },
+                    {
+                        "stem": "New cell wall must be made most when cells are:",
+                        "options": ["actively growing and dividing", "dormant", "already dead", "in lag phase only"],
+                        "correct_index": 0,
+                        "explanation": "Wall synthesis peaks during growth/division, when penicillin is most lethal."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-7-q3",
+                "aamc_category": "2B",
+                "subtopic": "Stationary phase",
+                "stem": "During the stationary phase, the population size stays roughly constant because:",
+                "options": [
+                    "all the cells are dead",
+                    "the rate of cell division approximately equals the rate of cell death",
+                    "nutrients are unlimited",
+                    "the antibiotic has been added"
+                ],
+                "correct_index": 1,
+                "explanation": "Stationary phase is reached as nutrients dwindle and wastes build up, so new-cell production is balanced by cell death, keeping the count roughly flat. The cells are not all dead (that is the death phase), nutrients are becoming scarce (not unlimited), and no antibiotic is required to reach stationary phase.",
+                "difficulty": "medium",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "Stationary phase is reached as nutrients become ___ and wastes ___.",
+                        "options": ["scarce; accumulate", "abundant; disappear", "toxic; vanish", "frozen; boil"],
+                        "correct_index": 0,
+                        "explanation": "Nutrient depletion and waste buildup limit further net growth."
+                    },
+                    {
+                        "stem": "If the birth rate approximately equals the death rate, the net population change is:",
+                        "options": ["near zero", "strongly positive", "strongly negative", "a doubling each interval"],
+                        "correct_index": 0,
+                        "explanation": "Balanced birth and death rates leave the total roughly unchanged."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-7-q4",
+                "aamc_category": "2B",
+                "subtopic": "Prokaryote vs eukaryote features",
+                "stem": "Which statement correctly distinguishes these bacteria (prokaryotes) from the animal (eukaryotic) cells?",
+                "options": [
+                    "Bacteria lack a membrane-bound nucleus and reproduce by binary fission",
+                    "Bacteria contain mitochondria and a nucleus",
+                    "Bacteria undergo mitosis using a spindle apparatus",
+                    "Bacteria cannot exchange genetic material"
+                ],
+                "correct_index": 0,
+                "explanation": "Prokaryotes have no membrane-bound nucleus or organelles and divide by binary fission, matching the passage. They do not have mitochondria or a nucleus, do not use mitosis, and in fact can exchange DNA horizontally (e.g., plasmids via conjugation).",
+                "difficulty": "medium",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "Do prokaryotes have a membrane-bound nucleus?",
+                        "options": ["No", "Yes", "Only during division", "Only when infected"],
+                        "correct_index": 0,
+                        "explanation": "Prokaryotes keep their DNA in a nucleoid region, with no surrounding membrane."
+                    },
+                    {
+                        "stem": "Bacteria typically divide by:",
+                        "options": ["binary fission", "mitosis", "meiosis", "budding of organelles"],
+                        "correct_index": 0,
+                        "explanation": "Binary fission is the asexual division of prokaryotes."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "psg-bb-8",
+        "section": "B/B",
+        "passage": "A cancer-biology lab used flow cytometry to measure the DNA content of individual cells in a proliferating culture. A fluorescent dye that binds DNA in proportion to its amount let the instrument sort cells by how much DNA each contained. Cells in G1 phase, before DNA replication, showed a baseline amount of DNA (call it 2n). Cells in S phase, actively replicating, showed intermediate amounts between 2n and 4n. Cells in G2 and M, having completed replication, showed 4n. A normal asynchronous culture therefore produced two peaks (at 2n and 4n) with cells spread in between.\n\nThe team then treated cells with Drug Q. Afterward, nearly all cells piled up in the 2n peak, with almost none at 4n, indicating an arrest before DNA replication began. In a separate experiment, they examined a cell line carrying a nonfunctional version of a checkpoint protein that normally halts cells with damaged DNA. When these mutant cells were irradiated to damage their DNA, they continued through the cycle and divided anyway, accumulating chromosomal abnormalities over successive generations. Unlike normal cells, the mutant cells also kept dividing after covering the surface of the culture dish, having lost contact inhibition.\n\nThe investigators connected these observations to tumor formation: checkpoints normally verify that conditions are correct before a cell commits to replication and division, and loss of these controls allows damaged cells to proliferate, a hallmark of cancer.",
+        "passage_source": {
+            "name": "OpenStax Biology 2e, Ch. 10: Cell Reproduction (cell cycle, checkpoints, cancer)",
+            "url": "https://openstax.org/details/books/biology-2e",
+            "license": "CC BY 4.0"
+        },
+        "questions": [
+            {
+                "id": "psg-bb-8-q1",
+                "aamc_category": "2C",
+                "subtopic": "DNA content and cell-cycle phase",
+                "stem": "Cells appearing in the 4n peak have most likely:",
+                "options": [
+                    "not yet replicated their DNA (G1)",
+                    "completed DNA replication and are in G2/M",
+                    "permanently exited the cycle",
+                    "lost half their DNA"
+                ],
+                "correct_index": 1,
+                "explanation": "The 4n peak represents cells that have doubled their DNA during S phase and are now in G2 or M before dividing. G1 cells sit at 2n, cells that exit the cycle (G0) are still 2n, and no phase halves the DNA content except the division into daughter cells.",
+                "difficulty": "medium",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "DNA content doubles during which phase?",
+                        "options": ["S phase", "G1", "M only", "G0"],
+                        "correct_index": 0,
+                        "explanation": "DNA is synthesized (replicated) during S phase."
+                    },
+                    {
+                        "stem": "After replication (post-S), a cell contains how much DNA relative to G1?",
+                        "options": ["Twice as much (4n vs 2n)", "Half as much", "The same amount", "None"],
+                        "correct_index": 0,
+                        "explanation": "Replication doubles the DNA, so G2/M cells have 4n vs the 2n of G1."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-8-q2",
+                "aamc_category": "2C",
+                "subtopic": "Interpreting a cell-cycle arrest",
+                "stem": "Drug Q causes cells to accumulate at the 2n peak. It most likely arrests the cycle:",
+                "options": [
+                    "during mitosis",
+                    "at the G1/S boundary, before DNA replication",
+                    "after cytokinesis is complete",
+                    "in the middle of S phase"
+                ],
+                "correct_index": 1,
+                "explanation": "Cells stuck at 2n have not replicated their DNA, so the block occurs before S phase, at the G1/S transition. A mitotic block would trap cells at 4n, an S-phase block would leave many cells at intermediate DNA content, and arrest after cytokinesis would not specifically pile cells at 2n.",
+                "difficulty": "medium",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "The 2n peak corresponds to cells that have ___ replicated their DNA.",
+                        "options": ["not yet", "already", "twice", "partially"],
+                        "correct_index": 0,
+                        "explanation": "2n is the pre-replication (G1) DNA content."
+                    },
+                    {
+                        "stem": "Blocking entry into S phase would trap cells in which phase?",
+                        "options": ["G1", "G2", "M", "S"],
+                        "correct_index": 0,
+                        "explanation": "If cells cannot enter S, they accumulate in G1 (at 2n)."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-8-q3",
+                "aamc_category": "2C",
+                "subtopic": "Checkpoints and genome integrity",
+                "stem": "The irradiated mutant cells divided despite DNA damage because they lacked a functional:",
+                "options": [
+                    "ribosome",
+                    "cell-cycle checkpoint protein",
+                    "plasma membrane",
+                    "mitochondrion"
+                ],
+                "correct_index": 1,
+                "explanation": "Checkpoint proteins normally halt the cycle when DNA is damaged so it can be repaired (or the cell can be eliminated); losing that function lets damaged cells divide and accumulate abnormalities. Ribosomes, membranes, and mitochondria are essential but are not the DNA-damage surveillance system.",
+                "difficulty": "hard",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "Checkpoints normally do what when they detect DNA damage?",
+                        "options": [
+                            "halt the cycle to allow repair",
+                            "speed up division",
+                            "destroy all mRNA",
+                            "add extra DNA"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "They pause the cycle so damage can be fixed before replication or division."
+                    },
+                    {
+                        "stem": "Without a working damage checkpoint, cells with broken DNA will:",
+                        "options": [
+                            "divide anyway, propagating errors",
+                            "always die immediately",
+                            "never replicate DNA",
+                            "revert to normal"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Unchecked, damaged cells proceed and pass on chromosomal abnormalities."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-8-q4",
+                "aamc_category": "2C",
+                "subtopic": "Contact inhibition and cancer",
+                "stem": "The mutant cells' continued division after covering the dish reflects loss of:",
+                "options": [
+                    "contact inhibition, a control commonly lost in cancer cells",
+                    "the ability to make ATP",
+                    "their plasma membranes",
+                    "their ribosomes"
+                ],
+                "correct_index": 0,
+                "explanation": "Normal cells stop dividing when crowded (contact inhibition); cancer cells often lose this control and keep proliferating, matching the observation. The cells clearly still make ATP, retain membranes, and have ribosomes, or they could not divide at all.",
+                "difficulty": "medium",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "Normal cells stop dividing when they crowd against neighbors; this is called:",
+                        "options": ["contact inhibition", "apoptosis", "transcription", "diffusion"],
+                        "correct_index": 0,
+                        "explanation": "Contact inhibition halts division upon crowding in normal cells."
+                    },
+                    {
+                        "stem": "Unregulated, continued proliferation is a hallmark of:",
+                        "options": ["cancer", "normal quiescence", "terminal differentiation", "apoptosis"],
+                        "correct_index": 0,
+                        "explanation": "Loss of growth control and continued division characterize cancer."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "psg-bb-9",
+        "section": "B/B",
+        "passage": "Neurophysiologists used a squid giant axon and fine electrodes to record the membrane potential during a nerve impulse. At rest, the inside of the axon measured about -70 mV relative to the outside. A brief electrical stimulus that depolarized the membrane to a threshold near -55 mV triggered an all-or-none action potential: the potential shot upward to about +30 mV (the rising phase) and then rapidly returned toward rest (the falling phase), briefly overshooting to a value more negative than -70 mV before stabilizing.\n\nThe team dissected the ionic basis using two toxins. Applying tetrodotoxin (TTX), which blocks voltage-gated sodium channels, abolished the action potential entirely: stimulation no longer produced the rapid upstroke. Applying tetraethylammonium (TEA), which blocks voltage-gated potassium channels, left the upstroke intact but markedly slowed the return to rest, prolonging the action potential. Blocking the Na+/K+ ATPase with a separate agent did not abolish individual action potentials over the short term but, over many impulses, degraded the ion gradients on which they depend.\n\nIn a final experiment the researchers compared conduction along a myelinated axon with an unmyelinated one of similar diameter. The myelinated axon conducted impulses far faster, because the action potential regenerated only at the gaps in the myelin (nodes of Ranvier), jumping from node to node. The results tied each phase of the action potential to specific ion channels and showed how myelination speeds signaling without changing the underlying ionic mechanism.",
+        "passage_source": {
+            "name": "OpenStax Anatomy and Physiology 2e, Ch. 12: The Nervous System and Nervous Tissue (the action potential)",
+            "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+            "license": "CC BY 4.0"
+        },
+        "questions": [
+            {
+                "id": "psg-bb-9-q1",
+                "aamc_category": "3A",
+                "subtopic": "Ionic basis of depolarization",
+                "stem": "TTX abolished the rising phase of the action potential. This identifies the rising phase (depolarization) as due to:",
+                "options": [
+                    "potassium efflux",
+                    "sodium influx through voltage-gated Na+ channels",
+                    "chloride influx",
+                    "activity of the Na+/K+ ATPase"
+                ],
+                "correct_index": 1,
+                "explanation": "TTX specifically blocks voltage-gated sodium channels; because blocking them removes the upstroke, the rapid depolarization must be caused by Na+ rushing into the cell through those channels. Potassium efflux drives repolarization (the falling phase), chloride is not the depolarizing current here, and the Na+/K+ ATPase sets up gradients rather than generating the spike.",
+                "difficulty": "medium",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "TTX blocks which channel?",
+                        "options": [
+                            "Voltage-gated Na+ channels",
+                            "Voltage-gated K+ channels",
+                            "Aquaporins",
+                            "ATP synthase"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Tetrodotoxin is a selective blocker of voltage-gated sodium channels."
+                    },
+                    {
+                        "stem": "If blocking Na+ channels removes the upstroke, the upstroke is caused by Na+ moving:",
+                        "options": ["into the cell", "out of the cell", "in a circle", "nowhere"],
+                        "correct_index": 0,
+                        "explanation": "Na+ flows down its gradient into the cell, depolarizing the membrane."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-9-q2",
+                "aamc_category": "3A",
+                "subtopic": "Ionic basis of repolarization",
+                "stem": "TEA slowed repolarization without affecting the upstroke. This identifies the falling phase as due to:",
+                "options": [
+                    "sodium influx",
+                    "calcium influx at the cell body",
+                    "potassium efflux through voltage-gated K+ channels",
+                    "the myelin sheath"
+                ],
+                "correct_index": 2,
+                "explanation": "TEA blocks voltage-gated potassium channels; slowing repolarization when they are blocked shows that the falling phase is driven by K+ leaving the cell through those channels. Sodium influx drives the upstroke, calcium influx is important at synaptic terminals (not the falling phase here), and myelin affects speed, not the ionic mechanism.",
+                "difficulty": "medium",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "TEA blocks which channel?",
+                        "options": [
+                            "Voltage-gated K+ channels",
+                            "Voltage-gated Na+ channels",
+                            "The Na+/K+ pump",
+                            "Ligand-gated Cl- channels"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Tetraethylammonium blocks voltage-gated potassium channels."
+                    },
+                    {
+                        "stem": "Repolarization returns the membrane toward rest as K+ moves:",
+                        "options": ["out of the cell", "into the cell", "nowhere", "only during rest"],
+                        "correct_index": 0,
+                        "explanation": "K+ exits down its gradient, restoring the negative interior."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-9-q3",
+                "aamc_category": "3A",
+                "subtopic": "Resting membrane potential",
+                "stem": "The resting membrane potential of about -70 mV is maintained largely by:",
+                "options": [
+                    "voltage-gated Na+ channels that stay open at rest",
+                    "the Na+/K+ ATPase together with K+ leak channels",
+                    "the action potential itself",
+                    "the myelin sheath alone"
+                ],
+                "correct_index": 1,
+                "explanation": "The Na+/K+ ATPase establishes the Na+ and K+ gradients, and K+ leak channels make the resting membrane most permeable to K+, setting the potential near -70 mV. Voltage-gated Na+ channels are closed at rest, the action potential is a transient event (not the resting state), and myelin insulates but does not set the resting potential.",
+                "difficulty": "medium",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "The Na+/K+ ATPase pumps 3 Na+ out and 2 K+ in, maintaining:",
+                        "options": [
+                            "the ion concentration gradients",
+                            "the myelin",
+                            "the axon diameter",
+                            "the number of synapses"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "The pump sustains the transmembrane Na+ and K+ gradients that underlie the potential."
+                    },
+                    {
+                        "stem": "At rest, the membrane is most permeable to which ion (via leak channels)?",
+                        "options": ["K+", "Na+", "Ca2+", "Cl-"],
+                        "correct_index": 0,
+                        "explanation": "Resting permeability is dominated by K+ leak channels, so the potential sits near the K+ equilibrium potential."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-9-q4",
+                "aamc_category": "3A",
+                "subtopic": "Saltatory conduction",
+                "stem": "The myelinated axon conducted impulses faster because the action potential:",
+                "options": [
+                    "regenerated only at the nodes of Ranvier and jumped between them (saltatory conduction)",
+                    "traveled through the myelin itself",
+                    "did not require any ion channels",
+                    "used ATP directly to propagate along the axon"
+                ],
+                "correct_index": 0,
+                "explanation": "Myelin insulates the internodes, and voltage-gated channels cluster at the nodes of Ranvier, so the impulse regenerates node-to-node in saltatory conduction, greatly increasing speed. The impulse does not travel through the myelin, it still depends on ion channels at the nodes, and propagation is driven by ionic currents rather than direct ATP use.",
+                "difficulty": "medium",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "In myelinated axons, voltage-gated channels are clustered at the:",
+                        "options": [
+                            "nodes of Ranvier",
+                            "internodes beneath the myelin",
+                            "cell body only",
+                            "axon hillock only"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Channels concentrate at the unmyelinated nodes, where the signal regenerates."
+                    },
+                    {
+                        "stem": "The jumping of the impulse from node to node is called:",
+                        "options": ["saltatory conduction", "continuous conduction", "diffusion", "osmosis"],
+                        "correct_index": 0,
+                        "explanation": "Saltatory (jumping) conduction speeds transmission along myelinated fibers."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-9-q5",
+                "aamc_category": "3A",
+                "subtopic": "Synaptic transmission (Ca2+ trigger)",
+                "stem": "At the axon terminal, arrival of the action potential triggers neurotransmitter release by opening which channels, whose ion influx drives synaptic vesicle fusion?",
+                "options": [
+                    "voltage-gated calcium channels",
+                    "voltage-gated potassium channels",
+                    "aquaporins",
+                    "chloride leak channels"
+                ],
+                "correct_index": 0,
+                "explanation": "Depolarization of the terminal opens voltage-gated Ca2+ channels; the resulting Ca2+ influx triggers fusion of neurotransmitter vesicles with the membrane (exocytosis). Potassium channels repolarize the membrane, aquaporins conduct water, and chloride leak channels do not trigger release.",
+                "difficulty": "hard",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "Which ion's influx at the synaptic terminal triggers neurotransmitter vesicle release?",
+                        "options": ["Ca2+", "Cl-", "Mg2+", "H+"],
+                        "correct_index": 0,
+                        "explanation": "Calcium influx is the trigger for vesicle fusion and neurotransmitter release."
+                    },
+                    {
+                        "stem": "Neurotransmitter is released into the synaptic cleft by:",
+                        "options": [
+                            "vesicle fusion (exocytosis)",
+                            "endocytosis of the membrane",
+                            "DNA replication",
+                            "the Na+/K+ pump"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Vesicles fuse with the presynaptic membrane and release their contents by exocytosis."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "psg-bb-10",
+        "section": "B/B",
+        "passage": "To study how blood delivers oxygen, physiologists measured the percentage of hemoglobin saturated with O2 across a range of oxygen partial pressures (PO2), generating an oxygen-hemoglobin dissociation curve. For adult hemoglobin the curve was S-shaped (sigmoidal): saturation rose slowly at very low PO2, steeply through intermediate values, and leveled off near 100 percent at high PO2. The partial pressure at which hemoglobin is 50 percent saturated (the P50) was about 26 mmHg. For comparison, myoglobin, a single-subunit muscle protein, gave a hyperbolic curve that was left-shifted, reaching high saturation at much lower PO2.\n\nThe team then altered the conditions around adult hemoglobin. Lowering the pH (more acidic), raising the partial pressure of carbon dioxide, and raising temperature each shifted the curve to the right, increasing the P50; at any given intermediate PO2, hemoglobin then held less oxygen and released more. These effects are collectively called the Bohr effect. Conversely, fetal hemoglobin gave a left-shifted curve with a lower P50 than adult hemoglobin.\n\nThe investigators related the findings to physiology. The sigmoidal shape reflects cooperative binding among hemoglobin's four subunits: O2 binding to one subunit increases the affinity of the others. In metabolically active tissue, where CO2 and acid are high and temperature is elevated, the right shift promotes oxygen unloading exactly where it is needed. The left-shifted fetal curve lets fetal blood extract oxygen from maternal blood across the placenta.",
+        "passage_source": {
+            "name": "OpenStax Anatomy and Physiology 2e, Ch. 22: The Respiratory System (transport of gases; oxygen-hemoglobin dissociation)",
+            "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+            "license": "CC BY 4.0"
+        },
+        "questions": [
+            {
+                "id": "psg-bb-10-q1",
+                "aamc_category": "3B",
+                "subtopic": "Interpreting a right shift (P50)",
+                "stem": "A right shift of the curve (increased P50) in exercising muscle means that, at a given PO2, hemoglobin:",
+                "options": [
+                    "has lower O2 affinity and unloads more oxygen to the tissue",
+                    "has higher O2 affinity and holds oxygen more tightly",
+                    "can no longer bind oxygen at all",
+                    "has been converted into myoglobin"
+                ],
+                "correct_index": 0,
+                "explanation": "A higher P50 means more PO2 is needed to reach 50 percent saturation, i.e., lower affinity; at a given PO2 the hemoglobin is less saturated and releases more O2 to the tissue. It does not indicate higher affinity, a total loss of binding, or a change of protein identity.",
+                "difficulty": "medium",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "A higher P50 means hemoglobin needs ___ PO2 to reach 50 percent saturation, indicating ___ affinity.",
+                        "options": ["more; lower", "less; higher", "more; higher", "less; lower"],
+                        "correct_index": 0,
+                        "explanation": "Needing more PO2 for half-saturation is the definition of reduced O2 affinity."
+                    },
+                    {
+                        "stem": "Lower affinity in the tissues promotes oxygen:",
+                        "options": ["release (unloading)", "binding (loading)", "destruction", "synthesis"],
+                        "correct_index": 0,
+                        "explanation": "Reduced affinity favors dropping O2 off where it is needed."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-10-q2",
+                "aamc_category": "1A",
+                "subtopic": "Cooperativity and quaternary structure",
+                "stem": "The sigmoidal O2-binding curve of hemoglobin, unlike the hyperbolic curve of single-subunit myoglobin, is a consequence of:",
+                "options": [
+                    "cooperative binding among its four subunits",
+                    "its lack of any quaternary structure",
+                    "irreversible oxygen binding",
+                    "the absence of iron"
+                ],
+                "correct_index": 0,
+                "explanation": "Hemoglobin has four subunits, and binding of O2 to one raises the affinity of the others (positive cooperativity), which produces the S-shaped curve. Myoglobin has one subunit (no cooperativity) and a hyperbolic curve. Oxygen binding is reversible, and both proteins contain heme iron.",
+                "difficulty": "medium",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "Hemoglobin has how many O2-binding subunits?",
+                        "options": ["Four", "One", "Two", "Ten"],
+                        "correct_index": 0,
+                        "explanation": "Adult hemoglobin is a tetramer of four globin subunits, each with a heme."
+                    },
+                    {
+                        "stem": "When O2 binding to one subunit raises the affinity of the others, this is called:",
+                        "options": ["cooperativity", "denaturation", "catalysis", "diffusion"],
+                        "correct_index": 0,
+                        "explanation": "Positive cooperativity among subunits yields the sigmoidal binding curve."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-10-q3",
+                "aamc_category": "3B",
+                "subtopic": "Bohr effect",
+                "stem": "The Bohr effect describes how increased CO2 and H+ (lower pH):",
+                "options": [
+                    "increase hemoglobin's O2 affinity",
+                    "decrease hemoglobin's O2 affinity, favoring O2 release in active tissues",
+                    "have no effect on O2 binding",
+                    "convert hemoglobin into myoglobin"
+                ],
+                "correct_index": 1,
+                "explanation": "Higher CO2 and H+ (as in metabolically active tissue) lower hemoglobin's O2 affinity, shifting the curve right and promoting O2 unloading where metabolism is greatest. This is the opposite of increasing affinity, is clearly an effect (not none), and does not change the protein into myoglobin.",
+                "difficulty": "medium",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "Active tissues produce more CO2 and acid; the Bohr effect there shifts the curve which way?",
+                        "options": ["right (release O2)", "left (hold O2)", "no shift", "straight up"],
+                        "correct_index": 0,
+                        "explanation": "More CO2/H+ shifts the curve right, favoring oxygen release."
+                    },
+                    {
+                        "stem": "Releasing O2 where metabolism is high is physiologically:",
+                        "options": ["beneficial (delivers O2 to needy tissue)", "harmful", "irrelevant", "impossible"],
+                        "correct_index": 0,
+                        "explanation": "Unloading O2 in active tissue matches supply to demand."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-10-q4",
+                "aamc_category": "3B",
+                "subtopic": "Fetal hemoglobin",
+                "stem": "Fetal hemoglobin's curve is left-shifted relative to maternal (adult) hemoglobin. This higher O2 affinity allows fetal blood to:",
+                "options": [
+                    "draw oxygen from maternal blood across the placenta",
+                    "release oxygen to the mother's tissues",
+                    "avoid binding oxygen entirely",
+                    "raise the maternal P50"
+                ],
+                "correct_index": 0,
+                "explanation": "A left-shifted curve means higher O2 affinity, so fetal hemoglobin binds O2 more tightly than maternal hemoglobin and can pull oxygen from the mother's blood across the placenta. It does not give O2 to the mother, still binds O2, and does not change the mother's P50.",
+                "difficulty": "hard",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "A left-shifted curve corresponds to ___ O2 affinity.",
+                        "options": ["higher", "lower", "zero", "unmeasurable"],
+                        "correct_index": 0,
+                        "explanation": "Left shift = lower P50 = higher affinity for oxygen."
+                    },
+                    {
+                        "stem": "For oxygen to transfer from mother to fetus, fetal hemoglobin must bind O2 ___ than maternal hemoglobin.",
+                        "options": ["more tightly", "more weakly", "identically", "not at all"],
+                        "correct_index": 0,
+                        "explanation": "Higher fetal affinity drives net O2 transfer from mother to fetus."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "psg-bb-11",
+        "section": "B/B",
+        "passage": "To characterize kidney function, a renal-physiology team infused test substances into volunteers and measured how the kidneys handled each, using the concept of clearance: the volume of plasma completely cleared of a substance per minute. They relied on three markers.\n\nInulin, a plant polysaccharide, is freely filtered at the glomerulus but neither reabsorbed nor secreted by the tubules. Its clearance therefore equals the glomerular filtration rate (GFR), which averaged 125 mL/min in the study. Para-aminohippurate (PAH) is both filtered and actively secreted into the tubule, so nearly all PAH is removed in a single pass; its clearance (about 600 mL/min) approximated the renal plasma flow, a value much larger than GFR. Glucose, by contrast, is freely filtered but then almost completely reabsorbed in the proximal tubule by carrier proteins; at normal plasma glucose levels its clearance was essentially zero, and none appeared in the urine.\n\nThe team then raised plasma glucose experimentally. Below a threshold, urine remained glucose-free. Above the threshold, the reabsorptive carriers became saturated (their transport maximum, or Tm, was exceeded), and glucose spilled into the urine. Because the unreabsorbed glucose held water osmotically within the tubule, urine volume also rose.\n\nThe investigators noted that comparing a substance's clearance with the inulin clearance reveals its tubular handling: a clearance below GFR implies net reabsorption, a clearance above GFR implies net secretion, and a clearance equal to GFR implies filtration only.",
+        "passage_source": {
+            "name": "OpenStax Anatomy and Physiology 2e, Ch. 25: The Urinary System (glomerular filtration, tubular reabsorption and secretion)",
+            "url": "https://openstax.org/details/books/anatomy-and-physiology-2e",
+            "license": "CC BY 4.0"
+        },
+        "questions": [
+            {
+                "id": "psg-bb-11-q1",
+                "aamc_category": "3B",
+                "subtopic": "Inulin clearance and GFR",
+                "stem": "Inulin clearance equals the glomerular filtration rate because inulin is:",
+                "options": [
+                    "actively secreted by the tubule",
+                    "freely filtered but neither reabsorbed nor secreted",
+                    "completely reabsorbed in the proximal tubule",
+                    "not filtered at all"
+                ],
+                "correct_index": 1,
+                "explanation": "Because inulin is filtered and then neither added to nor removed from the filtrate, the plasma volume cleared per minute exactly equals the volume filtered per minute (the GFR). If it were secreted, clearance would exceed GFR; if reabsorbed, it would fall below GFR; if unfiltered, clearance would be near zero.",
+                "difficulty": "medium",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "If a substance is only filtered (not reabsorbed or secreted), the plasma cleared per minute equals the volume:",
+                        "options": [
+                            "filtered per minute (GFR)",
+                            "reabsorbed per minute",
+                            "secreted per minute",
+                            "stored in the bladder"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "With no tubular handling, clearance is set entirely by filtration, so it equals GFR."
+                    },
+                    {
+                        "stem": "Inulin's clearance in the study was:",
+                        "options": ["125 mL/min", "600 mL/min", "0 mL/min", "essentially infinite"],
+                        "correct_index": 0,
+                        "explanation": "The passage gives inulin clearance (GFR) as 125 mL/min."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-11-q2",
+                "aamc_category": "3B",
+                "subtopic": "Clearance above GFR implies secretion",
+                "stem": "PAH's clearance (~600 mL/min) exceeds the GFR (125 mL/min). By the study's rule, PAH must undergo net:",
+                "options": [
+                    "tubular reabsorption",
+                    "tubular secretion",
+                    "filtration only",
+                    "no renal handling at all"
+                ],
+                "correct_index": 1,
+                "explanation": "A clearance greater than GFR means more plasma is cleared than is filtered, so the tubule must add PAH to the filtrate by secretion. Reabsorption would lower clearance below GFR, filtration-only would make clearance equal GFR, and PAH is clearly handled (cleared at 600 mL/min).",
+                "difficulty": "hard",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "A clearance greater than GFR means the extra cleared plasma must be handled by:",
+                        "options": [
+                            "secretion into the tubule",
+                            "reabsorption from the tubule",
+                            "storage in the blood",
+                            "filtration only"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Only secretion can clear more plasma than is filtered."
+                    },
+                    {
+                        "stem": "Compared with GFR, a clearance above GFR indicates:",
+                        "options": ["net secretion", "net reabsorption", "filtration only", "no transport"],
+                        "correct_index": 0,
+                        "explanation": "Above-GFR clearance is the signature of net tubular secretion."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-11-q3",
+                "aamc_category": "3B",
+                "subtopic": "Glucose reabsorption",
+                "stem": "At normal plasma levels, glucose clearance was essentially zero because glucose is:",
+                "options": [
+                    "not filtered at the glomerulus",
+                    "freely filtered and then almost completely reabsorbed in the proximal tubule",
+                    "actively secreted into the tubule",
+                    "stored in the glomerulus"
+                ],
+                "correct_index": 1,
+                "explanation": "Glucose is freely filtered but then reclaimed almost entirely by carrier-mediated reabsorption in the proximal tubule, so little or none reaches the urine and clearance is near zero. It is filtered (not blocked), it is reabsorbed rather than secreted, and it is not stored in the glomerulus.",
+                "difficulty": "medium",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "Glucose is normally reabsorbed in which tubular segment?",
+                        "options": ["the proximal tubule", "the collecting duct", "the glomerulus", "the bladder"],
+                        "correct_index": 0,
+                        "explanation": "Carrier proteins (e.g., SGLT) reabsorb filtered glucose in the proximal tubule."
+                    },
+                    {
+                        "stem": "If a filtered substance is fully reabsorbed, how much appears in the urine?",
+                        "options": ["essentially none", "all of it", "half of it", "more than was filtered"],
+                        "correct_index": 0,
+                        "explanation": "Complete reabsorption returns the substance to the blood, leaving almost none in urine."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-11-q4",
+                "aamc_category": "3B",
+                "subtopic": "Transport maximum (Tm) and glucosuria",
+                "stem": "When plasma glucose was raised above the threshold, glucose appeared in the urine because:",
+                "options": [
+                    "the glomerulus stopped filtering",
+                    "the reabsorptive transporters were saturated (the transport maximum was exceeded)",
+                    "glucose became actively secreted",
+                    "inulin blocked glucose reabsorption"
+                ],
+                "correct_index": 1,
+                "explanation": "The number of reabsorptive carriers is finite, so above a threshold they saturate (transport maximum, Tm, is exceeded) and the excess filtered glucose spills into the urine; retained glucose then holds water osmotically, raising urine volume (as seen in uncontrolled diabetes). Filtration continues, glucose is reabsorbed rather than secreted, and inulin is inert with respect to glucose transport.",
+                "difficulty": "medium",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "Carrier-mediated reabsorption has a maximum rate because the number of transporters is:",
+                        "options": ["finite (they can saturate)", "infinite", "zero", "irrelevant"],
+                        "correct_index": 0,
+                        "explanation": "A limited number of carriers sets an upper limit (Tm) on reabsorption."
+                    },
+                    {
+                        "stem": "Glucose left in the tubule holds water osmotically, so urine volume:",
+                        "options": ["increases", "decreases to zero", "is unchanged", "freezes"],
+                        "correct_index": 0,
+                        "explanation": "Unreabsorbed glucose causes an osmotic diuresis, increasing urine volume."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "psg-bb-12",
+        "section": "B/B",
+        "passage": "The following items are discrete (standalone) questions, like the freestanding questions interspersed between passages on the Biological and Biochemical Foundations section of the exam. Each item is self-contained and does not depend on a shared passage; together they sample foundational-concept content across biomolecules, genetics, metabolism, cell division, and physiological coordination. Answer each on the basis of your own content knowledge, using quantitative reasoning where an item supplies data. The grounding sources are the same free, openly licensed textbooks used for the passage sets in this file.",
+        "passage_source": {
+            "name": "OpenStax Biology 2e and Anatomy and Physiology 2e (discrete items span multiple chapters)",
+            "url": "https://openstax.org/details/books/biology-2e",
+            "license": "CC BY 4.0"
+        },
+        "questions": [
+            {
+                "id": "psg-bb-12-q1",
+                "aamc_category": "1A",
+                "subtopic": "Amino acid side-chain properties",
+                "stem": "At physiological pH (about 7.4), which amino acid side chain is most likely to carry a negative charge?",
+                "options": [
+                    "Leucine",
+                    "Aspartate (a carboxylate side chain)",
+                    "Alanine",
+                    "Valine"
+                ],
+                "correct_index": 1,
+                "explanation": "Aspartate has an acidic carboxyl side chain (pKa near 4), so at pH 7.4 it is deprotonated and negatively charged. Leucine, alanine, and valine have nonpolar hydrocarbon side chains that carry no charge at physiological pH.",
+                "difficulty": "easy",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "A side chain with a carboxylic acid group (pKa about 4) at pH 7.4 is mostly:",
+                        "options": [
+                            "deprotonated and negatively charged",
+                            "protonated and positively charged",
+                            "nonpolar",
+                            "aromatic"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Above its pKa, a carboxyl group loses its proton and becomes a negative carboxylate."
+                    },
+                    {
+                        "stem": "Which of these is an acidic amino acid?",
+                        "options": ["Aspartate", "Leucine", "Valine", "Alanine"],
+                        "correct_index": 0,
+                        "explanation": "Aspartate (and glutamate) are the acidic, negatively charged amino acids."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-12-q2",
+                "aamc_category": "1B",
+                "subtopic": "Eukaryotic mRNA processing",
+                "stem": "Which modification is part of normal eukaryotic pre-mRNA processing before translation?",
+                "options": [
+                    "Translation directly in the nucleus without processing",
+                    "Removal of introns by splicing plus addition of a 5' cap and a poly-A tail",
+                    "Replacement of all uracil with thymine",
+                    "Reverse transcription of the mRNA into DNA"
+                ],
+                "correct_index": 1,
+                "explanation": "Eukaryotic pre-mRNA is processed by removing introns (splicing) and adding a 5' cap and 3' poly-A tail, which protect the transcript and aid export and translation. Translation occurs in the cytoplasm (not the nucleus), mRNA uses uracil rather than thymine, and reverse transcription is not part of normal mRNA maturation.",
+                "difficulty": "medium",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "The non-coding intervening sequences removed from pre-mRNA are called:",
+                        "options": ["introns", "exons", "codons", "promoters"],
+                        "correct_index": 0,
+                        "explanation": "Introns are spliced out; exons are the expressed sequences that remain."
+                    },
+                    {
+                        "stem": "The 5' cap and poly-A tail primarily serve to:",
+                        "options": [
+                            "protect the mRNA and aid its translation and export",
+                            "immediately degrade the mRNA",
+                            "copy the DNA",
+                            "build ribosomes"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "These modifications stabilize the mRNA and promote its export and translation."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-12-q3",
+                "aamc_category": "1C",
+                "subtopic": "Hardy-Weinberg carrier frequency",
+                "stem": "An autosomal recessive disease affects 1 in 10,000 people in a population at Hardy-Weinberg equilibrium. Approximately what fraction of the population are heterozygous carriers?",
+                "options": [
+                    "About 1 percent",
+                    "About 2 percent (roughly 1 in 50)",
+                    "About 50 percent",
+                    "About 0.01 percent"
+                ],
+                "correct_index": 1,
+                "explanation": "The affected frequency q^2 = 1/10,000, so q = 0.01 and p is about 0.99. Carrier frequency is 2pq = 2(0.99)(0.01) = 0.0198, or about 2 percent. About 1 percent confuses carriers with q, 50 percent and 0.01 percent are far off.",
+                "difficulty": "hard",
+                "cognitive_level": "data-analysis",
+                "subquestions": [
+                    {
+                        "stem": "If q^2 = 1/10,000, what is the recessive allele frequency q?",
+                        "options": ["0.01", "0.1", "0.5", "0.0001"],
+                        "correct_index": 0,
+                        "explanation": "q is the square root of 1/10,000, which is 0.01."
+                    },
+                    {
+                        "stem": "Carrier frequency is 2pq. With p about 0.99 and q = 0.01, 2pq is about:",
+                        "options": ["0.02 (2 percent)", "0.5", "0.0001", "0.99"],
+                        "correct_index": 0,
+                        "explanation": "2 x 0.99 x 0.01 is approximately 0.0198, i.e., about 2 percent."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-12-q4",
+                "aamc_category": "1D",
+                "subtopic": "Products of glycolysis",
+                "stem": "The net products of glycolysis from one glucose molecule (which occurs in the cytosol) are:",
+                "options": [
+                    "2 CO2 and 36 ATP",
+                    "2 pyruvate, a net of 2 ATP, and 2 NADH",
+                    "1 lactate and 4 NADH",
+                    "2 acetyl-CoA and 0 ATP"
+                ],
+                "correct_index": 1,
+                "explanation": "Glycolysis splits one glucose into 2 pyruvate, netting 2 ATP (4 produced minus 2 invested) and generating 2 NADH, all in the cytosol and without O2. Glycolysis itself releases no CO2 and does not make 36 ATP, does not directly produce lactate under aerobic conditions, and forms acetyl-CoA only after pyruvate enters the mitochondrion.",
+                "difficulty": "medium",
+                "cognitive_level": "comprehension",
+                "subquestions": [
+                    {
+                        "stem": "Glycolysis produces how many ATP net per glucose (by substrate-level phosphorylation)?",
+                        "options": ["2", "36", "0", "4"],
+                        "correct_index": 0,
+                        "explanation": "Four ATP are made and two are invested, for a net of 2 ATP."
+                    },
+                    {
+                        "stem": "The three-carbon end product of glycolysis is:",
+                        "options": ["pyruvate", "glucose", "citrate", "lactose"],
+                        "correct_index": 0,
+                        "explanation": "Glycolysis yields two molecules of the three-carbon pyruvate per glucose."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-12-q5",
+                "aamc_category": "2C",
+                "subtopic": "Meiosis vs mitosis",
+                "stem": "Compared with mitosis, meiosis is distinguished by producing:",
+                "options": [
+                    "two genetically identical diploid cells",
+                    "four genetically varied haploid cells from one diploid cell",
+                    "a single haploid cell",
+                    "two haploid but genetically identical cells"
+                ],
+                "correct_index": 1,
+                "explanation": "Meiosis includes two divisions that yield four haploid cells that are genetically varied (through crossing over and independent assortment). Mitosis produces two genetically identical diploid cells; the other choices give the wrong cell number or ignore the genetic variation meiosis generates.",
+                "difficulty": "medium",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "Meiosis reduces the chromosome number from diploid to:",
+                        "options": ["haploid", "tetraploid", "the same diploid", "zero"],
+                        "correct_index": 0,
+                        "explanation": "Meiosis halves the chromosome number, producing haploid gametes."
+                    },
+                    {
+                        "stem": "Genetic variation in meiosis arises from crossing over and:",
+                        "options": [
+                            "independent assortment of homologs",
+                            "DNA replication errors only",
+                            "binary fission",
+                            "the Na+/K+ pump"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Independent assortment of homologous chromosomes, plus crossing over, generates variation."
+                    }
+                ]
+            },
+            {
+                "id": "psg-bb-12-q6",
+                "aamc_category": "3A",
+                "subtopic": "Peptide vs steroid hormone signaling",
+                "stem": "A peptide hormone such as glucagon binds a cell-surface receptor and raises intracellular cyclic AMP. Compared with a steroid hormone, the peptide hormone:",
+                "options": [
+                    "acts through a membrane receptor and second messengers rather than entering the cell",
+                    "diffuses through the membrane to bind DNA directly",
+                    "requires no receptor of any kind",
+                    "is synthesized from cholesterol"
+                ],
+                "correct_index": 0,
+                "explanation": "Peptide hormones are water-soluble, so they bind receptors on the cell surface and act through second messengers such as cAMP. Steroid hormones, by contrast, are lipid-soluble, cross the membrane, and bind intracellular receptors that regulate transcription; steroids (not peptides) are made from cholesterol, and both hormone types require receptors.",
+                "difficulty": "medium",
+                "cognitive_level": "application",
+                "subquestions": [
+                    {
+                        "stem": "Peptide hormones are water-soluble, so they generally bind receptors located:",
+                        "options": [
+                            "on the cell surface (plasma membrane)",
+                            "inside the nucleus",
+                            "in the mitochondria",
+                            "directly on DNA"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Being unable to cross the membrane, peptide hormones use cell-surface receptors."
+                    },
+                    {
+                        "stem": "Steroid hormones are lipid-soluble and typically act by:",
+                        "options": [
+                            "crossing the membrane and binding intracellular receptors that regulate transcription",
+                            "opening Na+ channels from outside",
+                            "using cAMP exclusively",
+                            "remaining outside the cell"
+                        ],
+                        "correct_index": 0,
+                        "explanation": "Steroids diffuse into the cell and bind intracellular receptors that alter gene transcription."
+                    }
+                ]
+            }
+        ]
+    }
+]

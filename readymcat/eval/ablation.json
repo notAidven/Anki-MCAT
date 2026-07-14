@@ -1,0 +1,204 @@
+{
+    "source": "mechanistic simulation (stated effect sizes; not a human RCT)",
+    "students": 300,
+    "params": {
+        "n_concepts": 40,
+        "time_budget": 1800.0,
+        "t_review": 8.0,
+        "t_read": 6.0,
+        "t_ladder": 22.0,
+        "a_success": 0.12,
+        "a_retrieval": 0.3,
+        "a_restudy": 0.15,
+        "decay_per_min": 0.01,
+        "x0_low": 0.05,
+        "x0_high": 0.35,
+        "spacing_gap": 90.0,
+        "plain_relearn_gap": 20.0
+    },
+    "primary_metric": "corrected-concept re-retrieval rate (+ overall retention)",
+    "arms": {
+        "A_on": {
+            "retention_mean": 0.4281,
+            "retention_ci": [
+                0.4273,
+                0.4288
+            ],
+            "reretrieval_mean": 0.5598,
+            "reretrieval_ci": [
+                0.5584,
+                0.5612
+            ],
+            "exposures_mean": 80.0,
+            "misses_mean": 53.3,
+            "corrected_mean": 24.5
+        },
+        "B_off": {
+            "retention_mean": 0.4603,
+            "retention_ci": [
+                0.4595,
+                0.461
+            ],
+            "reretrieval_mean": 0.4604,
+            "reretrieval_ci": [
+                0.4596,
+                0.4611
+            ],
+            "exposures_mean": 147.6,
+            "misses_mean": 104.0,
+            "corrected_mean": 39.5
+        },
+        "C_plain": {
+            "retention_mean": 0.4587,
+            "retention_ci": [
+                0.4579,
+                0.4594
+            ],
+            "reretrieval_mean": 0.4588,
+            "reretrieval_ci": [
+                0.458,
+                0.4595
+            ],
+            "exposures_mean": 148.2,
+            "misses_mean": 103.2,
+            "corrected_mean": 39.6
+        }
+    },
+    "on_minus_off_retention": -0.0322,
+    "on_minus_plain_retention": -0.0306,
+    "on_minus_off_reretrieval": 0.0994,
+    "verdict": "teach-on-miss ON does NOT win at equal study time under these assumptions (null result, reported honestly)",
+    "sensitivity_fraction_on_helps": 0.375,
+    "sensitivity": [
+        {
+            "t_ladder": 12.0,
+            "a_retrieval": 0.2,
+            "on_retention": 0.4246,
+            "off_retention": 0.461,
+            "on_minus_off": -0.0364,
+            "on_helps": false
+        },
+        {
+            "t_ladder": 12.0,
+            "a_retrieval": 0.26,
+            "on_retention": 0.484,
+            "off_retention": 0.461,
+            "on_minus_off": 0.023,
+            "on_helps": true
+        },
+        {
+            "t_ladder": 12.0,
+            "a_retrieval": 0.32,
+            "on_retention": 0.5425,
+            "off_retention": 0.461,
+            "on_minus_off": 0.0815,
+            "on_helps": true
+        },
+        {
+            "t_ladder": 12.0,
+            "a_retrieval": 0.4,
+            "on_retention": 0.6125,
+            "off_retention": 0.461,
+            "on_minus_off": 0.1515,
+            "on_helps": true
+        },
+        {
+            "t_ladder": 18.0,
+            "a_retrieval": 0.2,
+            "on_retention": 0.3756,
+            "off_retention": 0.461,
+            "on_minus_off": -0.0854,
+            "on_helps": false
+        },
+        {
+            "t_ladder": 18.0,
+            "a_retrieval": 0.26,
+            "on_retention": 0.4268,
+            "off_retention": 0.461,
+            "on_minus_off": -0.0342,
+            "on_helps": false
+        },
+        {
+            "t_ladder": 18.0,
+            "a_retrieval": 0.32,
+            "on_retention": 0.4784,
+            "off_retention": 0.461,
+            "on_minus_off": 0.0174,
+            "on_helps": true
+        },
+        {
+            "t_ladder": 18.0,
+            "a_retrieval": 0.4,
+            "on_retention": 0.5425,
+            "off_retention": 0.461,
+            "on_minus_off": 0.0815,
+            "on_helps": true
+        },
+        {
+            "t_ladder": 24.0,
+            "a_retrieval": 0.2,
+            "on_retention": 0.3407,
+            "off_retention": 0.461,
+            "on_minus_off": -0.1203,
+            "on_helps": false
+        },
+        {
+            "t_ladder": 24.0,
+            "a_retrieval": 0.26,
+            "on_retention": 0.3848,
+            "off_retention": 0.461,
+            "on_minus_off": -0.0762,
+            "on_helps": false
+        },
+        {
+            "t_ladder": 24.0,
+            "a_retrieval": 0.32,
+            "on_retention": 0.4308,
+            "off_retention": 0.461,
+            "on_minus_off": -0.0302,
+            "on_helps": false
+        },
+        {
+            "t_ladder": 24.0,
+            "a_retrieval": 0.4,
+            "on_retention": 0.4866,
+            "off_retention": 0.461,
+            "on_minus_off": 0.0256,
+            "on_helps": true
+        },
+        {
+            "t_ladder": 32.0,
+            "a_retrieval": 0.2,
+            "on_retention": 0.3078,
+            "off_retention": 0.461,
+            "on_minus_off": -0.1532,
+            "on_helps": false
+        },
+        {
+            "t_ladder": 32.0,
+            "a_retrieval": 0.26,
+            "on_retention": 0.3455,
+            "off_retention": 0.461,
+            "on_minus_off": -0.1155,
+            "on_helps": false
+        },
+        {
+            "t_ladder": 32.0,
+            "a_retrieval": 0.32,
+            "on_retention": 0.3855,
+            "off_retention": 0.461,
+            "on_minus_off": -0.0755,
+            "on_helps": false
+        },
+        {
+            "t_ladder": 32.0,
+            "a_retrieval": 0.4,
+            "on_retention": 0.4322,
+            "off_retention": 0.461,
+            "on_minus_off": -0.0288,
+            "on_helps": false
+        }
+    ],
+    "instrumentation_log": null,
+    "chart": "/Users/evacab/Desktop/Anki-MCAT/anki/readymcat/eval/ablation.png"
+}

@@ -7,6 +7,7 @@ import json
 import random
 import re
 from collections.abc import Callable, Generator, Sequence
+from concurrent.futures import Future
 from dataclasses import dataclass
 from enum import Enum, auto
 from functools import partial
@@ -30,7 +31,7 @@ from anki.scheduler.v3 import Scheduler as V3Scheduler
 from anki.tags import MARKED_TAG
 from anki.types import assert_exhaustive
 from anki.utils import is_mac
-from aqt import AnkiQt, gui_hooks
+from aqt import AnkiQt, gui_hooks, readymcat
 from aqt.browser.card_info import PreviousReviewerCardInfo, ReviewerCardInfo
 from aqt.deckoptions import confirm_deck_then_display_options
 from aqt.operations.card import set_card_flag
@@ -156,7 +157,26 @@ class Reviewer:
         self._recordedAudio: str | None = None
         self._combining: bool = True
         self.typeCorrect: str | None = None  # web init happens before this is set
-        self.state: Literal["question", "answer", "transition"] | None = None
+        self.state: (
+            Literal[
+                "question",
+                "answer",
+                "transition",
+                "teaching",
+                "mcq",
+                "fr",
+                "passage",
+            ]
+            | None
+        ) = None
+        # ReadyMCAT teach-on-miss session state (None when not teaching).
+        self._tom: dict[str, Any] | None = None
+        # ReadyMCAT MCQ reviewer session state (None when the card is not an MCQ).
+        self._mcq: dict[str, Any] | None = None
+        # ReadyMCAT free-response reviewer session state (None when not active).
+        self._fr: dict[str, Any] | None = None
+        # ReadyMCAT passage reviewer session state (None when not active).
+        self._passage: dict[str, Any] | None = None
         self._refresh_needed: RefreshNeeded | None = None
         self._v3: V3CardInfo | None = None
         self._state_mutation_key = str(random.randint(0, 2**64 - 1))
@@ -248,6 +268,10 @@ class Reviewer:
         self.previous_card = self.card
         self.card = None
         self._v3 = None
+        self._tom = None
+        self._mcq = None
+        self._fr = None
+        self._passage = None
         self._get_next_v3_card()
 
         self._previous_card_info.set_card(self.previous_card)
@@ -400,11 +424,19 @@ class Reviewer:
         )
         self._update_flag_icon()
         self._update_mark_icon()
-        self._showAnswerButton()
+        # ReadyMCAT: render curated cards as interactive items (select / type ->
+        # submit -> grade) instead of the plain show-answer flow.
+        if not (
+            self._maybe_start_mcq()
+            or self._maybe_start_fr()
+            or self._maybe_start_passage()
+        ):
+            self._showAnswerButton()
         self.mw.web.setFocus()
         # user hook
         gui_hooks.reviewer_did_show_question(c)
-        self._auto_advance_to_answer_if_enabled()
+        if self._mcq is None and self._fr is None and self._passage is None:
+            self._auto_advance_to_answer_if_enabled()
 
     def _auto_advance_to_answer_if_enabled(self) -> None:
         self._clear_auto_advance_timers()
@@ -537,6 +569,19 @@ class Reviewer:
             return
         if self.state != "answer":
             return
+        # ReadyMCAT: for basic front/back cards, teach-on-miss is now offered
+        # retrieve-BEFORE-reveal on the QUESTION side ("Stuck? work it out" ->
+        # `_on_retrieve_first`), so the guiding ladder runs while the back is
+        # still hidden. We deliberately do NOT launch it here, from the "Again"
+        # grade, because that fires AFTER "Show Answer" has already revealed the
+        # back — which defeated the retrieval premise. Once a student has
+        # revealed the answer, "Again" simply reschedules for spaced review.
+        # (ReadyMCAT's MCQ/FR/passage reviewers stay retrieve-first via their
+        # own question-side flows and never reach this path.)
+        self._do_answer_card(ease)
+
+    def _do_answer_card(self, ease: Literal[1, 2, 3, 4]) -> None:
+        "Reschedule the current card and show the next one."
         proceed, ease = gui_hooks.reviewer_will_answer_card(
             (True, ease), self, self.card
         )
@@ -569,6 +614,723 @@ class Reviewer:
         self._answeredIds.append(self.card.id)
         if not self.check_timebox():
             self.nextCard()
+
+    # ReadyMCAT teach-on-miss (retrieve-before-reveal for basic cards)
+    ############################################################
+
+    def _retrieve_first_available(self) -> bool:
+        """True when the current basic front/back card can offer the
+        retrieve-BEFORE-reveal "Stuck? work it out" path.
+
+        Eligible when the card is NOT one of ReadyMCAT's own interactive
+        notetypes (MCQ/free-response/passage are already retrieve-first via
+        their own flows) AND a guiding ladder can be produced for it — either
+        an authored concept matches its tags, or runtime AI generation is
+        enabled (`OPENAI_API_KEY` present). Cheap enough to call for every
+        question: the authored ladders are cached after first load and the
+        generation check is a couple of env/module lookups."""
+        if self.card is None:
+            return False
+        try:
+            note = self.card.note()
+        except Exception:  # pragma: no cover - defensive
+            return False
+        if (
+            readymcat.is_mcq_note(note)
+            or readymcat.is_fr_note(note)
+            or readymcat.is_passage_note(note)
+        ):
+            return False
+        data = readymcat.load_subquestions(self.mw.col.path)
+        if readymcat.match_concept(note.tags, data) is not None:
+            return True
+        try:
+            from aqt import readymcat_ladder_gen as ladder_gen
+
+            return ladder_gen.is_enabled()
+        except Exception:  # pragma: no cover - defensive
+            return False
+
+    def _on_retrieve_first(self) -> None:
+        """Question-side "Stuck? work it out": run the guiding ladder with the
+        back still HIDDEN, so the student retrieves toward the answer before it
+        is revealed (retrieve-before-reveal).
+
+        Only meaningful on the question side; if no ladder can be produced we
+        fall back to the normal reveal so the student is never stranded."""
+        if self.mw.state != "review" or self.state != "question":
+            return
+        if self._tom is not None:
+            return
+        if not self._maybe_start_teach_on_miss(trigger="stuck"):
+            # No authored ladder and generation unavailable: behave exactly like
+            # the normal "Show Answer" button.
+            self._showAnswer()
+
+    def _maybe_start_teach_on_miss(self, *, trigger: str = "stuck") -> bool:
+        """If the current card has a guiding ladder, run it instead of revealing
+        the answer.
+
+        The ladder is either authored (a curated concept matched by tag) or,
+        for any other card, generated at runtime so teach-on-miss also covers
+        imported/community decks and the student's own cards (the ReadyMCAT
+        PRD's #1 next step). ``trigger`` records what launched the flow (a
+        question-side "stuck" request) for logging and fallback handling.
+        Returns True if a ladder started or is being generated in the
+        background."""
+        if self.card is None:
+            return False
+        data = readymcat.load_subquestions(self.mw.col.path)
+        concept = readymcat.match_concept(self.card.note().tags, data)
+        if concept is not None:
+            self._start_teach_on_miss(concept, generated=False, trigger=trigger)
+            return True
+        return self._maybe_generate_teach_on_miss(trigger=trigger)
+
+    def _start_teach_on_miss(
+        self, concept: readymcat.Concept, *, generated: bool, trigger: str = "stuck"
+    ) -> None:
+        """Run the teach-on-miss ladder UI for a concept (authored or
+        generated) and record that it started."""
+        if self.card is None:
+            return
+        answer = self._mungeQA(self.card.answer())
+        resource = dict(concept.resource)
+        # Prefer the card's own embedded resource link when present (PRD), else
+        # fall back to the concept's curated link.
+        card_link = readymcat.extract_resource_link(answer)
+        if card_link:
+            resource = {
+                "label": resource.get("label") or "Open the card's linked resource",
+                "url": card_link,
+            }
+
+        self._tom = {
+            "concept": concept,
+            "resource_url": resource.get("url", ""),
+            "marks": [],
+            "result": None,
+            "generated": generated,
+            "trigger": trigger,
+        }
+        self.state = "teaching"
+        # The overlay runs ONLY the guiding rungs; when they finish it hands
+        # control back here (`tom:reshow`) and the reviewer re-displays the REAL
+        # card through its normal render path, so the post-ladder card is
+        # byte-for-byte the original Anki design (not a reconstruction). The
+        # payload therefore carries only what the rungs need.
+        payload = {
+            "title": concept.title,
+            "category": concept.category,
+            "ladder": concept.ladder,
+        }
+        self.web.eval(f"_teachOnMissStart({json.dumps(payload)});")
+        # Replace the ease buttons with a hint while the ladder is running.
+        self.bottom.web.eval(
+            "showAnswer(%s);"
+            % json.dumps(
+                "<center><b>ReadyMCAT teach-on-miss</b> &mdash; "
+                "work through the guiding questions above.</center>"
+            )
+        )
+        readymcat.log_event(
+            self.mw.col.path,
+            {
+                "event": "ladder_started",
+                "card_id": self.card.id,
+                "note_id": self.card.note().id,
+                "concept": concept.id,
+                "category": concept.category,
+                "generated": generated,
+                "trigger": trigger,
+                "retrieve_before_reveal": trigger == "stuck",
+            },
+        )
+
+    def _maybe_generate_teach_on_miss(self, *, trigger: str = "stuck") -> bool:
+        """Generate a guiding ladder for a card that has no authored concept.
+
+        Reuses a cached ladder instantly when present; otherwise generates one
+        on a background thread (so the network call never freezes the UI),
+        showing a brief "building guiding questions" state and starting
+        teach-on-miss when it arrives. Returns False - reschedule the miss
+        normally - when generation is disabled or unavailable."""
+        if self.card is None:
+            return False
+        try:
+            from aqt import readymcat_ladder_gen as ladder_gen
+        except Exception:  # pragma: no cover - defensive
+            return False
+        if not ladder_gen.is_enabled():
+            return False
+
+        note = self.card.note()
+        col_path = self.mw.col.path
+        cached = ladder_gen.cached_ladder(col_path, note.id)
+        if cached:
+            self._start_teach_on_miss(
+                self._generated_concept(note, cached), generated=True, trigger=trigger
+            )
+            return True
+
+        # Capture the card/note identity so a result that arrives after the
+        # student has moved on is dropped rather than shown on the wrong card.
+        card_id = self.card.id
+        note_id = note.id
+        question = self._mungeQA(self.card.question())
+        answer = self._mungeQA(self.card.answer())
+        context = ladder_gen.build_context(note, question, answer)
+
+        self._tom = {"pending": True, "card_id": card_id, "trigger": trigger}
+        self.state = "teaching"
+        self.web.eval("_teachOnMissLoading();")
+        self.bottom.web.eval(
+            "showAnswer(%s);"
+            % json.dumps(
+                "<center><b>ReadyMCAT</b> &mdash; building guiding "
+                "questions&hellip;</center>"
+            )
+        )
+
+        def task() -> dict[str, Any]:
+            return ladder_gen.generate_and_cache(col_path, note_id, context)
+
+        self.mw.taskman.run_in_background(
+            task,
+            lambda fut: self._on_generated_ladder(fut, card_id, note_id),
+            uses_collection=False,
+        )
+        return True
+
+    def _generated_concept(
+        self, note: Any, ladder: list[dict[str, Any]]
+    ) -> readymcat.Concept:
+        """Wrap a generated MCQ ladder in a Concept so the existing teach-on-miss
+        flow (rendering, grading, scheduling) runs unchanged; the TS renders each
+        generated rung as an interactive MCQ (authored ladders stay reveal-first)."""
+        from aqt import readymcat_ladder_gen as ladder_gen
+
+        title, category = ladder_gen.derive_title_category(note)
+        return readymcat.Concept(
+            id=f"generated::{note.id}",
+            title=title,
+            category=category,
+            match_tags=[],
+            ladder=ladder,
+            resource={},
+        )
+
+    def _on_generated_ladder(
+        self, future: Future, card_id: CardId, note_id: int
+    ) -> None:
+        """Main-thread callback once background ladder generation finishes."""
+        try:
+            result = future.result()
+        except Exception as exc:  # pragma: no cover - defensive
+            print("ReadyMCAT: ladder generation failed", exc)
+            result = {"ok": False, "ladder": None, "error": str(exc)}
+
+        # Only act if we still own the pending teaching state for this card.
+        if (
+            self._tom is None
+            or not self._tom.get("pending")
+            or self._tom.get("card_id") != card_id
+        ):
+            return
+
+        # Instrument the generation outcome distinctly from authored ladders,
+        # so the corrected-concept ablation can compare generated vs authored.
+        readymcat.log_event(
+            self.mw.col.path,
+            {
+                "event": "ladder_generated",
+                "card_id": card_id,
+                "note_id": note_id,
+                "ok": bool(result.get("ok")),
+                "attempts": result.get("attempts"),
+                "validation": result.get("validation"),
+                "error": result.get("error", ""),
+            },
+        )
+
+        # Remember how this was triggered before we clear the pending state, so
+        # the fallback below matches how the flow was launched.
+        trigger = self._tom.get("trigger", "stuck") if self._tom else "stuck"
+        # From here we own the pending state and always clear it.
+        self._tom = None
+        ladder = result.get("ladder") if result.get("ok") else None
+        if self.card is None or self.card.id != card_id:
+            # Card changed under us: abandon quietly (leave it due) rather than
+            # rescheduling or teaching on the wrong card.
+            return
+        if not ladder:
+            # Graceful fallback: no usable ladder could be generated. On the
+            # question-side "stuck" path the student hasn't seen the back yet,
+            # so simply reveal it and let them self-grade as in a normal
+            # review (never grade for them or strand them on the spinner).
+            if trigger == "stuck":
+                self.state = "question"
+                self._showAnswer()
+            else:
+                self.state = "answer"
+                self._do_answer_card(1)
+            return
+        self._start_teach_on_miss(
+            self._generated_concept(self.card.note(), ladder),
+            generated=True,
+            trigger=trigger,
+        )
+
+    def _handle_teach_on_miss(self, cmd: str) -> None:
+        if self._tom is None or self._tom.get("pending"):
+            return
+        concept: readymcat.Concept = self._tom["concept"]
+        if cmd.startswith("mark:"):
+            parts = cmd.split(":")
+            got = len(parts) > 1 and parts[1] == "got"
+            self._tom["marks"].append(got)
+            readymcat.log_event(
+                self.mw.col.path,
+                {
+                    "event": "subquestion_marked",
+                    "concept": concept.id,
+                    "rung": int(parts[2]) if len(parts) > 2 else -1,
+                    "got_it": got,
+                },
+            )
+        elif cmd == "reshow":
+            # Ladder finished: re-display the REAL card's question through the
+            # normal reviewer render path (retrieve-before-reveal — the back
+            # stays hidden until the student chooses to reveal it).
+            self._reshow_main_question()
+        elif cmd == "mainreveal":
+            self._reveal_main_answer()
+        elif cmd in ("result:correct", "result:wrong"):
+            correct = cmd == "result:correct"
+            self._tom["result"] = "correct" if correct else "wrong"
+            # Flag the concept so the points-at-stake queue can resurface it.
+            self._flag_concept(struggling=not correct)
+            readymcat.log_event(
+                self.mw.col.path,
+                {
+                    "event": "main_reattempt",
+                    "card_id": self.card.id if self.card else None,
+                    "concept": concept.id,
+                    "category": concept.category,
+                    "correct_after_ladder": correct,
+                    "subquestions_missed": self._tom["marks"].count(False),
+                },
+            )
+            self._show_reattempt_outcome(correct)
+        elif cmd == "resource":
+            url = self._tom.get("resource_url")
+            if url:
+                QDesktopServices.openUrl(QUrl(url))
+        elif cmd == "continue":
+            self._finish_teach_on_miss()
+
+    def _flag_concept(self, struggling: bool) -> None:
+        """Tag the note so the points-at-stake queue can weight it. Best-effort."""
+        if self.card is None:
+            return
+        tag = "ReadyMCAT::struggling" if struggling else "ReadyMCAT::corrected"
+        try:
+            note = self.card.note()
+            note.add_tag(tag)
+            self.mw.col.update_note(note, skip_undo_entry=True)
+        except Exception as exc:  # pragma: no cover - defensive
+            print("ReadyMCAT: could not flag concept", exc)
+
+    def _render_card_side(self, *, answer: bool) -> None:
+        """Render the current card's question or answer into #qa through the
+        SAME native path the normal reviewer uses (the ts/reviewer `_showQuestion`
+        / `_showAnswer`), so the re-shown card is byte-for-byte the original Anki
+        design: identical #qa content, the `.card` wrapper, notetype CSS, body
+        classes, template scripts and MathJax — because it IS the normal render,
+        not a copy. The reviewer stays in the "teaching" state (self.state is
+        restored) so only the teach-on-miss controls drive grading."""
+        c = self.card
+        if c is None:
+            return
+        prev_state = self.state
+        # _mungeQA branches on self.state (type-in cards); render each side with
+        # its matching filter so the output equals the original render.
+        self.state = "answer" if answer else "question"
+        try:
+            if answer:
+                a = self._mungeQA(c.answer())
+                a = gui_hooks.card_will_show(a, c, "reviewAnswer")
+                self.web.eval(f"_showAnswer({json.dumps(a)});")
+            else:
+                q = self._mungeQA(c.question())
+                q = gui_hooks.card_will_show(q, c, "reviewQuestion")
+                bodyclass = theme_manager.body_classes_for_card_ord(c.ord)
+                preload = self.mw.col.media.escape_media_filenames(c.answer())
+                self.web.eval(
+                    f"_showQuestion({json.dumps(q)}, {json.dumps(preload)}, "
+                    f"'{bodyclass}');"
+                )
+        finally:
+            self.state = prev_state
+        self._update_flag_icon()
+        self._update_mark_icon()
+
+    def _set_reattempt_bottom(self, middle_html: str) -> None:
+        """Put the post-ladder teach-on-miss controls in the reviewer's bottom
+        bar. Its buttons use ``pycmd`` (routed to ``_linkHandler`` ->
+        ``_handle_teach_on_miss``), so the card area (#qa) stays a pure native
+        render with nothing overlaid on it."""
+        self.bottom.web.eval(
+            "showAnswer(%s);" % json.dumps(f"<center>{middle_html}</center>")
+        )
+
+    def _reshow_main_question(self) -> None:
+        """Re-show the original card's question natively; the answer stays hidden
+        until the student reveals it from the bottom bar (retrieve-before-reveal)."""
+        if self._tom is None or self._tom.get("pending") or self.card is None:
+            return
+        self._render_card_side(answer=False)
+        self._set_reattempt_bottom(
+            "<b>ReadyMCAT</b> &mdash; recall the original card, then "
+            "<button onclick='pycmd(\"tom:mainreveal\");'>Show answer</button>"
+        )
+
+    def _reveal_main_answer(self) -> None:
+        """Reveal the original card's answer natively and offer the post-ladder
+        self-grade in the bottom bar."""
+        if self._tom is None or self._tom.get("pending") or self.card is None:
+            return
+        self._render_card_side(answer=True)
+        self._set_reattempt_bottom(
+            "Did you recall it? "
+            "<button onclick='pycmd(\"tom:result:correct\");'>I recalled it "
+            "correctly</button> "
+            "<button onclick='pycmd(\"tom:result:wrong\");'>I missed it "
+            "again</button>"
+        )
+
+    def _show_reattempt_outcome(self, correct: bool) -> None:
+        """After the self-grade, surface the spaced/struggling note as a tooltip
+        and leave a Continue control (plus, when struggling, the content-review
+        link) in the bottom bar. On Continue the card always reschedules as Again
+        — immediate post-scaffold recall is not mastery (PRD)."""
+        if correct:
+            note = (
+                "Not mastered yet \u2014 getting it right seconds after the "
+                "scaffold isn't readiness. Scheduled for spaced re-retrieval; "
+                "recall it again in a later session for it to count."
+            )
+        else:
+            note = (
+                "Here's the full answer, earned through real retrieval. Flagged "
+                "as struggling and scheduled for aggressive early re-retrieval; "
+                "it'll return fresh next session."
+            )
+        tooltip(note, period=6000)
+        middle = ""
+        url = self._tom.get("resource_url") if self._tom else ""
+        if not correct and url:
+            middle += (
+                "<a href='#' onclick='pycmd(\"tom:resource\"); return false;'>"
+                "&rarr; Needs content review</a> &nbsp; "
+            )
+        middle += "<button onclick='pycmd(\"tom:continue\");'>Continue</button>"
+        self._set_reattempt_bottom(middle)
+
+    def _finish_teach_on_miss(self) -> None:
+        """End the ladder gracefully and reschedule the card as Again so it
+        re-enters relearning (spaced re-retrieval), then show the next card.
+
+        Whether or not the student recalled the card right after the scaffold,
+        the card always grades Again: immediate post-scaffold success is not
+        treated as mastery (PRD). Aggressiveness for the struggling case comes
+        from the ReadyMCAT::struggling tag feeding the points-at-stake queue."""
+        if self._tom is None:
+            return
+        self._tom = None
+        self.state = "answer"
+        self._do_answer_card(1)
+
+    # ReadyMCAT MCQ reviewer
+    ############################################################
+
+    def _maybe_start_mcq(self) -> bool:
+        """If the current card is a ReadyMCAT MCQ, render it as an interactive
+        multiple-choice item and drive grading from the selection. Returns True
+        when the MCQ flow started (so the plain show-answer button is skipped)."""
+        if self.card is None:
+            return False
+        note = self.card.note()
+        if not readymcat.is_mcq_note(note):
+            return False
+        payload = readymcat.build_mcq_payload(note)
+        if payload is None:
+            return False
+        self._mcq = {"outcome": None, "sub_marks": []}
+        self.state = "mcq"
+        self.web.eval(f"_mcqStart({json.dumps(payload)});")
+        # Replace the ease buttons with a hint while the MCQ is being answered.
+        self.bottom.web.eval(
+            "showAnswer(%s);"
+            % json.dumps(
+                "<center><b>ReadyMCAT</b> &mdash; choose an option above, "
+                "then submit.</center>"
+            )
+        )
+        readymcat.log_event(
+            self.mw.col.path,
+            {
+                "event": "mcq_shown",
+                "card_id": self.card.id,
+                "note_id": note.id,
+                "category": readymcat.mcq_category_from_tags(note.tags),
+            },
+        )
+        return True
+
+    def _handle_mcq(self, cmd: str) -> None:
+        if self._mcq is None:
+            return
+        if cmd.startswith("first:"):
+            self._mcq_record_first(cmd)
+        elif cmd.startswith("sub:"):
+            self._mcq_record_sub(cmd)
+        elif cmd.startswith("reattempt:"):
+            self._mcq_record_reattempt(cmd)
+        elif cmd == "resource":
+            self._mcq_open_resource()
+        elif cmd == "continue":
+            self._finish_mcq()
+
+    def _mcq_record_first(self, cmd: str) -> None:
+        assert self._mcq is not None
+        parts = cmd.split(":")
+        correct = len(parts) > 1 and parts[1] == "correct"
+        self._mcq["outcome"] = "correct_first" if correct else "wrong"
+        chosen = int(parts[2]) if len(parts) > 2 and parts[2].isdigit() else -1
+        readymcat.log_event(
+            self.mw.col.path,
+            {
+                "event": "mcq_first_attempt",
+                "card_id": self.card.id if self.card else None,
+                "correct": correct,
+                "chosen": chosen,
+            },
+        )
+
+    def _mcq_record_sub(self, cmd: str) -> None:
+        assert self._mcq is not None
+        parts = cmd.split(":")
+        got = len(parts) > 2 and parts[2] == "got"
+        self._mcq["sub_marks"].append(got)
+        rung = int(parts[1]) if len(parts) > 1 and parts[1].isdigit() else -1
+        readymcat.log_event(
+            self.mw.col.path,
+            {
+                "event": "mcq_subquestion",
+                "card_id": self.card.id if self.card else None,
+                "rung": rung,
+                "got_it": got,
+            },
+        )
+
+    def _mcq_record_reattempt(self, cmd: str) -> None:
+        assert self._mcq is not None
+        correct = cmd == "reattempt:correct"
+        outcome = "correct_after" if correct else "wrong"
+        self._mcq["outcome"] = outcome
+        # A concept missed again after the ladder is flagged struggling so the
+        # points-at-stake queue resurfaces it (spaced re-retrieval); a corrected
+        # one is tagged ReadyMCAT::corrected.
+        self._flag_concept(struggling=readymcat.outcome_is_struggling(outcome))
+        readymcat.log_event(
+            self.mw.col.path,
+            {
+                "event": "mcq_reattempt",
+                "card_id": self.card.id if self.card else None,
+                "correct_after_ladder": correct,
+                "subquestions_missed": self._mcq["sub_marks"].count(False),
+            },
+        )
+
+    def _mcq_open_resource(self) -> None:
+        if self.card is None:
+            return
+        try:
+            source = self.card.note()["Source"]
+        except Exception:  # pragma: no cover - defensive
+            return
+        resource = readymcat.resource_from_source(source)
+        url = resource.get("url")
+        if url:
+            QDesktopServices.openUrl(QUrl(url))
+
+    def _finish_mcq(self) -> None:
+        """Grade the MCQ into FSRS and advance. A first-try hit grades Good; a
+        card that needed the teach-on-miss ladder grades Again (relearning /
+        spaced re-retrieval), regardless of the post-scaffold result — immediate
+        success after the ladder is not treated as mastery (PRD)."""
+        if self._mcq is None:
+            return
+        outcome = self._mcq.get("outcome") or "wrong"
+        ease = cast(Literal[1, 2, 3, 4], readymcat.ease_for_mcq_outcome(outcome))
+        self._mcq = None
+        self.state = "answer"
+        self._do_answer_card(ease)
+
+    # ReadyMCAT free-response + passage reviewers
+    ############################################################
+    #
+    # These mirror the MCQ reviewer (select/type -> submit -> grade, with the
+    # same per-question teach-on-miss ladder and grading map): a first-try hit
+    # grades Good, anything that needed the ladder grades Again. Free-response
+    # answers are auto-graded in ts/reviewer/fr.ts (mirroring the tested Python
+    # grader); passage questions use the MCQ interaction with the passage shown
+    # alongside. The two share one handler since only the rendering differs.
+
+    def _maybe_start_fr(self) -> bool:
+        """If the current card is a ReadyMCAT free-response item, render it as an
+        interactive type-in card and drive grading from the typed answer."""
+        if self.card is None:
+            return False
+        note = self.card.note()
+        if not readymcat.is_fr_note(note):
+            return False
+        payload = readymcat.build_fr_payload(note)
+        if payload is None:
+            return False
+        self._fr = {"outcome": None, "sub_marks": []}
+        self.state = "fr"
+        self.web.eval(f"_frStart({json.dumps(payload)});")
+        self.bottom.web.eval(
+            "showAnswer(%s);"
+            % json.dumps(
+                "<center><b>ReadyMCAT</b> &mdash; type your answer above, "
+                "then submit.</center>"
+            )
+        )
+        readymcat.log_event(
+            self.mw.col.path,
+            {
+                "event": "fr_shown",
+                "card_id": self.card.id,
+                "note_id": note.id,
+                "category": readymcat.mcq_category_from_tags(note.tags),
+            },
+        )
+        return True
+
+    def _maybe_start_passage(self) -> bool:
+        """If the current card is a ReadyMCAT passage question, render the passage
+        alongside the multiple-choice question and drive grading."""
+        if self.card is None:
+            return False
+        note = self.card.note()
+        if not readymcat.is_passage_note(note):
+            return False
+        payload = readymcat.build_passage_payload(note)
+        if payload is None:
+            return False
+        self._passage = {"outcome": None, "sub_marks": []}
+        self.state = "passage"
+        self.web.eval(f"_passageStart({json.dumps(payload)});")
+        self.bottom.web.eval(
+            "showAnswer(%s);"
+            % json.dumps(
+                "<center><b>ReadyMCAT</b> &mdash; read the passage, choose an "
+                "option above, then submit.</center>"
+            )
+        )
+        readymcat.log_event(
+            self.mw.col.path,
+            {
+                "event": "passage_shown",
+                "card_id": self.card.id,
+                "note_id": note.id,
+                "category": readymcat.mcq_category_from_tags(note.tags),
+            },
+        )
+        return True
+
+    def _handle_fr(self, cmd: str) -> None:
+        self._handle_qcard(self._fr, "fr", cmd)
+
+    def _handle_passage(self, cmd: str) -> None:
+        self._handle_qcard(self._passage, "passage", cmd)
+
+    def _handle_qcard(
+        self, session: dict[str, Any] | None, kind: str, cmd: str
+    ) -> None:
+        """Shared free-response / passage command handling (the flow is
+        identical to the MCQ reviewer; only ``ts`` rendering differs)."""
+        if session is None:
+            return
+        col_path = self.mw.col.path
+        card_id = self.card.id if self.card else None
+        if cmd.startswith("first:"):
+            parts = cmd.split(":")
+            correct = len(parts) > 1 and parts[1] == "correct"
+            session["outcome"] = "correct_first" if correct else "wrong"
+            chosen = int(parts[2]) if len(parts) > 2 and parts[2].isdigit() else -1
+            readymcat.log_event(
+                col_path,
+                {
+                    "event": f"{kind}_first_attempt",
+                    "card_id": card_id,
+                    "correct": correct,
+                    "chosen": chosen,
+                },
+            )
+        elif cmd.startswith("sub:"):
+            parts = cmd.split(":")
+            got = len(parts) > 2 and parts[2] == "got"
+            session["sub_marks"].append(got)
+            rung = int(parts[1]) if len(parts) > 1 and parts[1].isdigit() else -1
+            readymcat.log_event(
+                col_path,
+                {
+                    "event": f"{kind}_subquestion",
+                    "card_id": card_id,
+                    "rung": rung,
+                    "got_it": got,
+                },
+            )
+        elif cmd.startswith("reattempt:"):
+            correct = cmd == "reattempt:correct"
+            outcome = "correct_after" if correct else "wrong"
+            session["outcome"] = outcome
+            # Missed again after the ladder -> flag struggling so the
+            # points-at-stake queue resurfaces it; corrected otherwise.
+            self._flag_concept(struggling=readymcat.outcome_is_struggling(outcome))
+            readymcat.log_event(
+                col_path,
+                {
+                    "event": f"{kind}_reattempt",
+                    "card_id": card_id,
+                    "correct_after_ladder": correct,
+                    "subquestions_missed": session["sub_marks"].count(False),
+                },
+            )
+        elif cmd == "resource":
+            # Source lives in the note's Source field for every content type.
+            self._mcq_open_resource()
+        elif cmd == "continue":
+            self._finish_qcard(kind)
+
+    def _finish_qcard(self, kind: str) -> None:
+        """Grade a free-response / passage card into FSRS and advance, using the
+        same map as the MCQ reviewer (first-try hit -> Good, else Again)."""
+        session = self._fr if kind == "fr" else self._passage
+        if session is None:
+            return
+        outcome = session.get("outcome") or "wrong"
+        ease = cast(Literal[1, 2, 3, 4], readymcat.ease_for_mcq_outcome(outcome))
+        if kind == "fr":
+            self._fr = None
+        else:
+            self._passage = None
+        self.state = "answer"
+        self._do_answer_card(ease)
 
     # Handlers
     ############################################################
@@ -691,6 +1453,18 @@ class Reviewer:
             self.web.update()
         elif url == "statesMutated":
             self._states_mutated = True
+        elif url == "rmcatStuck":
+            # ReadyMCAT: question-side "Stuck? work it out" — run the guiding
+            # ladder with the back still hidden (retrieve-before-reveal).
+            self._on_retrieve_first()
+        elif url.startswith("tom:"):
+            self._handle_teach_on_miss(url[len("tom:") :])
+        elif url.startswith("mcq:"):
+            self._handle_mcq(url[len("mcq:") :])
+        elif url.startswith("fr:"):
+            self._handle_fr(url[len("fr:") :])
+        elif url.startswith("psg:"):
+            self._handle_passage(url[len("psg:") :])
         else:
             print("unrecognized anki link:", url)
 
@@ -847,6 +1621,22 @@ timerStopped = false;
             tr.studying_show_answer(),
             self._remaining(),
         )
+        # ReadyMCAT: for eligible basic front/back cards, offer a retrieve-first
+        # option right next to "Show Answer". Clicking it runs the guiding
+        # ladder (authored if present, else AI-generated) with the back still
+        # HIDDEN, so a struggling student retrieves their way to the answer
+        # before it is revealed. It is only shown when a ladder is actually
+        # available (see `_retrieve_first_available`), so normal review is
+        # untouched for everyone else.
+        if self._retrieve_first_available():
+            middle += (
+                """<button id="rmcatstuck" class="rmcat-stuck" title="{title}" """
+                """onclick='pycmd("rmcatStuck");'>{label}</button>"""
+            ).format(
+                title="ReadyMCAT: work it out with guiding questions "
+                "(the answer stays hidden)",
+                label="Stuck? work it out",
+            )
         # wrap it in a table so it has the same top margin as the ease buttons
         middle = (
             "<table cellpadding=0><tr><td class=stat2 align=center>%s</td></tr></table>"

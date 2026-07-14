@@ -1,0 +1,77 @@
+{
+    "ok": true,
+    "steps": [
+        "A first sync: full-upload",
+        "B first sync: full-download",
+        "A sync (push Good@T1): up-to-date",
+        "B sync (merge, push Again@T2): up-to-date",
+        "A sync (pull merged): up-to-date"
+    ],
+    "error": null,
+    "card_id": 1783100276347,
+    "A_review": {
+        "rating": "good",
+        "revlog_id": 1783112135151,
+        "state": {
+            "queue": 1,
+            "type": 1,
+            "ivl": 0,
+            "due": 1783112861,
+            "reps": 1,
+            "lapses": 0,
+            "mod": 1783112135
+        }
+    },
+    "B_review": {
+        "rating": "again",
+        "revlog_id": 1783112137365,
+        "state": {
+            "queue": 1,
+            "type": 1,
+            "ivl": 0,
+            "due": 1783112209,
+            "reps": 1,
+            "lapses": 0,
+            "mod": 1783112137
+        }
+    },
+    "later_by_timestamp": "B (again)",
+    "final_A": {
+        "queue": 1,
+        "type": 1,
+        "ivl": 0,
+        "due": 1783112209,
+        "reps": 1,
+        "lapses": 0,
+        "mod": 1783112137
+    },
+    "final_B": {
+        "queue": 1,
+        "type": 1,
+        "ivl": 0,
+        "due": 1783112209,
+        "reps": 1,
+        "lapses": 0,
+        "mod": 1783112137
+    },
+    "card_revlog_A": [
+        1783112135151,
+        1783112137365
+    ],
+    "card_revlog_B": [
+        1783112135151,
+        1783112137365
+    ],
+    "checks": {
+        "loser_revlog_preserved": true,
+        "winner_revlog_present": true,
+        "both_revlog_rows_on_card": true,
+        "card_converged": true,
+        "winner_is_later_timestamp": true,
+        "loser_state_not_final": true,
+        "revlog_sets_identical": true,
+        "both_rows_in_collection": true
+    },
+    "revlog_total": 2
+}
+[32m==== SAME-CARD SYNC CONFLICT VERIFIED ====[0m

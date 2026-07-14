@@ -1,0 +1,25 @@
+[package]
+name = "mcat_bench"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+rust-version.workspace = true
+description = "ReadyMCAT performance benchmark: points-at-stake queue building, grading/next-card, dashboard load + refresh, cold start, an in-process collection sync, and peak RSS on a synthetic 50k-card deck"
+
+[[bin]]
+name = "mcat_bench"
+path = "src/main.rs"
+
+[dependencies]
+anki.workspace = true
+# The sync benchmark starts an in-process anki-sync-server and drives the shared
+# sync client, so we need a full tokio runtime, an http client, JSON emission and
+# libc::getrusage for peak RSS. Every crate here is already a dependency of the
+# `anki` crate above, so this adds no new compilation units to the workspace.
+tokio = { workspace = true, features = ["io-util", "rt-multi-thread", "macros", "time", "net"] }
+reqwest = { workspace = true }
+serde_json = { workspace = true }
+libc = { workspace = true }
+chrono = { workspace = true }

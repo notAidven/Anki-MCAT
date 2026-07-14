@@ -1,0 +1,366 @@
+{
+    "note": "HELD-OUT reworded exam-style questions (paraphrase/transfer set) for the ReadyMCAT performance check. Disjoint wording from the authored bank; used to score the performance model, not to train anything.",
+    "source_bank": "subquestions.json",
+    "concepts": [
+        {
+            "id": "biochem_glycolysis_net_yield",
+            "category": "1D",
+            "source_title": "Glycolysis: net ATP / NADH yield",
+            "items": [
+                {
+                    "q": "During a laboratory experiment, a researcher measures the energy yield from a single glucose molecule undergoing glycolysis. If the process results in the formation of 4 ATP and 2 NADH but consumes 2 ATP, what is the net energy yield of ATP and NADH from glycolysis?",
+                    "a": "Net 2 ATP + 2 NADH."
+                },
+                {
+                    "q": "In a metabolic pathway analysis, a student notes that one glucose molecule is converted into two molecules of pyruvate. If the pathway generates 4 ATP and 2 NADH but requires the investment of 2 ATP, what is the overall ATP and NADH production per glucose molecule?",
+                    "a": "Net 2 ATP + 2 NADH."
+                }
+            ]
+        },
+        {
+            "id": "biochem_citric_acid_cycle_yield",
+            "category": "1D",
+            "source_title": "Citric acid cycle: inputs and per-turn yield",
+            "items": [
+                {
+                    "q": "A researcher is studying the metabolic pathways in a muscle cell. After glycolysis, pyruvate is converted into a specific molecule before entering the citric acid cycle. What is this molecule, and what is produced during its formation from pyruvate?",
+                    "a": "Acetyl-CoA; 1 CO2 and 1 NADH are produced."
+                },
+                {
+                    "q": "During an experiment, a scientist tracks the outputs of the citric acid cycle when two molecules of a certain sugar are completely oxidized. What are the total outputs of NADH, FADH2, and GTP produced from the cycle for this sugar?",
+                    "a": "6 NADH, 2 FADH2, and 2 GTP."
+                }
+            ]
+        },
+        {
+            "id": "biochem_etc_oxphos",
+            "category": "1D",
+            "source_title": "Electron transport chain & oxidative phosphorylation",
+            "items": [
+                {
+                    "q": "In a hypothetical organism, electrons derived from glucose metabolism are transferred through a series of protein complexes in the inner mitochondrial membrane. If oxygen serves as the final electron acceptor in this process, what molecule is produced as a result?",
+                    "a": "Water (H2O)"
+                },
+                {
+                    "q": "During cellular respiration, a cell generates a proton gradient across its inner mitochondrial membrane. If protons flow back into the mitochondrial matrix through a specific enzyme, what process is responsible for the production of ATP in this scenario?",
+                    "a": "Chemiosmosis (oxidative phosphorylation)"
+                }
+            ]
+        },
+        {
+            "id": "biochem_michaelis_menten",
+            "category": "1A",
+            "source_title": "Michaelis-Menten kinetics (Vmax, Km)",
+            "items": [
+                {
+                    "q": "A biochemist is studying an enzyme that catalyzes a reaction and finds that the maximum rate of the reaction occurs when the enzyme is fully saturated with substrate. If the total enzyme concentration is increased, what happens to the Vmax of the reaction?",
+                    "a": "Vmax increases."
+                },
+                {
+                    "q": "In an experiment, a researcher measures the rate of an enzyme-catalyzed reaction at various substrate concentrations and determines that the Km value is low. What can be inferred about the enzyme's affinity for its substrate?",
+                    "a": "The enzyme has a high affinity for its substrate."
+                }
+            ]
+        },
+        {
+            "id": "biochem_enzyme_inhibition",
+            "category": "1A",
+            "source_title": "Enzyme inhibition: competitive vs noncompetitive",
+            "items": [
+                {
+                    "q": "A researcher is studying an enzyme that catalyzes a reaction in the presence of a substrate. She introduces a substance that competes with the substrate for the active site of the enzyme. What effect will this competitive inhibitor have on the enzyme's apparent Km and Vmax?",
+                    "a": "Apparent Km will increase, and Vmax will remain unchanged."
+                },
+                {
+                    "q": "In an experiment, a scientist adds a noncompetitive inhibitor to an enzyme-catalyzed reaction. This inhibitor binds to a site other than the active site. How will this affect the enzyme's Vmax and Km?",
+                    "a": "Vmax will decrease, and Km will remain unchanged."
+                }
+            ]
+        },
+        {
+            "id": "biochem_amino_acid_pI",
+            "category": "1A",
+            "source_title": "Amino acid acid-base behavior & isoelectric point",
+            "items": [
+                {
+                    "q": "Amino acid X has a carboxyl group with a pKa of 2.5 and an amino group with a pKa of 9.5. At physiological pH, what is the charge on amino acid X, and what is its isoelectric point?",
+                    "a": "At physiological pH, amino acid X is a zwitterion with a net charge of 0. The isoelectric point (pI) is 6.0."
+                },
+                {
+                    "q": "Amino acid Y has a side chain that does not ionize and has a carboxyl group with a pKa of 3.0 and an amino group with a pKa of 8.0. Calculate the isoelectric point of amino acid Y.",
+                    "a": "The isoelectric point (pI) of amino acid Y is 5.5, calculated as (3.0 + 8.0)/2."
+                }
+            ]
+        },
+        {
+            "id": "biochem_dna_replication",
+            "category": "1B",
+            "source_title": "DNA replication: semiconservative, leading/lagging",
+            "items": [
+                {
+                    "q": "During DNA replication in a eukaryotic cell, one strand is synthesized continuously while the other is synthesized in segments. Which of the following best describes the nature of these two strands?",
+                    "a": "The continuous strand is the leading strand, and the segmental strand is the lagging strand."
+                },
+                {
+                    "q": "In a laboratory experiment, researchers are analyzing the DNA replication process in bacterial cells. They find that one strand of the DNA is being synthesized in a continuous manner, while the other strand is being synthesized in short fragments. What term describes the method by which the two strands are synthesized?",
+                    "a": "The method is semiconservative replication."
+                }
+            ]
+        },
+        {
+            "id": "biochem_transcription",
+            "category": "1B",
+            "source_title": "Transcription & mRNA processing",
+            "items": [
+                {
+                    "q": "In a eukaryotic cell, after a gene is transcribed into pre-mRNA, which of the following modifications must occur before the mature mRNA can be translated?",
+                    "a": "Addition of a 5' cap, addition of a 3' poly-A tail, and splicing out of introns."
+                },
+                {
+                    "q": "During the process of transcription, RNA polymerase synthesizes RNA by reading the DNA template. In which direction does RNA polymerase read the DNA strand and what direction does it synthesize the RNA?",
+                    "a": "RNA polymerase reads the DNA template strand 3' to 5' and synthesizes RNA 5' to 3'."
+                }
+            ]
+        },
+        {
+            "id": "bio_hardy_weinberg",
+            "category": "1C",
+            "source_title": "Hardy-Weinberg equilibrium",
+            "items": [
+                {
+                    "q": "In a population of butterflies, 4% display a recessive wing color phenotype. Using the Hardy-Weinberg principle, calculate the frequency of the dominant allele in this population.",
+                    "a": "0.8"
+                },
+                {
+                    "q": "In a certain flower species, 36% of the plants exhibit a recessive trait. Determine the proportion of heterozygous plants in this population based on the Hardy-Weinberg equilibrium.",
+                    "a": "0.48"
+                }
+            ]
+        },
+        {
+            "id": "bio_action_potential",
+            "category": "3A",
+            "source_title": "Neuronal action potential",
+            "items": [
+                {
+                    "q": "During a nerve impulse, a scientist observes that sodium ions rapidly enter the neuron, causing a significant increase in the membrane potential. Which phase of the action potential is this, and what ion movement is primarily responsible for this change?",
+                    "a": "This is the depolarization phase, driven by the influx of Na+ ions into the cell."
+                },
+                {
+                    "q": "A researcher studies the recovery phase of a neuron after an action potential. They note that potassium ions are leaving the cell, leading to a decrease in membrane potential. What is this phase called, and what ion channels are primarily involved?",
+                    "a": "This is the repolarization phase, primarily involving the opening of voltage-gated K+ channels."
+                }
+            ]
+        },
+        {
+            "id": "bio_cardiac_conduction",
+            "category": "3B",
+            "source_title": "Cardiac electrical conduction pathway",
+            "items": [
+                {
+                    "q": "A patient experiences a delay in the electrical conduction from the atria to the ventricles. Which structure is primarily responsible for this delay, and what is the physiological significance of this delay?",
+                    "a": "The AV node is responsible for the delay, allowing the atria to fully contract and fill the ventricles before they contract."
+                },
+                {
+                    "q": "In a case of a heart transplant, the donor heart's SA node is functioning normally, but the heart is not responding to autonomic nervous system signals. What role does the SA node play in setting the heart rate in this scenario?",
+                    "a": "The SA node acts as the primary pacemaker due to its fastest intrinsic rate of spontaneous depolarization, controlling the heart rate."
+                }
+            ]
+        },
+        {
+            "id": "bio_nephron_function",
+            "category": "3B",
+            "source_title": "Nephron: filtration, reabsorption, secretion",
+            "items": [
+                {
+                    "q": "A patient presents with excessive urination and low urine concentration. Which renal process is likely impaired in the collecting duct, leading to this condition?",
+                    "a": "Reabsorption of water due to lack of ADH action."
+                },
+                {
+                    "q": "During a dehydration state, which segment of the nephron would primarily be responsible for conserving water, and how does it affect the composition of urine?",
+                    "a": "The descending limb of the loop of Henle reabsorbs water, leading to concentrated urine."
+                }
+            ]
+        },
+        {
+            "id": "genchem_buffers_henderson",
+            "category": "5A",
+            "source_title": "Buffers & the Henderson-Hasselbalch equation",
+            "items": [
+                {
+                    "q": "A chemist is preparing a buffer solution using acetic acid (CH3COOH) and its conjugate base, acetate (CH3COO-). If the pKa of acetic acid is 4.76 and the chemist wants the pH of the buffer to be 4.76, what is the required relationship between the concentrations of acetate and acetic acid?",
+                    "a": "[CH3COO-] = [CH3COOH]"
+                },
+                {
+                    "q": "During a titration of a weak acid with a strong base, at the point where half of the weak acid has been neutralized, the pH is measured to be 5.00. If the pKa of the weak acid is also found to be 5.00, what can be concluded about the concentrations of the weak acid and its conjugate base at this point?",
+                    "a": "[weak acid] = [conjugate base]"
+                }
+            ]
+        },
+        {
+            "id": "genchem_le_chatelier",
+            "category": "5E",
+            "source_title": "Le Chatelier's principle",
+            "items": [
+                {
+                    "q": "In a closed container, a chemical reaction reaches equilibrium. If the temperature of the container is increased, which direction will the equilibrium shift if the reaction is exothermic?",
+                    "a": "Toward the reactants."
+                },
+                {
+                    "q": "A gaseous reaction at equilibrium has 4 moles of gas on the reactant side and 2 moles on the product side. What will happen to the equilibrium position if the volume of the container is decreased?",
+                    "a": "It will shift toward the products."
+                }
+            ]
+        },
+        {
+            "id": "genchem_rate_law",
+            "category": "5E",
+            "source_title": "Rate laws & reaction order",
+            "items": [
+                {
+                    "q": "In a laboratory experiment, the rate of a reaction involving reactants C and D is observed to increase by a factor of 8 when the concentration of C is tripled. What is the reaction order with respect to C?",
+                    "a": "Third order (3^2 = 9, but the rate increased by 8, indicating a close relationship to third order)."
+                },
+                {
+                    "q": "A chemist finds that when the concentration of reactant E is doubled, the rate of the reaction increases by a factor of 2. What can be concluded about the order of the reaction with respect to E?",
+                    "a": "First order."
+                }
+            ]
+        },
+        {
+            "id": "genchem_ideal_gas_law",
+            "category": "4B",
+            "source_title": "Ideal gas law & deviations",
+            "items": [
+                {
+                    "q": "A container holds 2 moles of an ideal gas at a temperature of 300 K. If the volume of the gas is reduced from 10 L to 5 L, what will happen to the pressure of the gas assuming temperature remains constant?",
+                    "a": "The pressure will double."
+                },
+                {
+                    "q": "A sample of gas is maintained at a constant pressure of 1 atm and is heated from 273 K to 546 K. What is the expected change in volume of the gas?",
+                    "a": "The volume will double."
+                }
+            ]
+        },
+        {
+            "id": "ochem_stereochem_isomers",
+            "category": "5D",
+            "source_title": "Stereochemistry: enantiomers vs diastereomers",
+            "items": [
+                {
+                    "q": "Two compounds, A and B, are stereoisomers of each other. Compound A has two chiral centers and is capable of rotating plane-polarized light. Compound B has the same two chiral centers but differs in configuration at only one of them. What type of stereoisomers are A and B?",
+                    "a": "Diastereomers."
+                },
+                {
+                    "q": "A chemist synthesizes two compounds, C and D, which are mirror images of each other and each contain three chiral centers. If compound C rotates plane-polarized light to the right, what can be said about the optical activity of compound D?",
+                    "a": "Compound D rotates plane-polarized light to the left."
+                }
+            ]
+        },
+        {
+            "id": "genchem_gibbs_free_energy",
+            "category": "5E",
+            "source_title": "Gibbs free energy & spontaneity",
+            "items": [
+                {
+                    "q": "A chemical reaction has a positive enthalpy change (ΔH > 0) and a positive entropy change (ΔS > 0). At what temperature range will this reaction be spontaneous?",
+                    "a": "At high temperatures."
+                },
+                {
+                    "q": "A certain process has a ΔH of 50 kJ/mol and a ΔS of 200 J/(mol·K). Determine the temperature above which this process will become spontaneous.",
+                    "a": "Above 250 K."
+                }
+            ]
+        },
+        {
+            "id": "physics_geometric_optics",
+            "category": "4D",
+            "source_title": "Geometric optics: lens/mirror equation",
+            "items": [
+                {
+                    "q": "A diverging lens has a focal length of -10 cm. An object is placed 15 cm in front of the lens. What is the image distance (di) for this setup?",
+                    "a": "-6 cm"
+                },
+                {
+                    "q": "A concave mirror has a focal length of 20 cm. If an object is located 30 cm in front of the mirror, what type of image is formed and what is its magnification?",
+                    "a": "Real and inverted image; m = 0.67 (|m| < 1, image is reduced)."
+                }
+            ]
+        },
+        {
+            "id": "physics_ohms_law_circuits",
+            "category": "4C",
+            "source_title": "Ohm's law & series/parallel circuits",
+            "items": [
+                {
+                    "q": "A circuit consists of three resistors connected in series, with resistances of 5 ohms, 10 ohms, and 15 ohms. What is the total resistance of the circuit?",
+                    "a": "30 ohms"
+                },
+                {
+                    "q": "In a parallel circuit with two resistors of 4 ohms and 6 ohms, what is the total resistance of the circuit?",
+                    "a": "2.4 ohms"
+                }
+            ]
+        },
+        {
+            "id": "psych_memory_stages",
+            "category": "6B",
+            "source_title": "Memory: stages and stores",
+            "items": [
+                {
+                    "q": "A student is preparing for a history exam and uses flashcards to memorize important dates and events. Which stage of memory processing is primarily being utilized when the student reviews the flashcards?",
+                    "a": "Encoding."
+                },
+                {
+                    "q": "During a cooking class, a chef demonstrates how to make a soufflé. After a few attempts, the students can replicate the technique without thinking about the steps. This ability to perform the task without conscious effort is an example of which type of long-term memory?",
+                    "a": "Implicit (nondeclarative) memory."
+                }
+            ]
+        },
+        {
+            "id": "psych_conformity_obedience",
+            "category": "7B",
+            "source_title": "Conformity & obedience (Asch, Milgram)",
+            "items": [
+                {
+                    "q": "During a group project, Sarah consistently agrees with her teammates' incorrect conclusions about the data, despite her own analysis suggesting otherwise. What psychological phenomenon is Sarah demonstrating by conforming to her team's majority opinion?",
+                    "a": "Normative social influence."
+                },
+                {
+                    "q": "In a psychology experiment, participants are instructed by an authority figure to administer what they believe to be painful electric shocks to another person. Many comply despite their discomfort. What concept does this scenario illustrate regarding human behavior?",
+                    "a": "Obedience to authority."
+                }
+            ]
+        },
+        {
+            "id": "psych_operant_conditioning",
+            "category": "7A",
+            "source_title": "Operant conditioning & reinforcement",
+            "items": [
+                {
+                    "q": "A student studies late into the night to avoid failing an upcoming exam. The next day, they feel relieved and confident after passing the exam. What type of operant conditioning is demonstrated by the student's behavior, and why is it classified as such?",
+                    "a": "This is an example of negative reinforcement because the student increased their studying behavior to remove the aversive stimulus of failing."
+                },
+                {
+                    "q": "A dog receives a treat every third time it sits on command. This encourages the dog to sit more often. What type of reinforcement schedule is being used, and what is the expected impact on the dog's behavior?",
+                    "a": "This is a fixed-ratio reinforcement schedule, which is likely to result in a high rate of responding as the dog learns to associate sitting with receiving treats."
+                }
+            ]
+        },
+        {
+            "id": "psych_theories_of_emotion",
+            "category": "6C",
+            "source_title": "Theories of emotion",
+            "items": [
+                {
+                    "q": "During a thrilling roller coaster ride, Sarah's heart races and she feels a rush of excitement. According to the Schachter-Singer theory, what plays a crucial role in her experience of excitement?",
+                    "a": "The cognitive label/appraisal of her physiological arousal as excitement."
+                },
+                {
+                    "q": "When a loud noise startles John, he immediately feels scared and his heart begins to race. Which theory suggests that his fear and physiological response occur at the same time?",
+                    "a": "The Cannon-Bard theory."
+                }
+            ]
+        }
+    ]
+}

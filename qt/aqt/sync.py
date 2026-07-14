@@ -5,8 +5,10 @@ from __future__ import annotations
 
 import functools
 import os
+import threading
 from collections.abc import Callable
 from concurrent.futures import Future
+from typing import Any
 
 import aqt
 import aqt.main
@@ -37,6 +39,28 @@ from aqt.utils import (
     tr,
 )
 
+# Held for the duration of every backend sync call (login / collection / full /
+# status). ReadyMCAT adds mediasrv endpoints (``pointsAtStakeQueue`` and
+# ``readymcatHomeStatus``) that the always-on Home hub polls on a timer; those
+# read the collection on a mediasrv *worker* thread. Anki normally never touches
+# the collection off the main thread while a sync is running, and doing so here
+# races the sync's own heavy backend/allocator work and corrupts the process
+# heap — surfacing (intermittently) as a SIGTRAP in the progress busy-cursor's
+# ``QImage::toCGImage`` on macOS. Those endpoints skip the backend while this
+# lock is held (see ``aqt.mediasrv``), so a collection read can never overlap a
+# sync. See ``_run_while_syncing`` below for how the sync calls take the lock.
+sync_backend_lock = threading.Lock()
+
+
+def _run_while_syncing(task: Callable[[], Any]) -> Callable[[], Any]:
+    """Wrap a backend sync call so it holds ``sync_backend_lock`` while running."""
+
+    def wrapped() -> Any:
+        with sync_backend_lock:
+            return task()
+
+    return wrapped
+
 
 def get_sync_status(
     mw: aqt.main.AnkiQt, callback: Callable[[SyncStatus], None]
@@ -58,7 +82,7 @@ def get_sync_status(
         callback(out)
 
     mw.taskman.run_in_background(
-        lambda: mw.col.sync_status(auth),
+        _run_while_syncing(lambda: mw.col.sync_status(auth)),
         on_future_done,
         # The check quickly releases the collection, and we don't need to block other callers
         uses_collection=False,
@@ -127,7 +151,9 @@ def sync_collection(mw: aqt.main.AnkiQt, on_done: Callable[[], None]) -> None:
             full_sync(mw, out, on_done)
 
     mw.taskman.with_progress(
-        lambda: mw.col.sync_collection(auth, mw.pm.media_syncing_enabled()),
+        _run_while_syncing(
+            lambda: mw.col.sync_collection(auth, mw.pm.media_syncing_enabled())
+        ),
         on_future_done,
         label=tr.sync_checking(),
         immediate=True,
@@ -246,11 +272,12 @@ def full_download(
     gui_hooks.collection_will_temporarily_close(mw.col)
 
     def download() -> None:
-        mw.create_backup_now()
-        mw.col.close_for_full_sync()
-        mw.col.full_upload_or_download(
-            auth=mw.pm.sync_auth(), server_usn=server_usn, upload=False
-        )
+        with sync_backend_lock:
+            mw.create_backup_now()
+            mw.col.close_for_full_sync()
+            mw.col.full_upload_or_download(
+                auth=mw.pm.sync_auth(), server_usn=server_usn, upload=False
+            )
 
     def on_future_done(fut: Future) -> None:
         timer.stop()
@@ -297,8 +324,10 @@ def full_upload(
         return on_done()
 
     mw.taskman.with_progress(
-        lambda: mw.col.full_upload_or_download(
-            auth=mw.pm.sync_auth(), server_usn=server_usn, upload=True
+        _run_while_syncing(
+            lambda: mw.col.full_upload_or_download(
+                auth=mw.pm.sync_auth(), server_usn=server_usn, upload=True
+            )
         ),
         on_future_done,
     )
@@ -334,8 +363,12 @@ def sync_login(
             return
         if username and password:
             mw.taskman.with_progress(
-                lambda: mw.col.sync_login(
-                    username=username, password=password, endpoint=mw.pm.sync_endpoint()
+                _run_while_syncing(
+                    lambda: mw.col.sync_login(
+                        username=username,
+                        password=password,
+                        endpoint=mw.pm.sync_endpoint(),
+                    )
                 ),
                 functools.partial(on_future_done, username=username, password=password),
                 parent=mw,
